@@ -1,0 +1,19 @@
+{
+    "product_id": "shoes_039",
+    "product_name": "남성 러닝화 런 원",
+    "model_description": "이 러닝화는 러닝 초보자를 위해 편안하고 가벼운 EVA 폼 밑창을 사용합니다.  이 러닝화는 러닝 초보자를 위해 편안하고 가벼운 EVA 폼 밑창을 사용합니다.\n\n[무게]\n275mm 사이즈 기준.\n\n[사이즈]\n245mm~305mm.\n\n[드롭]\n밑창의 앞 뒤 높이 차는 10mm입니다.\n\n[보증 기간]\n2",
+    "category": "모든 스포츠 > 러닝 > 남성 > 러닝화 > 로드러닝/조깅",
+    "variants": [
+        {
+            "color": "8351755",
+            "image_paths": [
+                "images/8351755/img1.png",
+                "images/8351755/img2.png",
+                "images/8351755/img3.png",
+                "images/8351755/img4.png",
+                "images/8351755/img5.png",
+                "images/8351755/img6.png"
+            ]
+        }
+    ]
+}

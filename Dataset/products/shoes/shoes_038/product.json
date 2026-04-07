@@ -1,0 +1,19 @@
+{
+    "product_id": "shoes_038",
+    "product_name": "남성 러닝화 런 액티브 그립 500",
+    "model_description": "도로나 트레일에서 접지력을 향상해줄 스터드 및 쿠셔닝을 장착하여 달리기에 적합한 남성용 러닝화입니다. 쿠셔닝과 접지력이 좋은 러닝화로 10km 정도 러닝을 즐기는 남성분들께 추천드립니다. \n\n[무게]\n사이즈 270mm 기준 295g\n\n[사이즈]\n사이즈 255mm~300mm\n\n[드롭]\n발바닥 앞뒤의 높이 차이는 10mm입니다.\n\n[보증 기간]\n2",
+    "category": "모든 스포츠 > 러닝 > 남성 > 러닝화 > 로드러닝/조깅",
+    "variants": [
+        {
+            "color": "8488639",
+            "image_paths": [
+                "images/8488639/img1.png",
+                "images/8488639/img2.png",
+                "images/8488639/img3.png",
+                "images/8488639/img4.png",
+                "images/8488639/img5.png",
+                "images/8488639/img6.png"
+            ]
+        }
+    ]
+}

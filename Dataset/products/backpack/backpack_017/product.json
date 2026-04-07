@@ -1,0 +1,50 @@
+{
+    "product_id": "backpack_017",
+    "product_name": "아동 하이킹 백팩 15L MH300",
+    "model_description": "자녀와 함께 등산을 가시나요? 만 7세 이상 사용할 수 있는 아동용 등산 백팩을 추천합니다! 15L 배낭으로, 비가 오지 않는 날씨에 하루 일정으로 고난도 코스를 등산할 때 사용하기 좋습니다.\n\n[10년 보증]\n백팩에 결함이 있는 경우 보증이 제공되며, 정상적인 사용으로 인한 마모와 비정상적인 조건에서의 사용으로 인한 결함은 보증이 적용되지 않습니다. 10년 품질보증은 구매한 제품과 구매 영수증이 있을 때 적용됩니다.본 상업적 보증은 제품을 구매한 국가/주의 각 해당 법적 품질보증보다 하위 적용법입니다.\n\n[보증 기간]\n10",
+    "category": "모든 스포츠 > 등산 > 용품 > 가방 > 40L 이하",
+    "variants": [
+        {
+            "color": "8803893",
+            "image_paths": [
+                "images/8803893/img1.png",
+                "images/8803893/img2.png",
+                "images/8803893/img3.png",
+                "images/8803893/img4.png",
+                "images/8803893/img5.png",
+                "images/8803893/img6.png"
+            ]
+        },
+        {
+            "color": "8739843",
+            "image_paths": [
+                "images/8739843/img1.png",
+                "images/8739843/img2.png",
+                "images/8739843/img3.png",
+                "images/8739843/img4.png"
+            ]
+        },
+        {
+            "color": "8739842",
+            "image_paths": [
+                "images/8739842/img1.png",
+                "images/8739842/img2.png",
+                "images/8739842/img3.png",
+                "images/8739842/img4.png",
+                "images/8739842/img5.png",
+                "images/8739842/img6.png"
+            ]
+        },
+        {
+            "color": "8928649",
+            "image_paths": [
+                "images/8928649/img1.png",
+                "images/8928649/img2.png",
+                "images/8928649/img3.png",
+                "images/8928649/img4.png",
+                "images/8928649/img5.png",
+                "images/8928649/img6.png"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,780 @@
+{
+    "product_id": "shoes_016",
+    "reviews": [
+        {
+            "user_id": "user_001",
+            "rating": 5,
+            "content": "신발 혀랑 본체가 밴딩으로 붙어있어서 착용감이 좋아요<br>쿠션감 탄력 좋아서 쾌적해요<br>"
+        },
+        {
+            "user_id": "user_002",
+            "rating": 5,
+            "content": "새끼발가락쪽이 먼저 깍여있는 외측로커 형식이라 에보sl 처럼 내전 이슈가 없어 좋았어요<br>미드솔을 손으로 눌러보면 에보sl이 더 말랑한데<br>한쪽씩 같이 신어보니 킵스톰 템포가 더 푹신했네요<br>길이는 엄청 길어요. 반치수 업 해도 길이감은 한치수 업과 같았어요<br>발볼은 2e 사용하는데 템포는 스탠다드 같아요 그래도 갑피가 늘어나서 그런지 큰 압박감은 없었어요<br>5키로 , 13키로 뛰어봤는데 반발력을 느끼며 뛸 짬바가 아니라 반발력은 모르겠고 충격흡수는 잘 되는지 발목이나 무릎 아픈것도 없네요 "
+        },
+        {
+            "user_id": "user_003",
+            "rating": 5,
+            "content": "쿠션화만 선호하다가, 이젠 안전성 보다는 속도를 높이고 싶은 마음에 구매했는데요.<br><br>가벼운 무게, 흔들림 없는 안전성, 적당한 쿠션감과 높은 반발력! 낮은 페이스든 높은 페이스든 자연스러운 발구름을 유도하는 구조로 가히 올라운더라 할 수 있습니다!<br><br>덕분에 조깅 페이스가 6분대에서 5분대로 빨라졌음에도 예전보다 하체의 피로도가 크게 줄었네요!<br><br>발볼러에 발등도 높아서, 고민이었지만 다행히 발볼이며 발등도 조금 여유롭게 제작된 신제품이라서 편안합니다.<br><br>반발력과 쿠션감의 조합을 제대로 만끽하고 싶으신 분들께, 그리고 이제 속도에 대한 욕심을 내고 싶으신 분들께 적극 추천드립니다!"
+        },
+        {
+            "user_id": "user_004",
+            "rating": 5,
+            "content": "슈블2랑 뭔가 느낌이 비슷하네요. <br>길이가 좀 길어서 평소 러닝화 270mm 신는데 이 제품은 265mm 로 주문했는데 잘 맞았습니다. "
+        },
+        {
+            "user_id": "user_005",
+            "rating": 5,
+            "content": "로커 각도가 좀 가팔라 적응하는데 조금 시간이 걸릴듯 하고 냄새가 좀 심한네요 그리고 박스포장 없이 비닐봉투에 테잎 둘둘 말아 왔는데 너무 성의없음<br>미드폼은 나쁘지 않은듯 "
+        },
+        {
+            "user_id": "user_006",
+            "rating": 5,
+            "content": "Amazing shoes! Fits amazing, the midsole feel is a bit firm yet bouncy and comfy. Great stability as well during longer runs. Underrated shoe!"
+        },
+        {
+            "user_id": "user_007",
+            "rating": 5,
+            "content": "This beats the branded big boys on every review. Stunning performance and great value!"
+        },
+        {
+            "user_id": "user_008",
+            "rating": 5,
+            "content": "Top ! Mais petit bémol semelle / durabilité. \n\nFidèle utilisateur de la marque / gamme, j’ai acquis les Tempo dès leur sortie. À ce jour, 2 mois 1/2 d’utilisation et 350 km à leur actif. \n\nLa chaussure est légère, réactive ! \n\nPetit bémol concernant l’usure cependant. Je suis un coureur à foulée neutre et n’ai jamais usé anormalement mes semelles (quelle que soit la marque). Or, la paire présente un début d’usure sur les deux semelles au niveau des talons face extérieure, donc à voir dans le temps…"
+        },
+        {
+            "user_id": "user_009",
+            "rating": 5,
+            "content": "confortable et top"
+        },
+        {
+            "user_id": "user_010",
+            "rating": 5,
+            "content": "Super content, essayé sur un footing de 40min, ensuite le lendemain sur un semi marathon, confort, amorti et relance super efficace, largement au niveau voir au dessus de la concurrence pour un prix vraiment abordable."
+        },
+        {
+            "user_id": "user_011",
+            "rating": 5,
+            "content": "Egy szuper cipő bàrkinek ajànlom"
+        },
+        {
+            "user_id": "user_012",
+            "rating": 5,
+            "content": "Fajne"
+        },
+        {
+            "user_id": "user_013",
+            "rating": 5,
+            "content": "On par with the most popular super trainers out there, but for half the price. Looks and feels amazing. "
+        },
+        {
+            "user_id": "user_014",
+            "rating": 4,
+            "content": "it really hits my sweet spot on all of my training sessions "
+        },
+        {
+            "user_id": "user_015",
+            "rating": 5,
+            "content": "Después de probar modelos anteriores de competición, no quiero ponerme otras zapatillas para días largos de rodaje o tempo. Es cierto que a ritmos más rápidos se notan un poco más lentas que las de carbono, pero no hay color en cuanto a comodidad. Ojo con la estabilidad, al ser una espuma más blanda y gruesa pueden ser peligrosas fuera de asfalto o en circuitos con mucho giro.<br><br>La lengüeta fija es muy cómoda. Esta misma suela con placa de carbono sería la combinación perfecta para competir en asfalto..."
+        },
+        {
+            "user_id": "user_016",
+            "rating": 5,
+            "content": "Très confortable , elles peuvent servir aussi bien pour des entraînements que lors des courses . On a l impression d être dans des chaussons .<br>Je suis un fidèle à la marque décathlon et lors de l achat de mes avant dernières , j ai failli quitter la marque mais là je reviens conquis "
+        },
+        {
+            "user_id": "user_017",
+            "rating": 5,
+            "content": "Son cómodas y ligeras, sobre todo la lengüeta está muy bien integrada y se corre super bien con ellas. Ayudan mucho a mejorar tu ritmo en carrera."
+        },
+        {
+            "user_id": "user_018",
+            "rating": 5,
+            "content": "Salut à tous et à toutes! J’avoue être toujours septique quand au chaussures qu’on nous propose! On nous vend toujours un peu du rêve! Mais la forcé de constater que je ressens une différence entre mes Nimbus 27 et ces Kiprun Tempo! Légèreté déjà et dynamisme, en ce qui concerne le confort je dirais part égale! J’ai littéralement plier mon semi-Marathon de Nancy avec presque 10 min par rapport à l’année précédente. Bon bien entendu plein d’autres facteurs rentrent en compte et la chaussure ne fait pas tout. Je tiens à signaler également que j’étais blessé et que cette blessure n’était pas encore tout fait terminer et la dessus, je pense que les chaussures mon énormément aidé. En tout cas à ce prix avec la promo! Foncer! "
+        },
+        {
+            "user_id": "user_019",
+            "rating": 5,
+            "content": "Wow! Very versatile trainer. Went down half a size and it fit perfectly. \n\nIt is very well cushioned but light. The trainer has very good energy return and is very comfortable. I can do slower paces but it comes alive at faster paces. I use it also for long runs. Excellent value. "
+        },
+        {
+            "user_id": "user_020",
+            "rating": 5,
+            "content": "Je les trouvent géniale, une réelle révélation "
+        },
+        {
+            "user_id": "user_021",
+            "rating": 3,
+            "content": "RAS sur l’aspect course à pied de la chaussure sur la semelle, le rebond, le confort mais comment expliquer qu’après 300 km le mesh latéral ait lâché ? "
+        },
+        {
+            "user_id": "user_022",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_023",
+            "rating": 5,
+            "content": "Paire incroyable "
+        },
+        {
+            "user_id": "user_024",
+            "rating": 5,
+            "content": "Super chaussure qualité prix imbattable meilleure chaussure sans plaque carbone que j ai eu avec les saucony speed 5 ils sont beaucoup plus stable que les evo sl "
+        },
+        {
+            "user_id": "user_025",
+            "rating": 5,
+            "content": "Confort et réactivité pour le prix bravo "
+        },
+        {
+            "user_id": "user_026",
+            "rating": 4,
+            "content": "bon rapport qualité/prix"
+        },
+        {
+            "user_id": "user_027",
+            "rating": 4,
+            "content": "W poszukiwaniu nowych butów natrafiłem na rekomendację kolegi i po przymiarce od razu wiedziałem, że będzie dobrze. Ale nie wiedziałem, że aż tak. To są buty do każdego typu treningu, dla każdego biegacza. Początkujący tak jak i zaawansowany biegacz znajdzie tu odpowiedni but na trening, a nawet i start dla nieco śmielszych. But pozbawiony jest jakiejkolwiek płytki, a to duży plus dla stopy. Dwa, but jest bardzo lekki. Miękkość jest odpowiednia, ale nie jest to top amortyzowany but - i dobrze. Do tego pianka jest szeroka i wystaje poza obrys buta, co powoduje, że but jest stabilny. Dlatego może go założyć amator, na pierwszy w życiu trening jak i osoba, która chce biegąć szybkie jednostki np na stadionie lekkoatletycznym. Są super także na długie wybiegania w spokojniejszym tempie, choć przez swoją lekkość i odbicie zachęcają do szybszych akcentów. Rocker na zdjęciu jest zauważalny i ścięty z przodu, ale nie są to jakieś super agresywne buty, które wymuszają dany ruch. One dają swobodę, za co je bardzo doceniam. Jedynym minusem, ale jest to spory minus - to rozmiarówka. Noszę na co dzień i trenuje w butach o numerze 42. Taki nr w Kiprun Tempo to kajaki, ponad dwa pełne grubości palca zostawione z przodu. Wziąłem 41 i były idealne. Gdyby nie to, byłby to but 5/5, a tak na pewno sporo osób go zwróci i nie zakupi odpowiedniego rozmiaru, a nie będą świadomi co stracili. "
+        },
+        {
+            "user_id": "user_028",
+            "rating": 5,
+            "content": "Les chaussures sont vraiment top, légères réactives avec un bon amorti je les trouve vraiment sympa et rien à envier aux autres marques "
+        },
+        {
+            "user_id": "user_029",
+            "rating": 5,
+            "content": "Sono decisamente soddisfatto. Le utilizzo per gli allenamenti quotidiani (corro circa 40-50km a settimana) e le trovo comode, stabili e anche belle esteticamente. Soddifa la tenuta del battistrada. Allacciatura decisamente poco user-friendly. Purtroppo dopo soli 2 mesi la tomaia nei pressi dell'alluce sinistro mostra qualche segno di usura. Forse un filo troppo care (a prezzo pieno) rispetto alla concorrenza dei marchi più blasonati. Le consiglio!"
+        },
+        {
+            "user_id": "user_030",
+            "rating": 5,
+            "content": "Portée sur un semi en première sortie (même si c'est pas conseillé j'en avais envie). Ras niveau confort, bien dedans. Très légère au pied, elle se fait oublier. J'ai plutôt des chaussures en drop 6 avec une mousse plutôt rigide alors là ça change pas mal. Ce que j'ai remarqué, c'est que les muscles autour de la cheville travaillaient plus à cause de l'instabilité modérée causée par la mousse en dessous. Mais l'avantage, c'est que je n'ai eu aucune douleur ailleurs, rien aux genoux alors que d'habitude ça tire légèrement, rien aux autres muscles qui d'habitude peuvent me faire ressentir un inconfort. À voir dans le temps mais pour une première sortie, je les ai trouvées au top. Je vais les garder pour les jours de course et le tempo/seuil en entraînement. Ce que j'aime aussi, c'est d'avoir une paire avec la même tronche que les paires carbone sans le prix (je suis un coureur régulier mais pas dans la performance absolue donc pas d'intérêt pour moi les carbones). Clairement, elles ont un look d'enfer en gris et fushias comme ça 😎"
+        },
+        {
+            "user_id": "user_031",
+            "rating": 5,
+            "content": "Bardzo lekkie buty, w których swietnie biega się szybkie treningi. Na duży plus świetny wygląd. "
+        },
+        {
+            "user_id": "user_032",
+            "rating": 5,
+            "content": "This is the first review I decided to post, but it is fully deserved. Honestly, I'm surprised these shoes don't cost twice the price. I'm an amateur runner, but these tick all the boxes. Super comfortable, very responsive. They feel like the plated shoes without the disadvantages, especially for a runner that needs a pair of shoes that perform well overall. If you're a rookie runner they will cover all the basics. "
+        },
+        {
+            "user_id": "user_033",
+            "rating": 5,
+            "content": "Très légère parfaite pour un 10km "
+        },
+        {
+            "user_id": "user_034",
+            "rating": 5,
+            "content": "super Schuh zu einem super Preis. "
+        },
+        {
+            "user_id": "user_035",
+            "rating": 5,
+            "content": "彈性好，適合有速度的跑步訓練穿"
+        },
+        {
+            "user_id": "user_036",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_037",
+            "rating": 5,
+            "content": "très bon produit. Taille un peu grand "
+        },
+        {
+            "user_id": "user_038",
+            "rating": 5,
+            "content": "Très bon rapport qualité-prix, idéales pour les sorties VMA. Bon dynamisme mais taille légèrement grand."
+        },
+        {
+            "user_id": "user_039",
+            "rating": 5,
+            "content": "Idealny stosunek ceny do jakości 👌<br>Mega amortyzacja i super wygląd🤩<br>"
+        },
+        {
+            "user_id": "user_040",
+            "rating": 5,
+            "content": ".sehr leicht<br>.sehr bequem<br>.schnell<br>.top preis / leistung"
+        },
+        {
+            "user_id": "user_041",
+            "rating": 5,
+            "content": " Super chaussure, j'ai fait 2 sorties de 10 km, elles ont un super amorti, très réactives. Rapport qualité-prix au top, je recommande fortement"
+        },
+        {
+            "user_id": "user_042",
+            "rating": 4,
+            "content": "plutot stable bien dynamique et confortable je valide"
+        },
+        {
+            "user_id": "user_043",
+            "rating": 5,
+            "content": "great shoes. amazing for tempo runs "
+        },
+        {
+            "user_id": "user_044",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_045",
+            "rating": 4,
+            "content": "Bin Vor-Mittelfuss Läufer mit mehr Gewicht. Deswegen ist mir Dämpfung und Vielseitigkeit im Laufstil wichtig. Das leistet der Schuh. Verwende ihn eher als Daily Trainer. Das Feature  \"explosive Dynamik und schnelles Abstoßen\" kann ich daher nicht so einsetzen und daher beurteilen."
+        },
+        {
+            "user_id": "user_046",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_047",
+            "rating": 5,
+            "content": "Quite pushing for non-carbon board shoes and stable."
+        },
+        {
+            "user_id": "user_048",
+            "rating": 5,
+            "content": "je l'ai mis pour la 1er fois sur une séance tempo et les sensations sont folles, l'équilibre entre amorti et rebond est parfait.\nMerci à l'équipe Decathlon pour ses très bons conseils."
+        },
+        {
+            "user_id": "user_049",
+            "rating": 3,
+            "content": "une douleur au dessus du pied droit apparaît malgré un laçage léger.  RAS côté gauche "
+        },
+        {
+            "user_id": "user_050",
+            "rating": 5,
+            "content": "Estou impressionado com a qualidade do tênis. Apenas 247g no tamanho 43, com conforto, amortecimento e responsividade excepcionais. O tênis, no estilo sockfit, abraça o pé, mas sem jamais incomodar. A estabilidade para um tênis com esse perfil é de se aplaudir. Os concorrentes diretos (superblast 2/3, Megablast, Adidas Adizero Evo SL) são no mínimo de 30 a 40% mais caros sem performance superior, já que o Kipstorm Tempo não deixa nada a desejar aos seus principais concorrentes - e em alguns quesitos, inclusive, chega a supera-los."
+        },
+        {
+            "user_id": "user_051",
+            "rating": 4,
+            "content": "Buona scarpa da allenamento,per lavori abbastanza veloci e medi. La tomaia veste perfettamente, intersuola è formata da due schiume, la parte in fastech + è fantastica, peccato aver inserito l’altra schiuma  CMEVA che invece risulta dura e poco reattiva anche se leggera, purtroppo fa perdere tutta l’efficacia della suola in fastech + .  Grip buono. Chi preferisce scarpe piu “dure” nell’appoggio, rimane comunque ottima a un buon prezzo.  Sarebbe fantastico se lasciassero solo il fastech +  come intersuola."
+        },
+        {
+            "user_id": "user_052",
+            "rating": 5,
+            "content": "Chaussure légère et confortable, utilisé sur sortie longue aucune ampoules et pas de mal de pieds. "
+        },
+        {
+            "user_id": "user_053",
+            "rating": 5,
+            "content": "J’utilise cette paire pour mes séances de fractionné (Tempo, seuil, VMA) depuis déjà 2 mois dans une rotation avec une paire de footing et une paire de carbone.<br>Elle a tout d’une paire carbone sans être une, donc c’est le top niveau confort et dynamisme, mais avec une autonomie bien plus longue que des carbones, et en plus le design est vraiment réussi !"
+        },
+        {
+            "user_id": "user_054",
+            "rating": 5,
+            "content": "Pierwotnie przymierzałem zupełnie inne modele. Natomiast po dłuższej konsultacji ze sprzedawcą Adamem, który podzielił się ze mną kilkoma fachowymi poradami zdecydowałem się na te buty.  Po 2-3 tygodniach użytkowania i przebiegnięciu stu kilkudziesięciu kilometrów muszę stwierdzić, że był to bardzo dobry wybór. Buty świetnie się sprawują przy różnych jednostkach treningowych, począwszy od dłuższych (&gt; 15 km) i spokojnych (&gt; 5 min/km) wybiegań po intensywne sprinty (&lt; 4 min/km). Buty cechuje dobra amortyzacja przy wyraźnie odczuwalnym zwrocie energii. Ponadto są wygodne, lekkie i ciche.  Dodatkowo biorąc pod uwagę ich cenę uważam, że w tej klasie ciężko znaleźć lepsze buty treningowo - startowe."
+        },
+        {
+            "user_id": "user_055",
+            "rating": 5,
+            "content": "非常好，跑起来滚动丝滑，缓震和稳定性也不错。值得购入！"
+        },
+        {
+            "user_id": "user_056",
+            "rating": 5,
+            "content": "Tres content du produit"
+        },
+        {
+            "user_id": "user_057",
+            "rating": 5,
+            "content": "Top confort la paire pousse à se surpasser "
+        },
+        {
+            "user_id": "user_058",
+            "rating": 5,
+            "content": "Paire de chaussures avec un rapport qualité prix extraordinaire."
+        },
+        {
+            "user_id": "user_059",
+            "rating": 5,
+            "content": "Paire de runnings performante, confortable, légère, jolie.<br>"
+        },
+        {
+            "user_id": "user_060",
+            "rating": 5,
+            "content": "Buty tylko na zawody biegowe. Nie nadają się na treningi. Lekkie buty na szybkie bieganie. Plusem jest różnorodność wyborów kolorów.  Fajna cena startówek. Można w nich poprawiać swoje życiówki. Bieganie tylko po nawierzchni twardej."
+        },
+        {
+            "user_id": "user_061",
+            "rating": 4,
+            "content": "如果有人想买这个跑鞋，可以认真读完我这个评价。直接说结论：没有跑步经验或者跑步成绩较差的跑者，不用买，原因就是没办法发挥这个跑鞋的潜力，如果是有经验的跑者如果预算无所谓并且希望长期发展的话建议购买迪卡侬的碳板跑鞋，预算紧张的话买这个跑鞋也是性价比很好的选择。    我的个人体验还不错，特别舒服，客服服务的也很好，给四颗星是因为缺个脚后跟那个拉环，也就是我穿鞋的时候拉住那个拉住鞋子脚后跟的部位别瘪下去省的解鞋带，但是好处是轻量化，但是我觉得鞋子脚后跟那根环实际上不影响跑步这种轻量化基本就是可以忽视的。"
+        },
+        {
+            "user_id": "user_062",
+            "rating": 5,
+            "content": "Chaussure super agréable pour les séances de tempo.<br>Très dynamique <br>Super look"
+        },
+        {
+            "user_id": "user_063",
+            "rating": 5,
+            "content": "Diese Schuhe sind wirklich der Wahnsinn ,einfach nur genial und weiterzuempfehlen .!"
+        },
+        {
+            "user_id": "user_064",
+            "rating": 5,
+            "content": "Pour le moment super baskets très réussie je les teste sur une sortie 10 en EF avec 3 accélérations allures tempo, elles sont confortables, stables , réactives , juste petit bémol ma malléole gauche frotte légèrement à la tige, mais pour le moment pas de douleur, demain je fais une sortie longue allure semi je verrai bien ! Je suis étonné par la chaussure, très certainement une super shoes que l’on retrouve chez d’autres marques à un prix dépassant la barre des 200 , bravo à l’équipe Kiprun pour leurs travail, je pense m’acheter la version Élite pour mes courses semi et marathon en replacement de mes Carbon Saucony et Asics.\nContinuer comme cela je suis fière de courir avec des shoes développe made in France.\nJe recommande à tous les amateurs éclairés.\n"
+        },
+        {
+            "user_id": "user_065",
+            "rating": 5,
+            "content": "Magnifique 🤩 "
+        },
+        {
+            "user_id": "user_066",
+            "rating": 5,
+            "content": "Après environ 35 km parcourus, les Kiprun Kipstorm Tempo se révèlent être une excellente surprise, avec des performances très équilibrées et cohérentes pour l’entraînement.<br><br>Poids et première impression<br>Je les ai pesées : elles affichent le même poids que mes Adidas Adizero Evo SL, et sont en revanche nettement plus légères que les Puma Deviate Nitro 3 (environ 50 g de moins).<br>À l’usage, cette légèreté se ressent clairement, sans compromis sur la stabilité.<br><br>Dynamisme et sensations<br>En termes de rebond et de dynamisme, les Kipstorm Tempo se situent au même niveau que mes Adidas Adizero Evo SL et mes Puma Deviate Nitro 3.<br>Le retour d’énergie est franc et efficace, parfaitement adapté à mon allure autour de 5:00/km, malgré mon poids de 90 kg. Ce n’est pas plus explosif que les Puma ou les Adidas, mais clairement pas en dessous non plus, ce qui est déjà un excellent point.<br><br>Accroche sous la pluie<br>Très gros point fort : l’accroche. J’ai couru sous la pluie et la tenue est excellente. La chaussure accroche très bien sur sol mouillé et inspire une vraie confiance, même dans des conditions humides.<br><br>Stabilité et sécurité<br>La stabilité est également remarquable. Contrairement à certaines chaussures avec plaque carbone, qui peuvent devenir piégeuses dès que l’on pose le pied sur un caillou ou un appui un peu irrégulier, les Kipstorm Tempo restent très saines.<br>Aucune sensation de vrillage de la cheville, la plateforme est stable et rassurante, ce qui est très appréciable à l’entraînement.<br><br>Construction et durabilité perçue<br>Par rapport aux Adidas Adizero Evo SL, je trouve les Kipstorm Tempo mieux construites au niveau du chausson, avec un maintien plus qualitatif.<br>Elles présentent également plus d’épaisseur sur la semelle externe, ce qui laisse penser qu’elles pourraient mieux tenir dans le temps que les Adidas, un point important pour une chaussure d’entraînement.<br><br>Comparaison avec d’anciens modèles<br>Le retour sur mes New Balance Fresh Foam X More a été sans appel : le fossé est énorme.<br>Manque de rebond, manque de dynamisme… au point qu’il m’est devenu très difficile de recourir avec tant la différence est flagrante après avoir utilisé les Kipstorm Tempo.<br>Conclusion<br>Pour un coureur de 90 kg, à allure autour de 5:00/km, les Kiprun Kipstorm Tempo offrent :<br><br>✅ un dynamisme au niveau des meilleures concurrentes<br>✅ un poids contenu<br>✅ une excellente accroche sous la pluie<br>✅ une stabilité très rassurante<br>✅ une construction qui inspire confiance pour la durabilité<br><br>Une chaussure très équilibrée, performante et sécurisante, que je considère aujourd’hui comme une valeur sûre pour l’entraînement.<br><br>"
+        },
+        {
+            "user_id": "user_067",
+            "rating": 5,
+            "content": "彈又好跑，物超所值"
+        },
+        {
+            "user_id": "user_068",
+            "rating": 5,
+            "content": "Top amortis incroyable légère à porter \n"
+        },
+        {
+            "user_id": "user_069",
+            "rating": 5,
+            "content": "Top"
+        },
+        {
+            "user_id": "user_070",
+            "rating": 4,
+            "content": "Bardzo dobre buty do biegania. Są lekkie, wygodne i mają dobrą amortyzację. Sprawdzają się zarówno na szybszych treningach, jak i na dłuższych biegach. Stosunek jakości do ceny jest bardzo dobry – zdecydowanie polecam."
+        },
+        {
+            "user_id": "user_071",
+            "rating": 5,
+            "content": "Au top!"
+        },
+        {
+            "user_id": "user_072",
+            "rating": 5,
+            "content": "Great shoes, very comfortable and great energy return "
+        },
+        {
+            "user_id": "user_073",
+            "rating": 4,
+            "content": "Très légères et réactives. Super pour les séances de vitesse et le tempo."
+        },
+        {
+            "user_id": "user_074",
+            "rating": 5,
+            "content": "très belle"
+        },
+        {
+            "user_id": "user_075",
+            "rating": 5,
+            "content": "super"
+        },
+        {
+            "user_id": "user_076",
+            "rating": 5,
+            "content": "J’ai pu enfin tester aujourd’hui les kiprun kipstorm tempo j’ai eu un très bon ressenti, agréablement surpris un super amorti, rebond extraordinaire avec dynamisme en retour, une chaussure légère, pas d’échauffement au niveau des pieds après le run. "
+        },
+        {
+            "user_id": "user_077",
+            "rating": 4,
+            "content": "Un look sympa,  un amorti vraiment top et dynamique. Une petite gêne au niveau de la malléole pour ma part,  donc je vais m'orienter vers la kipride max ;)"
+        },
+        {
+            "user_id": "user_078",
+            "rating": 2,
+            "content": "premiere paire decathlon que je ne tolère pas, stable et confortable mais le pied n’est pas maintenu en foulée avant pied, convient surement bien en attaque talon comme ressenti dans les descentes ou en prenant une taille en dessous de sa taille optimale mais pas fait pour moi, quelque soit la vitesse ce fut un echec et des douleurs pied genou sur mes 5 séances avec, au placard."
+        },
+        {
+            "user_id": "user_079",
+            "rating": 5,
+            "content": "I am currently beginning a training plan for a half marathon, and needed a pair of running shoes for tempo and speed session runs.<br><br>I was a little sceptical that these could match or better some of the more well known brands, however my mind was blown by the sheer quality of the shoe, and the support that they have given so far. These are definitely a match for some of the £200+ running shoes that seem to get most of the publicity in the running world. They are extremely light in weight but are very supportive, with a comfortable foam that makes you feel like you are running on clouds (not the brand!).<br><br>Definitely a great buy."
+        },
+        {
+            "user_id": "user_080",
+            "rating": 5,
+            "content": "Chaussures très confortable, stable, légère, dynamique. \n\nParfait pour les footings de recup ou seuil . \nOu même quelques séance un peut rythmé. \n\nLe chaussons très agréable avec les lacets.\n\nEn espérant qu’il ne change pas encore de modèle tous les 3mois afin de garder une stabilité dans les modèles existants et performants. "
+        },
+        {
+            "user_id": "user_081",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_082",
+            "rating": 5,
+            "content": "Elég stabil és könnyű cipő.Jó  csillapítja az ütéseket!Azért maratonra nem való!Esetleg dinamikus edzésekhez alkalmas."
+        },
+        {
+            "user_id": "user_083",
+            "rating": 5,
+            "content": "The fit is comfy especially at the top. Recommend to take half size down as it runs big."
+        },
+        {
+            "user_id": "user_084",
+            "rating": 5,
+            "content": "Acheté par mon fils pour lui ces chaussures lui conviennent parfaitement."
+        },
+        {
+            "user_id": "user_085",
+            "rating": 5,
+            "content": "Top"
+        },
+        {
+            "user_id": "user_086",
+            "rating": 5,
+            "content": "Excellent shoe for tempo/interval sessions. <br><br>Lightwieght, responsive and bouncy foam, fits well.<br><br>Highly recommend"
+        },
+        {
+            "user_id": "user_087",
+            "rating": 5,
+            "content": "Au top ! Je courais depuis 2-3 ans avec différentes KD900. J’avais peur de passer sur du carbone! Je peux dire qu’elle sont un excellent compromis, ultra dynamique très légères et bien pensé ! \nEt en plus elles sont vraiment belles! \nJe recommande !"
+        },
+        {
+            "user_id": "user_088",
+            "rating": 4,
+            "content": "Super chaussure vraiment \nPour moi équivalente à une adidas evo sl sans problème pour tout types de séances \nPar contre le mesch pour ma part est trop fragile il s est déjà déchiré à l orteil dommage "
+        },
+        {
+            "user_id": "user_089",
+            "rating": 4,
+            "content": "Impressive shoes. Its like a mix of Evo SL and Megablast. Very light, responsive and fun midsole, thick and grippy outsole. Looks also very good, got lots of complements. The only downside of this shoes is the upper - I had to go half size down on my EU Size, but the volume of the upper is low, and it rubs my toes a little. They are fine for runs up to 10 maybe max 15km runs. "
+        },
+        {
+            "user_id": "user_090",
+            "rating": 5,
+            "content": "For a supertrainer, this shoe is beyond excellence. With price below other competitor, but performance on par with them."
+        },
+        {
+            "user_id": "user_091",
+            "rating": 5,
+            "content": "Very comfortable beautiful running shoe so comfortable "
+        },
+        {
+            "user_id": "user_092",
+            "rating": 5,
+            "content": "Very light and so comfortable "
+        },
+        {
+            "user_id": "user_093",
+            "rating": 5,
+            "content": "Bardzo fajne i wygodne buty do biegania.Polecam"
+        },
+        {
+            "user_id": "user_094",
+            "rating": 5,
+            "content": "Super affaire très belle amorti très bon confort dynamique je dirais même mieux que le superblast chez Asics a bcp moins cher "
+        },
+        {
+            "user_id": "user_095",
+            "rating": 5,
+            "content": "Erdőben futottam ma délután és nagyon szuperül működött"
+        },
+        {
+            "user_id": "user_096",
+            "rating": 4,
+            "content": "A cipő nagyon kényelmes és stabil. Jól csillapít, puhán pàrnàzott! Gyorsabb edzésekre tökéletes.Négy perces kilométerre ideàlis"
+        },
+        {
+            "user_id": "user_097",
+            "rating": 5,
+            "content": "一對性價比好高的日常無板訓練鞋<br>已使用好幾次 感覺非常良好"
+        },
+        {
+            "user_id": "user_098",
+            "rating": 5,
+            "content": "Très bon rapport qualité prix, sûrement le meilleur pour des chaussures de ce type.\nLe mix entre légèreté, amorti et dynamisme elles sont aussi agréables sur des footing tranquille que sur des sorties à allure plus rapide où elles dévoilent leur potentiel.\nEt j’aime le rose\n"
+        },
+        {
+            "user_id": "user_099",
+            "rating": 5,
+            "content": "Bonne paire de chaussure. Confortable et réactive"
+        },
+        {
+            "user_id": "user_100",
+            "rating": 5,
+            "content": "avevo già acquistato in passato una scarpa kiprun e già in passato ero rimasto stupefatto dalla leggerezza dalla reattività della scarpa, con questa nuovo modello non posso fare altro che confermare il giudizio della precedente recensione. scarpa molto leggera comoda e con una reattività fantastica. anche senza spingere nella corsa riesco ad ottenere dei tempi poco superiori alla mia media. consigliatissimo.  un giudizio sull'estetica., questo abbinamento grigio fucsia...bellissimo. "
+        },
+        {
+            "user_id": "user_101",
+            "rating": 5,
+            "content": "Buty rewelacja.  Jakość cena.  Super wyglad. Na nodze jak skarpeta.  Usztywniony zapiętek, przez co są stabilne. Miałem Saucony Speed i te są o niebo lepsze. Kiprun robi ostatnio świetne buty 🙂 Zaliczyłby je do treningowo startowych. "
+        },
+        {
+            "user_id": "user_102",
+            "rating": 5,
+            "content": "Vraiment confort et dynamique "
+        },
+        {
+            "user_id": "user_103",
+            "rating": 5,
+            "content": "Bonjour, <br>Je trouve que ce sont de bonnes baskets pour courir à allure vive. Elles sont naturellement orientées vers l'avant et sont très légères. <br>Je ne les ai pas encore assez mises pour constater une amélioration de mes perf, à tester sur course. "
+        },
+        {
+            "user_id": "user_104",
+            "rating": 5,
+            "content": "Impeccable "
+        },
+        {
+            "user_id": "user_105",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_106",
+            "rating": 3,
+            "content": "Kiprun今年展現野心，單以產品力來說，這是合理的價格，尺碼也比以前900系列準，但是塗裝與品管上，我試穿兩雙都有不同小瑕疵，並不影響功能，希望後面的批次與配色，在折扣與品管能讓我滿意。"
+        },
+        {
+            "user_id": "user_107",
+            "rating": 5,
+            "content": "Une superbe chaussures au visuel et une superbe chaussures en course "
+        },
+        {
+            "user_id": "user_108",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_109",
+            "rating": 5,
+            "content": "great shoe, light weight"
+        },
+        {
+            "user_id": "user_110",
+            "rating": 5,
+            "content": "Chaussure légère et confortable pour la course "
+        },
+        {
+            "user_id": "user_111",
+            "rating": 4,
+            "content": "Bon"
+        },
+        {
+            "user_id": "user_112",
+            "rating": 5,
+            "content": "La chaussure est super et réponds aux attentes que j’avais au niveau de l’achat. C’est à dire une super paire pour faire des belle séances au seuil allure 5/10/semi et même aller sur piste. Le prix est un atout majeur. Petit bémol car j’ai les deux petits orteils qui saignent parfois après les séances pourtant la taille de la paire et les chaussettes utilisés sont les mêmes que sur mes autres paires."
+        },
+        {
+            "user_id": "user_113",
+            "rating": 5,
+            "content": "But bardzo uniwersalny o ciekawej konstrukcji idealny pod interwały i szybsze jednostki, amortyzacji starczy i pod wybiegania 30km !! "
+        },
+        {
+            "user_id": "user_114",
+            "rating": 5,
+            "content": "跑起來有效減少緩衝 在節奏跑跟 間歇跑是不錯的速訓鞋。"
+        },
+        {
+            "user_id": "user_115",
+            "rating": 5,
+            "content": "The shoes give u extra support for running, i can easily break my pb in this shoes!<br>"
+        },
+        {
+            "user_id": "user_116",
+            "rating": 5,
+            "content": "Trop bon rapport qualité/prix avec un gros dynamisme pour un poids plume"
+        },
+        {
+            "user_id": "user_117",
+            "rating": 5,
+            "content": "Super"
+        },
+        {
+            "user_id": "user_118",
+            "rating": 5,
+            "content": "Un super produit que je conseille vivement"
+        },
+        {
+            "user_id": "user_119",
+            "rating": 5,
+            "content": "Boa sapatilha para prova ou corrida mais longa , onde se nota muito o conforto nas subidas e descidas "
+        },
+        {
+            "user_id": "user_120",
+            "rating": 5,
+            "content": "Magnifique et super confort"
+        },
+        {
+            "user_id": "user_121",
+            "rating": 5,
+            "content": "半馬輕鬆完賽"
+        },
+        {
+            "user_id": "user_122",
+            "rating": 4,
+            "content": "Très bien pour les séances de seuil. "
+        },
+        {
+            "user_id": "user_123",
+            "rating": 5,
+            "content": "très bonnes chaussures comparées aux premières kiprun que j'avais acheté ( kiprun carbone ) bon amorti la mousse fait le travail "
+        },
+        {
+            "user_id": "user_124",
+            "rating": 5,
+            "content": "J’ai acheter récemment cette paire de chaussures de running <br>Habitué à d’autre marque <br>J’ai été drôlement surpris <br>Je l’utilise pour mes footing long <br>J’en suis extrêmement content <br>Je recommande cette paire et marque kiprun <br>Largement mieux que certaines paire de grosse marque <br>Un vrai progrès chez décathlon "
+        },
+        {
+            "user_id": "user_125",
+            "rating": 5,
+            "content": "bardzo dobrze amortyzowany but na tempa 4'30-3'40/km<br>używam głównie na treningi typu 10km 4'30+ 3km 3'47+3km 4'30+ 3km 3'47 + 10 km 4'30, biegi w zmiennym tempie 4'30 30min +  4'13, 3'56 3'47 3'41 po 5min każde tempo + trucht<br>amortyzacji jest dość pod dystans maratonu, dla mnie jest to but na 2 zakres tętna przy przygotowaniach do maratonu na 2 godz 40min<br>da się w nich pobiec po 3'30/km krótsze odcinki, ale optymalne tempo to właśnie 4'30-3'40/km <br>dobra opcja na łamanie 3 godz w maratonie, trochę ciężko się wkłada bo skarpetowaty język jest scalony z resztą buta, za to sam but po założeniu jest mega wygodny"
+        },
+        {
+            "user_id": "user_126",
+            "rating": 5,
+            "content": "Za taką cenę buty są idealne. Polecam "
+        },
+        {
+            "user_id": "user_127",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_128",
+            "rating": 5,
+            "content": "Super chaussures ! Ultra polyvalentes, elles sont très efficaces sur une large plage d’allures. Pour ma part je cours entre 6’30 et 4’30 / km selon les sorties et elles font le job en toutes circonstances ! Je recommande +++"
+        },
+        {
+            "user_id": "user_129",
+            "rating": 5,
+            "content": "Superb ! Dynamique et confortable je recommande ce produit "
+        },
+        {
+            "user_id": "user_130",
+            "rating": 5,
+            "content": "Rien à dire , très bon qualité prix , paire dynamique parfaite pour séance fractionné "
+        },
+        {
+            "user_id": "user_131",
+            "rating": 5,
+            "content": "Top"
+        },
+        {
+            "user_id": "user_132",
+            "rating": 5,
+            "content": "Super chaussures pour les entraînements VMA et seuil, tape un peu au delà de 5’15-30/km"
+        },
+        {
+            "user_id": "user_133",
+            "rating": 5,
+            "content": "Perfectas para rodajes alegres "
+        },
+        {
+            "user_id": "user_134",
+            "rating": 5,
+            "content": "Dès le début j’ai ressenti beaucoup de différence comparé à mes runnings de base (KS 900 lights). Une meilleure relance et une très bonne légèreté. <br><br>Ceci dit petit hic lors de la première séance, le temps que les chaussures se formes j’ai eu de belles ampoules sous la plante du pied et au niveau du talon d’Achille.<br><br>Malgré cela une fois soigné j’ai repris à courir avec notamment pour du fractionné et du tempo. Après quelques sorties et environ 50km. Je peux dire que je suis très satisfait de cette paire de chaussures qui me permets d’exploser mon allure au KM lors de séance tempo. "
+        },
+        {
+            "user_id": "user_135",
+            "rating": 5,
+            "content": "zapatillas muy cómodas,muy reactivas, y se ajustan al pie perfectamente,sin duda recomendables 100%,las uso para los días de series o ritmos algo más\"rápidos\""
+        },
+        {
+            "user_id": "user_136",
+            "rating": 5,
+            "content": "Très content de la paire, bon amortit et dynamiques. J'ai également fait plusieurs séances d'hyrox avec, bon grip et plutôt stable sur les stations. Je recommande"
+        },
+        {
+            "user_id": "user_137",
+            "rating": 5,
+            "content": "Très bonne paire de running. Super confortable tant à l’intérieur que la semelle. Chaussure qui aime quand on donne un peu de vitesse et qui réagit très bien. <br>Je recommande ce modèle ! "
+        },
+        {
+            "user_id": "user_138",
+            "rating": 2,
+            "content": "Achetée le weekend dernier. J'utilise plusieurs paires de chaussures aux caractéristiques différentes dans ma rotation de modèles, celui là correspond. Test hier sur une sortie un peu longue avec variation d'allures. La chaussure est relativement confortable, c'est correct sans être chausson. Elles sont dynamiques, stack très important donc mieux vaut rester sur route. Assez légères, 237gr en 42.5. En revanche gros point noir pour moi, j'ai la malléole d'un côté qui touchait le bord de la chaussure, sur le coup ça m'a paru annodin mais aujourd'hui j'ai mal. J'ai un peu peur pour la suite. Est-ce que je recommande ? Ça dépend, si comme moi la malléole touche, non. Sinon oui."
+        },
+        {
+            "user_id": "user_139",
+            "rating": 4,
+            "content": "Testée sur 10km allure rapide, la paire est confortable, légère et dynamique ! <br>Cependant, j'ai constaté que la bande plastique sur le dessus était déjà décollée... au bout de seulement 10km, un manque de qualité pour ce prix c'est dommage."
+        },
+        {
+            "user_id": "user_140",
+            "rating": 5,
+            "content": "ความรู้สึกส่วนตัว ฟีลงง เป็นโฟม แต่เหมือนคาร์บอนดีดดีมาก แต่ก็ซับด้วย ไม่สะท้าน ราคาดีเลยละ แนะนำให้ลองกันนะครับ ใส่แข่งเลยเหอะแบบนี้"
+        },
+        {
+            "user_id": "user_141",
+            "rating": 5,
+            "content": "Marka Kiprun w końcu zatrudniła dobrego projektanta. Buty wizualnie bardzo mi się podobają. Mają dobre trzymanie i amortyzację. Ja używam ich do trochę mocniejszych treningów gdzie radzą sobie swietnie"
+        },
+        {
+            "user_id": "user_142",
+            "rating": 4,
+            "content": "J'aime toujours beaucoup la chassure : dynamique, confortable, amorti. Cependant cette fois, sur une sortie plus intense et plus valonnée, malgré un laçage marathon, mon talon ne restait pas en place. Je me retrouve avec un bleu sous l'ongle du gros orteil. C'est la première paire de chaussures avec laquelle j'ai ça.  J'espère pouvoir effectuer un retour... J'aurai vraiment aimé pouvoir la garder! <br>La version 2.0 peut-être !?"
+        },
+        {
+            "user_id": "user_143",
+            "rating": 4,
+            "content": "Chaussures d’entraînement "
+        },
+        {
+            "user_id": "user_144",
+            "rating": 5,
+            "content": "Me concernant (66 kg, VMA 18) c’est une tuerie. À la fois dynamique et avec de l’amorti. On se sent dans des chaussons. Ayant utilisé toute la gamme kiprun (ks900, kd900, carbone LD+) je la trouve très aboutie, polyvalente et peut être utilisée selon moi également pour une sortie EF."
+        },
+        {
+            "user_id": "user_145",
+            "rating": 3,
+            "content": "3 étoiles car le modèle est très intéressant sur le papier : la chaussure est légère, stable (sur sol plat) et, bien qu’on sente qu’on a 45 mm sous le pied, on n’a pas la sensation d’avoir deux parpaings.<br>Je trouve la chaussure réactive sans plus, sa force est surtout dans le compromis confort/dynamisme sur des sorties longues, pour moi le segment fractionné en dessous de 2000m n'est pas là où elle excelle, comme son nom l'indique, c'est bien une chaussure de tempo.<br>En revanche, gros défaut de conception au niveau du laçage : le rocker prononcé fait que le pied glisse naturellement vers l’avant de la chaussure jusqu’à toucher le bout, et le laçage ne permet pas de bloquer la cheville (même avec un laçage type marathon). Cela rend la chaussure inutilisable pour les foulées médio/avant-pied.<br>J’ai couru deux fois avec deux tailles différentes, et les deux fois je me retrouve avec le talon à 1 cm de l’arrière de la chaussure. J’aurais adoré que ce modèle fonctionne pour moi, tant le rapport qualité/prix/spécifications est intéressant. Malheureusement, elle n’est vraiment pas utilisable."
+        },
+        {
+            "user_id": "user_146",
+            "rating": 5,
+            "content": "Très réussie. Stabilité, amorti, dynamisme. J'en attendais beaucoup, je n'ai pas été déçu"
+        },
+        {
+            "user_id": "user_147",
+            "rating": 5,
+            "content": "Un grand plaisir de course pour mes fractionnés : amorti, dynamisme, confort. Tout y est.\nJ'ai l'impression que la mousse s'assouplit un peu à l'avant, ce qui n'est pas pour me déplaire.\nPour ma part, j'ai l'impression qu'elles commencent à s'exprimer sous les 5' au km."
+        },
+        {
+            "user_id": "user_148",
+            "rating": 4,
+            "content": "Nieprzemyślane wszycie języka, kiepski system sznurowania. Na plus waga, dynamika, wygląd.\nKiepska stabilność dla ludzi w nadpronacją"
+        },
+        {
+            "user_id": "user_149",
+            "rating": 5,
+            "content": "Excellentes chaussures, à la fois légères, très bon amorti et superbe relance, l'impression d'avoir une plaque de carbone. "
+        },
+        {
+            "user_id": "user_150",
+            "rating": 5,
+            "content": "Très bonne chaussure! Performante, le ressenti d'une carbone avec le confort d'une chaussure classique! a ce prix c'est imbattable "
+        },
+        {
+            "user_id": "user_151",
+            "rating": 5,
+            "content": "Waouh ultra dynamique sans compromis sur le confort !"
+        },
+        {
+            "user_id": "user_152",
+            "rating": 5,
+            "content": "Calidad precio excepcional. Un único pero la talla. Tuve que pedir la 42 cuando normalmente utilizo 42,5 o 43. Quitando que tallan algo grandes el resto es una maravilla. Recomendables y a la altura de otras marcas más caras. "
+        },
+        {
+            "user_id": "user_153",
+            "rating": 3,
+            "content": "Dommage model non réglementaire car semelle supérieure à 40mm.\nÇa ne changera rien pour la grande majorité des coureurs évidemment mais je trouve que c'est toujours mieux de respecter les règles pour valider un chrono."
+        },
+        {
+            "user_id": "user_154",
+            "rating": 5,
+            "content": "Maravilla.!!me encanta la nueva Zapatilla Kipstorm Tempo..encaja muy bien mis pies..comodidad,calidad y precio.."
+        },
+        {
+            "user_id": "user_155",
+            "rating": 5,
+            "content": "Chaussure récupérée en test il y'a déjà quelques mois. <br>Après 800km avec, je trouve que la mousse est très dynamique, l'adhérence excellente.<br>Le dessus de la chaussure maintien très bien le pied et est très respirant (prévoir des chaussettes un peu plus épaisse en hiver).<br>Au niveau durabilité aucun problème aussi bien sur le dessus de la chaussure qu'au niveau semelle intermédiaire ou extérieure.<br>En gros une bonne chaussure à tout faire, pour ceux qui recherchent une chaussure maximaliste, avec un bon amortie tout en gardant du dynamisme.<br>"
+        }
+    ]
+}

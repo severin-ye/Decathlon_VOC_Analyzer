@@ -1,0 +1,440 @@
+{
+    "product_id": "shoes_036",
+    "reviews": [
+        {
+            "user_id": "user_001",
+            "rating": 5,
+            "content": "Idéal au quotidien "
+        },
+        {
+            "user_id": "user_002",
+            "rating": 5,
+            "content": "Dobre buty"
+        },
+        {
+            "user_id": "user_003",
+            "rating": 5,
+            "content": "穿起來蠻舒服的、我都穿去上班了😄"
+        },
+        {
+            "user_id": "user_004",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_005",
+            "rating": 2,
+            "content": "价格比网上卖的贵，以后最好与网上同价"
+        },
+        {
+            "user_id": "user_006",
+            "rating": 5,
+            "content": "底好走，保護力適中，好看"
+        },
+        {
+            "user_id": "user_007",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_008",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_009",
+            "rating": 4,
+            "content": ""
+        },
+        {
+            "user_id": "user_010",
+            "rating": 5,
+            "content": "rien à dire , elles sont très bien"
+        },
+        {
+            "user_id": "user_011",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_012",
+            "rating": 3,
+            "content": "有点硌脚面。"
+        },
+        {
+            "user_id": "user_013",
+            "rating": 4,
+            "content": ""
+        },
+        {
+            "user_id": "user_014",
+            "rating": 4,
+            "content": ""
+        },
+        {
+            "user_id": "user_015",
+            "rating": 5,
+            "content": "Excellent product. Brilliant cushioning. Lightweight."
+        },
+        {
+            "user_id": "user_016",
+            "rating": 5,
+            "content": "Ottimo"
+        },
+        {
+            "user_id": "user_017",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_018",
+            "rating": 1,
+            "content": "一个月开胶，问线上客服让我去门店。去了门店才没处理，店员问我是不是泡水了，我说没有啊，何况你们宣传的也不是防小雨嘛？上海这一个月就没下过大雨吧。不能处理何必再让我去门店跑一趟"
+        },
+        {
+            "user_id": "user_019",
+            "rating": 5,
+            "content": "Muito confortavel.... optimo e impermeavel "
+        },
+        {
+            "user_id": "user_020",
+            "rating": 3,
+            "content": "不透气，起汗严重"
+        },
+        {
+            "user_id": "user_021",
+            "rating": 5,
+            "content": "穿着舒服 慢跑步也不错  满意"
+        },
+        {
+            "user_id": "user_022",
+            "rating": 4,
+            "content": "Shock absorbing is great with light weight and good traction."
+        },
+        {
+            "user_id": "user_023",
+            "rating": 5,
+            "content": "脚感很棒"
+        },
+        {
+            "user_id": "user_024",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_025",
+            "rating": 5,
+            "content": "Używane do bieganie po lesie w sezonie jesienno zimowym. Wystarczająco ciepłe, żeby noga nie marzła, wystarczająca przewiewne, żeby się nie pociła. Nie są to buty nieprzemakalne, ale podczas lekkiej mrzawki można biegać i jest sucho. "
+        },
+        {
+            "user_id": "user_026",
+            "rating": 5,
+            "content": "Très confortable !"
+        },
+        {
+            "user_id": "user_027",
+            "rating": 5,
+            "content": "Imperméable les pieds restent au sec."
+        },
+        {
+            "user_id": "user_028",
+            "rating": 5,
+            "content": "Zvyknem behať shuffle, tak okolo 70 km týždenne, teda dlhé behy z nižšou intenzitou. Som spokojný. Ale pár krát som v nich robil aj trocha rýchlejšie behy (tak zhruba 5 až 10 km) a prekvapivo dobre reagovali, pružné sú tak akurát. Topánka je vodeodolná, ale nie vo všetkých podmienkach, dážď  zvláda dobre, sneh tiež, ak sa dostane dnu voda, tak len minimum.   Ale v snehovej brečke som mal komplet mokré nohy :) No niečo podobné som čakal, takže nemám s tým problém. "
+        },
+        {
+            "user_id": "user_029",
+            "rating": 5,
+            "content": "脚感舒适非常好"
+        },
+        {
+            "user_id": "user_030",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_031",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_032",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_033",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_034",
+            "rating": 4,
+            "content": "Ottimo prodotto rapporto qualità prezzo. Sono un po’ più pesanti rispetto a marchi blasonati ma fanno il loro lavoro. Le uso per relax e camminate tranquille, non credo che mi troverei bene per il running"
+        },
+        {
+            "user_id": "user_035",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_036",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_037",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_038",
+            "rating": 3,
+            "content": "Produit de moyenne gamme\nUtilisée sur 2 sorties de 6km\nSemelles de qualité moyenne pour l’amortie, sa largeur et donc son confort\nPlutôt déçu pour mon gabarit de 95kg"
+        },
+        {
+            "user_id": "user_039",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_040",
+            "rating": 5,
+            "content": "Je trouve ces chaussures très confortables, pour ma part je les portes tout les jours pour de longues marches."
+        },
+        {
+            "user_id": "user_041",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_042",
+            "rating": 3,
+            "content": "很容易臭脚"
+        },
+        {
+            "user_id": "user_043",
+            "rating": 5,
+            "content": "Après avoir couru avec  ces chaussures de running j'ai été très agréablement surpris très confortables et un bon amorti."
+        },
+        {
+            "user_id": "user_044",
+            "rating": 3,
+            "content": "lacets beaucoup trop longs<br>je destinais ces chaussures à un port quotidien et occasionnellement à de la course"
+        },
+        {
+            "user_id": "user_045",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_046",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_047",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_048",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_049",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_050",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_051",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_052",
+            "rating": 5,
+            "content": "等了一年，特意买这个，春夏秋下雨天穿，防水鞋"
+        },
+        {
+            "user_id": "user_053",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_054",
+            "rating": 4,
+            "content": "Très bien, sauf non imperméable "
+        },
+        {
+            "user_id": "user_055",
+            "rating": 4,
+            "content": "un peu lourde, chaussure pour des sortie intermédiaire, jusqu'à 12/15km\nle deperlant par contre c'est top pour ma saison actuelle,. vous gardez les pieds au sec, et pour ce prix là concurrence ne sait pas faire"
+        },
+        {
+            "user_id": "user_056",
+            "rating": 3,
+            "content": "Rien à dire chaussures moyennes game "
+        },
+        {
+            "user_id": "user_057",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_058",
+            "rating": 5,
+            "content": "好评，跑步导购小哥十分耐心细致讲解跑步注意事项，满意的一次购物体验"
+        },
+        {
+            "user_id": "user_059",
+            "rating": 5,
+            "content": "Bonne produit "
+        },
+        {
+            "user_id": "user_060",
+            "rating": 4,
+            "content": "Buty przyczepne na mokrym, na śniegu średnio/słabo z przyczepnością. Dobrze trzymają w zakrętach. W miarę ciche. Wg mnie do budowania bazy i treningów w tempie maratońskim(3:50/km lub wolniej). Wodoodporność - ok. Przy zawiązaniu sznurówek na ostatnie oczko - dodatkowe wsparcie Achillesa i sznurówki będą miały optymalną długość. Amortyzacja - optymalna. Cena/jakość - top. "
+        },
+        {
+            "user_id": "user_061",
+            "rating": 5,
+            "content": "Ok"
+        },
+        {
+            "user_id": "user_062",
+            "rating": 5,
+            "content": "Qualidade preço espectacular"
+        },
+        {
+            "user_id": "user_063",
+            "rating": 3,
+            "content": "Les chaussures sont acceptables, ni excellentes ni mauvaises. Après quelques semaines d’utilisation, j’ai constaté qu’elles sont inconfortables à l’intérieur à cause d’une transpiration excessive, et le pied se sent étouffé, comme s’il était dans un sac en plastique. De l’extérieur, leur apparence est belle et elles sont résistantes à la pluie ; cependant, en cas de forte pluie, l’eau pénètre par le haut, au niveau des lacets. Le prix est élevé par rapport à la qualité. Merci."
+        },
+        {
+            "user_id": "user_064",
+            "rating": 4,
+            "content": "Bon amorti et parfaite tenue au pied à prix rikiki"
+        },
+        {
+            "user_id": "user_065",
+            "rating": 5,
+            "content": "Bon maintien du pied dans la chaussure, semelle épaisse et assez confortable. A voir sur le long terme mais c'est prometteur."
+        },
+        {
+            "user_id": "user_066",
+            "rating": 4,
+            "content": "prese per problemi all' alluce avendo suola rigida non flette. comome.  Ottimo per uscire , look tutto nero e da non dimenticare sono impermeabile "
+        },
+        {
+            "user_id": "user_067",
+            "rating": 5,
+            "content": "Rien à dire. C'et très bien"
+        },
+        {
+            "user_id": "user_068",
+            "rating": 1,
+            "content": "La languette de la chaussure est trop rigide, cela m’as irrité le dessus du pied….<br>"
+        },
+        {
+            "user_id": "user_069",
+            "rating": 5,
+            "content": "Parfaite ! <br>"
+        },
+        {
+            "user_id": "user_070",
+            "rating": 2,
+            "content": "fanno sudare molto il piede.\nCon la pioggia mi sono bagnato i calzini.\ninsoddisfatto"
+        },
+        {
+            "user_id": "user_071",
+            "rating": 5,
+            "content": "Sapatilhas muito confortáveis e protetoras das dores lombares"
+        },
+        {
+            "user_id": "user_072",
+            "rating": 5,
+            "content": "Très confortable "
+        },
+        {
+            "user_id": "user_073",
+            "rating": 2,
+            "content": "Son cómodas pero NO \"mantienen el pie seco bajo la lluvia\" como se informa en vuestra app. A los 400 metros con lluvia mi pie estaba empapado. La información sobre el producto me ha confundido, no hubiera comprado esas zapatillas. Una pena, soy fan de Decathlon y no me gusta que hagáis esto."
+        },
+        {
+            "user_id": "user_074",
+            "rating": 5,
+            "content": "Super buty zimowe "
+        },
+        {
+            "user_id": "user_075",
+            "rating": 5,
+            "content": "Excellent produit. Idéal pour la marche."
+        },
+        {
+            "user_id": "user_076",
+            "rating": 3,
+            "content": "Je ne trouve pas le confort espéré. "
+        },
+        {
+            "user_id": "user_077",
+            "rating": 1,
+            "content": "ayant acheté a plusieurs reprises le même modèle pour temps sec je m'attendais a une qualité similaire.\nEt bien non: c'est beaucoup moins confortable, la semelle intérieure est cheap a souhait, ça taille trop grand et les lacets sont trop grand au point qu'un double noeud est impératif "
+        },
+        {
+            "user_id": "user_078",
+            "rating": 1,
+            "content": "Chaussures inutilisables avec des chaussettes basses car la languette trop rigide frotte au niveau de la cheville et occasionne une abrasion de la peau."
+        },
+        {
+            "user_id": "user_079",
+            "rating": 3,
+            "content": "La forme à l’intérieur de la chaussure est différente des autres baskets."
+        },
+        {
+            "user_id": "user_080",
+            "rating": 4,
+            "content": "Son muy cómodos."
+        },
+        {
+            "user_id": "user_081",
+            "rating": 5,
+            "content": "Todo genial. Muy cómodas. Las volvería a comprar."
+        },
+        {
+            "user_id": "user_082",
+            "rating": 5,
+            "content": "Precio calidad y comodidad<br>"
+        },
+        {
+            "user_id": "user_083",
+            "rating": 5,
+            "content": "I was looking for a shoe mainly for walking on an upcoming trip to Paris. This shoe exceeded my expectations. I’ve put a 100km’s on these shoes and love them. These are comparable to New Balance fresh foams and Nike Pegasus shoes I’ve owned in the past. For this price, this is an awesome shoe. Would definitely buy again. "
+        },
+        {
+            "user_id": "user_084",
+            "rating": 3,
+            "content": "Footing de 45 mn sous pluie légère pied mouillé,<br>Déçu acheté pour courrir les jour de pluie."
+        },
+        {
+            "user_id": "user_085",
+            "rating": 3,
+            "content": "Esőben még nem teszteltem, így a vízállóság valósságáról nem tudok nyilatkozni, mindenesetre egy elég nehéz cipő, ergó lassú, aerob futásokra alkalmas hűvösebb időben, mivel elég meleg, ami télen még kifejezetten jól is jöhet majd. Nem a legkényelmesebb cipőm, de nem vagyok finnyás, a célnak így is megfelel, viszont mindent egybevéve talán kicsit túlárazott még 30 ezerért is."
+        },
+        {
+            "user_id": "user_086",
+            "rating": 4,
+            "content": "Biegane przy 10st. Są ciepłe. Zaskakująco miękkie. <br>Nie są zbyt wododoporne, ale chronią od wiatru.<br>Niestety design dość kiepski, na żywo wyglądają jak \"chińczyk\".<br>Mam wąską stopę 28cm, rozmiar 43 jest git :)"
+        },
+        {
+            "user_id": "user_087",
+            "rating": 2,
+            "content": "Je m'attendais à une chaussure plus confortable, avec un meilleur maintien, une meilleure stabilité.<br>La mousse trop épaisse au niveau de la plante du pied donne une sensation d'instabilité.<br>La mousse au niveau du talon est trop molle et donne une sensation d'instabilité aussi<br>Les bords arrières font mal au niveau du talon d'Achille.<br>Bref, une chaussure que je n'aurai portée que deux fois, trop peur de me faire une entorse."
+        }
+    ]
+}

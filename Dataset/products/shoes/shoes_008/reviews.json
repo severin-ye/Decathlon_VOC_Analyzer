@@ -1,0 +1,60 @@
+{
+    "product_id": "shoes_008",
+    "reviews": [
+        {
+            "user_id": "user_001",
+            "rating": 5,
+            "content": "가볍고 편합니다.<br>덕분에 처음으로 포디움에 올랐네요!!"
+        },
+        {
+            "user_id": "user_002",
+            "rating": 1,
+            "content": "Lacets fragiles et aucun retour du service malgré deux relances."
+        },
+        {
+            "user_id": "user_003",
+            "rating": 4,
+            "content": "I really like these shoes for fast running but I have found the outsole grip to be uncertain in colder, icy conditions. I don't have the same confidence compared to other leading supershoes but I do love these shoes and will wear them in the spring for 5ks and 10ks!"
+        },
+        {
+            "user_id": "user_004",
+            "rating": 5,
+            "content": "très bonne chaussures confortables. "
+        },
+        {
+            "user_id": "user_005",
+            "rating": 3,
+            "content": "Al ponerme la primera puesta se me ha roto la zapatilla. Por lo de más para eso está la garantía decahtlon. Me han devuelto el dinero. "
+        },
+        {
+            "user_id": "user_006",
+            "rating": 5,
+            "content": "it was so easy to buy and very fast to received my order"
+        },
+        {
+            "user_id": "user_007",
+            "rating": 5,
+            "content": "Génial. <br>Elles sont juste incroyables. Dynamique très légères, j'en suis très satisfaite.<br>Je vais encore en prendre une paire."
+        },
+        {
+            "user_id": "user_008",
+            "rating": 5,
+            "content": "Premium quality, very bouncy and fast for 5k/10k, best racing shoe at the moment"
+        },
+        {
+            "user_id": "user_009",
+            "rating": 5,
+            "content": "Prachtige schoenen, passen super, zijn vederlicht, sexy 10/10"
+        },
+        {
+            "user_id": "user_010",
+            "rating": 5,
+            "content": "Excellent produit "
+        },
+        {
+            "user_id": "user_011",
+            "rating": 4,
+            "content": "Bonne chaussure de 5 ou 10km. <br>Légère, réactive et confortable. Assez stables.<br>À mon goût rebond un peu mou, tige et semelle vraiment fragile. Le prix me paraît un peu trop élevé par rapport à la concurrence. "
+        }
+    ]
+}

@@ -1,0 +1,41 @@
+{
+    "product_id": "sunglasses_049",
+    "product_name": "스포츠 미러렌즈 선글라스 퍼프 500",
+    "model_description": "가벼운 무게, 넓은 시야각, 뛰어난 통기성이 돋보이는 제품입니다. 기능성과 더불어 세련된 디자인까지 갖춰 당신의 스타일을 완성합니다. 더욱 넓어진 시야, 더 가벼워진 무게. 새로운 라인업으로 돌아온 최신 버전을 만나보세요.\n\n[렌즈]\n카테고리 3 렌즈. \n카테고리 3란 빛의 88%를 걸러준다는 의미입니다. (햇빛이 화창한 날에 적합한 보호 수준) \n겨울철 흐린 날에 사용하기에는 부적합합니다. \nISO 12312-1 표준에 따른 UV 차단 필터. 거울효과는 심미적인 용도일 뿐이지만 미러 렌즈에 긁힘 자국이 나면 눈에 띄기 때문에 주의하여 다루세요. 케이스에 넣어 보관하세요.\n천으로 닦기 전에 물로 살짝 헹궈주세요.\n\n[프레임]\n프레임 소재: 폴리카보네이트. 안경다리 끝: 고무. \n사이즈 정보: 갸름하거나 평균 얼굴 크기에 착용하기 적합합니다.\n\n[보증 기간]\n2",
+    "category": "모든 스포츠 > 자전거 > 용품 > 선글라스",
+    "variants": [
+        {
+            "color": "8648846",
+            "image_paths": [
+                "images/8648846/img1.png",
+                "images/8648846/img2.png",
+                "images/8648846/img3.png",
+                "images/8648846/img4.png",
+                "images/8648846/img5.png",
+                "images/8648846/img6.png"
+            ]
+        },
+        {
+            "color": "8648844",
+            "image_paths": [
+                "images/8648844/img1.png",
+                "images/8648844/img2.png",
+                "images/8648844/img3.png",
+                "images/8648844/img4.png",
+                "images/8648844/img5.png",
+                "images/8648844/img6.png"
+            ]
+        },
+        {
+            "color": "8936760",
+            "image_paths": [
+                "images/8936760/img1.png",
+                "images/8936760/img2.png",
+                "images/8936760/img3.png",
+                "images/8936760/img4.png",
+                "images/8936760/img5.png",
+                "images/8936760/img6.png"
+            ]
+        }
+    ]
+}

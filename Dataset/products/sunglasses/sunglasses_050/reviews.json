@@ -1,0 +1,15 @@
+{
+    "product_id": "sunglasses_050",
+    "reviews": [
+        {
+            "user_id": "user_001",
+            "rating": 4,
+            "content": "Optically very good and dark enough for the sunniest days, they look cool, however not quite as reflective as they look in the pictures (straight on they just look black). Don't mist up much but don't stay quite as clear as my old VR rimless photochromic in damp weather. Lightweight."
+        },
+        {
+            "user_id": "user_002",
+            "rating": 5,
+            "content": "Love them fit well"
+        }
+    ]
+}

@@ -1,0 +1,74 @@
+{
+    "product_id": "sunglasses_015",
+    "product_name": "스포츠 라운드 선글라스 액티브 500",
+    "model_description": "카테고리 3 렌즈는 눈부심을 제한하고 자외선을 100% 차단합니다. 가벼운 선글라스로, 보관 케이스와 함께 제공됩니다. 둥근 모양의 선글라스로 햇볕이 매우 강한 날에 착용하기 좋습니다.\n\n[폴리카보네이트 렌즈, 카테고리 3]\n도시나 시골 어디에서든 풍경을 감상하기 위해 눈을 찡그릴 필요가 없습니다. 어두운 카테고리 3 렌즈는 가시광선을 82%에서 92%까지 흡수합니다. 밝은 환경에서 눈부심을 줄여줍니다. 렌즈는 편안함과 눈 보호를 위해 내구성이 강한 폴리카보네이트로 제작되었으며, UVA 및 UVB 광선을 100% 차단합니다.\n\n[선글라스 및 보관 케이스 함께 제공]\n보관 케이스가 함께 제공되어 긁힘이나 작은 충격을 걱정할 필요가 없습니다. 손상 위험 없이 주머니나 가방에 보관하세요.\n\n[보증 기간]\n2",
+    "category": "모든 스포츠 > 러닝 > 용품 > 선글라스",
+    "variants": [
+        {
+            "color": "8942033",
+            "image_paths": [
+                "images/8942033/img1.png",
+                "images/8942033/img2.png",
+                "images/8942033/img3.png",
+                "images/8942033/img4.png",
+                "images/8942033/img5.png",
+                "images/8942033/img6.png"
+            ]
+        },
+        {
+            "color": "8942038",
+            "image_paths": [
+                "images/8942038/img1.png",
+                "images/8942038/img2.png",
+                "images/8942038/img3.png",
+                "images/8942038/img4.png",
+                "images/8942038/img5.png",
+                "images/8942038/img6.png"
+            ]
+        },
+        {
+            "color": "8942034",
+            "image_paths": [
+                "images/8942034/img1.png",
+                "images/8942034/img2.png",
+                "images/8942034/img3.png",
+                "images/8942034/img4.png",
+                "images/8942034/img5.png",
+                "images/8942034/img6.png"
+            ]
+        },
+        {
+            "color": "8942036",
+            "image_paths": [
+                "images/8942036/img1.png",
+                "images/8942036/img2.png",
+                "images/8942036/img3.png",
+                "images/8942036/img4.png",
+                "images/8942036/img5.png",
+                "images/8942036/img6.png"
+            ]
+        },
+        {
+            "color": "8942037",
+            "image_paths": [
+                "images/8942037/img1.png",
+                "images/8942037/img2.png",
+                "images/8942037/img3.png",
+                "images/8942037/img4.png",
+                "images/8942037/img5.png",
+                "images/8942037/img6.png"
+            ]
+        },
+        {
+            "color": "8942035",
+            "image_paths": [
+                "images/8942035/img1.png",
+                "images/8942035/img2.png",
+                "images/8942035/img3.png",
+                "images/8942035/img4.png",
+                "images/8942035/img5.png",
+                "images/8942035/img6.png"
+            ]
+        }
+    ]
+}

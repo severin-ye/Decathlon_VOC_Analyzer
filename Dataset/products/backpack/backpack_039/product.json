@@ -1,0 +1,30 @@
+{
+    "product_id": "backpack_039",
+    "product_name": "백패킹 오거나이저 여행 지갑 XL",
+    "model_description": "튼튼하고 실용적인 벨트백 스타일의 이 제품은 소지품을 쉽게 찾을 수 있는 최적의 소형 가방입니다. 장기 여행이나 당일 여행 시 함께 할 여러분의 동반자가 되어줄 것입니다. 3개의 포켓이 있어 사용하기 편리한 벨트 백 타입 지갑입니다.\n\n[트래블 XL 지갑의 수납 공간 구성]\n트래블 XL 벨트백 지갑의 구성: \n- 열쇠를 걸 수 있는 스냅 후크가 있는 대형 지퍼 포켓 1개,\n- 큰 지퍼형 수납공간과 동전 수납공간, 여러 카드 홀더가 포함된 대형 지퍼 포켓 1개,- 전면의 확장 가능한 거싯 지퍼 포켓 1개.\n\n[트래블 XL 벨트백 지갑의 무게와 크기]\n트래블 XL 여행용 지갑의 크기는 20cmx12cm x3cm입니다(가로 x 세로 x 두께).\n무게는 175g입니다.\n\n[보증 기간]\n2",
+    "category": "모든 스포츠 > 등산 > 용품 > 가방 > 가방 용품",
+    "variants": [
+        {
+            "color": "8512008",
+            "image_paths": [
+                "images/8512008/img1.png",
+                "images/8512008/img2.png",
+                "images/8512008/img3.png",
+                "images/8512008/img4.png",
+                "images/8512008/img5.png",
+                "images/8512008/img6.png"
+            ]
+        },
+        {
+            "color": "8512007",
+            "image_paths": [
+                "images/8512007/img1.png",
+                "images/8512007/img2.png",
+                "images/8512007/img3.png",
+                "images/8512007/img4.png",
+                "images/8512007/img5.png",
+                "images/8512007/img6.png"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "product_id": "backpack_023",
+    "product_name": "백패킹 여행용 RFID 차단 넥 파우치",
+    "model_description": "RFID를 차단하여 해킹을 방지해주는 파우치로 여러분의 문서와 은행 카드를 보호합니다. 안심하고 여행할 수 있게 도와주는 가방입니다.\n\n[크기]\n높이 14cm\n너비: 11cm\n\n[보증 기간]\n2",
+    "category": "모든 스포츠 > 등산 > 용품 > 가방 > 가방 용품",
+    "variants": [
+        {
+            "color": "8754648",
+            "image_paths": [
+                "images/8754648/img1.png",
+                "images/8754648/img2.png",
+                "images/8754648/img3.png",
+                "images/8754648/img4.png",
+                "images/8754648/img5.png",
+                "images/8754648/img6.png"
+            ]
+        }
+    ]
+}

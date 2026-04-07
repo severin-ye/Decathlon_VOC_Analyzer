@@ -1,0 +1,1005 @@
+{
+    "product_id": "sunglasses_025",
+    "reviews": [
+        {
+            "user_id": "user_001",
+            "rating": 5,
+            "content": "러닝할 때, 흘러 내리지 않고, 디자인 좋고, 가격 좋고 아주 좋아요"
+        },
+        {
+            "user_id": "user_002",
+            "rating": 5,
+            "content": "가벼워서 자주 이용할거 같아요 좋네요 ㅎㅎ"
+        },
+        {
+            "user_id": "user_003",
+            "rating": 5,
+            "content": "굉장히 실용적이고 좋은 선글라스입니다.<br>편하고<br>크고<br>좋습니다."
+        },
+        {
+            "user_id": "user_004",
+            "rating": 3,
+            "content": "가성비 굳"
+        },
+        {
+            "user_id": "user_005",
+            "rating": 5,
+            "content": "가볍고 느낌있어요"
+        },
+        {
+            "user_id": "user_006",
+            "rating": 4,
+            "content": "가성비 좋음. 살짝 흔들림(큼)이 있지만 괜찮아요. "
+        },
+        {
+            "user_id": "user_007",
+            "rating": 5,
+            "content": "가성비 완전 최고… 이가격에 미쳤음 "
+        },
+        {
+            "user_id": "user_008",
+            "rating": 4,
+            "content": "가성비 완전 좋은 제품 <br>성능도 디자인도 문안 해요"
+        },
+        {
+            "user_id": "user_009",
+            "rating": 5,
+            "content": "가볍고 편하고 스타일리쉬합니다."
+        },
+        {
+            "user_id": "user_010",
+            "rating": 5,
+            "content": "잘받았습니다 배송도빠르고 포장도 꼼꼼하게 잘받았습니다"
+        },
+        {
+            "user_id": "user_011",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_012",
+            "rating": 5,
+            "content": "適合健行佩戴"
+        },
+        {
+            "user_id": "user_013",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_014",
+            "rating": 5,
+            "content": "店员友好"
+        },
+        {
+            "user_id": "user_015",
+            "rating": 5,
+            "content": "方便攜帶，旅行登山必備！"
+        },
+        {
+            "user_id": "user_016",
+            "rating": 5,
+            "content": "不错"
+        },
+        {
+            "user_id": "user_017",
+            "rating": 5,
+            "content": "Mắt kính thiết kế đẹp, toàn bộ bằng nhựa nên gọn nhẹ dễ mang theo, bền bỉ, chống nắng tốt"
+        },
+        {
+            "user_id": "user_018",
+            "rating": 5,
+            "content": "看起来黑了点 但云南这太阳正合适"
+        },
+        {
+            "user_id": "user_019",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_020",
+            "rating": 5,
+            "content": "卡头卡鼻子，好看但是不好带"
+        },
+        {
+            "user_id": "user_021",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_022",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_023",
+            "rating": 4,
+            "content": "This sunglass is good and that’s why I brought it again when I lost the first one in hiking. I believe the quality &amp; price is fit to my need."
+        },
+        {
+            "user_id": "user_024",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_025",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_026",
+            "rating": 5,
+            "content": "Tốt"
+        },
+        {
+            "user_id": "user_027",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_028",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_029",
+            "rating": 5,
+            "content": "好看"
+        },
+        {
+            "user_id": "user_030",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_031",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_032",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_033",
+            "rating": 5,
+            "content": "带着舒服"
+        },
+        {
+            "user_id": "user_034",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_035",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_036",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_037",
+            "rating": 4,
+            "content": "cũng ổn"
+        },
+        {
+            "user_id": "user_038",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_039",
+            "rating": 5,
+            "content": "很好，就是又搞丢了"
+        },
+        {
+            "user_id": "user_040",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_041",
+            "rating": 5,
+            "content": "好，很好"
+        },
+        {
+            "user_id": "user_042",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_043",
+            "rating": 3,
+            "content": ""
+        },
+        {
+            "user_id": "user_044",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_045",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_046",
+            "rating": 5,
+            "content": "CP質高不會太黑"
+        },
+        {
+            "user_id": "user_047",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_048",
+            "rating": 5,
+            "content": "质量很好，很轻"
+        },
+        {
+            "user_id": "user_049",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_050",
+            "rating": 4,
+            "content": "ทน แข็ง"
+        },
+        {
+            "user_id": "user_051",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_052",
+            "rating": 5,
+            "content": "挺好的很喜欢"
+        },
+        {
+            "user_id": "user_053",
+            "rating": 5,
+            "content": "很好"
+        },
+        {
+            "user_id": "user_054",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_055",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_056",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_057",
+            "rating": 5,
+            "content": "Chống nắng chói tốt"
+        },
+        {
+            "user_id": "user_058",
+            "rating": 5,
+            "content": "墨镜不知道什么时候弄丢了打算再买一个，5555555"
+        },
+        {
+            "user_id": "user_059",
+            "rating": 5,
+            "content": "Kualiti lensa clear, sesuai sangat untuk hiking 🥾 dan aktiviti outdoor. Rasa macam kurang silau walaupun bawah panas terik. Recommended!”"
+        },
+        {
+            "user_id": "user_060",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_061",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_062",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_063",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_064",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_065",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_066",
+            "rating": 5,
+            "content": "上一个同款弄丢了，买了个一模一样的"
+        },
+        {
+            "user_id": "user_067",
+            "rating": 5,
+            "content": "这个太阳镜买了两个了，很好用，开车徒步都戴着"
+        },
+        {
+            "user_id": "user_068",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_069",
+            "rating": 5,
+            "content": "這個價格竟然是偏光鏡片，包覆性很好，側面不漏廣播。便宜耐用不心疼。只有狄卡農做得到，"
+        },
+        {
+            "user_id": "user_070",
+            "rating": 5,
+            "content": "價格實惠"
+        },
+        {
+            "user_id": "user_071",
+            "rating": 4,
+            "content": "有一点紧"
+        },
+        {
+            "user_id": "user_072",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_073",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_074",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_075",
+            "rating": 5,
+            "content": "性价比高，可惜掉了，会回购"
+        },
+        {
+            "user_id": "user_076",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_077",
+            "rating": 5,
+            "content": "111111"
+        },
+        {
+            "user_id": "user_078",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_079",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_080",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_081",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_082",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_083",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_084",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_085",
+            "rating": 5,
+            "content": "不错的眼镜"
+        },
+        {
+            "user_id": "user_086",
+            "rating": 5,
+            "content": "Sangat puas dgn material dan quality "
+        },
+        {
+            "user_id": "user_087",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_088",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_089",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_090",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_091",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_092",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_093",
+            "rating": 5,
+            "content": "Enak dan nyaman dipakai"
+        },
+        {
+            "user_id": "user_094",
+            "rating": 5,
+            "content": "非常酷，舒服"
+        },
+        {
+            "user_id": "user_095",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_096",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_097",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_098",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_099",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_100",
+            "rating": 5,
+            "content": "东西不错 已经用上了"
+        },
+        {
+            "user_id": "user_101",
+            "rating": 5,
+            "content": "性价比非常高的太阳镜"
+        },
+        {
+            "user_id": "user_102",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_103",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_104",
+            "rating": 5,
+            "content": "This stylish sunglasses shapes nicely into the face and provides good UV protection."
+        },
+        {
+            "user_id": "user_105",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_106",
+            "rating": 5,
+            "content": "非常轻盈。可以挂绳。你是第2次购买！"
+        },
+        {
+            "user_id": "user_107",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_108",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_109",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_110",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_111",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_112",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_113",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_114",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_115",
+            "rating": 5,
+            "content": "好"
+        },
+        {
+            "user_id": "user_116",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_117",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_118",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_119",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_120",
+            "rating": 5,
+            "content": "物超所值的墨鏡，登山健行使用非常適合，遮光效果佳"
+        },
+        {
+            "user_id": "user_121",
+            "rating": 4,
+            "content": "這個價位也不能再要求什麼了，優點是便宜，缺點嘛，它掛在耳朵的那一塊是向內彎，簡單說就是有點夾頭的感覺"
+        },
+        {
+            "user_id": "user_122",
+            "rating": 5,
+            "content": "徒步很好用"
+        },
+        {
+            "user_id": "user_123",
+            "rating": 5,
+            "content": "特别酷"
+        },
+        {
+            "user_id": "user_124",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_125",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_126",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_127",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_128",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_129",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_130",
+            "rating": 5,
+            "content": "价格合适，日常出行戴很方便"
+        },
+        {
+            "user_id": "user_131",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_132",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_133",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_134",
+            "rating": 4,
+            "content": ""
+        },
+        {
+            "user_id": "user_135",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_136",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_137",
+            "rating": 5,
+            "content": "行👌"
+        },
+        {
+            "user_id": "user_138",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_139",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_140",
+            "rating": 5,
+            "content": "这个墨镜戴起来非常贴合，很轻，很不错"
+        },
+        {
+            "user_id": "user_141",
+            "rating": 5,
+            "content": "一体成型的边框，造型很酷，性价比高"
+        },
+        {
+            "user_id": "user_142",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_143",
+            "rating": 5,
+            "content": "颜值很高的墨镜"
+        },
+        {
+            "user_id": "user_144",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_145",
+            "rating": 5,
+            "content": "偏光效果很好，和臉型也符合"
+        },
+        {
+            "user_id": "user_146",
+            "rating": 5,
+            "content": "很好用"
+        },
+        {
+            "user_id": "user_147",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_148",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_149",
+            "rating": 5,
+            "content": "张思捷好"
+        },
+        {
+            "user_id": "user_150",
+            "rating": 5,
+            "content": "轻便百搭"
+        },
+        {
+            "user_id": "user_151",
+            "rating": 5,
+            "content": "眼镜特别清晰 戴上视野很好 跑步骑车日常都行"
+        },
+        {
+            "user_id": "user_152",
+            "rating": 5,
+            "content": "好"
+        },
+        {
+            "user_id": "user_153",
+            "rating": 5,
+            "content": "遮光效果佳，大太陽也不會感到非常刺眼"
+        },
+        {
+            "user_id": "user_154",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_155",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_156",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_157",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_158",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_159",
+            "rating": 4,
+            "content": "不错，价廉物美！"
+        },
+        {
+            "user_id": "user_160",
+            "rating": 4,
+            "content": "comfortable &amp; light to wear, and good sunlight blocking."
+        },
+        {
+            "user_id": "user_161",
+            "rating": 5,
+            "content": "形式不錯"
+        },
+        {
+            "user_id": "user_162",
+            "rating": 2,
+            "content": "這款太陽眼鏡沒有顧慮到有一些人的頭圍比較大，所以我們家基本上每一個人戴起來都覺得非常的壓迫，有一些廠牌的太陽眼鏡並不會這樣。另外，當眼鏡的兩邊折起來插在衣服上時折起來的地方非常的尖銳，都會一直刮到脖子非常的疼痛以及不舒服，設計這款太陽眼鏡的人真的自己有戴過嗎？"
+        },
+        {
+            "user_id": "user_163",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_164",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_165",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_166",
+            "rating": 4,
+            "content": "一如既往的好"
+        },
+        {
+            "user_id": "user_167",
+            "rating": 5,
+            "content": "户外部门66服务不错棒棒滴"
+        },
+        {
+            "user_id": "user_168",
+            "rating": 1,
+            "content": "左边压着脸。。"
+        },
+        {
+            "user_id": "user_169",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_170",
+            "rating": 5,
+            "content": "Simply "
+        },
+        {
+            "user_id": "user_171",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_172",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_173",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_174",
+            "rating": 5,
+            "content": "出行旅游就用上了 也不用选择困难症 质量也没问题"
+        },
+        {
+            "user_id": "user_175",
+            "rating": 5,
+            "content": "日常爬山都可以用"
+        },
+        {
+            "user_id": "user_176",
+            "rating": 4,
+            "content": "Bahannya cukup bagus, dan tahan banting"
+        },
+        {
+            "user_id": "user_177",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_178",
+            "rating": 5,
+            "content": "服务很好"
+        },
+        {
+            "user_id": "user_179",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_180",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_181",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_182",
+            "rating": 5,
+            "content": "ok"
+        },
+        {
+            "user_id": "user_183",
+            "rating": 5,
+            "content": "便宜好用 很堅固"
+        },
+        {
+            "user_id": "user_184",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_185",
+            "rating": 4,
+            "content": "good quality"
+        },
+        {
+            "user_id": "user_186",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_187",
+            "rating": 5,
+            "content": "喜欢，形状好看"
+        },
+        {
+            "user_id": "user_188",
+            "rating": 5,
+            "content": "实用性很强！！！戴上立马变阴天，开车不晕很合适"
+        },
+        {
+            "user_id": "user_189",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_190",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_191",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_192",
+            "rating": 5,
+            "content": "Dah dua tahun pakai, memang berkualiti untuk running, hiking, camping, time drive pun sesuai, design paling smart"
+        },
+        {
+            "user_id": "user_193",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_194",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_195",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_196",
+            "rating": 5,
+            "content": "迪卡侬的工作人员很专业，对比了一下MH500和MH100，还是决定拿下MH500。"
+        },
+        {
+            "user_id": "user_197",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_198",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_199",
+            "rating": 5,
+            "content": "骑行用，防紫外线效果超级棒，而且也很酷"
+        },
+        {
+            "user_id": "user_200",
+            "rating": 5,
+            "content": ""
+        }
+    ]
+}

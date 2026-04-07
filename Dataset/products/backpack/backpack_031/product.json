@@ -1,0 +1,49 @@
+{
+    "product_id": "backpack_031",
+    "product_name": "백패킹 접이식 컴팩트 백팩 10L",
+    "model_description": "아주 작은 보조 배낭으로 여러분의 여행 목적지가 어디든 함께 합니다. 큰 배낭에 함께 넣었다가 10L 용량의 작은 가방이 필요할 때 언제든지 사용하세요.  컴팩트한 예비용 가방으로 여행 시 편리하게 사용할 수 있는 배낭입니다.\n\n[보증 기간]\n2",
+    "category": "모든 스포츠 > 등산 > 용품 > 가방 > 50L 이상",
+    "variants": [
+        {
+            "color": "8560403",
+            "image_paths": [
+                "images/8560403/img1.png",
+                "images/8560403/img2.png",
+                "images/8560403/img3.png",
+                "images/8560403/img4.png",
+                "images/8560403/img5.png",
+                "images/8560403/img6.png"
+            ]
+        },
+        {
+            "color": "8576231",
+            "image_paths": [
+                "images/8576231/img1.png",
+                "images/8576231/img2.png",
+                "images/8576231/img3.png",
+                "images/8576231/img4.png",
+                "images/8576231/img5.png"
+            ]
+        },
+        {
+            "color": "8560406",
+            "image_paths": [
+                "images/8560406/img1.png",
+                "images/8560406/img2.png",
+                "images/8560406/img3.png",
+                "images/8560406/img4.png",
+                "images/8560406/img5.png"
+            ]
+        },
+        {
+            "color": "8560404",
+            "image_paths": [
+                "images/8560404/img1.png",
+                "images/8560404/img2.png",
+                "images/8560404/img3.png",
+                "images/8560404/img4.png",
+                "images/8560404/img5.png"
+            ]
+        }
+    ]
+}

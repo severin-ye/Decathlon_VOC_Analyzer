@@ -1,0 +1,30 @@
+{
+    "product_id": "sunglasses_013",
+    "reviews": [
+        {
+            "user_id": "user_001",
+            "rating": 5,
+            "content": "très bon maintien sur la tête)nez, et aussi sur le casque. légère a porter. belle finition. elles sont peut être un peut grande pour des visages fin."
+        },
+        {
+            "user_id": "user_002",
+            "rating": 4,
+            "content": "Leggeri, comodi, avvolgenti, e dal design moderno; se proprio si vuole trovare un difetto la montatura è un po' leggera e non vorrei fosse fragile; per il resto un ottimo occhiale. "
+        },
+        {
+            "user_id": "user_003",
+            "rating": 5,
+            "content": "La vision est meilleure ! "
+        },
+        {
+            "user_id": "user_004",
+            "rating": 5,
+            "content": "Unii dintre cei mai buni ochelari,ușori,calitate Van Rysel "
+        },
+        {
+            "user_id": "user_005",
+            "rating": 4,
+            "content": "Bon produit pour mon utilisation sur route"
+        }
+    ]
+}

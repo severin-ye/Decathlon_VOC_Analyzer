@@ -1,0 +1,30 @@
+{
+    "product_id": "backpack_043",
+    "product_name": "백패킹 여행용 투인원 컴팩트 토트백 15L",
+    "model_description": "비상용 백으로 접어서 짐 가방에 넣고 휴대하다 필요할 때 사용할 수 있습니다. 배낭 또는 토트백으로 사용할 수 있습니다. 배낭 여행할 때 숙소에 짐을 두고 가까운 지역을 다닐 때 가볍게 꺼내 사용하기 좋은 컴팩트한 보조 가방입니다. \n\n[친환경 디자인]\n직물 염색에는 많은 양의 물이 필요하며 염색장에서 많은 폐수가 발생합니다. 환경 오염을 줄이기 위해, 원사 자체를 생산할 때 안료를 추가하는 대량 염색 공정을 거칩니다.\n\n[보증 기간]\n2",
+    "category": "모든 스포츠 > 등산 > 용품 > 가방 > 50L 이상",
+    "variants": [
+        {
+            "color": "8616572",
+            "image_paths": [
+                "images/8616572/img1.png",
+                "images/8616572/img2.png",
+                "images/8616572/img3.png",
+                "images/8616572/img4.png",
+                "images/8616572/img5.png",
+                "images/8616572/img6.png"
+            ]
+        },
+        {
+            "color": "8609745",
+            "image_paths": [
+                "images/8609745/img1.png",
+                "images/8609745/img2.png",
+                "images/8609745/img3.png",
+                "images/8609745/img4.png",
+                "images/8609745/img5.png",
+                "images/8609745/img6.png"
+            ]
+        }
+    ]
+}

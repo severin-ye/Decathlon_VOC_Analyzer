@@ -1,0 +1,60 @@
+{
+    "product_id": "backpack_014",
+    "reviews": [
+        {
+            "user_id": "user_001",
+            "rating": 5,
+            "content": "Je les ai utilisés pour organiser ma valise de façon rationnelle. "
+        },
+        {
+            "user_id": "user_002",
+            "rating": 4,
+            "content": "Pratique pour trier ses affaires dans le sac à dos. Bien les différents codes couleurs."
+        },
+        {
+            "user_id": "user_003",
+            "rating": 5,
+            "content": "We got these packing pouches for a recent trip. The zips work well, and the light colours are very nice. The different sizes of each unit allow storing a range of items such as shirts, socks or underwear. We're very happy with them and would likely to purchase a second set for a longer trip in the future. "
+        },
+        {
+            "user_id": "user_004",
+            "rating": 5,
+            "content": "Très pratique pour Partir en voyage en pouvant isoler des vêtements dans le sac à dos"
+        },
+        {
+            "user_id": "user_005",
+            "rating": 5,
+            "content": "Tres bonne idee ce produit. Housses très pratiques pour optimiser le rangement de son sac ou sa valise. "
+        },
+        {
+            "user_id": "user_006",
+            "rating": 5,
+            "content": "Seem well made. Good zippers"
+        },
+        {
+            "user_id": "user_007",
+            "rating": 5,
+            "content": "J’aurais dû les acheter plus tôt …"
+        },
+        {
+            "user_id": "user_008",
+            "rating": 5,
+            "content": "It is good"
+        },
+        {
+            "user_id": "user_009",
+            "rating": 5,
+            "content": "Ottimo"
+        },
+        {
+            "user_id": "user_010",
+            "rating": 4,
+            "content": "Ottimo organizer per i vestiti in valigia"
+        },
+        {
+            "user_id": "user_011",
+            "rating": 4,
+            "content": "Przydatny organizer"
+        }
+    ]
+}

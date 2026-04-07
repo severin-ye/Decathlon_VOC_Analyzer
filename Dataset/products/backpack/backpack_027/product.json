@@ -1,0 +1,19 @@
+{
+    "product_id": "backpack_027",
+    "product_name": "백패킹 여행 수납 가방 3종 세트",
+    "model_description": "이 3종 수납 가방은 다양한 수납 공간으로 여행 중의 물품 정리에 이상적인 제품입니다. 대형 가방 1개와 소형 가방 2개로 구성되어 있습니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다.\n\n[사이즈 및 규격]\n소형 가방: 30cm x 20cm x 9cm,\n대형 가방: 39cm x 31cm x 10cm\n\n[보증 기간]\n2",
+    "category": "모든 스포츠 > 등산 > 용품 > 가방 > 가방 용품",
+    "variants": [
+        {
+            "color": "8512006",
+            "image_paths": [
+                "images/8512006/img1.png",
+                "images/8512006/img2.png",
+                "images/8512006/img3.png",
+                "images/8512006/img4.png",
+                "images/8512006/img5.png",
+                "images/8512006/img6.png"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,1005 @@
+{
+    "product_id": "shoes_002",
+    "reviews": [
+        {
+            "user_id": "user_001",
+            "rating": 4,
+            "content": "가격에 비해 쿠션, 디자인은 맘에 듭니다.<br>더 좋은건 발을 전체를 감싸 주면서 발을 잡아 주는건 정말 좋습니다.<br>굳~~"
+        },
+        {
+            "user_id": "user_002",
+            "rating": 5,
+            "content": "Parametry zgodne z opisem, stosunek jakości do ceny w porządku, szybka przesyłka i zakupy online bez problemów. Polecam"
+        },
+        {
+            "user_id": "user_003",
+            "rating": 5,
+            "content": "Parametry zgodne z opisem, stosunek jakości do ceny w porządku, szybka przesyłka i zakupy online bez problemów. Polecam"
+        },
+        {
+            "user_id": "user_004",
+            "rating": 4,
+            "content": "Ótimas para uso do dia-a-dia"
+        },
+        {
+            "user_id": "user_005",
+            "rating": 4,
+            "content": "Comfortable and decent look with value for money "
+        },
+        {
+            "user_id": "user_006",
+            "rating": 5,
+            "content": "Simple et confortable "
+        },
+        {
+            "user_id": "user_007",
+            "rating": 4,
+            "content": "J'adore ce produit . Quel dommage de ne pas avoir d autres couleurs  .. semelle blanche   avec toile rouge ou bleu ou vert  ... J attend impatiemment votre réponse . Merci"
+        },
+        {
+            "user_id": "user_008",
+            "rating": 5,
+            "content": "labai patogu.greitai apsimauti, greitai nusimauti. gerai judėti salėje"
+        },
+        {
+            "user_id": "user_009",
+            "rating": 5,
+            "content": "These shoes stand out for their ultra‑soft memory foam insole, which molds to your foot shape within minutes. Whether you're walking around the city or standing for long periods, the cushioning does an excellent job of reducing foot fatigue. The upper mesh feels breathable yet sturdy, allowing airflow while maintaining structure. After weeks of use, the stitching and sole still show no signs of wear, which is impressive for a daily-use sneaker. The minimalist aesthetic makes them versatile. You can pair them with jeans, casual wear, or even business-casual outfits. Available in several neutral colors, they're easy to match with most wardrobes."
+        },
+        {
+            "user_id": "user_010",
+            "rating": 5,
+            "content": "Excellent rapport qualité prix "
+        },
+        {
+            "user_id": "user_011",
+            "rating": 5,
+            "content": "Used in Europe.  Excellent. <br>"
+        },
+        {
+            "user_id": "user_012",
+            "rating": 5,
+            "content": "Comfy"
+        },
+        {
+            "user_id": "user_013",
+            "rating": 5,
+            "content": "Do szkoły, do uprawiania sportu, na co dzień "
+        },
+        {
+            "user_id": "user_014",
+            "rating": 5,
+            "content": "Passe avec tout style "
+        },
+        {
+            "user_id": "user_015",
+            "rating": 4,
+            "content": "Buona scarpa, comoda e resistente."
+        },
+        {
+            "user_id": "user_016",
+            "rating": 5,
+            "content": "Chaussures agréables à porter, résistantes et confortables"
+        },
+        {
+            "user_id": "user_017",
+            "rating": 5,
+            "content": "Très pratique pour marcher en salle sur tapis"
+        },
+        {
+            "user_id": "user_018",
+            "rating": 5,
+            "content": "Achat suite immobilisation d'un bras. Enfilage facile. Excellente tenue  aux pieds. Confortable même sur les cailloux ."
+        },
+        {
+            "user_id": "user_019",
+            "rating": 5,
+            "content": "Très confortable "
+        },
+        {
+            "user_id": "user_020",
+            "rating": 5,
+            "content": "The walking shoes I purchased is absolutely very comfortable and light weight. I am enjoying the comfort during my morning walk.  Thanks Decathlon "
+        },
+        {
+            "user_id": "user_021",
+            "rating": 5,
+            "content": "Atendendo que efetuei a compra online, as sapatilhas são iguais à imagem. Apresentam um tecido resistente, e maleável. Indicadas apenas para primavera/verão uma vez que o tecido não é a prova de água. "
+        },
+        {
+            "user_id": "user_022",
+            "rating": 5,
+            "content": "très bien elle sont pas abîmé "
+        },
+        {
+            "user_id": "user_023",
+            "rating": 5,
+            "content": "Ottimo rapporto qualità prezzo."
+        },
+        {
+            "user_id": "user_024",
+            "rating": 4,
+            "content": "Good"
+        },
+        {
+            "user_id": "user_025",
+            "rating": 4,
+            "content": "très confortable taille bien et rapide à enfiler et souple"
+        },
+        {
+            "user_id": "user_026",
+            "rating": 5,
+            "content": "Grat"
+        },
+        {
+            "user_id": "user_027",
+            "rating": 4,
+            "content": "Très grande souplesse et donc confortables à porter, avec néanmoins un bon maintien du pied."
+        },
+        {
+            "user_id": "user_028",
+            "rating": 5,
+            "content": "Boa relação qualidade/preço"
+        },
+        {
+            "user_id": "user_029",
+            "rating": 5,
+            "content": "Dommage qu'elles ne soient pas imperméables."
+        },
+        {
+            "user_id": "user_030",
+            "rating": 3,
+            "content": "J'ai mal aux talons même si je ne marche pas longtemps "
+        },
+        {
+            "user_id": "user_031",
+            "rating": 5,
+            "content": "C'est ma 5e paire ! (3 noires, 2 bleues et blanches). Je m’en sers presque quotidiennement, pas pour le sport mais pour être à l'aise. J'adore les chausser et les déchausser en 2 secondes. C'est principalement pour ça que je les achète, mais elles sont de plus très confortables ! <br><br>Déçu de ne plus trouver les bleues marines à semelles blanches. Elles étaient plus jolies que les noires et ça me permettait d'alterner en fonction de mes tenues."
+        },
+        {
+            "user_id": "user_032",
+            "rating": 5,
+            "content": "รุ่นนี้กลับมาขายใหม่ เพิ่มสีดำสนิททั้งผ้าด้านบน และพื้นรองเท้า คุ้มค่า คุ้มราคามากๆ เคยซื้อใช้มาแล้ว 2 คู่ ก่อนจะไม่มีวางจำหน่าย"
+        },
+        {
+            "user_id": "user_033",
+            "rating": 5,
+            "content": "Solide, confortable, pratique"
+        },
+        {
+            "user_id": "user_034",
+            "rating": 5,
+            "content": "This Shoe is extremely lightweight &amp; comfortable. After started using this shoe, I was comfortable to use this everywhere. I would like to recommend those who are on a budget, looking for a good pair of shoes. Loved this product."
+        },
+        {
+            "user_id": "user_035",
+            "rating": 5,
+            "content": "Très bien "
+        },
+        {
+            "user_id": "user_036",
+            "rating": 5,
+            "content": "J'ai acheté ces chaussures pour le week-end et une utilisation décontractée pour tous les jours,pas spécialement pour la marche.<br>J'en suis très content car elles sont très confortables, comme des gants aux pieds. "
+        },
+        {
+            "user_id": "user_037",
+            "rating": 5,
+            "content": "Good quality"
+        },
+        {
+            "user_id": "user_038",
+            "rating": 5,
+            "content": "TB"
+        },
+        {
+            "user_id": "user_039",
+            "rating": 5,
+            "content": "ok"
+        },
+        {
+            "user_id": "user_040",
+            "rating": 5,
+            "content": "Polecam"
+        },
+        {
+            "user_id": "user_041",
+            "rating": 5,
+            "content": "ottime scarpe, morbide, comodo, perfette per fare tai chi"
+        },
+        {
+            "user_id": "user_042",
+            "rating": 5,
+            "content": "Ez egy igazán könnyű sétálócipő, ami remekül szellőzik. Belebújós a lábfej része, de mégis jól tart járás közben is.<br>"
+        },
+        {
+            "user_id": "user_043",
+            "rating": 5,
+            "content": "É um excelente custo benefício. Sinto-me como se estivesse descalço, mas com amortecimento nas caminhadas. É discreto, tem boa durabilidade e muito agradável de se usar."
+        },
+        {
+            "user_id": "user_044",
+            "rating": 5,
+            "content": "CHAUSSURES TRES CONFORTABLES FACILES A METTRE ET A QUITTER."
+        },
+        {
+            "user_id": "user_045",
+            "rating": 5,
+            "content": "Iskolai benti cipőnek vettük, jól szellőzik."
+        },
+        {
+            "user_id": "user_046",
+            "rating": 5,
+            "content": "Facile à chausser et confortable pour de petite randonnée "
+        },
+        {
+            "user_id": "user_047",
+            "rating": 5,
+            "content": "Chaussures que j'utilise depuis 2 ans.<br>Pratique à enfiler, légères et bon amorti de la semelle.<br>Je les renouvelle cette annee. Content de les avoir retrouvées sur votre site.<br>Merci."
+        },
+        {
+            "user_id": "user_048",
+            "rating": 5,
+            "content": "Utilizo este calçado apenas para fazer bicicleta estática, muito confortáveis com boa aderência aos pedais, leves e calçam com muita facilidade. "
+        },
+        {
+            "user_id": "user_049",
+            "rating": 5,
+            "content": "daha uygun fiyata satılabilir bir ürün fakat rahatlığı abuk subuk fiyatlardan satılan ürünlerden kat kat daha iyi "
+        },
+        {
+            "user_id": "user_050",
+            "rating": 5,
+            "content": "Une chaussure d'un incroyable confort "
+        },
+        {
+            "user_id": "user_051",
+            "rating": 5,
+            "content": "Superbe paire de chaussures "
+        },
+        {
+            "user_id": "user_052",
+            "rating": 5,
+            "content": "Gemakkelijk en snel"
+        },
+        {
+            "user_id": "user_053",
+            "rating": 5,
+            "content": "bon maintien confortable "
+        },
+        {
+            "user_id": "user_054",
+            "rating": 5,
+            "content": "Très satisfait"
+        },
+        {
+            "user_id": "user_055",
+            "rating": 5,
+            "content": "chaussures impeccable pour marcher et aussi pour danser, légère et souple "
+        },
+        {
+            "user_id": "user_056",
+            "rating": 5,
+            "content": "Ormai sono anni che le compro. Sempre le stesse. Sono comodissime e non mi stanco mai. Faccio una decina di chilometri al giorno e i miei piedi ringraziano sempre. Non fanno sudare e pensare che ho 67 anni e faccio il cameriere "
+        },
+        {
+            "user_id": "user_057",
+            "rating": 5,
+            "content": "confortável como era esperado"
+        },
+        {
+            "user_id": "user_058",
+            "rating": 5,
+            "content": "Très souple très confortable. Tiens bien le pied"
+        },
+        {
+            "user_id": "user_059",
+            "rating": 5,
+            "content": "Produit bien penser, pour un prix qui raisonnable, pour ceux qui ont un handicap des jambes/pieds . Après, faudrais que Décathlon pense à en faire quelque colorie, du genre bleu - jaune ou orange fluo - gris - etc etc"
+        },
+        {
+            "user_id": "user_060",
+            "rating": 5,
+            "content": "Love the product"
+        },
+        {
+            "user_id": "user_061",
+            "rating": 5,
+            "content": "Adaptées pour la marche en ville et motorisée assise.<br>Facile à mettre et enlever, pas pour temps de grosse pluie.<br>À voir après usage dans deux mois<br>"
+        },
+        {
+            "user_id": "user_062",
+            "rating": 4,
+            "content": "Comode e confortevoli. Le uso per andare a lavorare "
+        },
+        {
+            "user_id": "user_063",
+            "rating": 5,
+            "content": "c'est ma troisième paires,  bon rapport qualité prix "
+        },
+        {
+            "user_id": "user_064",
+            "rating": 5,
+            "content": "Value for money "
+        },
+        {
+            "user_id": "user_065",
+            "rating": 5,
+            "content": "wygodne "
+        },
+        {
+            "user_id": "user_066",
+            "rating": 5,
+            "content": "Je les ai acheté pour faire du pilâtes du yoga du renforcement musculaire et du vélo d’intérieur mais ces chaussures sont multi  activités et bien sûr pour la marche urbaine et sportive . De vrais pantoufles , un régal , je ne m’y attendais pas …. Une réussite faciles à mettre et très confortables …"
+        },
+        {
+            "user_id": "user_067",
+            "rating": 5,
+            "content": "Confortable, souple, légère, aérée, bref c'est ma deuxième paire"
+        },
+        {
+            "user_id": "user_068",
+            "rating": 5,
+            "content": "Имам ги от 7 месеца , не се чувстват на краката направо ... Уникални са "
+        },
+        {
+            "user_id": "user_069",
+            "rating": 4,
+            "content": "Comodidad garantizada, y sujeción del pie. Para passar horas de pie. Precio muy económico. Prácticas. "
+        },
+        {
+            "user_id": "user_070",
+            "rating": 5,
+            "content": "Je cherchais une paire de chaussures d’intérieur pour faire du sport en salle. J’ai acheté cette paire et j’en suis très satisfait. Ce produit est de très bonne qualité. Le + ce sont les deux lanières qui permettent d’enfiler rapidement cette chaussure sur le pied, chaussure qui s’apparente d’ailleurs plutôt à un chausson avec une semelle qui permet de le porter aussi à l’extérieur. Je recommande à 100%."
+        },
+        {
+            "user_id": "user_071",
+            "rating": 5,
+            "content": "chaussure ideale pour moi qui est atteint de la parkinson"
+        },
+        {
+            "user_id": "user_072",
+            "rating": 5,
+            "content": "Très bon rapport qualité prix "
+        },
+        {
+            "user_id": "user_073",
+            "rating": 4,
+            "content": "simple "
+        },
+        {
+            "user_id": "user_074",
+            "rating": 5,
+            "content": "Très pratique enfilade facile "
+        },
+        {
+            "user_id": "user_075",
+            "rating": 5,
+            "content": "Bom"
+        },
+        {
+            "user_id": "user_076",
+            "rating": 5,
+            "content": "Chaussure légère et très confortable"
+        },
+        {
+            "user_id": "user_077",
+            "rating": 5,
+            "content": "Produit conforme à  ce que j attendais"
+        },
+        {
+            "user_id": "user_078",
+            "rating": 5,
+            "content": "Franchement top "
+        },
+        {
+            "user_id": "user_079",
+            "rating": 5,
+            "content": "Super produits "
+        },
+        {
+            "user_id": "user_080",
+            "rating": 1,
+            "content": "Impossible à enfiler pour une personne qui ne peut pas vien se pencher, je les ai rendues"
+        },
+        {
+            "user_id": "user_081",
+            "rating": 5,
+            "content": "Je suis satisfaite par apport du qualité et le prix , Je le recommande👍🏼👍🏼"
+        },
+        {
+            "user_id": "user_082",
+            "rating": 5,
+            "content": "Bien"
+        },
+        {
+            "user_id": "user_083",
+            "rating": 4,
+            "content": "Présatisfait et très à l'aise, mais bon pour travailler à la ferme avec les petits trous, c'est un peu compliqué 🤣<br><br><br>Sinon, pour conduire elles sont très bien ou même pour aller marcher "
+        },
+        {
+            "user_id": "user_084",
+            "rating": 5,
+            "content": "Pratique, facile a attacher "
+        },
+        {
+            "user_id": "user_085",
+            "rating": 5,
+            "content": "My first pair of slip ons "
+        },
+        {
+            "user_id": "user_086",
+            "rating": 4,
+            "content": "I was searching for a hands free put on/off walking shoe also meant for everyday use. I thaught that this model was like that. But had to return because it is not handsfree but you need to use hands to put on / off. <br><br>Otherwise decathlon products are as usual top quality with market leading warranty..! "
+        },
+        {
+            "user_id": "user_087",
+            "rating": 4,
+            "content": "Facile a enfilé confortable "
+        },
+        {
+            "user_id": "user_088",
+            "rating": 5,
+            "content": "Confortable"
+        },
+        {
+            "user_id": "user_089",
+            "rating": 5,
+            "content": "Light, flexible, and very comfortable"
+        },
+        {
+            "user_id": "user_090",
+            "rating": 5,
+            "content": "Polecam"
+        },
+        {
+            "user_id": "user_091",
+            "rating": 4,
+            "content": "J'utilise ces chaussures pour faire du tai-chi.<br>Une semelle plus souple et elle serait parfaite 😊"
+        },
+        {
+            "user_id": "user_092",
+            "rating": 5,
+            "content": "Comfy"
+        },
+        {
+            "user_id": "user_093",
+            "rating": 5,
+            "content": "RAS"
+        },
+        {
+            "user_id": "user_094",
+            "rating": 5,
+            "content": "Scarpa leggera e comoda "
+        },
+        {
+            "user_id": "user_095",
+            "rating": 5,
+            "content": "Il s'agit de mon second achat de ce modèle qui à l'origine m'a attiré par le \"Slip-On\" et le prix très abordable par comparaison avec d'autres marques."
+        },
+        {
+            "user_id": "user_096",
+            "rating": 5,
+            "content": "Utilisé uniquement comme chaussure relax d'intérieur. "
+        },
+        {
+            "user_id": "user_097",
+            "rating": 5,
+            "content": "Des couleurs un peu fun pour les hommes, ce serait bien ;-)"
+        },
+        {
+            "user_id": "user_098",
+            "rating": 5,
+            "content": "Excellent "
+        },
+        {
+            "user_id": "user_099",
+            "rating": 5,
+            "content": "Kényelmes <br>Olyan, mintha mezítláb lennék."
+        },
+        {
+            "user_id": "user_100",
+            "rating": 3,
+            "content": "Pour moi ne sont pas idéale pour la balade "
+        },
+        {
+            "user_id": "user_101",
+            "rating": 5,
+            "content": "OTTIMO PRODOTTO"
+        },
+        {
+            "user_id": "user_102",
+            "rating": 3,
+            "content": "Belle e facili da indossare, ma non proprio confortevoli: la suola non offre un sostegno ideale."
+        },
+        {
+            "user_id": "user_103",
+            "rating": 5,
+            "content": "Mon fils aime les porter. Paire agréable et légère !"
+        },
+        {
+            "user_id": "user_104",
+            "rating": 4,
+            "content": "Buon prodotto."
+        },
+        {
+            "user_id": "user_105",
+            "rating": 5,
+            "content": "Très bien bon produit"
+        },
+        {
+            "user_id": "user_106",
+            "rating": 4,
+            "content": "très confortable pratique a les files"
+        },
+        {
+            "user_id": "user_107",
+            "rating": 3,
+            "content": "Chaussures pourries, ne tiendrons pas 6 mois, MAIS... on dirait des charentaises, prix équivalent, 2s chrono à chausser..."
+        },
+        {
+            "user_id": "user_108",
+            "rating": 5,
+            "content": "Muito praticos"
+        },
+        {
+            "user_id": "user_109",
+            "rating": 5,
+            "content": "De bonne chaussure, confortable et pas cher"
+        },
+        {
+            "user_id": "user_110",
+            "rating": 5,
+            "content": "Ces chaussures sont très confortables et souples.  Pas d'échauffement, même avec une longue marche.<br>Comme j'ai des semelles orthopédiques, il m'a fallu les porter quelques heures à vide pour les agrandir un peu afin de pouvoir y glisser les semelles et toujours avoir la place pour le pied.<br>Les boucles de mise en place (talon et cou de pied) sont vraiment très pratiques et de bonne taille (dans celles-ci je peux y glisser un doigt sans souci).<br>J'ai les pieds larges et ces chaussures sont relativement étroites mais beaucoup moins que d'autres et il faut les porter quelque temps pour que la forme «se fasse».<br>J'en ai acheté une paire il y a quelques mois, et comme j'en suis content, ce jour j'en prends deux autres paires. En effet je n'attends pas d'avoir à les changer pour en prendre d'autres car les modèles ont tendance à disparaître rapidement, sacrifiés, comme tous les autres, sur l'autel de la nouveauté."
+        },
+        {
+            "user_id": "user_111",
+            "rating": 5,
+            "content": "Very nice and comfortable "
+        },
+        {
+            "user_id": "user_112",
+            "rating": 5,
+            "content": "bien "
+        },
+        {
+            "user_id": "user_113",
+            "rating": 5,
+            "content": "Estou satisfeita com as sapatilhas"
+        },
+        {
+            "user_id": "user_114",
+            "rating": 5,
+            "content": "Le confort avant tout"
+        },
+        {
+            "user_id": "user_115",
+            "rating": 2,
+            "content": "This product is Comfortable, but not sustainable at all one can use only 30-40 use.<br>After which it become useless "
+        },
+        {
+            "user_id": "user_116",
+            "rating": 5,
+            "content": "Wygodne i lekkie"
+        },
+        {
+            "user_id": "user_117",
+            "rating": 5,
+            "content": "Morbidezza nella calzata"
+        },
+        {
+            "user_id": "user_118",
+            "rating": 5,
+            "content": "Molto comode e facili da indossare, consigliate"
+        },
+        {
+            "user_id": "user_119",
+            "rating": 4,
+            "content": "Léger, agréable à porter"
+        },
+        {
+            "user_id": "user_120",
+            "rating": 4,
+            "content": "C’est dommage les semelles sont trop dures manques de souplesse comme les précédentes très résistantes comme tissus "
+        },
+        {
+            "user_id": "user_121",
+            "rating": 2,
+            "content": "Its too narrow for my broad indian feet"
+        },
+        {
+            "user_id": "user_122",
+            "rating": 5,
+            "content": "Rien à redire "
+        },
+        {
+            "user_id": "user_123",
+            "rating": 4,
+            "content": "Content de l'achat "
+        },
+        {
+            "user_id": "user_124",
+            "rating": 5,
+            "content": "Perfetto in ufficio belle traspiranti "
+        },
+        {
+            "user_id": "user_125",
+            "rating": 4,
+            "content": "Acheté pour une personne récemment opérée qui avait du mal à enfiler ses chaussures... elles ne sont pas si facile à mettre car \"l'entrée\" est assez serrée. par contre très confortables !"
+        },
+        {
+            "user_id": "user_126",
+            "rating": 3,
+            "content": "Correct ,chaussures très légères , bien pour porter pour des marches pas trop longues et sur terrain plat"
+        },
+        {
+            "user_id": "user_127",
+            "rating": 5,
+            "content": "Comode e costo nella norma!"
+        },
+        {
+            "user_id": "user_128",
+            "rating": 5,
+            "content": "tres bien, dommage que les modèles soient peu nombreux "
+        },
+        {
+            "user_id": "user_129",
+            "rating": 5,
+            "content": "good"
+        },
+        {
+            "user_id": "user_130",
+            "rating": 5,
+            "content": "C'est le 2eme que j'achète car je l'utilise beaucoup. C'est trop bien !"
+        },
+        {
+            "user_id": "user_131",
+            "rating": 2,
+            "content": "I had earlier bought the same size different model It suited me well<br>i ordered the  same size in this model. I wore it and walked in my apartment <br>Found the fitting on the toe too tight and uncomforta"
+        },
+        {
+            "user_id": "user_132",
+            "rating": 5,
+            "content": "Increvable ! Super qualité a un petit prix "
+        },
+        {
+            "user_id": "user_133",
+            "rating": 5,
+            "content": "Nickel s'enfile et s'enlève facilement"
+        },
+        {
+            "user_id": "user_134",
+            "rating": 5,
+            "content": "Achat effectué pour une personne malvoyante et qui marche beaucoup.<br>Pas de lacet à faire et l'élastique est souple.<br>Très facile à chausser et confortable."
+        },
+        {
+            "user_id": "user_135",
+            "rating": 5,
+            "content": "très agréables a porter, un confort comme dans des chaussons, bon maintien du pied"
+        },
+        {
+            "user_id": "user_136",
+            "rating": 5,
+            "content": "São muito confortáveis para andar, mas não para correr, até dá para usar no dia a dia "
+        },
+        {
+            "user_id": "user_137",
+            "rating": 5,
+            "content": "Són les segones que compro perquè és el calçat més còmode i versàtil que he tingut mai!"
+        },
+        {
+            "user_id": "user_138",
+            "rating": 5,
+            "content": "Super confortabili - folositi zilnic - final de vara spre toamna. "
+        },
+        {
+            "user_id": "user_139",
+            "rating": 5,
+            "content": "Muito confortável "
+        },
+        {
+            "user_id": "user_140",
+            "rating": 4,
+            "content": "BUENAS"
+        },
+        {
+            "user_id": "user_141",
+            "rating": 5,
+            "content": "."
+        },
+        {
+            "user_id": "user_142",
+            "rating": 5,
+            "content": "ok"
+        },
+        {
+            "user_id": "user_143",
+            "rating": 5,
+            "content": "ok"
+        },
+        {
+            "user_id": "user_144",
+            "rating": 5,
+            "content": "Cómodas y fácil de poner, fueron para un regalo, y las usó enseguida."
+        },
+        {
+            "user_id": "user_145",
+            "rating": 5,
+            "content": "Bien de precio. muy comodas"
+        },
+        {
+            "user_id": "user_146",
+            "rating": 5,
+            "content": "Calzado muy cómodo. Se agradece la facilidad y rapidez para ponérselo."
+        },
+        {
+            "user_id": "user_147",
+            "rating": 5,
+            "content": "Très souples aérées agréables à porter"
+        },
+        {
+            "user_id": "user_148",
+            "rating": 5,
+            "content": "Commande en 46, mes 47 étaient un poil trop grandes "
+        },
+        {
+            "user_id": "user_149",
+            "rating": 5,
+            "content": "Good "
+        },
+        {
+            "user_id": "user_150",
+            "rating": 5,
+            "content": "Très bon rapport qualité prix \ntrès confortables \nUtilisées après une opération du genou car facile à enfiler et semelles adhérentes \nBonne durabilité "
+        },
+        {
+            "user_id": "user_151",
+            "rating": 5,
+            "content": "Buty trwałe i do tej pory są w stanie faktycznie nienaruszonym. Łatwe są w pielęgnacji ."
+        },
+        {
+            "user_id": "user_152",
+            "rating": 5,
+            "content": "Souple et facile à porter."
+        },
+        {
+            "user_id": "user_153",
+            "rating": 4,
+            "content": "Cest la deuxieme fois que jachete ce produit excelent .<br>"
+        },
+        {
+            "user_id": "user_154",
+            "rating": 4,
+            "content": "Cómodas y fáciles de poner/quitar."
+        },
+        {
+            "user_id": "user_155",
+            "rating": 5,
+            "content": "Très confortable "
+        },
+        {
+            "user_id": "user_156",
+            "rating": 4,
+            "content": "rapport qualité prix incroyable "
+        },
+        {
+            "user_id": "user_157",
+            "rating": 1,
+            "content": "Trop difficile à enfiler en l'absence de languette libre. je vais demander la reprise de cet article"
+        },
+        {
+            "user_id": "user_158",
+            "rating": 5,
+            "content": "Really good and comfortable!"
+        },
+        {
+            "user_id": "user_159",
+            "rating": 5,
+            "content": "Bonjour tu es handicapé je le trouve très confortable surtout pour les pieds large écran sans passer de recul pour voir la qualité mais très souple pour la marche de tous les jours"
+        },
+        {
+            "user_id": "user_160",
+            "rating": 5,
+            "content": "bonjour, meilleurs voeux à tous  ; satisfait du produit merci .<br>..."
+        },
+        {
+            "user_id": "user_161",
+            "rating": 5,
+            "content": "good quality "
+        },
+        {
+            "user_id": "user_162",
+            "rating": 4,
+            "content": "tem pouca variedade para senhoras dos 60 para cima<br>"
+        },
+        {
+            "user_id": "user_163",
+            "rating": 5,
+            "content": "Confortable et bon rapport qualité prix "
+        },
+        {
+            "user_id": "user_164",
+            "rating": 5,
+            "content": "Très bien "
+        },
+        {
+            "user_id": "user_165",
+            "rating": 5,
+            "content": "Comodo "
+        },
+        {
+            "user_id": "user_166",
+            "rating": 5,
+            "content": "Good buy"
+        },
+        {
+            "user_id": "user_167",
+            "rating": 5,
+            "content": "C'est la 3eme paire que j achète et j en suis ravie car très souple pour des pieds \"fragiles \" <br>J achète le modèle chez les hommes juste parce que la semelle est de couleur noire<br>Je conseille ardemment "
+        },
+        {
+            "user_id": "user_168",
+            "rating": 5,
+            "content": "Utilisées suite séjour en centre de réadaptation épaule droite (à- semaines). facilités à chausser et sans lacet"
+        },
+        {
+            "user_id": "user_169",
+            "rating": 5,
+            "content": "Légèreté souplesse confort facileà mettre"
+        },
+        {
+            "user_id": "user_170",
+            "rating": 5,
+            "content": "bon produit rapport qualité /prix"
+        },
+        {
+            "user_id": "user_171",
+            "rating": 5,
+            "content": "Ras"
+        },
+        {
+            "user_id": "user_172",
+            "rating": 5,
+            "content": "Eccezionale, comoda, traspirante e versatile."
+        },
+        {
+            "user_id": "user_173",
+            "rating": 5,
+            "content": "Super confortáveis "
+        },
+        {
+            "user_id": "user_174",
+            "rating": 5,
+            "content": "Really comfortable and easy to wear and clean, bought 2 more pairs"
+        },
+        {
+            "user_id": "user_175",
+            "rating": 4,
+            "content": "Excellent achat"
+        },
+        {
+            "user_id": "user_176",
+            "rating": 5,
+            "content": "5 estrelas"
+        },
+        {
+            "user_id": "user_177",
+            "rating": 4,
+            "content": "Overall I am happy with the product.<br>The shoes are light and fit well.<br><br>Material wears off (heel especially) within one season of normal use, though.<br>Some color accent would be great."
+        },
+        {
+            "user_id": "user_178",
+            "rating": 5,
+            "content": "Je viens de racheter la version 2025 de ces chaussures. J’en ai une paire achetée il y a 2 ans qui sont encore fonctionnelles à un détail prêt. La bande élastique sur le dessus s’est complètement détendue. C’est dommage parce que ces chaussures seraient encore utilisables sans ce détail. La semelle est solide et elles restent confortables après un long usage quotidien."
+        },
+        {
+            "user_id": "user_179",
+            "rating": 5,
+            "content": "J'utilise ces chaussures quotidiennement depuis 1 an. Design sobre, noir sans aucune marque, exactement ce que j'attends.<br>Je marche avec en ville mais également sur des randonnées faciles. Elles sont confortables et légères.<br>Le fait de ne pas avoir de lacets est un bonus appréciable, mais pas ce que je recherchais au début."
+        },
+        {
+            "user_id": "user_180",
+            "rating": 5,
+            "content": "good"
+        },
+        {
+            "user_id": "user_181",
+            "rating": 5,
+            "content": "Très légère <br>Facile à mettre <br>"
+        },
+        {
+            "user_id": "user_182",
+            "rating": 5,
+            "content": "Good"
+        },
+        {
+            "user_id": "user_183",
+            "rating": 5,
+            "content": "C'est ma 3ème paire, toujours aussi bien. Achetées cette fois pour faire oeuvre de chaussons. Tiennent bien le pied, idéal.<br>"
+        },
+        {
+            "user_id": "user_184",
+            "rating": 5,
+            "content": "Je cherchais ces chaussures chez les femmes mais vous mettez toujours des petits détails kitch comme un petit dessins une bordure de couleur , la simplicité on peut aussi en avoir ? Pourquoi ne pas avoir fais les meme chez les femmes ? J’ai donc prix celle ci en 39 alors que je chausse  du 38 je en vouais pas mettre trop cher le prix est parfait elles sont légères et facile à mettre "
+        },
+        {
+            "user_id": "user_185",
+            "rating": 5,
+            "content": "Bonne chaussure légère et confortable, mais pas que pour le sport."
+        },
+        {
+            "user_id": "user_186",
+            "rating": 4,
+            "content": "Acheté pour le boulot, elles sont légères et confortables, conviennent pour l'intérieur, ne sont pas imperméable. <br>Gros bémol sur la quantité disponible en magasin, j'aurai aimé prendre plutôt le modèle femme en 42 par rapport au coloris mais il n'y avait même plus. Manque de choix en taille et en couleur "
+        },
+        {
+            "user_id": "user_187",
+            "rating": 5,
+            "content": "Utilisées pour le travail , facilite la station debout toute la journée."
+        },
+        {
+            "user_id": "user_188",
+            "rating": 5,
+            "content": "Des vrais chaussons , costaux et pratique a mettre"
+        },
+        {
+            "user_id": "user_189",
+            "rating": 5,
+            "content": "Chaussures confortables pour marcher courtes et longues distances. Très faciles à mettre et enlever. Pour le prix, on peut pas demander beaucoup mieux que ça."
+        },
+        {
+            "user_id": "user_190",
+            "rating": 5,
+            "content": "Néhány hónapja használom a munkám során gyalogláshoz és gyakori lépcsőzéshez. A használatával megszűnt a térdfájdalmam, ami miatt vásároltam. Nagyon kényelmes viselet, jó benne vezetni is. Szellőzik, nem izzad bele a lábam, még vastagabb zokni viseleténél sem, Könnyű tisztán tartani. Sokan megnézik a lábamon és mindenkinek jó szívvel ajánlom. "
+        },
+        {
+            "user_id": "user_191",
+            "rating": 5,
+            "content": "Bardzo wygodne buty"
+        },
+        {
+            "user_id": "user_192",
+            "rating": 5,
+            "content": "J'ai choisi le modèle homme car la semelle est noire. Donc plus discrète <br>Il n'y avait plus de taille 42 au rayon femme.<br>Parfaite pour marcher sur terrain plat et aussi en ville."
+        },
+        {
+            "user_id": "user_193",
+            "rating": 5,
+            "content": "Utiliser après un AVC. centre de rééducation "
+        },
+        {
+            "user_id": "user_194",
+            "rating": 5,
+            "content": "Buen artículo teniendo en cuenta que lo va a usar un hombre de 90 años."
+        },
+        {
+            "user_id": "user_195",
+            "rating": 5,
+            "content": "Bien"
+        },
+        {
+            "user_id": "user_196",
+            "rating": 4,
+            "content": "Agréable au quotidien pour le travail "
+        },
+        {
+            "user_id": "user_197",
+            "rating": 5,
+            "content": "Très souple et bonne tenue "
+        },
+        {
+            "user_id": "user_198",
+            "rating": 5,
+            "content": "Bien accueillis et guidé j’ai pas redu du temps. <br>La chaussure me va a merveille.<br>Bonne continuation "
+        },
+        {
+            "user_id": "user_199",
+            "rating": 5,
+            "content": "Tiennent bien au pied et sont très confortables."
+        },
+        {
+            "user_id": "user_200",
+            "rating": 5,
+            "content": "Buen producto "
+        }
+    ]
+}

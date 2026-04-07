@@ -1,0 +1,1005 @@
+{
+    "product_id": "sunglasses_001",
+    "reviews": [
+        {
+            "user_id": "user_001",
+            "rating": 4,
+            "content": "최고 가성비 아이들 분신해도 부담도 안되고 아이들이 너무 좋아해요"
+        },
+        {
+            "user_id": "user_002",
+            "rating": 5,
+            "content": "너무 춥지 않은 날씨 또는 두꺼운 비니로 땀이 나는게 싫은 분에게 적합해요. 저렴하고 디자인도 예뻐요."
+        },
+        {
+            "user_id": "user_003",
+            "rating": 5,
+            "content": "너무 맘에 듭니다<br>그냥 스포츠말고 여행용으로 사용해도 손색없을듯요"
+        },
+        {
+            "user_id": "user_004",
+            "rating": 5,
+            "content": "가벼운 선글라스 찾고 있었는데, 솔직히 10배 가격이라도 지불하고 살 의향 있음"
+        },
+        {
+            "user_id": "user_005",
+            "rating": 4,
+            "content": "세일해서 저렴하게 구매했어요 가볍고 괜찮네요 "
+        },
+        {
+            "user_id": "user_006",
+            "rating": 5,
+            "content": "멋짐 탁월함 저렴가격 비교불가의 스마트 디자인.... 고마워요.. 화이팅"
+        },
+        {
+            "user_id": "user_007",
+            "rating": 5,
+            "content": "멋짐 탁월함 저렴가격 비교불가의 스마트 디자인.... 고마워요.. 화이팅"
+        },
+        {
+            "user_id": "user_008",
+            "rating": 5,
+            "content": "가볍고 고정성이 안정감이 있음"
+        },
+        {
+            "user_id": "user_009",
+            "rating": 5,
+            "content": "얼굴에 잘 밀착하고 안정감있는 착용감이 좋습니다.<br>"
+        },
+        {
+            "user_id": "user_010",
+            "rating": 5,
+            "content": "와 너무 좋네요"
+        },
+        {
+            "user_id": "user_011",
+            "rating": 5,
+            "content": "같은가격대의 알*에서 파는 제품들보다 품질이 우수<br>특히 무게가 가벼워서 더우 만족"
+        },
+        {
+            "user_id": "user_012",
+            "rating": 2,
+            "content": "조아요"
+        },
+        {
+            "user_id": "user_013",
+            "rating": 3,
+            "content": "가볍고 착용감 만족해요"
+        },
+        {
+            "user_id": "user_014",
+            "rating": 4,
+            "content": "가성비 좋네요. 사이즈도 적당하고."
+        },
+        {
+            "user_id": "user_015",
+            "rating": 4,
+            "content": "가격이 너무 싸서 품질이 떨어지지 않을까 걱정했는데 전혀 문제 없네네요. 착용감 좋구요 ~ 저는 달리기용으로 샀는데 착용감 좋았습니다 ~"
+        },
+        {
+            "user_id": "user_016",
+            "rating": 4,
+            "content": "만듦새가 좋으나 사이즈가 좀 작은 것 같습니다.\r\n데카트론 안경,모자들은 사이즈를 더 키워서 출시해주면 좋겠습니다."
+        },
+        {
+            "user_id": "user_017",
+            "rating": 5,
+            "content": "Buona protezione, leggeri"
+        },
+        {
+            "user_id": "user_018",
+            "rating": 5,
+            "content": "Resistenti, buona protezione "
+        },
+        {
+            "user_id": "user_019",
+            "rating": 5,
+            "content": "Merita"
+        },
+        {
+            "user_id": "user_020",
+            "rating": 5,
+            "content": "Parfait"
+        },
+        {
+            "user_id": "user_021",
+            "rating": 5,
+            "content": "Zit lekker "
+        },
+        {
+            "user_id": "user_022",
+            "rating": 5,
+            "content": "Great sunglasses, no movement when running and they look good too!"
+        },
+        {
+            "user_id": "user_023",
+            "rating": 3,
+            "content": "Renkli cam olduğu için görüntü doğalın dışında gözüküyor "
+        },
+        {
+            "user_id": "user_024",
+            "rating": 5,
+            "content": "Resistenti, comodi"
+        },
+        {
+            "user_id": "user_025",
+            "rating": 5,
+            "content": "Value for money "
+        },
+        {
+            "user_id": "user_026",
+            "rating": 5,
+            "content": "okulary rewelacyjne  , plecam "
+        },
+        {
+            "user_id": "user_027",
+            "rating": 5,
+            "content": "attention cependant aux verres qui sont fragiles"
+        },
+        {
+            "user_id": "user_028",
+            "rating": 5,
+            "content": "Çok guzel"
+        },
+        {
+            "user_id": "user_029",
+            "rating": 5,
+            "content": "calidad precio genial "
+        },
+        {
+            "user_id": "user_030",
+            "rating": 5,
+            "content": "Works well in night also. "
+        },
+        {
+            "user_id": "user_031",
+            "rating": 5,
+            "content": "Beautifully constructed sunglasses. Very stylish and affordable. This is exactly the Aqua-Green color I’ve been searching for. Very Happy with this purchase! "
+        },
+        {
+            "user_id": "user_032",
+            "rating": 5,
+            "content": "kaliteli hafif ve yüzü tam kavrıyor tavsiye ediyorum "
+        },
+        {
+            "user_id": "user_033",
+            "rating": 5,
+            "content": "Très belles lunettes de soleil. Belle qualité. parfait pour temps ensoleillé "
+        },
+        {
+            "user_id": "user_034",
+            "rating": 5,
+            "content": "satisfait "
+        },
+        {
+            "user_id": "user_035",
+            "rating": 4,
+            "content": "Good product "
+        },
+        {
+            "user_id": "user_036",
+            "rating": 5,
+            "content": "Great value and quite durable, been using for 10 months lenses are holding up well and frame is still in perfect working order."
+        },
+        {
+            "user_id": "user_037",
+            "rating": 5,
+            "content": "Bien couvrantes"
+        },
+        {
+            "user_id": "user_038",
+            "rating": 5,
+            "content": "Amazing "
+        },
+        {
+            "user_id": "user_039",
+            "rating": 5,
+            "content": "nice sunglasses comfortable to wear"
+        },
+        {
+            "user_id": "user_040",
+            "rating": 5,
+            "content": "Polecam"
+        },
+        {
+            "user_id": "user_041",
+            "rating": 5,
+            "content": "Dobry stosunek ceny do jakości! "
+        },
+        {
+            "user_id": "user_042",
+            "rating": 5,
+            "content": "polecam"
+        },
+        {
+            "user_id": "user_043",
+            "rating": 5,
+            "content": "wygodne i stylowe"
+        },
+        {
+            "user_id": "user_044",
+            "rating": 4,
+            "content": "Kupiłem ten model z myślą o słonecznych, letnich dniach i wyjazdach. Soczewki kategorii 3 robią naprawdę dobrą robotę w mocnym słońcu – wzrok odpoczywa, nie trzeba mrużyć oczu, a obraz pozostaje naturalny i wyraźny. Okulary są bardzo lekkie i całkiem wygodnie leżą na twarzy, nie powodując ucisku za uszami nawet po kilku godzinach noszenia. Kolor \"ultrabiały\" nadaje im typowo wakacyjnego, luźnego charakteru. Daję 4 zamiast 5 gwiazdek z dość prozaicznego powodu: jasne oprawki mają to do siebie, że błyskawicznie widać na nich wszelkie zabrudzenia, na przykład z kremu z filtrem czy potu, więc trzeba je po prostu częściej przecierać. Mimo to, w ogólnym rozrachunku to bardzo solidne, ładne i praktyczne okulary. Zdecydowanie polecam!"
+        },
+        {
+            "user_id": "user_045",
+            "rating": 5,
+            "content": "buni"
+        },
+        {
+            "user_id": "user_046",
+            "rating": 5,
+            "content": "bonne lunette couleur très bien"
+        },
+        {
+            "user_id": "user_047",
+            "rating": 5,
+            "content": "lunette très bien"
+        },
+        {
+            "user_id": "user_048",
+            "rating": 5,
+            "content": "It fits perfectly on my face and doesn't slipped off even when I'm riding. Worth the money "
+        },
+        {
+            "user_id": "user_049",
+            "rating": 5,
+            "content": "เบาทนทานและวัสดุแข็งแรง"
+        },
+        {
+            "user_id": "user_050",
+            "rating": 5,
+            "content": "Harika bir gözlük camları özellikle güneşten çok iyi koruyor Doğa yürüyüşlerinde tırmanmada mükemmel"
+        },
+        {
+            "user_id": "user_051",
+            "rating": 5,
+            "content": "Lekkie wygodne okulary  są ze mną wszędzie. "
+        },
+        {
+            "user_id": "user_052",
+            "rating": 5,
+            "content": "Very good "
+        },
+        {
+            "user_id": "user_053",
+            "rating": 5,
+            "content": "belle couleur, légères, protection niveau 3"
+        },
+        {
+            "user_id": "user_054",
+            "rating": 5,
+            "content": "Bardzo udany, uniwersalny model. Okulary są niezwykle lekkie, przez co praktycznie nie czuć ich na nosie, nawet po całym dniu spędzonym na zewnątrz. Czarne, matowe oprawki to klasyka, która pasuje do wszystkiego. Szkła kategorii 3 świetnie radzą sobie w mocnym słońcu, obraz jest wyraźny, a oczy w ogóle się nie męczą. Zauszniki dobrze trzymają się głowy, okulary nie zsuwają się przy schylaniu czy szybszym marszu. Idealne na górskie szlaki, ale też do noszenia na co dzień w mieście."
+        },
+        {
+            "user_id": "user_055",
+            "rating": 5,
+            "content": "zajefajne oksy"
+        },
+        {
+            "user_id": "user_056",
+            "rating": 5,
+            "content": "fajne nieśmiertelne oksy"
+        },
+        {
+            "user_id": "user_057",
+            "rating": 4,
+            "content": "Bon rapport qualité prix "
+        },
+        {
+            "user_id": "user_058",
+            "rating": 5,
+            "content": "удобни леки"
+        },
+        {
+            "user_id": "user_059",
+            "rating": 5,
+            "content": "Wore skiing. Perfect for the job. "
+        },
+        {
+            "user_id": "user_060",
+            "rating": 5,
+            "content": "Top"
+        },
+        {
+            "user_id": "user_061",
+            "rating": 5,
+            "content": "Ameiii"
+        },
+        {
+            "user_id": "user_062",
+            "rating": 5,
+            "content": "Kept eyes safe in clear weather "
+        },
+        {
+            "user_id": "user_063",
+            "rating": 5,
+            "content": "Jó a termék, azonban javasolt hozzá egy tokot venni."
+        },
+        {
+            "user_id": "user_064",
+            "rating": 4,
+            "content": "Design sympa"
+        },
+        {
+            "user_id": "user_065",
+            "rating": 5,
+            "content": "Love the colour and looks too cool. Perfect wear on a sunny day "
+        },
+        {
+            "user_id": "user_066",
+            "rating": 3,
+            "content": "ok"
+        },
+        {
+            "user_id": "user_067",
+            "rating": 5,
+            "content": "Really like these glasses. They're robust and I use them in every day life"
+        },
+        {
+            "user_id": "user_068",
+            "rating": 5,
+            "content": "Bisa digunakan saat sinar Matahari terik dan melindungi mata dari silau yg berlebihan"
+        },
+        {
+            "user_id": "user_069",
+            "rating": 5,
+            "content": "Lunettes achetée pour ma fille elle rn est très contente "
+        },
+        {
+            "user_id": "user_070",
+            "rating": 5,
+            "content": "กันแดดได้ดี ทรงสวย"
+        },
+        {
+            "user_id": "user_071",
+            "rating": 5,
+            "content": "çok kullanışlı "
+        },
+        {
+            "user_id": "user_072",
+            "rating": 3,
+            "content": "üründe çapaklar var kalıbında "
+        },
+        {
+            "user_id": "user_073",
+            "rating": 4,
+            "content": "kalıbı bilindik bir markanın kalıbıyla hemen hemen aynı bu biraz daha kibar hatta "
+        },
+        {
+            "user_id": "user_074",
+            "rating": 3,
+            "content": "ok"
+        },
+        {
+            "user_id": "user_075",
+            "rating": 5,
+            "content": "Good "
+        },
+        {
+            "user_id": "user_076",
+            "rating": 5,
+            "content": "Sprawdziły się podczas wędrówek i podczas jazdy samochodem. <br><br>Polecam!!!"
+        },
+        {
+            "user_id": "user_077",
+            "rating": 5,
+            "content": "Ok."
+        },
+        {
+            "user_id": "user_078",
+            "rating": 5,
+            "content": "polecam "
+        },
+        {
+            "user_id": "user_079",
+            "rating": 5,
+            "content": "Thanks very good 👍😊"
+        },
+        {
+            "user_id": "user_080",
+            "rating": 5,
+            "content": "Kupiłem z braku czasu na poszukiwanie innych okularów i sprawdzają się świetnie w czasie wędrówek, ale często zakładam też na luźne jazdy rowerowe. Wygodne, trwałe, bardzo mi pasują"
+        },
+        {
+            "user_id": "user_081",
+            "rating": 5,
+            "content": "Super okulary. "
+        },
+        {
+            "user_id": "user_082",
+            "rating": 5,
+            "content": "Parfaite"
+        },
+        {
+            "user_id": "user_083",
+            "rating": 5,
+            "content": "tres bien"
+        },
+        {
+            "user_id": "user_084",
+            "rating": 5,
+            "content": "Great and funky sunglasses for holidays, they protect very well and are nice to wear, they don't slide on the nose like some others do."
+        },
+        {
+            "user_id": "user_085",
+            "rating": 5,
+            "content": "Beau design, bonne résistance au rayure et bonne protection"
+        },
+        {
+            "user_id": "user_086",
+            "rating": 5,
+            "content": "Cat 3 seviye güneşe karşı korumalı, fiyatına göre gayet kaliteli ve şık bir gözlük.  Tavsiye ederim. "
+        },
+        {
+            "user_id": "user_087",
+            "rating": 3,
+            "content": "Ik draag lenzen en vind m niet goed tegen de zon .<br><br>en komende lichten auto,s overdag beschermen . Die best vel zijn led van dag verlichting. <br><br>"
+        },
+        {
+            "user_id": "user_088",
+            "rating": 5,
+            "content": "the transparent part it is translucent"
+        },
+        {
+            "user_id": "user_089",
+            "rating": 5,
+            "content": "Simple "
+        },
+        {
+            "user_id": "user_090",
+            "rating": 5,
+            "content": "Very nice"
+        },
+        {
+            "user_id": "user_091",
+            "rating": 5,
+            "content": "Excellent product "
+        },
+        {
+            "user_id": "user_092",
+            "rating": 5,
+            "content": "Dobrze dopasowane"
+        },
+        {
+            "user_id": "user_093",
+            "rating": 3,
+            "content": "."
+        },
+        {
+            "user_id": "user_094",
+            "rating": 5,
+            "content": "bardzo wygodne, ładny design, dobrze leżą, nie spadają z nosa, ja kupilam już kolejną parę, polecam "
+        },
+        {
+            "user_id": "user_095",
+            "rating": 5,
+            "content": "Belles lunettes de soleil ... "
+        },
+        {
+            "user_id": "user_096",
+            "rating": 3,
+            "content": "Yürüyüşte kullanmak için aldım iyi"
+        },
+        {
+            "user_id": "user_097",
+            "rating": 4,
+            "content": "Occhiali leggeri che non danno noia.inoltre avvolgono bene quindi anche facendo sport rimangono al loro posto senza bisogno di laccetti."
+        },
+        {
+            "user_id": "user_098",
+            "rating": 5,
+            "content": "j'ai apprécié ma commande "
+        },
+        {
+            "user_id": "user_099",
+            "rating": 4,
+            "content": "Neurazia ani neohúria. Cítiť lacnejšie prevedenie, ale za tie peniaze sa iné nedá čakať. "
+        },
+        {
+            "user_id": "user_100",
+            "rating": 5,
+            "content": "Çerçeve tasarımı çok rahat, surata oturuyor, camları da gözleri rahatsız etmeden uzun süre kullanılabiliyor. "
+        },
+        {
+            "user_id": "user_101",
+            "rating": 5,
+            "content": "Dağcılık sporunun her alanında kullandım. Tam bir fiyat performans ürünü tavsiye ederim."
+        },
+        {
+            "user_id": "user_102",
+            "rating": 5,
+            "content": "Dobre, lekkie i tanie okulary przeciwsłoneczne z filtrami"
+        },
+        {
+            "user_id": "user_103",
+            "rating": 5,
+            "content": "3ieme paire, très confortable, coloris passe partout "
+        },
+        {
+            "user_id": "user_104",
+            "rating": 5,
+            "content": "proste, funkcjonalne, dobry design, polecam "
+        },
+        {
+            "user_id": "user_105",
+            "rating": 4,
+            "content": "Bon produit je l'ai est en trois couleurs "
+        },
+        {
+            "user_id": "user_106",
+            "rating": 4,
+            "content": "nice choice"
+        },
+        {
+            "user_id": "user_107",
+            "rating": 5,
+            "content": "Utilisation au quotidien "
+        },
+        {
+            "user_id": "user_108",
+            "rating": 5,
+            "content": "Great for my sunny day"
+        },
+        {
+            "user_id": "user_109",
+            "rating": 5,
+            "content": "thats my 3rd pair "
+        },
+        {
+            "user_id": "user_110",
+            "rating": 5,
+            "content": "Lentila confortabila"
+        },
+        {
+            "user_id": "user_111",
+            "rating": 5,
+            "content": "I love it"
+        },
+        {
+            "user_id": "user_112",
+            "rating": 5,
+            "content": "Trwałe  i wygodne, dobrze chronią od słońca"
+        },
+        {
+            "user_id": "user_113",
+            "rating": 5,
+            "content": "EŞİME KADINLAR GÜNÜ HEDİYESİ OLARAK ALDIM GAYET BEĞENDİ"
+        },
+        {
+            "user_id": "user_114",
+            "rating": 5,
+            "content": "Tốt trong tầm giá"
+        },
+        {
+            "user_id": "user_115",
+            "rating": 5,
+            "content": "Tốt trong tầm giá. chống nắng tuyệt vời"
+        },
+        {
+            "user_id": "user_116",
+            "rating": 4,
+            "content": "Good product clear see rilaxe eye"
+        },
+        {
+            "user_id": "user_117",
+            "rating": 2,
+            "content": "Peu solide <br>Pas assez foncé, j'ai fait un mauvais choix <br>"
+        },
+        {
+            "user_id": "user_118",
+            "rating": 5,
+            "content": "Good"
+        },
+        {
+            "user_id": "user_119",
+            "rating": 3,
+            "content": "Looks cool but only one size available so can't say much "
+        },
+        {
+            "user_id": "user_120",
+            "rating": 5,
+            "content": "Good product "
+        },
+        {
+            "user_id": "user_121",
+            "rating": 4,
+            "content": "Correspond à ma demande,bon rapport qualité prix"
+        },
+        {
+            "user_id": "user_122",
+            "rating": 5,
+            "content": "Stylé et filtre très bien le rayons UV en tout cas le soleil "
+        },
+        {
+            "user_id": "user_123",
+            "rating": 5,
+            "content": "Sun glasses are great and look stylish. They feel sturdy and safe for my eyes with the bright sun. "
+        },
+        {
+            "user_id": "user_124",
+            "rating": 4,
+            "content": "Good glasses"
+        },
+        {
+            "user_id": "user_125",
+            "rating": 5,
+            "content": "Occhiali perfetti, schermano bene "
+        },
+        {
+            "user_id": "user_126",
+            "rating": 5,
+            "content": "Esthétiques et agréables à porter, j'en suis ravi !"
+        },
+        {
+            "user_id": "user_127",
+            "rating": 4,
+            "content": "bon produit \n"
+        },
+        {
+            "user_id": "user_128",
+            "rating": 5,
+            "content": "Nejlepsi bryle, jake jsem kdy mel, skoda ze uz se nevyrabi..."
+        },
+        {
+            "user_id": "user_129",
+            "rating": 4,
+            "content": "Skvělé brýle, jejich modrá předchozí varianta byla o neco lepší protože měla polarizaci, ale bohužel uz se neprodává. Velmi dobrá kvalita, brýle mi vydrží i několik let."
+        },
+        {
+            "user_id": "user_130",
+            "rating": 5,
+            "content": "Bones ulleres "
+        },
+        {
+            "user_id": "user_131",
+            "rating": 4,
+            "content": "Très bonne lunette"
+        },
+        {
+            "user_id": "user_132",
+            "rating": 1,
+            "content": "I don't like it "
+        },
+        {
+            "user_id": "user_133",
+            "rating": 5,
+            "content": "RAS"
+        },
+        {
+            "user_id": "user_134",
+            "rating": 4,
+            "content": "Ok pentru vreme insorita"
+        },
+        {
+            "user_id": "user_135",
+            "rating": 5,
+            "content": "Pour le prix j’en suis satisfaite et m’a protégé de la réverbération de la neige "
+        },
+        {
+            "user_id": "user_136",
+            "rating": 5,
+            "content": "Muito giros e cumprem a função "
+        },
+        {
+            "user_id": "user_137",
+            "rating": 5,
+            "content": "Joli coloris, bonne tenue"
+        },
+        {
+            "user_id": "user_138",
+            "rating": 5,
+            "content": "Okulary sprawdzają się zarówno w sporcie jak i przy codziennym użytkowaniu. "
+        },
+        {
+            "user_id": "user_139",
+            "rating": 5,
+            "content": "Performans Fiyat"
+        },
+        {
+            "user_id": "user_140",
+            "rating": 3,
+            "content": "Elles ne protège pas suffisamment pour la randonnée à la neige. "
+        },
+        {
+            "user_id": "user_141",
+            "rating": 5,
+            "content": "J'adore ses lunettes je les utilise depuis plusieurs années principalement pour le travail, solide et agréable porter plusieurs teintes de verre, possibilité de changer les verres"
+        },
+        {
+            "user_id": "user_142",
+            "rating": 5,
+            "content": "Tam bir fiyat performans ürünü"
+        },
+        {
+            "user_id": "user_143",
+            "rating": 5,
+            "content": "Kemikli yapısıyla takar takmaz farkedilir bir kalite. Koşarken de düşmüyor "
+        },
+        {
+            "user_id": "user_144",
+            "rating": 4,
+            "content": "Bien "
+        },
+        {
+            "user_id": "user_145",
+            "rating": 5,
+            "content": "น่ารัก สวยงาม"
+        },
+        {
+            "user_id": "user_146",
+            "rating": 5,
+            "content": "Une paire de lunette de soleil pratique et légère."
+        },
+        {
+            "user_id": "user_147",
+            "rating": 5,
+            "content": "Niedrogie i bardzo wytrzymałeb okulary. Polecam"
+        },
+        {
+            "user_id": "user_148",
+            "rating": 5,
+            "content": "good"
+        },
+        {
+            "user_id": "user_149",
+            "rating": 5,
+            "content": "Fanno il loro lavoro "
+        },
+        {
+            "user_id": "user_150",
+            "rating": 4,
+            "content": "good size for guys"
+        },
+        {
+            "user_id": "user_151",
+            "rating": 4,
+            "content": "Good"
+        },
+        {
+            "user_id": "user_152",
+            "rating": 5,
+            "content": "buen diseño, cómodas y resistentes"
+        },
+        {
+            "user_id": "user_153",
+            "rating": 5,
+            "content": "J’adore"
+        },
+        {
+            "user_id": "user_154",
+            "rating": 4,
+            "content": "Sağlam gözden kaymıyor silikonlar sayesinde"
+        },
+        {
+            "user_id": "user_155",
+            "rating": 5,
+            "content": "Nikel"
+        },
+        {
+            "user_id": "user_156",
+            "rating": 5,
+            "content": "J'en possède déjà une paire similaire, d'une autre couleur, que je porte très souvent. Je souhaitais donc en avoir une autre paire, également d'une autre couleur. Pour l'instant, j'en suis contente et je la recommande."
+        },
+        {
+            "user_id": "user_157",
+            "rating": 5,
+            "content": "To chyba moja 4 czy 5 para, bo zawsze mam w domu min 2 i jak zwykle, kupiłam od razu dwie sztuki. Najlepsze okulary jakie w życiu miałam - wygodne, wytrzymałe (żadne się nie złamały ani nie zniszczyły) i mają super kolory. Na razie wyrzuciłam tylko jedną parę, po latach użytkowania, ponieważ szkiełka były już mocno porysowane (w dużej mierze przez tyranie ich w górach, po skałach, trzymanie z kluczami). O kolejne pary lepiej dbałam i trwają do tej pory (lub trwałyby, ale je zgubiłam)"
+        },
+        {
+            "user_id": "user_158",
+            "rating": 5,
+            "content": "To chyba moja 4 czy 5 para, bo zawsze mam w domu min 2. Najlepsze okulary jakie w życiu miałam - wygodne, wytrzymałe (żadne się nie złamały ani nie zniszczyły) i mają super kolory. Na razie wyrzuciłam tylko jedną parę, po latach użytkowania, ponieważ szkiełka były już mocno porysowane (w dużej mierze przez tyranie ich w górach, po skałach, trzymanie z kluczami). O kolejne pary lepiej dbałam i trwają do tej pory (lub trwałyby, ale je zgubiłam)"
+        },
+        {
+            "user_id": "user_159",
+            "rating": 5,
+            "content": "Polecam"
+        },
+        {
+            "user_id": "user_160",
+            "rating": 5,
+            "content": "Vzhledově hezké, ideální na jakékoliv procházky ."
+        },
+        {
+            "user_id": "user_161",
+            "rating": 5,
+            "content": "Bien "
+        },
+        {
+            "user_id": "user_162",
+            "rating": 4,
+            "content": "Fait l’affaire, correct pour le prix"
+        },
+        {
+            "user_id": "user_163",
+            "rating": 5,
+            "content": "Jedny z mála brýlí, které mi skutečně sedí. Jsou lehké, nepadají. Filtrace světla je vyhovující."
+        },
+        {
+            "user_id": "user_164",
+            "rating": 3,
+            "content": "บริการดี แนะนําดี"
+        },
+        {
+            "user_id": "user_165",
+            "rating": 5,
+            "content": "Super"
+        },
+        {
+            "user_id": "user_166",
+            "rating": 5,
+            "content": "Super"
+        },
+        {
+            "user_id": "user_167",
+            "rating": 5,
+            "content": "Très robuste malgré les chute<br>Confortable légèreté "
+        },
+        {
+            "user_id": "user_168",
+            "rating": 5,
+            "content": "Kacamata ini sangat ringan (hanya 21 g) dan nyaman dipakai untuk pemakaian panjang. Lensa kategori 3 memberikan perlindungan UV yang baik untuk cuaca cerah, serta desain bingkai pelipis membuat kacamata tetap pada posisinya selama aktivitas. Kualitas konstruksi terasa kokoh, desain terlihat modern. Satu catatan kecil: ukuran tidak tersedia, jadi pastikan ukuran sesuai untuk wajah Anda. Secara keseluruhan, nilai uang sebanding dengan kualitasnya."
+        },
+        {
+            "user_id": "user_169",
+            "rating": 5,
+            "content": "Franchement pour le prix c'est vraiment pas mal "
+        },
+        {
+            "user_id": "user_170",
+            "rating": 5,
+            "content": "Bonne protection et look sympa."
+        },
+        {
+            "user_id": "user_171",
+            "rating": 5,
+            "content": "Purchased this as a gift. Glasses were perfectly fitting. Good buy"
+        },
+        {
+            "user_id": "user_172",
+            "rating": 5,
+            "content": "Worked great for a ski holiday"
+        },
+        {
+            "user_id": "user_173",
+            "rating": 5,
+            "content": "Top ! "
+        },
+        {
+            "user_id": "user_174",
+            "rating": 2,
+            "content": "Me glissaient du nez et étaient trop larges.<br>Protection correcte"
+        },
+        {
+            "user_id": "user_175",
+            "rating": 5,
+            "content": "Superb...."
+        },
+        {
+            "user_id": "user_176",
+            "rating": 5,
+            "content": "Love this new buy.  Very comfortable and stylish too.  Perfect for walking/ hiking."
+        },
+        {
+            "user_id": "user_177",
+            "rating": 5,
+            "content": "De bonne qualité, couleur très jolie"
+        },
+        {
+            "user_id": "user_178",
+            "rating": 5,
+            "content": "Bardzo lubię kształt tych okularów i kolor szkieł. Poprzenie mam takie same ale szkła są brązowe i dlatego ich nie lubiłam. Te są idealne. Dobrze chronią. Mają dziurki w zausznikach żeby wpiąć sznurek. Polecam na wakacje i na co dzień "
+        },
+        {
+            "user_id": "user_179",
+            "rating": 5,
+            "content": "."
+        },
+        {
+            "user_id": "user_180",
+            "rating": 5,
+            "content": "Tengo unas en el bolso, en el coche y también en el bolso de la piscina, para mi son la mejor compra"
+        },
+        {
+            "user_id": "user_181",
+            "rating": 4,
+            "content": "Excellent design<br>"
+        },
+        {
+            "user_id": "user_182",
+            "rating": 5,
+            "content": "Fena değil"
+        },
+        {
+            "user_id": "user_183",
+            "rating": 4,
+            "content": "Very good "
+        },
+        {
+            "user_id": "user_184",
+            "rating": 5,
+            "content": "Tam bir fiyat performans ürünü ben şahsen çok beğendim"
+        },
+        {
+            "user_id": "user_185",
+            "rating": 5,
+            "content": "Offert comme cadeau j'en suis entièrement satisfait se porte bien comme au quotidien et à la pêche fais son taffe ! "
+        },
+        {
+            "user_id": "user_186",
+            "rating": 5,
+            "content": "Leves e práticos "
+        },
+        {
+            "user_id": "user_187",
+            "rating": 5,
+            "content": "UV protection, simple and value for money."
+        },
+        {
+            "user_id": "user_188",
+            "rating": 3,
+            "content": "Molto belli e buona visione"
+        },
+        {
+            "user_id": "user_189",
+            "rating": 5,
+            "content": "Ürünü yeni aldım fakat kaliteli olduğunu şimdiden söyleyebilirim"
+        },
+        {
+            "user_id": "user_190",
+            "rating": 5,
+            "content": "Kvalita za dobru cenu"
+        },
+        {
+            "user_id": "user_191",
+            "rating": 5,
+            "content": "Légères et confortables\nProtègent correctement "
+        },
+        {
+            "user_id": "user_192",
+            "rating": 5,
+            "content": "Leggeri e stabili. Ottime lenti"
+        },
+        {
+            "user_id": "user_193",
+            "rating": 5,
+            "content": "achat que je recommande excellent rapport qualité/prix"
+        },
+        {
+            "user_id": "user_194",
+            "rating": 5,
+            "content": "Nice "
+        },
+        {
+            "user_id": "user_195",
+            "rating": 5,
+            "content": "ottimo acquisto. gli occhiali hanno buone lenti e sono anche esteticamente molto carini"
+        },
+        {
+            "user_id": "user_196",
+            "rating": 5,
+            "content": "look sympa pour ces lunettes de soleil légères et confortables "
+        },
+        {
+            "user_id": "user_197",
+            "rating": 5,
+            "content": "Bardzo dobre okulary. Fajne matowe oprawki, minimalistyczny znaczek. Zauszniki chodzą skokowo i nie luzują się i za to duży plus, bo z tym najczęściej jest problem.<br>Używam w górach i na co dzień i w tej cenie to chyba najlepsza opcja.<br>Kat. 3 więc przyciemniają ale wiadomo że nie całkowicie.<br>Brakuje mi tylko opcji z czarnymi oprawkami i kolorowymi szkłami."
+        },
+        {
+            "user_id": "user_198",
+            "rating": 5,
+            "content": "Very good product <br><br>"
+        },
+        {
+            "user_id": "user_199",
+            "rating": 5,
+            "content": "super lunettes. légères et de qualité a un prix minime"
+        },
+        {
+            "user_id": "user_200",
+            "rating": 5,
+            "content": "Conforme esperado."
+        }
+    ]
+}

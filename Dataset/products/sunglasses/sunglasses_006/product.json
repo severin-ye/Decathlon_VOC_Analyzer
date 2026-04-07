@@ -1,0 +1,74 @@
+{
+    "product_id": "sunglasses_006",
+    "product_name": "스포츠 스퀘어 선글라스 액티브 500",
+    "model_description": "자외선을 100% 차단하며 눈부심 감소를 위해 카테고리 3 렌즈가 적용되어 스타일과 기능을 겸비한 선글라스입니다. 보관 케이스가 함께 제공됩니다. 사각형 모양의 선글라스로 눈을 보호하며 햇볕이 강한 날에 착용하기 좋습니다.\n\n[자외선 차단 폴리카보네이트 렌즈, 카테고리 3]\n렌즈는 내구성이 강한 소재인 폴리카보네이트로 제작되었습니다. 눈을 보호하기 위해 UVA 및 UVB 광선을 100% 차단합니다. 어두운 카테고리 3 렌즈는 가시광선을 82%에서 92%까지 흡수합니다. 이로 인해 눈부심을 제한하여 시각적인 편안함에 도움을 줍니다.빛이 밝을 때도 눈을 찡그리지 않고 풍경을 볼 수 있습니다.\n\n[선글라스 및 보관 케이스 함께 제공]\n더 이상 긁힘, 눌림, 충격, 기타 마모의 위험이 없습니다. 선글라스를 착용하지 않을 때는 제공된 케이스에 보관하여 보호하세요. 가방이나 주머니에 넣을 때도 손상될 걱정이 없습니다.\n\n[보증 기간]\n2",
+    "category": "모든 스포츠 > 러닝 > 용품 > 선글라스",
+    "variants": [
+        {
+            "color": "8940648",
+            "image_paths": [
+                "images/8940648/img1.png",
+                "images/8940648/img2.png",
+                "images/8940648/img3.png",
+                "images/8940648/img4.png",
+                "images/8940648/img5.png",
+                "images/8940648/img6.png"
+            ]
+        },
+        {
+            "color": "8940653",
+            "image_paths": [
+                "images/8940653/img1.png",
+                "images/8940653/img2.png",
+                "images/8940653/img3.png",
+                "images/8940653/img4.png",
+                "images/8940653/img5.png",
+                "images/8940653/img6.png"
+            ]
+        },
+        {
+            "color": "8940649",
+            "image_paths": [
+                "images/8940649/img1.png",
+                "images/8940649/img2.png",
+                "images/8940649/img3.png",
+                "images/8940649/img4.png",
+                "images/8940649/img5.png",
+                "images/8940649/img6.png"
+            ]
+        },
+        {
+            "color": "8940652",
+            "image_paths": [
+                "images/8940652/img1.png",
+                "images/8940652/img2.png",
+                "images/8940652/img3.png",
+                "images/8940652/img4.png",
+                "images/8940652/img5.png",
+                "images/8940652/img6.png"
+            ]
+        },
+        {
+            "color": "8940650",
+            "image_paths": [
+                "images/8940650/img1.png",
+                "images/8940650/img2.png",
+                "images/8940650/img3.png",
+                "images/8940650/img4.png",
+                "images/8940650/img5.png",
+                "images/8940650/img6.png"
+            ]
+        },
+        {
+            "color": "8940651",
+            "image_paths": [
+                "images/8940651/img1.png",
+                "images/8940651/img2.png",
+                "images/8940651/img3.png",
+                "images/8940651/img4.png",
+                "images/8940651/img5.png",
+                "images/8940651/img6.png"
+            ]
+        }
+    ]
+}

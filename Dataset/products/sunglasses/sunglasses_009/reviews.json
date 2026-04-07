@@ -1,0 +1,75 @@
+{
+    "product_id": "sunglasses_009",
+    "reviews": [
+        {
+            "user_id": "user_001",
+            "rating": 4,
+            "content": "가격대비 가성비는 좋습니다..<br>러닝용으로 샀는데 러닝용우로는 착용감이 좀 떨어지네요..다른 용도로 써야할거 같네요"
+        },
+        {
+            "user_id": "user_002",
+            "rating": 4,
+            "content": "Leuke bril. Zie enkel mijn gsm scherm niet als ik mijn bril op heb op de fiets. Enkel als de gsm horizontaal ligt in de houder."
+        },
+        {
+            "user_id": "user_003",
+            "rating": 5,
+            "content": "lunettes testées en ski randonnée 1 semaine.  dont nombreux passages sur glacier "
+        },
+        {
+            "user_id": "user_004",
+            "rating": 5,
+            "content": "Polarise, agréable à porter, bonne protection"
+        },
+        {
+            "user_id": "user_005",
+            "rating": 4,
+            "content": "Quello che mi aspettavo per il prezzo pagato"
+        },
+        {
+            "user_id": "user_006",
+            "rating": 5,
+            "content": "Acheté en ligne, donc sans avoir essayé, et bien je suis très surprise car dès que je les ai porté, elles sont très légères, englobent bien le visage, et pas de pressions sur le nez. L’effet polarisant est top. <br>Seul point faible qui pourrait être amélioré est l’étui qui est très souple et mériterait une coque rigide."
+        },
+        {
+            "user_id": "user_007",
+            "rating": 5,
+            "content": "Świetnie chronią przed słońcem, dobrze trzymają się głowy nawet przy ruchu."
+        },
+        {
+            "user_id": "user_008",
+            "rating": 5,
+            "content": "parfait"
+        },
+        {
+            "user_id": "user_009",
+            "rating": 4,
+            "content": "j aurais voulu la meme en CE 4. sinon top"
+        },
+        {
+            "user_id": "user_010",
+            "rating": 4,
+            "content": "A szemüveg nagyon jó lenne, viszont a szára olyan rövid, hogy amikor összehajtom a szárait, akkor azok rácsapódnak a lencsére, és mivel kemény műanyag a szár vége, az összekarcolja a lencsék széleit, emiatt hamarabb le kell majd cserélni. Ráadásul ez egy drágább nap\n\nszemüveg."
+        },
+        {
+            "user_id": "user_011",
+            "rating": 5,
+            "content": "Odlična zaštita od sunca! Toliko lagane, lepe, a pritom i čvrste! "
+        },
+        {
+            "user_id": "user_012",
+            "rating": 5,
+            "content": "Parfait pour le vélo et notamment VTT car bien couvrant sur les yeux et confortable avec des verres polarisants même en sous bois"
+        },
+        {
+            "user_id": "user_013",
+            "rating": 4,
+            "content": "Produit conforme à  mes attentes,esthétique et léger ,de bon rapport qualité prix."
+        },
+        {
+            "user_id": "user_014",
+            "rating": 5,
+            "content": "Lunettes au top pour une journée ski, autant sous le soleil que sous les nuages, je valide. "
+        }
+    ]
+}

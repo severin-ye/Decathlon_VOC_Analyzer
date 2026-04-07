@@ -1,0 +1,715 @@
+{
+    "product_id": "shoes_005",
+    "reviews": [
+        {
+            "user_id": "user_001",
+            "rating": 4,
+            "content": "발목을 잘 잡아주고 적당한 큐션이 좋습니다.<br>발볼이 넓은데 잘 맞아요. "
+        },
+        {
+            "user_id": "user_002",
+            "rating": 5,
+            "content": "Comfortable shoe"
+        },
+        {
+            "user_id": "user_003",
+            "rating": 5,
+            "content": "Très confortables je recommande "
+        },
+        {
+            "user_id": "user_004",
+            "rating": 5,
+            "content": "Cómodas zapatilla que me impiden colocar mal los pies al caminar/correr."
+        },
+        {
+            "user_id": "user_005",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_006",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_007",
+            "rating": 5,
+            "content": "Wat een schoen!<br><br>Niet helemaal van tevoren verwacht, maar heeft mij heel wat kilometers goed ondersteund. In 5 maanden nu 742 km op gelopen. (ik gebruik 2 paar schoenen waarvan deze er één is).<br><br>Ik loop 3x per week een halve marathon en nu na 742 km merk ik dat de demping mij in de steek aan het laten is, maar het aantal kilometers is best prima voor deze schoen."
+        },
+        {
+            "user_id": "user_008",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_009",
+            "rating": 4,
+            "content": "Légère, très bon amorti <br>Idéale pour la vitesse et les séances rapide."
+        },
+        {
+            "user_id": "user_010",
+            "rating": 5,
+            "content": "Excelentes sapatilhas para pronadores, muito confortáveis e com excelente amortecimento."
+        },
+        {
+            "user_id": "user_011",
+            "rating": 3,
+            "content": "Good shoes and looks good. Anyone looking to buy their shoe, try to buy half size large as the toe might be bit tight. "
+        },
+        {
+            "user_id": "user_012",
+            "rating": 5,
+            "content": "Çok Güzel Konforlu bir ayakkabı "
+        },
+        {
+            "user_id": "user_013",
+            "rating": 3,
+            "content": "Le modèle KS n'est pas très confortable, l'amorti est moyen (tige trop rigide) pourtant ce devait être la caractéristique principale de ce modèle.Déçu par cette basket.<br>"
+        },
+        {
+            "user_id": "user_014",
+            "rating": 2,
+            "content": "Chaussures de stabilité mais ce sont pas stable du tout."
+        },
+        {
+            "user_id": "user_015",
+            "rating": 4,
+            "content": "1ere sortie 18km en 1H30 bon ressenti pendant mon entrainement par contre mal aux jambes après <br>prochaine 24km en 2h pour confirmer<br>"
+        },
+        {
+            "user_id": "user_016",
+            "rating": 5,
+            "content": "Polecam"
+        },
+        {
+            "user_id": "user_017",
+            "rating": 5,
+            "content": "鞋子还可以，总体不错的，还可以"
+        },
+        {
+            "user_id": "user_018",
+            "rating": 5,
+            "content": "Oferecem bastante suporte e boa absorção de impacto. Excelente suporte para a passada pronada."
+        },
+        {
+            "user_id": "user_019",
+            "rating": 4,
+            "content": "Dobre buty do treningów 👍"
+        },
+        {
+            "user_id": "user_020",
+            "rating": 5,
+            "content": "Fantásticas, leves e muito confortáveis "
+        },
+        {
+            "user_id": "user_021",
+            "rating": 5,
+            "content": "Tengo pies planos y muy pronador. Se lleva muy cómodas, buena amortiguación y el pie sujeto."
+        },
+        {
+            "user_id": "user_022",
+            "rating": 5,
+            "content": "mijn ervaring is dat ze een goede demping hebben tot max 500km"
+        },
+        {
+            "user_id": "user_023",
+            "rating": 5,
+            "content": "Chaussures peu utilisées depuis l'achat, mais le premier ressenti est très positif, chaussure très confortable, très bon amorti, parfaitement adaptée à la forme de mon pied qui est un peu large, je suis dedans comme dans un chausson !"
+        },
+        {
+            "user_id": "user_024",
+            "rating": 2,
+            "content": "Je cours 40km/semaine et cette paire a ete ma pire ... Je ne recommande pas j'ai eu a cause de la semelle qui ressort vers l'intérieur du pied de la corne sur le côté du pied, l'amorti est juste correct, la stabilité est bonne. Je crois que c'est le seul produit decathlon kiprun pour lequel je suis déçu !"
+        },
+        {
+            "user_id": "user_025",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_026",
+            "rating": 5,
+            "content": "super produit pour les personnes qui en surpoids c est le top"
+        },
+        {
+            "user_id": "user_027",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_028",
+            "rating": 1,
+            "content": "Seulement 3 sorties  et inconfort au niveau de la voûte plantaire pied droit. Au bout de 3km formation de cloque "
+        },
+        {
+            "user_id": "user_029",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_030",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_031",
+            "rating": 5,
+            "content": "Zapatillas muy top para personas con pisada pronadora ya que tiene el interior de la suela con refuerzo para estabilizar la pisada y no tener dolores de fascitis. Kiprun ha puesto el turbo y zonas sus zapatillas son las mejores calidad-precio. "
+        },
+        {
+            "user_id": "user_032",
+            "rating": 4,
+            "content": "Buenas zapatillas para pronadores, lo peor el precio."
+        },
+        {
+            "user_id": "user_033",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_034",
+            "rating": 5,
+            "content": "Zapatillas de mucha calidad a buen precio "
+        },
+        {
+            "user_id": "user_035",
+            "rating": 5,
+            "content": "Zapatillas  de mucha amortiguacion perfecta s para entrenar  a diario y no cargar la musculacion,son perfectas"
+        },
+        {
+            "user_id": "user_036",
+            "rating": 4,
+            "content": "Polecam"
+        },
+        {
+            "user_id": "user_037",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_038",
+            "rating": 5,
+            "content": "孩子喜欢穿"
+        },
+        {
+            "user_id": "user_039",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_040",
+            "rating": 5,
+            "content": "Ras"
+        },
+        {
+            "user_id": "user_041",
+            "rating": 5,
+            "content": "Je suis satisfait de mon achat "
+        },
+        {
+            "user_id": "user_042",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_043",
+            "rating": 1,
+            "content": "la prise des semelles n'est pas adéquate "
+        },
+        {
+            "user_id": "user_044",
+            "rating": 5,
+            "content": "J'utilise c'est chaussures pour la pratique de sport en salle et notamment lors de circuits training HITT."
+        },
+        {
+            "user_id": "user_045",
+            "rating": 4,
+            "content": "Ayant mal au dos, je souhaiterais un amorti encore plus performant. La sensation de mollesse (\"cocon\") l'emporte sur celle d'amorti.<br>Je souhaiterais aussi une  tenue du pied plus ferme."
+        },
+        {
+            "user_id": "user_046",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_047",
+            "rating": 5,
+            "content": "Super chaussure de Route. "
+        },
+        {
+            "user_id": "user_048",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_049",
+            "rating": 5,
+            "content": "En principio, estoy contento con el calzado, yo las utilizo para andar.<br>Calzado cómodo y flexible.<br>Compre estas zapatillas, por problemas en la pisada.<br>Si los recomiendo."
+        },
+        {
+            "user_id": "user_050",
+            "rating": 4,
+            "content": "Bien moins onéreuses que mes anciennes Brooks, ces chaussures apportent un très bon confort et un parfait contrôle de la pronation. L'amorti est également d'un bon niveau bien qu'un peu moins convaincant que celui des chaussures très haut de gamme. Une très bonne affaire pour des sorties longues menées à petit rythme. "
+        },
+        {
+            "user_id": "user_051",
+            "rating": 1,
+            "content": "Client fidèle chez Decathlon, je suis très déçu par ce produit.<br>J’ai acheté une paire de chaussures de course il y a 15 jours, conseillée en magasin après essayage.<br><br>Après deux semaines d'utilisation, elles m’ont provoqué une forte douleur au pied gauche, comme si un élément rigide était présent dans la semelle. Je ne peux plus courir avec.<br><br>Lors de mon retour en magasin, je n’ai pas obtenu de solution satisfaisante, ni échange ni prise en charge. avis modifié à plusieurs reprise pour répondre aux règles de publication de l'avis.<br><br>Pour un produit à 100 €, c’est vraiment décevant. Je ne les utiliserai plus et je choisirai un autre modèle pour mes prochaines chaussures de running."
+        },
+        {
+            "user_id": "user_052",
+            "rating": 3,
+            "content": "Non référencé pronateur en rayon  alors que sur le site est indiqué pronateur .<br>Si je l'avais su qd je l'ai acheté je ne l'aurais acheté car après quelques klm de running , douleur au genou ( je suis supinateur)"
+        },
+        {
+            "user_id": "user_053",
+            "rating": 5,
+            "content": "Vraiment très confortable et super bien amorti "
+        },
+        {
+            "user_id": "user_054",
+            "rating": 4,
+            "content": "Retour à la course à pied après blessure je reprends vraiment tout doucement et ces chaussures sont parfaites.Bon amortie,bon confort.<br>J'ai un peu mal sous la voute plantaire mais difficile de savoir pourquoi."
+        },
+        {
+            "user_id": "user_055",
+            "rating": 3,
+            "content": "Tras unos cuantos días probándola unos 50km aprox me he visto obligado a devolverlas (agradecido a decatlón por su política de poder probar las cosas de forma real).\nPuntos favorables\n- cumple aún función de corregir la pronacion a la perfección\n- muy cómoda en la pisada \n- se le puede apretar y responde bien a ritmos un poco más alegres\nPuntos malos (por lo que las devuelvo)\n- upper MUY estrecho en la zona de los dedos. La zona de 3/4/5 dedos muy apretados generando bastante dolor incluso en tiradas cortas\n- Tallan MAL. Yo uso un 42 o 42 2/3 (26,5 cm/27 cm) en el 99% de marcas pero en este caso tuve que coger un 41  dado la zapatilla es bastante más  larga de lo normal por lo que es inviable coger una talla más para solventar el problema de la anchura. \nSi mejoraran estas dos cosas o sacaran una versión wide esta zapatilla sería un 10/10"
+        },
+        {
+            "user_id": "user_056",
+            "rating": 5,
+            "content": "muy bueno "
+        },
+        {
+            "user_id": "user_057",
+            "rating": 4,
+            "content": "A la recherche d'une superbe paire pour la course à pied, nous avons été heureux de partager l'expérience du vendeur José.<br>Merci pour votre aide et vos conseils sportifs.<br>L'article de bonne qualité et de bonne stabilité, un amorti excellent pour un prix très abordable.<br>"
+        },
+        {
+            "user_id": "user_058",
+            "rating": 5,
+            "content": "Très bonnes chaussures pour la course à pied"
+        },
+        {
+            "user_id": "user_059",
+            "rating": 3,
+            "content": "Recommandé par le vendeur, cependant mon hallux valgus me fait mal lors de mes petites sorties pour courir. Est-ce possible d'échanger pour une taille au dessus ou un autre modèle plus adaptée "
+        },
+        {
+            "user_id": "user_060",
+            "rating": 5,
+            "content": "expérience de course comparable à des Saucony Guide, en+ stables même si - rebondissantes , un investissement intelligent; idéales débutants / personnes enrobées / coureurs loisir . Si vous cherchez des pantoufles hyper stables pour des sorties &gt; 01H00 sans forcer, et qui ne vous matraquent pas le squelette jusqu'aux cervicales: n'allez pas plus loin, vous avez trouvé !  les coureurs sans grade du bas de la pyramide de la performance devraient mettre l'accent sur la stabilité , ce modèle devrait donc cartonner malgré un look un poil tristouille : quand on court, on ne regarde pas ses pieds ! autre chose:  le drop, c'est pas ringuard, ça a des bienfaits ."
+        },
+        {
+            "user_id": "user_061",
+            "rating": 5,
+            "content": "Wsparcie dla stopy pronującej.  Wygodne!"
+        },
+        {
+            "user_id": "user_062",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_063",
+            "rating": 5,
+            "content": "ottime"
+        },
+        {
+            "user_id": "user_064",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_065",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_066",
+            "rating": 5,
+            "content": "Après plus d'un mois d'utilisation je confirme ces chaussures sont adaptées à mon activité et ma morphologie. Merci à l'équipe Decathlon de Geispolsheim."
+        },
+        {
+            "user_id": "user_067",
+            "rating": 2,
+            "content": "Se llaman suport pero no son para pronadores y son muy aparatosas"
+        },
+        {
+            "user_id": "user_068",
+            "rating": 5,
+            "content": "Super confort , très bon amorti pour les problème de genoux . Je recomande"
+        },
+        {
+            "user_id": "user_069",
+            "rating": 4,
+            "content": "Dobrze stabilizują stopę podczas treningu. Fajny design, nowoczesny.<br>"
+        },
+        {
+            "user_id": "user_070",
+            "rating": 4,
+            "content": "Ogólnie polecam, choć cena troszkę za wysoka. Wstawka stabilizująca podczas chodu bardzo twarda i wyczuwalna ale podczas biegu nic nie czuć i biega się dosyć komfortowo. Sznurówki to porażka, rozwiązują się podczas treningu. Dosyć długo trzeba było czekać na dopasowanie się do mojej stopy i nie do końca się to udało. Po Brooks i Saucony przejście o lewel niżej. Rozmiar 41 (noszę Brooks, Asics, Saucony był 41) okazał się za duży, wymieniałem na 40 i jest ok."
+        },
+        {
+            "user_id": "user_071",
+            "rating": 5,
+            "content": "原本在這雙與亞瑟士kayano之間二選一，最後選了這雙。穩定性真的很好，腳感也很棒，價格雖然跟亞瑟士很接近，但我仍然選擇這雙鞋。"
+        },
+        {
+            "user_id": "user_072",
+            "rating": 4,
+            "content": "Après quelques footing je ressens encore des douleurs cheville et genoux."
+        },
+        {
+            "user_id": "user_073",
+            "rating": 4,
+            "content": "Bon produit malheureusement j'attends toujours la carte cadeau de 20 euros promise à l'achat "
+        },
+        {
+            "user_id": "user_074",
+            "rating": 5,
+            "content": "好穿"
+        },
+        {
+            "user_id": "user_075",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_076",
+            "rating": 4,
+            "content": "Une pantoufle très agréable "
+        },
+        {
+            "user_id": "user_077",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_078",
+            "rating": 5,
+            "content": "本来是准备买自行车，没看到合适的，但来到跑步区域，鞋子设计很好看，上脚试了也不错！"
+        },
+        {
+            "user_id": "user_079",
+            "rating": 4,
+            "content": "Bought for my grandson when on holiday.Pleased with purchase and fit."
+        },
+        {
+            "user_id": "user_080",
+            "rating": 4,
+            "content": "suitable for slow jog "
+        },
+        {
+            "user_id": "user_081",
+            "rating": 5,
+            "content": "Cómodas con buena amortiguación "
+        },
+        {
+            "user_id": "user_082",
+            "rating": 5,
+            "content": "这款比k500要舒服多了。44 45的k500都不合适，崇文门店的店员也给我换了。迪子的售后还是有保障的。这款的鞋头就不挤了。"
+        },
+        {
+            "user_id": "user_083",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_084",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_085",
+            "rating": 5,
+            "content": "Molto bene,le scarpe sono comode "
+        },
+        {
+            "user_id": "user_086",
+            "rating": 5,
+            "content": "Merci pour les conseils et l'efficacité de la vendeuse au rayon Running "
+        },
+        {
+            "user_id": "user_087",
+            "rating": 5,
+            "content": "Excellent confort <br>Bon maintien "
+        },
+        {
+            "user_id": "user_088",
+            "rating": 1,
+            "content": "千万不要买，这双鞋子设计有问题，走路时鞋子底部红色部分是硬的，导致脚外翻。"
+        },
+        {
+            "user_id": "user_089",
+            "rating": 3,
+            "content": "这双鞋其实比较一般，相比于打折的亚瑟士差距很大。这双鞋其实没有改变脚的受力，明显看着外侵很严重，也和他的鞋底内侧高外彻低有关"
+        },
+        {
+            "user_id": "user_090",
+            "rating": 1,
+            "content": "这个鞋内侧高外侧低，长时间穿或者走路很不舒服，累脚。不知道怎么设计的。退还不能退。还挺贵。"
+        },
+        {
+            "user_id": "user_091",
+            "rating": 5,
+            "content": "Excellentes chaussures, extrêmement satisfait de mon achat."
+        },
+        {
+            "user_id": "user_092",
+            "rating": 4,
+            "content": "Buena calidad y soporte de los pies."
+        },
+        {
+            "user_id": "user_093",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_094",
+            "rating": 5,
+            "content": "Très bon produit acheté grâce aux conseils pertinents du vendeur, merci !"
+        },
+        {
+            "user_id": "user_095",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_096",
+            "rating": 1,
+            "content": "Ces chaussures ne correspondent pas à ma foulée !<br>Pourtant lorsque je les ai enfilées, la sensation de confort a été immédiate mais à leur utilisation...<br>Aucun maintien latéral, aucune relance, pas de sensation d'amorti, pas de stabilité...<br>Après 4 séances (pour 56 km) et une chute, je jette l'éponge et change de chaussures."
+        },
+        {
+            "user_id": "user_097",
+            "rating": 4,
+            "content": "Un bon rapport qualité/prix "
+        },
+        {
+            "user_id": "user_098",
+            "rating": 3,
+            "content": "Système de laçage a revoir, chaussures un peu lourdes. Look pas top."
+        },
+        {
+            "user_id": "user_099",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_100",
+            "rating": 1,
+            "content": "700买的， 然后就打折"
+        },
+        {
+            "user_id": "user_101",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_102",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_103",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_104",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_105",
+            "rating": 3,
+            "content": "c'est la première fois que je commande plutôt que d'acheter mes chaussures au magasin.<br>j'ai été très surpris de la largeur quand je les ai récupéré mais effectivement c'est un modèle \"support\"... je ne pense pas que la chaussure soit mauvaise, en revanche elle ne me correspond pas, certainement la mousse trop souple qui me provoque une gène dans un genou (que je ressent habituellement au bout de 800/900km avec mes anciennes chaussures) Je suis plus déçu de ne pas avoir trouvé ce que je recherchait en magasin (nouvelle présentation du rayon ou je ne retrouve plus rien) et ne pas trouver un vendeur qui puisse me conseiller quand il a fallu changer mes anciennes (ks900 light qui devrait pourtant être équipée de la même mousse...).<br>je les change donc au bout de 160 km avant de m'abimer trop le genou. ce sera mon plus mauvais investissement depuis 15 ans que je cours avec des chaussures des marques décathlon.... c'était la première fois que je les achetait si cher en plus"
+        },
+        {
+            "user_id": "user_106",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_107",
+            "rating": 2,
+            "content": "I am still coming to terms with these shoes. They are very different from my previous pairs of running shoes in terms of comfort and support but I want to give them every chance I do 2 x 5 mile runs on average a week which is mainly on tarmacked surfaces and want to persevere for the next few weeks before I make a final decision as I may end up replacing with something similar and the problem is me and the way I run and not the shoe."
+        },
+        {
+            "user_id": "user_108",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_109",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_110",
+            "rating": 5,
+            "content": "Paire de running achetée pour mo semi-marathon et la prépa. Moi qui suis en surpronation, je cherchais une basket qui pouvait m'éviter des douleurs et c'est réussi. Aucune douleur lors de mes séances et super confortables peu importe la distance. L'amorti est souple et la semelle incurvée permet de bien maintenir la cheville sur l'extérieur ! Je recommande ce produit à tous ceux qui cherche une paire pour surpronateur."
+        },
+        {
+            "user_id": "user_111",
+            "rating": 4,
+            "content": "Très satisfait de ce produit"
+        },
+        {
+            "user_id": "user_112",
+            "rating": 5,
+            "content": "Chaussures achetées pour de la marche moyenne/ longue distance. Bon confort pour mes pieds larges."
+        },
+        {
+            "user_id": "user_113",
+            "rating": 5,
+            "content": "Ultra confortable"
+        },
+        {
+            "user_id": "user_114",
+            "rating": 4,
+            "content": ""
+        },
+        {
+            "user_id": "user_115",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_116",
+            "rating": 5,
+            "content": "Excellent"
+        },
+        {
+            "user_id": "user_117",
+            "rating": 5,
+            "content": "Perfectas para mi pisada. Muy bien recomnendadas por el personal de tienda."
+        },
+        {
+            "user_id": "user_118",
+            "rating": 5,
+            "content": "Reprise du running après deux ans, vraiment très agréables pour un coureur de niveau moyen assez lourd (+ de 80kgs). Seul bémol c est que que je vois qu elles sont en promo et lors de mon achat c était le prix plein pot :)"
+        },
+        {
+            "user_id": "user_119",
+            "rating": 4,
+            "content": "Ce qu'il me fallait"
+        },
+        {
+            "user_id": "user_120",
+            "rating": 5,
+            "content": "穿了新款支撑跑鞋后，女跑友都来跟我要链接 好评"
+        },
+        {
+            "user_id": "user_121",
+            "rating": 4,
+            "content": "หน้าเท้ากว้างกว่ารุ่นอื่น ใส่เเล้วรู้สึกมั่นคง ใช้ได้ทั้งทั่วไป และใส่ออกกำลังกาย"
+        },
+        {
+            "user_id": "user_122",
+            "rating": 5,
+            "content": "鞋子很软"
+        },
+        {
+            "user_id": "user_123",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_124",
+            "rating": 4,
+            "content": "很漂亮，但是比较厚，不适合夏天穿"
+        },
+        {
+            "user_id": "user_125",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_126",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_127",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_128",
+            "rating": 5,
+            "content": "迪卡侬员工许明，专业又热情，讲解细致入微，购物体验超棒！"
+        },
+        {
+            "user_id": "user_129",
+            "rating": 5,
+            "content": "Je recherchais une chaussure de piste confortable pour m'entraîner sans me blesser. Pari réussi. Merci l'équipe kiprun."
+        },
+        {
+            "user_id": "user_130",
+            "rating": 5,
+            "content": "### Laufschuhe Herren - KS900 Support schwarz/weiß: Eine überzeugende Wahl\r\n\r\nIn der heutigen Zeit, in der die Auswahl an Laufschuhen schier unerschöpflich scheint, ist es überraschend, dass sich ein Schuh einer Eigenmarke so positiv hervorhebt. Nach zahlreichen Erfahrungen mit renommierten Marken wie Brooks Adrenaline, Skechers und verschiedenen Modellen von Asics war ich skeptisch, doch der KS900 Support hat meine Erwartungen übertroffen.\r\n\r\nDie Passgenauigkeit des KS900 Support ist bemerkenswert. Der Schuh sitzt sicher und bequem am Fuß, ohne Druckstellen zu verursachen, was entscheidend für längere Laufsessions ist. Darüber hinaus überzeugt das Laufverhalten des Schuhs. Egal, ob auf Asphalt oder im Gelände – der KS900 bietet die notwendige Stabilität und Flexibilität, um ein angenehmes Lauferlebnis zu gewährleisten.\r\n\r\nEin weiterer Aspekt, der nicht unerwähnt bleiben sollte, ist die Dämpfung. Diese ist optimal abgestimmt und sorgt für eine hervorragende Rückmeldung beim Abrollen. Die Kombination aus weicher Dämpfung und stabiler Unterstützung ermöglicht es auch, längere Strecken ohne Ermüdung zurückzulegen.\r\n\r\nAbgerundet wird das positive Gesamtbild durch das ansprechende Design in Schwarz und Weiß, das sowohl sportlich als auch stilvoll wirkt. Dies lässt den Schuh nicht nur funktional erscheinen, sondern auch ästhetisch ansprechend.\r\n\r\nZusammenfassend lässt sich sagen, dass ich mit dem KS900 Support sowohl in puncto Funktionalität als auch in Bezug auf Design voll und ganz zufrieden bin. Er ist eine ausgezeichnete Wahl für alle, die auf der Suche nach einem qualitativ hochwertigen Laufschuh sind."
+        },
+        {
+            "user_id": "user_131",
+            "rating": 5,
+            "content": "ใช้งานวันแรก \r\nช่วง2กิโลแรก จะรู้สึกว่าพื้นด้านไนจะแน่น แข็ง ดันอุ้งเล็กน้อย แต่พอเลยไปก็แทบไม่รู้สึก มีการรองรับทีดี \r\nฐานค่อนข้างกว้างมาก วางเท้าง่าย เป็นธรรมชาติ \r\nยิ่งวิ่ง ยิ่งสบาย โฟมโดยรวมไม่ยวบเกินไป เท้าไม่กระแทกพื้น มีความนุ่มนวลรับเท้าดี \r\nน่าแปลกกสุดคือรองเท้าแบบนี้ปกติจะร้อน แต่คู่นี้ระบายดีเลย ผ้าไม่แข็งสาก นุ่ม \r\nการสวมใส่ง่าย ส้นแข็งกำลังดี แค\r\nดึงห่วงท้ายเท้าก็เสื่อนเข้า \r\nการล็อกเท้าดีกระชับ แต่ไม่อึดอัด หน้าเท้าถือว่าคอนข้างกว้างสบาย \r\nการวิ่งให้การถ่ายแรงจากหลังไปหน้าดีมาก ไหลเลย \r\n\r\nพื้นยางเกาะมาก ความทนไม่น่ามีปัญหาเพราะหนามาก  \r\nลงเท้าตรงไหนก็ง่าย มั่นคง \r\nคนเท้าล้มแบน คนน้ำหตัวเยอะน่าจะชอบรุ่นนี้"
+        },
+        {
+            "user_id": "user_132",
+            "rating": 2,
+            "content": "Acheter sur conseil d'un vendeur Decathlon car j'ai une pronation assez marquée. Je regrette mon achat car j'ai des douleurs au bout de quelques km avec au niveau des mollets et je dois alterner marche et course pour rentrer à mon point de départ. \r\nEn dehors de ce point qui, le look est très bien, le chausson très confortable, mais attention a bien les essayer en magasin car le \"support\" annule pratiquement toute mobilité je trouve. La chaussure est très rigide. Pour simplement borner en mode cool c'est sans doute un bon modèle si il vous convient"
+        },
+        {
+            "user_id": "user_133",
+            "rating": 5,
+            "content": "Très bon produit, très agréable à porter.\r\nElles offrent une bonne stabilité pour la course.\r\nLe pieds est bien maintenu pour un confort optimal."
+        },
+        {
+            "user_id": "user_134",
+            "rating": 5,
+            "content": "Je trouve que c’est un peu cours pour un test mais je peux déjà dire que suis pleinement satisfait de ces KIPRUN KS900 SUPPORT.\r\nElles sont très agréables et confortables à porter, le pied est bien maintenu. Une fois enfilé, je me suis senti bien dedans tout de suite (je trouve qu’elles taillent un chouilla trop grand quand même) et ça s’est confirmé dès les premières foulées et au fil des kilomètres, ces chaussures sont parfaites pour moi. \r\nLa semelle est très adhérente sur sol mouillé, je n’ai jamais glissé.\r\nEtant léger pronateur, j’apprécie beaucoup se soutien interne du pied, je comprends ce nom « Support ».\r\nBref, si je devais résumer ces chaussures en un mot, ce serait : Parfait !\r\nLa seule critique que je ferais serait la couleur et vos couleurs en général chez Decathlon, rayon course à pied et Trail, c’est terne et triste. Osez les couleurs vives !"
+        },
+        {
+            "user_id": "user_135",
+            "rating": 4,
+            "content": "Les KS900 support sont de très bonne chaussures pour commencer la course à pied avec des chaussures confortable."
+        },
+        {
+            "user_id": "user_136",
+            "rating": 4,
+            "content": "La ks900 est une très bonne chaussure de running, parfaite pour rythme tranquil, en sortie longue ou récupération je l'ai utilise dans ma rotation de paire de running comme tel. Elle offre une bonne stabilité. Le chaussent est très agréable avec une toe box confortable, il y'a de la place pour l'avant du pied et l'amorti très doux meme apres une heure on l'oublie. On est sur un modèle extra confort qui privilegie l'amorti au dynamisme. Je conseille ce modèle pour les débutants et ceux qui cherchent un modèle simple efficace pour des entraînements en EF."
+        },
+        {
+            "user_id": "user_137",
+            "rating": 4,
+            "content": "Chaussure légère, très confortable à l'intérieur et j'aime sa largeur à l'avant pied, très bonne accroche sur sol mouillé même avec les températures négatives, bien dynamique pour une chaussure longue distance,réponds bien au relance même testé en fractionné,  une bonne foulée et bon amorti, par contre à améliorer l'amorti pour les coureurs lourd, j'ai 92 kg, un semi sera le maximum de distance avec cette chaussure, distance maximum couru avec 18km , en tout cas j'apprécie cette chaussure en entraînement et pour un 10km avec mon poids aucun soucis et j'ai parcouru 115km avec en 3 semaines aucun signe de fatigue de la chaussure malgré mon poids,zéro ampoule, aucune gêne au niveau du pied, très confortable. Une amélioration au niveau du look serait un plus surtout au niveau des couleurs. Globalement très bonne chaussure d'entraînement."
+        },
+        {
+            "user_id": "user_138",
+            "rating": 4,
+            "content": "Première paire de chaussures Kiprun, et je ne suis pas du tout déçu ! Malgré mon pied plutôt fin et ma foulée pronatrice (!), la chaussure s'adapte parfaitement, et le laçage permet au pied de bien rester en place.\r\nLes chaussures sont très confortables, la mousse vraiment accueillante et on sent immédiatement que le pied est bien maintenu pendant l'effort !\r\nIl s'agit donc là d'une chaussure que l'on pourra utiliser pour l'ensemble des entraînements (easy run, récup, sortie longue, ...), même si personnellement j'aurais peut-être apprécié un peu plus de dynamisme... Mais cela n'enlève rien à toutes les qualités de cette chaussure, qui n'a donc rien à envier aux modèles équivalents d'autres marques !"
+        },
+        {
+            "user_id": "user_139",
+            "rating": 4,
+            "content": "Taille légèrement petit.\r\nUtilisées depuis Noël a raison de 2 sorties pas semaine \r\nAu global chaussures très agréables. Pas de douleur particulière au bout de 10-12 km. \r\nSur route ras.\r\nManque un peu de grip lorsque le terrain devient glissant (piste athlétisme froide / givrante) ou humide (sous bois) mais ce ne sont pas non plus des chaussures de trail."
+        },
+        {
+            "user_id": "user_140",
+            "rating": 4,
+            "content": "utilisation des chaussures sur periode de relâchement post course-trail.\r\nadaptation nécessaire a la chaussure d'une 30ene de km, avant de se sentir bien avec.\r\nje porte de bonne semelle orthopédique car pied pronateur qui me procurait beaucoup d'ampoule.  Cette chaussure donne un aspect bizarre au début comme si on courait sur l'extérieur du pied alors que l'inverse habituellement.\r\nbon confort au bout de 30km."
+        },
+        {
+            "user_id": "user_141",
+            "rating": 5,
+            "content": "Confort et amorti excellent même sur sol dur,\r\nL’anti-pronation est efficace et permet une bonne pose de pied.\r\nBonne ventilation et chaussure légère"
+        },
+        {
+            "user_id": "user_142",
+            "rating": 4,
+            "content": "Tres bonne chaussure pour profiter de séances de running courtes distances ou les sessions un peu plus longues! Confortable"
+        }
+    ]
+}

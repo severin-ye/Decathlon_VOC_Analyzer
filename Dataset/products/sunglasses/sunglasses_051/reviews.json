@@ -1,0 +1,40 @@
+{
+    "product_id": "sunglasses_051",
+    "reviews": [
+        {
+            "user_id": "user_001",
+            "rating": 5,
+            "content": "Top! Plastik fühlt sich noch hochwertiger an als vorheriges Modell. \nKlare Sicht! Auch bei Sonne gut abgedunkelt."
+        },
+        {
+            "user_id": "user_002",
+            "rating": 5,
+            "content": "très bien "
+        },
+        {
+            "user_id": "user_003",
+            "rating": 5,
+            "content": "Alles funktioniert wie beschrieben. Preis/Leistung Top!"
+        },
+        {
+            "user_id": "user_004",
+            "rating": 5,
+            "content": "Tip-top - optisch &amp; funktional"
+        },
+        {
+            "user_id": "user_005",
+            "rating": 4,
+            "content": "Très bon rapport qualité prix.<br>Techniquement : les lunettes restent bien maintenues au visage et offrent une bonne protection grâce aux verres photochromiques et une taille bien adaptée."
+        },
+        {
+            "user_id": "user_006",
+            "rating": 3,
+            "content": "Le verre est de trés bonne qualité. la vision est xxl est est tres agréable. Le gros point négatif sont qu'elles ne sont pas réglables. J'ai une petite tête (54cm de tour de tête), le centre de la lunette n'est pas assez serré au niveau du nez ainsi que les branches. La description dit qu'elles s'adaptent aux visages.... c'est vraiment dommage car la qualité est bien présente. "
+        },
+        {
+            "user_id": "user_007",
+            "rating": 5,
+            "content": "Brýle ještě neprošly testem v složitějších podmínkách, rád bych však pro první zájemce poskytl alespoň objektivní první dojmy. Po vyzkoušení asi 12 modelů fotochromatických brýlí různých značek jsem konečně narazil na ten správný. Kvalitní skla předchozího modelu zůstala, avšak nastal potřebný upgrade konstrukce. Design je agresivnější, konstrukce je bytelnější, velmi ohebná a nepůsobí tak levně jako u dřívějšího modelu. Dalším upgradem jsou gumové koncovky nožiček poskytují lepší přizpůsobení tvaru hlavy i lepší grip. Také je dobrou zprávou nižší profil padnoucí k více helmám. Oproti mnohým brýlím jiných značek se vyskytují i potřebné jistící \"zoubky\" pro zachycení brýlí v helmě známé z předchozího modelu. Do budoucna by bylo vhodné přinést i nastavitelný nosník/sedla a hlavně pevný přepravní obal v balení. Ten by za tuto cenu již neměl chybět. A klidně i přinést model s odrazivým \"tintem\" skel jako u modelu Kware pro vyšší atraktivitu. Uvidíme, jak obstojí časem. A chválu bych rád vysekl i prodejci na prodejně v Modřicích za jeho poskytnutou podporu při nákupu a doporučení, protože bych jinak o této novince ani nevěděl."
+        }
+    ]
+}

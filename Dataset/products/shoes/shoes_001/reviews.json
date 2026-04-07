@@ -1,0 +1,1005 @@
+{
+    "product_id": "shoes_001",
+    "reviews": [
+        {
+            "user_id": "user_001",
+            "rating": 5,
+            "content": "2~3주 가벼운 러닝 때 착용하는데 편합니다.\r\n적극 추천~~~!!!"
+        },
+        {
+            "user_id": "user_002",
+            "rating": 4,
+            "content": "쿠셔닝은 중간정도이고, 바닥의 앞뒤꿈치의 중간부분이 먼저 닳는 편이다. 전체적으로 발을 잘 잡아주어 러닝시 흔들림이 없지만, 바닥은 약간 미끄러운 편이다."
+        },
+        {
+            "user_id": "user_003",
+            "rating": 5,
+            "content": "Serve its purpose"
+        },
+        {
+            "user_id": "user_004",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_005",
+            "rating": 5,
+            "content": "好，不错，物超所值"
+        },
+        {
+            "user_id": "user_006",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_007",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_008",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_009",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_010",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_011",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_012",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_013",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_014",
+            "rating": 5,
+            "content": "鞋子非常合脚"
+        },
+        {
+            "user_id": "user_015",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_016",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_017",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_018",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_019",
+            "rating": 5,
+            "content": "好穿耐看"
+        },
+        {
+            "user_id": "user_020",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_021",
+            "rating": 5,
+            "content": "晨跑用，舒适度高"
+        },
+        {
+            "user_id": "user_022",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_023",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_024",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_025",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_026",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_027",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_028",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_029",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_030",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_031",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_032",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_033",
+            "rating": 5,
+            "content": "非常舒适，性价比"
+        },
+        {
+            "user_id": "user_034",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_035",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_036",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_037",
+            "rating": 5,
+            "content": "非常好，有弹性，鞋两边设计的很巧妙，有包裹感和支撑感，白色也很好看百搭，散步慢跑都很合适"
+        },
+        {
+            "user_id": "user_038",
+            "rating": 5,
+            "content": "不错，价格实惠，鞋子轻盈舒适，透气好，用起来不心疼"
+        },
+        {
+            "user_id": "user_039",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_040",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_041",
+            "rating": 5,
+            "content": "非常好穿"
+        },
+        {
+            "user_id": "user_042",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_043",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_044",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_045",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_046",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_047",
+            "rating": 5,
+            "content": "穿起來舒適和腳,可惜鞋帶內裡有局部尼龍線頭,穿薄襪會磨腳背!"
+        },
+        {
+            "user_id": "user_048",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_049",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_050",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_051",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_052",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_053",
+            "rating": 4,
+            "content": "Looks good and reasonable price.  Only problem is because it's \"slip on\" it's quite tight.  Buy one size larger than normal "
+        },
+        {
+            "user_id": "user_054",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_055",
+            "rating": 5,
+            "content": "满意立冬的服务"
+        },
+        {
+            "user_id": "user_056",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_057",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_058",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_059",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_060",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_061",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_062",
+            "rating": 4,
+            "content": "Bought these comfortable walking shoes and from the first try and walk they were extremely comfortable, possibly only the tongue can be a minor inconvience, if you don't set it right, the shoe is breathable to and waterproof, especially with some of the weather that has been around lately"
+        },
+        {
+            "user_id": "user_063",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_064",
+            "rating": 5,
+            "content": "舒适合脚，好穿"
+        },
+        {
+            "user_id": "user_065",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_066",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_067",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_068",
+            "rating": 5,
+            "content": "服务非常到位！点赞，必须五星好评。"
+        },
+        {
+            "user_id": "user_069",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_070",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_071",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_072",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_073",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_074",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_075",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_076",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_077",
+            "rating": 1,
+            "content": "夹脚"
+        },
+        {
+            "user_id": "user_078",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_079",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_080",
+            "rating": 5,
+            "content": "不错，很软，穿了好几年"
+        },
+        {
+            "user_id": "user_081",
+            "rating": 5,
+            "content": "穿着舒服，后面又买了一双白色"
+        },
+        {
+            "user_id": "user_082",
+            "rating": 5,
+            "content": "scarpa leggera ed economica, la consiglio"
+        },
+        {
+            "user_id": "user_083",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_084",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_085",
+            "rating": 5,
+            "content": "很好很好，这款鞋穿着很舒服，已经买了好几双了，这次尾货价格太实惠了。"
+        },
+        {
+            "user_id": "user_086",
+            "rating": 5,
+            "content": "很好很好，很软的鞋底，穿着很舒服，已经买了好几双了"
+        },
+        {
+            "user_id": "user_087",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_088",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_089",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_090",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_091",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_092",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_093",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_094",
+            "rating": 5,
+            "content": "鞋子很不错，穿起来很舒服，适合运动，五星好评"
+        },
+        {
+            "user_id": "user_095",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_096",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_097",
+            "rating": 5,
+            "content": "热火朝天的感觉真的不错"
+        },
+        {
+            "user_id": "user_098",
+            "rating": 5,
+            "content": "Mam do dzisiaj. Ponad 3 lata użytkowania - głównie spacerowo. Nadają się spokojnie na krótkie dystanse biegowe. Dobra amortyzacja "
+        },
+        {
+            "user_id": "user_099",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_100",
+            "rating": 5,
+            "content": "很好很舒服"
+        },
+        {
+            "user_id": "user_101",
+            "rating": 5,
+            "content": "跑步到位"
+        },
+        {
+            "user_id": "user_102",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_103",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_104",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_105",
+            "rating": 5,
+            "content": "tabanı oldukça rahat bir yakkabı ve henüz herhangi bir yırtılma veya sökük oluşmadı"
+        },
+        {
+            "user_id": "user_106",
+            "rating": 5,
+            "content": "非常喜欢"
+        },
+        {
+            "user_id": "user_107",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_108",
+            "rating": 4,
+            "content": ""
+        },
+        {
+            "user_id": "user_109",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_110",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_111",
+            "rating": 5,
+            "content": "Légère souple,confort. "
+        },
+        {
+            "user_id": "user_112",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_113",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_114",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_115",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_116",
+            "rating": 5,
+            "content": "迪卡侬品质一如既往靠谱，面料舒服、做工扎实，性价比很高。小程序下单方便，发货快，尺码标准，上身效果很好，日常穿、运动穿都合适，会继续回购！"
+        },
+        {
+            "user_id": "user_117",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_118",
+            "rating": 5,
+            "content": "轻便"
+        },
+        {
+            "user_id": "user_119",
+            "rating": 4,
+            "content": ""
+        },
+        {
+            "user_id": "user_120",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_121",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_122",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_123",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_124",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_125",
+            "rating": 4,
+            "content": "专业跑鞋，减震，透气性好.。"
+        },
+        {
+            "user_id": "user_126",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_127",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_128",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_129",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_130",
+            "rating": 5,
+            "content": "趁着过春节，打折，给家人每人买了一双。迪卡农的鞋子一如既往地好穿"
+        },
+        {
+            "user_id": "user_131",
+            "rating": 5,
+            "content": "好"
+        },
+        {
+            "user_id": "user_132",
+            "rating": 3,
+            "content": ""
+        },
+        {
+            "user_id": "user_133",
+            "rating": 3,
+            "content": ""
+        },
+        {
+            "user_id": "user_134",
+            "rating": 5,
+            "content": "這雙買大一點好穿  趁999買第二雙"
+        },
+        {
+            "user_id": "user_135",
+            "rating": 5,
+            "content": "Excellent shoes for jogging "
+        },
+        {
+            "user_id": "user_136",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_137",
+            "rating": 5,
+            "content": "super"
+        },
+        {
+            "user_id": "user_138",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_139",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_140",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_141",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_142",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_143",
+            "rating": 5,
+            "content": "此鞋中部位置包裹感强，鞋底柔软，样式极为低调，适合大众。\n迪卡侬品牌的商品主打实用性、耐用性、透气性，本事过硬，质量不用考虑，需要什么品类直接买，令消费者不需要多想与怀疑，购物轻松、简单。我是两年前尝试着买了双保暖鞋，这两年穿着舒适、暖和，所以今年去了好几趟线下门店详细了解，每一个商品、鞋服都摸了摸，仔细观察了，包括文字内容介绍，能看出此品牌商品材质没有问题 不错的、实实在在，就如老实人一样，相处起来很舒服，没有坑和雷。另外有的品别看样子普通不年轻时尚，但你穿上体验（或几天）后，你会感到穿着舒适，比低于此档次品牌的是值的，当然还有重要是对比同类品牌价钱不算贵，服务也是简洁利索，对一些商品研发守正创新，所以各方面综合性好，不极端不偏不倚 中庸 适合大众，所以我买了很多件。"
+        },
+        {
+            "user_id": "user_144",
+            "rating": 5,
+            "content": "很好"
+        },
+        {
+            "user_id": "user_145",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_146",
+            "rating": 5,
+            "content": "好的好好好"
+        },
+        {
+            "user_id": "user_147",
+            "rating": 5,
+            "content": "ürün çok rahat . sağlam ve uzun yürüyüşlerde konforlu. "
+        },
+        {
+            "user_id": "user_148",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_149",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_150",
+            "rating": 5,
+            "content": "黄新球服务态度很好，人很热情。"
+        },
+        {
+            "user_id": "user_151",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_152",
+            "rating": 5,
+            "content": "跑鞋不错，颜色丑了点"
+        },
+        {
+            "user_id": "user_153",
+            "rating": 5,
+            "content": "跑步专属，第二双了"
+        },
+        {
+            "user_id": "user_154",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_155",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_156",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_157",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_158",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_159",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_160",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_161",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_162",
+            "rating": 4,
+            "content": "穿起来挺舒服的"
+        },
+        {
+            "user_id": "user_163",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_164",
+            "rating": 5,
+            "content": "非常好"
+        },
+        {
+            "user_id": "user_165",
+            "rating": 5,
+            "content": "很舒适，非常缓震"
+        },
+        {
+            "user_id": "user_166",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_167",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_168",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_169",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_170",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_171",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_172",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_173",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_174",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_175",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_176",
+            "rating": 5,
+            "content": "很喜欢，推荐，适合跑步"
+        },
+        {
+            "user_id": "user_177",
+            "rating": 5,
+            "content": "新球姐姐服务太好了太好了"
+        },
+        {
+            "user_id": "user_178",
+            "rating": 5,
+            "content": "不错，质量很好"
+        },
+        {
+            "user_id": "user_179",
+            "rating": 5,
+            "content": "不错，质量很好"
+        },
+        {
+            "user_id": "user_180",
+            "rating": 5,
+            "content": "上脚很舒服，跑步散步都很棒"
+        },
+        {
+            "user_id": "user_181",
+            "rating": 5,
+            "content": "好啊"
+        },
+        {
+            "user_id": "user_182",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_183",
+            "rating": 1,
+            "content": "التصميم ضيق جدا من الامام و ضاغط علي الصوابع و مؤلم حتي اثناء المشي البسيط <br>لا انصح باقتناءه"
+        },
+        {
+            "user_id": "user_184",
+            "rating": 5,
+            "content": "raport calitate-pret foarte excelent"
+        },
+        {
+            "user_id": "user_185",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_186",
+            "rating": 5,
+            "content": "穿着挺舒服的，鞋底有弹性，也不捂脚，日常经常穿"
+        },
+        {
+            "user_id": "user_187",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_188",
+            "rating": 5,
+            "content": "满分的一双鞋"
+        },
+        {
+            "user_id": "user_189",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_190",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_191",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_192",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_193",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_194",
+            "rating": 5,
+            "content": "特價買的超值跑鞋"
+        },
+        {
+            "user_id": "user_195",
+            "rating": 5,
+            "content": "Comode e leggere"
+        },
+        {
+            "user_id": "user_196",
+            "rating": 5,
+            "content": "可以"
+        },
+        {
+            "user_id": "user_197",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_198",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_199",
+            "rating": 5,
+            "content": "非常棒的鞋，同款买了三个色系"
+        },
+        {
+            "user_id": "user_200",
+            "rating": 5,
+            "content": ""
+        }
+    ]
+}

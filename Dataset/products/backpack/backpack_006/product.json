@@ -1,0 +1,71 @@
+{
+    "product_id": "backpack_006",
+    "product_name": "Share:",
+    "model_description": "이 백팩 체스트 스트랩은 백패킹 백팩의 기능을 개선하거나 수리하는 데 사용합니다. 백팩 스트랩을 고정해 주고 가슴 부분 전체에 압력을 고르게 분산해 줍니다. 백팩의 체스트 스트랩 교체/수리를 위한 액세서리 제품입니다.\n\n[보증 기간]\n2",
+    "category": "모든 스포츠 > 등산 > 용품 > 가방 > 가방 용품",
+    "variants": [
+        {
+            "color": "1788429",
+            "image_paths": [
+                "images/1788429/img1.png",
+                "images/1788429/img2.png",
+                "images/1788429/img3.png",
+                "images/1788429/img4.png",
+                "images/1788429/img5.png"
+            ]
+        },
+        {
+            "color": "8826113",
+            "image_paths": [
+                "images/8826113/img1.png",
+                "images/8826113/img2.png",
+                "images/8826113/img3.png",
+                "images/8826113/img4.png",
+                "images/8826113/img5.png"
+            ]
+        },
+        {
+            "color": "8841616",
+            "image_paths": [
+                "images/8841616/img1.png",
+                "images/8841616/img2.png",
+                "images/8841616/img3.png",
+                "images/8841616/img4.png"
+            ]
+        },
+        {
+            "color": "963077",
+            "image_paths": [
+                "images/963077/img1.png",
+                "images/963077/img2.png",
+                "images/963077/img3.png",
+                "images/963077/img4.png",
+                "images/963077/img5.png"
+            ]
+        },
+        {
+            "color": "1157852",
+            "image_paths": [
+                "images/1157852/img1.png",
+                "images/1157852/img2.png",
+                "images/1157852/img3.png"
+            ]
+        },
+        {
+            "color": "1157860",
+            "image_paths": [
+                "images/1157860/img1.png",
+                "images/1157860/img2.png",
+                "images/1157860/img3.png"
+            ]
+        },
+        {
+            "color": "8207987",
+            "image_paths": [
+                "images/8207987/img1.png",
+                "images/8207987/img2.png",
+                "images/8207987/img3.png"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,19 @@
+{
+    "product_id": "backpack_051",
+    "product_name": "백패킹 여행 워시백",
+    "model_description": "이 트래블 워시백은 스마트한 내부 구성이 특징이며, 후크를 사용하여 어디에나 걸 수 있습니다. 여행을 떠날 때 소지품을 보관하는 데 완벽한 제품입니다! 백팩 디자이너들이 개발한 워시백, 편안한 마음으로 여행을 즐길 수 있게 도와줍니다.\n\n[규격]\n펼친 상태 길이: 63cm.\n\n[보증 기간]\n2",
+    "category": "모든 스포츠 > 등산 > 용품 > 가방 > 가방 용품",
+    "variants": [
+        {
+            "color": "8514768",
+            "image_paths": [
+                "images/8514768/img1.png",
+                "images/8514768/img2.png",
+                "images/8514768/img3.png",
+                "images/8514768/img4.png",
+                "images/8514768/img5.png",
+                "images/8514768/img6.png"
+            ]
+        }
+    ]
+}

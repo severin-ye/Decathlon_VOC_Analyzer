@@ -1,0 +1,1005 @@
+{
+    "product_id": "shoes_014",
+    "reviews": [
+        {
+            "user_id": "user_001",
+            "rating": 5,
+            "content": "클리어런스 세일 제품에 속해있어 부담을 덜고 구매했습니다. 디자인이 훌륭하고 일단 가벼워서 가벼운 산택과 트래킹에 두루 편안하게 신고 다녀요."
+        },
+        {
+            "user_id": "user_002",
+            "rating": 5,
+            "content": "Mega wygodne, miękkie w środku, doskonałe na teren. Bardzo dobrze się sprawdzają podczas upałów, są przewiewne i do tego wytrzymałe.\nPolecam."
+        },
+        {
+            "user_id": "user_003",
+            "rating": 5,
+            "content": "寬楦版的設計適合東人的腳型，好穿！"
+        },
+        {
+            "user_id": "user_004",
+            "rating": 5,
+            "content": "super "
+        },
+        {
+            "user_id": "user_005",
+            "rating": 5,
+            "content": "bardzo dobre,"
+        },
+        {
+            "user_id": "user_006",
+            "rating": 5,
+            "content": "Velmi oblíbené "
+        },
+        {
+            "user_id": "user_007",
+            "rating": 5,
+            "content": "Pohodlné "
+        },
+        {
+            "user_id": "user_008",
+            "rating": 4,
+            "content": "la utilizzo normalemente sia sui sentieri che sui tratti asfaltati posti piè in basso: ha un ottimmo controllo ed assorbimento, la suola forse a causa dell'uso misto tende a consumarsi"
+        },
+        {
+            "user_id": "user_009",
+            "rating": 4,
+            "content": "la scarpa pur estremamente semplice si è rivelata ottima e l'ho utilizzata fino a consumarla, adesso mi oriento verso prodotti più sofisticati ma per iniziare è perfetta"
+        },
+        {
+            "user_id": "user_010",
+            "rating": 5,
+            "content": "Excellent tout points"
+        },
+        {
+            "user_id": "user_011",
+            "rating": 4,
+            "content": ".."
+        },
+        {
+            "user_id": "user_012",
+            "rating": 5,
+            "content": "Muito confortável "
+        },
+        {
+            "user_id": "user_013",
+            "rating": 5,
+            "content": "Perfette! "
+        },
+        {
+            "user_id": "user_014",
+            "rating": 3,
+            "content": "No me fueron cómodas, tal vez por mis pies. "
+        },
+        {
+            "user_id": "user_015",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_016",
+            "rating": 5,
+            "content": "ottimo acquisto, usate per diverse passeggiate sterrate e hanno sempre funzionato bene"
+        },
+        {
+            "user_id": "user_017",
+            "rating": 5,
+            "content": " 2 години ги носих като основни обувки без почти никакви следи от употреба по конституцията. Все още ги нося, но по-рядко и вече на едната има едно конче което си е излязло от мястото. първите ми обувки които издържат над половин година!!! "
+        },
+        {
+            "user_id": "user_018",
+            "rating": 5,
+            "content": "El título lo dice todo. Me vi obliga jubilar estás maravillosas zapatillas después de que me hicieran un poco de daño en el talón de Aquiles y porque ya la suela estaba desgastada  e iban a empezar a despegarse.<br>Lo más débil de la zapatilla es la tela al final del empeine que del uso prolongado se hace algún agujero, pero eso son pequeñas medallas para unos zapatos que me han durado 5 años."
+        },
+        {
+            "user_id": "user_019",
+            "rating": 5,
+            "content": "Muito confortáveis,  dão uma estabilidade espetacular e duram imenso tempo."
+        },
+        {
+            "user_id": "user_020",
+            "rating": 5,
+            "content": "Dobra przyczepność,  sprawdzają się w różnych warunkach "
+        },
+        {
+            "user_id": "user_021",
+            "rating": 4,
+            "content": "pour faire du trail super chaussure, accroche tout types de terrain, légère, très confortable  et résistante, même, après plus de deux ans, le tissus ne c'est pas déchiré, juste un défaut  au niveau du talon à l'intérieur de la chaussure le tissus c'est usé très vite , laissant sortir une plaque en plastique, qui à la longue me coupé la peau du tendon au dessus du talon, sinon j'en rachèterai bien une paire  "
+        },
+        {
+            "user_id": "user_022",
+            "rating": 5,
+            "content": "Polecam."
+        },
+        {
+            "user_id": "user_023",
+            "rating": 5,
+            "content": "Świetne na Parkrun i Runmageddony."
+        },
+        {
+            "user_id": "user_024",
+            "rating": 5,
+            "content": "bardzo wygodne, idealne do 20 km "
+        },
+        {
+            "user_id": "user_025",
+            "rating": 5,
+            "content": "super buty do 20 km"
+        },
+        {
+            "user_id": "user_026",
+            "rating": 5,
+            "content": "Très bon amorti et bonne accroche dans la boue "
+        },
+        {
+            "user_id": "user_027",
+            "rating": 4,
+            "content": "Bom amortecimento"
+        },
+        {
+            "user_id": "user_028",
+            "rating": 5,
+            "content": "lekkie i wygodne "
+        },
+        {
+            "user_id": "user_029",
+            "rating": 5,
+            "content": "Bon produit"
+        },
+        {
+            "user_id": "user_030",
+            "rating": 5,
+            "content": "Très bon rapport qualité prix "
+        },
+        {
+            "user_id": "user_031",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_032",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_033",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_034",
+            "rating": 5,
+            "content": "Molto comode e trovo che abbiano un ottimo rapporto qualità prezzo. <br>Le uso molto e resistono ad ogni situazione "
+        },
+        {
+            "user_id": "user_035",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_036",
+            "rating": 5,
+            "content": "Très très bon "
+        },
+        {
+            "user_id": "user_037",
+            "rating": 5,
+            "content": "Geniales. <br>Muy cómodas y estupenda calidad.<br>Resistentes."
+        },
+        {
+            "user_id": "user_038",
+            "rating": 4,
+            "content": "Bon rapport qualité prix "
+        },
+        {
+            "user_id": "user_039",
+            "rating": 5,
+            "content": "鞋子好穿"
+        },
+        {
+            "user_id": "user_040",
+            "rating": 5,
+            "content": "ok"
+        },
+        {
+            "user_id": "user_041",
+            "rating": 4,
+            "content": "Top, légères et bonne accroche "
+        },
+        {
+            "user_id": "user_042",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_043",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_044",
+            "rating": 5,
+            "content": "鞋子很舒服，非常满意"
+        },
+        {
+            "user_id": "user_045",
+            "rating": 5,
+            "content": "Très fiable "
+        },
+        {
+            "user_id": "user_046",
+            "rating": 5,
+            "content": "穿很久，除了底磨损，其他的还好。"
+        },
+        {
+            "user_id": "user_047",
+            "rating": 3,
+            "content": ""
+        },
+        {
+            "user_id": "user_048",
+            "rating": 5,
+            "content": "Bien amorti et confortable "
+        },
+        {
+            "user_id": "user_049",
+            "rating": 5,
+            "content": "tam bir fiyat-performans ürünü,kaymıyor,çok hafif"
+        },
+        {
+            "user_id": "user_050",
+            "rating": 5,
+            "content": "A sarok erősités miatt használjuk. "
+        },
+        {
+            "user_id": "user_051",
+            "rating": 5,
+            "content": "Chaussure Trail très agréable à porter. Toujours utiliser au bout de 1 an et demi. Bien"
+        },
+        {
+            "user_id": "user_052",
+            "rating": 5,
+            "content": "Using it since last 2 years and it is still functioning very well"
+        },
+        {
+            "user_id": "user_053",
+            "rating": 5,
+            "content": "très confortable. facile à nettoyer. "
+        },
+        {
+            "user_id": "user_054",
+            "rating": 5,
+            "content": "穿了差不多2年了（现已报废），很耐穿"
+        },
+        {
+            "user_id": "user_055",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_056",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_057",
+            "rating": 5,
+            "content": "Incríveis"
+        },
+        {
+            "user_id": "user_058",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_059",
+            "rating": 4,
+            "content": "Sobre todo cómodas"
+        },
+        {
+            "user_id": "user_060",
+            "rating": 5,
+            "content": "Buty są dobre biegam i chodzę w nich z dobre dwa lata "
+        },
+        {
+            "user_id": "user_061",
+            "rating": 5,
+            "content": "Polecam na pierwsze kroki w bieganiu w terenie"
+        },
+        {
+            "user_id": "user_062",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_063",
+            "rating": 5,
+            "content": "👟"
+        },
+        {
+            "user_id": "user_064",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_065",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_066",
+            "rating": 4,
+            "content": "Great value for price paid"
+        },
+        {
+            "user_id": "user_067",
+            "rating": 5,
+            "content": "Der Perfekte Schu für TR. "
+        },
+        {
+            "user_id": "user_068",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_069",
+            "rating": 5,
+            "content": "Best shoes I've ever had. I won't say this for any shoe I've had this is the only one. I've gone through a looot of shoes but this one you can wear for days and not get your feet tired and the grip is great even for treks and runs. I'd buy this again and again."
+        },
+        {
+            "user_id": "user_070",
+            "rating": 5,
+            "content": "dobrze sprawdzają sie w terenie, przyczepne"
+        },
+        {
+            "user_id": "user_071",
+            "rating": 5,
+            "content": "到货很迅速，质量也不错，好店铺，推荐了~还在观望的朋友们可以毫不犹豫的下手啦!"
+        },
+        {
+            "user_id": "user_072",
+            "rating": 5,
+            "content": "到货很迅速，质量也不错，好店铺，推荐了~还在观望的朋友们可以毫不犹豫的下手啦!"
+        },
+        {
+            "user_id": "user_073",
+            "rating": 2,
+            "content": "the shoes is not good. it is trail running shoes and hence is supposed to be a bit sturdy. it was costly as well since it cost me rs. 5500 perhaps. However, within few days of buying the coating over mesh gave away. then the lace broke up. Look wise also it's not good. It does not have enough sponge/padding to give your feet comfort while running. Overall a big let down. Very disappointed with the product. Won't suggest anyone buying it. After this incidence I haven't purchased any shoe form Decathlon."
+        },
+        {
+            "user_id": "user_074",
+            "rating": 5,
+            "content": "Très confortable, très bonne accroche."
+        },
+        {
+            "user_id": "user_075",
+            "rating": 1,
+            "content": "Me lesionó en la primera postura a los 5 km me hizo una ampolla de sangre en el talón izquierdo que duró más de día semanas para curar"
+        },
+        {
+            "user_id": "user_076",
+            "rating": 4,
+            "content": "R.A.S"
+        },
+        {
+            "user_id": "user_077",
+            "rating": 5,
+            "content": "Super confortable"
+        },
+        {
+            "user_id": "user_078",
+            "rating": 5,
+            "content": "Super confortable"
+        },
+        {
+            "user_id": "user_079",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_080",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_081",
+            "rating": 5,
+            "content": "Scarpe perfette. 6Ottima qualità, ottima vestibilità, materiale perfetto nonostante l'uso e i lavaggi."
+        },
+        {
+            "user_id": "user_082",
+            "rating": 4,
+            "content": "comode ottimo grip"
+        },
+        {
+            "user_id": "user_083",
+            "rating": 4,
+            "content": "ottimo rapporto qualità prezzo"
+        },
+        {
+            "user_id": "user_084",
+            "rating": 4,
+            "content": "stringhe di cattiva qualità, non tengono il nodo; ho dovuto cambiarle"
+        },
+        {
+            "user_id": "user_085",
+            "rating": 5,
+            "content": "They're amazing, really good tread, comfortable and breathable. Great pair of affordable shoes."
+        },
+        {
+            "user_id": "user_086",
+            "rating": 5,
+            "content": "Çok kullanışlı bir ürün. Keşke birden fazla alsaydım. Eskidi ve aynı modelden bulamıyorum."
+        },
+        {
+            "user_id": "user_087",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_088",
+            "rating": 5,
+            "content": "Super takiego buta potrzebowałem"
+        },
+        {
+            "user_id": "user_089",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_090",
+            "rating": 5,
+            "content": "Muy cómodas y confortables les hice 1500 km y me fueron muy bien "
+        },
+        {
+            "user_id": "user_091",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_092",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_093",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_094",
+            "rating": 5,
+            "content": "excelentes tenis, son muy estables, duraderos,buen agarre y amortiguación\n"
+        },
+        {
+            "user_id": "user_095",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_096",
+            "rating": 4,
+            "content": ""
+        },
+        {
+            "user_id": "user_097",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_098",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_099",
+            "rating": 5,
+            "content": "genial"
+        },
+        {
+            "user_id": "user_100",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_101",
+            "rating": 5,
+            "content": "FANTASTIC SELECTION AND WORTH THE PRICE"
+        },
+        {
+            "user_id": "user_102",
+            "rating": 3,
+            "content": "Sole is wearing very fast"
+        },
+        {
+            "user_id": "user_103",
+            "rating": 5,
+            "content": "The shoes are very good in comfort and grip on the trail. I have done multiple treks in and around Pune with them and they hold the ground pretty good."
+        },
+        {
+            "user_id": "user_104",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_105",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_106",
+            "rating": 5,
+            "content": "鞋子穿着很舒服，性价比高，自助购物自助下单，体验感不错。"
+        },
+        {
+            "user_id": "user_107",
+            "rating": 5,
+            "content": "Good"
+        },
+        {
+            "user_id": "user_108",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_109",
+            "rating": 5,
+            "content": "Buena compra, muy cómodas y prácticas."
+        },
+        {
+            "user_id": "user_110",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_111",
+            "rating": 4,
+            "content": "I uave worn this Trail Shoes on and off for about a year. \r\nLooks narrow. When worned, feel ok but not wide feeling like 'D' width. Cushioning wise, slight better than normal EVA but not as cushy as I like. \r\nSole is good as its thicker than normal road running shoes. Can defintely last a long time. My shoes soles has not eaten into the EVA yet after 1 year. I am a heel striker."
+        },
+        {
+            "user_id": "user_112",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_113",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_114",
+            "rating": 4,
+            "content": "Bon produit. Chaussures de trail agréables, efficaces"
+        },
+        {
+            "user_id": "user_115",
+            "rating": 5,
+            "content": "很好 非常喜欢👍🏻 经常买迪卡侬的东西"
+        },
+        {
+            "user_id": "user_116",
+            "rating": 5,
+            "content": "好穿，舒服，便宜"
+        },
+        {
+            "user_id": "user_117",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_118",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_119",
+            "rating": 4,
+            "content": ""
+        },
+        {
+            "user_id": "user_120",
+            "rating": 4,
+            "content": ""
+        },
+        {
+            "user_id": "user_121",
+            "rating": 5,
+            "content": "Excellent comfort."
+        },
+        {
+            "user_id": "user_122",
+            "rating": 5,
+            "content": "算是捡漏了，非常舒适颜色也很时尚，满意！"
+        },
+        {
+            "user_id": "user_123",
+            "rating": 5,
+            "content": "轻便灵活，合脚舒适。"
+        },
+        {
+            "user_id": "user_124",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_125",
+            "rating": 5,
+            "content": "très content de mon achat"
+        },
+        {
+            "user_id": "user_126",
+            "rating": 5,
+            "content": "Me encantaron estos tenis por su estilo, y mucho más aún por su funcionalidad, la fortaleza y agarre de la suela, lo livianos, y cómodos. Totalmente recomendables."
+        },
+        {
+            "user_id": "user_127",
+            "rating": 1,
+            "content": "Sole not good and so Slippery"
+        },
+        {
+            "user_id": "user_128",
+            "rating": 5,
+            "content": "Llevo mas de dos años usándolas para correr un par de veces a la semana o para caminatas por el monte. Siguen perfectas, encantada con ellas."
+        },
+        {
+            "user_id": "user_129",
+            "rating": 4,
+            "content": "Good"
+        },
+        {
+            "user_id": "user_130",
+            "rating": 5,
+            "content": "bien"
+        },
+        {
+            "user_id": "user_131",
+            "rating": 4,
+            "content": ""
+        },
+        {
+            "user_id": "user_132",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_133",
+            "rating": 5,
+            "content": "Je les trouve belles, moderne et vont avec tout styles de vêtements, j'ai les noir/verte, j'adore, j'en ai deux paires.\n☺️👍"
+        },
+        {
+            "user_id": "user_134",
+            "rating": 5,
+            "content": "好好看"
+        },
+        {
+            "user_id": "user_135",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_136",
+            "rating": 5,
+            "content": "跑步跑步两不误"
+        },
+        {
+            "user_id": "user_137",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_138",
+            "rating": 1,
+            "content": "Shoes Weight is too heavy.\nQuality of product not good"
+        },
+        {
+            "user_id": "user_139",
+            "rating": 1,
+            "content": "I bought from Decathlon online shies quality is very poor and rate alao very big amount i will not suggest u buy it its fake shoes. Really"
+        },
+        {
+            "user_id": "user_140",
+            "rating": 4,
+            "content": "满意"
+        },
+        {
+            "user_id": "user_141",
+            "rating": 3,
+            "content": "还不错"
+        },
+        {
+            "user_id": "user_142",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_143",
+            "rating": 1,
+            "content": "Iam pay 6000 but not comfort   and no light weight"
+        },
+        {
+            "user_id": "user_144",
+            "rating": 1,
+            "content": "Worst design! What a waste of money. Can I still return or exchange for another model?"
+        },
+        {
+            "user_id": "user_145",
+            "rating": 5,
+            "content": "Very good grip and a must have while on trails"
+        },
+        {
+            "user_id": "user_146",
+            "rating": 5,
+            "content": "Un poco insatisfecho"
+        },
+        {
+            "user_id": "user_147",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_148",
+            "rating": 5,
+            "content": "Best shoes till date. Sturdy and comfortable."
+        },
+        {
+            "user_id": "user_149",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_150",
+            "rating": 5,
+            "content": "C'est une très bonne chaussure de sport."
+        },
+        {
+            "user_id": "user_151",
+            "rating": 5,
+            "content": "EXCELENTE QUALITE"
+        },
+        {
+            "user_id": "user_152",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_153",
+            "rating": 5,
+            "content": "挺耐穿的，去年买的，今年才找到评价的地方。还在穿。"
+        },
+        {
+            "user_id": "user_154",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_155",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_156",
+            "rating": 5,
+            "content": "Good"
+        },
+        {
+            "user_id": "user_157",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_158",
+            "rating": 5,
+            "content": "wszystko super, polecam"
+        },
+        {
+            "user_id": "user_159",
+            "rating": 5,
+            "content": "Szkoda że już niedostępne... Świetne buty."
+        },
+        {
+            "user_id": "user_160",
+            "rating": 5,
+            "content": "版型合脚適合非寬脚者，鞋底刻度深，適合郊區户外健行"
+        },
+        {
+            "user_id": "user_161",
+            "rating": 4,
+            "content": "Chaussures très légères et souples.\r\nCependant la gomme s'use assez vite."
+        },
+        {
+            "user_id": "user_162",
+            "rating": 5,
+            "content": "Kalite fiyat dengesi iyi"
+        },
+        {
+            "user_id": "user_163",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_164",
+            "rating": 5,
+            "content": "好穿"
+        },
+        {
+            "user_id": "user_165",
+            "rating": 5,
+            "content": "好穿"
+        },
+        {
+            "user_id": "user_166",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_167",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_168",
+            "rating": 4,
+            "content": "Buena opción de compra"
+        },
+        {
+            "user_id": "user_169",
+            "rating": 3,
+            "content": "好穿"
+        },
+        {
+            "user_id": "user_170",
+            "rating": 5,
+            "content": "Very nice shoe for running and hold very good grip in terrains.\r\nBut it looks a little narrow and long ."
+        },
+        {
+            "user_id": "user_171",
+            "rating": 5,
+            "content": "good~"
+        },
+        {
+            "user_id": "user_172",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_173",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_174",
+            "rating": 5,
+            "content": "Très bon rapport qualité prix"
+        },
+        {
+            "user_id": "user_175",
+            "rating": 2,
+            "content": "sajnos 2-3 hónapig tart"
+        },
+        {
+            "user_id": "user_176",
+            "rating": 5,
+            "content": "Non sono un assiduo corridore ma queste le ho prese due anni e 350km fa con l’intento di fare del trail running e mi ci sono trovato bene! Una settima fa ho acquistato una paio di scarpe di categoria e marca superiore e onestamente sento la differenza…. Ma queste per quanto costano fanno più che bene il loro lavoro! CONSIGLIATISSIME"
+        },
+        {
+            "user_id": "user_177",
+            "rating": 1,
+            "content": "The lifespan of the shoes was barely a year. I used them for walking, but the sole was of very poor quality, wore out within a few months. When I took them to Decathlon for a warranty claim, the helpdesk advised me to use them for only 5-7 km a week. The quality and customer service were very disappointing. Avoid if possible."
+        },
+        {
+            "user_id": "user_178",
+            "rating": 5,
+            "content": "便宜好穿"
+        },
+        {
+            "user_id": "user_179",
+            "rating": 5,
+            "content": "Almeno il terzo paio che acquisto,... Queste le sto utilizzando come scarpe per tutti i giorni, altri paia utilizzati per camminate... Ottimo rapporto qualità prezzo.... Buona durata e prestazioni durevoli nel tempo... Per una s arpa pari caratteri he adesso ci vuole il doppio del prezzo di queste"
+        },
+        {
+            "user_id": "user_180",
+            "rating": 5,
+            "content": "很不错，满意"
+        },
+        {
+            "user_id": "user_181",
+            "rating": 5,
+            "content": "Dobré běžecké boty do měkkého terénu - do trávy, hlíny. Na asfalt nepoužitelné."
+        },
+        {
+            "user_id": "user_182",
+            "rating": 5,
+            "content": "Very comfortable. Light weight. Good looking. Right product for my feet"
+        },
+        {
+            "user_id": "user_183",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_184",
+            "rating": 5,
+            "content": "Bon produit, pour la marche en montagne et aussi un peu de trail running."
+        },
+        {
+            "user_id": "user_185",
+            "rating": 5,
+            "content": "以此價錢購得，真的很超值，而且很實穿，非常滿意"
+        },
+        {
+            "user_id": "user_186",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_187",
+            "rating": 5,
+            "content": "Good quality shoes It's my second pair of shoes of the same brand and model."
+        },
+        {
+            "user_id": "user_188",
+            "rating": 5,
+            "content": ""
+        },
+        {
+            "user_id": "user_189",
+            "rating": 5,
+            "content": "Chaussures trail homme avec un bon maintien. Plutôt destinées à des parcours pas trop techniques, faire attention sur sol humide (en ville). Très bon rapport qualité."
+        },
+        {
+            "user_id": "user_190",
+            "rating": 5,
+            "content": "Good"
+        },
+        {
+            "user_id": "user_191",
+            "rating": 5,
+            "content": "Très bonnes chaussures pour ce prix. elles sont très aérées et ne conviennent donc pas du tout pour un terrain mouillé (vous aurez vite les pieds trempés). J'ai du mal à m'en séparer : c'est devenu mes \"pantoufles d'extérieur\". Pour plus de commodité j'ai modifié le laçage et j'ai mis des élastiques. Bon on va pas se mentir il y a mieux en terme d'accroche, de confort, etc... mais plus cher. Leur seul vrai défaut c'est un look un peu vieillot"
+        },
+        {
+            "user_id": "user_192",
+            "rating": 5,
+            "content": "Relación calidad precio muy buena"
+        },
+        {
+            "user_id": "user_193",
+            "rating": 4,
+            "content": "MUY COMODAS"
+        },
+        {
+            "user_id": "user_194",
+            "rating": 5,
+            "content": "polyvalentes par temps sec ou boueux"
+        },
+        {
+            "user_id": "user_195",
+            "rating": 5,
+            "content": "Good running Shoe with nice grip, cushion and flexibility"
+        },
+        {
+            "user_id": "user_196",
+            "rating": 5,
+            "content": "Muy bien!"
+        },
+        {
+            "user_id": "user_197",
+            "rating": 5,
+            "content": "para entrenamientos cortos y por terrenos mixtos. Los pies están poco protegidos a impactos y inclemencias"
+        },
+        {
+            "user_id": "user_198",
+            "rating": 5,
+            "content": "Dopo mesi di utilizzo posso dire che sono buone scarpe per correre, su sterrato e poco asfalto.\nAmmortizzano non tanto ma per me non è un difetto. Molto leggere"
+        },
+        {
+            "user_id": "user_199",
+            "rating": 4,
+            "content": "平價好穿"
+        },
+        {
+            "user_id": "user_200",
+            "rating": 5,
+            "content": "Je m'en sers depuis plus d'un an au travail et lors de petites randos, elles ont du vécu et sont toujours portables ! Je recommande."
+        }
+    ]
+}

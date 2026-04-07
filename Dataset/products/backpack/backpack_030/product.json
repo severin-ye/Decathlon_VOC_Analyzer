@@ -1,0 +1,19 @@
+{
+    "product_id": "backpack_030",
+    "product_name": "백패킹 접이식 세면도구 파우치",
+    "model_description": "매우 가벼운 세면도구용 가방으로 여러 개의 유용한 포켓이 있어 산악 하이킹 시 세면도구를 휴대할 수 있습니다. 여행하실 때 세면도구를 담을 수 있는 가방으로 소지품을 정리하기 좋아 가방 내의 공간을 절약할 수 있습니다.  \n\n[무게]\n43g\n\n[사이즈]\n펼쳤을 때: 18 cm x 26 cm x 1cm\n접었을 때: 18cm x 8cm x 3cm\n\n[보증 기간]\n2",
+    "category": "모든 스포츠 > 등산 > 용품 > 가방 > 가방 용품",
+    "variants": [
+        {
+            "color": "8595305",
+            "image_paths": [
+                "images/8595305/img1.png",
+                "images/8595305/img2.png",
+                "images/8595305/img3.png",
+                "images/8595305/img4.png",
+                "images/8595305/img5.png",
+                "images/8595305/img6.png"
+            ]
+        }
+    ]
+}

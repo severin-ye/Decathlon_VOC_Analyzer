@@ -1,0 +1,30 @@
+{
+    "product_id": "shoes_031",
+    "product_name": "남성 워킹화 액티 프로텍트 브레시",
+    "model_description": "캔버스 소재로 부드러운 어퍼 소재로 매우 편안해 데일리로 활용하기 좋은 워킹화입니다. 데일리로 활용하기 좋은 워킹화입니다. \n\n[보증 기간]\n2",
+    "category": "모든 스포츠 > 러닝 > 남성 > 러닝화 > 로드러닝/조깅",
+    "variants": [
+        {
+            "color": "8735235",
+            "image_paths": [
+                "images/8735235/img1.png",
+                "images/8735235/img2.png",
+                "images/8735235/img3.png",
+                "images/8735235/img4.png",
+                "images/8735235/img5.png",
+                "images/8735235/img6.png"
+            ]
+        },
+        {
+            "color": "8735230",
+            "image_paths": [
+                "images/8735230/img1.png",
+                "images/8735230/img2.png",
+                "images/8735230/img3.png",
+                "images/8735230/img4.png",
+                "images/8735230/img5.png",
+                "images/8735230/img6.png"
+            ]
+        }
+    ]
+}
