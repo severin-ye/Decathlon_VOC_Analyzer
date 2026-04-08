@@ -1,0 +1,79 @@
+Metadata-Version: 2.4
+Name: decathlon-voc-analyzer
+Version: 0.1.0
+Summary: Evidence-driven multimodal VOC analyzer for Decathlon products
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+Requires-Dist: fastapi<1.0.0,>=0.115.0
+Requires-Dist: uvicorn[standard]<1.0.0,>=0.30.0
+Requires-Dist: pydantic<3.0.0,>=2.8.0
+Requires-Dist: pydantic-settings<3.0.0,>=2.4.0
+Requires-Dist: python-dotenv<2.0.0,>=1.0.1
+Requires-Dist: orjson<4.0.0,>=3.10.0
+Requires-Dist: langchain<0.4.0,>=0.3.0
+Requires-Dist: langchain-core<0.4.0,>=0.3.0
+Requires-Dist: openai<2.0.0,>=1.40.0
+Requires-Dist: qdrant-client<2.0.0,>=1.11.0
+Provides-Extra: dev
+Requires-Dist: pytest<9.0.0,>=8.3.0; extra == "dev"
+Requires-Dist: httpx<1.0.0,>=0.27.0; extra == "dev"
+Requires-Dist: ruff<1.0.0,>=0.6.0; extra == "dev"
+
+# Decathlon VOC Analyzer
+
+本仓库实现一个证据驱动的多模态商品 VOC 分析系统。当前阶段先落 MVP 工程基座：
+
+- 后端 Web API
+- 数据集扫描与质量概览
+- 商品与评论标准化输出
+- 为后续评论 Aspect 抽取、多模态检索、证据聚合与生成保留稳定 schema
+
+## 当前能力
+
+- 扫描 Dataset/products 下的商品目录
+- 检查 product.json、reviews.json 和图片目录的一致性
+- 生成标准化商品证据包
+- 输出数据质量摘要报告
+- 提供 FastAPI 接口查询与触发标准化
+
+## 目录结构
+
+```text
+src/decathlon_voc_analyzer/
+  api/
+  core/
+  models/
+  services/
+artifacts/
+Dataset/
+设计文档/
+```
+
+## 安装
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -e .[dev]
+```
+
+## 运行
+
+```bash
+uvicorn decathlon_voc_analyzer.api.main:app --reload
+```
+
+启动后访问：
+
+- `/health`
+- `/api/v1/dataset/overview`
+- `/api/v1/dataset/normalize`
+
+## 配置
+
+默认读取仓库根目录的 `.env`。为了兼容现有文件，配置层同时支持两组变量名：
+
+- 现有格式：`qwen-plus_api`、`DeepSeek-V3_api`、`openai-gpt5_api`
+- 规范格式：`QWEN_PLUS_API_KEY`、`DEEPSEEK_V3_API_KEY`、`OPENAI_GPT5_API_KEY`
+
+后续阶段会继续补齐评论结构化、检索、聚合与生成链路。
