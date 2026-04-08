@@ -81,6 +81,7 @@ class ProductAnalysisService:
             package=package,
             questions=questions,
             top_k_per_route=request.top_k_per_route,
+            use_llm=request.use_llm,
         )
         aggregates = self._aggregate_aspects(extraction.aspects)
         warnings = list(extraction.warnings) + question_warnings

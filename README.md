@@ -82,10 +82,28 @@ uvicorn decathlon_voc_analyzer.api.main:app --reload
 - EmbeddingService：负责文本和图像代理文本向量化
 - IndexBackend：负责索引存储与检索，默认是 local，可切换为 qdrant
 
+当前召回链路已经升级为“两阶段检索”：
+
+- 第一阶段：embedding 粗召回
+- 第二阶段：reranker 精排
+
+默认策略为：
+
+- 运行态优先使用真实 embedding API 与专用 reranker API
+- 测试态固定使用 hash embedding 与 heuristic reranker，保证可重复和离线可测
+
+当前默认 embedding 模型为 `text-embedding-v4`，通过 DashScope OpenAI 兼容接口调用。
+当前默认 reranker 模型为 `gte-rerank-v2`，通过 DashScope 原生 rerank 接口调用。
+
 如果要切换后端，可在 `.env` 中设置：
 
 - `retrieval_backend=local`
 - `retrieval_backend=qdrant`
+
+如需显式控制检索质量组件，也可设置：
+
+- `embedding_backend=api` 或 `embedding_backend=hash`
+- `reranker_backend=api` 或 `reranker_backend=heuristic`
 
 ## 配置
 

@@ -27,9 +27,13 @@ class Settings(BaseSettings):
     llm_temperature: float = 0.3
     llm_max_tokens: int = 2000
     qwen_base_url: str = "https://dashscope.aliyuncs.com/compatible-mode/v1"
+    dashscope_rerank_url: str = "https://dashscope.aliyuncs.com/api/v1/services/rerank/text-rerank/text-rerank"
     qwen_plus_model: str = "qwen-plus"
-    qwen_embedding_model: str = "qwen3-vl-embedding-2b"
+    qwen_embedding_model: str = "text-embedding-v4"
+    qwen_reranker_model: str = "gte-rerank-v2"
+    embedding_backend: str = "api"
     retrieval_backend: str = "local"
+    reranker_backend: str = "api"
     qdrant_collection_name: str = "product_evidence"
     qdrant_path: Path = ROOT_DIR / "artifacts" / "indexes" / "qdrant_store"
 

@@ -4,6 +4,7 @@ import re
 from decathlon_voc_analyzer.models.analysis import RetrievedEvidence, RetrievalQuestion, RetrievalRecord
 from decathlon_voc_analyzer.models.dataset import ProductEvidencePackage
 from decathlon_voc_analyzer.services.index_service import IndexService
+from decathlon_voc_analyzer.services.reranker_service import RerankerService
 
 
 TOKEN_RE = re.compile(r"[\w\-\u4e00-\u9fff가-힣]+", re.UNICODE)
@@ -12,15 +13,22 @@ TOKEN_RE = re.compile(r"[\w\-\u4e00-\u9fff가-힣]+", re.UNICODE)
 class RetrievalService:
     def __init__(self) -> None:
         self.index_service = IndexService()
+        self.reranker_service = RerankerService()
 
     def retrieve_for_package(
         self,
         package: ProductEvidencePackage,
         questions: list[RetrievalQuestion],
         top_k_per_route: int = 2,
+        use_llm: bool = True,
     ) -> list[RetrievalRecord]:
         return [
-            self._retrieve_for_question(package=package, question=question, top_k_per_route=top_k_per_route)
+            self._retrieve_for_question(
+                package=package,
+                question=question,
+                top_k_per_route=top_k_per_route,
+                use_llm=use_llm,
+            )
             for question in questions
         ]
 
@@ -29,6 +37,7 @@ class RetrievalService:
         package: ProductEvidencePackage,
         question: RetrievalQuestion,
         top_k_per_route: int,
+        use_llm: bool,
     ) -> RetrievalRecord:
         query = question.question
         indexed_hits = self.index_service.search(
@@ -36,9 +45,17 @@ class RetrievalService:
             category_slug=package.category_slug,
             query=query,
             routes=question.expected_evidence_routes,
-            top_k_per_route=top_k_per_route,
+            top_k_per_route=max(top_k_per_route * 3, top_k_per_route),
         )
-        retrieved = [self._to_retrieved_evidence(hit) for hit in indexed_hits]
+        embedding_scores = {
+            hit.evidence_id: self._extract_score(hit)
+            for hit in indexed_hits
+        }
+        reranked_hits = self.reranker_service.rerank(query=query, candidates=indexed_hits, use_llm=use_llm)
+        retrieved = [
+            self._to_retrieved_evidence(hit, embedding_scores.get(hit.evidence_id, 0.0))
+            for hit in reranked_hits[: len(question.expected_evidence_routes) * top_k_per_route]
+        ]
 
         return RetrievalRecord(
             retrieval_id=self._make_retrieval_id(question.source_review_id, question.source_aspect, query),
@@ -52,7 +69,8 @@ class RetrievalService:
             retrieved=retrieved,
         )
 
-    def _to_retrieved_evidence(self, evidence) -> RetrievedEvidence:
+    def _to_retrieved_evidence(self, evidence, embedding_score: float) -> RetrievedEvidence:
+        rerank_score = self._extract_score(evidence)
         return RetrievedEvidence(
             product_id=evidence.product_id,
             route=evidence.route,
@@ -61,8 +79,8 @@ class RetrievalService:
             source_section=evidence.source_section,
             image_path=evidence.image_path,
             content_preview=evidence.content[:200],
-            embedding_score=self._extract_score(evidence),
-            rerank_score=self._extract_score(evidence),
+            embedding_score=embedding_score,
+            rerank_score=rerank_score,
         )
 
     def _tokenize(self, text: str) -> list[str]:

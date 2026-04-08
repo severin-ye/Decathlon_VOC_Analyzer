@@ -182,7 +182,7 @@ class QdrantIndexBackend(IndexBackend):
             return
         self.client.create_collection(
             collection_name=self.collection_name,
-            vectors_config=VectorParams(size=self.embedding_service.VECTOR_DIMENSION, distance=Distance.COSINE),
+            vectors_config=VectorParams(size=self.embedding_service.vector_size(), distance=Distance.COSINE),
         )
 
 
