@@ -29,15 +29,15 @@ dev = [
 ]
 
 [tool.setuptools]
-package-dir = {"" = "src"}
+package-dir = {"" = "05_src"}
 
 [tool.setuptools.packages.find]
-where = ["src"]
+where = ["05_src"]
 
 [tool.ruff]
 line-length = 100
 target-version = "py311"
 
 [tool.pytest.ini_options]
-pythonpath = ["src"]
-testpaths = ["tests"]
+pythonpath = ["05_src"]
+testpaths = ["06_tests"]

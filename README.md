@@ -9,7 +9,7 @@
 
 ## 当前能力
 
-- 扫描 Dataset/products 下的商品目录
+- 扫描 01_data/01_raw_products/products 下的商品目录
 - 检查 product.json、reviews.json 和图片目录的一致性
 - 生成标准化商品证据包
 - 输出数据质量摘要报告
@@ -18,15 +18,23 @@
 ## 目录结构
 
 ```text
-src/decathlon_voc_analyzer/
-  api/
-  core/
-  models/
+01_data/
+  01_raw_products/
+    products/
+  02_audit_zh_products/
+    products/
+02_outputs/
+03_docs/
+04_scripts/
+05_src/decathlon_voc_analyzer/
+  app/
   prompts/
-  services/
-artifacts/
-Dataset/
-设计文档/
+  schemas/
+  stage1_dataset/
+  stage2_review_modeling/
+  stage3_retrieval/
+  stage4_generation/
+06_tests/
 ```
 
 ## 安装
@@ -40,7 +48,7 @@ pip install -e .[dev]
 ## 运行
 
 ```bash
-uvicorn decathlon_voc_analyzer.api.main:app --reload
+uvicorn decathlon_voc_analyzer.app.api.main:app --reload
 ```
 
 启动后访问：
@@ -55,7 +63,7 @@ uvicorn decathlon_voc_analyzer.api.main:app --reload
 
 `/api/v1/reviews/extract` 支持两种模式：
 
-- 传入 `product_id` 和可选 `category_slug`，直接从 Dataset 中读取商品评论并做结构化抽取
+- 传入 `product_id` 和可选 `category_slug`，直接从 01_data/01_raw_products/products 中读取商品评论并做结构化抽取
 - 直接传入 `reviews` 数组，做临时评论抽取实验
 
 建议开发期先设置 `use_llm=false` 跑通链路，再切换到真实模型抽取。
@@ -95,15 +103,15 @@ uvicorn decathlon_voc_analyzer.api.main:app --reload
 
 当前默认 embedding 模型为 `text-embedding-v4`，通过 DashScope OpenAI 兼容接口调用。
 当前默认 reranker 模型为 `gte-rerank-v2`，通过 DashScope 原生 rerank 接口调用。
-当前所有业务提示词已统一收口到 `src/decathlon_voc_analyzer/prompts/` 目录管理。
+当前所有业务提示词已统一收口到 `05_src/decathlon_voc_analyzer/prompts/` 目录管理。
 
 如果需要为人工审核导出单产品中文数据集，可运行：
 
 ```bash
-.venv/bin/python scripts/export_single_product_chinese_dataset.py --category backpack --product-id backpack_010
+.venv/bin/python 04_scripts/export_single_product_chinese_dataset.py --category backpack --product-id backpack_010
 ```
 
-默认输出到 `Dataset_zh/products/<category>/<product_id>/`，目录结构与原始数据集保持一致，包含：
+默认输出到 `01_data/02_audit_zh_products/products/<category>/<product_id>/`，目录结构与原始数据集保持一致，包含：
 
 - `product.json`
 - `reviews.json`
