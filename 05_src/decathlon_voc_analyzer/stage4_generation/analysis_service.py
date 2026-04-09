@@ -1,10 +1,10 @@
-import json
 from collections import Counter, defaultdict
 
 import orjson
-from openai import OpenAI
+from pydantic import BaseModel, Field
 
 from decathlon_voc_analyzer.app.core.config import get_settings
+from decathlon_voc_analyzer.llm import QwenChatGateway
 from decathlon_voc_analyzer.schemas.analysis import (
     AnalysisMode,
     AspectAggregate,
@@ -16,11 +16,34 @@ from decathlon_voc_analyzer.schemas.analysis import (
     SupportingEvidence,
 )
 from decathlon_voc_analyzer.schemas.review import ReviewAspect, ReviewExtractionRequest
-from decathlon_voc_analyzer.prompts import build_report_generation_user_prompt, get_prompt
+from decathlon_voc_analyzer.prompts import get_prompt_template
 from decathlon_voc_analyzer.stage1_dataset.dataset_service import DatasetService
 from decathlon_voc_analyzer.stage2_review_modeling.review_service import ReviewExtractionService
 from decathlon_voc_analyzer.stage3_retrieval.retrieval_service import RetrievalService
 from decathlon_voc_analyzer.stage4_generation.question_service import QuestionGenerationService
+
+
+class LLMInsightItem(BaseModel):
+    label: str = "overall_experience"
+    summary: str = ""
+    confidence: float = Field(default=0.7, ge=0.0, le=1.0)
+
+
+class LLMSuggestionItem(BaseModel):
+    suggestion: str = ""
+    suggestion_type: str = "perception"
+    reason: list[str] = Field(default_factory=list)
+    confidence: float = Field(default=0.7, ge=0.0, le=1.0)
+
+
+class LLMReportPayload(BaseModel):
+    answer: str = ""
+    strengths: list[LLMInsightItem] = Field(default_factory=list)
+    weaknesses: list[LLMInsightItem] = Field(default_factory=list)
+    controversies: list[LLMInsightItem] = Field(default_factory=list)
+    applicable_scenes: list[str] = Field(default_factory=list)
+    confidence: float = Field(default=0.7, ge=0.0, le=1.0)
+    suggestions: list[LLMSuggestionItem] = Field(default_factory=list)
 
 
 class ProductAnalysisService:
@@ -30,6 +53,7 @@ class ProductAnalysisService:
         self.review_service = ReviewExtractionService()
         self.question_service = QuestionGenerationService()
         self.retrieval_service = RetrievalService()
+        self.chat_gateway = QwenChatGateway()
 
     def analyze(self, request: ProductAnalysisRequest) -> ProductAnalysisResponse:
         package = self.dataset_service.load_product_package(
@@ -119,25 +143,17 @@ class ProductAnalysisService:
         aggregates: list[AspectAggregate],
         retrievals: list,
     ) -> ProductAnalysisReport:
-        client = OpenAI(api_key=self.settings.qwen_plus_api_key, base_url=self.settings.qwen_base_url)
         payload = {
             "product_id": product_id,
             "category_slug": category_slug,
             "aggregates": [aggregate.model_dump(mode="json") for aggregate in aggregates],
             "retrievals": [retrieval.model_dump(mode="json") for retrieval in retrievals[:10]],
         }
-        response = client.chat.completions.create(
-            model=self.settings.qwen_plus_model,
-            temperature=self.settings.llm_temperature,
-            max_tokens=self.settings.llm_max_tokens,
-            response_format={"type": "json_object"},
-            messages=[
-                {"role": "system", "content": get_prompt("report_generation_system")},
-                {"role": "user", "content": build_report_generation_user_prompt(payload)},
-            ],
+        parsed = self.chat_gateway.invoke_json(
+            prompt_template=get_prompt_template("report_generation_system"),
+            variables={"payload": payload},
+            schema=LLMReportPayload,
         )
-        content = response.choices[0].message.content or "{}"
-        parsed = json.loads(content)
         return self._hydrate_report_from_llm(product_id, category_slug, aggregates, retrievals, parsed)
 
     def _hydrate_report_from_llm(self, product_id: str, category_slug: str | None, aggregates: list[AspectAggregate], retrievals: list, payload: dict) -> ProductAnalysisReport:

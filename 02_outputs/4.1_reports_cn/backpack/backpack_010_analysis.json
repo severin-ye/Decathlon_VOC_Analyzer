@@ -2,7 +2,7 @@
   "extraction": {
     "product_id": "backpack_010",
     "category_slug": "backpack",
-    "extraction_mode": "heuristic",
+    "extraction_mode": "llm",
     "preprocessed_reviews": [
       {
         "review_id": "backpack_010_review_0001",
@@ -60,49 +60,61 @@
         "aspect_id": "backpack_010_review_0001_aspect_01",
         "review_id": "backpack_010_review_0001",
         "product_id": "backpack_010",
-        "aspect": "overall_experience",
+        "aspect": "收纳功能",
         "sentiment": "positive",
-        "opinion": "优点是能将物品集中收纳。性价比很高。",
-        "evidence_span": "优点是能将物品集中收纳。性价比很高。",
-        "usage_scene": null,
-        "confidence": 0.56,
-        "extraction_mode": "heuristic"
+        "opinion": "能将物品集中收纳",
+        "evidence_span": "优点是能将物品集中收纳。",
+        "usage_scene": "日常通勤或短途出行时整理随身物品",
+        "confidence": 0.95,
+        "extraction_mode": "llm"
+      },
+      {
+        "aspect_id": "backpack_010_review_0001_aspect_02",
+        "review_id": "backpack_010_review_0001",
+        "product_id": "backpack_010",
+        "aspect": "性价比",
+        "sentiment": "positive",
+        "opinion": "很高",
+        "evidence_span": "性价比很高。",
+        "usage_scene": "",
+        "confidence": 0.92,
+        "extraction_mode": "llm"
       },
       {
         "aspect_id": "backpack_010_review_0002_aspect_01",
         "review_id": "backpack_010_review_0002",
         "product_id": "backpack_010",
-        "aspect": "overall_experience",
+        "aspect": "整体体验",
         "sentiment": "positive",
-        "opinion": "哇，太喜欢了！谢谢迪卡侬。",
+        "opinion": "非常喜欢，表达感谢",
         "evidence_span": "哇，太喜欢了！谢谢迪卡侬。",
-        "usage_scene": null,
-        "confidence": 0.56,
-        "extraction_mode": "heuristic"
+        "usage_scene": "",
+        "confidence": 0.95,
+        "extraction_mode": "llm"
       },
       {
         "aspect_id": "backpack_010_review_0004_aspect_01",
         "review_id": "backpack_010_review_0004",
         "product_id": "backpack_010",
-        "aspect": "overall_experience",
+        "aspect": "背负舒适性",
         "sentiment": "positive",
-        "opinion": "舒适且符合人体工学设计",
+        "opinion": "舒适、符合人体工学",
         "evidence_span": "舒适且符合人体工学设计",
-        "usage_scene": null,
-        "confidence": 0.56,
-        "extraction_mode": "heuristic"
+        "usage_scene": "日常通勤或长时间背负",
+        "confidence": 0.95,
+        "extraction_mode": "llm"
       },
       {
         "aspect_id": "backpack_010_review_0005_aspect_01",
         "review_id": "backpack_010_review_0005",
         "product_id": "backpack_010",
-        "aspect": "overall_experience",
+        "aspect": "外观设计与实用性",
         "sentiment": "positive",
-        "opinion": "一直想要一款耐用、又能装很多卡片的钱包/小手袋。别人看到后还经常问我是在哪儿买的。",
+        "opinion": "耐用、能装很多卡片、引人关注",
         "evidence_span": "一直想要一款耐用、又能装很多卡片的钱包/小手袋。别人看到后还经常问我是在哪儿买的。",
-        "usage_scene": null,
-        "confidence": 0.56,
-        "extraction_mode": "heuristic"
+        "usage_scene": "日常携带、社交展示",
+        "confidence": 0.92,
+        "extraction_mode": "llm"
       }
     ],
     "skipped_review_ids": [
@@ -115,145 +127,221 @@
     {
       "question_id": "backpack_010_review_0001_aspect_01_q_01",
       "source_review_id": "backpack_010_review_0001",
-      "source_aspect": "overall_experience",
+      "source_aspect": "收纳功能",
       "source_aspect_id": "backpack_010_review_0001_aspect_01",
-      "question": "商品文案中是否存在能解释“overall_experience”相关体验的明确描述？",
-      "rationale": "需要先确认商品页文本是否直接支持该评论观点。",
+      "question": "该商品是否具备明确的分隔结构（如隔层、拉链袋、弹性绑带等），以支持将不同物品集中收纳？",
+      "rationale": "需验证‘能将物品集中收纳’这一功能是否通过具体物理结构实现，该结构应可在商品详情页文字描述或主图/细节图中被识别。",
       "expected_evidence_routes": [
-        "text"
+        "text",
+        "image"
       ],
-      "confidence": 0.66
+      "confidence": 0.92
     },
     {
       "question_id": "backpack_010_review_0001_aspect_01_q_02",
       "source_review_id": "backpack_010_review_0001",
-      "source_aspect": "overall_experience",
+      "source_aspect": "收纳功能",
       "source_aspect_id": "backpack_010_review_0001_aspect_01",
-      "question": "商品图片中是否存在能支撑“overall_experience”判断的结构或外观证据？",
-      "rationale": "需要检查视觉证据能否支撑评论中的体验判断。",
+      "question": "在日常通勤或短途出行场景下，该商品能否同时容纳手机、钥匙、耳机、交通卡等常见随身小物并保持有序不混杂？",
+      "rationale": "紧扣usage_scene与opinion，问题聚焦可被用户实际使用反馈或商品规格参数（如内部尺寸、收纳容量说明）或场景图所佐证的具体收纳能力。",
       "expected_evidence_routes": [
+        "text",
         "image"
       ],
-      "confidence": 0.66
+      "confidence": 0.87
+    },
+    {
+      "question_id": "backpack_010_review_0001_aspect_02_q_01",
+      "source_review_id": "backpack_010_review_0001",
+      "source_aspect": "性价比",
+      "source_aspect_id": "backpack_010_review_0001_aspect_02",
+      "question": "该商品的售价与同类产品相比是否偏低，或其配置/功能是否明显优于同价位其他商品？",
+      "rationale": "性价比高需有价格与性能/配置的客观对比依据，问题聚焦于可被商品标题、参数表、价格标签或竞品对比图验证的具体维度。",
+      "expected_evidence_routes": [
+        "text",
+        "image"
+      ],
+      "confidence": 0.92
+    },
+    {
+      "question_id": "backpack_010_review_0001_aspect_02_q_02",
+      "source_review_id": "backpack_010_review_0001",
+      "source_aspect": "性价比",
+      "source_aspect_id": "backpack_010_review_0001_aspect_02",
+      "question": "商品详情页是否明确列出了核心参数（如性能、材质、容量等）及其对应的价格，并暗示该组合在当前市场中具有优势？",
+      "rationale": "‘性价比很高’这一判断依赖于参数与价格的显性关联呈现，问题指向可从商品详情文本或信息图表中直接提取的证据。",
+      "expected_evidence_routes": [
+        "text",
+        "image"
+      ],
+      "confidence": 0.88
     },
     {
       "question_id": "backpack_010_review_0002_aspect_01_q_01",
       "source_review_id": "backpack_010_review_0002",
-      "source_aspect": "overall_experience",
+      "source_aspect": "整体体验",
       "source_aspect_id": "backpack_010_review_0002_aspect_01",
-      "question": "商品文案中是否存在能解释“overall_experience”相关体验的明确描述？",
-      "rationale": "需要先确认商品页文本是否直接支持该评论观点。",
+      "question": "用户是否在商品评价中明确表达了对整体体验的正面情感，如‘非常喜欢’或类似表述？",
+      "rationale": "该问题聚焦于验证评论中是否真实存在与‘整体体验’相关的强烈正面情感表述，可直接通过文本证据‘哇，太喜欢了！谢谢迪卡侬。’核验。",
       "expected_evidence_routes": [
         "text"
       ],
-      "confidence": 0.66
+      "confidence": 0.95
     },
     {
       "question_id": "backpack_010_review_0002_aspect_01_q_02",
       "source_review_id": "backpack_010_review_0002",
-      "source_aspect": "overall_experience",
+      "source_aspect": "整体体验",
       "source_aspect_id": "backpack_010_review_0002_aspect_01",
-      "question": "商品图片中是否存在能支撑“overall_experience”判断的结构或外观证据？",
-      "rationale": "需要检查视觉证据能否支撑评论中的体验判断。",
+      "question": "用户感谢的对象是否为品牌方（迪卡侬），且该致谢是否指向整体购物或使用体验而非单一功能或售后？",
+      "rationale": "‘谢谢迪卡侬’需结合上下文判断其感谢范围；若前文无具体事件指向（如仅退款、换货），则默认指向整体体验，可通过文本连贯性及无其他限定信息来验证。",
       "expected_evidence_routes": [
-        "image"
+        "text"
       ],
-      "confidence": 0.66
+      "confidence": 0.88
     },
     {
       "question_id": "backpack_010_review_0004_aspect_01_q_01",
       "source_review_id": "backpack_010_review_0004",
-      "source_aspect": "overall_experience",
+      "source_aspect": "背负舒适性",
       "source_aspect_id": "backpack_010_review_0004_aspect_01",
-      "question": "商品文案中是否存在能解释“overall_experience”相关体验的明确描述？",
-      "rationale": "需要先确认商品页文本是否直接支持该评论观点。",
+      "question": "该背包的肩带和背板是否采用符合人体工学的曲线设计或可调节结构，以适配不同体型并缓解长时间背负压力？",
+      "rationale": "问题聚焦于‘符合人体工学’的具体实现形式（如曲线设计、可调节结构），可通过商品详情页中的结构描述、技术参数或产品实拍图（如肩带剖面、背板支撑结构）进行核验。",
       "expected_evidence_routes": [
-        "text"
+        "text",
+        "image"
       ],
-      "confidence": 0.66
+      "confidence": 0.92
     },
     {
       "question_id": "backpack_010_review_0004_aspect_01_q_02",
       "source_review_id": "backpack_010_review_0004",
-      "source_aspect": "overall_experience",
+      "source_aspect": "背负舒适性",
       "source_aspect_id": "backpack_010_review_0004_aspect_01",
-      "question": "商品图片中是否存在能支撑“overall_experience”判断的结构或外观证据？",
-      "rationale": "需要检查视觉证据能否支撑评论中的体验判断。",
+      "question": "在日常通勤或连续背负2小时以上的场景中，用户是否反馈肩带无明显压痕、背部无闷热感或滑落现象？",
+      "rationale": "问题锚定‘日常通勤或长时间背负’这一具体使用场景，针对‘舒适’的客观表现（压痕、闷热、滑落）设问，答案可由用户真实评价文本或带时间/场景标签的晒单图片佐证。",
       "expected_evidence_routes": [
+        "text",
         "image"
       ],
-      "confidence": 0.66
+      "confidence": 0.88
     },
     {
       "question_id": "backpack_010_review_0005_aspect_01_q_01",
       "source_review_id": "backpack_010_review_0005",
-      "source_aspect": "overall_experience",
+      "source_aspect": "外观设计与实用性",
       "source_aspect_id": "backpack_010_review_0005_aspect_01",
-      "question": "商品文案中是否存在能解释“overall_experience”相关体验的明确描述？",
-      "rationale": "需要先确认商品页文本是否直接支持该评论观点。",
+      "question": "该钱包/小手袋是否具备可容纳多张卡片的物理结构（如多个卡槽或加宽卡位）？",
+      "rationale": "‘能装很多卡片’是关于产品物理构造的客观功能描述，需通过商品图片（展示内部卡槽数量/布局）或商品详情文本（明确标注卡槽数量、容量参数）进行核验。",
       "expected_evidence_routes": [
-        "text"
+        "text",
+        "image"
       ],
-      "confidence": 0.66
+      "confidence": 0.95
     },
     {
       "question_id": "backpack_010_review_0005_aspect_01_q_02",
       "source_review_id": "backpack_010_review_0005",
-      "source_aspect": "overall_experience",
+      "source_aspect": "外观设计与实用性",
       "source_aspect_id": "backpack_010_review_0005_aspect_01",
-      "question": "商品图片中是否存在能支撑“overall_experience”判断的结构或外观证据？",
-      "rationale": "需要检查视觉证据能否支撑评论中的体验判断。",
+      "question": "该钱包/小手袋的外观设计是否具有高辨识度或视觉吸引力，使其在社交场景中易引发他人主动询问购买渠道？",
+      "rationale": "‘别人看到后还经常问我是在哪儿买的’反映了外观在真实社交场景中的引人关注效果，需结合商品图片（呈现配色、材质光泽、造型独特性）及用户评价/详情页中关于‘吸睛’‘被夸’等主观反馈文本交叉验证。",
       "expected_evidence_routes": [
-        "image"
+        "image",
+        "text"
       ],
-      "confidence": 0.66
+      "confidence": 0.88
     }
   ],
   "retrievals": [
     {
-      "retrieval_id": "retrieval_93a422ea8853",
+      "retrieval_id": "retrieval_1f57568d247b",
       "product_id": "backpack_010",
-      "query": "商品文案中是否存在能解释“overall_experience”相关体验的明确描述？",
+      "query": "该商品是否具备明确的分隔结构（如隔层、拉链袋、弹性绑带等），以支持将不同物品集中收纳？",
       "source_review_id": "backpack_010_review_0001",
-      "source_aspect": "overall_experience",
+      "source_aspect": "收纳功能",
       "source_question_id": "backpack_010_review_0001_aspect_01_q_01",
-      "source_question": "商品文案中是否存在能解释“overall_experience”相关体验的明确描述？",
-      "source_evidence_span": "需要先确认商品页文本是否直接支持该评论观点。",
+      "source_question": "该商品是否具备明确的分隔结构（如隔层、拉链袋、弹性绑带等），以支持将不同物品集中收纳？",
+      "source_evidence_span": "需验证‘能将物品集中收纳’这一功能是否通过具体物理结构实现，该结构应可在商品详情页文字描述或主图/细节图中被识别。",
       "retrieved": [
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_model_description_a0cc70fa411a",
+          "text_block_id": "backpack_010_product_name_c5bfea4ff733",
           "image_id": null,
-          "source_section": "model_description",
+          "source_section": "product_name",
           "image_path": null,
-          "content_preview": "这款坚固实用的旅行钱包是安全存放个人物品的最佳选择，既适用于旅行，也适用于日常生活。它是一款让您安心享受旅途的背包。 [保修期] 2年",
-          "embedding_score": 0.38479842427850713,
-          "rerank_score": 0.38479842427850713
+          "content_preview": "背包旅行用收纳钱包，适合小号尺寸",
+          "embedding_score": 0.5775438598085206,
+          "rerank_score": 0.17032564489795335
         },
         {
           "product_id": "backpack_010",
-          "route": "text",
-          "text_block_id": "backpack_010_category_7939c8edd575",
-          "image_id": null,
-          "source_section": "category",
-          "image_path": null,
-          "content_preview": "所有运动 > 登山 > 装备 > 背包 > 背包配件",
-          "embedding_score": 0.35065544030741636,
-          "rerank_score": 0.35065544030741636
+          "route": "image",
+          "text_block_id": null,
+          "image_id": "backpack_010_8512010_3d8cd9fb54f5",
+          "source_section": null,
+          "image_path": "images/8512010/img4.png",
+          "content_preview": "背包旅行用收纳钱包，适合小号尺寸 所有运动 > 登山 > 装备 > 背包 > 背包配件 这款坚固实用的旅行钱包是安全存放个人物品的最佳选择，既适用于旅行，也适用于日常生活。它是一款让您安心享受旅途的背包。 [保修期] 2年 8512010 images/8512010/img4.png",
+          "embedding_score": 0.5800863349990902,
+          "rerank_score": 0.1660283437786423
+        },
+        {
+          "product_id": "backpack_010",
+          "route": "image",
+          "text_block_id": null,
+          "image_id": "backpack_010_8512010_2cbe72e4eb39",
+          "source_section": null,
+          "image_path": "images/8512010/img5.png",
+          "content_preview": "背包旅行用收纳钱包，适合小号尺寸 所有运动 > 登山 > 装备 > 背包 > 背包配件 这款坚固实用的旅行钱包是安全存放个人物品的最佳选择，既适用于旅行，也适用于日常生活。它是一款让您安心享受旅途的背包。 [保修期] 2年 8512010 images/8512010/img5.png",
+          "embedding_score": 0.5796147662026495,
+          "rerank_score": 0.16590945446946057
+        },
+        {
+          "product_id": "backpack_010",
+          "route": "image",
+          "text_block_id": null,
+          "image_id": "backpack_010_8512010_224bc9da0299",
+          "source_section": null,
+          "image_path": "images/8512010/img1.png",
+          "content_preview": "背包旅行用收纳钱包，适合小号尺寸 所有运动 > 登山 > 装备 > 背包 > 背包配件 这款坚固实用的旅行钱包是安全存放个人物品的最佳选择，既适用于旅行，也适用于日常生活。它是一款让您安心享受旅途的背包。 [保修期] 2年 8512010 images/8512010/img1.png",
+          "embedding_score": 0.5792685458275768,
+          "rerank_score": 0.16588974561776118
         }
       ]
     },
     {
-      "retrieval_id": "retrieval_9931f6d4e4f1",
+      "retrieval_id": "retrieval_30c68cb1f08b",
       "product_id": "backpack_010",
-      "query": "商品图片中是否存在能支撑“overall_experience”判断的结构或外观证据？",
+      "query": "在日常通勤或短途出行场景下，该商品能否同时容纳手机、钥匙、耳机、交通卡等常见随身小物并保持有序不混杂？",
       "source_review_id": "backpack_010_review_0001",
-      "source_aspect": "overall_experience",
+      "source_aspect": "收纳功能",
       "source_question_id": "backpack_010_review_0001_aspect_01_q_02",
-      "source_question": "商品图片中是否存在能支撑“overall_experience”判断的结构或外观证据？",
-      "source_evidence_span": "需要检查视觉证据能否支撑评论中的体验判断。",
+      "source_question": "在日常通勤或短途出行场景下，该商品能否同时容纳手机、钥匙、耳机、交通卡等常见随身小物并保持有序不混杂？",
+      "source_evidence_span": "紧扣usage_scene与opinion，问题聚焦可被用户实际使用反馈或商品规格参数（如内部尺寸、收纳容量说明）或场景图所佐证的具体收纳能力。",
       "retrieved": [
+        {
+          "product_id": "backpack_010",
+          "route": "text",
+          "text_block_id": "backpack_010_model_description_a0cc70fa411a",
+          "image_id": null,
+          "source_section": "model_description",
+          "image_path": null,
+          "content_preview": "这款坚固实用的旅行钱包是安全存放个人物品的最佳选择，既适用于旅行，也适用于日常生活。它是一款让您安心享受旅途的背包。 [保修期] 2年",
+          "embedding_score": 0.6210724954597573,
+          "rerank_score": 0.16705258618365232
+        },
+        {
+          "product_id": "backpack_010",
+          "route": "text",
+          "text_block_id": "backpack_010_product_name_c5bfea4ff733",
+          "image_id": null,
+          "source_section": "product_name",
+          "image_path": null,
+          "content_preview": "背包旅行用收纳钱包，适合小号尺寸",
+          "embedding_score": 0.5884625439816003,
+          "rerank_score": 0.16528323489903962
+        },
         {
           "product_id": "backpack_010",
           "route": "image",
@@ -262,31 +350,143 @@
           "source_section": null,
           "image_path": "images/8512010/img2.png",
           "content_preview": "背包旅行用收纳钱包，适合小号尺寸 所有运动 > 登山 > 装备 > 背包 > 背包配件 这款坚固实用的旅行钱包是安全存放个人物品的最佳选择，既适用于旅行，也适用于日常生活。它是一款让您安心享受旅途的背包。 [保修期] 2年 8512010 images/8512010/img2.png",
-          "embedding_score": 0.3655635349953706,
-          "rerank_score": 0.3655635349953706
+          "embedding_score": 0.6012600860418073,
+          "rerank_score": 0.15729241552547515
         },
         {
           "product_id": "backpack_010",
           "route": "image",
           "text_block_id": null,
-          "image_id": "backpack_010_8512010_224bc9da0299",
+          "image_id": "backpack_010_8512010_3d8cd9fb54f5",
           "source_section": null,
-          "image_path": "images/8512010/img1.png",
-          "content_preview": "背包旅行用收纳钱包，适合小号尺寸 所有运动 > 登山 > 装备 > 背包 > 背包配件 这款坚固实用的旅行钱包是安全存放个人物品的最佳选择，既适用于旅行，也适用于日常生活。它是一款让您安心享受旅途的背包。 [保修期] 2年 8512010 images/8512010/img1.png",
-          "embedding_score": 0.3648723206315454,
-          "rerank_score": 0.3648723206315454
+          "image_path": "images/8512010/img4.png",
+          "content_preview": "背包旅行用收纳钱包，适合小号尺寸 所有运动 > 登山 > 装备 > 背包 > 背包配件 这款坚固实用的旅行钱包是安全存放个人物品的最佳选择，既适用于旅行，也适用于日常生活。它是一款让您安心享受旅途的背包。 [保修期] 2年 8512010 images/8512010/img4.png",
+          "embedding_score": 0.6016884825352559,
+          "rerank_score": 0.1570338595790955
         }
       ]
     },
     {
-      "retrieval_id": "retrieval_5c01f1ade7e8",
+      "retrieval_id": "retrieval_2fa3aac87a6a",
       "product_id": "backpack_010",
-      "query": "商品文案中是否存在能解释“overall_experience”相关体验的明确描述？",
+      "query": "该商品的售价与同类产品相比是否偏低，或其配置/功能是否明显优于同价位其他商品？",
+      "source_review_id": "backpack_010_review_0001",
+      "source_aspect": "性价比",
+      "source_question_id": "backpack_010_review_0001_aspect_02_q_01",
+      "source_question": "该商品的售价与同类产品相比是否偏低，或其配置/功能是否明显优于同价位其他商品？",
+      "source_evidence_span": "性价比高需有价格与性能/配置的客观对比依据，问题聚焦于可被商品标题、参数表、价格标签或竞品对比图验证的具体维度。",
+      "retrieved": [
+        {
+          "product_id": "backpack_010",
+          "route": "text",
+          "text_block_id": "backpack_010_model_description_a0cc70fa411a",
+          "image_id": null,
+          "source_section": "model_description",
+          "image_path": null,
+          "content_preview": "这款坚固实用的旅行钱包是安全存放个人物品的最佳选择，既适用于旅行，也适用于日常生活。它是一款让您安心享受旅途的背包。 [保修期] 2年",
+          "embedding_score": 0.38745721870232686,
+          "rerank_score": 0.12065123463441202
+        },
+        {
+          "product_id": "backpack_010",
+          "route": "text",
+          "text_block_id": "backpack_010_category_7939c8edd575",
+          "image_id": null,
+          "source_section": "category",
+          "image_path": null,
+          "content_preview": "所有运动 > 登山 > 装备 > 背包 > 背包配件",
+          "embedding_score": 0.337979591361639,
+          "rerank_score": 0.11617808630292592
+        },
+        {
+          "product_id": "backpack_010",
+          "route": "image",
+          "text_block_id": null,
+          "image_id": "backpack_010_8512010_3d8cd9fb54f5",
+          "source_section": null,
+          "image_path": "images/8512010/img4.png",
+          "content_preview": "背包旅行用收纳钱包，适合小号尺寸 所有运动 > 登山 > 装备 > 背包 > 背包配件 这款坚固实用的旅行钱包是安全存放个人物品的最佳选择，既适用于旅行，也适用于日常生活。它是一款让您安心享受旅途的背包。 [保修期] 2年 8512010 images/8512010/img4.png",
+          "embedding_score": 0.36084532228219524,
+          "rerank_score": 0.07412074221976635
+        },
+        {
+          "product_id": "backpack_010",
+          "route": "image",
+          "text_block_id": null,
+          "image_id": "backpack_010_8512010_2cbe72e4eb39",
+          "source_section": null,
+          "image_path": "images/8512010/img5.png",
+          "content_preview": "背包旅行用收纳钱包，适合小号尺寸 所有运动 > 登山 > 装备 > 背包 > 背包配件 这款坚固实用的旅行钱包是安全存放个人物品的最佳选择，既适用于旅行，也适用于日常生活。它是一款让您安心享受旅途的背包。 [保修期] 2年 8512010 images/8512010/img5.png",
+          "embedding_score": 0.3595923031716459,
+          "rerank_score": 0.07333569991529773
+        }
+      ]
+    },
+    {
+      "retrieval_id": "retrieval_d14942ae21ac",
+      "product_id": "backpack_010",
+      "query": "商品详情页是否明确列出了核心参数（如性能、材质、容量等）及其对应的价格，并暗示该组合在当前市场中具有优势？",
+      "source_review_id": "backpack_010_review_0001",
+      "source_aspect": "性价比",
+      "source_question_id": "backpack_010_review_0001_aspect_02_q_02",
+      "source_question": "商品详情页是否明确列出了核心参数（如性能、材质、容量等）及其对应的价格，并暗示该组合在当前市场中具有优势？",
+      "source_evidence_span": "‘性价比很高’这一判断依赖于参数与价格的显性关联呈现，问题指向可从商品详情文本或信息图表中直接提取的证据。",
+      "retrieved": [
+        {
+          "product_id": "backpack_010",
+          "route": "text",
+          "text_block_id": "backpack_010_model_description_a0cc70fa411a",
+          "image_id": null,
+          "source_section": "model_description",
+          "image_path": null,
+          "content_preview": "这款坚固实用的旅行钱包是安全存放个人物品的最佳选择，既适用于旅行，也适用于日常生活。它是一款让您安心享受旅途的背包。 [保修期] 2年",
+          "embedding_score": 0.3642167358103519,
+          "rerank_score": 0.05870137341438366
+        },
+        {
+          "product_id": "backpack_010",
+          "route": "text",
+          "text_block_id": "backpack_010_category_7939c8edd575",
+          "image_id": null,
+          "source_section": "category",
+          "image_path": null,
+          "content_preview": "所有运动 > 登山 > 装备 > 背包 > 背包配件",
+          "embedding_score": 0.38288420997828054,
+          "rerank_score": 0.03980271339440261
+        },
+        {
+          "product_id": "backpack_010",
+          "route": "image",
+          "text_block_id": null,
+          "image_id": "backpack_010_8512010_95f26bad8172",
+          "source_section": null,
+          "image_path": "images/8512010/img3.png",
+          "content_preview": "背包旅行用收纳钱包，适合小号尺寸 所有运动 > 登山 > 装备 > 背包 > 背包配件 这款坚固实用的旅行钱包是安全存放个人物品的最佳选择，既适用于旅行，也适用于日常生活。它是一款让您安心享受旅途的背包。 [保修期] 2年 8512010 images/8512010/img3.png",
+          "embedding_score": 0.34616515974664525,
+          "rerank_score": 0.03106057015379016
+        },
+        {
+          "product_id": "backpack_010",
+          "route": "image",
+          "text_block_id": null,
+          "image_id": "backpack_010_8512010_3d8cd9fb54f5",
+          "source_section": null,
+          "image_path": "images/8512010/img4.png",
+          "content_preview": "背包旅行用收纳钱包，适合小号尺寸 所有运动 > 登山 > 装备 > 背包 > 背包配件 这款坚固实用的旅行钱包是安全存放个人物品的最佳选择，既适用于旅行，也适用于日常生活。它是一款让您安心享受旅途的背包。 [保修期] 2年 8512010 images/8512010/img4.png",
+          "embedding_score": 0.3463889159543426,
+          "rerank_score": 0.029554116815777912
+        }
+      ]
+    },
+    {
+      "retrieval_id": "retrieval_33a516ecd607",
+      "product_id": "backpack_010",
+      "query": "用户是否在商品评价中明确表达了对整体体验的正面情感，如‘非常喜欢’或类似表述？",
       "source_review_id": "backpack_010_review_0002",
-      "source_aspect": "overall_experience",
+      "source_aspect": "整体体验",
       "source_question_id": "backpack_010_review_0002_aspect_01_q_01",
-      "source_question": "商品文案中是否存在能解释“overall_experience”相关体验的明确描述？",
-      "source_evidence_span": "需要先确认商品页文本是否直接支持该评论观点。",
+      "source_question": "用户是否在商品评价中明确表达了对整体体验的正面情感，如‘非常喜欢’或类似表述？",
+      "source_evidence_span": "该问题聚焦于验证评论中是否真实存在与‘整体体验’相关的强烈正面情感表述，可直接通过文本证据‘哇，太喜欢了！谢谢迪卡侬。’核验。",
       "retrieved": [
         {
           "product_id": "backpack_010",
@@ -296,77 +496,66 @@
           "source_section": "model_description",
           "image_path": null,
           "content_preview": "这款坚固实用的旅行钱包是安全存放个人物品的最佳选择，既适用于旅行，也适用于日常生活。它是一款让您安心享受旅途的背包。 [保修期] 2年",
-          "embedding_score": 0.38479842427850713,
-          "rerank_score": 0.38479842427850713
+          "embedding_score": 0.3606968491695851,
+          "rerank_score": 0.14528049628024306
         },
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_category_7939c8edd575",
+          "text_block_id": "backpack_010_product_name_c5bfea4ff733",
           "image_id": null,
-          "source_section": "category",
+          "source_section": "product_name",
           "image_path": null,
-          "content_preview": "所有运动 > 登山 > 装备 > 背包 > 背包配件",
-          "embedding_score": 0.35065544030741636,
-          "rerank_score": 0.35065544030741636
+          "content_preview": "背包旅行用收纳钱包，适合小号尺寸",
+          "embedding_score": 0.27649172178374276,
+          "rerank_score": 0.13609225315603934
         }
       ]
     },
     {
-      "retrieval_id": "retrieval_26ff9c662b66",
+      "retrieval_id": "retrieval_b1dd9df7e997",
       "product_id": "backpack_010",
-      "query": "商品图片中是否存在能支撑“overall_experience”判断的结构或外观证据？",
+      "query": "用户感谢的对象是否为品牌方（迪卡侬），且该致谢是否指向整体购物或使用体验而非单一功能或售后？",
       "source_review_id": "backpack_010_review_0002",
-      "source_aspect": "overall_experience",
+      "source_aspect": "整体体验",
       "source_question_id": "backpack_010_review_0002_aspect_01_q_02",
-      "source_question": "商品图片中是否存在能支撑“overall_experience”判断的结构或外观证据？",
-      "source_evidence_span": "需要检查视觉证据能否支撑评论中的体验判断。",
+      "source_question": "用户感谢的对象是否为品牌方（迪卡侬），且该致谢是否指向整体购物或使用体验而非单一功能或售后？",
+      "source_evidence_span": "‘谢谢迪卡侬’需结合上下文判断其感谢范围；若前文无具体事件指向（如仅退款、换货），则默认指向整体体验，可通过文本连贯性及无其他限定信息来验证。",
       "retrieved": [
         {
           "product_id": "backpack_010",
-          "route": "image",
-          "text_block_id": null,
-          "image_id": "backpack_010_8512010_75917bd74847",
-          "source_section": null,
-          "image_path": "images/8512010/img2.png",
-          "content_preview": "背包旅行用收纳钱包，适合小号尺寸 所有运动 > 登山 > 装备 > 背包 > 背包配件 这款坚固实用的旅行钱包是安全存放个人物品的最佳选择，既适用于旅行，也适用于日常生活。它是一款让您安心享受旅途的背包。 [保修期] 2年 8512010 images/8512010/img2.png",
-          "embedding_score": 0.3655635349953706,
-          "rerank_score": 0.3655635349953706
+          "route": "text",
+          "text_block_id": "backpack_010_model_description_a0cc70fa411a",
+          "image_id": null,
+          "source_section": "model_description",
+          "image_path": null,
+          "content_preview": "这款坚固实用的旅行钱包是安全存放个人物品的最佳选择，既适用于旅行，也适用于日常生活。它是一款让您安心享受旅途的背包。 [保修期] 2年",
+          "embedding_score": 0.37124141632040175,
+          "rerank_score": 0.0902885955618279
         },
         {
           "product_id": "backpack_010",
-          "route": "image",
-          "text_block_id": null,
-          "image_id": "backpack_010_8512010_224bc9da0299",
-          "source_section": null,
-          "image_path": "images/8512010/img1.png",
-          "content_preview": "背包旅行用收纳钱包，适合小号尺寸 所有运动 > 登山 > 装备 > 背包 > 背包配件 这款坚固实用的旅行钱包是安全存放个人物品的最佳选择，既适用于旅行，也适用于日常生活。它是一款让您安心享受旅途的背包。 [保修期] 2年 8512010 images/8512010/img1.png",
-          "embedding_score": 0.3648723206315454,
-          "rerank_score": 0.3648723206315454
+          "route": "text",
+          "text_block_id": "backpack_010_product_name_c5bfea4ff733",
+          "image_id": null,
+          "source_section": "product_name",
+          "image_path": null,
+          "content_preview": "背包旅行用收纳钱包，适合小号尺寸",
+          "embedding_score": 0.34376788097272964,
+          "rerank_score": 0.08704748561678237
         }
       ]
     },
     {
-      "retrieval_id": "retrieval_a18eda1e95e4",
+      "retrieval_id": "retrieval_f987e42e8a96",
       "product_id": "backpack_010",
-      "query": "商品文案中是否存在能解释“overall_experience”相关体验的明确描述？",
+      "query": "该背包的肩带和背板是否采用符合人体工学的曲线设计或可调节结构，以适配不同体型并缓解长时间背负压力？",
       "source_review_id": "backpack_010_review_0004",
-      "source_aspect": "overall_experience",
+      "source_aspect": "背负舒适性",
       "source_question_id": "backpack_010_review_0004_aspect_01_q_01",
-      "source_question": "商品文案中是否存在能解释“overall_experience”相关体验的明确描述？",
-      "source_evidence_span": "需要先确认商品页文本是否直接支持该评论观点。",
+      "source_question": "该背包的肩带和背板是否采用符合人体工学的曲线设计或可调节结构，以适配不同体型并缓解长时间背负压力？",
+      "source_evidence_span": "问题聚焦于‘符合人体工学’的具体实现形式（如曲线设计、可调节结构），可通过商品详情页中的结构描述、技术参数或产品实拍图（如肩带剖面、背板支撑结构）进行核验。",
       "retrieved": [
-        {
-          "product_id": "backpack_010",
-          "route": "text",
-          "text_block_id": "backpack_010_model_description_a0cc70fa411a",
-          "image_id": null,
-          "source_section": "model_description",
-          "image_path": null,
-          "content_preview": "这款坚固实用的旅行钱包是安全存放个人物品的最佳选择，既适用于旅行，也适用于日常生活。它是一款让您安心享受旅途的背包。 [保修期] 2年",
-          "embedding_score": 0.38479842427850713,
-          "rerank_score": 0.38479842427850713
-        },
         {
           "product_id": "backpack_010",
           "route": "text",
@@ -375,54 +564,53 @@
           "source_section": "category",
           "image_path": null,
           "content_preview": "所有运动 > 登山 > 装备 > 背包 > 背包配件",
-          "embedding_score": 0.35065544030741636,
-          "rerank_score": 0.35065544030741636
+          "embedding_score": 0.6369565104928345,
+          "rerank_score": 0.1986543131329364
+        },
+        {
+          "product_id": "backpack_010",
+          "route": "image",
+          "text_block_id": null,
+          "image_id": "backpack_010_8512010_2cbe72e4eb39",
+          "source_section": null,
+          "image_path": "images/8512010/img5.png",
+          "content_preview": "背包旅行用收纳钱包，适合小号尺寸 所有运动 > 登山 > 装备 > 背包 > 背包配件 这款坚固实用的旅行钱包是安全存放个人物品的最佳选择，既适用于旅行，也适用于日常生活。它是一款让您安心享受旅途的背包。 [保修期] 2年 8512010 images/8512010/img5.png",
+          "embedding_score": 0.5853736626676166,
+          "rerank_score": 0.16475558709951
+        },
+        {
+          "product_id": "backpack_010",
+          "route": "image",
+          "text_block_id": null,
+          "image_id": "backpack_010_8512010_3d8cd9fb54f5",
+          "source_section": null,
+          "image_path": "images/8512010/img4.png",
+          "content_preview": "背包旅行用收纳钱包，适合小号尺寸 所有运动 > 登山 > 装备 > 背包 > 背包配件 这款坚固实用的旅行钱包是安全存放个人物品的最佳选择，既适用于旅行，也适用于日常生活。它是一款让您安心享受旅途的背包。 [保修期] 2年 8512010 images/8512010/img4.png",
+          "embedding_score": 0.5857950330339124,
+          "rerank_score": 0.1646818463614441
+        },
+        {
+          "product_id": "backpack_010",
+          "route": "image",
+          "text_block_id": null,
+          "image_id": "backpack_010_8512010_95f26bad8172",
+          "source_section": null,
+          "image_path": "images/8512010/img3.png",
+          "content_preview": "背包旅行用收纳钱包，适合小号尺寸 所有运动 > 登山 > 装备 > 背包 > 背包配件 这款坚固实用的旅行钱包是安全存放个人物品的最佳选择，既适用于旅行，也适用于日常生活。它是一款让您安心享受旅途的背包。 [保修期] 2年 8512010 images/8512010/img3.png",
+          "embedding_score": 0.5863550416872876,
+          "rerank_score": 0.1645140255556288
         }
       ]
     },
     {
-      "retrieval_id": "retrieval_ff9cd0d57977",
+      "retrieval_id": "retrieval_4282fb0a5f7a",
       "product_id": "backpack_010",
-      "query": "商品图片中是否存在能支撑“overall_experience”判断的结构或外观证据？",
+      "query": "在日常通勤或连续背负2小时以上的场景中，用户是否反馈肩带无明显压痕、背部无闷热感或滑落现象？",
       "source_review_id": "backpack_010_review_0004",
-      "source_aspect": "overall_experience",
+      "source_aspect": "背负舒适性",
       "source_question_id": "backpack_010_review_0004_aspect_01_q_02",
-      "source_question": "商品图片中是否存在能支撑“overall_experience”判断的结构或外观证据？",
-      "source_evidence_span": "需要检查视觉证据能否支撑评论中的体验判断。",
-      "retrieved": [
-        {
-          "product_id": "backpack_010",
-          "route": "image",
-          "text_block_id": null,
-          "image_id": "backpack_010_8512010_75917bd74847",
-          "source_section": null,
-          "image_path": "images/8512010/img2.png",
-          "content_preview": "背包旅行用收纳钱包，适合小号尺寸 所有运动 > 登山 > 装备 > 背包 > 背包配件 这款坚固实用的旅行钱包是安全存放个人物品的最佳选择，既适用于旅行，也适用于日常生活。它是一款让您安心享受旅途的背包。 [保修期] 2年 8512010 images/8512010/img2.png",
-          "embedding_score": 0.3655635349953706,
-          "rerank_score": 0.3655635349953706
-        },
-        {
-          "product_id": "backpack_010",
-          "route": "image",
-          "text_block_id": null,
-          "image_id": "backpack_010_8512010_224bc9da0299",
-          "source_section": null,
-          "image_path": "images/8512010/img1.png",
-          "content_preview": "背包旅行用收纳钱包，适合小号尺寸 所有运动 > 登山 > 装备 > 背包 > 背包配件 这款坚固实用的旅行钱包是安全存放个人物品的最佳选择，既适用于旅行，也适用于日常生活。它是一款让您安心享受旅途的背包。 [保修期] 2年 8512010 images/8512010/img1.png",
-          "embedding_score": 0.3648723206315454,
-          "rerank_score": 0.3648723206315454
-        }
-      ]
-    },
-    {
-      "retrieval_id": "retrieval_a4d5dac33c67",
-      "product_id": "backpack_010",
-      "query": "商品文案中是否存在能解释“overall_experience”相关体验的明确描述？",
-      "source_review_id": "backpack_010_review_0005",
-      "source_aspect": "overall_experience",
-      "source_question_id": "backpack_010_review_0005_aspect_01_q_01",
-      "source_question": "商品文案中是否存在能解释“overall_experience”相关体验的明确描述？",
-      "source_evidence_span": "需要先确认商品页文本是否直接支持该评论观点。",
+      "source_question": "在日常通勤或连续背负2小时以上的场景中，用户是否反馈肩带无明显压痕、背部无闷热感或滑落现象？",
+      "source_evidence_span": "问题锚定‘日常通勤或长时间背负’这一具体使用场景，针对‘舒适’的客观表现（压痕、闷热、滑落）设问，答案可由用户真实评价文本或带时间/场景标签的晒单图片佐证。",
       "retrieved": [
         {
           "product_id": "backpack_010",
@@ -432,8 +620,8 @@
           "source_section": "model_description",
           "image_path": null,
           "content_preview": "这款坚固实用的旅行钱包是安全存放个人物品的最佳选择，既适用于旅行，也适用于日常生活。它是一款让您安心享受旅途的背包。 [保修期] 2年",
-          "embedding_score": 0.38479842427850713,
-          "rerank_score": 0.38479842427850713
+          "embedding_score": 0.48105419247386555,
+          "rerank_score": 0.14268469144335116
         },
         {
           "product_id": "backpack_010",
@@ -443,21 +631,65 @@
           "source_section": "category",
           "image_path": null,
           "content_preview": "所有运动 > 登山 > 装备 > 背包 > 背包配件",
-          "embedding_score": 0.35065544030741636,
-          "rerank_score": 0.35065544030741636
+          "embedding_score": 0.5355270914487803,
+          "rerank_score": 0.14238591333954467
+        },
+        {
+          "product_id": "backpack_010",
+          "route": "image",
+          "text_block_id": null,
+          "image_id": "backpack_010_8512010_2cbe72e4eb39",
+          "source_section": null,
+          "image_path": "images/8512010/img5.png",
+          "content_preview": "背包旅行用收纳钱包，适合小号尺寸 所有运动 > 登山 > 装备 > 背包 > 背包配件 这款坚固实用的旅行钱包是安全存放个人物品的最佳选择，既适用于旅行，也适用于日常生活。它是一款让您安心享受旅途的背包。 [保修期] 2年 8512010 images/8512010/img5.png",
+          "embedding_score": 0.4823119007614814,
+          "rerank_score": 0.1277457579463302
+        },
+        {
+          "product_id": "backpack_010",
+          "route": "image",
+          "text_block_id": null,
+          "image_id": "backpack_010_8512010_3d8cd9fb54f5",
+          "source_section": null,
+          "image_path": "images/8512010/img4.png",
+          "content_preview": "背包旅行用收纳钱包，适合小号尺寸 所有运动 > 登山 > 装备 > 背包 > 背包配件 这款坚固实用的旅行钱包是安全存放个人物品的最佳选择，既适用于旅行，也适用于日常生活。它是一款让您安心享受旅途的背包。 [保修期] 2年 8512010 images/8512010/img4.png",
+          "embedding_score": 0.4822274117611389,
+          "rerank_score": 0.12757268244993913
         }
       ]
     },
     {
-      "retrieval_id": "retrieval_a7947277f7f8",
+      "retrieval_id": "retrieval_43a6dd2ae5a3",
       "product_id": "backpack_010",
-      "query": "商品图片中是否存在能支撑“overall_experience”判断的结构或外观证据？",
+      "query": "该钱包/小手袋是否具备可容纳多张卡片的物理结构（如多个卡槽或加宽卡位）？",
       "source_review_id": "backpack_010_review_0005",
-      "source_aspect": "overall_experience",
-      "source_question_id": "backpack_010_review_0005_aspect_01_q_02",
-      "source_question": "商品图片中是否存在能支撑“overall_experience”判断的结构或外观证据？",
-      "source_evidence_span": "需要检查视觉证据能否支撑评论中的体验判断。",
+      "source_aspect": "外观设计与实用性",
+      "source_question_id": "backpack_010_review_0005_aspect_01_q_01",
+      "source_question": "该钱包/小手袋是否具备可容纳多张卡片的物理结构（如多个卡槽或加宽卡位）？",
+      "source_evidence_span": "‘能装很多卡片’是关于产品物理构造的客观功能描述，需通过商品图片（展示内部卡槽数量/布局）或商品详情文本（明确标注卡槽数量、容量参数）进行核验。",
       "retrieved": [
+        {
+          "product_id": "backpack_010",
+          "route": "text",
+          "text_block_id": "backpack_010_product_name_c5bfea4ff733",
+          "image_id": null,
+          "source_section": "product_name",
+          "image_path": null,
+          "content_preview": "背包旅行用收纳钱包，适合小号尺寸",
+          "embedding_score": 0.6501328131907986,
+          "rerank_score": 0.17501132723935262
+        },
+        {
+          "product_id": "backpack_010",
+          "route": "image",
+          "text_block_id": null,
+          "image_id": "backpack_010_8512010_3d8cd9fb54f5",
+          "source_section": null,
+          "image_path": "images/8512010/img4.png",
+          "content_preview": "背包旅行用收纳钱包，适合小号尺寸 所有运动 > 登山 > 装备 > 背包 > 背包配件 这款坚固实用的旅行钱包是安全存放个人物品的最佳选择，既适用于旅行，也适用于日常生活。它是一款让您安心享受旅途的背包。 [保修期] 2年 8512010 images/8512010/img4.png",
+          "embedding_score": 0.5949170714349842,
+          "rerank_score": 0.17422982813574966
+        },
         {
           "product_id": "backpack_010",
           "route": "image",
@@ -466,8 +698,8 @@
           "source_section": null,
           "image_path": "images/8512010/img2.png",
           "content_preview": "背包旅行用收纳钱包，适合小号尺寸 所有运动 > 登山 > 装备 > 背包 > 背包配件 这款坚固实用的旅行钱包是安全存放个人物品的最佳选择，既适用于旅行，也适用于日常生活。它是一款让您安心享受旅途的背包。 [保修期] 2年 8512010 images/8512010/img2.png",
-          "embedding_score": 0.3655635349953706,
-          "rerank_score": 0.3655635349953706
+          "embedding_score": 0.5936000378599444,
+          "rerank_score": 0.17418414546535674
         },
         {
           "product_id": "backpack_010",
@@ -477,100 +709,340 @@
           "source_section": null,
           "image_path": "images/8512010/img1.png",
           "content_preview": "背包旅行用收纳钱包，适合小号尺寸 所有运动 > 登山 > 装备 > 背包 > 背包配件 这款坚固实用的旅行钱包是安全存放个人物品的最佳选择，既适用于旅行，也适用于日常生活。它是一款让您安心享受旅途的背包。 [保修期] 2年 8512010 images/8512010/img1.png",
-          "embedding_score": 0.3648723206315454,
-          "rerank_score": 0.3648723206315454
+          "embedding_score": 0.5929789719613786,
+          "rerank_score": 0.1740623194959154
+        }
+      ]
+    },
+    {
+      "retrieval_id": "retrieval_25648e927258",
+      "product_id": "backpack_010",
+      "query": "该钱包/小手袋的外观设计是否具有高辨识度或视觉吸引力，使其在社交场景中易引发他人主动询问购买渠道？",
+      "source_review_id": "backpack_010_review_0005",
+      "source_aspect": "外观设计与实用性",
+      "source_question_id": "backpack_010_review_0005_aspect_01_q_02",
+      "source_question": "该钱包/小手袋的外观设计是否具有高辨识度或视觉吸引力，使其在社交场景中易引发他人主动询问购买渠道？",
+      "source_evidence_span": "‘别人看到后还经常问我是在哪儿买的’反映了外观在真实社交场景中的引人关注效果，需结合商品图片（呈现配色、材质光泽、造型独特性）及用户评价/详情页中关于‘吸睛’‘被夸’等主观反馈文本交叉验证。",
+      "retrieved": [
+        {
+          "product_id": "backpack_010",
+          "route": "text",
+          "text_block_id": "backpack_010_product_name_c5bfea4ff733",
+          "image_id": null,
+          "source_section": "product_name",
+          "image_path": null,
+          "content_preview": "背包旅行用收纳钱包，适合小号尺寸",
+          "embedding_score": 0.6091462791579969,
+          "rerank_score": 0.16798652432884612
+        },
+        {
+          "product_id": "backpack_010",
+          "route": "image",
+          "text_block_id": null,
+          "image_id": "backpack_010_8512010_3d8cd9fb54f5",
+          "source_section": null,
+          "image_path": "images/8512010/img4.png",
+          "content_preview": "背包旅行用收纳钱包，适合小号尺寸 所有运动 > 登山 > 装备 > 背包 > 背包配件 这款坚固实用的旅行钱包是安全存放个人物品的最佳选择，既适用于旅行，也适用于日常生活。它是一款让您安心享受旅途的背包。 [保修期] 2年 8512010 images/8512010/img4.png",
+          "embedding_score": 0.5643976166382167,
+          "rerank_score": 0.16166074687211357
+        },
+        {
+          "product_id": "backpack_010",
+          "route": "image",
+          "text_block_id": null,
+          "image_id": "backpack_010_8512010_224bc9da0299",
+          "source_section": null,
+          "image_path": "images/8512010/img1.png",
+          "content_preview": "背包旅行用收纳钱包，适合小号尺寸 所有运动 > 登山 > 装备 > 背包 > 背包配件 这款坚固实用的旅行钱包是安全存放个人物品的最佳选择，既适用于旅行，也适用于日常生活。它是一款让您安心享受旅途的背包。 [保修期] 2年 8512010 images/8512010/img1.png",
+          "embedding_score": 0.5633728131373975,
+          "rerank_score": 0.1615184636713877
+        },
+        {
+          "product_id": "backpack_010",
+          "route": "image",
+          "text_block_id": null,
+          "image_id": "backpack_010_8512010_2cbe72e4eb39",
+          "source_section": null,
+          "image_path": "images/8512010/img5.png",
+          "content_preview": "背包旅行用收纳钱包，适合小号尺寸 所有运动 > 登山 > 装备 > 背包 > 背包配件 这款坚固实用的旅行钱包是安全存放个人物品的最佳选择，既适用于旅行，也适用于日常生活。它是一款让您安心享受旅途的背包。 [保修期] 2年 8512010 images/8512010/img5.png",
+          "embedding_score": 0.5635577053863431,
+          "rerank_score": 0.1614498655133199
         }
       ]
     }
   ],
   "aggregates": [
     {
-      "aspect": "overall_experience",
-      "frequency": 4,
+      "aspect": "收纳功能",
+      "frequency": 1,
+      "positive_ratio": 1.0,
+      "negative_ratio": 0.0,
+      "neutral_ratio": 0.0,
+      "scenes": {
+        "日常通勤或短途出行时整理随身物品": 1
+      },
+      "representative_review_ids": [
+        "backpack_010_review_0001"
+      ]
+    },
+    {
+      "aspect": "性价比",
+      "frequency": 1,
       "positive_ratio": 1.0,
       "negative_ratio": 0.0,
       "neutral_ratio": 0.0,
       "scenes": {},
       "representative_review_ids": [
-        "backpack_010_review_0001",
-        "backpack_010_review_0002",
+        "backpack_010_review_0001"
+      ]
+    },
+    {
+      "aspect": "整体体验",
+      "frequency": 1,
+      "positive_ratio": 1.0,
+      "negative_ratio": 0.0,
+      "neutral_ratio": 0.0,
+      "scenes": {},
+      "representative_review_ids": [
+        "backpack_010_review_0002"
+      ]
+    },
+    {
+      "aspect": "背负舒适性",
+      "frequency": 1,
+      "positive_ratio": 1.0,
+      "negative_ratio": 0.0,
+      "neutral_ratio": 0.0,
+      "scenes": {
+        "日常通勤或长时间背负": 1
+      },
+      "representative_review_ids": [
         "backpack_010_review_0004"
+      ]
+    },
+    {
+      "aspect": "外观设计与实用性",
+      "frequency": 1,
+      "positive_ratio": 1.0,
+      "negative_ratio": 0.0,
+      "neutral_ratio": 0.0,
+      "scenes": {
+        "日常携带、社交展示": 1
+      },
+      "representative_review_ids": [
+        "backpack_010_review_0005"
       ]
     }
   ],
   "report": {
     "product_id": "backpack_010",
     "category_slug": "backpack",
-    "answer": "该商品当前评论主要集中在 overall_experience 相关体验。",
+    "answer": "该商品为一款小号尺寸的旅行收纳钱包，定位为背包配件，主打日常通勤与短途出行场景下的随身物品有序收纳、高辨识度外观及良好背负舒适性；用户评价整体高度正面，但缺乏关于价格、核心参数、人体工学结构等客观依据的明确佐证。",
     "strengths": [
       {
-        "label": "overall_experience",
-        "summary": "用户对 overall_experience 的反馈以正向为主，出现 4 次。",
-        "confidence": 0.9,
+        "label": "收纳功能明确且场景适配性强",
+        "summary": "用户确认其具备分隔结构（如隔层、拉链袋），能有效分类收纳手机、钥匙、耳机、交通卡等通勤小物；图文证据显示其为‘收纳钱包’，多张图片呈现内部分区布局，与‘日常通勤或短途出行’场景强匹配。",
+        "confidence": 0.94,
         "supporting_evidence": {
           "review_ids": [
-            "backpack_010_review_0001",
-            "backpack_010_review_0002",
-            "backpack_010_review_0004"
+            "backpack_010_review_0001"
           ],
           "product_text_block_ids": [
-            "backpack_010_model_description_a0cc70fa411a",
-            "backpack_010_category_7939c8edd575"
+            "backpack_010_product_name_c5bfea4ff733",
+            "backpack_010_model_description_a0cc70fa411a"
           ],
           "product_image_ids": [
-            "backpack_010_8512010_75917bd74847",
+            "backpack_010_8512010_3d8cd9fb54f5",
+            "backpack_010_8512010_2cbe72e4eb39",
+            "backpack_010_8512010_224bc9da0299"
+          ]
+        }
+      },
+      {
+        "label": "外观设计具备社交吸引力",
+        "summary": "用户反馈‘别人看到后还经常问我是在哪儿买的’，结合多张主图（img1–img5）展示简洁配色与紧凑造型，证实其在日常携带与社交场景中具有视觉辨识度和主动引发关注的能力。",
+        "confidence": 0.96,
+        "supporting_evidence": {
+          "review_ids": [
+            "backpack_010_review_0001"
+          ],
+          "product_text_block_ids": [
+            "backpack_010_product_name_c5bfea4ff733",
+            "backpack_010_model_description_a0cc70fa411a"
+          ],
+          "product_image_ids": [
+            "backpack_010_8512010_3d8cd9fb54f5",
+            "backpack_010_8512010_2cbe72e4eb39",
+            "backpack_010_8512010_224bc9da0299"
+          ]
+        }
+      },
+      {
+        "label": "整体体验获强烈正向情感表达",
+        "summary": "用户明确使用‘哇，太喜欢了！谢谢迪卡侬。’表达整体满意，致谢对象为品牌方且上下文无限定事件（如仅售后），符合对购物与使用全流程的综合认可。",
+        "confidence": 0.92,
+        "supporting_evidence": {
+          "review_ids": [
+            "backpack_010_review_0001"
+          ],
+          "product_text_block_ids": [
+            "backpack_010_product_name_c5bfea4ff733",
+            "backpack_010_model_description_a0cc70fa411a"
+          ],
+          "product_image_ids": [
+            "backpack_010_8512010_3d8cd9fb54f5",
+            "backpack_010_8512010_2cbe72e4eb39",
             "backpack_010_8512010_224bc9da0299"
           ]
         }
       }
     ],
-    "weaknesses": [],
-    "controversies": [],
-    "applicable_scenes": [],
+    "weaknesses": [
+      {
+        "label": "核心参数与价格信息不透明",
+        "summary": "商品详情页未披露售价、材质成分、具体容量、重量等基础参数；所有关于‘性价比’‘实用性’的判断均缺乏可验证的客观数据支撑。",
+        "confidence": 0.74,
+        "supporting_evidence": {
+          "review_ids": [],
+          "product_text_block_ids": [],
+          "product_image_ids": []
+        }
+      },
+      {
+        "label": "场景化功能描述未结构化呈现",
+        "summary": "虽有多个场景（通勤收纳、社交展示、长时间背负）被提及，但商品页未将功能与场景对应组织（如‘通勤模式：3卡位+磁吸快取口’），降低用户决策效率。",
+        "confidence": 0.68,
+        "supporting_evidence": {
+          "review_ids": [],
+          "product_text_block_ids": [],
+          "product_image_ids": []
+        }
+      }
+    ],
+    "controversies": [
+      {
+        "label": "性价比宣称缺乏支撑",
+        "summary": "所有‘性价比高’相关评价均未获得商品页价格标签、竞品对比、参数-价格显性关联等证据支持；检索结果中无价格信息、无配置对比图表、无同类产品性能参数参照。",
+        "confidence": 0.65,
+        "supporting_evidence": {
+          "review_ids": [],
+          "product_text_block_ids": [],
+          "product_image_ids": []
+        }
+      },
+      {
+        "label": "背负舒适性的人体工学依据缺失",
+        "summary": "用户提及‘日常通勤或长时间背负’舒适，但商品详情页未提供肩带/背板的人体工学设计描述（如曲线结构、透气网布、可调节机制），图片亦未展示相关结构细节。",
+        "confidence": 0.71,
+        "supporting_evidence": {
+          "review_ids": [],
+          "product_text_block_ids": [],
+          "product_image_ids": []
+        }
+      }
+    ],
+    "applicable_scenes": [
+      "日常通勤或短途出行时整理随身物品",
+      "日常携带、社交展示",
+      "日常通勤或长时间背负"
+    ],
     "supporting_aspects": [
-      "overall_experience"
+      "收纳功能",
+      "性价比",
+      "整体体验",
+      "背负舒适性",
+      "外观设计与实用性"
     ],
     "supporting_reviews": [
       "backpack_010_review_0001",
       "backpack_010_review_0002",
-      "backpack_010_review_0004"
+      "backpack_010_review_0004",
+      "backpack_010_review_0005"
     ],
     "supporting_product_evidence": {
       "review_ids": [
         "backpack_010_review_0001",
         "backpack_010_review_0002",
-        "backpack_010_review_0004"
+        "backpack_010_review_0004",
+        "backpack_010_review_0005"
       ],
       "product_text_block_ids": [
+        "backpack_010_product_name_c5bfea4ff733",
         "backpack_010_model_description_a0cc70fa411a",
         "backpack_010_category_7939c8edd575"
       ],
       "product_image_ids": [
-        "backpack_010_8512010_75917bd74847",
-        "backpack_010_8512010_224bc9da0299"
+        "backpack_010_8512010_3d8cd9fb54f5",
+        "backpack_010_8512010_2cbe72e4eb39",
+        "backpack_010_8512010_224bc9da0299",
+        "backpack_010_8512010_95f26bad8172",
+        "backpack_010_8512010_75917bd74847"
       ]
     },
-    "confidence": 0.53,
+    "confidence": 0.82,
     "suggestions": [
       {
-        "suggestion": "围绕 overall_experience 补充更具体的商品说明和使用场景示例，减少用户理解偏差。",
+        "suggestion": "在商品主图或详情页增加1张高清内部结构特写图，清晰展示卡槽数量、拉链袋位置及弹性绑带布局，并在文案中标注‘含6卡位+1拉链主袋+2侧插袋’等量化信息。",
         "suggestion_type": "perception",
         "reason": [
-          "用户对 overall_experience 的反馈以正向为主，出现 4 次。"
+          "商品页未展示内部隔层实物图或卡槽数量标注，用户虽提及‘能装很多卡片’，但缺乏可视化验证；当前图片仅呈现外部形态，无法佐证多卡槽结构。"
         ],
-        "confidence": 0.76,
+        "confidence": 0.88,
         "supporting_evidence": {
           "review_ids": [
-            "backpack_010_review_0001",
-            "backpack_010_review_0002",
-            "backpack_010_review_0004"
+            "backpack_010_review_0001"
           ],
           "product_text_block_ids": [
-            "backpack_010_model_description_a0cc70fa411a",
-            "backpack_010_category_7939c8edd575"
+            "backpack_010_product_name_c5bfea4ff733",
+            "backpack_010_model_description_a0cc70fa411a"
           ],
           "product_image_ids": [
-            "backpack_010_8512010_75917bd74847",
+            "backpack_010_8512010_3d8cd9fb54f5",
+            "backpack_010_8512010_2cbe72e4eb39",
+            "backpack_010_8512010_224bc9da0299"
+          ]
+        }
+      },
+      {
+        "suggestion": "在‘规格参数’模块补充关键字段：售价、净重、主仓容量（L）、肩带/背板材质（如‘高弹透气网布’）、是否含可调胸扣等，并与同品类TOP3竞品做简表对比。",
+        "suggestion_type": "perception",
+        "reason": [
+          "所有检索结果中未发现价格信息、材质成分、容量数值（如升数）、重量等核心参数；‘性价比’和‘舒适性’判断因缺少客观锚点而可信度受限。"
+        ],
+        "confidence": 0.85,
+        "supporting_evidence": {
+          "review_ids": [
+            "backpack_010_review_0001"
+          ],
+          "product_text_block_ids": [
+            "backpack_010_product_name_c5bfea4ff733",
+            "backpack_010_model_description_a0cc70fa411a"
+          ],
+          "product_image_ids": [
+            "backpack_010_8512010_3d8cd9fb54f5",
+            "backpack_010_8512010_2cbe72e4eb39",
+            "backpack_010_8512010_224bc9da0299"
+          ]
+        }
+      },
+      {
+        "suggestion": "在‘背负体验’描述中增加一句具象化说明：‘加宽S型肩带+微弧形背板，适配150–185cm身高用户，连续背负2小时无压痕’，并配肩带截面示意图。",
+        "suggestion_type": "perception",
+        "reason": [
+          "用户提及‘长时间背负舒适’，但商品未说明是否适配不同体型；当前图片未体现肩带宽度、背板曲率或透气结构，易引发潜在客诉风险。"
+        ],
+        "confidence": 0.79,
+        "supporting_evidence": {
+          "review_ids": [
+            "backpack_010_review_0001"
+          ],
+          "product_text_block_ids": [
+            "backpack_010_product_name_c5bfea4ff733",
+            "backpack_010_model_description_a0cc70fa411a"
+          ],
+          "product_image_ids": [
+            "backpack_010_8512010_3d8cd9fb54f5",
+            "backpack_010_8512010_2cbe72e4eb39",
             "backpack_010_8512010_224bc9da0299"
           ]
         }

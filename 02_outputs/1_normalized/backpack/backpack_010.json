@@ -1,31 +1,31 @@
 {
   "product_id": "backpack_010",
   "category_slug": "backpack",
-  "product_name": "背包旅行用收纳钱包，适合小号尺寸",
-  "category_text": "所有运动 > 登山 > 装备 > 背包 > 背包配件",
-  "model_description": "这款坚固实用的旅行钱包是安全存放个人物品的最佳选择，既适用于旅行，也适用于日常生活。它是一款让您安心享受旅途的背包。 [保修期] 2年",
-  "source_dir": "/home/severin/Codelib/Decathlon_VOC_Analyzer/01_data/02_audit_zh_products/products/backpack/backpack_010",
+  "product_name": "백패킹 오거나이저 여행 지갑 S",
+  "category_text": "모든 스포츠 > 등산 > 용품 > 가방 > 가방 용품",
+  "model_description": "이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2",
+  "source_dir": "/home/severin/Codelib/Decathlon_VOC_Analyzer/01_data/01_raw_products/products/backpack/backpack_010",
   "text_blocks": [
     {
-      "text_block_id": "backpack_010_product_name_c5bfea4ff733",
+      "text_block_id": "backpack_010_product_name_b4b3d8117f94",
       "product_id": "backpack_010",
       "text_type": "title",
       "source_section": "product_name",
-      "content": "背包旅行用收纳钱包，适合小号尺寸"
+      "content": "백패킹 오거나이저 여행 지갑 S"
     },
     {
-      "text_block_id": "backpack_010_model_description_a0cc70fa411a",
+      "text_block_id": "backpack_010_model_description_c74c9858c2a6",
       "product_id": "backpack_010",
       "text_type": "description",
       "source_section": "model_description",
-      "content": "这款坚固实用的旅行钱包是安全存放个人物品的最佳选择，既适用于旅行，也适用于日常生活。它是一款让您安心享受旅途的背包。 [保修期] 2年"
+      "content": "이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2"
     },
     {
-      "text_block_id": "backpack_010_category_7939c8edd575",
+      "text_block_id": "backpack_010_category_d9b046ede934",
       "product_id": "backpack_010",
       "text_type": "category",
       "source_section": "category",
-      "content": "所有运动 > 登山 > 装备 > 背包 > 背包配件"
+      "content": "모든 스포츠 > 등산 > 용품 > 가방 > 가방 용품"
     }
   ],
   "images": [
@@ -75,256 +75,256 @@
       "review_id": "backpack_010_review_0001",
       "product_id": "backpack_010",
       "rating": 4,
-      "review_text": "优点是能将物品集中收纳。性价比很高。",
-      "language_hint": "zh",
+      "review_text": "한곳에 넣을 수 있는 장점이 있네요. 가성비템입니다.",
+      "language_hint": "ko",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0002",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "哇，太喜欢了！谢谢迪卡侬。",
-      "language_hint": "zh",
+      "review_text": "Wow, loved it ! Thanks decathlon",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0003",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "很棒",
-      "language_hint": "zh",
+      "review_text": "Awesome",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0004",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "舒适且符合人体工学设计",
-      "language_hint": "zh",
+      "review_text": "Wygodny i ergonomiczny",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0005",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "一直想要一款耐用、又能装很多卡片的钱包/小手袋。别人看到后还经常问我是在哪儿买的。",
-      "language_hint": "zh",
+      "review_text": "Alwasy wanted to have a wallet/purse that is durable and keeps a lot of cards. Once hailed and ask where i bought it.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0006",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "太硬了，内部本不该有加固结构。",
-      "language_hint": "zh",
+      "review_text": "Υπερβολικα σκληρο.δεν επρεπε να εχει μεσα ενισχυση.",
+      "language_hint": "el",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0007",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "我超爱这款产品！用作钱包，里面还能放其他证件和小物件。",
-      "language_hint": "zh",
+      "review_text": "Adorei o produto! uso como carteira, onde posso adicionar dentro outros documentos e objetos pequenos.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0008",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "休闲运动风格",
-      "language_hint": "zh",
+      "review_text": "R-A-S",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0009",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "出色的证件夹，我也有一款瑞士维氏牌的，两者品质相当；适用于各类旅行，非常百搭。",
-      "language_hint": "zh",
+      "review_text": "Excelente porta documentos, tengo también una victorinox y son equivalentes en calidad, para viajes de todo tipo es muy versátil",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0010",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "我对这个钱包赞不绝口。我随身携带，所有东西都能装下，完全够用。",
-      "language_hint": "zh",
+      "review_text": "Tuto peněženku si nemohu vynachválit. Nosím ji všude, všude se vejde a stačí mi.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0011",
       "product_id": "backpack_010",
       "rating": 4,
-      "review_text": "一般",
-      "language_hint": "zh",
+      "review_text": "Avrage",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0012",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "我每天都在用，至今毫无问题！方便存放卡片、证件和硬币。",
-      "language_hint": "zh",
+      "review_text": "Lo uso quotidianamente e non ha fatto una piega! Comodo per riporre schede, tessere e monete",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0013",
       "product_id": "backpack_010",
       "rating": 4,
-      "review_text": "我把它放在背包里，多个隔层可收纳必需品。",
-      "language_hint": "zh",
+      "review_text": "lo lascio nello zaino, molti scomparti per l'indispensabile",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0014",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "优质产品（护照、现金和卡片都能轻松收纳）",
-      "language_hint": "zh",
+      "review_text": "Kaliteli urun( pasaport, para ve jartlar rahatca sigiyor",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0015",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "这款产品内部可容纳1个热塑性聚氨酯备用内胎、1个多功能维修工具、1个二氧化碳充气筒、若干创可贴、1片能量补充片、1包湿巾、零钱和身份证。我可以方便地从外套后侧口袋中取出并使用。",
-      "language_hint": "zh",
+      "review_text": "Bu ürün içine 1 adet TPU yedek lastik, 1 adet multi-tool, 1 adet CO² tüpü, bir kaç adet yara bandı, enerji tableti, ıslak mendil, bozuk para ve kimlik sığdırabiliyorum. Formamın sırt cebinden kolaylıkla erişim sağlayabiliyorum.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0016",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "日常用作钱包时，这是最值得考虑的产品。",
-      "language_hint": "zh",
+      "review_text": "Best product to consider for daily use as a purse.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0017",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "多隔层、轻便、价格合理、耐用，强烈推荐。",
-      "language_hint": "zh",
+      "review_text": "Çok gözlü hafif ve uygun fiyat dayanıklı tavsiye edilir.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0018",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "完美、实用且质量上乘",
-      "language_hint": "zh",
+      "review_text": "Parfait, pratique et de bonne qualité",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0019",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "顶级",
-      "language_hint": "zh",
+      "review_text": "Au top",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0020",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "旅行时非常实用，护照和所需物品都能轻松装下。",
-      "language_hint": "zh",
+      "review_text": "great for travelling as it fits your passport and everything you need",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0021",
       "product_id": "backpack_010",
       "rating": 4,
-      "review_text": "日常使用也很不错。",
-      "language_hint": "zh",
+      "review_text": "It's good for daily use too.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0022",
       "product_id": "backpack_010",
       "rating": 4,
-      "review_text": "不错",
-      "language_hint": "zh",
+      "review_text": "Good",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0023",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "这是一款容量大、实用且户外活动时携带舒适的零钱袋。",
-      "language_hint": "zh",
+      "review_text": "Es un monedero de gran capacidad, práctico y cómodo cuando practicas actividades al aire libre.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0024",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "非常适合存放我的银行卡以及车辆登记证。 它已取代了我的钱包，也用于保护我的车辆登记证。",
-      "language_hint": "zh",
+      "review_text": "Parfait pour mettre mes cartes ainsi que ma carte grise. Il a remplacé mon porte feuille et la protection de ma carte grise.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0025",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "产品符合我的预期。",
-      "language_hint": "zh",
+      "review_text": "Produit conforme à mes attentes",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0026",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "目前用过的最好的朱伽钱包，已作为日常随身钱包使用。还能放置护照，同时可容纳多张银行卡或信用卡。还会再次购买。",
-      "language_hint": "zh",
+      "review_text": "best juga wallet ni. dah jadikan sebagai wallet bawak harian. boleh letak passport sekali. pastu boleh masuk beberapa kad. will order again.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0027",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "手感好",
-      "language_hint": "zh",
+      "review_text": "ras",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0028",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "这款钱包尺寸和收纳设计都很完美。",
-      "language_hint": "zh",
+      "review_text": "Portefeuille parfait par rapport à sa taille et son rangement",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0029",
       "product_id": "backpack_010",
       "rating": 4,
-      "review_text": "不错的产品",
-      "language_hint": "zh",
+      "review_text": "Good product",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0030",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "这款钱包体积小巧，但足以装下出行或运动时所需携带的物品。不需带整个钱包时特别方便。夏天骑车或露营时我肯定会频繁使用。之前出国旅行时，仅需带几张卡、少量现金和硬币，它就非常合适。强烈推荐给其他人尝试。",
-      "language_hint": "zh",
+      "review_text": "This wallet is small but you can put in what you need to take with you while you are traveling or doing sports. Very handy when you don't need your entire wallet. I will definitely use a lot in summer as well when biking a d camping. Went on trip out of country it was perfect for just a few cards, bills and coins. Definitely recommend this to others to try.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0031",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "非常实用：小巧轻便，又能装下必需品。",
-      "language_hint": "zh",
+      "review_text": "Très pratique : petit et léger et on peut y mettre l'essentiel",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0032",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "有护照？有它就够了。",
-      "language_hint": "zh",
+      "review_text": "Have passport,have it .",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
@@ -339,223 +339,223 @@
       "review_id": "backpack_010_review_0034",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "实用的产品",
-      "language_hint": "zh",
+      "review_text": "Usefull product",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0035",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "非常出色的皮夹",
-      "language_hint": "zh",
+      "review_text": "odličan novčanik",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0036",
       "product_id": "backpack_010",
       "rating": 4,
-      "review_text": "不错的钱包",
-      "language_hint": "zh",
+      "review_text": "Good wallet",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0037",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "很棒",
-      "language_hint": "zh",
+      "review_text": "Top",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0038",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "在各种冒险活动中都能有效保护您的证件！无论是潮湿还是炎热环境都适用。",
-      "language_hint": "zh",
+      "review_text": "Utile pour protéger vos documents durant vos aventures! Humides comme chaudes.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0039",
       "product_id": "backpack_010",
       "rating": 4,
-      "review_text": "我购买它是为了携带一款轻薄的磁吸充电宝，非常贴合（但并非所有型号都适用）",
-      "language_hint": "zh",
+      "review_text": "Bought mine to carry a thin MagSafe Powerbank. Excellent fit (of course it wouldn’t work for all!).",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0040",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "不错",
-      "language_hint": "zh",
+      "review_text": "good",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0041",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "这是一款不错的非皮革钱包，功能表现良好。唯一的不足是尺寸偏小；虽然它本身已经很小了，但我认为还有进一步缩小的空间，以便也能搭配牛仔裤使用。",
-      "language_hint": "zh",
+      "review_text": "It's a nice non leather purse and does the job successfully. Only drawback is the size. Although it's already small but I see a possibility here so that it can be used with jeans too.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0042",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "护照钱包非常实用，与商品描述完全一致。",
-      "language_hint": "zh",
+      "review_text": "Le porte feuille passeport et super pratique et conforme à la.description.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0043",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "替换了旧款，重量很轻；配有两条拉链，能装下旧款里的所有物品，价格却非常实惠。",
-      "language_hint": "zh",
+      "review_text": "Sustituida por una antigua, peso bajo. dos cremalleras y cabe todo lo que llevo en la antigua a muy bajo precio",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0044",
       "product_id": "backpack_010",
       "rating": 4,
-      "review_text": "还行。",
-      "language_hint": "zh",
+      "review_text": "Ok",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0045",
       "product_id": "backpack_010",
       "rating": 4,
-      "review_text": "我推荐这款产品。",
-      "language_hint": "zh",
+      "review_text": "je recommande",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0046",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "旅行用的好产品。",
-      "language_hint": "zh",
+      "review_text": "Good product for travel",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0047",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "设计简洁又时尚——线条干净、外观简约，造型紧凑，轻松放入行李箱、背包甚至手提包中；做工走线精细，材质结实，整体感觉耐用且经久耐用。",
-      "language_hint": "zh",
+      "review_text": "The design is simple yet stylish — clean lines, minimal look, and a compact shape that fits easily in luggage, backpacks, or even handbags. The quality stitching and sturdy material make it feel durable and long-lasting.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0048",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "符合我们的预期。",
-      "language_hint": "zh",
+      "review_text": "Conforme à notre attente",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0049",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "可存放护照、证件、信用卡和零钱。 非常适合旅行使用。",
-      "language_hint": "zh",
+      "review_text": "Porte document/passeport, cartes de crédit, monnaie. Bien pour voyager.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0050",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "非常漂亮且高品质的产品。",
-      "language_hint": "zh",
+      "review_text": "Çok güzel ve kaliteli bir ürün",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0051",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "很棒的产品，已使用四年，至今仍在用。",
-      "language_hint": "zh",
+      "review_text": "Great product.4 years still using this.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0052",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "超棒！",
-      "language_hint": "zh",
+      "review_text": "Super",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0053",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "我喜欢该品牌的装备。",
-      "language_hint": "zh",
+      "review_text": "gosto do equipamento desta marca.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0054",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "设计非常出色，而且十分耐用。",
-      "language_hint": "zh",
+      "review_text": "Muy buen diseño y resistente.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0055",
       "product_id": "backpack_010",
       "rating": 4,
-      "review_text": "旅行时很实用，日常使用也很方便。尺寸合理，开口宽大且开合迅速，便于快速查看零钱和卡片。 可能稍缺几个分隔口袋。",
-      "language_hint": "zh",
+      "review_text": "Pratique pour voyager, mais également pour tous les jours. Format pratique, avec une grande ouverture rapide pour une bonne visibilité sur la monnaie et les cartes. Manque peut-être de quelques poches.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0056",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "非常棒 👍",
-      "language_hint": "zh",
+      "review_text": "Top 👍",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0057",
       "product_id": "backpack_010",
       "rating": 4,
-      "review_text": "能胜任本职工作。",
-      "language_hint": "zh",
+      "review_text": "İşini yapıyor",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0058",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "不错的钱包，内部隔层丰富，非常适合旅行。",
-      "language_hint": "zh",
+      "review_text": "Buena cartera, con muchos compartimentos. Ideal para viajar",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0059",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "性价比很高，质量上乘，多隔层设计，也可当普通钱包使用；我个人用来整理自行车配件，效果非常成功。",
-      "language_hint": "zh",
+      "review_text": "Fiyatına göre çok iyi kaliteli, çoklu gözlü, cüzdan gibi de kullanabilir ben bisiklet eşyalarımı organize etmek için kullandım. çok başarılı.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0060",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "旅行时保护护照及其他证件的理想选择。 非常实用且坚固耐用。",
-      "language_hint": "zh",
+      "review_text": "Ideale per proteggere il passaporto e altri documenti durante i viaggi. Molto utile e resistente.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0061",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "东西很实用，性价比高，已推荐。",
+      "review_text": "东西很使用，性价比高，已推荐。",
       "language_hint": "zh",
       "is_empty": false
     },
@@ -563,1112 +563,1112 @@
       "review_id": "backpack_010_review_0062",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "我用它来存放贵重物品，包括信用卡和一些写有重要信息的重要纸质文件。自首次购买至今已近10个月，我每天至少使用一次。今年10月，侧面拉链开始出现故障，但我通过按压拉链本体、恢复其形状，迅速修好了它。 我强烈推荐这款产品！",
-      "language_hint": "zh",
+      "review_text": "I use it to store my valuables including credit cards and some important paper parts writing with important information. It's been almost 10 months since I first bought this thing and I use ut everyday at least once. In October the side zipper strted to show defeats but I quickly fixed it by pressing the zipper's body to reinstate its shape. I strongly recommend this product!",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0063",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "我买过的质量最好的迷你包。",
-      "language_hint": "zh",
+      "review_text": "Cidden aldığım en kaliteli mini çanta",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0064",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "实用，尺寸适中，分隔收纳功能丰富。",
-      "language_hint": "zh",
+      "review_text": "Pratique , de taille moyenne. Rangements multiples.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0065",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "舒适，做工精良，外观美观。",
-      "language_hint": "zh",
+      "review_text": "Comodo, fatto bene ed esteticamente gradevole",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0066",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "实用、宽敞、耐用又好看。",
-      "language_hint": "zh",
+      "review_text": "Pratico spazioso resistente e carino",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0067",
       "product_id": "backpack_010",
       "rating": 4,
-      "review_text": "设计紧凑：尺寸约14 × 10 × 2 厘米，重量仅约75克——非常容易塞进背包或夹克口袋。 分区合理：配有大号拉链开口、零钱袋及多个卡槽，便于整齐收纳旅行证件、现金和各类卡片。 适合旅行：多位用户提到，它特别适合旅行使用，尤其适用于护照、银行卡、身份证及其他小型必需品。 品质良好：采用聚酯纤维面料并覆有聚氨酯涂层，日常旅行使用下手感结实耐用。 性价比高：用户评分普遍达4.6–4.7分（满分5分），表明消费者对其价格表现高度满意。 适用人群： - 需要一款简洁无冗余、专用于收纳护照、银行卡及少量现金的旅行者； - 徒步、背包客或一日短途出行者，需要轻便紧凑的装备； - 偏好将钱包放入背包（而非紧贴口袋）的人群，得益于其纤薄外形。",
-      "language_hint": "zh",
+      "review_text": "Compact design: It measures around 14 × 10 × 2 cm and weighs only ~75 g — very easy to slip into a backpack or a jacket pocket. Good compartmentalization: Comes with a large zip opening, a coin pocket, and multiple card slots — helps keep travel documents, cash, and cards neatly organized. Travel-friendly: Several users mention it's ideal for travel, especially for passports, cards, ID, and other small essentials. Good build quality: Made from polyester with a polyurethane coating, so it feels durable for normal travel use. Value for money: The product tends to score ~4.6–4.7 out of 5 in user reviews, indicating strong satisfaction for the price. Who It’s Best For: Travellers who want a simple, no-frills travel wallet for passports, cards, and some cash. Hikers, backpackers, or day-trippers who need something lightweight and compact. People who prefer a wallet that stays inside a backpack (rather than in a tight pocket), thanks to its slim form.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0068",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "小巧，极易放入衣物口袋或包内；可集中收纳所有必备卡片与证件；开合顺滑流畅。",
-      "language_hint": "zh",
+      "review_text": "Petit, s'insère très facilement dans une poce de vêtement ou de sac. Permet de réunir toutes les cartes et papiers essentiels. S'ouvre et se ferme de façon très fluide.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0069",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "不错的钱包，内部空间很大。",
-      "language_hint": "zh",
+      "review_text": "dobra denarnica veliko se da noter",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0070",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "非常实用，重量很轻。",
-      "language_hint": "zh",
+      "review_text": "Très pratique, léger",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0071",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "旅行完美之选。",
-      "language_hint": "zh",
+      "review_text": "Parfait pour le voyage",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0072",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "好看又实用，我很喜欢。",
-      "language_hint": "zh",
+      "review_text": "Güzel kullanışlı sevdim",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0073",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "理想尺寸； 众多分隔仓； 真正适合运动场景的钱包。",
-      "language_hint": "zh",
+      "review_text": "TAILLE IDEALE BEAUCOUP DE COMPARTIMENT UN VRAI PORTEFEUILLE POUR LES ACTIVITÉS SPORTIVES",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0074",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "体积不大，也不重，但能轻松装下所有必需物品。",
-      "language_hint": "zh",
+      "review_text": "pas trop volumineux, pas lourd mais on peu y faire tenir tout ce qu'il faut.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0075",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "不错，适合打包携带。",
-      "language_hint": "zh",
+      "review_text": "Nice and good for pack",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0076",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "我很满意的一款产品，轻便又美观。",
-      "language_hint": "zh",
+      "review_text": "Memnun kaldığım bir ürün.. hafif ve güzel.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0077",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "护照夹本身非常出色且安全，但对我而言尺寸偏小；不过若仅需收纳单份证件，它就非常完美。",
-      "language_hint": "zh",
+      "review_text": "Passport holder is really good and secure however was too small for what I wanted but would it be perfect for someone wanting to hold a document.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0078",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "非常实用，空间足够容纳身份证、驾驶证等证件以及几张卡片，同时占用空间极小。",
-      "language_hint": "zh",
+      "review_text": "Très pratique, assez grand pour y placer les papiers d'identité et de la voiture, ainsi que quelques cartes, tout en prenant peu de palce",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0079",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "完美的钱包，可轻松携带护照及其他物品。",
-      "language_hint": "zh",
+      "review_text": "cartera perfecta para llevar el pasaporte y más cosas",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0080",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "舒适、实用且适应性强。",
-      "language_hint": "zh",
+      "review_text": "Comoda, útil y adaptable",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0081",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "已使用超过一年，完全没有任何磨损或损坏。是一款非常可靠的背包。强烈推荐！既有硬币袋、纸币袋，也有卡槽，堪称一款创新产品。",
-      "language_hint": "zh",
+      "review_text": "1 seneyi geçkin zamandır kullanıyorum. Hiçbir şekilde yıpranma bozulma olmadı. Sağa sağlam bir ürün. Kesinlikle tavsiye ederim. Hem bozuk para hem kağıt para hemde kartlık bölümü var. Tam bir inovasyon ürünü",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0082",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "旅行时非常实用，强烈推荐！",
-      "language_hint": "zh",
+      "review_text": "Très pratique pour voyager je recommande fortement !",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0083",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "这款小包非常实用、方便。",
-      "language_hint": "zh",
+      "review_text": "The little bag is so useful and handy",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0084",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "理想的旅行钱包。结构简洁，卡位数量充足，护照袋尺寸合适。大小适中，外观也很漂亮。",
-      "language_hint": "zh",
+      "review_text": "Portefeuille de voyage idéal. Simple , nombre d’emplacements carte suffisant, poche pour le passeport adapté. Bonne dimension et il est plutôt joli.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0085",
       "product_id": "backpack_010",
       "rating": 4,
-      "review_text": "小巧实用。",
-      "language_hint": "zh",
+      "review_text": "petit pratique",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0086",
       "product_id": "backpack_010",
       "rating": 4,
-      "review_text": "这款产品非常出色，使用起来也非常便捷。",
-      "language_hint": "zh",
+      "review_text": "This product was very amazing &amp; very easy",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0087",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "不错。",
-      "language_hint": "zh",
+      "review_text": "ok",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0088",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "优点：配有钥匙扣；缺点：缺少硬币袋。",
-      "language_hint": "zh",
+      "review_text": "na plus zaczep na klucze na minus brak kieszonki na bilon",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0089",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "日常通勤用包非常理想。",
-      "language_hint": "zh",
+      "review_text": "Günlük çanta kullanımı için çok ideal",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0090",
       "product_id": "backpack_010",
       "rating": 3,
-      "review_text": "外观漂亮，但尺寸偏大。",
-      "language_hint": "zh",
+      "review_text": "Beau mais trop grand",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0091",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "太棒了！",
-      "language_hint": "zh",
+      "review_text": "Top !",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0092",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "质量很好，隔层丰富。",
-      "language_hint": "zh",
+      "review_text": "buena calidad, con muchos compartimentos",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0093",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "旅行时非常理想，非常耐用，且拥有多个分隔仓。",
-      "language_hint": "zh",
+      "review_text": "genial para los viajes. muy resistente y con varios compartimentos",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0094",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "评论标题已概括其核心特点：造型紧凑，可安全收纳于行李箱中，也可舒适地放入口袋或腰包；同时容量充足，轻松容纳现金、银行卡、护照、零钱及身份证件。",
-      "language_hint": "zh",
+      "review_text": "Tytuł komentarza podsumowuje najważniejsze cechy. Zgrabny bo można go bezpiecznie schować w bagażach, jak i komfortowo nosić przy sobie w kieszeni lub nerce a do tego pojemny, bez problemu zmieścił gotówkę, karty, paszporty, trochę bilonu i dowody osobiste.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0095",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "旅行中非常实用。",
-      "language_hint": "zh",
+      "review_text": "bardzo przydatny w podrozy",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0096",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "兼具钱包与证件夹功能，便于携带，可轻松收纳护照、银行卡、票据和零钱。",
-      "language_hint": "zh",
+      "review_text": "Portefeuille et porte document à la fois. Emporte facilement, passeport, CB, billets et monnaies.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0097",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "我用它在自行车包中收纳小物件（如家门钥匙、锁具钥匙、充电宝线缆、现金等）。建议略微增加厚度（例如至约25毫米），并采用浅色内衬（便于看清内部物品）。",
-      "language_hint": "zh",
+      "review_text": "Używam do przewożenia drobnych elementów w sakwie rowerowej (klucze do domu, kluczyk do kłódki, kable do powerbanku, pieniądze). Warto byłoby zwiększyć choć odrobinę grubość (do ok. 25 mm) i wyłożyć wnętrze jasnym materiałem (widać lepiej zawartość).",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0098",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "多个口袋，其中专设一个‘零钱袋’，非常实用；体积小巧，可轻松放入衣袋，随时随地都很方便。",
-      "language_hint": "zh",
+      "review_text": "Multiples poches dont une pour mettre \" la petite monnaie \", trés utile, tient dans une poche, utile partout.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0099",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "适用于格朗德兰德20号徒步路线，非常合适。",
-      "language_hint": "zh",
+      "review_text": "Utiliser pour le GR20. parfait.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0100",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "非常实用。",
-      "language_hint": "zh",
+      "review_text": "très pratique",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0101",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "旅行时携带证件很实用。我购买它本是为了徒步圣地亚哥朝圣之路，方便存放朝圣者凭证，可惜尺寸不太合适；但用来装个人证件和现金非常合适。",
-      "language_hint": "zh",
+      "review_text": "prática para documentos em viagem. comprei para levar para o caminho de Santiago a pensar na credencial do peregrino. lamentavelmente não serviu,mas serviu para documentos pessoais e dinheiro",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0102",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "雨天出行的理想选择，能有效保护证件不被淋湿。",
-      "language_hint": "zh",
+      "review_text": "Idéal pour les sorties pluvieuses garde les papiers au sec",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0103",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "完全满足需求，至今已覆盖所有使用场景。",
-      "language_hint": "zh",
+      "review_text": "Complete the needs. Covered so far everything.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0104",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "完美。",
-      "language_hint": "zh",
+      "review_text": "Parfait",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0105",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "开合方便，收纳便捷，整理轻松。",
-      "language_hint": "zh",
+      "review_text": "facil de fecho, facil de arrumação, facil de organizar.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0106",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "产品符合我的使用需求，因此我很喜欢，质量也很不错。",
-      "language_hint": "zh",
+      "review_text": "Ürün işimi görecek durumda olduğu için beğendim kaliteli.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0107",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "我日常使用，非常方便，有大量卡位，适合存放各类卡片。",
-      "language_hint": "zh",
+      "review_text": "je l'utilise au quotidien il est pratique plein de rangement pur les cartes",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0108",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "优质产品，至今依然耐用。",
-      "language_hint": "zh",
+      "review_text": "Good product. Still going strong.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0109",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "舒适、轻薄、轻便，我把它当作日常使用的钱包。",
-      "language_hint": "zh",
+      "review_text": "comodo, sottile e leggero lo uso come portafoglio per tutti i giorni",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0110",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "容量大，口袋多。",
-      "language_hint": "zh",
+      "review_text": "Pojemny dużo kieszonek",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0111",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "便于携带和清洗，轻松容纳现金和银行卡。",
-      "language_hint": "zh",
+      "review_text": "Easy to carry and wash , you can fit your cash and card easily",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0112",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "非常好。",
-      "language_hint": "zh",
+      "review_text": "Muy buena",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0113",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "非常实用。",
-      "language_hint": "zh",
+      "review_text": "Très pratique",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0114",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "我至少买了3个，每个背包配一个。我用它作为急救包和药品收纳袋。",
-      "language_hint": "zh",
+      "review_text": "Ne ho almeno 3, una per ogni zaino. La utilizzo come kit di primo socorso e contenitore medicine.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0115",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "这个价格非常超值，尺寸合适，能装下我需要的所有东西；零钱袋稍小一点，但不影响使用。",
-      "language_hint": "zh",
+      "review_text": "Za tuhle cenu výborná volba vleze mi vše co potřebuji jen kapsička na drobné je menší ale nevadí",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0116",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "钱包非常漂亮，外观精致，拉链兼具美观与品质。",
-      "language_hint": "zh",
+      "review_text": "Çok güzel cüzdan, gözleri yeterli ve fermuarı ile hem estetik hem de kaliteli..",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0117",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "小巧实用的旅行钱包，性价比超高。",
-      "language_hint": "zh",
+      "review_text": "Šikovná malá cestovná peňaženka za super cenu",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0118",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "设计合理，轻便且功能性强。非常棒！",
-      "language_hint": "zh",
+      "review_text": "Bien pensé. Leger et fonctionnel. Très bien",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0119",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "实用又小巧，却能容纳很多东西。",
-      "language_hint": "zh",
+      "review_text": "Praktikus, kicsi még is sokminden elfér benne",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0120",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "大小正适合放护照。",
-      "language_hint": "zh",
+      "review_text": "La bonne taille pour un passeport",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0121",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "非常实用的小零钱袋，徒步时随身携带必需品正合适。",
-      "language_hint": "zh",
+      "review_text": "Très pratique comme petit porte monnaie pour l essentiel à porter sur soi en randonnée",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0122",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "轻便、扁平，刚好装下必需品。",
-      "language_hint": "zh",
+      "review_text": "Léger , plat , on y met l'essentiel.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0123",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "产品与描述一致。",
-      "language_hint": "zh",
+      "review_text": "Produit conforme",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0124",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "我儿子想要一个钱包，看到这款立刻买了，非常漂亮且实用。",
-      "language_hint": "zh",
+      "review_text": "Oğlum cüzdan istiyordu bunu görünce hemen aldım çok güzel kullanışlı",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0125",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "很好地收纳了零碎小物，取用方便，整个行程中背包里都井井有条。",
-      "language_hint": "zh",
+      "review_text": "Świetnie uporządkował drobiazgi, łatwy dostęp i porządek w plecaku przez całą trasę.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0126",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "很棒！",
-      "language_hint": "zh",
+      "review_text": "Awesome",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0127",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "卡位数量足够，使用方便；适合放在包里携带，推荐；但放口袋略显过大。",
-      "language_hint": "zh",
+      "review_text": "Yeterli sayıda gözü var ve kullanışlı. Çantada taşınacaksa, tavsiye ederim. Cepte taşımak için fazla büyük.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0128",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "实用又美观。",
-      "language_hint": "zh",
+      "review_text": "Pratique et esthétique",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0129",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "优质产品！性价比超高！与描述完全一致！",
-      "language_hint": "zh",
+      "review_text": "Great Product! Awesome value for money! Exactly as described!",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0130",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "品质优良、实用性强，谢谢！",
-      "language_hint": "zh",
+      "review_text": "Kaliteli ve kullanışlı bir ürün. Teşekkürler",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0131",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "日常使用很合适。",
-      "language_hint": "zh",
+      "review_text": "Bom para o dia a dia",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0132",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "旅行理想之选，可轻松放入几枚硬币、银行卡、身份证、驾驶证等。",
-      "language_hint": "zh",
+      "review_text": "Idéal pour le voyage. Permet d'y mettre quelques pièces, carte bancaire, carte d'identité, permis de conduire",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0133",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "超轻便、做工精良的钱包，不仅适合户外徒步，日常使用也很棒。",
-      "language_hint": "zh",
+      "review_text": "Super lehká, vymakaná peněženka nejen na turistiku.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0134",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "不仅可用作钱包，还能当迷你化妆包甚至小型急救包。",
-      "language_hint": "zh",
+      "review_text": "Przydatny nie tylko jako portfel ale może być mini kosmetyczka a nawrt apteczką",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0135",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "超级紧凑，却仍能容纳现金、硬币和卡片——基本满足旅行或日常短途出行所需（尤其讨厌口袋杂乱时）。拉链开口宽大，取物快速便捷。外观不张扬，但功能扎实，毫无花哨。",
-      "language_hint": "zh",
+      "review_text": "Super compact but still fits cash, coins, cards - basically the essentials for travel or daily runs when you hate messy pockets. Zips open wide, so it’s easy to grab what you need fast. Doesn’t look flashy but gets the job done, no drama",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0136",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "这款产品很适合我计划的用途。",
-      "language_hint": "zh",
+      "review_text": "Buen producto para el uso que le daré",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0137",
       "product_id": "backpack_010",
       "rating": 4,
-      "review_text": "小巧紧凑，使用方便。",
-      "language_hint": "zh",
+      "review_text": "Compact et facile d'emploi",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0138",
       "product_id": "backpack_010",
       "rating": 3,
-      "review_text": "质量优秀（+5）；做工优秀（+5）；物流体验优秀（+5）；但收到的并非我想要的产品（-3）；网站未注明尺寸信息（-3）；不过总体仍算满意客户（+4）；尚未使用，因它比我在用的上一款尺寸更小。",
-      "language_hint": "zh",
+      "review_text": "The quality is excellent. +5 Workmanship is excellent. +5 Delivery process is excellent +5 I did not get the product I wanted. -3 I did not see size (dimensions) mentioned on the site. -3 I am however a satisfied customer +4 I have not used it because it is smaller than the size (one above) that I have.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0139",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "运动或假期观光时非常实用，体积小巧，还设有多层卡位，可放置多张银行卡。",
-      "language_hint": "zh",
+      "review_text": "Très pratique pour faire du sport ou des visites en vacances, prend peu de place et plusieurs poches ou espaces pour mettre des cartes de banque",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0140",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "超级好用的零钱袋，功能强大。",
-      "language_hint": "zh",
+      "review_text": "Super porte monnaie hyper fonctionnel",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0141",
       "product_id": "backpack_010",
       "rating": 4,
-      "review_text": "我用它作为辅助收纳袋，存放那些不常使用、又不想随身携带（比如放在小钱包里）的证件。 护照、一整套卡片和一些硬币都能放得下。",
-      "language_hint": "zh",
+      "review_text": "Pouzivam jako doplnujici organizer na mene pouzivane doklady, ktere nechci mit primo u sebe (v male penezence). Vejde se cestovni pas, sada karet a nejake mince.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0142",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "品质极佳",
-      "language_hint": "zh",
+      "review_text": "Excellent quality",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0143",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "非常出色",
-      "language_hint": "zh",
+      "review_text": "Odlican",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0144",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "超棒的徒步旅行收纳包",
-      "language_hint": "zh",
+      "review_text": "super organizer trekkingowy",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0145",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "非常适合长途旅行，所有物品都很容易放入其中。",
-      "language_hint": "zh",
+      "review_text": "Idéal pour les voyages lointain , tout est facile à mettre dedans",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0146",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "日常使用非常方便",
-      "language_hint": "zh",
+      "review_text": "Pratique tous les jours",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0147",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "非常实用，体积小巧不占地方",
-      "language_hint": "zh",
+      "review_text": "très pratique, peu encombrant",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0148",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "日常生活的必备工具",
-      "language_hint": "zh",
+      "review_text": "un outil indispensable pour la vie de tout les jours",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0149",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "完美",
-      "language_hint": "zh",
+      "review_text": "Perfekcyjny",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0150",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "结构紧凑，口袋众多",
-      "language_hint": "zh",
+      "review_text": "Compact and many pockets",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0151",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "所需空间完全够用！轻便且高效！",
-      "language_hint": "zh",
+      "review_text": "Il y a tout l'espace requis! Léger et efficace!",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0152",
       "product_id": "backpack_010",
       "rating": 4,
-      "review_text": "实用、紧凑",
-      "language_hint": "zh",
+      "review_text": "Pratique,compact",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0153",
       "product_id": "backpack_010",
       "rating": 1,
-      "review_text": "非常小",
-      "language_hint": "zh",
+      "review_text": "Very small",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0154",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "出色的旅行钱包。 隔层丰富，有专门放置护照的位置。 做工精良。",
-      "language_hint": "zh",
+      "review_text": "Odličan putni novčanik. Puno pretinca, mijesto za putovnicu. Kvalitetna izrada.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0155",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "体积小巧，却非常实用。",
-      "language_hint": "zh",
+      "review_text": "Très pratique pour sa taille.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0156",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "非常实用",
-      "language_hint": "zh",
+      "review_text": "Très pratique",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0157",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "收纳格丰富，护照也能轻松放入，旅行出行非常理想。",
-      "language_hint": "zh",
+      "review_text": "Nombreux rangements et le passeport entre tres bien. Parfait pour le voyage.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0158",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "很棒",
-      "language_hint": "zh",
+      "review_text": "Super",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0159",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "非常好……",
-      "language_hint": "zh",
+      "review_text": "Ottimo….",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0160",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "实用",
-      "language_hint": "zh",
+      "review_text": "Pratique",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0161",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "这已经是我的第二个钱包了，表现非常出色。",
-      "language_hint": "zh",
+      "review_text": "To jest już drugi portfel który kupiłem sprawdza się super",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0162",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "太棒了，质量极佳！！",
-      "language_hint": "zh",
+      "review_text": "Buenísima, gran calidad!!",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0163",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "紧凑型收纳包，适合存放重要证件。",
-      "language_hint": "zh",
+      "review_text": "Compack Pack for keeping important docs",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0164",
       "product_id": "backpack_010",
       "rating": 4,
-      "review_text": "很实用。",
-      "language_hint": "zh",
+      "review_text": "Pratique",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0165",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "存放最重要证件的绝佳选择……甚至能装下3本护照。",
-      "language_hint": "zh",
+      "review_text": "Świetna sprawa na najważniejsze dokumenty... zmieści nawet 3 paszporty.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0166",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "这款钱包非常接近我理想中的样子，唯一遗憾是缺少一个额外隔层；不过我整体非常满意。它看起来很耐用，拉链设计我很喜欢，也希望它能经久耐用。",
-      "language_hint": "zh",
+      "review_text": "Novčanik je vrlo blizu onoga što sam tražila, šteta što nema još jedan pretinac, ali vrlo sam zadovoljna. Djeluje otporno, sviđa mi se što ima ciferšlus i nadam se da će biti izdržljiv.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0167",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "旅行系列收纳包表现非常出色，我将其用作钱包。材质和做工都很优秀，使用方便且结实耐用。唯一的小建议是：作为钱包，尺寸可以再窄一些。强烈推荐。",
-      "language_hint": "zh",
+      "review_text": "Organizer TRAVEL S Genialny używam jako portfel. Bardzo dobrze materiały i wykonanie. Dobrze się używa i jest wytrzymały. Jedyna drobna uwaga to wymiary, portfel mógł by być trochę węższy. Polecam",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0168",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "实用又美观的钱包，尺寸完全满足收纳重要旅行证件、个人证件及银行卡的需求。",
-      "language_hint": "zh",
+      "review_text": "Praktická a hezká peněženka, velikost splňuje požadavky na uložení důležitých cestovních, osobních a platebních dokladů.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0169",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "紧凑且实用。",
-      "language_hint": "zh",
+      "review_text": "Compact et pratique",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0170",
       "product_id": "backpack_010",
       "rating": 4,
-      "review_text": "外观低调，方便收纳票据和卡片。",
-      "language_hint": "zh",
+      "review_text": "Discret ,pratique pour rangement des billets et des cartes",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0171",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "功能到位。卡位深度充足，但上层卡位中的卡片容易滑到底部，取用稍显不便。拉链闭合牢固，能很好保持钱包闭合。若能增加一些亮色选项就更好了。",
-      "language_hint": "zh",
+      "review_text": "Fait le job. Le rangement porte carte n est pas limité en profondeur. Dans le compartiment du haut les cartes descendent vers le bas et sont difficiles a extirper. La fermeture éclair permet de bien garder le portefeuille fermé. Des couleurs vives seraient un plus.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0172",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "实用且结实。",
-      "language_hint": "zh",
+      "review_text": "Pratique et solide",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0173",
       "product_id": "backpack_010",
       "rating": 4,
-      "review_text": "简洁小巧，但缺少挂环，且卡位数量略显不足（建议再加一两个）。",
-      "language_hint": "zh",
+      "review_text": "Simple et petit. Il manque un anneau pour pouvoir l'accrocher et un ou deux emplacements pour cartes",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0174",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "超赞。",
-      "language_hint": "zh",
+      "review_text": "Super",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0175",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "非常实用。",
-      "language_hint": "zh",
+      "review_text": "Très fonctionnel",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0176",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "用作旅行钱包很合适，可同时容纳护照、零钱和纸币，且体积不显笨重。尤其拉链结实耐用，是个不错的选择。",
-      "language_hint": "zh",
+      "review_text": "Used for traveling wallet, it can fit your passport some coins and notes all in one pouch and its not too bulky. Good choice especially the zip being sturdy as well",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0177",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "顶级。",
-      "language_hint": "zh",
+      "review_text": "Top",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0178",
       "product_id": "backpack_010",
       "rating": 4,
-      "review_text": "不错。",
-      "language_hint": "zh",
+      "review_text": "Bien",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0179",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "实用，尺寸非常适合旅行，只缺一个票据专用口袋。",
-      "language_hint": "zh",
+      "review_text": "Pratique, taille idéale pour voyage, manque une poche pour billet",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0180",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "很有用。",
-      "language_hint": "zh",
+      "review_text": "Utile",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0181",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "满分10分，我超爱！",
-      "language_hint": "zh",
+      "review_text": "10/10 j'adore!",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0182",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "顶级",
-      "language_hint": "zh",
+      "review_text": "top",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0183",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "耐用持久，品质优良。稍大一点，适合放较多物品；内部容量非常大，因此尺寸偏大也完全可以接受。拉链和缝线都非常出色。",
-      "language_hint": "zh",
+      "review_text": "Uzun sure dayanir kaliteli . Biraz buyuk cep icin. Ic hacmi cok fazla o acidan buyuklugunu amorti ediyor. fermuar ve dikisler harika.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0184",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "连摩托车行驶证都能轻松装下。我用它来收纳行驶证，避免证件堆在钱包里杂乱；既当钱包用，又能把行驶证放在里面，非常满意。",
-      "language_hint": "zh",
+      "review_text": "motorsikletin ruhsatının kabıyla bile sığıyor. çantada ruhsat kalabalığını önlemek için geçtim, hem cüzdan için kullanıyorum hem içinde ruhsat duruyor. gayet memnunum",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0185",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "这是我用于越野跑和徒步运动的钱包，坚固可靠。但卡袋材质偏硬（类似塑料），如果能再柔软些就更好了。",
-      "language_hint": "zh",
+      "review_text": "Mon portefeuille pour le sport (trail et trek) qui ne craint rien. Les pochettes pourraient être un peu plus souples car elles sont très rigides (matière \"plastique\").",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0186",
       "product_id": "backpack_010",
       "rating": 4,
-      "review_text": "使用便捷的收纳器，可集中存放多种证件（如护照、银行卡、身份证、学生证等）。防水性能好，清洁方便。",
-      "language_hint": "zh",
+      "review_text": "Wygodny organizer, który pomieści wiele dokumentów w jednym miejscu (paszport, karty płatnicze, dowód, legitymacja szkolna). Odporny na zalania i łatwy w czyszczeniu.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0187",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "非常耐用",
-      "language_hint": "zh",
+      "review_text": "Très résistant",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0188",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "很实用",
-      "language_hint": "zh",
+      "review_text": "Pratique.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0189",
       "product_id": "backpack_010",
       "rating": 3,
-      "review_text": "银行卡卡槽较松，倒置时卡片容易滑出；将钱包放入裤兜时，外侧拉链可能意外打开，需多加注意。若拉链方向反过来设计，体验会好很多。",
-      "language_hint": "zh",
+      "review_text": "A bankkártya tartóban a kártya elég lazán van. Könnyen kicsúszik, ha fejjel lefelé tartod. Amikor belerakod a zsebedbe a pénztárcát akkor a külső cipzár ki tud nyitódni. Arra figyelni kell. Ha fordítva lenne rátéve a cipzár az sokkal jobb lenne.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0190",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "非常紧凑且实用，我骑自行车时用它来装手机和现金。",
-      "language_hint": "zh",
+      "review_text": "Molto compatto e pratico, lo uso in bici come porta cellulare e denaro",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0191",
       "product_id": "backpack_010",
       "rating": 4,
-      "review_text": "不错",
-      "language_hint": "zh",
+      "review_text": "Good",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0192",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "理想之选，且极为耐用",
-      "language_hint": "zh",
+      "review_text": "Ideal y muy resistente",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0193",
       "product_id": "backpack_010",
       "rating": 4,
-      "review_text": "极其舒适的收纳器，拥有多个不同尺寸的口袋，用途非常广泛。",
-      "language_hint": "zh",
+      "review_text": "Comodissimo organizer. Ha molte tasche, con diverse dimensioni, che lo rendono molto versatile.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0194",
       "product_id": "backpack_010",
       "rating": 4,
-      "review_text": "非常实用，但相比预期略显小巧。",
-      "language_hint": "zh",
+      "review_text": "Es muy útil, un poco pequeña para los servicios esperados.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0195",
       "product_id": "backpack_010",
       "rating": 4,
-      "review_text": "容量足够大，可轻松容纳护照、多张卡片等，旅行或过机场安检时非常实用。还需配一条挂绳，以便日常随身携带。",
-      "language_hint": "zh",
+      "review_text": "Large enough for passport, several cards, etc. Very useful for trips through airport and travelling. Have to find a lanyard to adapt it to a everyday carry.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0196",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "产品非常实用，性价比高。",
-      "language_hint": "zh",
+      "review_text": "article très pratique. bon rapport/qualité prix.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0197",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "我很喜欢，而且非常实用",
-      "language_hint": "zh",
+      "review_text": "me gusto y muy util",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0198",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "质量非常好，隔层非常多",
-      "language_hint": "zh",
+      "review_text": "cok iyi kaliteli bolmesi cok",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0199",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "我已经在用了，这是我的第二个同款收纳器；等第三个用坏，我还会继续买！结实又实用，强烈推荐！",
-      "language_hint": "zh",
+      "review_text": "Już tyram, zużywam drugi taki organizer. Trzeci raz kiedy trzeba będzie też kupię! Solidny i praktyczny! Polecam.",
+      "language_hint": "latin",
       "is_empty": false
     },
     {
       "review_id": "backpack_010_review_0200",
       "product_id": "backpack_010",
       "rating": 5,
-      "review_text": "平时我也常用这款钱包，外观时尚，使用方便",
-      "language_hint": "zh",
+      "review_text": "Normal zamanda da bu cüzdanı kullanıyorum. şık ve kullanışlı",
+      "language_hint": "latin",
       "is_empty": false
     }
   ],

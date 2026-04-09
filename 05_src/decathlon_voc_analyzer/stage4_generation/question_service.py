@@ -1,17 +1,16 @@
 import hashlib
-import json
 
-from openai import OpenAI
-
+from decathlon_voc_analyzer.llm import QwenChatGateway
 from decathlon_voc_analyzer.app.core.config import get_settings
 from decathlon_voc_analyzer.schemas.analysis import RetrievalQuestion
 from decathlon_voc_analyzer.schemas.review import ReviewAspect
-from decathlon_voc_analyzer.prompts import build_question_generation_user_prompt, get_prompt
+from decathlon_voc_analyzer.prompts import get_prompt_template
 
 
 class QuestionGenerationService:
     def __init__(self) -> None:
         self.settings = get_settings()
+        self.chat_gateway = QwenChatGateway()
 
     def generate_questions(
         self,
@@ -39,7 +38,6 @@ class QuestionGenerationService:
         return questions, warnings, mode
 
     def _generate_with_llm(self, aspect: ReviewAspect, questions_per_aspect: int) -> list[RetrievalQuestion]:
-        client = OpenAI(api_key=self.settings.qwen_plus_api_key, base_url=self.settings.qwen_base_url)
         payload = {
             "aspect": aspect.aspect,
             "opinion": aspect.opinion,
@@ -48,18 +46,10 @@ class QuestionGenerationService:
             "sentiment": aspect.sentiment,
             "questions_per_aspect": questions_per_aspect,
         }
-        response = client.chat.completions.create(
-            model=self.settings.qwen_plus_model,
-            temperature=self.settings.llm_temperature,
-            max_tokens=self.settings.llm_max_tokens,
-            response_format={"type": "json_object"},
-            messages=[
-                {"role": "system", "content": get_prompt("question_generation_system")},
-                {"role": "user", "content": build_question_generation_user_prompt(payload)},
-            ],
+        parsed = self.chat_gateway.invoke_json(
+            prompt_template=get_prompt_template("question_generation_system"),
+            variables={"payload": payload},
         )
-        content = response.choices[0].message.content or "{\"questions\": []}"
-        parsed = json.loads(content)
         raw_questions = parsed.get("questions") or []
         questions: list[RetrievalQuestion] = []
         for index, item in enumerate(raw_questions[:questions_per_aspect], start=1):

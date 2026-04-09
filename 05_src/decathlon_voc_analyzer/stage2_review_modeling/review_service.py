@@ -1,11 +1,11 @@
 import hashlib
-import json
 import re
 
 import orjson
-from openai import OpenAI
+from pydantic import BaseModel, Field
 
 from decathlon_voc_analyzer.app.core.config import get_settings
+from decathlon_voc_analyzer.llm import QwenChatGateway
 from decathlon_voc_analyzer.schemas.review import (
     AspectSentiment,
     ExtractionMode,
@@ -15,7 +15,7 @@ from decathlon_voc_analyzer.schemas.review import (
     ReviewExtractionResponse,
     ReviewInput,
 )
-from decathlon_voc_analyzer.prompts import build_review_extraction_user_prompt, get_prompt
+from decathlon_voc_analyzer.prompts import get_prompt_template
 from decathlon_voc_analyzer.stage1_dataset.dataset_service import DatasetService
 
 
@@ -107,10 +107,24 @@ USAGE_SCENES = {
 }
 
 
+class ReviewAspectCandidate(BaseModel):
+    aspect: str = "overall_experience"
+    sentiment: str = "neutral"
+    opinion: str = ""
+    evidence_span: str = ""
+    usage_scene: str | None = None
+    confidence: float = Field(default=0.82, ge=0.0, le=1.0)
+
+
+class ReviewExtractionPayload(BaseModel):
+    aspects: list[ReviewAspectCandidate] = Field(default_factory=list)
+
+
 class ReviewExtractionService:
     def __init__(self) -> None:
         self.settings = get_settings()
         self.dataset_service = DatasetService()
+        self.chat_gateway = QwenChatGateway()
 
     def extract(self, request: ReviewExtractionRequest) -> ReviewExtractionResponse:
         reviews, product_id, category_slug = self._resolve_reviews(request)
@@ -225,7 +239,6 @@ class ReviewExtractionService:
         )
 
     def _extract_with_llm(self, review: PreprocessedReview) -> list[ReviewAspect]:
-        client = OpenAI(api_key=self.settings.qwen_plus_api_key, base_url=self.settings.qwen_base_url)
         payload = {
             "review_id": review.review_id,
             "product_id": review.product_id,
@@ -233,18 +246,11 @@ class ReviewExtractionService:
             "language_hint": review.language_hint,
             "review_text": review.cleaned_text,
         }
-        response = client.chat.completions.create(
-            model=self.settings.qwen_plus_model,
-            temperature=self.settings.llm_temperature,
-            max_tokens=self.settings.llm_max_tokens,
-            response_format={"type": "json_object"},
-            messages=[
-                {"role": "system", "content": get_prompt("review_extraction_system")},
-                {"role": "user", "content": build_review_extraction_user_prompt(payload)},
-            ],
+        parsed = self.chat_gateway.invoke_json(
+            prompt_template=get_prompt_template("review_extraction_system"),
+            variables={"payload": payload},
+            schema=ReviewExtractionPayload,
         )
-        content = response.choices[0].message.content or "{\"aspects\": []}"
-        parsed = json.loads(content)
         raw_aspects = parsed.get("aspects") or []
         aspects: list[ReviewAspect] = []
         for index, item in enumerate(raw_aspects, start=1):

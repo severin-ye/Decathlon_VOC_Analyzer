@@ -3,15 +3,32 @@ import re
 import shutil
 from pathlib import Path
 
-from openai import OpenAI
-
 from decathlon_voc_analyzer.app.core.config import get_settings
+from decathlon_voc_analyzer.llm import QwenChatGateway
 from decathlon_voc_analyzer.prompts import (
-    build_review_cleanup_user_prompt,
-    build_product_translation_user_prompt,
-    build_review_translation_user_prompt,
-    get_prompt,
+    get_prompt_template,
 )
+from pydantic import BaseModel, Field
+
+
+class ProductTranslationPayload(BaseModel):
+    product_name: str = ""
+    model_description: str = ""
+    category: str = ""
+
+
+class ReviewTranslationItem(BaseModel):
+    user_id: str | None = None
+    rating: int | None = None
+    content: str = ""
+
+
+class ReviewTranslationPayload(BaseModel):
+    reviews: list[ReviewTranslationItem] = Field(default_factory=list)
+
+
+class CleanupPayload(BaseModel):
+    text: str = ""
 
 
 class ChineseDatasetService:
@@ -19,6 +36,7 @@ class ChineseDatasetService:
 
     def __init__(self) -> None:
         self.settings = get_settings()
+        self.chat_gateway = QwenChatGateway()
 
     def export_single_product_dataset(
         self,
@@ -71,25 +89,18 @@ class ChineseDatasetService:
         }
 
     def _translate_product_payload(self, product_payload: dict[str, object]) -> dict[str, str]:
-        client = OpenAI(api_key=self.settings.qwen_plus_api_key, base_url=self.settings.qwen_base_url)
         input_payload = {
             "product_id": product_payload.get("product_id"),
             "product_name": product_payload.get("product_name"),
             "model_description": product_payload.get("model_description"),
             "category": product_payload.get("category"),
         }
-        response = client.chat.completions.create(
-            model=self.settings.qwen_plus_model,
+        parsed = self.chat_gateway.invoke_json(
+            prompt_template=get_prompt_template("product_translation_system"),
+            variables={"payload": input_payload},
+            schema=ProductTranslationPayload,
             temperature=0,
-            max_tokens=self.settings.llm_max_tokens,
-            response_format={"type": "json_object"},
-            messages=[
-                {"role": "system", "content": get_prompt("product_translation_system")},
-                {"role": "user", "content": build_product_translation_user_prompt(input_payload)},
-            ],
         )
-        content = response.choices[0].message.content or "{}"
-        parsed = json.loads(content)
         return {
             "product_name": self._cleanup_text(str(parsed.get("product_name") or input_payload.get("product_name") or "")),
             "model_description": self._cleanup_text(str(parsed.get("model_description") or input_payload.get("model_description") or "")),
@@ -97,32 +108,22 @@ class ChineseDatasetService:
         }
 
     def _translate_reviews_payload(self, reviews_payload: dict[str, object], batch_size: int) -> list[dict[str, object]]:
-        client = OpenAI(api_key=self.settings.qwen_plus_api_key, base_url=self.settings.qwen_base_url)
         review_items = reviews_payload.get("reviews") or []
         translated_reviews: list[dict[str, object]] = []
         for start in range(0, len(review_items), batch_size):
             batch = review_items[start:start + batch_size]
-            response = client.chat.completions.create(
-                model=self.settings.qwen_plus_model,
+            parsed = self.chat_gateway.invoke_json(
+                prompt_template=get_prompt_template("review_translation_system"),
+                variables={
+                    "payload": {
+                        "product_id": reviews_payload.get("product_id"),
+                        "start_index": start,
+                        "reviews": batch,
+                    }
+                },
+                schema=ReviewTranslationPayload,
                 temperature=0,
-                max_tokens=self.settings.llm_max_tokens,
-                response_format={"type": "json_object"},
-                messages=[
-                    {"role": "system", "content": get_prompt("review_translation_system")},
-                    {
-                        "role": "user",
-                        "content": build_review_translation_user_prompt(
-                            {
-                                "product_id": reviews_payload.get("product_id"),
-                                "start_index": start,
-                                "reviews": batch,
-                            }
-                        ),
-                    },
-                ],
             )
-            content = response.choices[0].message.content or '{"reviews": []}'
-            parsed = json.loads(content)
             translated_batch = parsed.get("reviews") or []
             if len(translated_batch) != len(batch):
                 raise ValueError(f"translated review batch length mismatch at start={start}")
@@ -146,22 +147,15 @@ class ChineseDatasetService:
             return normalized
 
         cleaned = normalized
-        client = OpenAI(api_key=self.settings.qwen_plus_api_key, base_url=self.settings.qwen_base_url)
         for _ in range(2):
             if not self.NEEDS_CLEANUP_PATTERN.search(cleaned):
                 break
-            response = client.chat.completions.create(
-                model=self.settings.qwen_plus_model,
+            parsed = self.chat_gateway.invoke_json(
+                prompt_template=get_prompt_template("review_cleanup_system"),
+                variables={"payload": {"text": cleaned}},
+                schema=CleanupPayload,
                 temperature=0,
-                max_tokens=self.settings.llm_max_tokens,
-                response_format={"type": "json_object"},
-                messages=[
-                    {"role": "system", "content": get_prompt("review_cleanup_system")},
-                    {"role": "user", "content": build_review_cleanup_user_prompt({"text": cleaned})},
-                ],
             )
-            content = response.choices[0].message.content or "{}"
-            parsed = json.loads(content)
             cleaned = str(parsed.get("text") or cleaned).strip()
             cleaned = cleaned.replace("<br>", "\n").replace("<br/>", "\n").replace("<br />", "\n").strip()
         return cleaned

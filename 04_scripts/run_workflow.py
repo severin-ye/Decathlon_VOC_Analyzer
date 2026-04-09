@@ -75,37 +75,37 @@ def main() -> None:
     paths = configure_environment(use_cn_dataset=args.cn)
 
     from decathlon_voc_analyzer.app.core.config import get_settings
-    from decathlon_voc_analyzer.schemas.analysis import ProductAnalysisRequest
-    from decathlon_voc_analyzer.schemas.dataset import DatasetNormalizeRequest
-    from decathlon_voc_analyzer.schemas.index import IndexBuildRequest
-    from decathlon_voc_analyzer.stage1_dataset.dataset_service import DatasetService
-    from decathlon_voc_analyzer.stage3_retrieval.index_service import IndexService
-    from decathlon_voc_analyzer.stage4_generation.analysis_service import ProductAnalysisService
+    from decathlon_voc_analyzer.workflows.single_product_workflow import get_single_product_workflow
 
     get_settings.cache_clear()
-
-    dataset_service = DatasetService()
-    index_service = IndexService()
-    analysis_service = ProductAnalysisService()
+    workflow = get_single_product_workflow()
 
     mode_label = "中文测试数据集" if args.cn else "主项目原始数据集"
     print(f"[1/4] 当前模式: {mode_label}")
     print(f"       dataset_root = {paths['dataset_root']}")
     print(f"       reports_output_dir = {paths['reports_output_dir']}")
 
-    overview = dataset_service.build_overview()
+    result = workflow.invoke(
+        {
+            "category": args.category,
+            "product_id": args.product_id,
+            "max_reviews": args.max_reviews,
+            "top_k_per_route": args.top_k_per_route,
+            "questions_per_aspect": args.questions_per_aspect,
+            "use_llm": not args.no_llm,
+            "skip_normalize": args.skip_normalize,
+            "skip_index": args.skip_index,
+        },
+        config={"configurable": {"thread_id": f"workflow:{'cn' if args.cn else 'default'}:{args.category}:{args.product_id}"}},
+    )
+
+    overview = result["overview"]
     print(f"[2/4] 数据集概览: categories={overview.category_count}, products={overview.total_products}, reviews={overview.total_reviews}")
     if args.max_reviews is not None:
         print(f"       review_limit = {args.max_reviews}")
 
-    if not args.skip_normalize:
-        normalization = dataset_service.normalize_dataset(
-            DatasetNormalizeRequest(
-                categories=[args.category],
-                product_ids=[args.product_id],
-                persist_artifacts=True,
-            )
-        )
+    normalization = result.get("normalization")
+    if normalization is not None:
         print(
             "[3/4] 标准化完成: "
             f"normalized_products={normalization.stats.normalized_products}, "
@@ -114,14 +114,8 @@ def main() -> None:
     else:
         print("[3/4] 已跳过标准化阶段")
 
-    if not args.skip_index:
-        index_result = index_service.build_index(
-            IndexBuildRequest(
-                categories=[args.category],
-                product_ids=[args.product_id],
-                persist_artifact=True,
-            )
-        )
+    index_result = result.get("index_result")
+    if index_result is not None:
         print(
             "[4/4] 索引构建完成: "
             f"backend={index_result.backend}, "
@@ -131,17 +125,7 @@ def main() -> None:
     else:
         print("[4/4] 已跳过索引阶段")
 
-    analysis = analysis_service.analyze(
-        ProductAnalysisRequest(
-            product_id=args.product_id,
-            category_slug=args.category,
-            max_reviews=args.max_reviews,
-            use_llm=not args.no_llm,
-            persist_artifact=True,
-            top_k_per_route=args.top_k_per_route,
-            questions_per_aspect=args.questions_per_aspect,
-        )
-    )
+    analysis = result["analysis"]
 
     print("[完成] 分析已生成")
     print(f"       analysis_mode = {analysis.analysis_mode}")
