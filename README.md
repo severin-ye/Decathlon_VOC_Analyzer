@@ -117,6 +117,59 @@ uvicorn decathlon_voc_analyzer.app.api.main:app --reload
 - `reviews.json`
 - `images/`
 
+当前 `02_outputs/` 目录按流水线顺序编号：
+
+- `1_normalized/`
+- `1.1_normalized_cn/`
+- `2_aspects/`
+- `2.1_aspects_cn/`
+- `3_indexes/`
+- `3.1_indexes_cn/`
+- `4_reports/`
+- `4.1_reports_cn/`
+
+如果希望一条命令直接跑完整工作流，可运行：
+
+```bash
+.venv/bin/python 04_scripts/run_workflow.py
+```
+
+默认会针对 `backpack/backpack_010` 执行：
+
+- 标准化
+- 索引构建
+- 完整分析
+
+如果要直接分析中文测试数据集，可运行：
+
+```bash
+.venv/bin/python 04_scripts/run_workflow.py --cn
+```
+
+如果只想本地验证流程、不调用外部模型，可加：
+
+```bash
+.venv/bin/python 04_scripts/run_workflow.py --cn --no-llm
+```
+
+也可以显式指定商品：
+
+```bash
+.venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010
+```
+
+如果只想分析前 N 条评论，也可以使用简写参数：
+
+```bash
+.venv/bin/python 04_scripts/run_workflow.py --cn --R_5
+```
+
+其中 `--R_5` 表示只分析前 5 条评论，等价于：
+
+```bash
+.venv/bin/python 04_scripts/run_workflow.py --cn --max-reviews 5
+```
+
 如果要切换后端，可在 `.env` 中设置：
 
 - `retrieval_backend=local`

@@ -42,7 +42,7 @@ class ProductAnalysisService:
                 category_slug=request.category_slug,
                 max_reviews=request.max_reviews,
                 use_llm=request.use_llm,
-                persist_artifact=False,
+                persist_artifact=request.persist_artifact,
             )
         )
 

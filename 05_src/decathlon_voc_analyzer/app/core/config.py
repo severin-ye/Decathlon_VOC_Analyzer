@@ -19,10 +19,10 @@ class Settings(BaseSettings):
     app_env: str = "development"
     dataset_root: Path = ROOT_DIR / "01_data" / "01_raw_products" / "products"
     artifacts_root: Path = ROOT_DIR / "02_outputs"
-    normalized_output_dir: Path = ROOT_DIR / "02_outputs" / "normalized"
-    reports_output_dir: Path = ROOT_DIR / "02_outputs" / "reports"
-    aspects_output_dir: Path = ROOT_DIR / "02_outputs" / "aspects"
-    indexes_output_dir: Path = ROOT_DIR / "02_outputs" / "indexes"
+    normalized_output_dir: Path = ROOT_DIR / "02_outputs" / "1_normalized"
+    reports_output_dir: Path = ROOT_DIR / "02_outputs" / "4_reports"
+    aspects_output_dir: Path = ROOT_DIR / "02_outputs" / "2_aspects"
+    indexes_output_dir: Path = ROOT_DIR / "02_outputs" / "3_indexes"
 
     llm_temperature: float = 0.3
     llm_max_tokens: int = 2000
@@ -35,7 +35,7 @@ class Settings(BaseSettings):
     retrieval_backend: str = "local"
     reranker_backend: str = "api"
     qdrant_collection_name: str = "product_evidence"
-    qdrant_path: Path = ROOT_DIR / "02_outputs" / "indexes" / "qdrant_store"
+    qdrant_path: Path = ROOT_DIR / "02_outputs" / "3_indexes" / "qdrant_store"
 
     qwen_plus_api_key: str | None = Field(
         default=None,
