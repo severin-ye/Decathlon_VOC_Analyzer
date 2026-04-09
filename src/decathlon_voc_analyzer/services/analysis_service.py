@@ -16,36 +16,11 @@ from decathlon_voc_analyzer.models.analysis import (
     SupportingEvidence,
 )
 from decathlon_voc_analyzer.models.review import ReviewAspect, ReviewExtractionRequest
+from decathlon_voc_analyzer.prompts import build_report_generation_user_prompt, get_prompt
 from decathlon_voc_analyzer.services.dataset_service import DatasetService
 from decathlon_voc_analyzer.services.question_service import QuestionGenerationService
 from decathlon_voc_analyzer.services.retrieval_service import RetrievalService
 from decathlon_voc_analyzer.services.review_service import ReviewExtractionService
-
-
-REPORT_SYSTEM_PROMPT = """
-You are generating an evidence-grounded product VOC report.
-Return strict JSON with keys:
-- answer
-- strengths
-- weaknesses
-- controversies
-- applicable_scenes
-- confidence
-- suggestions
-
-Each item in strengths, weaknesses, controversies must contain:
-- label
-- summary
-- confidence
-
-Each suggestion must contain:
-- suggestion
-- suggestion_type
-- reason
-- confidence
-
-Do not invent unsupported evidence. Keep output concise.
-""".strip()
 
 
 class ProductAnalysisService:
@@ -157,8 +132,8 @@ class ProductAnalysisService:
             max_tokens=self.settings.llm_max_tokens,
             response_format={"type": "json_object"},
             messages=[
-                {"role": "system", "content": REPORT_SYSTEM_PROMPT},
-                {"role": "user", "content": json.dumps(payload, ensure_ascii=False)},
+                {"role": "system", "content": get_prompt("report_generation_system")},
+                {"role": "user", "content": build_report_generation_user_prompt(payload)},
             ],
         )
         content = response.choices[0].message.content or "{}"

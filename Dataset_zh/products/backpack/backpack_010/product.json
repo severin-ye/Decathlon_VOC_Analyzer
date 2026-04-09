@@ -1,0 +1,18 @@
+{
+    "product_id": "backpack_010",
+    "product_name": "背包旅行用收纳钱包，适合小号尺寸",
+    "model_description": "这款坚固实用的旅行钱包是安全存放个人物品的最佳选择，既适用于旅行，也适用于日常生活。它是一款让您安心享受旅途的背包。\n\n[保修期]\n2年",
+    "category": "所有运动 > 登山 > 装备 > 背包 > 背包配件",
+    "variants": [
+        {
+            "color": "8512010",
+            "image_paths": [
+                "images/8512010/img1.png",
+                "images/8512010/img2.png",
+                "images/8512010/img3.png",
+                "images/8512010/img4.png",
+                "images/8512010/img5.png"
+            ]
+        }
+    ]
+}

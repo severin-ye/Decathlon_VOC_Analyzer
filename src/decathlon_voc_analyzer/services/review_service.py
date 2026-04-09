@@ -15,30 +15,8 @@ from decathlon_voc_analyzer.models.review import (
     ReviewExtractionResponse,
     ReviewInput,
 )
+from decathlon_voc_analyzer.prompts import build_review_extraction_user_prompt, get_prompt
 from decathlon_voc_analyzer.services.dataset_service import DatasetService
-
-
-SYSTEM_PROMPT = """
-You are extracting structured review aspects for a product VOC pipeline.
-Return strict JSON with this shape:
-{
-  "aspects": [
-    {
-      "aspect": "string",
-      "sentiment": "positive|negative|neutral|mixed",
-      "opinion": "string",
-      "evidence_span": "string",
-      "usage_scene": "string or null",
-      "confidence": 0.0
-    }
-  ]
-}
-Rules:
-- Use the review text only.
-- Keep evidence_span copied from the review, not paraphrased if possible.
-- If the review has little information, return one overall_experience aspect.
-- Do not add markdown fences.
-""".strip()
 
 
 LOW_SIGNAL_REVIEW_PATTERNS = {
@@ -261,8 +239,8 @@ class ReviewExtractionService:
             max_tokens=self.settings.llm_max_tokens,
             response_format={"type": "json_object"},
             messages=[
-                {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user", "content": json.dumps(payload, ensure_ascii=False)},
+                {"role": "system", "content": get_prompt("review_extraction_system")},
+                {"role": "user", "content": build_review_extraction_user_prompt(payload)},
             ],
         )
         content = response.choices[0].message.content or "{\"aspects\": []}"

@@ -22,6 +22,7 @@ src/decathlon_voc_analyzer/
   api/
   core/
   models/
+  prompts/
   services/
 artifacts/
 Dataset/
@@ -94,6 +95,19 @@ uvicorn decathlon_voc_analyzer.api.main:app --reload
 
 当前默认 embedding 模型为 `text-embedding-v4`，通过 DashScope OpenAI 兼容接口调用。
 当前默认 reranker 模型为 `gte-rerank-v2`，通过 DashScope 原生 rerank 接口调用。
+当前所有业务提示词已统一收口到 `src/decathlon_voc_analyzer/prompts/` 目录管理。
+
+如果需要为人工审核导出单产品中文数据集，可运行：
+
+```bash
+.venv/bin/python scripts/export_single_product_chinese_dataset.py --category backpack --product-id backpack_010
+```
+
+默认输出到 `Dataset_zh/products/<category>/<product_id>/`，目录结构与原始数据集保持一致，包含：
+
+- `product.json`
+- `reviews.json`
+- `images/`
 
 如果要切换后端，可在 `.env` 中设置：
 

@@ -6,27 +6,7 @@ from openai import OpenAI
 from decathlon_voc_analyzer.core.config import get_settings
 from decathlon_voc_analyzer.models.analysis import RetrievalQuestion
 from decathlon_voc_analyzer.models.review import ReviewAspect
-
-
-QUESTION_SYSTEM_PROMPT = """
-You generate retrieval questions from structured review aspects.
-Return strict JSON with shape:
-{
-  "questions": [
-    {
-      "question": "string",
-      "rationale": "string",
-      "expected_evidence_routes": ["text", "image"],
-      "confidence": 0.0
-    }
-  ]
-}
-Rules:
-- Questions must help verify or explain the review aspect.
-- Prefer concrete evidence-seeking questions.
-- Use 1 to k questions.
-- Do not add markdown fences.
-""".strip()
+from decathlon_voc_analyzer.prompts import build_question_generation_user_prompt, get_prompt
 
 
 class QuestionGenerationService:
@@ -74,8 +54,8 @@ class QuestionGenerationService:
             max_tokens=self.settings.llm_max_tokens,
             response_format={"type": "json_object"},
             messages=[
-                {"role": "system", "content": QUESTION_SYSTEM_PROMPT},
-                {"role": "user", "content": json.dumps(payload, ensure_ascii=False)},
+                {"role": "system", "content": get_prompt("question_generation_system")},
+                {"role": "user", "content": build_question_generation_user_prompt(payload)},
             ],
         )
         content = response.choices[0].message.content or "{\"questions\": []}"
