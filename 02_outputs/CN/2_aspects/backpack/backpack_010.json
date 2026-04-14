@@ -1,0 +1,33 @@
+{
+  "product_id": "backpack_010",
+  "category_slug": "backpack",
+  "extraction_mode": "heuristic",
+  "preprocessed_reviews": [
+    {
+      "review_id": "backpack_010_review_0001",
+      "product_id": "backpack_010",
+      "original_text": "优点是能将物品集中收纳。性价比很高。",
+      "cleaned_text": "优点是能将物品集中收纳。性价比很高。",
+      "rating": 4,
+      "language_hint": "zh",
+      "is_informative": true,
+      "skip_reason": null
+    }
+  ],
+  "aspects": [
+    {
+      "aspect_id": "backpack_010_review_0001_aspect_01",
+      "review_id": "backpack_010_review_0001",
+      "product_id": "backpack_010",
+      "aspect": "overall_experience",
+      "sentiment": "positive",
+      "opinion": "优点是能将物品集中收纳。性价比很高。",
+      "evidence_span": "优点是能将物品集中收纳。性价比很高。",
+      "usage_scene": null,
+      "confidence": 0.56,
+      "extraction_mode": "heuristic"
+    }
+  ],
+  "skipped_review_ids": [],
+  "warnings": []
+}

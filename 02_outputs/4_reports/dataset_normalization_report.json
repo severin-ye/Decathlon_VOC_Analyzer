@@ -3,10 +3,10 @@
     "scanned_products": 1,
     "normalized_products": 1,
     "total_reviews": 200,
-    "total_images": 5,
+    "total_images": 42,
     "products_missing_product_json": 0,
     "products_missing_reviews_json": 0,
-    "empty_reviews": 1
+    "empty_reviews": 0
   },
   "warnings": []
 }

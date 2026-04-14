@@ -45,12 +45,13 @@ def configure_environment(use_cn_dataset: bool) -> dict[str, Path]:
     if use_cn_dataset:
         paths = {
             "dataset_root": ROOT_DIR / "01_data" / "02_audit_zh_products" / "products",
-            "normalized_output_dir": ROOT_DIR / "02_outputs" / "1.1_normalized_cn",
-            "reports_output_dir": ROOT_DIR / "02_outputs" / "4.1_reports_cn",
-            "aspects_output_dir": ROOT_DIR / "02_outputs" / "2.1_aspects_cn",
-            "indexes_output_dir": ROOT_DIR / "02_outputs" / "3.1_indexes_cn",
-            "qdrant_path": ROOT_DIR / "02_outputs" / "3.1_indexes_cn" / "qdrant_store",
+            "normalized_output_dir": ROOT_DIR / "02_outputs" / "CN" / "1_normalized",
+            "reports_output_dir": ROOT_DIR / "02_outputs" / "CN" / "4_reports",
+            "aspects_output_dir": ROOT_DIR / "02_outputs" / "CN" / "2_aspects",
+            "indexes_output_dir": ROOT_DIR / "02_outputs" / "CN" / "3_indexes",
+            "qdrant_path": ROOT_DIR / "02_outputs" / "CN" / "3_indexes" / "qdrant_store",
         }
+        os.environ["PROMPT_VARIANT"] = "CN"
     else:
         paths = {
             "dataset_root": ROOT_DIR / "01_data" / "01_raw_products" / "products",
@@ -60,6 +61,7 @@ def configure_environment(use_cn_dataset: bool) -> dict[str, Path]:
             "indexes_output_dir": ROOT_DIR / "02_outputs" / "3_indexes",
             "qdrant_path": ROOT_DIR / "02_outputs" / "3_indexes" / "qdrant_store",
         }
+        os.environ["PROMPT_VARIANT"] = "main"
 
     os.environ["DATASET_ROOT"] = str(paths["dataset_root"])
     os.environ["NORMALIZED_OUTPUT_DIR"] = str(paths["normalized_output_dir"])

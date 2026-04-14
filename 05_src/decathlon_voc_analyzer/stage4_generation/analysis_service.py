@@ -1,3 +1,4 @@
+import os
 from collections import Counter, defaultdict
 
 import orjson
@@ -193,28 +194,43 @@ class ProductAnalysisService:
             scenes.update(aggregate.scenes)
             evidence = self._support_for_aspect(aggregate.aspect, retrievals)
             if aggregate.positive_ratio >= 0.6:
+                summary = (
+                    f"Positive feedback dominates for {aggregate.aspect}, appearing {aggregate.frequency} times."
+                    if os.getenv("PROMPT_VARIANT", "main") == "main"
+                    else f"用户对 {aggregate.aspect} 的反馈以正向为主，出现 {aggregate.frequency} 次。"
+                )
                 strengths.append(
                     InsightItem(
                         label=aggregate.aspect,
-                        summary=f"用户对 {aggregate.aspect} 的反馈以正向为主，出现 {aggregate.frequency} 次。",
+                        summary=summary,
                         confidence=self._aggregate_confidence(aggregate),
                         supporting_evidence=evidence,
                     )
                 )
             elif aggregate.negative_ratio >= 0.4:
+                summary = (
+                    f"Clear negative feedback exists for {aggregate.aspect}, appearing {aggregate.frequency} times."
+                    if os.getenv("PROMPT_VARIANT", "main") == "main"
+                    else f"用户对 {aggregate.aspect} 存在明显负向反馈，出现 {aggregate.frequency} 次。"
+                )
                 weaknesses.append(
                     InsightItem(
                         label=aggregate.aspect,
-                        summary=f"用户对 {aggregate.aspect} 存在明显负向反馈，出现 {aggregate.frequency} 次。",
+                        summary=summary,
                         confidence=self._aggregate_confidence(aggregate),
                         supporting_evidence=evidence,
                     )
                 )
             else:
+                summary = (
+                    f"Opinions on {aggregate.aspect} are relatively mixed and somewhat controversial."
+                    if os.getenv("PROMPT_VARIANT", "main") == "main"
+                    else f"{aggregate.aspect} 的意见分布较分散，存在一定争议。"
+                )
                 controversies.append(
                     InsightItem(
                         label=aggregate.aspect,
-                        summary=f"{aggregate.aspect} 的意见分布较分散，存在一定争议。",
+                        summary=summary,
                         confidence=self._aggregate_confidence(aggregate),
                         supporting_evidence=evidence,
                     )
@@ -222,10 +238,15 @@ class ProductAnalysisService:
 
         if not strengths and aggregates:
             aggregate = aggregates[0]
+            summary = (
+                f"{aggregate.aspect} is the most frequently mentioned experience theme in current reviews."
+                if os.getenv("PROMPT_VARIANT", "main") == "main"
+                else f"{aggregate.aspect} 是当前评论中最常见的体验主题。"
+            )
             strengths.append(
                 InsightItem(
                     label=aggregate.aspect,
-                    summary=f"{aggregate.aspect} 是当前评论中最常见的体验主题。",
+                    summary=summary,
                     confidence=self._aggregate_confidence(aggregate),
                     supporting_evidence=self._support_for_aspect(aggregate.aspect, retrievals),
                 )
@@ -281,11 +302,19 @@ class ProductAnalysisService:
         strength_label = strengths[0].label if strengths else "核心体验"
         weakness_label = weaknesses[0].label if weaknesses else None
         controversy_label = controversies[0].label if controversies else None
-        parts = [f"该商品当前评论主要集中在 {strength_label} 相关体验。"]
-        if weakness_label:
-            parts.append(f"同时，{weakness_label} 是当前最需要关注的问题点。")
-        if controversy_label:
-            parts.append(f"{controversy_label} 上存在一定意见分歧，需要结合具体人群与场景理解。")
+        if os.getenv("PROMPT_VARIANT", "main") == "main":
+            strength_label = strengths[0].label if strengths else "core experience"
+            parts = [f"Current reviews concentrate mainly on the '{strength_label}' experience."]
+            if weakness_label:
+                parts.append(f"At the same time, '{weakness_label}' is the most important issue to watch.")
+            if controversy_label:
+                parts.append(f"There is some disagreement around '{controversy_label}', which should be interpreted by user segment and usage context.")
+        else:
+            parts = [f"该商品当前评论主要集中在 {strength_label} 相关体验。"]
+            if weakness_label:
+                parts.append(f"同时，{weakness_label} 是当前最需要关注的问题点。")
+            if controversy_label:
+                parts.append(f"{controversy_label} 上存在一定意见分歧，需要结合具体人群与场景理解。")
         return "".join(parts)
 
     def _build_suggestions(
@@ -298,9 +327,14 @@ class ProductAnalysisService:
         for item in weaknesses[:2]:
             reasons = [item.summary]
             suggestion_type = "structural" if item.supporting_evidence.product_image_ids and item.supporting_evidence.product_text_block_ids else "perception"
+            suggestion = (
+                f"Prioritize improvements to the design or presentation related to {item.label}, and strengthen the corresponding explanation on the product page."
+                if os.getenv("PROMPT_VARIANT", "main") == "main"
+                else f"优先优化 {item.label} 相关设计或表达，并在商品页中强化对应说明。"
+            )
             suggestions.append(
                 ImprovementSuggestion(
-                    suggestion=f"优先优化 {item.label} 相关设计或表达，并在商品页中强化对应说明。",
+                    suggestion=suggestion,
                     suggestion_type=suggestion_type,
                     reason=reasons,
                     confidence=min(0.88, item.confidence),
@@ -308,9 +342,14 @@ class ProductAnalysisService:
                 )
             )
         for item in controversies[:1]:
+            suggestion = (
+                f"Add clearer usage-scenario guidance for {item.label} to reduce expectation mismatch."
+                if os.getenv("PROMPT_VARIANT", "main") == "main"
+                else f"针对 {item.label} 增加更明确的适用场景说明，降低用户预期偏差。"
+            )
             suggestions.append(
                 ImprovementSuggestion(
-                    suggestion=f"针对 {item.label} 增加更明确的适用场景说明，降低用户预期偏差。",
+                    suggestion=suggestion,
                     suggestion_type="perception",
                     reason=[item.summary],
                     confidence=min(0.8, item.confidence),
@@ -320,9 +359,14 @@ class ProductAnalysisService:
         if not suggestions:
             fallback = weaknesses[0] if weaknesses else controversies[0] if controversies else strengths[0] if strengths else None
             if fallback is not None:
+                suggestion = (
+                    f"Add more specific product explanation and usage examples around {fallback.label} to reduce interpretation gaps."
+                    if os.getenv("PROMPT_VARIANT", "main") == "main"
+                    else f"围绕 {fallback.label} 补充更具体的商品说明和使用场景示例，减少用户理解偏差。"
+                )
                 suggestions.append(
                     ImprovementSuggestion(
-                        suggestion=f"围绕 {fallback.label} 补充更具体的商品说明和使用场景示例，减少用户理解偏差。",
+                        suggestion=suggestion,
                         suggestion_type="perception",
                         reason=[fallback.summary],
                         confidence=min(0.76, fallback.confidence),

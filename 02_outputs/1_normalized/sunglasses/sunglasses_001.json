@@ -1,0 +1,1972 @@
+{
+  "product_id": "sunglasses_001",
+  "category_slug": "sunglasses",
+  "product_name": "MH140 Sports Sunglasses",
+  "category_text": "All Sports > Running > Accessories > Sunglasses",
+  "model_description": "These sports sunglasses feature 100% UV protection and Category 3 lenses that reduce glare while fitting snugly and comfortably on the face—ensuring stable, clear vision even during hiking. Designed for light outdoor activities, they’re ideal for hiking and other outdoor sports. [UV Protection] Made with UV-blocking polycarbonate material, these lenses shield your eyes from harmful UVA and UVB rays—invisible threats present year-round, regardless of season or weather. [Lens Tint Categories per ISO 12312-1] — Category 1: Light tints for low-light conditions. — Category 2: Medium tints for moderate sunlight. — Category 3: Dark tints for bright conditions (e.g., mountains, beaches); blocks 82–92% of visible light. — Category 4: Very dark tints for extreme brightness (e.g., high-altitude mountains); blocks 92–97% of visible light. [Important Notes] Decathlon’s lenses are impact-resistant polycarbonate but prone to scratching. Scratches do not affect UV protection—mirror coatings and tint colors are purely aesthetic. Lens color (gray, brown, etc.) is a matter of preference; all offer identical protection. [Warranty] 2 years.",
+  "source_dir": "/home/severin/Codelib/Decathlon_VOC_Analyzer/01_data/01_raw_products/products/sunglasses/sunglasses_001",
+  "text_blocks": [
+    {
+      "text_block_id": "sunglasses_001_product_name_6a25ff926ce5",
+      "product_id": "sunglasses_001",
+      "text_type": "title",
+      "source_section": "product_name",
+      "content": "MH140 Sports Sunglasses"
+    },
+    {
+      "text_block_id": "sunglasses_001_model_description_59e57923253d",
+      "product_id": "sunglasses_001",
+      "text_type": "description",
+      "source_section": "model_description",
+      "content": "These sports sunglasses feature 100% UV protection and Category 3 lenses that reduce glare while fitting snugly and comfortably on the face—ensuring stable, clear vision even during hiking. Designed for light outdoor activities, they’re ideal for hiking and other outdoor sports. [UV Protection] Made with UV-blocking polycarbonate material, these lenses shield your eyes from harmful UVA and UVB rays—invisible threats present year-round, regardless of season or weather. [Lens Tint Categories per ISO 12312-1] — Category 1: Light tints for low-light conditions. — Category 2: Medium tints for moderate sunlight. — Category 3: Dark tints for bright conditions (e.g., mountains, beaches); blocks 82–92% of visible light. — Category 4: Very dark tints for extreme brightness (e.g., high-altitude mountains); blocks 92–97% of visible light. [Important Notes] Decathlon’s lenses are impact-resistant polycarbonate but prone to scratching. Scratches do not affect UV protection—mirror coatings and tint colors are purely aesthetic. Lens color (gray, brown, etc.) is a matter of preference; all offer identical protection. [Warranty] 2 years."
+    },
+    {
+      "text_block_id": "sunglasses_001_category_afcfe308543f",
+      "product_id": "sunglasses_001",
+      "text_type": "category",
+      "source_section": "category",
+      "content": "All Sports > Running > Accessories > Sunglasses"
+    }
+  ],
+  "images": [
+    {
+      "image_id": "sunglasses_001_8936608_b6fb26dd2630",
+      "product_id": "sunglasses_001",
+      "variant": "8936608",
+      "image_type": "product",
+      "image_path": "images/8936608/img1.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8936608_c96483135703",
+      "product_id": "sunglasses_001",
+      "variant": "8936608",
+      "image_type": "product",
+      "image_path": "images/8936608/img2.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8936608_67c53cd371f7",
+      "product_id": "sunglasses_001",
+      "variant": "8936608",
+      "image_type": "product",
+      "image_path": "images/8936608/img3.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8936608_95b40ddf8c5e",
+      "product_id": "sunglasses_001",
+      "variant": "8936608",
+      "image_type": "product",
+      "image_path": "images/8936608/img4.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8936608_041792672460",
+      "product_id": "sunglasses_001",
+      "variant": "8936608",
+      "image_type": "product",
+      "image_path": "images/8936608/img5.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8936608_ac77bc59f6d0",
+      "product_id": "sunglasses_001",
+      "variant": "8936608",
+      "image_type": "product",
+      "image_path": "images/8936608/img6.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8936606_451b3cda3db0",
+      "product_id": "sunglasses_001",
+      "variant": "8936606",
+      "image_type": "product",
+      "image_path": "images/8936606/img1.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8936606_621af17ceebc",
+      "product_id": "sunglasses_001",
+      "variant": "8936606",
+      "image_type": "product",
+      "image_path": "images/8936606/img2.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8936606_5a8b21f1f487",
+      "product_id": "sunglasses_001",
+      "variant": "8936606",
+      "image_type": "product",
+      "image_path": "images/8936606/img3.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8936606_a168a3e53544",
+      "product_id": "sunglasses_001",
+      "variant": "8936606",
+      "image_type": "product",
+      "image_path": "images/8936606/img4.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8936606_a4f502c2707e",
+      "product_id": "sunglasses_001",
+      "variant": "8936606",
+      "image_type": "product",
+      "image_path": "images/8936606/img5.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8936606_20ab5dbabead",
+      "product_id": "sunglasses_001",
+      "variant": "8936606",
+      "image_type": "product",
+      "image_path": "images/8936606/img6.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8559262_760876d87e97",
+      "product_id": "sunglasses_001",
+      "variant": "8559262",
+      "image_type": "product",
+      "image_path": "images/8559262/img1.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8559262_240bd860b033",
+      "product_id": "sunglasses_001",
+      "variant": "8559262",
+      "image_type": "product",
+      "image_path": "images/8559262/img2.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8559262_5f8eaf2d700d",
+      "product_id": "sunglasses_001",
+      "variant": "8559262",
+      "image_type": "product",
+      "image_path": "images/8559262/img3.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8559262_9c48566a445c",
+      "product_id": "sunglasses_001",
+      "variant": "8559262",
+      "image_type": "product",
+      "image_path": "images/8559262/img4.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8559262_c9ed350e47ae",
+      "product_id": "sunglasses_001",
+      "variant": "8559262",
+      "image_type": "product",
+      "image_path": "images/8559262/img5.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8559262_05373f153c87",
+      "product_id": "sunglasses_001",
+      "variant": "8559262",
+      "image_type": "product",
+      "image_path": "images/8559262/img6.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8501374_e19ac52ed99b",
+      "product_id": "sunglasses_001",
+      "variant": "8501374",
+      "image_type": "product",
+      "image_path": "images/8501374/img1.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8501374_9fbca535784a",
+      "product_id": "sunglasses_001",
+      "variant": "8501374",
+      "image_type": "product",
+      "image_path": "images/8501374/img2.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8501374_93fe42533c9f",
+      "product_id": "sunglasses_001",
+      "variant": "8501374",
+      "image_type": "product",
+      "image_path": "images/8501374/img3.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8501374_4c98d005c739",
+      "product_id": "sunglasses_001",
+      "variant": "8501374",
+      "image_type": "product",
+      "image_path": "images/8501374/img4.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8501374_357411f0a6d6",
+      "product_id": "sunglasses_001",
+      "variant": "8501374",
+      "image_type": "product",
+      "image_path": "images/8501374/img5.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8501374_2162c57a3cf7",
+      "product_id": "sunglasses_001",
+      "variant": "8501374",
+      "image_type": "product",
+      "image_path": "images/8501374/img6.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8789212_30beb78a6e44",
+      "product_id": "sunglasses_001",
+      "variant": "8789212",
+      "image_type": "product",
+      "image_path": "images/8789212/img1.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8789212_194dfb65230e",
+      "product_id": "sunglasses_001",
+      "variant": "8789212",
+      "image_type": "product",
+      "image_path": "images/8789212/img2.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8789212_345f39471528",
+      "product_id": "sunglasses_001",
+      "variant": "8789212",
+      "image_type": "product",
+      "image_path": "images/8789212/img3.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8789212_eb210455a137",
+      "product_id": "sunglasses_001",
+      "variant": "8789212",
+      "image_type": "product",
+      "image_path": "images/8789212/img4.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8789212_5138661a0a1f",
+      "product_id": "sunglasses_001",
+      "variant": "8789212",
+      "image_type": "product",
+      "image_path": "images/8789212/img5.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8789212_1488af83bacd",
+      "product_id": "sunglasses_001",
+      "variant": "8789212",
+      "image_type": "product",
+      "image_path": "images/8789212/img6.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8789213_70529972415f",
+      "product_id": "sunglasses_001",
+      "variant": "8789213",
+      "image_type": "product",
+      "image_path": "images/8789213/img1.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8789213_b3a7bd7b0aa8",
+      "product_id": "sunglasses_001",
+      "variant": "8789213",
+      "image_type": "product",
+      "image_path": "images/8789213/img2.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8789213_331aff955838",
+      "product_id": "sunglasses_001",
+      "variant": "8789213",
+      "image_type": "product",
+      "image_path": "images/8789213/img3.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8789213_190a5b00ef48",
+      "product_id": "sunglasses_001",
+      "variant": "8789213",
+      "image_type": "product",
+      "image_path": "images/8789213/img4.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8789213_8df2c4ab9aee",
+      "product_id": "sunglasses_001",
+      "variant": "8789213",
+      "image_type": "product",
+      "image_path": "images/8789213/img5.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8789213_3b4398d1028c",
+      "product_id": "sunglasses_001",
+      "variant": "8789213",
+      "image_type": "product",
+      "image_path": "images/8789213/img6.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8936609_7dd13f036ed9",
+      "product_id": "sunglasses_001",
+      "variant": "8936609",
+      "image_type": "product",
+      "image_path": "images/8936609/img1.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8936609_758600e2befd",
+      "product_id": "sunglasses_001",
+      "variant": "8936609",
+      "image_type": "product",
+      "image_path": "images/8936609/img2.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8936609_16087d1d0bf7",
+      "product_id": "sunglasses_001",
+      "variant": "8936609",
+      "image_type": "product",
+      "image_path": "images/8936609/img3.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8936609_53305cda91ad",
+      "product_id": "sunglasses_001",
+      "variant": "8936609",
+      "image_type": "product",
+      "image_path": "images/8936609/img4.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8936609_6e73d57d3ae3",
+      "product_id": "sunglasses_001",
+      "variant": "8936609",
+      "image_type": "product",
+      "image_path": "images/8936609/img5.png",
+      "aux_text": null
+    },
+    {
+      "image_id": "sunglasses_001_8936609_eceac5d24fcc",
+      "product_id": "sunglasses_001",
+      "variant": "8936609",
+      "image_type": "product",
+      "image_path": "images/8936609/img6.png",
+      "aux_text": null
+    }
+  ],
+  "reviews": [
+    {
+      "review_id": "sunglasses_001_review_0001",
+      "product_id": "sunglasses_001",
+      "rating": 4,
+      "review_text": "최고 가성비 아이들 분신해도 부담도 안되고 아이들이 너무 좋아해요",
+      "language_hint": "ko",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0002",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "너무 춥지 않은 날씨 또는 두꺼운 비니로 땀이 나는게 싫은 분에게 적합해요. 저렴하고 디자인도 예뻐요.",
+      "language_hint": "ko",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0003",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "너무 맘에 듭니다 그냥 스포츠말고 여행용으로 사용해도 손색없을듯요",
+      "language_hint": "ko",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0004",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "가벼운 선글라스 찾고 있었는데, 솔직히 10배 가격이라도 지불하고 살 의향 있음",
+      "language_hint": "ko",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0005",
+      "product_id": "sunglasses_001",
+      "rating": 4,
+      "review_text": "세일해서 저렴하게 구매했어요 가볍고 괜찮네요",
+      "language_hint": "ko",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0006",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "멋짐 탁월함 저렴가격 비교불가의 스마트 디자인.... 고마워요.. 화이팅",
+      "language_hint": "ko",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0007",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "멋짐 탁월함 저렴가격 비교불가의 스마트 디자인.... 고마워요.. 화이팅",
+      "language_hint": "ko",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0008",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "가볍고 고정성이 안정감이 있음",
+      "language_hint": "ko",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0009",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "얼굴에 잘 밀착하고 안정감있는 착용감이 좋습니다.",
+      "language_hint": "ko",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0010",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "와 너무 좋네요",
+      "language_hint": "ko",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0011",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "같은가격대의 알*에서 파는 제품들보다 품질이 우수 특히 무게가 가벼워서 더우 만족",
+      "language_hint": "ko",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0012",
+      "product_id": "sunglasses_001",
+      "rating": 2,
+      "review_text": "조아요",
+      "language_hint": "ko",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0013",
+      "product_id": "sunglasses_001",
+      "rating": 3,
+      "review_text": "가볍고 착용감 만족해요",
+      "language_hint": "ko",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0014",
+      "product_id": "sunglasses_001",
+      "rating": 4,
+      "review_text": "가성비 좋네요. 사이즈도 적당하고.",
+      "language_hint": "ko",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0015",
+      "product_id": "sunglasses_001",
+      "rating": 4,
+      "review_text": "가격이 너무 싸서 품질이 떨어지지 않을까 걱정했는데 전혀 문제 없네네요. 착용감 좋구요 ~ 저는 달리기용으로 샀는데 착용감 좋았습니다 ~",
+      "language_hint": "ko",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0016",
+      "product_id": "sunglasses_001",
+      "rating": 4,
+      "review_text": "만듦새가 좋으나 사이즈가 좀 작은 것 같습니다. 데카트론 안경,모자들은 사이즈를 더 키워서 출시해주면 좋겠습니다.",
+      "language_hint": "ko",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0017",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Buona protezione, leggeri",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0018",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Resistenti, buona protezione",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0019",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Merita",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0020",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Parfait",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0021",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Zit lekker",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0022",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Great sunglasses, no movement when running and they look good too!",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0023",
+      "product_id": "sunglasses_001",
+      "rating": 3,
+      "review_text": "Renkli cam olduğu için görüntü doğalın dışında gözüküyor",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0024",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Resistenti, comodi",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0025",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Value for money",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0026",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "okulary rewelacyjne , plecam",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0027",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "attention cependant aux verres qui sont fragiles",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0028",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Çok guzel",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0029",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "calidad precio genial",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0030",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Works well in night also.",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0031",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Beautifully constructed sunglasses. Very stylish and affordable. This is exactly the Aqua-Green color I’ve been searching for. Very Happy with this purchase!",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0032",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "kaliteli hafif ve yüzü tam kavrıyor tavsiye ediyorum",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0033",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Très belles lunettes de soleil. Belle qualité. parfait pour temps ensoleillé",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0034",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "satisfait",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0035",
+      "product_id": "sunglasses_001",
+      "rating": 4,
+      "review_text": "Good product",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0036",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Great value and quite durable, been using for 10 months lenses are holding up well and frame is still in perfect working order.",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0037",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Bien couvrantes",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0038",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Amazing",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0039",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "nice sunglasses comfortable to wear",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0040",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Polecam",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0041",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Dobry stosunek ceny do jakości!",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0042",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "polecam",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0043",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "wygodne i stylowe",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0044",
+      "product_id": "sunglasses_001",
+      "rating": 4,
+      "review_text": "Kupiłem ten model z myślą o słonecznych, letnich dniach i wyjazdach. Soczewki kategorii 3 robią naprawdę dobrą robotę w mocnym słońcu – wzrok odpoczywa, nie trzeba mrużyć oczu, a obraz pozostaje naturalny i wyraźny. Okulary są bardzo lekkie i całkiem wygodnie leżą na twarzy, nie powodując ucisku za uszami nawet po kilku godzinach noszenia. Kolor \"ultrabiały\" nadaje im typowo wakacyjnego, luźnego charakteru. Daję 4 zamiast 5 gwiazdek z dość prozaicznego powodu: jasne oprawki mają to do siebie, że błyskawicznie widać na nich wszelkie zabrudzenia, na przykład z kremu z filtrem czy potu, więc trzeba je po prostu częściej przecierać. Mimo to, w ogólnym rozrachunku to bardzo solidne, ładne i praktyczne okulary. Zdecydowanie polecam!",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0045",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "buni",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0046",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "bonne lunette couleur très bien",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0047",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "lunette très bien",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0048",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "It fits perfectly on my face and doesn't slipped off even when I'm riding. Worth the money",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0049",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "เบาทนทานและวัสดุแข็งแรง",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0050",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Harika bir gözlük camları özellikle güneşten çok iyi koruyor Doğa yürüyüşlerinde tırmanmada mükemmel",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0051",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Lekkie wygodne okulary są ze mną wszędzie.",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0052",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Very good",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0053",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "belle couleur, légères, protection niveau 3",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0054",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Bardzo udany, uniwersalny model. Okulary są niezwykle lekkie, przez co praktycznie nie czuć ich na nosie, nawet po całym dniu spędzonym na zewnątrz. Czarne, matowe oprawki to klasyka, która pasuje do wszystkiego. Szkła kategorii 3 świetnie radzą sobie w mocnym słońcu, obraz jest wyraźny, a oczy w ogóle się nie męczą. Zauszniki dobrze trzymają się głowy, okulary nie zsuwają się przy schylaniu czy szybszym marszu. Idealne na górskie szlaki, ale też do noszenia na co dzień w mieście.",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0055",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "zajefajne oksy",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0056",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "fajne nieśmiertelne oksy",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0057",
+      "product_id": "sunglasses_001",
+      "rating": 4,
+      "review_text": "Bon rapport qualité prix",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0058",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "удобни леки",
+      "language_hint": "ru",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0059",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Wore skiing. Perfect for the job.",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0060",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Top",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0061",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Ameiii",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0062",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Kept eyes safe in clear weather",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0063",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Jó a termék, azonban javasolt hozzá egy tokot venni.",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0064",
+      "product_id": "sunglasses_001",
+      "rating": 4,
+      "review_text": "Design sympa",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0065",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Love the colour and looks too cool. Perfect wear on a sunny day",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0066",
+      "product_id": "sunglasses_001",
+      "rating": 3,
+      "review_text": "ok",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0067",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Really like these glasses. They're robust and I use them in every day life",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0068",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Bisa digunakan saat sinar Matahari terik dan melindungi mata dari silau yg berlebihan",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0069",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Lunettes achetée pour ma fille elle rn est très contente",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0070",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "กันแดดได้ดี ทรงสวย",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0071",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "çok kullanışlı",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0072",
+      "product_id": "sunglasses_001",
+      "rating": 3,
+      "review_text": "üründe çapaklar var kalıbında",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0073",
+      "product_id": "sunglasses_001",
+      "rating": 4,
+      "review_text": "kalıbı bilindik bir markanın kalıbıyla hemen hemen aynı bu biraz daha kibar hatta",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0074",
+      "product_id": "sunglasses_001",
+      "rating": 3,
+      "review_text": "ok",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0075",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Good",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0076",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Sprawdziły się podczas wędrówek i podczas jazdy samochodem. Polecam!!!",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0077",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Ok.",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0078",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "polecam",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0079",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Thanks very good 👍😊",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0080",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Kupiłem z braku czasu na poszukiwanie innych okularów i sprawdzają się świetnie w czasie wędrówek, ale często zakładam też na luźne jazdy rowerowe. Wygodne, trwałe, bardzo mi pasują",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0081",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Super okulary.",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0082",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Parfaite",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0083",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "tres bien",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0084",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Great and funky sunglasses for holidays, they protect very well and are nice to wear, they don't slide on the nose like some others do.",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0085",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Beau design, bonne résistance au rayure et bonne protection",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0086",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Cat 3 seviye güneşe karşı korumalı, fiyatına göre gayet kaliteli ve şık bir gözlük. Tavsiye ederim.",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0087",
+      "product_id": "sunglasses_001",
+      "rating": 3,
+      "review_text": "Ik draag lenzen en vind m niet goed tegen de zon . en komende lichten auto,s overdag beschermen . Die best vel zijn led van dag verlichting.",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0088",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "the transparent part it is translucent",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0089",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Simple",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0090",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Very nice",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0091",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Excellent product",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0092",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Dobrze dopasowane",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0093",
+      "product_id": "sunglasses_001",
+      "rating": 3,
+      "review_text": ".",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0094",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "bardzo wygodne, ładny design, dobrze leżą, nie spadają z nosa, ja kupilam już kolejną parę, polecam",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0095",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Belles lunettes de soleil ...",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0096",
+      "product_id": "sunglasses_001",
+      "rating": 3,
+      "review_text": "Yürüyüşte kullanmak için aldım iyi",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0097",
+      "product_id": "sunglasses_001",
+      "rating": 4,
+      "review_text": "Occhiali leggeri che non danno noia.inoltre avvolgono bene quindi anche facendo sport rimangono al loro posto senza bisogno di laccetti.",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0098",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "j'ai apprécié ma commande",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0099",
+      "product_id": "sunglasses_001",
+      "rating": 4,
+      "review_text": "Neurazia ani neohúria. Cítiť lacnejšie prevedenie, ale za tie peniaze sa iné nedá čakať.",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0100",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Çerçeve tasarımı çok rahat, surata oturuyor, camları da gözleri rahatsız etmeden uzun süre kullanılabiliyor.",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0101",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Dağcılık sporunun her alanında kullandım. Tam bir fiyat performans ürünü tavsiye ederim.",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0102",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Dobre, lekkie i tanie okulary przeciwsłoneczne z filtrami",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0103",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "3ieme paire, très confortable, coloris passe partout",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0104",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "proste, funkcjonalne, dobry design, polecam",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0105",
+      "product_id": "sunglasses_001",
+      "rating": 4,
+      "review_text": "Bon produit je l'ai est en trois couleurs",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0106",
+      "product_id": "sunglasses_001",
+      "rating": 4,
+      "review_text": "nice choice",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0107",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Utilisation au quotidien",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0108",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Great for my sunny day",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0109",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "thats my 3rd pair",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0110",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Lentila confortabila",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0111",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "I love it",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0112",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Trwałe i wygodne, dobrze chronią od słońca",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0113",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "EŞİME KADINLAR GÜNÜ HEDİYESİ OLARAK ALDIM GAYET BEĞENDİ",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0114",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Tốt trong tầm giá",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0115",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Tốt trong tầm giá. chống nắng tuyệt vời",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0116",
+      "product_id": "sunglasses_001",
+      "rating": 4,
+      "review_text": "Good product clear see rilaxe eye",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0117",
+      "product_id": "sunglasses_001",
+      "rating": 2,
+      "review_text": "Peu solide Pas assez foncé, j'ai fait un mauvais choix",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0118",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Good",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0119",
+      "product_id": "sunglasses_001",
+      "rating": 3,
+      "review_text": "Looks cool but only one size available so can't say much",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0120",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Good product",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0121",
+      "product_id": "sunglasses_001",
+      "rating": 4,
+      "review_text": "Correspond à ma demande,bon rapport qualité prix",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0122",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Stylé et filtre très bien le rayons UV en tout cas le soleil",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0123",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Sun glasses are great and look stylish. They feel sturdy and safe for my eyes with the bright sun.",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0124",
+      "product_id": "sunglasses_001",
+      "rating": 4,
+      "review_text": "Good glasses",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0125",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Occhiali perfetti, schermano bene",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0126",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Esthétiques et agréables à porter, j'en suis ravi !",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0127",
+      "product_id": "sunglasses_001",
+      "rating": 4,
+      "review_text": "bon produit",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0128",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Nejlepsi bryle, jake jsem kdy mel, skoda ze uz se nevyrabi...",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0129",
+      "product_id": "sunglasses_001",
+      "rating": 4,
+      "review_text": "Skvělé brýle, jejich modrá předchozí varianta byla o neco lepší protože měla polarizaci, ale bohužel uz se neprodává. Velmi dobrá kvalita, brýle mi vydrží i několik let.",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0130",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Bones ulleres",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0131",
+      "product_id": "sunglasses_001",
+      "rating": 4,
+      "review_text": "Très bonne lunette",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0132",
+      "product_id": "sunglasses_001",
+      "rating": 1,
+      "review_text": "I don't like it",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0133",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "RAS",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0134",
+      "product_id": "sunglasses_001",
+      "rating": 4,
+      "review_text": "Ok pentru vreme insorita",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0135",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Pour le prix j’en suis satisfaite et m’a protégé de la réverbération de la neige",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0136",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Muito giros e cumprem a função",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0137",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Joli coloris, bonne tenue",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0138",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Okulary sprawdzają się zarówno w sporcie jak i przy codziennym użytkowaniu.",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0139",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Performans Fiyat",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0140",
+      "product_id": "sunglasses_001",
+      "rating": 3,
+      "review_text": "Elles ne protège pas suffisamment pour la randonnée à la neige.",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0141",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "J'adore ses lunettes je les utilise depuis plusieurs années principalement pour le travail, solide et agréable porter plusieurs teintes de verre, possibilité de changer les verres",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0142",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Tam bir fiyat performans ürünü",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0143",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Kemikli yapısıyla takar takmaz farkedilir bir kalite. Koşarken de düşmüyor",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0144",
+      "product_id": "sunglasses_001",
+      "rating": 4,
+      "review_text": "Bien",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0145",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "น่ารัก สวยงาม",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0146",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Une paire de lunette de soleil pratique et légère.",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0147",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Niedrogie i bardzo wytrzymałeb okulary. Polecam",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0148",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "good",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0149",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Fanno il loro lavoro",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0150",
+      "product_id": "sunglasses_001",
+      "rating": 4,
+      "review_text": "good size for guys",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0151",
+      "product_id": "sunglasses_001",
+      "rating": 4,
+      "review_text": "Good",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0152",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "buen diseño, cómodas y resistentes",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0153",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "J’adore",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0154",
+      "product_id": "sunglasses_001",
+      "rating": 4,
+      "review_text": "Sağlam gözden kaymıyor silikonlar sayesinde",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0155",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Nikel",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0156",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "J'en possède déjà une paire similaire, d'une autre couleur, que je porte très souvent. Je souhaitais donc en avoir une autre paire, également d'une autre couleur. Pour l'instant, j'en suis contente et je la recommande.",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0157",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "To chyba moja 4 czy 5 para, bo zawsze mam w domu min 2 i jak zwykle, kupiłam od razu dwie sztuki. Najlepsze okulary jakie w życiu miałam - wygodne, wytrzymałe (żadne się nie złamały ani nie zniszczyły) i mają super kolory. Na razie wyrzuciłam tylko jedną parę, po latach użytkowania, ponieważ szkiełka były już mocno porysowane (w dużej mierze przez tyranie ich w górach, po skałach, trzymanie z kluczami). O kolejne pary lepiej dbałam i trwają do tej pory (lub trwałyby, ale je zgubiłam)",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0158",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "To chyba moja 4 czy 5 para, bo zawsze mam w domu min 2. Najlepsze okulary jakie w życiu miałam - wygodne, wytrzymałe (żadne się nie złamały ani nie zniszczyły) i mają super kolory. Na razie wyrzuciłam tylko jedną parę, po latach użytkowania, ponieważ szkiełka były już mocno porysowane (w dużej mierze przez tyranie ich w górach, po skałach, trzymanie z kluczami). O kolejne pary lepiej dbałam i trwają do tej pory (lub trwałyby, ale je zgubiłam)",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0159",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Polecam",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0160",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Vzhledově hezké, ideální na jakékoliv procházky .",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0161",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Bien",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0162",
+      "product_id": "sunglasses_001",
+      "rating": 4,
+      "review_text": "Fait l’affaire, correct pour le prix",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0163",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Jedny z mála brýlí, které mi skutečně sedí. Jsou lehké, nepadají. Filtrace světla je vyhovující.",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0164",
+      "product_id": "sunglasses_001",
+      "rating": 3,
+      "review_text": "บริการดี แนะนําดี",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0165",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Super",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0166",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Super",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0167",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Très robuste malgré les chute Confortable légèreté",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0168",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Kacamata ini sangat ringan (hanya 21 g) dan nyaman dipakai untuk pemakaian panjang. Lensa kategori 3 memberikan perlindungan UV yang baik untuk cuaca cerah, serta desain bingkai pelipis membuat kacamata tetap pada posisinya selama aktivitas. Kualitas konstruksi terasa kokoh, desain terlihat modern. Satu catatan kecil: ukuran tidak tersedia, jadi pastikan ukuran sesuai untuk wajah Anda. Secara keseluruhan, nilai uang sebanding dengan kualitasnya.",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0169",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Franchement pour le prix c'est vraiment pas mal",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0170",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Bonne protection et look sympa.",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0171",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Purchased this as a gift. Glasses were perfectly fitting. Good buy",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0172",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Worked great for a ski holiday",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0173",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Top !",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0174",
+      "product_id": "sunglasses_001",
+      "rating": 2,
+      "review_text": "Me glissaient du nez et étaient trop larges. Protection correcte",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0175",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Superb....",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0176",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Love this new buy. Very comfortable and stylish too. Perfect for walking/ hiking.",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0177",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "De bonne qualité, couleur très jolie",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0178",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Bardzo lubię kształt tych okularów i kolor szkieł. Poprzenie mam takie same ale szkła są brązowe i dlatego ich nie lubiłam. Te są idealne. Dobrze chronią. Mają dziurki w zausznikach żeby wpiąć sznurek. Polecam na wakacje i na co dzień",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0179",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": ".",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0180",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Tengo unas en el bolso, en el coche y también en el bolso de la piscina, para mi son la mejor compra",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0181",
+      "product_id": "sunglasses_001",
+      "rating": 4,
+      "review_text": "Excellent design",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0182",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Fena değil",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0183",
+      "product_id": "sunglasses_001",
+      "rating": 4,
+      "review_text": "Very good",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0184",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Tam bir fiyat performans ürünü ben şahsen çok beğendim",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0185",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Offert comme cadeau j'en suis entièrement satisfait se porte bien comme au quotidien et à la pêche fais son taffe !",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0186",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Leves e práticos",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0187",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "UV protection, simple and value for money.",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0188",
+      "product_id": "sunglasses_001",
+      "rating": 3,
+      "review_text": "Molto belli e buona visione",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0189",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Ürünü yeni aldım fakat kaliteli olduğunu şimdiden söyleyebilirim",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0190",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Kvalita za dobru cenu",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0191",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Légères et confortables Protègent correctement",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0192",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Leggeri e stabili. Ottime lenti",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0193",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "achat que je recommande excellent rapport qualité/prix",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0194",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Nice",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0195",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "ottimo acquisto. gli occhiali hanno buone lenti e sono anche esteticamente molto carini",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0196",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "look sympa pour ces lunettes de soleil légères et confortables",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0197",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Bardzo dobre okulary. Fajne matowe oprawki, minimalistyczny znaczek. Zauszniki chodzą skokowo i nie luzują się i za to duży plus, bo z tym najczęściej jest problem. Używam w górach i na co dzień i w tej cenie to chyba najlepsza opcja. Kat. 3 więc przyciemniają ale wiadomo że nie całkowicie. Brakuje mi tylko opcji z czarnymi oprawkami i kolorowymi szkłami.",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0198",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Very good product",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0199",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "super lunettes. légères et de qualité a un prix minime",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "sunglasses_001_review_0200",
+      "product_id": "sunglasses_001",
+      "rating": 5,
+      "review_text": "Conforme esperado.",
+      "language_hint": "latin",
+      "is_empty": false
+    }
+  ],
+  "warnings": []
+}

@@ -1,11 +1,15 @@
+import os
 import hashlib
 import json
 import re
 from pathlib import Path
 
 import orjson
+from pydantic import BaseModel
 
 from decathlon_voc_analyzer.app.core.config import get_settings
+from decathlon_voc_analyzer.llm import QwenChatGateway
+from decathlon_voc_analyzer.prompts import get_prompt_template
 from decathlon_voc_analyzer.schemas.dataset import (
     CategoryOverview,
     DatasetNormalizationResult,
@@ -20,9 +24,16 @@ from decathlon_voc_analyzer.schemas.dataset import (
 )
 
 
+class ProductProjectionPayload(BaseModel):
+    product_name: str = ""
+    model_description: str = ""
+    category: str = ""
+
+
 class DatasetService:
     def __init__(self) -> None:
         self.settings = get_settings()
+        self.chat_gateway = QwenChatGateway()
 
     def build_overview(self) -> DatasetOverview:
         categories: list[CategoryOverview] = []
@@ -190,6 +201,13 @@ class DatasetService:
         model_description = self._clean_text(product_payload.get("model_description"))
         category_text = self._clean_text(product_payload.get("category"))
 
+        if self._should_project_main_to_english():
+            product_name, model_description, category_text = self._project_product_fields_to_english(
+                product_name,
+                model_description,
+                category_text,
+            )
+
         text_blocks = self._build_text_blocks(
             product_id=directory.product_id,
             product_name=product_name,
@@ -213,6 +231,36 @@ class DatasetService:
             images=images,
             reviews=reviews,
             warnings=warnings,
+        )
+
+    def _should_project_main_to_english(self) -> bool:
+        return os.getenv("PROMPT_VARIANT", "main") == "main" and bool(self.settings.qwen_plus_api_key)
+
+    def _project_product_fields_to_english(
+        self,
+        product_name: str | None,
+        model_description: str | None,
+        category_text: str | None,
+    ) -> tuple[str | None, str | None, str | None]:
+        payload = {
+            "product_name": product_name,
+            "model_description": model_description,
+            "category": category_text,
+        }
+        try:
+            parsed = self.chat_gateway.invoke_json(
+                prompt_template=get_prompt_template("product_translation_system"),
+                variables={"payload": payload},
+                schema=ProductProjectionPayload,
+                temperature=0,
+            )
+        except Exception:
+            return product_name, model_description, category_text
+
+        return (
+            self._clean_text(parsed.get("product_name") or product_name),
+            self._clean_text(parsed.get("model_description") or model_description),
+            self._clean_text(parsed.get("category") or category_text),
         )
 
     def _build_text_blocks(

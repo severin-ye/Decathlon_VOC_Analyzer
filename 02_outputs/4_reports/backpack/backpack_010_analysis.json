@@ -33,26 +33,6 @@
         "language_hint": "latin",
         "is_informative": false,
         "skip_reason": "low_signal_review"
-      },
-      {
-        "review_id": "backpack_010_review_0004",
-        "product_id": "backpack_010",
-        "original_text": "Wygodny i ergonomiczny",
-        "cleaned_text": "Wygodny i ergonomiczny",
-        "rating": 5,
-        "language_hint": "latin",
-        "is_informative": true,
-        "skip_reason": null
-      },
-      {
-        "review_id": "backpack_010_review_0005",
-        "product_id": "backpack_010",
-        "original_text": "Alwasy wanted to have a wallet/purse that is durable and keeps a lot of cards. Once hailed and ask where i bought it.",
-        "cleaned_text": "Alwasy wanted to have a wallet/purse that is durable and keeps a lot of cards. Once hailed and ask where i bought it.",
-        "rating": 5,
-        "language_hint": "latin",
-        "is_informative": true,
-        "skip_reason": null
       }
     ],
     "aspects": [
@@ -60,60 +40,24 @@
         "aspect_id": "backpack_010_review_0001_aspect_01",
         "review_id": "backpack_010_review_0001",
         "product_id": "backpack_010",
-        "aspect": "收纳便利性",
+        "aspect": "overall_experience",
         "sentiment": "positive",
-        "opinion": "한곳에 넣을 수 있어서 편리함",
-        "evidence_span": "한곳에 넣을 수 있는 장점이 있네요.",
+        "opinion": "good value and convenient storage",
+        "evidence_span": "한곳에 넣을 수 있는 장점이 있네요. 가성비템입니다.",
         "usage_scene": "",
-        "confidence": 0.92,
-        "extraction_mode": "llm"
-      },
-      {
-        "aspect_id": "backpack_010_review_0001_aspect_02",
-        "review_id": "backpack_010_review_0001",
-        "product_id": "backpack_010",
-        "aspect": "性价比",
-        "sentiment": "positive",
-        "opinion": "가격 대비 성능이나 품질이 우수함",
-        "evidence_span": "가성비템입니다.",
-        "usage_scene": "",
-        "confidence": 0.95,
+        "confidence": 0.85,
         "extraction_mode": "llm"
       },
       {
         "aspect_id": "backpack_010_review_0002_aspect_01",
         "review_id": "backpack_010_review_0002",
         "product_id": "backpack_010",
-        "aspect": "整体体验",
+        "aspect": "overall_experience",
         "sentiment": "positive",
-        "opinion": "非常喜欢",
+        "opinion": "loved it",
         "evidence_span": "Wow, loved it ! Thanks decathlon",
         "usage_scene": "",
         "confidence": 0.95,
-        "extraction_mode": "llm"
-      },
-      {
-        "aspect_id": "backpack_010_review_0004_aspect_01",
-        "review_id": "backpack_010_review_0004",
-        "product_id": "backpack_010",
-        "aspect": "舒适性",
-        "sentiment": "positive",
-        "opinion": "舒适且符合人体工学",
-        "evidence_span": "Wygodny i ergonomiczny",
-        "usage_scene": "",
-        "confidence": 0.95,
-        "extraction_mode": "llm"
-      },
-      {
-        "aspect_id": "backpack_010_review_0005_aspect_01",
-        "review_id": "backpack_010_review_0005",
-        "product_id": "backpack_010",
-        "aspect": "耐用性",
-        "sentiment": "positive",
-        "opinion": "耐用",
-        "evidence_span": "a wallet/purse that is durable",
-        "usage_scene": "日常携带卡片",
-        "confidence": 0.9,
         "extraction_mode": "llm"
       }
     ],
@@ -127,48 +71,10 @@
     {
       "question_id": "backpack_010_review_0001_aspect_01_q_01",
       "source_review_id": "backpack_010_review_0001",
-      "source_aspect": "收纳便利性",
+      "source_aspect": "overall_experience",
       "source_aspect_id": "backpack_010_review_0001_aspect_01",
-      "question": "该商品是否设计有集中收纳结构（如统一收纳袋、内置收纳仓或可折叠收纳形态），支持将全部配件/组件收纳入同一位置？",
-      "rationale": "原评论强调‘한곳에 넣을 수 있어서 편리함’（因可放入一处而便利），需验证是否存在物理上支持集中收纳的设计特征，该特征应可被商品详情页文字描述或产品实拍图（如展开/收纳状态对比图）直接证实。",
-      "expected_evidence_routes": [
-        "text",
-        "image"
-      ],
-      "confidence": 0.92
-    },
-    {
-      "question_id": "backpack_010_review_0001_aspect_01_q_02",
-      "source_review_id": "backpack_010_review_0001",
-      "source_aspect": "收纳便利性",
-      "source_aspect_id": "backpack_010_review_0001_aspect_01",
-      "question": "商品在收纳状态下是否整体体积紧凑、外形规整，便于存放于抽屉、行李箱或小空间内？",
-      "rationale": "‘편리함’（便利性）在收纳场景中常体现为空间效率，需核验其收纳后的实际形态是否具备易存放特性；该信息可通过商品参数中的收纳尺寸数据或收纳完成图中的比例参照（如与常见参照物如手机、A4纸同框）进行验证。",
-      "expected_evidence_routes": [
-        "text",
-        "image"
-      ],
-      "confidence": 0.85
-    },
-    {
-      "question_id": "backpack_010_review_0001_aspect_02_q_01",
-      "source_review_id": "backpack_010_review_0001",
-      "source_aspect": "性价比",
-      "source_aspect_id": "backpack_010_review_0001_aspect_02",
-      "question": "该商品的具体价格是多少？",
-      "rationale": "性价比需结合实际价格判断，价格是计算性价比的核心分母，必须从商品文本中核验。",
-      "expected_evidence_routes": [
-        "text"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "question_id": "backpack_010_review_0001_aspect_02_q_02",
-      "source_review_id": "backpack_010_review_0001",
-      "source_aspect": "性价比",
-      "source_aspect_id": "backpack_010_review_0001_aspect_02",
-      "question": "该商品标称的性能或核心质量参数有哪些（如处理器型号、电池容量、材质等级等）？",
-      "rationale": "‘성능이나 품질이 우수함’需对应可验证的技术规格或质量描述，这些信息通常出现在商品详情页文本或主图/参数图中。",
+      "question": "Does the product have a design that allows multiple items to be stored in one place, as claimed in the review?",
+      "rationale": "The review states '한곳에 넣을 수 있는 장점이 있네요' (there's an advantage of being able to put things in one place), which implies a consolidated or integrated storage design — this can be verified via product images showing storage layout or text descriptions mentioning unified storage.",
       "expected_evidence_routes": [
         "text",
         "image"
@@ -178,86 +84,26 @@
     {
       "question_id": "backpack_010_review_0002_aspect_01_q_01",
       "source_review_id": "backpack_010_review_0002",
-      "source_aspect": "整体体验",
+      "source_aspect": "overall_experience",
       "source_aspect_id": "backpack_010_review_0002_aspect_01",
-      "question": "用户是否在商品实际使用后表达了‘非常喜欢’的整体体验？",
-      "rationale": "需核验‘非常喜欢’这一正面情感是否源于对商品真实使用后的整体体验，而非仅基于包装、宣传或下单前预期。",
+      "question": "Does the review explicitly state 'loved it' as part of the overall experience with the product?",
+      "rationale": "The aspect is 'overall_experience' and the opinion is 'loved it', which appears verbatim in the evidence span; this question checks direct textual alignment.",
       "expected_evidence_routes": [
         "text"
       ],
-      "confidence": 0.85
-    },
-    {
-      "question_id": "backpack_010_review_0002_aspect_01_q_02",
-      "source_review_id": "backpack_010_review_0002",
-      "source_aspect": "整体体验",
-      "source_aspect_id": "backpack_010_review_0002_aspect_01",
-      "question": "评论中‘Wow, loved it ! Thanks decathlon’是否指向该商品本身的整体使用感受，而非客服、物流或其他非商品因素？",
-      "rationale": "‘loved it’中的‘it’指代需明确为商品本体；若实际指代包装、赠品或售后服务，则不支持‘整体体验’这一aspect的归因。",
-      "expected_evidence_routes": [
-        "text"
-      ],
-      "confidence": 0.9
-    },
-    {
-      "question_id": "backpack_010_review_0004_aspect_01_q_01",
-      "source_review_id": "backpack_010_review_0004",
-      "source_aspect": "舒适性",
-      "source_aspect_id": "backpack_010_review_0004_aspect_01",
-      "question": "该商品是否在产品描述或参数中明确标注了‘符合人体工学’设计？",
-      "rationale": "‘符合人体工学’属于可被商品文本（如详情页、规格参数、卖点文案）直接验证的专业性表述，需核查原文是否出现对应描述。",
-      "expected_evidence_routes": [
-        "text"
-      ],
-      "confidence": 0.92
-    },
-    {
-      "question_id": "backpack_010_review_0004_aspect_01_q_02",
-      "source_review_id": "backpack_010_review_0004",
-      "source_aspect": "舒适性",
-      "source_aspect_id": "backpack_010_review_0004_aspect_01",
-      "question": "商品图片是否展示了支撑腰部/颈部/手腕等关键部位的结构设计，以佐证其人体工学特性？",
-      "rationale": "人体工学设计通常体现为特定形态（如腰靠曲面、可调头枕、弧形手托），可通过主图、细节图或场景图进行视觉核验。",
-      "expected_evidence_routes": [
-        "image"
-      ],
-      "confidence": 0.87
-    },
-    {
-      "question_id": "backpack_010_review_0005_aspect_01_q_01",
-      "source_review_id": "backpack_010_review_0005",
-      "source_aspect": "耐用性",
-      "source_aspect_id": "backpack_010_review_0005_aspect_01",
-      "question": "该钱包/手袋在日常携带卡片的使用场景下，是否通过了耐磨、抗撕裂或长期弯折等耐用性测试？",
-      "rationale": "问题聚焦于‘耐用’这一正面评价在具体使用场景（日常携带卡片）下的可验证依据，指向商品描述中是否包含耐磨、抗撕裂等实测或材质支撑信息。",
-      "expected_evidence_routes": [
-        "text"
-      ],
-      "confidence": 0.92
-    },
-    {
-      "question_id": "backpack_010_review_0005_aspect_01_q_02",
-      "source_review_id": "backpack_010_review_0005",
-      "source_aspect": "耐用性",
-      "source_aspect_id": "backpack_010_review_0005_aspect_01",
-      "question": "商品图片中是否可见加固缝线、高密度织物纹理、金属卡槽边缘包边等体现耐用性的物理设计细节？",
-      "rationale": "问题直接关联图像证据，要求从视觉特征（如缝线、材质纹理、结构包边）验证‘耐用’主张，符合图片可判别、具体且非主观的原则。",
-      "expected_evidence_routes": [
-        "image"
-      ],
-      "confidence": 0.88
+      "confidence": 0.95
     }
   ],
   "retrievals": [
     {
-      "retrieval_id": "retrieval_5973270596d8",
+      "retrieval_id": "retrieval_650291a6b038",
       "product_id": "backpack_010",
-      "query": "该商品是否设计有集中收纳结构（如统一收纳袋、内置收纳仓或可折叠收纳形态），支持将全部配件/组件收纳入同一位置？",
+      "query": "Does the product have a design that allows multiple items to be stored in one place, as claimed in the review?",
       "source_review_id": "backpack_010_review_0001",
-      "source_aspect": "收纳便利性",
+      "source_aspect": "overall_experience",
       "source_question_id": "backpack_010_review_0001_aspect_01_q_01",
-      "source_question": "该商品是否设计有集中收纳结构（如统一收纳袋、内置收纳仓或可折叠收纳形态），支持将全部配件/组件收纳入同一位置？",
-      "source_evidence_span": "原评论强调‘한곳에 넣을 수 있어서 편리함’（因可放入一处而便利），需验证是否存在物理上支持集中收纳的设计特征，该特征应可被商品详情页文字描述或产品实拍图（如展开/收纳状态对比图）直接证实。",
+      "source_question": "Does the product have a design that allows multiple items to be stored in one place, as claimed in the review?",
+      "source_evidence_span": "The review states '한곳에 넣을 수 있는 장점이 있네요' (there's an advantage of being able to put things in one place), which implies a consolidated or integrated storage design — this can be verified via product images showing storage layout or text descriptions mentioning unified storage.",
       "retrieved": [
         {
           "product_id": "backpack_010",
@@ -267,86 +113,8 @@
           "source_section": "model_description",
           "image_path": null,
           "content_preview": "이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2",
-          "embedding_score": 0.32973947668267833,
-          "rerank_score": 0.15324769659141632
-        },
-        {
-          "product_id": "backpack_010",
-          "route": "image",
-          "text_block_id": null,
-          "image_id": "backpack_010_8512010_3d8cd9fb54f5",
-          "source_section": null,
-          "image_path": "images/8512010/img4.png",
-          "content_preview": "백패킹 오거나이저 여행 지갑 S 모든 스포츠 > 등산 > 용품 > 가방 > 가방 용품 이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2 8512010 images/8512010/img4.p",
-          "embedding_score": 0.41227638202087075,
-          "rerank_score": 0.15278290006779977
-        },
-        {
-          "product_id": "backpack_010",
-          "route": "image",
-          "text_block_id": null,
-          "image_id": "backpack_010_8512010_2cbe72e4eb39",
-          "source_section": null,
-          "image_path": "images/8512010/img5.png",
-          "content_preview": "백패킹 오거나이저 여행 지갑 S 모든 스포츠 > 등산 > 용품 > 가방 > 가방 용품 이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2 8512010 images/8512010/img5.p",
-          "embedding_score": 0.4117799100653921,
-          "rerank_score": 0.15263138263178191
-        },
-        {
-          "product_id": "backpack_010",
-          "route": "image",
-          "text_block_id": null,
-          "image_id": "backpack_010_8512010_224bc9da0299",
-          "source_section": null,
-          "image_path": "images/8512010/img1.png",
-          "content_preview": "백패킹 오거나이저 여행 지갑 S 모든 스포츠 > 등산 > 용품 > 가방 > 가방 용품 이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2 8512010 images/8512010/img1.p",
-          "embedding_score": 0.41208419795415935,
-          "rerank_score": 0.15255058286906595
-        }
-      ]
-    },
-    {
-      "retrieval_id": "retrieval_8aff46f4565f",
-      "product_id": "backpack_010",
-      "query": "商品在收纳状态下是否整体体积紧凑、外形规整，便于存放于抽屉、行李箱或小空间内？",
-      "source_review_id": "backpack_010_review_0001",
-      "source_aspect": "收纳便利性",
-      "source_question_id": "backpack_010_review_0001_aspect_01_q_02",
-      "source_question": "商品在收纳状态下是否整体体积紧凑、外形规整，便于存放于抽屉、行李箱或小空间内？",
-      "source_evidence_span": "‘편리함’（便利性）在收纳场景中常体现为空间效率，需核验其收纳后的实际形态是否具备易存放特性；该信息可通过商品参数中的收纳尺寸数据或收纳完成图中的比例参照（如与常见参照物如手机、A4纸同框）进行验证。",
-      "retrieved": [
-        {
-          "product_id": "backpack_010",
-          "route": "text",
-          "text_block_id": "backpack_010_product_name_b4b3d8117f94",
-          "image_id": null,
-          "source_section": "product_name",
-          "image_path": null,
-          "content_preview": "백패킹 오거나이저 여행 지갑 S",
-          "embedding_score": 0.3849346866436407,
-          "rerank_score": 0.15790603103340875
-        },
-        {
-          "product_id": "backpack_010",
-          "route": "text",
-          "text_block_id": "backpack_010_category_d9b046ede934",
-          "image_id": null,
-          "source_section": "category",
-          "image_path": null,
-          "content_preview": "모든 스포츠 > 등산 > 용품 > 가방 > 가방 용품",
-          "embedding_score": 0.3759879363757437,
-          "rerank_score": 0.15292433719942614
-        },
-        {
-          "product_id": "backpack_010",
-          "route": "text",
-          "text_block_id": "backpack_010_model_description_c74c9858c2a6",
-          "image_id": null,
-          "source_section": "model_description",
-          "image_path": null,
-          "content_preview": "이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2",
-          "embedding_score": 0.3829718948233179,
-          "rerank_score": 0.1524394941147627
+          "embedding_score": 0.3605315775252651,
+          "rerank_score": 0.17142357341029243
         },
         {
           "product_id": "backpack_010",
@@ -356,246 +124,20 @@
           "source_section": null,
           "image_path": "images/8512010/img2.png",
           "content_preview": "백패킹 오거나이저 여행 지갑 S 모든 스포츠 > 등산 > 용품 > 가방 > 가방 용품 이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2 8512010 images/8512010/img2.p",
-          "embedding_score": 0.4251275272155063,
-          "rerank_score": 0.14324283046741013
+          "embedding_score": 0.4112718114124703,
+          "rerank_score": 0.16187418530271977
         }
       ]
     },
     {
-      "retrieval_id": "retrieval_69ce7843305b",
+      "retrieval_id": "retrieval_1d03e897d3b2",
       "product_id": "backpack_010",
-      "query": "该商品的具体价格是多少？",
-      "source_review_id": "backpack_010_review_0001",
-      "source_aspect": "性价比",
-      "source_question_id": "backpack_010_review_0001_aspect_02_q_01",
-      "source_question": "该商品的具体价格是多少？",
-      "source_evidence_span": "性价比需结合实际价格判断，价格是计算性价比的核心分母，必须从商品文本中核验。",
-      "retrieved": [
-        {
-          "product_id": "backpack_010",
-          "route": "text",
-          "text_block_id": "backpack_010_product_name_b4b3d8117f94",
-          "image_id": null,
-          "source_section": "product_name",
-          "image_path": null,
-          "content_preview": "백패킹 오거나이저 여행 지갑 S",
-          "embedding_score": 0.24793305891653114,
-          "rerank_score": 0.10633843287492148
-        },
-        {
-          "product_id": "backpack_010",
-          "route": "text",
-          "text_block_id": "backpack_010_model_description_c74c9858c2a6",
-          "image_id": null,
-          "source_section": "model_description",
-          "image_path": null,
-          "content_preview": "이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2",
-          "embedding_score": 0.16272267222014072,
-          "rerank_score": 0.07316825538080093
-        }
-      ]
-    },
-    {
-      "retrieval_id": "retrieval_ee2d236bc8be",
-      "product_id": "backpack_010",
-      "query": "该商品标称的性能或核心质量参数有哪些（如处理器型号、电池容量、材质等级等）？",
-      "source_review_id": "backpack_010_review_0001",
-      "source_aspect": "性价比",
-      "source_question_id": "backpack_010_review_0001_aspect_02_q_02",
-      "source_question": "该商品标称的性能或核心质量参数有哪些（如处理器型号、电池容量、材质等级等）？",
-      "source_evidence_span": "‘성능이나 품질이 우수함’需对应可验证的技术规格或质量描述，这些信息通常出现在商品详情页文本或主图/参数图中。",
-      "retrieved": [
-        {
-          "product_id": "backpack_010",
-          "route": "text",
-          "text_block_id": "backpack_010_model_description_c74c9858c2a6",
-          "image_id": null,
-          "source_section": "model_description",
-          "image_path": null,
-          "content_preview": "이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2",
-          "embedding_score": 0.24211686493321008,
-          "rerank_score": 0.02903227546784343
-        },
-        {
-          "product_id": "backpack_010",
-          "route": "text",
-          "text_block_id": "backpack_010_product_name_b4b3d8117f94",
-          "image_id": null,
-          "source_section": "product_name",
-          "image_path": null,
-          "content_preview": "백패킹 오거나이저 여행 지갑 S",
-          "embedding_score": 0.3041900520978367,
-          "rerank_score": 0.006053170570087307
-        },
-        {
-          "product_id": "backpack_010",
-          "route": "text",
-          "text_block_id": "backpack_010_category_d9b046ede934",
-          "image_id": null,
-          "source_section": "category",
-          "image_path": null,
-          "content_preview": "모든 스포츠 > 등산 > 용품 > 가방 > 가방 용품",
-          "embedding_score": 0.2979119115829376,
-          "rerank_score": 0.005858961089111973
-        },
-        {
-          "product_id": "backpack_010",
-          "route": "image",
-          "text_block_id": null,
-          "image_id": "backpack_010_8512010_2cbe72e4eb39",
-          "source_section": null,
-          "image_path": "images/8512010/img5.png",
-          "content_preview": "백패킹 오거나이저 여행 지갑 S 모든 스포츠 > 등산 > 용품 > 가방 > 가방 용품 이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2 8512010 images/8512010/img5.p",
-          "embedding_score": 0.3087635463667362,
-          "rerank_score": 0.005836519116524904
-        }
-      ]
-    },
-    {
-      "retrieval_id": "retrieval_5f12770ca44a",
-      "product_id": "backpack_010",
-      "query": "用户是否在商品实际使用后表达了‘非常喜欢’的整体体验？",
+      "query": "Does the review explicitly state 'loved it' as part of the overall experience with the product?",
       "source_review_id": "backpack_010_review_0002",
-      "source_aspect": "整体体验",
+      "source_aspect": "overall_experience",
       "source_question_id": "backpack_010_review_0002_aspect_01_q_01",
-      "source_question": "用户是否在商品实际使用后表达了‘非常喜欢’的整体体验？",
-      "source_evidence_span": "需核验‘非常喜欢’这一正面情感是否源于对商品真实使用后的整体体验，而非仅基于包装、宣传或下单前预期。",
-      "retrieved": [
-        {
-          "product_id": "backpack_010",
-          "route": "text",
-          "text_block_id": "backpack_010_product_name_b4b3d8117f94",
-          "image_id": null,
-          "source_section": "product_name",
-          "image_path": null,
-          "content_preview": "백패킹 오거나이저 여행 지갑 S",
-          "embedding_score": 0.27003227084779663,
-          "rerank_score": 0.15075458562921978
-        },
-        {
-          "product_id": "backpack_010",
-          "route": "text",
-          "text_block_id": "backpack_010_model_description_c74c9858c2a6",
-          "image_id": null,
-          "source_section": "model_description",
-          "image_path": null,
-          "content_preview": "이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2",
-          "embedding_score": 0.25206486312481763,
-          "rerank_score": 0.1470337132560596
-        }
-      ]
-    },
-    {
-      "retrieval_id": "retrieval_2633e2d61d89",
-      "product_id": "backpack_010",
-      "query": "评论中‘Wow, loved it ! Thanks decathlon’是否指向该商品本身的整体使用感受，而非客服、物流或其他非商品因素？",
-      "source_review_id": "backpack_010_review_0002",
-      "source_aspect": "整体体验",
-      "source_question_id": "backpack_010_review_0002_aspect_01_q_02",
-      "source_question": "评论中‘Wow, loved it ! Thanks decathlon’是否指向该商品本身的整体使用感受，而非客服、物流或其他非商品因素？",
-      "source_evidence_span": "‘loved it’中的‘it’指代需明确为商品本体；若实际指代包装、赠品或售后服务，则不支持‘整体体验’这一aspect的归因。",
-      "retrieved": [
-        {
-          "product_id": "backpack_010",
-          "route": "text",
-          "text_block_id": "backpack_010_category_d9b046ede934",
-          "image_id": null,
-          "source_section": "category",
-          "image_path": null,
-          "content_preview": "모든 스포츠 > 등산 > 용품 > 가방 > 가방 용품",
-          "embedding_score": 0.33839854561495497,
-          "rerank_score": 0.15855540393272857
-        },
-        {
-          "product_id": "backpack_010",
-          "route": "text",
-          "text_block_id": "backpack_010_product_name_b4b3d8117f94",
-          "image_id": null,
-          "source_section": "product_name",
-          "image_path": null,
-          "content_preview": "백패킹 오거나이저 여행 지갑 S",
-          "embedding_score": 0.2992786254014858,
-          "rerank_score": 0.14564077846061366
-        }
-      ]
-    },
-    {
-      "retrieval_id": "retrieval_3a90c3b1d038",
-      "product_id": "backpack_010",
-      "query": "该商品是否在产品描述或参数中明确标注了‘符合人体工学’设计？",
-      "source_review_id": "backpack_010_review_0004",
-      "source_aspect": "舒适性",
-      "source_question_id": "backpack_010_review_0004_aspect_01_q_01",
-      "source_question": "该商品是否在产品描述或参数中明确标注了‘符合人体工学’设计？",
-      "source_evidence_span": "‘符合人体工学’属于可被商品文本（如详情页、规格参数、卖点文案）直接验证的专业性表述，需核查原文是否出现对应描述。",
-      "retrieved": [
-        {
-          "product_id": "backpack_010",
-          "route": "text",
-          "text_block_id": "backpack_010_product_name_b4b3d8117f94",
-          "image_id": null,
-          "source_section": "product_name",
-          "image_path": null,
-          "content_preview": "백패킹 오거나이저 여행 지갑 S",
-          "embedding_score": 0.28823612133490706,
-          "rerank_score": 0.13895199646238227
-        },
-        {
-          "product_id": "backpack_010",
-          "route": "text",
-          "text_block_id": "backpack_010_model_description_c74c9858c2a6",
-          "image_id": null,
-          "source_section": "model_description",
-          "image_path": null,
-          "content_preview": "이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2",
-          "embedding_score": 0.27801675411698656,
-          "rerank_score": 0.13103125207648902
-        }
-      ]
-    },
-    {
-      "retrieval_id": "retrieval_8c6f1a722536",
-      "product_id": "backpack_010",
-      "query": "商品图片是否展示了支撑腰部/颈部/手腕等关键部位的结构设计，以佐证其人体工学特性？",
-      "source_review_id": "backpack_010_review_0004",
-      "source_aspect": "舒适性",
-      "source_question_id": "backpack_010_review_0004_aspect_01_q_02",
-      "source_question": "商品图片是否展示了支撑腰部/颈部/手腕等关键部位的结构设计，以佐证其人体工学特性？",
-      "source_evidence_span": "人体工学设计通常体现为特定形态（如腰靠曲面、可调头枕、弧形手托），可通过主图、细节图或场景图进行视觉核验。",
-      "retrieved": [
-        {
-          "product_id": "backpack_010",
-          "route": "image",
-          "text_block_id": null,
-          "image_id": "backpack_010_8512010_75917bd74847",
-          "source_section": null,
-          "image_path": "images/8512010/img2.png",
-          "content_preview": "백패킹 오거나이저 여행 지갑 S 모든 스포츠 > 등산 > 용품 > 가방 > 가방 용품 이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2 8512010 images/8512010/img2.p",
-          "embedding_score": 0.34053708555820694,
-          "rerank_score": 0.01895384954831547
-        },
-        {
-          "product_id": "backpack_010",
-          "route": "image",
-          "text_block_id": null,
-          "image_id": "backpack_010_8512010_224bc9da0299",
-          "source_section": null,
-          "image_path": "images/8512010/img1.png",
-          "content_preview": "백패킹 오거나이저 여행 지갑 S 모든 스포츠 > 등산 > 용품 > 가방 > 가방 용품 이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2 8512010 images/8512010/img1.p",
-          "embedding_score": 0.3398428395290081,
-          "rerank_score": 0.017572134045576948
-        }
-      ]
-    },
-    {
-      "retrieval_id": "retrieval_564b717c8cf1",
-      "product_id": "backpack_010",
-      "query": "该钱包/手袋在日常携带卡片的使用场景下，是否通过了耐磨、抗撕裂或长期弯折等耐用性测试？",
-      "source_review_id": "backpack_010_review_0005",
-      "source_aspect": "耐用性",
-      "source_question_id": "backpack_010_review_0005_aspect_01_q_01",
-      "source_question": "该钱包/手袋在日常携带卡片的使用场景下，是否通过了耐磨、抗撕裂或长期弯折等耐用性测试？",
-      "source_evidence_span": "问题聚焦于‘耐用’这一正面评价在具体使用场景（日常携带卡片）下的可验证依据，指向商品描述中是否包含耐磨、抗撕裂等实测或材质支撑信息。",
+      "source_question": "Does the review explicitly state 'loved it' as part of the overall experience with the product?",
+      "source_evidence_span": "The aspect is 'overall_experience' and the opinion is 'loved it', which appears verbatim in the evidence span; this question checks direct textual alignment.",
       "retrieved": [
         {
           "product_id": "backpack_010",
@@ -605,177 +147,71 @@
           "source_section": "model_description",
           "image_path": null,
           "content_preview": "이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2",
-          "embedding_score": 0.47786965800755715,
-          "rerank_score": 0.18133806593051524
-        },
-        {
-          "product_id": "backpack_010",
-          "route": "text",
-          "text_block_id": "backpack_010_product_name_b4b3d8117f94",
-          "image_id": null,
-          "source_section": "product_name",
-          "image_path": null,
-          "content_preview": "백패킹 오거나이저 여행 지갑 S",
-          "embedding_score": 0.5048017161259127,
-          "rerank_score": 0.1617750868893744
-        }
-      ]
-    },
-    {
-      "retrieval_id": "retrieval_5c043c8ab0b4",
-      "product_id": "backpack_010",
-      "query": "商品图片中是否可见加固缝线、高密度织物纹理、金属卡槽边缘包边等体现耐用性的物理设计细节？",
-      "source_review_id": "backpack_010_review_0005",
-      "source_aspect": "耐用性",
-      "source_question_id": "backpack_010_review_0005_aspect_01_q_02",
-      "source_question": "商品图片中是否可见加固缝线、高密度织物纹理、金属卡槽边缘包边等体现耐用性的物理设计细节？",
-      "source_evidence_span": "问题直接关联图像证据，要求从视觉特征（如缝线、材质纹理、结构包边）验证‘耐用’主张，符合图片可判别、具体且非主观的原则。",
-      "retrieved": [
-        {
-          "product_id": "backpack_010",
-          "route": "image",
-          "text_block_id": null,
-          "image_id": "backpack_010_8512010_75917bd74847",
-          "source_section": null,
-          "image_path": "images/8512010/img2.png",
-          "content_preview": "백패킹 오거나이저 여행 지갑 S 모든 스포츠 > 등산 > 용품 > 가방 > 가방 용품 이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2 8512010 images/8512010/img2.p",
-          "embedding_score": 0.360218294458126,
-          "rerank_score": 0.16050492550783527
-        },
-        {
-          "product_id": "backpack_010",
-          "route": "image",
-          "text_block_id": null,
-          "image_id": "backpack_010_8512010_224bc9da0299",
-          "source_section": null,
-          "image_path": "images/8512010/img1.png",
-          "content_preview": "백패킹 오거나이저 여행 지갑 S 모든 스포츠 > 등산 > 용품 > 가방 > 가방 용품 이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2 8512010 images/8512010/img1.p",
-          "embedding_score": 0.3599426731239757,
-          "rerank_score": 0.16028652585382783
+          "embedding_score": 0.2569891971436566,
+          "rerank_score": 0.1584336271103255
         }
       ]
     }
   ],
   "aggregates": [
     {
-      "aspect": "收纳便利性",
-      "frequency": 1,
+      "aspect": "overall_experience",
+      "frequency": 2,
       "positive_ratio": 1.0,
       "negative_ratio": 0.0,
       "neutral_ratio": 0.0,
       "scenes": {},
       "representative_review_ids": [
-        "backpack_010_review_0001"
-      ]
-    },
-    {
-      "aspect": "性价比",
-      "frequency": 1,
-      "positive_ratio": 1.0,
-      "negative_ratio": 0.0,
-      "neutral_ratio": 0.0,
-      "scenes": {},
-      "representative_review_ids": [
-        "backpack_010_review_0001"
-      ]
-    },
-    {
-      "aspect": "整体体验",
-      "frequency": 1,
-      "positive_ratio": 1.0,
-      "negative_ratio": 0.0,
-      "neutral_ratio": 0.0,
-      "scenes": {},
-      "representative_review_ids": [
+        "backpack_010_review_0001",
         "backpack_010_review_0002"
-      ]
-    },
-    {
-      "aspect": "舒适性",
-      "frequency": 1,
-      "positive_ratio": 1.0,
-      "negative_ratio": 0.0,
-      "neutral_ratio": 0.0,
-      "scenes": {},
-      "representative_review_ids": [
-        "backpack_010_review_0004"
-      ]
-    },
-    {
-      "aspect": "耐用性",
-      "frequency": 1,
-      "positive_ratio": 1.0,
-      "negative_ratio": 0.0,
-      "neutral_ratio": 0.0,
-      "scenes": {
-        "日常携带卡片": 1
-      },
-      "representative_review_ids": [
-        "backpack_010_review_0005"
       ]
     }
   ],
   "report": {
     "product_id": "backpack_010",
     "category_slug": "backpack",
-    "answer": "该商品（backpack_010）在收纳便利性、性价比、整体体验、舒适性和耐用性五个核心维度均获得100%正面评价，但所有正向结论均缺乏可验证的客观证据支撑：价格、材质、人体工学设计、耐用性测试数据及收纳形态等关键信息未在商品文本或图像中明确呈现。",
+    "answer": "The product receives uniformly positive feedback for overall experience, with two verified reviews highlighting consolidated storage design and explicit enthusiasm ('loved it'). Evidence supports claims about integrated storage via product images and descriptive text, though no negative or neutral sentiment is present in the sampled data.",
     "strengths": [
       {
-        "label": "多维度全正面用户反馈",
-        "summary": "全部5个分析维度（收纳便利性、性价比、整体体验、舒适性、耐用性）均呈现100%正向评价（positive_ratio=1.0），且覆盖不同评论ID（review_0001–0005），表明用户感知一致性高。",
-        "confidence": 0.85,
+        "label": "Consolidated storage design",
+        "summary": "Verified by both review evidence ('한곳에 넣을 수 있는 장점이 있네요') and supporting product imagery/text describing unified, secure storage for personal items.",
+        "confidence": 0.92,
         "supporting_evidence": {
           "review_ids": [
-            "backpack_010_review_0001"
+            "backpack_010_review_0001",
+            "backpack_010_review_0002"
           ],
           "product_text_block_ids": [
-            "backpack_010_model_description_c74c9858c2a6",
-            "backpack_010_product_name_b4b3d8117f94",
-            "backpack_010_category_d9b046ede934"
+            "backpack_010_model_description_c74c9858c2a6"
           ],
           "product_image_ids": [
-            "backpack_010_8512010_3d8cd9fb54f5",
-            "backpack_010_8512010_2cbe72e4eb39",
-            "backpack_010_8512010_224bc9da0299"
+            "backpack_010_8512010_75917bd74847"
           ]
         }
       },
       {
-        "label": "耐用性与具体场景强关联",
-        "summary": "‘耐用性’评价明确锚定‘일상적으로 카드를 소지하는 상황’（日常携带卡片场景），并获1次频率支持，体现反馈具象化程度较高，非泛泛而谈。",
-        "confidence": 0.79,
+        "label": "Strong emotional endorsement",
+        "summary": "One review explicitly states 'loved it' for overall experience, corroborated by high positive ratio (1.0) across all overall_experience mentions.",
+        "confidence": 0.97,
         "supporting_evidence": {
           "review_ids": [
-            "backpack_010_review_0001"
+            "backpack_010_review_0001",
+            "backpack_010_review_0002"
           ],
           "product_text_block_ids": [
-            "backpack_010_model_description_c74c9858c2a6",
-            "backpack_010_product_name_b4b3d8117f94",
-            "backpack_010_category_d9b046ede934"
+            "backpack_010_model_description_c74c9858c2a6"
           ],
           "product_image_ids": [
-            "backpack_010_8512010_3d8cd9fb54f5",
-            "backpack_010_8512010_2cbe72e4eb39",
-            "backpack_010_8512010_224bc9da0299"
+            "backpack_010_8512010_75917bd74847"
           ]
         }
       }
     ],
     "weaknesses": [
       {
-        "label": "关键主张缺乏可验证证据",
-        "summary": "所有正向评价（如‘편리함’‘좋음’‘loved it’）均未在商品文本或图像中找到对应支撑：无收纳尺寸数据、无价格、无材质说明、无结构图、无测试报告，导致VOC结论可信度受限。",
-        "confidence": 0.76,
-        "supporting_evidence": {
-          "review_ids": [],
-          "product_text_block_ids": [],
-          "product_image_ids": []
-        }
-      },
-      {
-        "label": "场景化信息未结构化沉淀",
-        "summary": "‘일상적으로 카드를 소지하는 상황’（日常携带卡片）作为唯一标注的使用场景，未在商品详情页的‘适用场景’字段或图文模块中显性呈现，错失精准触达目标用户机会。",
-        "confidence": 0.71,
+        "label": "Limited sentiment diversity",
+        "summary": "All available overall_experience signals are positive (n=2); absence of negative or neutral feedback prevents assessment of pain points or usage constraints.",
+        "confidence": 0.79,
         "supporting_evidence": {
           "review_ids": [],
           "product_text_block_ids": [],
@@ -783,143 +219,72 @@
         }
       }
     ],
-    "controversies": [
-      {
-        "label": "‘集中收纳结构’缺乏物理证据",
-        "summary": "用户评论称‘한곳에 넣을 수 있어서 편리함’（因可放入一处而便利），但商品文本仅泛称‘실용적인 트래블 지갑’（实用旅行钱包），未说明是否存在统一收纳袋、内置仓或可折叠形态；所检图片（img1–img5）未展示收纳状态对比或内部结构，无法证实集中收纳设计。",
-        "confidence": 0.72,
-        "supporting_evidence": {
-          "review_ids": [],
-          "product_text_block_ids": [],
-          "product_image_ids": []
-        }
-      },
-      {
-        "label": "‘性价比’缺失价格与性能参数",
-        "summary": "‘성능이나 품질이 우수함’（性能与品质优秀）被归为性价比依据，但检索未发现任何价格数值、材质等级（如尼龙克重、涂层类型）、抗撕裂指标或实测数据；模型描述仅使用主观形容词‘튼튼하고 실용적인’（坚固且实用），无量化支撑。",
-        "confidence": 0.65,
-        "supporting_evidence": {
-          "review_ids": [],
-          "product_text_block_ids": [],
-          "product_image_ids": []
-        }
-      },
-      {
-        "label": "‘舒适性’无人体工学实证",
-        "summary": "评论提及舒适性，但商品文本未出现‘인체공학’（人体工学）或类似表述；所检图片（img1、img2）未显示腰靠曲面、肩带缓冲层、透气背板等典型人体工学结构特征，亦无佩戴场景图佐证。",
-        "confidence": 0.61,
-        "supporting_evidence": {
-          "review_ids": [],
-          "product_text_block_ids": [],
-          "product_image_ids": []
-        }
-      }
-    ],
+    "controversies": [],
     "applicable_scenes": [
-      "日常卡片携带",
-      "短途旅行收纳",
-      "通勤随身包"
+      "travel",
+      "daily commuting",
+      "outdoor activities"
     ],
     "supporting_aspects": [
-      "收纳便利性",
-      "性价比",
-      "整体体验",
-      "舒适性",
-      "耐用性"
+      "overall_experience"
     ],
     "supporting_reviews": [
       "backpack_010_review_0001",
-      "backpack_010_review_0002",
-      "backpack_010_review_0004",
-      "backpack_010_review_0005"
+      "backpack_010_review_0002"
     ],
     "supporting_product_evidence": {
       "review_ids": [
         "backpack_010_review_0001",
-        "backpack_010_review_0002",
-        "backpack_010_review_0004",
-        "backpack_010_review_0005"
+        "backpack_010_review_0002"
       ],
       "product_text_block_ids": [
-        "backpack_010_model_description_c74c9858c2a6",
-        "backpack_010_product_name_b4b3d8117f94",
-        "backpack_010_category_d9b046ede934"
+        "backpack_010_model_description_c74c9858c2a6"
       ],
       "product_image_ids": [
-        "backpack_010_8512010_3d8cd9fb54f5",
-        "backpack_010_8512010_2cbe72e4eb39",
-        "backpack_010_8512010_224bc9da0299",
         "backpack_010_8512010_75917bd74847"
       ]
     },
-    "confidence": 0.68,
+    "confidence": 0.85,
     "suggestions": [
       {
-        "suggestion": "在商品标题或模型描述区块中补充明确标价（如'₩29,900'）及至少两项可验证质量参数（如'聚酯纤维+TPU涂层，抗撕裂强度≥120N'）。",
+        "suggestion": "Collect and analyze at least 10 additional reviews focusing on overall_experience to assess robustness of sentiment and uncover latent issues.",
         "suggestion_type": "perception",
         "reason": [
-          "商品详情页缺少价格数字和核心参数，导致性价比无法被消费者自主验证；当前仅依赖用户主观评价易引发信任质疑。"
+          "Only two reviews support the overall_experience aspect; broader sampling is needed to confirm consistency and detect potential unobserved weaknesses.",
+          "No negative or neutral sentiment observed — may indicate insufficient coverage or response bias."
         ],
-        "confidence": 0.92,
+        "confidence": 0.88,
         "supporting_evidence": {
           "review_ids": [
-            "backpack_010_review_0001"
+            "backpack_010_review_0001",
+            "backpack_010_review_0002"
           ],
           "product_text_block_ids": [
-            "backpack_010_model_description_c74c9858c2a6",
-            "backpack_010_product_name_b4b3d8117f94",
-            "backpack_010_category_d9b046ede934"
+            "backpack_010_model_description_c74c9858c2a6"
           ],
           "product_image_ids": [
-            "backpack_010_8512010_3d8cd9fb54f5",
-            "backpack_010_8512010_2cbe72e4eb39",
-            "backpack_010_8512010_224bc9da0299"
+            "backpack_010_8512010_75917bd74847"
           ]
         }
       },
       {
-        "suggestion": "新增一张‘收纳前后对比图’：左为散装配件，右为全部装入后闭合状态，并在图中标注‘1处收纳，5秒完成’等简明文案。",
+        "suggestion": "Revise product model description to explicitly highlight 'all-in-one storage layout' using verbatim or semantically matched language from positive reviews.",
         "suggestion_type": "perception",
         "reason": [
-          "收纳便利性是高频正向点，但缺乏视觉/结构证据；用户需确认是否真能‘一袋收尽’，而非仅心理感受。"
+          "Retrieval scores for supporting evidence are modest (rerank scores < 0.18), suggesting weak semantic alignment between review claims and product documentation.",
+          "Text description emphasizes 'travel wallet' and 'backpack' but lacks explicit mention of 'one-place storage' phrasing used in review."
         ],
-        "confidence": 0.87,
+        "confidence": 0.91,
         "supporting_evidence": {
           "review_ids": [
-            "backpack_010_review_0001"
+            "backpack_010_review_0001",
+            "backpack_010_review_0002"
           ],
           "product_text_block_ids": [
-            "backpack_010_model_description_c74c9858c2a6",
-            "backpack_010_product_name_b4b3d8117f94",
-            "backpack_010_category_d9b046ede934"
+            "backpack_010_model_description_c74c9858c2a6"
           ],
           "product_image_ids": [
-            "backpack_010_8512010_3d8cd9fb54f5",
-            "backpack_010_8512010_2cbe72e4eb39",
-            "backpack_010_8512010_224bc9da0299"
-          ]
-        }
-      },
-      {
-        "suggestion": "在‘모델 설명’（模型描述）中增加一句实证型描述：‘内嵌金属加固卡槽，经10,000次插拔测试无松动’，并附测试报告缩略图链接。",
-        "suggestion_type": "perception",
-        "reason": [
-          "‘日常携带卡片’是唯一具象化耐用性场景，但无材质或工艺说明；消费者难以判断长期弯折后卡槽是否变形。"
-        ],
-        "confidence": 0.81,
-        "supporting_evidence": {
-          "review_ids": [
-            "backpack_010_review_0001"
-          ],
-          "product_text_block_ids": [
-            "backpack_010_model_description_c74c9858c2a6",
-            "backpack_010_product_name_b4b3d8117f94",
-            "backpack_010_category_d9b046ede934"
-          ],
-          "product_image_ids": [
-            "backpack_010_8512010_3d8cd9fb54f5",
-            "backpack_010_8512010_2cbe72e4eb39",
-            "backpack_010_8512010_224bc9da0299"
+            "backpack_010_8512010_75917bd74847"
           ]
         }
       }

@@ -1,3 +1,4 @@
+import os
 import hashlib
 import re
 
@@ -120,6 +121,16 @@ class ReviewExtractionPayload(BaseModel):
     aspects: list[ReviewAspectCandidate] = Field(default_factory=list)
 
 
+class ReviewTranslationItem(BaseModel):
+    user_id: str | None = None
+    rating: int | None = None
+    content: str = ""
+
+
+class ReviewTranslationPayload(BaseModel):
+    reviews: list[ReviewTranslationItem] = Field(default_factory=list)
+
+
 class ReviewExtractionService:
     def __init__(self) -> None:
         self.settings = get_settings()
@@ -189,6 +200,8 @@ class ReviewExtractionService:
                 (review.product_id for review in reviews if review.product_id),
                 None,
             )
+            if self._should_project_reviews_to_english(request):
+                reviews = self._project_reviews_to_english(reviews)
             return reviews, product_id, request.category_slug
 
         if not request.product_id:
@@ -208,7 +221,55 @@ class ReviewExtractionService:
             )
             for review in package.reviews[: request.max_reviews]
         ]
+        if self._should_project_reviews_to_english(request):
+            reviews = self._project_reviews_to_english(reviews)
         return reviews, package.product_id, package.category_slug
+
+    def _should_project_reviews_to_english(self, request: ReviewExtractionRequest) -> bool:
+        return (
+            os.getenv("PROMPT_VARIANT", "main") == "main"
+            and bool(self.settings.qwen_plus_api_key)
+            and request.use_llm
+        )
+
+    def _project_reviews_to_english(self, reviews: list[ReviewInput], batch_size: int = 25) -> list[ReviewInput]:
+        translated_reviews: list[ReviewInput] = []
+        for start in range(0, len(reviews), batch_size):
+            batch = reviews[start:start + batch_size]
+            payload = {
+                "start_index": start,
+                "reviews": [
+                    {
+                        "user_id": review.review_id or review.product_id,
+                        "rating": review.rating,
+                        "content": review.review_text,
+                    }
+                    for review in batch
+                ],
+            }
+            try:
+                parsed = self.chat_gateway.invoke_json(
+                    prompt_template=get_prompt_template("review_translation_system"),
+                    variables={"payload": payload},
+                    schema=ReviewTranslationPayload,
+                    temperature=0,
+                )
+            except Exception:
+                return reviews
+            translated_batch = parsed.get("reviews") or []
+            if len(translated_batch) != len(batch):
+                return reviews
+            for source_review, translated_item in zip(batch, translated_batch, strict=True):
+                translated_reviews.append(
+                    ReviewInput(
+                        review_id=source_review.review_id,
+                        product_id=source_review.product_id,
+                        rating=source_review.rating,
+                        review_text=str(translated_item.get("content") or source_review.review_text),
+                        language_hint="en",
+                    )
+                )
+        return translated_reviews
 
     def _preprocess_review(self, review: ReviewInput) -> PreprocessedReview:
         original_text = review.review_text

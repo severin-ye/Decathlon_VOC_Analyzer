@@ -120,13 +120,13 @@ uvicorn decathlon_voc_analyzer.app.api.main:app --reload
 当前 `02_outputs/` 目录按流水线顺序编号：
 
 - `1_normalized/`
-- `1.1_normalized_cn/`
+- `CN/1_normalized/`
 - `2_aspects/`
-- `2.1_aspects_cn/`
+- `CN/2_aspects/`
 - `3_indexes/`
-- `3.1_indexes_cn/`
+- `CN/3_indexes/`
 - `4_reports/`
-- `4.1_reports_cn/`
+- `CN/4_reports/`
 
 如果希望一条命令直接跑完整工作流，可运行：
 

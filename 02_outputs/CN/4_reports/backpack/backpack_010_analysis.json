@@ -1,0 +1,148 @@
+{
+  "extraction": {
+    "product_id": "backpack_010",
+    "category_slug": "backpack",
+    "extraction_mode": "heuristic",
+    "preprocessed_reviews": [
+      {
+        "review_id": "backpack_010_review_0001",
+        "product_id": "backpack_010",
+        "original_text": "优点是能将物品集中收纳。性价比很高。",
+        "cleaned_text": "优点是能将物品集中收纳。性价比很高。",
+        "rating": 4,
+        "language_hint": "zh",
+        "is_informative": true,
+        "skip_reason": null
+      }
+    ],
+    "aspects": [
+      {
+        "aspect_id": "backpack_010_review_0001_aspect_01",
+        "review_id": "backpack_010_review_0001",
+        "product_id": "backpack_010",
+        "aspect": "overall_experience",
+        "sentiment": "positive",
+        "opinion": "优点是能将物品集中收纳。性价比很高。",
+        "evidence_span": "优点是能将物品集中收纳。性价比很高。",
+        "usage_scene": null,
+        "confidence": 0.56,
+        "extraction_mode": "heuristic"
+      }
+    ],
+    "skipped_review_ids": [],
+    "warnings": [],
+    "artifact_path": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/CN/2_aspects/backpack/backpack_010.json"
+  },
+  "questions": [
+    {
+      "question_id": "backpack_010_review_0001_aspect_01_q_01",
+      "source_review_id": "backpack_010_review_0001",
+      "source_aspect": "overall_experience",
+      "source_aspect_id": "backpack_010_review_0001_aspect_01",
+      "question": "商品文案中是否存在能解释“overall_experience”相关体验的明确描述？",
+      "rationale": "需要先确认商品页文本是否直接支持该评论观点。",
+      "expected_evidence_routes": [
+        "text"
+      ],
+      "confidence": 0.66
+    }
+  ],
+  "retrievals": [
+    {
+      "retrieval_id": "retrieval_93a422ea8853",
+      "product_id": "backpack_010",
+      "query": "商品文案中是否存在能解释“overall_experience”相关体验的明确描述？",
+      "source_review_id": "backpack_010_review_0001",
+      "source_aspect": "overall_experience",
+      "source_question_id": "backpack_010_review_0001_aspect_01_q_01",
+      "source_question": "商品文案中是否存在能解释“overall_experience”相关体验的明确描述？",
+      "source_evidence_span": "需要先确认商品页文本是否直接支持该评论观点。",
+      "retrieved": [
+        {
+          "product_id": "backpack_010",
+          "route": "text",
+          "text_block_id": "backpack_010_model_description_a0cc70fa411a",
+          "image_id": null,
+          "source_section": "model_description",
+          "image_path": null,
+          "content_preview": "这款坚固实用的旅行钱包是安全存放个人物品的最佳选择，既适用于旅行，也适用于日常生活。它是一款让您安心享受旅途的背包。 [保修期] 2年",
+          "embedding_score": 0.38479842427850713,
+          "rerank_score": 0.38479842427850713
+        }
+      ]
+    }
+  ],
+  "aggregates": [
+    {
+      "aspect": "overall_experience",
+      "frequency": 1,
+      "positive_ratio": 1.0,
+      "negative_ratio": 0.0,
+      "neutral_ratio": 0.0,
+      "scenes": {},
+      "representative_review_ids": [
+        "backpack_010_review_0001"
+      ]
+    }
+  ],
+  "report": {
+    "product_id": "backpack_010",
+    "category_slug": "backpack",
+    "answer": "该商品当前评论主要集中在 overall_experience 相关体验。",
+    "strengths": [
+      {
+        "label": "overall_experience",
+        "summary": "用户对 overall_experience 的反馈以正向为主，出现 1 次。",
+        "confidence": 0.6,
+        "supporting_evidence": {
+          "review_ids": [
+            "backpack_010_review_0001"
+          ],
+          "product_text_block_ids": [
+            "backpack_010_model_description_a0cc70fa411a"
+          ],
+          "product_image_ids": []
+        }
+      }
+    ],
+    "weaknesses": [],
+    "controversies": [],
+    "applicable_scenes": [],
+    "supporting_aspects": [
+      "overall_experience"
+    ],
+    "supporting_reviews": [
+      "backpack_010_review_0001"
+    ],
+    "supporting_product_evidence": {
+      "review_ids": [
+        "backpack_010_review_0001"
+      ],
+      "product_text_block_ids": [
+        "backpack_010_model_description_a0cc70fa411a"
+      ],
+      "product_image_ids": []
+    },
+    "confidence": 0.53,
+    "suggestions": [
+      {
+        "suggestion": "围绕 overall_experience 补充更具体的商品说明和使用场景示例，减少用户理解偏差。",
+        "suggestion_type": "perception",
+        "reason": [
+          "用户对 overall_experience 的反馈以正向为主，出现 1 次。"
+        ],
+        "confidence": 0.6,
+        "supporting_evidence": {
+          "review_ids": [
+            "backpack_010_review_0001"
+          ],
+          "product_text_block_ids": [
+            "backpack_010_model_description_a0cc70fa411a"
+          ],
+          "product_image_ids": []
+        }
+      }
+    ]
+  },
+  "warnings": []
+}

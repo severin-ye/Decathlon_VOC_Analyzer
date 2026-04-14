@@ -1,3 +1,4 @@
+import os
 import hashlib
 
 from decathlon_voc_analyzer.llm import QwenChatGateway
@@ -74,23 +75,42 @@ class QuestionGenerationService:
         return questions or self._generate_with_heuristic(aspect, questions_per_aspect)
 
     def _generate_with_heuristic(self, aspect: ReviewAspect, questions_per_aspect: int) -> list[RetrievalQuestion]:
-        candidates = [
-            (
-                f"商品文案中是否存在能解释“{aspect.aspect}”相关体验的明确描述？",
-                "需要先确认商品页文本是否直接支持该评论观点。",
-                ["text"],
-            ),
-            (
-                f"商品图片中是否存在能支撑“{aspect.aspect}”判断的结构或外观证据？",
-                "需要检查视觉证据能否支撑评论中的体验判断。",
-                ["image"],
-            ),
-            (
-                f"围绕“{aspect.aspect}”，商品图文证据更支持真实问题还是使用预期偏差？",
-                "需要综合图像与文本判断该反馈的解释方向。",
-                ["text", "image"],
-            ),
-        ]
+        if os.getenv("PROMPT_VARIANT", "main") == "main":
+            candidates = [
+                (
+                    f"Does the product text explicitly support the experience claim related to '{aspect.aspect}'?",
+                    "This checks whether the product page text directly supports the review claim.",
+                    ["text"],
+                ),
+                (
+                    f"Do the product images provide structural or visual evidence for the '{aspect.aspect}' judgment?",
+                    "This checks whether visual evidence supports the experience described in the review.",
+                    ["image"],
+                ),
+                (
+                    f"For '{aspect.aspect}', do the product text and images support a real product issue or an expectation mismatch?",
+                    "This requires combining textual and visual evidence before interpreting the feedback.",
+                    ["text", "image"],
+                ),
+            ]
+        else:
+            candidates = [
+                (
+                    f"商品文案中是否存在能解释“{aspect.aspect}”相关体验的明确描述？",
+                    "需要先确认商品页文本是否直接支持该评论观点。",
+                    ["text"],
+                ),
+                (
+                    f"商品图片中是否存在能支撑“{aspect.aspect}”判断的结构或外观证据？",
+                    "需要检查视觉证据能否支撑评论中的体验判断。",
+                    ["image"],
+                ),
+                (
+                    f"围绕“{aspect.aspect}”，商品图文证据更支持真实问题还是使用预期偏差？",
+                    "需要综合图像与文本判断该反馈的解释方向。",
+                    ["text", "image"],
+                ),
+            ]
         selected = candidates[:questions_per_aspect]
         return [
             RetrievalQuestion(
