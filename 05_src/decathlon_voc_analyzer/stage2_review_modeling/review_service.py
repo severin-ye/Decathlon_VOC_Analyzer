@@ -18,6 +18,7 @@ from decathlon_voc_analyzer.schemas.review import (
 )
 from decathlon_voc_analyzer.prompts import get_prompt_template
 from decathlon_voc_analyzer.stage1_dataset.dataset_service import DatasetService
+from decathlon_voc_analyzer.stage2_review_modeling.deduplication_service import ReviewDeduplicationService
 
 
 LOW_SIGNAL_REVIEW_PATTERNS = {
@@ -136,6 +137,7 @@ class ReviewExtractionService:
         self.settings = get_settings()
         self.dataset_service = DatasetService()
         self.chat_gateway = QwenChatGateway()
+        self.deduplication_service = ReviewDeduplicationService()
 
     def extract(self, request: ReviewExtractionRequest) -> ReviewExtractionResponse:
         reviews, product_id, category_slug = self._resolve_reviews(request)
@@ -169,6 +171,7 @@ class ReviewExtractionService:
             aspects.extend(extracted_aspects)
 
         artifact_path: str | None = None
+        aspects = self.deduplication_service.deduplicate(aspects)
         if request.persist_artifact:
             artifact_path = self._persist_result(
                 product_id=product_id,

@@ -29,3 +29,10 @@ def test_product_analysis_endpoint_runs_end_to_end() -> None:
     assert len(payload["aggregates"]) >= 1
     assert payload["report"]["answer"]
     assert payload["report"]["supporting_product_evidence"]["product_text_block_ids"]
+    assert payload["trace"]
+    assert payload["retrieval_quality"]
+    assert payload["retrieval_runtime"]["image_embedding_backend"] == "proxy_text"
+    assert payload["retrieval_runtime"]["native_multimodal_enabled"] is False
+    assert payload["report"]["strengths"][0]["owner"]
+    assert payload["report"]["strengths"][0]["confidence_breakdown"]["final_confidence"] >= 0.0
+    assert payload["retrieval_quality"][0]["top_k_count"] >= 1

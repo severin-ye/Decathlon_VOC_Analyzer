@@ -23,6 +23,9 @@ class Settings(BaseSettings):
     reports_output_dir: Path = ROOT_DIR / "02_outputs" / "4_reports"
     aspects_output_dir: Path = ROOT_DIR / "02_outputs" / "2_aspects"
     indexes_output_dir: Path = ROOT_DIR / "02_outputs" / "3_indexes"
+    feedback_output_dir: Path = ROOT_DIR / "02_outputs" / "5_feedback"
+    replay_output_dir: Path = ROOT_DIR / "02_outputs" / "5_replay"
+    html_output_dir: Path = ROOT_DIR / "02_outputs" / "6_html"
 
     llm_temperature: float = 0.3
     llm_max_tokens: int = 2000
@@ -31,9 +34,13 @@ class Settings(BaseSettings):
     qwen_plus_model: str = "qwen-plus"
     qwen_embedding_model: str = "text-embedding-v4"
     qwen_reranker_model: str = "gte-rerank-v2"
+    qwen_vl_embedding_model: str = "qwen2.5-vl-embedding"
+    qwen_vl_reranker_model: str = "qwen2.5-vl-reranker"
     embedding_backend: str = "api"
+    image_embedding_backend: str = "proxy_text"
     retrieval_backend: str = "local"
     reranker_backend: str = "api"
+    multimodal_reranker_backend: str = "disabled"
     qdrant_collection_name: str = "product_evidence"
     qdrant_path: Path = ROOT_DIR / "02_outputs" / "3_indexes" / "qdrant_store"
 
@@ -58,4 +65,7 @@ def get_settings() -> Settings:
     settings.reports_output_dir.mkdir(parents=True, exist_ok=True)
     settings.aspects_output_dir.mkdir(parents=True, exist_ok=True)
     settings.indexes_output_dir.mkdir(parents=True, exist_ok=True)
+    settings.feedback_output_dir.mkdir(parents=True, exist_ok=True)
+    settings.replay_output_dir.mkdir(parents=True, exist_ok=True)
+    settings.html_output_dir.mkdir(parents=True, exist_ok=True)
     return settings

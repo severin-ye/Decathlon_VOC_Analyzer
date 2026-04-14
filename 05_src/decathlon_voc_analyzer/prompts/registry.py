@@ -22,6 +22,15 @@ PROMPT_VARIANT_DIRS = {
     "main": PROMPTS_DIR / "main",
     "CN": PROMPTS_DIR / "CN",
 }
+PROMPT_VARIANT_ALIASES = {
+    "main": "main",
+    "default": "main",
+    "en": "main",
+    "cn": "CN",
+    "zh": "CN",
+    "zh-cn": "CN",
+    "CN": "CN",
+}
 
 USER_PROMPT_TEMPLATES = {
     "main": {
@@ -60,10 +69,16 @@ USER_PROMPT_TEMPLATES = {
 
 
 def get_prompt_variant() -> str:
-    variant = os.getenv("PROMPT_VARIANT", "main")
+    variant = normalize_prompt_variant(os.getenv("PROMPT_VARIANT", "main"))
     if variant not in PROMPT_VARIANT_DIRS:
         return "main"
     return variant
+
+
+def normalize_prompt_variant(variant: str | None) -> str:
+    if variant is None:
+        return "main"
+    return PROMPT_VARIANT_ALIASES.get(str(variant), "main")
 
 
 @lru_cache(maxsize=None)
@@ -73,13 +88,13 @@ def _load_prompt_file(file_name: str, variant: str) -> str:
 
 
 def get_prompt(name: str, variant: str | None = None) -> str:
-    resolved_variant = variant or get_prompt_variant()
+    resolved_variant = normalize_prompt_variant(variant) if variant is not None else get_prompt_variant()
     return _load_prompt_file(PROMPT_FILES[name], resolved_variant)
 
 
 @lru_cache(maxsize=None)
 def get_prompt_template(name: str, variant: str | None = None) -> ChatPromptTemplate:
-    resolved_variant = variant or get_prompt_variant()
+    resolved_variant = normalize_prompt_variant(variant) if variant is not None else get_prompt_variant()
     return ChatPromptTemplate.from_messages(
         [
             SystemMessage(content=get_prompt(name, resolved_variant)),
@@ -89,7 +104,7 @@ def get_prompt_template(name: str, variant: str | None = None) -> ChatPromptTemp
 
 
 def _format_user_prompt(name: str, payload: dict[str, object], variant: str | None = None) -> str:
-    resolved_variant = variant or get_prompt_variant()
+    resolved_variant = normalize_prompt_variant(variant) if variant is not None else get_prompt_variant()
     return USER_PROMPT_TEMPLATES[resolved_variant][name].format(
         payload=json.dumps(payload, ensure_ascii=False)
     )

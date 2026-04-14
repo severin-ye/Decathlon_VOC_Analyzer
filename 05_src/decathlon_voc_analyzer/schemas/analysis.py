@@ -7,6 +7,8 @@ from decathlon_voc_analyzer.schemas.review import ReviewAspect, ReviewExtraction
 
 EvidenceRoute = Literal["text", "image"]
 AnalysisMode = Literal["heuristic", "llm"]
+IssueOwner = Literal["product_issue", "content_presentation", "evidence_gap", "expectation_mismatch"]
+ProcessTraceType = Literal["observation", "evidence_check", "owner_judgement", "action_generation"]
 
 
 class RetrievalQuestion(BaseModel):
@@ -44,6 +46,30 @@ class RetrievalRecord(BaseModel):
     retrieved: list[RetrievedEvidence]
 
 
+class RetrievalQualityMetrics(BaseModel):
+    retrieval_id: str
+    source_aspect: str
+    top_k_count: int = Field(ge=0)
+    evidence_coverage: float = Field(ge=0.0, le=1.0)
+    score_drift: float = Field(ge=0.0, le=1.0)
+    text_coverage: bool = False
+    image_coverage: bool = False
+    conflict_risk: float = Field(ge=0.0, le=1.0)
+
+
+class RetrievalRuntimeProfile(BaseModel):
+    text_embedding_backend: str
+    text_embedding_model: str
+    image_embedding_backend: str
+    image_embedding_model: str | None = None
+    reranker_backend: str
+    reranker_model: str
+    multimodal_reranker_backend: str
+    multimodal_reranker_model: str | None = None
+    native_multimodal_enabled: bool = False
+    summary: str
+
+
 class AspectAggregate(BaseModel):
     aspect: str
     frequency: int
@@ -60,11 +86,30 @@ class SupportingEvidence(BaseModel):
     product_image_ids: list[str] = Field(default_factory=list)
 
 
+class ConfidenceBreakdown(BaseModel):
+    extract_confidence: float = Field(ge=0.0, le=1.0)
+    question_confidence: float = Field(ge=0.0, le=1.0)
+    evidence_confidence: float = Field(ge=0.0, le=1.0)
+    consistency_confidence: float = Field(ge=0.0, le=1.0)
+    final_confidence: float = Field(ge=0.0, le=1.0)
+
+
+class ProcessTraceItem(BaseModel):
+    trace_type: ProcessTraceType
+    aspect: str
+    summary: str
+    owner: IssueOwner | None = None
+    supporting_evidence: SupportingEvidence = Field(default_factory=SupportingEvidence)
+    confidence_breakdown: ConfidenceBreakdown | None = None
+
+
 class InsightItem(BaseModel):
     label: str
     summary: str
     confidence: float = Field(ge=0.0, le=1.0)
     supporting_evidence: SupportingEvidence
+    owner: IssueOwner = "product_issue"
+    confidence_breakdown: ConfidenceBreakdown | None = None
 
 
 class ImprovementSuggestion(BaseModel):
@@ -73,6 +118,8 @@ class ImprovementSuggestion(BaseModel):
     reason: list[str]
     confidence: float = Field(ge=0.0, le=1.0)
     supporting_evidence: SupportingEvidence
+    owner: IssueOwner = "content_presentation"
+    confidence_breakdown: ConfidenceBreakdown | None = None
 
 
 class ProductAnalysisReport(BaseModel):
@@ -105,7 +152,10 @@ class ProductAnalysisResponse(BaseModel):
     extraction: ReviewExtractionResponse
     questions: list[RetrievalQuestion]
     retrievals: list[RetrievalRecord]
+    retrieval_quality: list[RetrievalQualityMetrics] = Field(default_factory=list)
+    retrieval_runtime: RetrievalRuntimeProfile
     aggregates: list[AspectAggregate]
     report: ProductAnalysisReport
+    trace: list[ProcessTraceItem] = Field(default_factory=list)
     artifact_path: str | None = None
     warnings: list[str] = Field(default_factory=list)

@@ -9,11 +9,15 @@ from decathlon_voc_analyzer.llm import QwenChatGateway
 from decathlon_voc_analyzer.schemas.analysis import (
     AnalysisMode,
     AspectAggregate,
+    ConfidenceBreakdown,
     ImprovementSuggestion,
     InsightItem,
+    ProcessTraceItem,
     ProductAnalysisReport,
     ProductAnalysisRequest,
     ProductAnalysisResponse,
+    RetrievalQualityMetrics,
+    RetrievalRuntimeProfile,
     SupportingEvidence,
 )
 from decathlon_voc_analyzer.schemas.review import ReviewAspect, ReviewExtractionRequest
@@ -21,7 +25,9 @@ from decathlon_voc_analyzer.prompts import get_prompt_template
 from decathlon_voc_analyzer.stage1_dataset.dataset_service import DatasetService
 from decathlon_voc_analyzer.stage2_review_modeling.review_service import ReviewExtractionService
 from decathlon_voc_analyzer.stage3_retrieval.retrieval_service import RetrievalService
+from decathlon_voc_analyzer.stage4_generation.artifact_sidecar_service import ArtifactSidecarService
 from decathlon_voc_analyzer.stage4_generation.question_service import QuestionGenerationService
+from decathlon_voc_analyzer.stage4_generation.report_refinement_service import ReportRefinementService
 
 
 class LLMInsightItem(BaseModel):
@@ -55,6 +61,8 @@ class ProductAnalysisService:
         self.question_service = QuestionGenerationService()
         self.retrieval_service = RetrievalService()
         self.chat_gateway = QwenChatGateway()
+        self.report_refinement_service = ReportRefinementService()
+        self.artifact_sidecar_service = ArtifactSidecarService()
 
     def analyze(self, request: ProductAnalysisRequest) -> ProductAnalysisResponse:
         package = self.dataset_service.load_product_package(
@@ -83,6 +91,8 @@ class ProductAnalysisService:
             top_k_per_route=request.top_k_per_route,
             use_llm=request.use_llm,
         )
+        retrieval_quality = self._assess_retrieval_quality(retrievals)
+        retrieval_runtime = self._build_retrieval_runtime_profile()
         aggregates = self._aggregate_aspects(extraction.aspects)
         warnings = list(extraction.warnings) + question_warnings
 
@@ -99,17 +109,24 @@ class ProductAnalysisService:
         else:
             report = self._build_report_heuristic(package.product_id, package.category_slug, aggregates, retrievals)
 
+        report = self.report_refinement_service.refine(report)
+
+        trace = self._build_process_trace(extraction.aspects, questions, retrievals, report)
+
         artifact_path: str | None = None
         if request.persist_artifact:
-            artifact_path = self._persist_report(package.product_id, package.category_slug, extraction, questions, retrievals, aggregates, report, warnings)
+            artifact_path = self._persist_report(package.product_id, package.category_slug, analysis_mode, extraction, questions, retrievals, retrieval_quality, retrieval_runtime, aggregates, report, trace, warnings)
 
         return ProductAnalysisResponse(
             analysis_mode=analysis_mode,
             extraction=extraction,
             questions=questions,
             retrievals=retrievals,
+            retrieval_quality=retrieval_quality,
+            retrieval_runtime=retrieval_runtime,
             aggregates=aggregates,
             report=report,
+            trace=trace,
             artifact_path=artifact_path,
             warnings=warnings,
         )
@@ -205,6 +222,7 @@ class ProductAnalysisService:
                         summary=summary,
                         confidence=self._aggregate_confidence(aggregate),
                         supporting_evidence=evidence,
+                        confidence_breakdown=self._build_confidence_breakdown(aggregate, evidence),
                     )
                 )
             elif aggregate.negative_ratio >= 0.4:
@@ -219,6 +237,7 @@ class ProductAnalysisService:
                         summary=summary,
                         confidence=self._aggregate_confidence(aggregate),
                         supporting_evidence=evidence,
+                        confidence_breakdown=self._build_confidence_breakdown(aggregate, evidence),
                     )
                 )
             else:
@@ -233,6 +252,7 @@ class ProductAnalysisService:
                         summary=summary,
                         confidence=self._aggregate_confidence(aggregate),
                         supporting_evidence=evidence,
+                        confidence_breakdown=self._build_confidence_breakdown(aggregate, evidence),
                     )
                 )
 
@@ -249,6 +269,7 @@ class ProductAnalysisService:
                     summary=summary,
                     confidence=self._aggregate_confidence(aggregate),
                     supporting_evidence=self._support_for_aspect(aggregate.aspect, retrievals),
+                    confidence_breakdown=self._build_confidence_breakdown(aggregate, self._support_for_aspect(aggregate.aspect, retrievals)),
                 )
             )
 
@@ -339,6 +360,7 @@ class ProductAnalysisService:
                     reason=reasons,
                     confidence=min(0.88, item.confidence),
                     supporting_evidence=item.supporting_evidence,
+                    confidence_breakdown=item.confidence_breakdown,
                 )
             )
         for item in controversies[:1]:
@@ -354,6 +376,7 @@ class ProductAnalysisService:
                     reason=[item.summary],
                     confidence=min(0.8, item.confidence),
                     supporting_evidence=item.supporting_evidence,
+                    confidence_breakdown=item.confidence_breakdown,
                 )
             )
         if not suggestions:
@@ -371,6 +394,7 @@ class ProductAnalysisService:
                         reason=[fallback.summary],
                         confidence=min(0.76, fallback.confidence),
                         supporting_evidence=fallback.supporting_evidence,
+                        confidence_breakdown=fallback.confidence_breakdown,
                     )
                 )
         return suggestions
@@ -406,6 +430,8 @@ class ProductAnalysisService:
                     summary=str(item.get("summary") or ""),
                     confidence=self._clamp_confidence(item.get("confidence"), 0.7),
                     supporting_evidence=fallback_lookup.get(label, fallback_items[0].supporting_evidence if fallback_items else SupportingEvidence()),
+                    owner=self._normalize_owner(item.get("owner"), default=fallback_items[0].owner if fallback_items else "product_issue"),
+                    confidence_breakdown=self._parse_confidence_breakdown(item.get("confidence_breakdown")),
                 )
             )
         return hydrated or fallback_items
@@ -429,24 +455,205 @@ class ProductAnalysisService:
                     reason=[str(entry) for entry in reason if entry],
                     confidence=self._clamp_confidence(item.get("confidence"), 0.7),
                     supporting_evidence=fallback_support,
+                    owner=self._normalize_owner(item.get("owner"), default=fallback_items[0].owner if fallback_items else "content_presentation"),
+                    confidence_breakdown=self._parse_confidence_breakdown(item.get("confidence_breakdown")),
                 )
             )
         return hydrated or fallback_items
 
-    def _persist_report(self, product_id: str, category_slug: str | None, extraction, questions, retrievals, aggregates, report, warnings: list[str]) -> str:
+    def _persist_report(self, product_id: str, category_slug: str | None, analysis_mode: AnalysisMode, extraction, questions, retrievals, retrieval_quality, retrieval_runtime: RetrievalRuntimeProfile, aggregates, report, trace, warnings: list[str]) -> str:
         target_dir = self.settings.reports_output_dir / (category_slug or "adhoc")
         target_dir.mkdir(parents=True, exist_ok=True)
         output_path = target_dir / f"{product_id}_analysis.json"
         payload = {
+            "analysis_mode": analysis_mode,
             "extraction": extraction.model_dump(mode="json"),
             "questions": [item.model_dump(mode="json") for item in questions],
             "retrievals": [item.model_dump(mode="json") for item in retrievals],
+            "retrieval_quality": [item.model_dump(mode="json") for item in retrieval_quality],
+            "retrieval_runtime": retrieval_runtime.model_dump(mode="json"),
             "aggregates": [item.model_dump(mode="json") for item in aggregates],
             "report": report.model_dump(mode="json"),
+            "trace": [item.model_dump(mode="json") for item in trace],
             "warnings": warnings,
         }
         output_path.write_bytes(orjson.dumps(payload, option=orjson.OPT_INDENT_2))
+        self.artifact_sidecar_service.persist_sidecars(
+            product_id=product_id,
+            category_slug=category_slug,
+            analysis_mode=analysis_mode,
+            report=report,
+            trace=trace,
+            retrieval_quality=retrieval_quality,
+            warnings=warnings,
+        )
         return str(output_path)
+
+    def _build_process_trace(self, aspects: list[ReviewAspect], questions: list, retrievals: list, report: ProductAnalysisReport) -> list[ProcessTraceItem]:
+        trace: list[ProcessTraceItem] = []
+        aggregate_lookup = {item.label: item for item in report.strengths + report.weaknesses + report.controversies}
+        for aspect in aspects[:8]:
+            insight = aggregate_lookup.get(aspect.aspect)
+            support = insight.supporting_evidence if insight is not None else self._support_for_aspect(aspect.aspect, retrievals)
+            breakdown = insight.confidence_breakdown if insight is not None else None
+            related_questions = [item.question for item in questions if item.source_aspect == aspect.aspect][:2]
+            trace.append(
+                ProcessTraceItem(
+                    trace_type="observation",
+                    aspect=aspect.aspect,
+                    summary=f"review={aspect.review_id}, sentiment={aspect.sentiment}, evidence_span={aspect.evidence_span}",
+                    supporting_evidence=SupportingEvidence(review_ids=[aspect.review_id]),
+                    confidence_breakdown=breakdown,
+                )
+            )
+            trace.append(
+                ProcessTraceItem(
+                    trace_type="evidence_check",
+                    aspect=aspect.aspect,
+                    summary=self._summarize_evidence_check(support, related_questions),
+                    owner=insight.owner if insight is not None else self._normalize_owner(None, default="evidence_gap"),
+                    supporting_evidence=support,
+                    confidence_breakdown=breakdown,
+                )
+            )
+            if insight is not None:
+                trace.append(
+                    ProcessTraceItem(
+                        trace_type="owner_judgement",
+                        aspect=aspect.aspect,
+                        summary=insight.summary,
+                        owner=insight.owner,
+                        supporting_evidence=support,
+                        confidence_breakdown=breakdown,
+                    )
+                )
+        for suggestion in report.suggestions[:3]:
+            trace.append(
+                ProcessTraceItem(
+                    trace_type="action_generation",
+                    aspect=suggestion.reason[0] if suggestion.reason else suggestion.suggestion,
+                    summary=suggestion.suggestion,
+                    owner=suggestion.owner,
+                    supporting_evidence=suggestion.supporting_evidence,
+                    confidence_breakdown=suggestion.confidence_breakdown,
+                )
+            )
+        return trace
+
+    def _summarize_evidence_check(self, evidence: SupportingEvidence, related_questions: list[str]) -> str:
+        question_hint = f" questions={'; '.join(related_questions)}" if related_questions else ""
+        return (
+            f"reviews={len(evidence.review_ids)}, text_blocks={len(evidence.product_text_block_ids)}, images={len(evidence.product_image_ids)}.{question_hint}"
+        )
+
+    def _build_confidence_breakdown(self, aggregate: AspectAggregate, evidence: SupportingEvidence) -> ConfidenceBreakdown:
+        extract_confidence = self._clamp_confidence(0.52 + 0.08 * min(aggregate.frequency, 4), 0.7)
+        question_confidence = self._clamp_confidence(0.62 + (0.05 if evidence.product_text_block_ids and evidence.product_image_ids else 0.0), 0.7)
+        evidence_hits = sum(
+            1
+            for present in [evidence.review_ids, evidence.product_text_block_ids, evidence.product_image_ids]
+            if present
+        )
+        evidence_confidence = self._clamp_confidence(0.35 + 0.18 * evidence_hits, 0.7)
+        consistency_confidence = self._clamp_confidence(0.55 + 0.1 * min(aggregate.frequency, 3) - (0.08 if aggregate.negative_ratio and aggregate.positive_ratio else 0.0), 0.7)
+        final_confidence = self._clamp_confidence(
+            0.25 * extract_confidence + 0.2 * question_confidence + 0.35 * evidence_confidence + 0.2 * consistency_confidence,
+            self._aggregate_confidence(aggregate),
+        )
+        return ConfidenceBreakdown(
+            extract_confidence=extract_confidence,
+            question_confidence=question_confidence,
+            evidence_confidence=evidence_confidence,
+            consistency_confidence=consistency_confidence,
+            final_confidence=final_confidence,
+        )
+
+    def _parse_confidence_breakdown(self, value: object) -> ConfidenceBreakdown | None:
+        if not isinstance(value, dict):
+            return None
+        return ConfidenceBreakdown(
+            extract_confidence=self._clamp_confidence(value.get("extract_confidence"), 0.7),
+            question_confidence=self._clamp_confidence(value.get("question_confidence"), 0.7),
+            evidence_confidence=self._clamp_confidence(value.get("evidence_confidence"), 0.7),
+            consistency_confidence=self._clamp_confidence(value.get("consistency_confidence"), 0.7),
+            final_confidence=self._clamp_confidence(value.get("final_confidence"), 0.7),
+        )
+
+    def _normalize_owner(self, value: object, default: str = "product_issue") -> str:
+        owner = str(value or default)
+        if owner not in {"product_issue", "content_presentation", "evidence_gap", "expectation_mismatch"}:
+            return default
+        return owner
+
+    def _build_retrieval_runtime_profile(self) -> RetrievalRuntimeProfile:
+        image_backend = self.settings.image_embedding_backend
+        multimodal_backend = self.settings.multimodal_reranker_backend
+        native_multimodal_enabled = image_backend not in {"proxy_text", "disabled"} or multimodal_backend not in {"disabled", "off"}
+
+        if os.getenv("PROMPT_VARIANT", "main") == "main":
+            if native_multimodal_enabled:
+                summary = "Image evidence is configured to use native multimodal retrieval or reranking paths."
+            else:
+                summary = "Image evidence is currently indexed through proxy text, and reranking remains text-only rather than native multimodal."
+        else:
+            if native_multimodal_enabled:
+                summary = "当前图片证据已配置为走原生多模态检索或精排路径。"
+            else:
+                summary = "当前图片证据仍通过代理文本建索引，精排也仍是纯文本路径，尚未进入原生多模态。"
+
+        return RetrievalRuntimeProfile(
+            text_embedding_backend=self.settings.embedding_backend,
+            text_embedding_model=self.settings.qwen_embedding_model,
+            image_embedding_backend=image_backend,
+            image_embedding_model=self.settings.qwen_vl_embedding_model if image_backend not in {"proxy_text", "disabled"} else None,
+            reranker_backend=self.settings.reranker_backend,
+            reranker_model=self.settings.qwen_reranker_model,
+            multimodal_reranker_backend=multimodal_backend,
+            multimodal_reranker_model=self.settings.qwen_vl_reranker_model if multimodal_backend not in {"disabled", "off"} else None,
+            native_multimodal_enabled=native_multimodal_enabled,
+            summary=summary,
+        )
+
+    def _assess_retrieval_quality(self, retrievals: list) -> list[RetrievalQualityMetrics]:
+        metrics: list[RetrievalQualityMetrics] = []
+        for retrieval in retrievals:
+            evidence_count = len(retrieval.retrieved)
+            if evidence_count == 0:
+                metrics.append(
+                    RetrievalQualityMetrics(
+                        retrieval_id=retrieval.retrieval_id,
+                        source_aspect=retrieval.source_aspect,
+                        top_k_count=0,
+                        evidence_coverage=0.0,
+                        score_drift=0.0,
+                        text_coverage=False,
+                        image_coverage=False,
+                        conflict_risk=1.0,
+                    )
+                )
+                continue
+            text_coverage = any(item.route == "text" for item in retrieval.retrieved)
+            image_coverage = any(item.route == "image" for item in retrieval.retrieved)
+            evidence_coverage = min(1.0, evidence_count / 2.0)
+            drift_samples = [
+                abs(item.embedding_score - (item.rerank_score if item.rerank_score is not None else item.embedding_score))
+                for item in retrieval.retrieved
+            ]
+            score_drift = sum(drift_samples) / len(drift_samples)
+            conflict_risk = 1.0 - min(1.0, (0.6 if text_coverage else 0.0) + (0.4 if image_coverage else 0.0))
+            metrics.append(
+                RetrievalQualityMetrics(
+                    retrieval_id=retrieval.retrieval_id,
+                    source_aspect=retrieval.source_aspect,
+                    top_k_count=evidence_count,
+                    evidence_coverage=evidence_coverage,
+                    score_drift=score_drift,
+                    text_coverage=text_coverage,
+                    image_coverage=image_coverage,
+                    conflict_risk=conflict_risk,
+                )
+            )
+        return metrics
 
     def _clamp_confidence(self, value: object, default: float) -> float:
         try:

@@ -1,7 +1,7 @@
 {
   "product_id": "backpack_010",
   "category_slug": "backpack",
-  "extraction_mode": "llm",
+  "extraction_mode": "heuristic",
   "preprocessed_reviews": [
     {
       "review_id": "backpack_010_review_0001",
@@ -32,6 +32,26 @@
       "language_hint": "latin",
       "is_informative": false,
       "skip_reason": "low_signal_review"
+    },
+    {
+      "review_id": "backpack_010_review_0004",
+      "product_id": "backpack_010",
+      "original_text": "Wygodny i ergonomiczny",
+      "cleaned_text": "Wygodny i ergonomiczny",
+      "rating": 5,
+      "language_hint": "latin",
+      "is_informative": true,
+      "skip_reason": null
+    },
+    {
+      "review_id": "backpack_010_review_0005",
+      "product_id": "backpack_010",
+      "original_text": "Alwasy wanted to have a wallet/purse that is durable and keeps a lot of cards. Once hailed and ask where i bought it.",
+      "cleaned_text": "Alwasy wanted to have a wallet/purse that is durable and keeps a lot of cards. Once hailed and ask where i bought it.",
+      "rating": 5,
+      "language_hint": "latin",
+      "is_informative": true,
+      "skip_reason": null
     }
   ],
   "aspects": [
@@ -39,13 +59,13 @@
       "aspect_id": "backpack_010_review_0001_aspect_01",
       "review_id": "backpack_010_review_0001",
       "product_id": "backpack_010",
-      "aspect": "overall_experience",
+      "aspect": "value_price",
       "sentiment": "positive",
-      "opinion": "good value and convenient storage",
+      "opinion": "한곳에 넣을 수 있는 장점이 있네요. 가성비템입니다.",
       "evidence_span": "한곳에 넣을 수 있는 장점이 있네요. 가성비템입니다.",
-      "usage_scene": "",
-      "confidence": 0.85,
-      "extraction_mode": "llm"
+      "usage_scene": null,
+      "confidence": 0.68,
+      "extraction_mode": "heuristic"
     },
     {
       "aspect_id": "backpack_010_review_0002_aspect_01",
@@ -53,11 +73,47 @@
       "product_id": "backpack_010",
       "aspect": "overall_experience",
       "sentiment": "positive",
-      "opinion": "loved it",
+      "opinion": "Wow, loved it ! Thanks decathlon",
       "evidence_span": "Wow, loved it ! Thanks decathlon",
-      "usage_scene": "",
-      "confidence": 0.95,
-      "extraction_mode": "llm"
+      "usage_scene": null,
+      "confidence": 0.56,
+      "extraction_mode": "heuristic"
+    },
+    {
+      "aspect_id": "backpack_010_review_0004_aspect_01",
+      "review_id": "backpack_010_review_0004",
+      "product_id": "backpack_010",
+      "aspect": "usability",
+      "sentiment": "positive",
+      "opinion": "Wygodny i ergonomiczny",
+      "evidence_span": "Wygodny i ergonomiczny",
+      "usage_scene": null,
+      "confidence": 0.68,
+      "extraction_mode": "heuristic"
+    },
+    {
+      "aspect_id": "backpack_010_review_0005_aspect_01",
+      "review_id": "backpack_010_review_0005",
+      "product_id": "backpack_010",
+      "aspect": "capacity_storage",
+      "sentiment": "positive",
+      "opinion": "Alwasy wanted to have a wallet/purse that is durable and keeps a lot of cards. Once hailed and ask where i bought it.",
+      "evidence_span": "Alwasy wanted to have a wallet/purse that is durable and keeps a lot of cards. Once hailed and ask where i bought it.",
+      "usage_scene": "daily_use",
+      "confidence": 0.68,
+      "extraction_mode": "heuristic"
+    },
+    {
+      "aspect_id": "backpack_010_review_0005_aspect_02",
+      "review_id": "backpack_010_review_0005",
+      "product_id": "backpack_010",
+      "aspect": "durability_quality",
+      "sentiment": "positive",
+      "opinion": "Alwasy wanted to have a wallet/purse that is durable and keeps a lot of cards. Once hailed and ask where i bought it.",
+      "evidence_span": "Alwasy wanted to have a wallet/purse that is durable and keeps a lot of cards. Once hailed and ask where i bought it.",
+      "usage_scene": "daily_use",
+      "confidence": 0.68,
+      "extraction_mode": "heuristic"
     }
   ],
   "skipped_review_ids": [
