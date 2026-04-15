@@ -207,7 +207,7 @@
       }
     ],
     "sampling_plan": {
-      "profile_name": "problem_first_default",
+      "profile_name": "problem_first",
       "requested_reviews": 20,
       "total_available_reviews": 200,
       "selected_reviews": 20,
@@ -1050,13 +1050,13 @@
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_model_description_c4b91904d9ee",
+          "text_block_id": "backpack_010_model_description_519cf5b81d86",
           "image_id": null,
           "source_section": "model_description",
           "image_path": null,
-          "content_preview": "This durable and practical travel wallet is the best product for safely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
-          "embedding_score": 0.38264610593205084,
-          "rerank_score": 0.38264610593205084
+          "content_preview": "This durable and practical travel wallet is the top choice for securely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
+          "embedding_score": 0.37003671901987656,
+          "rerank_score": 0.37003671901987656
         },
         {
           "product_id": "backpack_010",
@@ -1088,9 +1088,9 @@
           "image_id": "backpack_010_8512010_75917bd74847",
           "source_section": null,
           "image_path": "images/8512010/img2.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.3616540251642425,
-          "rerank_score": 0.3616540251642425
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.34752755726139783,
+          "rerank_score": 0.34752755726139783
         },
         {
           "product_id": "backpack_010",
@@ -1099,9 +1099,9 @@
           "image_id": "backpack_010_8512010_224bc9da0299",
           "source_section": null,
           "image_path": "images/8512010/img1.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.3591208165055296,
-          "rerank_score": 0.3591208165055296
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.3445701263877418,
+          "rerank_score": 0.3445701263877418
         }
       ]
     },
@@ -1118,24 +1118,24 @@
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_model_description_c4b91904d9ee",
+          "text_block_id": "backpack_010_model_description_519cf5b81d86",
           "image_id": null,
           "source_section": "model_description",
           "image_path": null,
-          "content_preview": "This durable and practical travel wallet is the best product for safely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
-          "embedding_score": 0.4176335388550919,
-          "rerank_score": 0.4176335388550919
+          "content_preview": "This durable and practical travel wallet is the top choice for securely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
+          "embedding_score": 0.4024127527195255,
+          "rerank_score": 0.4024127527195255
         },
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_category_6b5576da381f",
+          "text_block_id": "backpack_010_category_df8dbdbf76c1",
           "image_id": null,
           "source_section": "category",
           "image_path": null,
-          "content_preview": "All Sports > Hiking > Equipment > Bags > Bag Accessories",
-          "embedding_score": 0.3567816477401711,
-          "rerank_score": 0.3567816477401711
+          "content_preview": "All Sports > Hiking > Gear > Bags > Bag Accessories",
+          "embedding_score": 0.3583985547003292,
+          "rerank_score": 0.3583985547003292
         }
       ]
     },
@@ -1156,20 +1156,20 @@
           "image_id": "backpack_010_8512010_75917bd74847",
           "source_section": null,
           "image_path": "images/8512010/img2.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.41551559260809345,
-          "rerank_score": 0.41551559260809345
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.3994843472227514,
+          "rerank_score": 0.3994843472227514
         },
         {
           "product_id": "backpack_010",
           "route": "image",
           "text_block_id": null,
-          "image_id": "backpack_010_8512010_3d8cd9fb54f5",
+          "image_id": "backpack_010_8512010_224bc9da0299",
           "source_section": null,
-          "image_path": "images/8512010/img4.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.41323780163464874,
-          "rerank_score": 0.41323780163464874
+          "image_path": "images/8512010/img1.png",
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.39686675785453995,
+          "rerank_score": 0.39686675785453995
         }
       ]
     },
@@ -1186,13 +1186,13 @@
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_model_description_c4b91904d9ee",
+          "text_block_id": "backpack_010_model_description_519cf5b81d86",
           "image_id": null,
           "source_section": "model_description",
           "image_path": null,
-          "content_preview": "This durable and practical travel wallet is the best product for safely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
-          "embedding_score": 0.44477906278500084,
-          "rerank_score": 0.44477906278500084
+          "content_preview": "This durable and practical travel wallet is the top choice for securely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
+          "embedding_score": 0.4350231308611921,
+          "rerank_score": 0.4350231308611921
         },
         {
           "product_id": "backpack_010",
@@ -1224,9 +1224,9 @@
           "image_id": "backpack_010_8512010_75917bd74847",
           "source_section": null,
           "image_path": "images/8512010/img2.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.3993013846704685,
-          "rerank_score": 0.3993013846704685
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.38356024448095166,
+          "rerank_score": 0.38356024448095166
         },
         {
           "product_id": "backpack_010",
@@ -1235,9 +1235,9 @@
           "image_id": "backpack_010_8512010_3d8cd9fb54f5",
           "source_section": null,
           "image_path": "images/8512010/img4.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.39779344811067474,
-          "rerank_score": 0.39779344811067474
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.38180511327249234,
+          "rerank_score": 0.38180511327249234
         }
       ]
     },
@@ -1254,24 +1254,24 @@
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_model_description_c4b91904d9ee",
+          "text_block_id": "backpack_010_model_description_519cf5b81d86",
           "image_id": null,
           "source_section": "model_description",
           "image_path": null,
-          "content_preview": "This durable and practical travel wallet is the best product for safely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
-          "embedding_score": 0.4167089840381558,
-          "rerank_score": 0.4167089840381558
+          "content_preview": "This durable and practical travel wallet is the top choice for securely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
+          "embedding_score": 0.4015018896332299,
+          "rerank_score": 0.4015018896332299
         },
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_category_6b5576da381f",
+          "text_block_id": "backpack_010_category_df8dbdbf76c1",
           "image_id": null,
           "source_section": "category",
           "image_path": null,
-          "content_preview": "All Sports > Hiking > Equipment > Bags > Bag Accessories",
-          "embedding_score": 0.3326425749536678,
-          "rerank_score": 0.3326425749536678
+          "content_preview": "All Sports > Hiking > Gear > Bags > Bag Accessories",
+          "embedding_score": 0.3329748805587993,
+          "rerank_score": 0.3329748805587993
         }
       ]
     },
@@ -1292,9 +1292,9 @@
           "image_id": "backpack_010_8512010_75917bd74847",
           "source_section": null,
           "image_path": "images/8512010/img2.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.32866162113891717,
-          "rerank_score": 0.32866162113891717
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.30765040234045066,
+          "rerank_score": 0.30765040234045066
         },
         {
           "product_id": "backpack_010",
@@ -1303,9 +1303,9 @@
           "image_id": "backpack_010_8512010_3d8cd9fb54f5",
           "source_section": null,
           "image_path": "images/8512010/img4.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.32714791977718916,
-          "rerank_score": 0.32714791977718916
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.3055397100995697,
+          "rerank_score": 0.3055397100995697
         }
       ]
     },
@@ -1322,24 +1322,24 @@
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_model_description_c4b91904d9ee",
+          "text_block_id": "backpack_010_model_description_519cf5b81d86",
           "image_id": null,
           "source_section": "model_description",
           "image_path": null,
-          "content_preview": "This durable and practical travel wallet is the best product for safely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
-          "embedding_score": 0.4176335388550919,
-          "rerank_score": 0.4176335388550919
+          "content_preview": "This durable and practical travel wallet is the top choice for securely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
+          "embedding_score": 0.4024127527195255,
+          "rerank_score": 0.4024127527195255
         },
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_category_6b5576da381f",
+          "text_block_id": "backpack_010_category_df8dbdbf76c1",
           "image_id": null,
           "source_section": "category",
           "image_path": null,
-          "content_preview": "All Sports > Hiking > Equipment > Bags > Bag Accessories",
-          "embedding_score": 0.3567816477401711,
-          "rerank_score": 0.3567816477401711
+          "content_preview": "All Sports > Hiking > Gear > Bags > Bag Accessories",
+          "embedding_score": 0.3583985547003292,
+          "rerank_score": 0.3583985547003292
         }
       ]
     },
@@ -1360,20 +1360,20 @@
           "image_id": "backpack_010_8512010_75917bd74847",
           "source_section": null,
           "image_path": "images/8512010/img2.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.41551559260809345,
-          "rerank_score": 0.41551559260809345
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.3994843472227514,
+          "rerank_score": 0.3994843472227514
         },
         {
           "product_id": "backpack_010",
           "route": "image",
           "text_block_id": null,
-          "image_id": "backpack_010_8512010_3d8cd9fb54f5",
+          "image_id": "backpack_010_8512010_224bc9da0299",
           "source_section": null,
-          "image_path": "images/8512010/img4.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.41323780163464874,
-          "rerank_score": 0.41323780163464874
+          "image_path": "images/8512010/img1.png",
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.39686675785453995,
+          "rerank_score": 0.39686675785453995
         }
       ]
     },
@@ -1390,24 +1390,24 @@
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_model_description_c4b91904d9ee",
+          "text_block_id": "backpack_010_model_description_519cf5b81d86",
           "image_id": null,
           "source_section": "model_description",
           "image_path": null,
-          "content_preview": "This durable and practical travel wallet is the best product for safely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
-          "embedding_score": 0.4176335388550919,
-          "rerank_score": 0.4176335388550919
+          "content_preview": "This durable and practical travel wallet is the top choice for securely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
+          "embedding_score": 0.4024127527195255,
+          "rerank_score": 0.4024127527195255
         },
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_category_6b5576da381f",
+          "text_block_id": "backpack_010_category_df8dbdbf76c1",
           "image_id": null,
           "source_section": "category",
           "image_path": null,
-          "content_preview": "All Sports > Hiking > Equipment > Bags > Bag Accessories",
-          "embedding_score": 0.3567816477401711,
-          "rerank_score": 0.3567816477401711
+          "content_preview": "All Sports > Hiking > Gear > Bags > Bag Accessories",
+          "embedding_score": 0.3583985547003292,
+          "rerank_score": 0.3583985547003292
         }
       ]
     },
@@ -1428,20 +1428,20 @@
           "image_id": "backpack_010_8512010_75917bd74847",
           "source_section": null,
           "image_path": "images/8512010/img2.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.41551559260809345,
-          "rerank_score": 0.41551559260809345
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.3994843472227514,
+          "rerank_score": 0.3994843472227514
         },
         {
           "product_id": "backpack_010",
           "route": "image",
           "text_block_id": null,
-          "image_id": "backpack_010_8512010_3d8cd9fb54f5",
+          "image_id": "backpack_010_8512010_224bc9da0299",
           "source_section": null,
-          "image_path": "images/8512010/img4.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.41323780163464874,
-          "rerank_score": 0.41323780163464874
+          "image_path": "images/8512010/img1.png",
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.39686675785453995,
+          "rerank_score": 0.39686675785453995
         }
       ]
     },
@@ -1458,13 +1458,13 @@
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_model_description_c4b91904d9ee",
+          "text_block_id": "backpack_010_model_description_519cf5b81d86",
           "image_id": null,
           "source_section": "model_description",
           "image_path": null,
-          "content_preview": "This durable and practical travel wallet is the best product for safely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
-          "embedding_score": 0.44477906278500084,
-          "rerank_score": 0.44477906278500084
+          "content_preview": "This durable and practical travel wallet is the top choice for securely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
+          "embedding_score": 0.4350231308611921,
+          "rerank_score": 0.4350231308611921
         },
         {
           "product_id": "backpack_010",
@@ -1496,9 +1496,9 @@
           "image_id": "backpack_010_8512010_75917bd74847",
           "source_section": null,
           "image_path": "images/8512010/img2.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.3993013846704685,
-          "rerank_score": 0.3993013846704685
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.38356024448095166,
+          "rerank_score": 0.38356024448095166
         },
         {
           "product_id": "backpack_010",
@@ -1507,9 +1507,9 @@
           "image_id": "backpack_010_8512010_3d8cd9fb54f5",
           "source_section": null,
           "image_path": "images/8512010/img4.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.39779344811067474,
-          "rerank_score": 0.39779344811067474
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.38180511327249234,
+          "rerank_score": 0.38180511327249234
         }
       ]
     },
@@ -1526,24 +1526,24 @@
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_model_description_c4b91904d9ee",
+          "text_block_id": "backpack_010_model_description_519cf5b81d86",
           "image_id": null,
           "source_section": "model_description",
           "image_path": null,
-          "content_preview": "This durable and practical travel wallet is the best product for safely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
-          "embedding_score": 0.4176335388550919,
-          "rerank_score": 0.4176335388550919
+          "content_preview": "This durable and practical travel wallet is the top choice for securely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
+          "embedding_score": 0.4024127527195255,
+          "rerank_score": 0.4024127527195255
         },
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_category_6b5576da381f",
+          "text_block_id": "backpack_010_category_df8dbdbf76c1",
           "image_id": null,
           "source_section": "category",
           "image_path": null,
-          "content_preview": "All Sports > Hiking > Equipment > Bags > Bag Accessories",
-          "embedding_score": 0.3567816477401711,
-          "rerank_score": 0.3567816477401711
+          "content_preview": "All Sports > Hiking > Gear > Bags > Bag Accessories",
+          "embedding_score": 0.3583985547003292,
+          "rerank_score": 0.3583985547003292
         }
       ]
     },
@@ -1564,20 +1564,20 @@
           "image_id": "backpack_010_8512010_75917bd74847",
           "source_section": null,
           "image_path": "images/8512010/img2.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.41551559260809345,
-          "rerank_score": 0.41551559260809345
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.3994843472227514,
+          "rerank_score": 0.3994843472227514
         },
         {
           "product_id": "backpack_010",
           "route": "image",
           "text_block_id": null,
-          "image_id": "backpack_010_8512010_3d8cd9fb54f5",
+          "image_id": "backpack_010_8512010_224bc9da0299",
           "source_section": null,
-          "image_path": "images/8512010/img4.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.41323780163464874,
-          "rerank_score": 0.41323780163464874
+          "image_path": "images/8512010/img1.png",
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.39686675785453995,
+          "rerank_score": 0.39686675785453995
         }
       ]
     },
@@ -1594,24 +1594,24 @@
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_model_description_c4b91904d9ee",
+          "text_block_id": "backpack_010_model_description_519cf5b81d86",
           "image_id": null,
           "source_section": "model_description",
           "image_path": null,
-          "content_preview": "This durable and practical travel wallet is the best product for safely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
-          "embedding_score": 0.4167089840381558,
-          "rerank_score": 0.4167089840381558
+          "content_preview": "This durable and practical travel wallet is the top choice for securely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
+          "embedding_score": 0.4015018896332299,
+          "rerank_score": 0.4015018896332299
         },
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_category_6b5576da381f",
+          "text_block_id": "backpack_010_category_df8dbdbf76c1",
           "image_id": null,
           "source_section": "category",
           "image_path": null,
-          "content_preview": "All Sports > Hiking > Equipment > Bags > Bag Accessories",
-          "embedding_score": 0.3326425749536678,
-          "rerank_score": 0.3326425749536678
+          "content_preview": "All Sports > Hiking > Gear > Bags > Bag Accessories",
+          "embedding_score": 0.3329748805587993,
+          "rerank_score": 0.3329748805587993
         }
       ]
     },
@@ -1632,9 +1632,9 @@
           "image_id": "backpack_010_8512010_75917bd74847",
           "source_section": null,
           "image_path": "images/8512010/img2.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.32866162113891717,
-          "rerank_score": 0.32866162113891717
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.30765040234045066,
+          "rerank_score": 0.30765040234045066
         },
         {
           "product_id": "backpack_010",
@@ -1643,9 +1643,9 @@
           "image_id": "backpack_010_8512010_3d8cd9fb54f5",
           "source_section": null,
           "image_path": "images/8512010/img4.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.32714791977718916,
-          "rerank_score": 0.32714791977718916
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.3055397100995697,
+          "rerank_score": 0.3055397100995697
         }
       ]
     },
@@ -1662,24 +1662,24 @@
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_model_description_c4b91904d9ee",
+          "text_block_id": "backpack_010_model_description_519cf5b81d86",
           "image_id": null,
           "source_section": "model_description",
           "image_path": null,
-          "content_preview": "This durable and practical travel wallet is the best product for safely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
-          "embedding_score": 0.4176335388550919,
-          "rerank_score": 0.4176335388550919
+          "content_preview": "This durable and practical travel wallet is the top choice for securely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
+          "embedding_score": 0.4024127527195255,
+          "rerank_score": 0.4024127527195255
         },
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_category_6b5576da381f",
+          "text_block_id": "backpack_010_category_df8dbdbf76c1",
           "image_id": null,
           "source_section": "category",
           "image_path": null,
-          "content_preview": "All Sports > Hiking > Equipment > Bags > Bag Accessories",
-          "embedding_score": 0.3567816477401711,
-          "rerank_score": 0.3567816477401711
+          "content_preview": "All Sports > Hiking > Gear > Bags > Bag Accessories",
+          "embedding_score": 0.3583985547003292,
+          "rerank_score": 0.3583985547003292
         }
       ]
     },
@@ -1700,20 +1700,20 @@
           "image_id": "backpack_010_8512010_75917bd74847",
           "source_section": null,
           "image_path": "images/8512010/img2.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.41551559260809345,
-          "rerank_score": 0.41551559260809345
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.3994843472227514,
+          "rerank_score": 0.3994843472227514
         },
         {
           "product_id": "backpack_010",
           "route": "image",
           "text_block_id": null,
-          "image_id": "backpack_010_8512010_3d8cd9fb54f5",
+          "image_id": "backpack_010_8512010_224bc9da0299",
           "source_section": null,
-          "image_path": "images/8512010/img4.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.41323780163464874,
-          "rerank_score": 0.41323780163464874
+          "image_path": "images/8512010/img1.png",
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.39686675785453995,
+          "rerank_score": 0.39686675785453995
         }
       ]
     },
@@ -1730,13 +1730,13 @@
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_model_description_c4b91904d9ee",
+          "text_block_id": "backpack_010_model_description_519cf5b81d86",
           "image_id": null,
           "source_section": "model_description",
           "image_path": null,
-          "content_preview": "This durable and practical travel wallet is the best product for safely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
-          "embedding_score": 0.44477906278500084,
-          "rerank_score": 0.44477906278500084
+          "content_preview": "This durable and practical travel wallet is the top choice for securely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
+          "embedding_score": 0.4350231308611921,
+          "rerank_score": 0.4350231308611921
         },
         {
           "product_id": "backpack_010",
@@ -1768,9 +1768,9 @@
           "image_id": "backpack_010_8512010_75917bd74847",
           "source_section": null,
           "image_path": "images/8512010/img2.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.3993013846704685,
-          "rerank_score": 0.3993013846704685
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.38356024448095166,
+          "rerank_score": 0.38356024448095166
         },
         {
           "product_id": "backpack_010",
@@ -1779,9 +1779,9 @@
           "image_id": "backpack_010_8512010_3d8cd9fb54f5",
           "source_section": null,
           "image_path": "images/8512010/img4.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.39779344811067474,
-          "rerank_score": 0.39779344811067474
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.38180511327249234,
+          "rerank_score": 0.38180511327249234
         }
       ]
     },
@@ -1798,13 +1798,13 @@
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_model_description_c4b91904d9ee",
+          "text_block_id": "backpack_010_model_description_519cf5b81d86",
           "image_id": null,
           "source_section": "model_description",
           "image_path": null,
-          "content_preview": "This durable and practical travel wallet is the best product for safely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
-          "embedding_score": 0.5020212295362465,
-          "rerank_score": 0.5020212295362465
+          "content_preview": "This durable and practical travel wallet is the top choice for securely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
+          "embedding_score": 0.49453814783864436,
+          "rerank_score": 0.49453814783864436
         },
         {
           "product_id": "backpack_010",
@@ -1836,9 +1836,9 @@
           "image_id": "backpack_010_8512010_75917bd74847",
           "source_section": null,
           "image_path": "images/8512010/img2.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.48073830563282177,
-          "rerank_score": 0.48073830563282177
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.46773799137400346,
+          "rerank_score": 0.46773799137400346
         },
         {
           "product_id": "backpack_010",
@@ -1847,9 +1847,9 @@
           "image_id": "backpack_010_8512010_224bc9da0299",
           "source_section": null,
           "image_path": "images/8512010/img1.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.4783863595335517,
-          "rerank_score": 0.4783863595335517
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.46503559744708495,
+          "rerank_score": 0.46503559744708495
         }
       ]
     },
@@ -1866,24 +1866,24 @@
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_model_description_c4b91904d9ee",
+          "text_block_id": "backpack_010_model_description_519cf5b81d86",
           "image_id": null,
           "source_section": "model_description",
           "image_path": null,
-          "content_preview": "This durable and practical travel wallet is the best product for safely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
-          "embedding_score": 0.4167089840381558,
-          "rerank_score": 0.4167089840381558
+          "content_preview": "This durable and practical travel wallet is the top choice for securely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
+          "embedding_score": 0.4015018896332299,
+          "rerank_score": 0.4015018896332299
         },
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_category_6b5576da381f",
+          "text_block_id": "backpack_010_category_df8dbdbf76c1",
           "image_id": null,
           "source_section": "category",
           "image_path": null,
-          "content_preview": "All Sports > Hiking > Equipment > Bags > Bag Accessories",
-          "embedding_score": 0.3326425749536678,
-          "rerank_score": 0.3326425749536678
+          "content_preview": "All Sports > Hiking > Gear > Bags > Bag Accessories",
+          "embedding_score": 0.3329748805587993,
+          "rerank_score": 0.3329748805587993
         }
       ]
     },
@@ -1904,9 +1904,9 @@
           "image_id": "backpack_010_8512010_75917bd74847",
           "source_section": null,
           "image_path": "images/8512010/img2.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.32866162113891717,
-          "rerank_score": 0.32866162113891717
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.30765040234045066,
+          "rerank_score": 0.30765040234045066
         },
         {
           "product_id": "backpack_010",
@@ -1915,9 +1915,9 @@
           "image_id": "backpack_010_8512010_3d8cd9fb54f5",
           "source_section": null,
           "image_path": "images/8512010/img4.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.32714791977718916,
-          "rerank_score": 0.32714791977718916
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.3055397100995697,
+          "rerank_score": 0.3055397100995697
         }
       ]
     },
@@ -1934,13 +1934,13 @@
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_model_description_c4b91904d9ee",
+          "text_block_id": "backpack_010_model_description_519cf5b81d86",
           "image_id": null,
           "source_section": "model_description",
           "image_path": null,
-          "content_preview": "This durable and practical travel wallet is the best product for safely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
-          "embedding_score": 0.5267105874615956,
-          "rerank_score": 0.5267105874615956
+          "content_preview": "This durable and practical travel wallet is the top choice for securely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
+          "embedding_score": 0.5216605039865612,
+          "rerank_score": 0.5216605039865612
         },
         {
           "product_id": "backpack_010",
@@ -1972,9 +1972,9 @@
           "image_id": "backpack_010_8512010_75917bd74847",
           "source_section": null,
           "image_path": "images/8512010/img2.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.4563817907820252,
-          "rerank_score": 0.4563817907820252
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.44674667147032043,
+          "rerank_score": 0.44674667147032043
         },
         {
           "product_id": "backpack_010",
@@ -1983,9 +1983,9 @@
           "image_id": "backpack_010_8512010_224bc9da0299",
           "source_section": null,
           "image_path": "images/8512010/img1.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.4542683625833711,
-          "rerank_score": 0.4542683625833711
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.4445146844111906,
+          "rerank_score": 0.4445146844111906
         }
       ]
     },
@@ -2002,13 +2002,13 @@
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_model_description_c4b91904d9ee",
+          "text_block_id": "backpack_010_model_description_519cf5b81d86",
           "image_id": null,
           "source_section": "model_description",
           "image_path": null,
-          "content_preview": "This durable and practical travel wallet is the best product for safely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
-          "embedding_score": 0.38264610593205084,
-          "rerank_score": 0.38264610593205084
+          "content_preview": "This durable and practical travel wallet is the top choice for securely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
+          "embedding_score": 0.37003671901987656,
+          "rerank_score": 0.37003671901987656
         },
         {
           "product_id": "backpack_010",
@@ -2040,9 +2040,9 @@
           "image_id": "backpack_010_8512010_75917bd74847",
           "source_section": null,
           "image_path": "images/8512010/img2.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.3616540251642425,
-          "rerank_score": 0.3616540251642425
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.34752755726139783,
+          "rerank_score": 0.34752755726139783
         },
         {
           "product_id": "backpack_010",
@@ -2051,9 +2051,9 @@
           "image_id": "backpack_010_8512010_224bc9da0299",
           "source_section": null,
           "image_path": "images/8512010/img1.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.3591208165055296,
-          "rerank_score": 0.3591208165055296
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.3445701263877418,
+          "rerank_score": 0.3445701263877418
         }
       ]
     },
@@ -2070,24 +2070,24 @@
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_model_description_c4b91904d9ee",
+          "text_block_id": "backpack_010_model_description_519cf5b81d86",
           "image_id": null,
           "source_section": "model_description",
           "image_path": null,
-          "content_preview": "This durable and practical travel wallet is the best product for safely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
-          "embedding_score": 0.4176335388550919,
-          "rerank_score": 0.4176335388550919
+          "content_preview": "This durable and practical travel wallet is the top choice for securely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
+          "embedding_score": 0.4024127527195255,
+          "rerank_score": 0.4024127527195255
         },
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_category_6b5576da381f",
+          "text_block_id": "backpack_010_category_df8dbdbf76c1",
           "image_id": null,
           "source_section": "category",
           "image_path": null,
-          "content_preview": "All Sports > Hiking > Equipment > Bags > Bag Accessories",
-          "embedding_score": 0.3567816477401711,
-          "rerank_score": 0.3567816477401711
+          "content_preview": "All Sports > Hiking > Gear > Bags > Bag Accessories",
+          "embedding_score": 0.3583985547003292,
+          "rerank_score": 0.3583985547003292
         }
       ]
     },
@@ -2108,20 +2108,20 @@
           "image_id": "backpack_010_8512010_75917bd74847",
           "source_section": null,
           "image_path": "images/8512010/img2.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.41551559260809345,
-          "rerank_score": 0.41551559260809345
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.3994843472227514,
+          "rerank_score": 0.3994843472227514
         },
         {
           "product_id": "backpack_010",
           "route": "image",
           "text_block_id": null,
-          "image_id": "backpack_010_8512010_3d8cd9fb54f5",
+          "image_id": "backpack_010_8512010_224bc9da0299",
           "source_section": null,
-          "image_path": "images/8512010/img4.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.41323780163464874,
-          "rerank_score": 0.41323780163464874
+          "image_path": "images/8512010/img1.png",
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.39686675785453995,
+          "rerank_score": 0.39686675785453995
         }
       ]
     },
@@ -2138,13 +2138,13 @@
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_model_description_c4b91904d9ee",
+          "text_block_id": "backpack_010_model_description_519cf5b81d86",
           "image_id": null,
           "source_section": "model_description",
           "image_path": null,
-          "content_preview": "This durable and practical travel wallet is the best product for safely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
-          "embedding_score": 0.5020212295362465,
-          "rerank_score": 0.5020212295362465
+          "content_preview": "This durable and practical travel wallet is the top choice for securely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
+          "embedding_score": 0.49453814783864436,
+          "rerank_score": 0.49453814783864436
         },
         {
           "product_id": "backpack_010",
@@ -2176,9 +2176,9 @@
           "image_id": "backpack_010_8512010_75917bd74847",
           "source_section": null,
           "image_path": "images/8512010/img2.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.48073830563282177,
-          "rerank_score": 0.48073830563282177
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.46773799137400346,
+          "rerank_score": 0.46773799137400346
         },
         {
           "product_id": "backpack_010",
@@ -2187,9 +2187,9 @@
           "image_id": "backpack_010_8512010_224bc9da0299",
           "source_section": null,
           "image_path": "images/8512010/img1.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.4783863595335517,
-          "rerank_score": 0.4783863595335517
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.46503559744708495,
+          "rerank_score": 0.46503559744708495
         }
       ]
     },
@@ -2206,24 +2206,24 @@
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_model_description_c4b91904d9ee",
+          "text_block_id": "backpack_010_model_description_519cf5b81d86",
           "image_id": null,
           "source_section": "model_description",
           "image_path": null,
-          "content_preview": "This durable and practical travel wallet is the best product for safely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
-          "embedding_score": 0.4167089840381558,
-          "rerank_score": 0.4167089840381558
+          "content_preview": "This durable and practical travel wallet is the top choice for securely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
+          "embedding_score": 0.4015018896332299,
+          "rerank_score": 0.4015018896332299
         },
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_category_6b5576da381f",
+          "text_block_id": "backpack_010_category_df8dbdbf76c1",
           "image_id": null,
           "source_section": "category",
           "image_path": null,
-          "content_preview": "All Sports > Hiking > Equipment > Bags > Bag Accessories",
-          "embedding_score": 0.3326425749536678,
-          "rerank_score": 0.3326425749536678
+          "content_preview": "All Sports > Hiking > Gear > Bags > Bag Accessories",
+          "embedding_score": 0.3329748805587993,
+          "rerank_score": 0.3329748805587993
         }
       ]
     },
@@ -2244,9 +2244,9 @@
           "image_id": "backpack_010_8512010_75917bd74847",
           "source_section": null,
           "image_path": "images/8512010/img2.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.32866162113891717,
-          "rerank_score": 0.32866162113891717
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.30765040234045066,
+          "rerank_score": 0.30765040234045066
         },
         {
           "product_id": "backpack_010",
@@ -2255,9 +2255,9 @@
           "image_id": "backpack_010_8512010_3d8cd9fb54f5",
           "source_section": null,
           "image_path": "images/8512010/img4.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.32714791977718916,
-          "rerank_score": 0.32714791977718916
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.3055397100995697,
+          "rerank_score": 0.3055397100995697
         }
       ]
     },
@@ -2274,13 +2274,13 @@
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_model_description_c4b91904d9ee",
+          "text_block_id": "backpack_010_model_description_519cf5b81d86",
           "image_id": null,
           "source_section": "model_description",
           "image_path": null,
-          "content_preview": "This durable and practical travel wallet is the best product for safely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
-          "embedding_score": 0.5267105874615956,
-          "rerank_score": 0.5267105874615956
+          "content_preview": "This durable and practical travel wallet is the top choice for securely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
+          "embedding_score": 0.5216605039865612,
+          "rerank_score": 0.5216605039865612
         },
         {
           "product_id": "backpack_010",
@@ -2312,9 +2312,9 @@
           "image_id": "backpack_010_8512010_75917bd74847",
           "source_section": null,
           "image_path": "images/8512010/img2.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.4563817907820252,
-          "rerank_score": 0.4563817907820252
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.44674667147032043,
+          "rerank_score": 0.44674667147032043
         },
         {
           "product_id": "backpack_010",
@@ -2323,9 +2323,9 @@
           "image_id": "backpack_010_8512010_224bc9da0299",
           "source_section": null,
           "image_path": "images/8512010/img1.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.4542683625833711,
-          "rerank_score": 0.4542683625833711
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.4445146844111906,
+          "rerank_score": 0.4445146844111906
         }
       ]
     },
@@ -2342,13 +2342,13 @@
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_model_description_c4b91904d9ee",
+          "text_block_id": "backpack_010_model_description_519cf5b81d86",
           "image_id": null,
           "source_section": "model_description",
           "image_path": null,
-          "content_preview": "This durable and practical travel wallet is the best product for safely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
-          "embedding_score": 0.5020212295362465,
-          "rerank_score": 0.5020212295362465
+          "content_preview": "This durable and practical travel wallet is the top choice for securely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
+          "embedding_score": 0.49453814783864436,
+          "rerank_score": 0.49453814783864436
         },
         {
           "product_id": "backpack_010",
@@ -2380,9 +2380,9 @@
           "image_id": "backpack_010_8512010_75917bd74847",
           "source_section": null,
           "image_path": "images/8512010/img2.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.48073830563282177,
-          "rerank_score": 0.48073830563282177
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.46773799137400346,
+          "rerank_score": 0.46773799137400346
         },
         {
           "product_id": "backpack_010",
@@ -2391,9 +2391,9 @@
           "image_id": "backpack_010_8512010_224bc9da0299",
           "source_section": null,
           "image_path": "images/8512010/img1.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.4783863595335517,
-          "rerank_score": 0.4783863595335517
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.46503559744708495,
+          "rerank_score": 0.46503559744708495
         }
       ]
     },
@@ -2410,24 +2410,24 @@
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_model_description_c4b91904d9ee",
+          "text_block_id": "backpack_010_model_description_519cf5b81d86",
           "image_id": null,
           "source_section": "model_description",
           "image_path": null,
-          "content_preview": "This durable and practical travel wallet is the best product for safely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
-          "embedding_score": 0.4176335388550919,
-          "rerank_score": 0.4176335388550919
+          "content_preview": "This durable and practical travel wallet is the top choice for securely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels wit",
+          "embedding_score": 0.4024127527195255,
+          "rerank_score": 0.4024127527195255
         },
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_category_6b5576da381f",
+          "text_block_id": "backpack_010_category_df8dbdbf76c1",
           "image_id": null,
           "source_section": "category",
           "image_path": null,
-          "content_preview": "All Sports > Hiking > Equipment > Bags > Bag Accessories",
-          "embedding_score": 0.3567816477401711,
-          "rerank_score": 0.3567816477401711
+          "content_preview": "All Sports > Hiking > Gear > Bags > Bag Accessories",
+          "embedding_score": 0.3583985547003292,
+          "rerank_score": 0.3583985547003292
         }
       ]
     },
@@ -2448,20 +2448,20 @@
           "image_id": "backpack_010_8512010_75917bd74847",
           "source_section": null,
           "image_path": "images/8512010/img2.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.41551559260809345,
-          "rerank_score": 0.41551559260809345
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.3994843472227514,
+          "rerank_score": 0.3994843472227514
         },
         {
           "product_id": "backpack_010",
           "route": "image",
           "text_block_id": null,
-          "image_id": "backpack_010_8512010_3d8cd9fb54f5",
+          "image_id": "backpack_010_8512010_224bc9da0299",
           "source_section": null,
-          "image_path": "images/8512010/img4.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the best product for safely storing personal belongings. It i",
-          "embedding_score": 0.41323780163464874,
-          "rerank_score": 0.41323780163464874
+          "image_path": "images/8512010/img1.png",
+          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Gear > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal belongings. It is sui",
+          "embedding_score": 0.39686675785453995,
+          "rerank_score": 0.39686675785453995
         }
       ]
     }
@@ -3007,12 +3007,12 @@
             "backpack_010_review_0036"
           ],
           "product_text_block_ids": [
-            "backpack_010_model_description_c4b91904d9ee",
-            "backpack_010_category_6b5576da381f"
+            "backpack_010_model_description_519cf5b81d86",
+            "backpack_010_category_df8dbdbf76c1"
           ],
           "product_image_ids": [
             "backpack_010_8512010_75917bd74847",
-            "backpack_010_8512010_3d8cd9fb54f5"
+            "backpack_010_8512010_224bc9da0299"
           ]
         },
         "owner": "product_issue",
@@ -3035,7 +3035,7 @@
             "backpack_010_review_0067"
           ],
           "product_text_block_ids": [
-            "backpack_010_model_description_c4b91904d9ee",
+            "backpack_010_model_description_519cf5b81d86",
             "backpack_010_product_name_a8c4ef4f53c4"
           ],
           "product_image_ids": [
@@ -3065,8 +3065,8 @@
             "backpack_010_review_0067"
           ],
           "product_text_block_ids": [
-            "backpack_010_model_description_c4b91904d9ee",
-            "backpack_010_category_6b5576da381f"
+            "backpack_010_model_description_519cf5b81d86",
+            "backpack_010_category_df8dbdbf76c1"
           ],
           "product_image_ids": [
             "backpack_010_8512010_75917bd74847",
@@ -3093,7 +3093,7 @@
             "backpack_010_review_0153"
           ],
           "product_text_block_ids": [
-            "backpack_010_model_description_c4b91904d9ee",
+            "backpack_010_model_description_519cf5b81d86",
             "backpack_010_product_name_a8c4ef4f53c4"
           ],
           "product_image_ids": [
@@ -3120,7 +3120,7 @@
             "backpack_010_review_0067"
           ],
           "product_text_block_ids": [
-            "backpack_010_model_description_c4b91904d9ee",
+            "backpack_010_model_description_519cf5b81d86",
             "backpack_010_product_name_a8c4ef4f53c4"
           ],
           "product_image_ids": [
@@ -3177,14 +3177,14 @@
         "backpack_010_review_0153"
       ],
       "product_text_block_ids": [
-        "backpack_010_model_description_c4b91904d9ee",
-        "backpack_010_category_6b5576da381f",
+        "backpack_010_model_description_519cf5b81d86",
+        "backpack_010_category_df8dbdbf76c1",
         "backpack_010_product_name_a8c4ef4f53c4"
       ],
       "product_image_ids": [
         "backpack_010_8512010_75917bd74847",
-        "backpack_010_8512010_3d8cd9fb54f5",
-        "backpack_010_8512010_224bc9da0299"
+        "backpack_010_8512010_224bc9da0299",
+        "backpack_010_8512010_3d8cd9fb54f5"
       ]
     },
     "confidence": 0.77,
@@ -3194,7 +3194,8 @@
         "suggestion_type": "structural",
         "reason": [
           "Clear negative feedback exists for usability, appearing 4 times.",
-          "Replay continuity: the issue around usability also appeared in the previous run."
+          "Replay continuity: the issue around usability also appeared in the previous run.",
+          "Replay continuity: the issue around value_price also appeared in the previous run."
         ],
         "confidence": 0.88,
         "supporting_evidence": {
@@ -3204,8 +3205,8 @@
             "backpack_010_review_0067"
           ],
           "product_text_block_ids": [
-            "backpack_010_model_description_c4b91904d9ee",
-            "backpack_010_category_6b5576da381f"
+            "backpack_010_model_description_519cf5b81d86",
+            "backpack_010_category_df8dbdbf76c1"
           ],
           "product_image_ids": [
             "backpack_010_8512010_75917bd74847",
@@ -3236,7 +3237,7 @@
             "backpack_010_review_0153"
           ],
           "product_text_block_ids": [
-            "backpack_010_model_description_c4b91904d9ee",
+            "backpack_010_model_description_519cf5b81d86",
             "backpack_010_product_name_a8c4ef4f53c4"
           ],
           "product_image_ids": [
@@ -3259,7 +3260,7 @@
     {
       "trace_type": "observation",
       "aspect": "replay_continuity",
-      "summary": "replay_path=/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/5_replay/backpack/backpack_010_replay.json, persistent=usability, portability_size, resolved=durability_quality, overall_experience, new=value_price",
+      "summary": "replay_path=/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/5_replay/backpack/backpack_010_replay.json, persistent=usability, portability_size, value_price, resolved=none, new=none",
       "owner": null,
       "supporting_evidence": {
         "review_ids": [],
@@ -3299,7 +3300,7 @@
           "backpack_010_review_0067"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c4b91904d9ee",
+          "backpack_010_model_description_519cf5b81d86",
           "backpack_010_product_name_a8c4ef4f53c4"
         ],
         "product_image_ids": [
@@ -3326,7 +3327,7 @@
           "backpack_010_review_0067"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c4b91904d9ee",
+          "backpack_010_model_description_519cf5b81d86",
           "backpack_010_product_name_a8c4ef4f53c4"
         ],
         "product_image_ids": [
@@ -3374,12 +3375,12 @@
           "backpack_010_review_0036"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c4b91904d9ee",
-          "backpack_010_category_6b5576da381f"
+          "backpack_010_model_description_519cf5b81d86",
+          "backpack_010_category_df8dbdbf76c1"
         ],
         "product_image_ids": [
           "backpack_010_8512010_75917bd74847",
-          "backpack_010_8512010_3d8cd9fb54f5"
+          "backpack_010_8512010_224bc9da0299"
         ]
       },
       "confidence_breakdown": {
@@ -3402,12 +3403,12 @@
           "backpack_010_review_0036"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c4b91904d9ee",
-          "backpack_010_category_6b5576da381f"
+          "backpack_010_model_description_519cf5b81d86",
+          "backpack_010_category_df8dbdbf76c1"
         ],
         "product_image_ids": [
           "backpack_010_8512010_75917bd74847",
-          "backpack_010_8512010_3d8cd9fb54f5"
+          "backpack_010_8512010_224bc9da0299"
         ]
       },
       "confidence_breakdown": {
@@ -3450,7 +3451,7 @@
           "backpack_010_review_0067"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c4b91904d9ee",
+          "backpack_010_model_description_519cf5b81d86",
           "backpack_010_product_name_a8c4ef4f53c4"
         ],
         "product_image_ids": [
@@ -3478,7 +3479,7 @@
           "backpack_010_review_0067"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c4b91904d9ee",
+          "backpack_010_model_description_519cf5b81d86",
           "backpack_010_product_name_a8c4ef4f53c4"
         ],
         "product_image_ids": [
@@ -3526,8 +3527,8 @@
           "backpack_010_review_0067"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c4b91904d9ee",
-          "backpack_010_category_6b5576da381f"
+          "backpack_010_model_description_519cf5b81d86",
+          "backpack_010_category_df8dbdbf76c1"
         ],
         "product_image_ids": [
           "backpack_010_8512010_75917bd74847",
@@ -3554,8 +3555,8 @@
           "backpack_010_review_0067"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c4b91904d9ee",
-          "backpack_010_category_6b5576da381f"
+          "backpack_010_model_description_519cf5b81d86",
+          "backpack_010_category_df8dbdbf76c1"
         ],
         "product_image_ids": [
           "backpack_010_8512010_75917bd74847",
@@ -3602,12 +3603,12 @@
           "backpack_010_review_0036"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c4b91904d9ee",
-          "backpack_010_category_6b5576da381f"
+          "backpack_010_model_description_519cf5b81d86",
+          "backpack_010_category_df8dbdbf76c1"
         ],
         "product_image_ids": [
           "backpack_010_8512010_75917bd74847",
-          "backpack_010_8512010_3d8cd9fb54f5"
+          "backpack_010_8512010_224bc9da0299"
         ]
       },
       "confidence_breakdown": {
@@ -3630,12 +3631,12 @@
           "backpack_010_review_0036"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c4b91904d9ee",
-          "backpack_010_category_6b5576da381f"
+          "backpack_010_model_description_519cf5b81d86",
+          "backpack_010_category_df8dbdbf76c1"
         ],
         "product_image_ids": [
           "backpack_010_8512010_75917bd74847",
-          "backpack_010_8512010_3d8cd9fb54f5"
+          "backpack_010_8512010_224bc9da0299"
         ]
       },
       "confidence_breakdown": {
@@ -3678,12 +3679,12 @@
           "backpack_010_review_0036"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c4b91904d9ee",
-          "backpack_010_category_6b5576da381f"
+          "backpack_010_model_description_519cf5b81d86",
+          "backpack_010_category_df8dbdbf76c1"
         ],
         "product_image_ids": [
           "backpack_010_8512010_75917bd74847",
-          "backpack_010_8512010_3d8cd9fb54f5"
+          "backpack_010_8512010_224bc9da0299"
         ]
       },
       "confidence_breakdown": {
@@ -3706,12 +3707,12 @@
           "backpack_010_review_0036"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c4b91904d9ee",
-          "backpack_010_category_6b5576da381f"
+          "backpack_010_model_description_519cf5b81d86",
+          "backpack_010_category_df8dbdbf76c1"
         ],
         "product_image_ids": [
           "backpack_010_8512010_75917bd74847",
-          "backpack_010_8512010_3d8cd9fb54f5"
+          "backpack_010_8512010_224bc9da0299"
         ]
       },
       "confidence_breakdown": {
@@ -3754,7 +3755,7 @@
           "backpack_010_review_0067"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c4b91904d9ee",
+          "backpack_010_model_description_519cf5b81d86",
           "backpack_010_product_name_a8c4ef4f53c4"
         ],
         "product_image_ids": [
@@ -3782,7 +3783,7 @@
           "backpack_010_review_0067"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c4b91904d9ee",
+          "backpack_010_model_description_519cf5b81d86",
           "backpack_010_product_name_a8c4ef4f53c4"
         ],
         "product_image_ids": [
@@ -3830,12 +3831,12 @@
           "backpack_010_review_0036"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c4b91904d9ee",
-          "backpack_010_category_6b5576da381f"
+          "backpack_010_model_description_519cf5b81d86",
+          "backpack_010_category_df8dbdbf76c1"
         ],
         "product_image_ids": [
           "backpack_010_8512010_75917bd74847",
-          "backpack_010_8512010_3d8cd9fb54f5"
+          "backpack_010_8512010_224bc9da0299"
         ]
       },
       "confidence_breakdown": {
@@ -3858,12 +3859,12 @@
           "backpack_010_review_0036"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c4b91904d9ee",
-          "backpack_010_category_6b5576da381f"
+          "backpack_010_model_description_519cf5b81d86",
+          "backpack_010_category_df8dbdbf76c1"
         ],
         "product_image_ids": [
           "backpack_010_8512010_75917bd74847",
-          "backpack_010_8512010_3d8cd9fb54f5"
+          "backpack_010_8512010_224bc9da0299"
         ]
       },
       "confidence_breakdown": {
@@ -3886,8 +3887,8 @@
           "backpack_010_review_0067"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c4b91904d9ee",
-          "backpack_010_category_6b5576da381f"
+          "backpack_010_model_description_519cf5b81d86",
+          "backpack_010_category_df8dbdbf76c1"
         ],
         "product_image_ids": [
           "backpack_010_8512010_75917bd74847",
@@ -3914,7 +3915,7 @@
           "backpack_010_review_0153"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c4b91904d9ee",
+          "backpack_010_model_description_519cf5b81d86",
           "backpack_010_product_name_a8c4ef4f53c4"
         ],
         "product_image_ids": [
@@ -3937,15 +3938,11 @@
     "applied": true,
     "persistent_issue_labels": [
       "usability",
-      "portability_size"
-    ],
-    "resolved_issue_labels": [
-      "durability_quality",
-      "overall_experience"
-    ],
-    "new_issue_labels": [
+      "portability_size",
       "value_price"
-    ]
+    ],
+    "resolved_issue_labels": [],
+    "new_issue_labels": []
   },
   "artifact_bundle": {
     "analysis_path": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/4_reports/backpack/backpack_010_analysis.json",
@@ -3953,6 +3950,6 @@
     "replay_path": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/5_replay/backpack/backpack_010_replay.json"
   },
   "warnings": [
-    "replay continuity applied: persistent=2, resolved=2, new=1"
+    "replay continuity applied: persistent=3, resolved=0, new=0"
   ]
 }

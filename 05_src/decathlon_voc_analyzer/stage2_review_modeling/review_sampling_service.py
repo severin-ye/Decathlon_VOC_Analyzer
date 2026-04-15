@@ -30,7 +30,7 @@ class ReviewSamplingProfile(BaseModel):
 
 
 class ReviewSamplingConfig(BaseModel):
-    active_profile: str = "problem_first_default"
+    active_profile: str = "problem_first"
     profiles: dict[str, ReviewSamplingProfile] = Field(default_factory=dict)
 
 
@@ -109,7 +109,7 @@ class ReviewSamplingService:
         resolved_profile_name = profile_name or self.settings.review_sampling_profile or config.active_profile
         profile = config.profiles.get(resolved_profile_name)
         if profile is None:
-            fallback_profile_name = config.active_profile if config.active_profile in config.profiles else "problem_first_default"
+            fallback_profile_name = config.active_profile if config.active_profile in config.profiles else "problem_first"
             profile = config.profiles.get(fallback_profile_name, ReviewSamplingProfile())
             return fallback_profile_name, profile
         return resolved_profile_name, profile
@@ -220,6 +220,6 @@ class ReviewSamplingService:
             payload = orjson.loads(path.read_bytes())
             return ReviewSamplingConfig.model_validate(payload)
         return ReviewSamplingConfig(
-            active_profile="problem_first_default",
-            profiles={"problem_first_default": ReviewSamplingProfile()},
+            active_profile="problem_first",
+            profiles={"problem_first": ReviewSamplingProfile()},
         )

@@ -205,7 +205,7 @@
     }
   ],
   "sampling_plan": {
-    "profile_name": "problem_first_default",
+    "profile_name": "problem_first",
     "requested_reviews": 20,
     "total_available_reviews": 200,
     "selected_reviews": 20,

@@ -103,3 +103,49 @@ def test_review_service_redistributes_shortfall_to_next_lower_priority_bucket() 
     assert allocation_by_rating[1].shortfall_count == 2
     assert allocation_by_rating[2].selected_count == 7
     assert allocation_by_rating[2].redistributed_in_count == 2
+
+
+def test_review_service_uses_active_profile_from_config_file(tmp_path) -> None:
+        service = ReviewExtractionService()
+        config_path = tmp_path / "review_sampling_profiles.json"
+        config_path.write_text(
+                """
+{
+    "active_profile": "praise_first",
+    "profiles": {
+        "problem_first": {
+            "description": "problem first",
+            "weights": {"5": 0.1, "4": 0.15, "3": 0.2, "2": 0.25, "1": 0.3},
+            "fallback_order": [1, 2, 3, 4, 5]
+        },
+        "praise_first": {
+            "description": "praise first",
+            "weights": {"5": 0.3, "4": 0.25, "3": 0.2, "2": 0.15, "1": 0.1},
+            "fallback_order": [5, 4, 3, 2, 1]
+        }
+    }
+}
+                """.strip(),
+                encoding="utf-8",
+        )
+        service.review_sampling_service.settings.review_sampling_config_path = config_path
+
+        reviews = []
+        for rating in [5, 4, 3, 2, 1]:
+                reviews.extend(_build_reviews(rating=rating, count=8))
+
+        result = service.extract(
+                ReviewExtractionRequest(
+                        product_id="demo_product",
+                        use_llm=False,
+                        max_reviews=20,
+                        reviews=reviews,
+                )
+        )
+
+        assert result.sampling_plan is not None
+        assert result.sampling_plan.profile_name == "praise_first"
+        selected_by_rating = {item.rating: item.selected_count for item in result.sampling_plan.allocations}
+        assert selected_by_rating[5] == 6
+        assert selected_by_rating[4] == 5
+        assert selected_by_rating[1] == 2

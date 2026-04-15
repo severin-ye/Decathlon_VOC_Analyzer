@@ -18,12 +18,12 @@
             "backpack_010_review_0036"
           ],
           "product_text_block_ids": [
-            "backpack_010_model_description_c4b91904d9ee",
-            "backpack_010_category_6b5576da381f"
+            "backpack_010_model_description_519cf5b81d86",
+            "backpack_010_category_df8dbdbf76c1"
           ],
           "product_image_ids": [
             "backpack_010_8512010_75917bd74847",
-            "backpack_010_8512010_3d8cd9fb54f5"
+            "backpack_010_8512010_224bc9da0299"
           ]
         },
         "owner": "product_issue",
@@ -46,7 +46,7 @@
             "backpack_010_review_0067"
           ],
           "product_text_block_ids": [
-            "backpack_010_model_description_c4b91904d9ee",
+            "backpack_010_model_description_519cf5b81d86",
             "backpack_010_product_name_a8c4ef4f53c4"
           ],
           "product_image_ids": [
@@ -76,8 +76,8 @@
             "backpack_010_review_0067"
           ],
           "product_text_block_ids": [
-            "backpack_010_model_description_c4b91904d9ee",
-            "backpack_010_category_6b5576da381f"
+            "backpack_010_model_description_519cf5b81d86",
+            "backpack_010_category_df8dbdbf76c1"
           ],
           "product_image_ids": [
             "backpack_010_8512010_75917bd74847",
@@ -104,7 +104,7 @@
             "backpack_010_review_0153"
           ],
           "product_text_block_ids": [
-            "backpack_010_model_description_c4b91904d9ee",
+            "backpack_010_model_description_519cf5b81d86",
             "backpack_010_product_name_a8c4ef4f53c4"
           ],
           "product_image_ids": [
@@ -131,7 +131,7 @@
             "backpack_010_review_0067"
           ],
           "product_text_block_ids": [
-            "backpack_010_model_description_c4b91904d9ee",
+            "backpack_010_model_description_519cf5b81d86",
             "backpack_010_product_name_a8c4ef4f53c4"
           ],
           "product_image_ids": [
@@ -188,14 +188,14 @@
         "backpack_010_review_0153"
       ],
       "product_text_block_ids": [
-        "backpack_010_model_description_c4b91904d9ee",
-        "backpack_010_category_6b5576da381f",
+        "backpack_010_model_description_519cf5b81d86",
+        "backpack_010_category_df8dbdbf76c1",
         "backpack_010_product_name_a8c4ef4f53c4"
       ],
       "product_image_ids": [
         "backpack_010_8512010_75917bd74847",
-        "backpack_010_8512010_3d8cd9fb54f5",
-        "backpack_010_8512010_224bc9da0299"
+        "backpack_010_8512010_224bc9da0299",
+        "backpack_010_8512010_3d8cd9fb54f5"
       ]
     },
     "confidence": 0.77,
@@ -205,7 +205,8 @@
         "suggestion_type": "structural",
         "reason": [
           "Clear negative feedback exists for usability, appearing 4 times.",
-          "Replay continuity: the issue around usability also appeared in the previous run."
+          "Replay continuity: the issue around usability also appeared in the previous run.",
+          "Replay continuity: the issue around value_price also appeared in the previous run."
         ],
         "confidence": 0.88,
         "supporting_evidence": {
@@ -215,8 +216,8 @@
             "backpack_010_review_0067"
           ],
           "product_text_block_ids": [
-            "backpack_010_model_description_c4b91904d9ee",
-            "backpack_010_category_6b5576da381f"
+            "backpack_010_model_description_519cf5b81d86",
+            "backpack_010_category_df8dbdbf76c1"
           ],
           "product_image_ids": [
             "backpack_010_8512010_75917bd74847",
@@ -247,7 +248,7 @@
             "backpack_010_review_0153"
           ],
           "product_text_block_ids": [
-            "backpack_010_model_description_c4b91904d9ee",
+            "backpack_010_model_description_519cf5b81d86",
             "backpack_010_product_name_a8c4ef4f53c4"
           ],
           "product_image_ids": [
@@ -270,7 +271,7 @@
     {
       "trace_type": "observation",
       "aspect": "replay_continuity",
-      "summary": "replay_path=/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/5_replay/backpack/backpack_010_replay.json, persistent=usability, portability_size, resolved=durability_quality, overall_experience, new=value_price",
+      "summary": "replay_path=/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/5_replay/backpack/backpack_010_replay.json, persistent=usability, portability_size, value_price, resolved=none, new=none",
       "owner": null,
       "supporting_evidence": {
         "review_ids": [],
@@ -310,7 +311,7 @@
           "backpack_010_review_0067"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c4b91904d9ee",
+          "backpack_010_model_description_519cf5b81d86",
           "backpack_010_product_name_a8c4ef4f53c4"
         ],
         "product_image_ids": [
@@ -337,7 +338,7 @@
           "backpack_010_review_0067"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c4b91904d9ee",
+          "backpack_010_model_description_519cf5b81d86",
           "backpack_010_product_name_a8c4ef4f53c4"
         ],
         "product_image_ids": [
@@ -385,12 +386,12 @@
           "backpack_010_review_0036"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c4b91904d9ee",
-          "backpack_010_category_6b5576da381f"
+          "backpack_010_model_description_519cf5b81d86",
+          "backpack_010_category_df8dbdbf76c1"
         ],
         "product_image_ids": [
           "backpack_010_8512010_75917bd74847",
-          "backpack_010_8512010_3d8cd9fb54f5"
+          "backpack_010_8512010_224bc9da0299"
         ]
       },
       "confidence_breakdown": {
@@ -413,12 +414,12 @@
           "backpack_010_review_0036"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c4b91904d9ee",
-          "backpack_010_category_6b5576da381f"
+          "backpack_010_model_description_519cf5b81d86",
+          "backpack_010_category_df8dbdbf76c1"
         ],
         "product_image_ids": [
           "backpack_010_8512010_75917bd74847",
-          "backpack_010_8512010_3d8cd9fb54f5"
+          "backpack_010_8512010_224bc9da0299"
         ]
       },
       "confidence_breakdown": {
@@ -461,7 +462,7 @@
           "backpack_010_review_0067"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c4b91904d9ee",
+          "backpack_010_model_description_519cf5b81d86",
           "backpack_010_product_name_a8c4ef4f53c4"
         ],
         "product_image_ids": [
@@ -489,7 +490,7 @@
           "backpack_010_review_0067"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c4b91904d9ee",
+          "backpack_010_model_description_519cf5b81d86",
           "backpack_010_product_name_a8c4ef4f53c4"
         ],
         "product_image_ids": [
@@ -537,8 +538,8 @@
           "backpack_010_review_0067"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c4b91904d9ee",
-          "backpack_010_category_6b5576da381f"
+          "backpack_010_model_description_519cf5b81d86",
+          "backpack_010_category_df8dbdbf76c1"
         ],
         "product_image_ids": [
           "backpack_010_8512010_75917bd74847",
@@ -565,8 +566,8 @@
           "backpack_010_review_0067"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c4b91904d9ee",
-          "backpack_010_category_6b5576da381f"
+          "backpack_010_model_description_519cf5b81d86",
+          "backpack_010_category_df8dbdbf76c1"
         ],
         "product_image_ids": [
           "backpack_010_8512010_75917bd74847",
@@ -613,12 +614,12 @@
           "backpack_010_review_0036"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c4b91904d9ee",
-          "backpack_010_category_6b5576da381f"
+          "backpack_010_model_description_519cf5b81d86",
+          "backpack_010_category_df8dbdbf76c1"
         ],
         "product_image_ids": [
           "backpack_010_8512010_75917bd74847",
-          "backpack_010_8512010_3d8cd9fb54f5"
+          "backpack_010_8512010_224bc9da0299"
         ]
       },
       "confidence_breakdown": {
@@ -641,12 +642,12 @@
           "backpack_010_review_0036"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c4b91904d9ee",
-          "backpack_010_category_6b5576da381f"
+          "backpack_010_model_description_519cf5b81d86",
+          "backpack_010_category_df8dbdbf76c1"
         ],
         "product_image_ids": [
           "backpack_010_8512010_75917bd74847",
-          "backpack_010_8512010_3d8cd9fb54f5"
+          "backpack_010_8512010_224bc9da0299"
         ]
       },
       "confidence_breakdown": {
@@ -689,12 +690,12 @@
           "backpack_010_review_0036"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c4b91904d9ee",
-          "backpack_010_category_6b5576da381f"
+          "backpack_010_model_description_519cf5b81d86",
+          "backpack_010_category_df8dbdbf76c1"
         ],
         "product_image_ids": [
           "backpack_010_8512010_75917bd74847",
-          "backpack_010_8512010_3d8cd9fb54f5"
+          "backpack_010_8512010_224bc9da0299"
         ]
       },
       "confidence_breakdown": {
@@ -717,12 +718,12 @@
           "backpack_010_review_0036"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c4b91904d9ee",
-          "backpack_010_category_6b5576da381f"
+          "backpack_010_model_description_519cf5b81d86",
+          "backpack_010_category_df8dbdbf76c1"
         ],
         "product_image_ids": [
           "backpack_010_8512010_75917bd74847",
-          "backpack_010_8512010_3d8cd9fb54f5"
+          "backpack_010_8512010_224bc9da0299"
         ]
       },
       "confidence_breakdown": {
@@ -765,7 +766,7 @@
           "backpack_010_review_0067"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c4b91904d9ee",
+          "backpack_010_model_description_519cf5b81d86",
           "backpack_010_product_name_a8c4ef4f53c4"
         ],
         "product_image_ids": [
@@ -793,7 +794,7 @@
           "backpack_010_review_0067"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c4b91904d9ee",
+          "backpack_010_model_description_519cf5b81d86",
           "backpack_010_product_name_a8c4ef4f53c4"
         ],
         "product_image_ids": [
@@ -841,12 +842,12 @@
           "backpack_010_review_0036"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c4b91904d9ee",
-          "backpack_010_category_6b5576da381f"
+          "backpack_010_model_description_519cf5b81d86",
+          "backpack_010_category_df8dbdbf76c1"
         ],
         "product_image_ids": [
           "backpack_010_8512010_75917bd74847",
-          "backpack_010_8512010_3d8cd9fb54f5"
+          "backpack_010_8512010_224bc9da0299"
         ]
       },
       "confidence_breakdown": {
@@ -869,12 +870,12 @@
           "backpack_010_review_0036"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c4b91904d9ee",
-          "backpack_010_category_6b5576da381f"
+          "backpack_010_model_description_519cf5b81d86",
+          "backpack_010_category_df8dbdbf76c1"
         ],
         "product_image_ids": [
           "backpack_010_8512010_75917bd74847",
-          "backpack_010_8512010_3d8cd9fb54f5"
+          "backpack_010_8512010_224bc9da0299"
         ]
       },
       "confidence_breakdown": {
@@ -897,8 +898,8 @@
           "backpack_010_review_0067"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c4b91904d9ee",
-          "backpack_010_category_6b5576da381f"
+          "backpack_010_model_description_519cf5b81d86",
+          "backpack_010_category_df8dbdbf76c1"
         ],
         "product_image_ids": [
           "backpack_010_8512010_75917bd74847",
@@ -925,7 +926,7 @@
           "backpack_010_review_0153"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c4b91904d9ee",
+          "backpack_010_model_description_519cf5b81d86",
           "backpack_010_product_name_a8c4ef4f53c4"
         ],
         "product_image_ids": [
@@ -1365,6 +1366,6 @@
     }
   ],
   "warnings": [
-    "replay continuity applied: persistent=2, resolved=2, new=1"
+    "replay continuity applied: persistent=3, resolved=0, new=0"
   ]
 }

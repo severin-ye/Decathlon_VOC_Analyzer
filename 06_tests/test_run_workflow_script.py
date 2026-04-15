@@ -79,6 +79,12 @@ def test_render_text_summary_quiet_mode() -> None:
         overview={"category_count": 3, "total_products": 192, "total_reviews": 33697},
         normalization={"normalized_products": 1, "report_path": "/tmp/report.json"},
         index_result={"backend": "local", "indexed_products": 1, "index_path": "/tmp/index.json"},
+        review_sampling={
+            "profile_name": "problem_first",
+            "requested_reviews": 5,
+            "selected_reviews": 5,
+            "allocations": [{"rating": 1, "selected_count": 2}],
+        },
         analysis={
             "analysis_mode": "heuristic",
             "artifact_path": "/tmp/analysis.json",
@@ -123,6 +129,12 @@ def test_render_json_summary_contains_batch_fields() -> None:
         overview={"category_count": 3, "total_products": 192, "total_reviews": 33697},
         normalization=None,
         index_result=None,
+        review_sampling={
+            "profile_name": "problem_first",
+            "requested_reviews": 5,
+            "selected_reviews": 5,
+            "allocations": [{"rating": 1, "selected_count": 2}],
+        },
         analysis={
             "analysis_mode": "heuristic",
             "artifact_path": "/tmp/analysis.json",
@@ -146,6 +158,7 @@ def test_render_json_summary_contains_batch_fields() -> None:
 
     assert payload["prompt_variant"] == "main"
     assert payload["overview"]["total_reviews"] == 33697
+    assert payload["review_sampling"]["profile_name"] == "problem_first"
     assert payload["analysis"]["artifact_path"] == "/tmp/analysis.json"
     assert payload["analysis"]["replay_applied"] is True
     assert payload["artifact_bundle"]["feedback_path"] == "/tmp/feedback.json"

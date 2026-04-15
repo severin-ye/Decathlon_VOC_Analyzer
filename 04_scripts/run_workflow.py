@@ -39,6 +39,7 @@ class WorkflowExecutionSummary:
     overview: dict[str, int]
     normalization: dict[str, object] | None
     index_result: dict[str, object] | None
+    review_sampling: dict[str, object] | None
     analysis: dict[str, object]
     artifact_bundle: dict[str, str | None] | None
     html_export_path: str | None
@@ -179,6 +180,7 @@ def execute_workflow(args: argparse.Namespace, paths: dict[str, Path]) -> Workfl
     normalization = result.get("normalization")
     index_result = result.get("index_result")
     analysis = result["analysis"]
+    sampling_plan = analysis.extraction.sampling_plan
     html_export_path = None
     if args.export_html:
         analysis_path = Path(str(analysis.artifact_path)) if analysis.artifact_path else None
@@ -223,6 +225,7 @@ def execute_workflow(args: argparse.Namespace, paths: dict[str, Path]) -> Workfl
             if index_result is not None
             else None
         ),
+        review_sampling=(sampling_plan.model_dump(mode="json") if sampling_plan is not None else None),
         analysis={
             "analysis_mode": analysis.analysis_mode,
             "artifact_path": analysis.artifact_path,
@@ -251,6 +254,7 @@ def _summary_payload(summary: WorkflowExecutionSummary) -> dict[str, object]:
         "overview": summary.overview,
         "normalization": summary.normalization,
         "index_result": summary.index_result,
+        "review_sampling": summary.review_sampling,
         "analysis": summary.analysis,
         "artifact_bundle": summary.artifact_bundle,
         "html_export_path": summary.html_export_path,

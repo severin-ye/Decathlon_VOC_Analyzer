@@ -55,7 +55,7 @@
       "slot_id": "suggestion_01",
       "item_type": "suggestion",
       "label": "Prioritize improvements to the design or presentation related to usability, and strengthen the corresponding explanation on the product page.",
-      "summary": "Clear negative feedback exists for usability, appearing 4 times.; Replay continuity: the issue around usability also appeared in the previous run.",
+      "summary": "Clear negative feedback exists for usability, appearing 4 times.; Replay continuity: the issue around usability also appeared in the previous run.; Replay continuity: the issue around value_price also appeared in the previous run.",
       "owner": "product_issue",
       "status": "pending_review",
       "confidence_breakdown": {
@@ -505,6 +505,6 @@
     }
   ],
   "warnings": [
-    "replay continuity applied: persistent=2, resolved=2, new=1"
+    "replay continuity applied: persistent=3, resolved=0, new=0"
   ]
 }
