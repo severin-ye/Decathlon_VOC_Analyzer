@@ -41,6 +41,9 @@ class IndexBackend(ABC):
     def index_location(self) -> str:
         raise NotImplementedError
 
+    def close(self) -> None:
+        return None
+
 
 class LocalIndexBackend(IndexBackend):
     def __init__(self, path: Path, embedding_service: EmbeddingService) -> None:
@@ -176,6 +179,9 @@ class QdrantIndexBackend(IndexBackend):
     def index_location(self) -> str:
         return str(self.settings.qdrant_path)
 
+    def close(self) -> None:
+        self.client.close()
+
     def _ensure_collection(self) -> None:
         collections = {item.name for item in self.client.get_collections().collections}
         if self.collection_name in collections:
@@ -196,3 +202,9 @@ def create_index_backend() -> IndexBackend:
         path=settings.indexes_output_dir / "local_evidence_index.json",
         embedding_service=embedding_service,
     )
+
+
+def dispose_index_backend() -> None:
+    backend = create_index_backend()
+    backend.close()
+    create_index_backend.cache_clear()

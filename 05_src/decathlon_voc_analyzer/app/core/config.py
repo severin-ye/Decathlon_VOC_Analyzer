@@ -26,6 +26,8 @@ class Settings(BaseSettings):
     feedback_output_dir: Path = ROOT_DIR / "02_outputs" / "5_feedback"
     replay_output_dir: Path = ROOT_DIR / "02_outputs" / "5_replay"
     html_output_dir: Path = ROOT_DIR / "02_outputs" / "6_html"
+    review_sampling_config_path: Path = ROOT_DIR / "03_configs" / "review_sampling_profiles.json"
+    review_sampling_profile: str | None = None
 
     llm_temperature: float = 0.3
     llm_max_tokens: int = 2000

@@ -1,4 +1,5 @@
 from pathlib import Path
+from typing import Any
 
 import orjson
 
@@ -8,6 +9,16 @@ from decathlon_voc_analyzer.app.core.config import get_settings
 class ArtifactSidecarService:
     def __init__(self) -> None:
         self.settings = get_settings()
+
+    def load_replay_payload(self, product_id: str, category_slug: str | None) -> dict[str, Any] | None:
+        replay_path = self._replay_path(product_id=product_id, category_slug=category_slug)
+        if not replay_path.exists():
+            return None
+        payload = orjson.loads(replay_path.read_bytes())
+        if not isinstance(payload, dict):
+            return None
+        payload["replay_path"] = str(replay_path)
+        return payload
 
     def persist_sidecars(
         self,
@@ -26,7 +37,7 @@ class ArtifactSidecarService:
         replay_dir.mkdir(parents=True, exist_ok=True)
 
         feedback_path = feedback_dir / f"{product_id}_feedback_slots.json"
-        replay_path = replay_dir / f"{product_id}_replay.json"
+        replay_path = self._replay_path(product_id=product_id, category_slug=category_slug)
 
         feedback_payload = {
             "product_id": product_id,
@@ -50,6 +61,10 @@ class ArtifactSidecarService:
             "feedback_path": str(feedback_path),
             "replay_path": str(replay_path),
         }
+
+    def _replay_path(self, product_id: str, category_slug: str | None) -> Path:
+        category = category_slug or "adhoc"
+        return self.settings.replay_output_dir / category / f"{product_id}_replay.json"
 
     def _build_feedback_slots(self, report, retrieval_quality) -> list[dict[str, object]]:
         slots: list[dict[str, object]] = []

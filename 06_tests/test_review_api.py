@@ -36,6 +36,37 @@ def test_reviews_extract_from_inline_reviews() -> None:
     assert payload["skipped_review_ids"] == []
 
 
+def test_reviews_extract_returns_sampling_plan() -> None:
+    reviews = []
+    for rating, count in [(5, 8), (4, 8), (3, 8), (2, 8), (1, 8)]:
+        for index in range(count):
+            reviews.append(
+                {
+                    "review_id": f"r{rating}_{index}",
+                    "product_id": "demo_product",
+                    "rating": rating,
+                    "review_text": f"Rating {rating} review {index} about travel pocket usage and storage.",
+                }
+            )
+
+    response = client.post(
+        "/api/v1/reviews/extract",
+        json={
+            "product_id": "demo_product",
+            "use_llm": False,
+            "max_reviews": 20,
+            "reviews": reviews,
+        },
+    )
+
+    assert response.status_code == 200
+    payload = response.json()
+    assert payload["sampling_plan"] is not None
+    selected_by_rating = {item["rating"]: item["selected_count"] for item in payload["sampling_plan"]["allocations"]}
+    assert selected_by_rating[1] == 6
+    assert selected_by_rating[2] == 5
+
+
 def test_reviews_extract_from_dataset_product() -> None:
     response = client.post(
         "/api/v1/reviews/extract",

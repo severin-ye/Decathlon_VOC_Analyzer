@@ -84,12 +84,12 @@ uvicorn decathlon_voc_analyzer.app.api.main:app --reload
 - `/api/v1/index/build` 用于为商品图文证据构建本地索引
 - `/api/v1/index/overview` 用于查看当前索引覆盖范围
 
-当前默认后端是本地持久化向量索引，后续可在不改 API 的前提下切换到 Qdrant。
+API 配置层当前默认后端仍是本地持久化向量索引；批处理入口 `04_scripts/run_workflow.py` 已默认切到 Qdrant，并可通过 `--retrieval-backend local` 显式回退。
 
 当前检索层已经拆成两层：
 
 - EmbeddingService：负责文本和图像代理文本向量化
-- IndexBackend：负责索引存储与检索，默认是 local，可切换为 qdrant
+- IndexBackend：负责索引存储与检索；API 默认是 local，批跑默认是 qdrant
 
 当前召回链路已经升级为“两阶段检索”：
 
@@ -104,6 +104,18 @@ uvicorn decathlon_voc_analyzer.app.api.main:app --reload
 当前默认 embedding 模型为 `text-embedding-v4`，通过 DashScope OpenAI 兼容接口调用。
 当前默认 reranker 模型为 `gte-rerank-v2`，通过 DashScope 原生 rerank 接口调用。
 当前所有业务提示词已统一收口到 `05_src/decathlon_voc_analyzer/prompts/` 目录管理。
+
+评论抽样现在也支持配置文件控制，默认配置文件位于 `03_configs/review_sampling_profiles.json`。
+
+当前默认 profile 为 `problem_first_default`，默认星级配额为：
+
+- 5 星：10%
+- 4 星：15%
+- 3 星：20%
+- 2 星：25%
+- 1 星：30%
+
+当 `max_reviews` 被设置为具体数量时，系统会先按该配额构建评论抽样池，再进入评论抽取；若低星评论不足，会按 `fallback_order: [1, 2, 3, 4, 5]` 逐级补位。
 
 如果需要为人工审核导出单产品中文数据集，可运行：
 
@@ -168,6 +180,52 @@ uvicorn decathlon_voc_analyzer.app.api.main:app --reload
 
 ```bash
 .venv/bin/python 04_scripts/run_workflow.py --cn --max-reviews 5
+```
+
+如果希望批处理稳定消费运行结果，推荐直接使用 JSON 输出：
+
+```bash
+.venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010 --R_5 --no-llm --output-format json
+```
+
+该模式会返回统一摘要，包含：
+
+- `analysis.artifact_path`
+- `analysis.replay_applied`
+- `analysis.replay_persistent_issue_count`
+- `artifact_bundle.analysis_path`
+- `artifact_bundle.feedback_path`
+- `artifact_bundle.replay_path`
+
+评论抽取响应与 `02_outputs/2_aspects/<category>/<product_id>.json` 中还会额外包含 `sampling_plan`，其中会写明：
+
+- 每个星级的目标数量 `target_count`
+- 每个星级的可用数量 `available_count`
+- 每个星级的实际抽取数量 `selected_count`
+- 因缺口被补入的数量 `redistributed_in_count`
+- 未满足目标的数量 `shortfall_count`
+
+若沿用批处理默认配置，`run_workflow.py` 会默认设置 `retrieval_backend=qdrant`，并在存在历史 replay sidecar 时自动把上一轮回放摘要接回当前分析；如需关闭 Qdrant，可显式传入：
+
+```bash
+.venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010 --output-format json --retrieval-backend local
+```
+
+如果希望一条命令同时导出 HTML，并把本次运行摘要落盘为 manifest，可运行：
+
+```bash
+.venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010 --R_5 --no-llm --output-format json --export-html --write-manifest
+```
+
+默认会额外生成：
+
+- `02_outputs/6_html/<category>/<product_id>.html`
+- `02_outputs/7_manifests/<category>/<product_id>_run_manifest.json`
+
+如需自定义 manifest 路径，可显式指定：
+
+```bash
+.venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010 --output-format json --manifest-path 02_outputs/custom/backpack_010_manifest.json
 ```
 
 如果要切换后端，可在 `.env` 中设置：

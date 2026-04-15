@@ -37,14 +37,32 @@ def test_build_cli_config_for_cn_namespace() -> None:
         dataset_root=None,
         prompt_variant=None,
         output_namespace=None,
+        retrieval_backend="qdrant",
     )
 
     config = module.build_cli_config(args)
 
     assert config.prompt_variant == "CN"
     assert config.mode_label == "中文数据集"
+    assert config.retrieval_backend == "qdrant"
     assert str(config.dataset_root).endswith("01_data/02_audit_zh_products/products")
     assert str(config.output_base).endswith("02_outputs/CN")
+
+
+def test_configure_environment_defaults_batch_runs_to_qdrant(tmp_path, monkeypatch) -> None:
+    module = _load_run_workflow_module()
+
+    config = module.WorkflowCliConfig(
+        dataset_root=tmp_path / "dataset",
+        output_base=tmp_path / "outputs",
+        prompt_variant="main",
+        mode_label="主项目原始数据集",
+        retrieval_backend="qdrant",
+    )
+
+    module.configure_environment(config)
+
+    assert module.os.environ["RETRIEVAL_BACKEND"] == "qdrant"
 
 
 def test_render_text_summary_quiet_mode() -> None:
@@ -66,9 +84,18 @@ def test_render_text_summary_quiet_mode() -> None:
             "artifact_path": "/tmp/analysis.json",
             "strengths": 3,
             "weaknesses": 0,
+            "replay_applied": True,
+            "replay_persistent_issue_count": 2,
+            "replay_resolved_issue_count": 1,
             "warnings": [],
         },
+        artifact_bundle={
+            "analysis_path": "/tmp/analysis.json",
+            "feedback_path": "/tmp/feedback.json",
+            "replay_path": "/tmp/replay.json",
+        },
         html_export_path="/tmp/report.html",
+        manifest_path="/tmp/run_manifest.json",
     )
 
     text = module._render_text_summary(summary, quiet=True)
@@ -76,7 +103,10 @@ def test_render_text_summary_quiet_mode() -> None:
     assert "[完成] 分析已生成" in text
     assert "[1/4]" not in text
     assert "analysis_mode = heuristic" in text
+    assert "feedback_path = /tmp/feedback.json" in text
+    assert "replay_path = /tmp/replay.json" in text
     assert "html_export_path = /tmp/report.html" in text
+    assert "manifest_path = /tmp/run_manifest.json" in text
 
 
 def test_render_json_summary_contains_batch_fields() -> None:
@@ -98,9 +128,18 @@ def test_render_json_summary_contains_batch_fields() -> None:
             "artifact_path": "/tmp/analysis.json",
             "strengths": 3,
             "weaknesses": 0,
+            "replay_applied": True,
+            "replay_persistent_issue_count": 2,
+            "replay_resolved_issue_count": 1,
             "warnings": [],
         },
+        artifact_bundle={
+            "analysis_path": "/tmp/analysis.json",
+            "feedback_path": "/tmp/feedback.json",
+            "replay_path": "/tmp/replay.json",
+        },
         html_export_path="/tmp/report.html",
+        manifest_path="/tmp/run_manifest.json",
     )
 
     payload = orjson.loads(module._render_json_summary(summary))
@@ -108,4 +147,7 @@ def test_render_json_summary_contains_batch_fields() -> None:
     assert payload["prompt_variant"] == "main"
     assert payload["overview"]["total_reviews"] == 33697
     assert payload["analysis"]["artifact_path"] == "/tmp/analysis.json"
+    assert payload["analysis"]["replay_applied"] is True
+    assert payload["artifact_bundle"]["feedback_path"] == "/tmp/feedback.json"
     assert payload["html_export_path"] == "/tmp/report.html"
+    assert payload["manifest_path"] == "/tmp/run_manifest.json"

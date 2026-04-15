@@ -2,7 +2,7 @@ import argparse
 import os
 import sys
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from pathlib import Path
 
 import orjson
@@ -24,6 +24,7 @@ class WorkflowCliConfig:
     output_base: Path
     prompt_variant: str
     mode_label: str
+    retrieval_backend: str
 
 
 @dataclass(frozen=True)
@@ -39,7 +40,9 @@ class WorkflowExecutionSummary:
     normalization: dict[str, object] | None
     index_result: dict[str, object] | None
     analysis: dict[str, object]
+    artifact_bundle: dict[str, str | None] | None
     html_export_path: str | None
+    manifest_path: str | None
 
 
 def _preprocess_argv(argv: list[str]) -> list[str]:
@@ -61,6 +64,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--dataset-root", default=None, help="可选，显式指定数据集根目录，例如 01_data/02_audit_zh_products/products")
     parser.add_argument("--prompt-variant", default=None, help="可选，显式指定提示词变体，例如 main、cn、zh-cn")
     parser.add_argument("--output-namespace", default=None, help="可选，输出命名空间目录，例如 CN；为空时写入默认 02_outputs 根目录")
+    parser.add_argument("--retrieval-backend", choices=["qdrant", "local"], default="qdrant", help="批跑默认使用 qdrant；如需回退可显式指定 local")
     parser.add_argument("--max-reviews", type=int, default=None, help="限制参与分析的评论数量")
     parser.add_argument("--top-k-per-route", type=int, default=2, help="每个模态召回的证据数量")
     parser.add_argument("--questions-per-aspect", type=int, default=2, help="每个 aspect 生成的问题数量")
@@ -68,6 +72,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--skip-normalize", action="store_true", help="跳过标准化落盘阶段")
     parser.add_argument("--skip-index", action="store_true", help="跳过索引构建阶段")
     parser.add_argument("--export-html", action="store_true", help="分析完成后顺带导出单商品 HTML 页面")
+    parser.add_argument("--write-manifest", action="store_true", help="将本次运行摘要落盘为 manifest json")
+    parser.add_argument("--manifest-path", default=None, help="可选，显式指定 manifest 输出路径")
     parser.add_argument("--output-format", choices=["text", "json"], default="text", help="输出格式；批处理场景建议使用 json")
     parser.add_argument("--quiet", action="store_true", help="安静模式；text 输出下仅打印最终摘要")
     parser.epilog = "支持简写参数，例如: --R_5 表示只分析前 5 条评论"
@@ -108,6 +114,7 @@ def build_cli_config(args: argparse.Namespace) -> WorkflowCliConfig:
         output_base=output_base,
         prompt_variant=prompt_variant,
         mode_label=mode_label,
+        retrieval_backend=args.retrieval_backend,
     )
 
 
@@ -121,6 +128,7 @@ def configure_environment(config: WorkflowCliConfig) -> dict[str, Path]:
         "feedback_output_dir": config.output_base / "5_feedback",
         "replay_output_dir": config.output_base / "5_replay",
         "html_output_dir": config.output_base / "6_html",
+        "manifests_output_dir": config.output_base / "7_manifests",
         "qdrant_path": config.output_base / "3_indexes" / "qdrant_store",
     }
 
@@ -135,13 +143,18 @@ def configure_environment(config: WorkflowCliConfig) -> dict[str, Path]:
     os.environ["REPLAY_OUTPUT_DIR"] = str(paths["replay_output_dir"])
     os.environ["HTML_OUTPUT_DIR"] = str(paths["html_output_dir"])
     os.environ["QDRANT_PATH"] = str(paths["qdrant_path"])
+    os.environ["RETRIEVAL_BACKEND"] = config.retrieval_backend
     return paths
 
 
-def execute_workflow(args: argparse.Namespace) -> WorkflowExecutionSummary:
-    config = build_cli_config(args)
-    paths = configure_environment(config)
+def _resolve_manifest_path(args: argparse.Namespace, paths: dict[str, Path]) -> Path:
+    if args.manifest_path:
+        candidate = Path(args.manifest_path)
+        return candidate if candidate.is_absolute() else (ROOT_DIR / candidate)
+    return paths["manifests_output_dir"] / args.category / f"{args.product_id}_run_manifest.json"
 
+
+def execute_workflow(args: argparse.Namespace, paths: dict[str, Path]) -> WorkflowExecutionSummary:
     from decathlon_voc_analyzer.app.core.config import get_settings
     from decathlon_voc_analyzer.stage4_generation.html_export_service import HtmlExportService
     from decathlon_voc_analyzer.workflows.single_product_workflow import get_single_product_workflow
@@ -181,9 +194,9 @@ def execute_workflow(args: argparse.Namespace) -> WorkflowExecutionSummary:
             html_export_path = str(html_output_path)
 
     return WorkflowExecutionSummary(
-        mode_label=config.mode_label,
+        mode_label="中文数据集" if os.environ.get("PROMPT_VARIANT") == "CN" else "主项目原始数据集",
         dataset_root=str(paths["dataset_root"]),
-        prompt_variant=config.prompt_variant,
+        prompt_variant=str(os.environ.get("PROMPT_VARIANT") or "main"),
         reports_output_dir=str(paths["reports_output_dir"]),
         category=args.category,
         product_id=args.product_id,
@@ -215,10 +228,44 @@ def execute_workflow(args: argparse.Namespace) -> WorkflowExecutionSummary:
             "artifact_path": analysis.artifact_path,
             "strengths": len(analysis.report.strengths),
             "weaknesses": len(analysis.report.weaknesses),
+            "replay_applied": bool(analysis.replay_summary and analysis.replay_summary.applied),
+            "replay_persistent_issue_count": len(analysis.replay_summary.persistent_issue_labels) if analysis.replay_summary else 0,
+            "replay_resolved_issue_count": len(analysis.replay_summary.resolved_issue_labels) if analysis.replay_summary else 0,
             "warnings": list(analysis.warnings),
         },
+        artifact_bundle=(analysis.artifact_bundle.model_dump(mode="json") if analysis.artifact_bundle is not None else None),
         html_export_path=html_export_path,
+        manifest_path=None,
     )
+
+
+def _summary_payload(summary: WorkflowExecutionSummary) -> dict[str, object]:
+    return {
+        "mode_label": summary.mode_label,
+        "dataset_root": summary.dataset_root,
+        "prompt_variant": summary.prompt_variant,
+        "reports_output_dir": summary.reports_output_dir,
+        "category": summary.category,
+        "product_id": summary.product_id,
+        "max_reviews": summary.max_reviews,
+        "overview": summary.overview,
+        "normalization": summary.normalization,
+        "index_result": summary.index_result,
+        "analysis": summary.analysis,
+        "artifact_bundle": summary.artifact_bundle,
+        "html_export_path": summary.html_export_path,
+        "manifest_path": summary.manifest_path,
+    }
+
+
+def maybe_write_manifest(args: argparse.Namespace, summary: WorkflowExecutionSummary, paths: dict[str, Path]) -> WorkflowExecutionSummary:
+    if not args.write_manifest and not args.manifest_path:
+        return summary
+    manifest_path = _resolve_manifest_path(args, paths)
+    manifest_path.parent.mkdir(parents=True, exist_ok=True)
+    materialized_summary = replace(summary, manifest_path=str(manifest_path))
+    manifest_path.write_bytes(orjson.dumps(_summary_payload(materialized_summary), option=orjson.OPT_INDENT_2))
+    return materialized_summary
 
 
 def _render_text_summary(summary: WorkflowExecutionSummary, quiet: bool) -> str:
@@ -256,8 +303,13 @@ def _render_text_summary(summary: WorkflowExecutionSummary, quiet: bool) -> str:
     lines.append(f"       artifact_path = {summary.analysis['artifact_path']}")
     lines.append(f"       strengths = {summary.analysis['strengths']}")
     lines.append(f"       weaknesses = {summary.analysis['weaknesses']}")
+    if summary.artifact_bundle is not None:
+        lines.append(f"       feedback_path = {summary.artifact_bundle.get('feedback_path')}")
+        lines.append(f"       replay_path = {summary.artifact_bundle.get('replay_path')}")
     if summary.html_export_path:
         lines.append(f"       html_export_path = {summary.html_export_path}")
+    if summary.manifest_path:
+        lines.append(f"       manifest_path = {summary.manifest_path}")
     warnings = summary.analysis["warnings"]
     if warnings:
         lines.append("       warnings:")
@@ -267,33 +319,25 @@ def _render_text_summary(summary: WorkflowExecutionSummary, quiet: bool) -> str:
 
 
 def _render_json_summary(summary: WorkflowExecutionSummary) -> bytes:
-    return orjson.dumps(
-        {
-            "mode_label": summary.mode_label,
-            "dataset_root": summary.dataset_root,
-            "prompt_variant": summary.prompt_variant,
-            "reports_output_dir": summary.reports_output_dir,
-            "category": summary.category,
-            "product_id": summary.product_id,
-            "max_reviews": summary.max_reviews,
-            "overview": summary.overview,
-            "normalization": summary.normalization,
-            "index_result": summary.index_result,
-            "analysis": summary.analysis,
-            "html_export_path": summary.html_export_path,
-        },
-        option=orjson.OPT_INDENT_2,
-    )
+    return orjson.dumps(_summary_payload(summary), option=orjson.OPT_INDENT_2)
 
 
 def main() -> None:
+    from decathlon_voc_analyzer.stage3_retrieval.index_backends import dispose_index_backend
+
     args = parse_args()
-    summary = execute_workflow(args)
-    if args.output_format == "json":
-        sys.stdout.buffer.write(_render_json_summary(summary))
-        sys.stdout.write("\n")
-        return
-    print(_render_text_summary(summary, quiet=args.quiet))
+    config = build_cli_config(args)
+    paths = configure_environment(config)
+    try:
+        summary = execute_workflow(args, paths)
+        summary = maybe_write_manifest(args, summary, paths)
+        if args.output_format == "json":
+            sys.stdout.buffer.write(_render_json_summary(summary))
+            sys.stdout.write("\n")
+            return
+        print(_render_text_summary(summary, quiet=args.quiet))
+    finally:
+        dispose_index_backend()
 
 
 if __name__ == "__main__":

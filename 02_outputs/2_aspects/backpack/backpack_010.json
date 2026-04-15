@@ -34,26 +34,236 @@
       "skip_reason": "low_signal_review"
     },
     {
-      "review_id": "backpack_010_review_0004",
+      "review_id": "backpack_010_review_0011",
       "product_id": "backpack_010",
-      "original_text": "Wygodny i ergonomiczny",
-      "cleaned_text": "Wygodny i ergonomiczny",
-      "rating": 5,
+      "original_text": "Avrage",
+      "cleaned_text": "Avrage",
+      "rating": 4,
+      "language_hint": "latin",
+      "is_informative": false,
+      "skip_reason": "low_signal_review"
+    },
+    {
+      "review_id": "backpack_010_review_0013",
+      "product_id": "backpack_010",
+      "original_text": "lo lascio nello zaino, molti scomparti per l'indispensabile",
+      "cleaned_text": "lo lascio nello zaino, molti scomparti per l'indispensabile",
+      "rating": 4,
       "language_hint": "latin",
       "is_informative": true,
       "skip_reason": null
     },
     {
-      "review_id": "backpack_010_review_0005",
+      "review_id": "backpack_010_review_0021",
       "product_id": "backpack_010",
-      "original_text": "Alwasy wanted to have a wallet/purse that is durable and keeps a lot of cards. Once hailed and ask where i bought it.",
-      "cleaned_text": "Alwasy wanted to have a wallet/purse that is durable and keeps a lot of cards. Once hailed and ask where i bought it.",
-      "rating": 5,
+      "original_text": "It's good for daily use too.",
+      "cleaned_text": "It's good for daily use too.",
+      "rating": 4,
+      "language_hint": "latin",
+      "is_informative": true,
+      "skip_reason": null
+    },
+    {
+      "review_id": "backpack_010_review_0022",
+      "product_id": "backpack_010",
+      "original_text": "Good",
+      "cleaned_text": "Good",
+      "rating": 4,
+      "language_hint": "latin",
+      "is_informative": false,
+      "skip_reason": "low_signal_review"
+    },
+    {
+      "review_id": "backpack_010_review_0029",
+      "product_id": "backpack_010",
+      "original_text": "Good product",
+      "cleaned_text": "Good product",
+      "rating": 4,
+      "language_hint": "latin",
+      "is_informative": true,
+      "skip_reason": null
+    },
+    {
+      "review_id": "backpack_010_review_0033",
+      "product_id": "backpack_010",
+      "original_text": "",
+      "cleaned_text": "",
+      "rating": 4,
+      "language_hint": null,
+      "is_informative": false,
+      "skip_reason": "empty_review"
+    },
+    {
+      "review_id": "backpack_010_review_0036",
+      "product_id": "backpack_010",
+      "original_text": "Good wallet",
+      "cleaned_text": "Good wallet",
+      "rating": 4,
+      "language_hint": "latin",
+      "is_informative": true,
+      "skip_reason": null
+    },
+    {
+      "review_id": "backpack_010_review_0039",
+      "product_id": "backpack_010",
+      "original_text": "Bought mine to carry a thin MagSafe Powerbank. Excellent fit (of course it wouldn’t work for all!).",
+      "cleaned_text": "Bought mine to carry a thin MagSafe Powerbank. Excellent fit (of course it wouldn’t work for all!).",
+      "rating": 4,
+      "language_hint": "latin",
+      "is_informative": true,
+      "skip_reason": null
+    },
+    {
+      "review_id": "backpack_010_review_0044",
+      "product_id": "backpack_010",
+      "original_text": "Ok",
+      "cleaned_text": "Ok",
+      "rating": 4,
+      "language_hint": "latin",
+      "is_informative": false,
+      "skip_reason": "low_signal_review"
+    },
+    {
+      "review_id": "backpack_010_review_0045",
+      "product_id": "backpack_010",
+      "original_text": "je recommande",
+      "cleaned_text": "je recommande",
+      "rating": 4,
+      "language_hint": "latin",
+      "is_informative": true,
+      "skip_reason": null
+    },
+    {
+      "review_id": "backpack_010_review_0055",
+      "product_id": "backpack_010",
+      "original_text": "Pratique pour voyager, mais également pour tous les jours. Format pratique, avec une grande ouverture rapide pour une bonne visibilité sur la monnaie et les cartes. Manque peut-être de quelques poches.",
+      "cleaned_text": "Pratique pour voyager, mais également pour tous les jours. Format pratique, avec une grande ouverture rapide pour une bonne visibilité sur la monnaie et les cartes. Manque peut-être de quelques poches.",
+      "rating": 4,
+      "language_hint": "latin",
+      "is_informative": true,
+      "skip_reason": null
+    },
+    {
+      "review_id": "backpack_010_review_0057",
+      "product_id": "backpack_010",
+      "original_text": "İşini yapıyor",
+      "cleaned_text": "İşini yapıyor",
+      "rating": 4,
+      "language_hint": "latin",
+      "is_informative": true,
+      "skip_reason": null
+    },
+    {
+      "review_id": "backpack_010_review_0067",
+      "product_id": "backpack_010",
+      "original_text": "Compact design: It measures around 14 × 10 × 2 cm and weighs only ~75 g — very easy to slip into a backpack or a jacket pocket. Good compartmentalization: Comes with a large zip opening, a coin pocket, and multiple card slots — helps keep travel documents, cash, and cards neatly organized. Travel-friendly: Several users mention it's ideal for travel, especially for passports, cards, ID, and other small essentials. Good build quality: Made from polyester with a polyurethane coating, so it feels durable for normal travel use. Value for money: The product tends to score ~4.6–4.7 out of 5 in user reviews, indicating strong satisfaction for the price. Who It’s Best For: Travellers who want a simple, no-frills travel wallet for passports, cards, and some cash. Hikers, backpackers, or day-trippers who need something lightweight and compact. People who prefer a wallet that stays inside a backpack (rather than in a tight pocket), thanks to its slim form.",
+      "cleaned_text": "Compact design: It measures around 14 × 10 × 2 cm and weighs only ~75 g — very easy to slip into a backpack or a jacket pocket. Good compartmentalization: Comes with a large zip opening, a coin pocket, and multiple card slots — helps keep travel documents, cash, and cards neatly organized. Travel-friendly: Several users mention it's ideal for travel, especially for passports, cards, ID, and other small essentials. Good build quality: Made from polyester with a polyurethane coating, so it feels durable for normal travel use. Value for money: The product tends to score ~4.6–4.7 out of 5 in user reviews, indicating strong satisfaction for the price. Who It’s Best For: Travellers who want a simple, no-frills travel wallet for passports, cards, and some cash. Hikers, backpackers, or day-trippers who need something lightweight and compact. People who prefer a wallet that stays inside a backpack (rather than in a tight pocket), thanks to its slim form.",
+      "rating": 4,
+      "language_hint": "latin",
+      "is_informative": true,
+      "skip_reason": null
+    },
+    {
+      "review_id": "backpack_010_review_0090",
+      "product_id": "backpack_010",
+      "original_text": "Beau mais trop grand",
+      "cleaned_text": "Beau mais trop grand",
+      "rating": 3,
+      "language_hint": "latin",
+      "is_informative": true,
+      "skip_reason": null
+    },
+    {
+      "review_id": "backpack_010_review_0138",
+      "product_id": "backpack_010",
+      "original_text": "The quality is excellent. +5 Workmanship is excellent. +5 Delivery process is excellent +5 I did not get the product I wanted. -3 I did not see size (dimensions) mentioned on the site. -3 I am however a satisfied customer +4 I have not used it because it is smaller than the size (one above) that I have.",
+      "cleaned_text": "The quality is excellent. +5 Workmanship is excellent. +5 Delivery process is excellent +5 I did not get the product I wanted. -3 I did not see size (dimensions) mentioned on the site. -3 I am however a satisfied customer +4 I have not used it because it is smaller than the size (one above) that I have.",
+      "rating": 3,
+      "language_hint": "latin",
+      "is_informative": true,
+      "skip_reason": null
+    },
+    {
+      "review_id": "backpack_010_review_0153",
+      "product_id": "backpack_010",
+      "original_text": "Very small",
+      "cleaned_text": "Very small",
+      "rating": 1,
+      "language_hint": "latin",
+      "is_informative": true,
+      "skip_reason": null
+    },
+    {
+      "review_id": "backpack_010_review_0189",
+      "product_id": "backpack_010",
+      "original_text": "A bankkártya tartóban a kártya elég lazán van. Könnyen kicsúszik, ha fejjel lefelé tartod. Amikor belerakod a zsebedbe a pénztárcát akkor a külső cipzár ki tud nyitódni. Arra figyelni kell. Ha fordítva lenne rátéve a cipzár az sokkal jobb lenne.",
+      "cleaned_text": "A bankkártya tartóban a kártya elég lazán van. Könnyen kicsúszik, ha fejjel lefelé tartod. Amikor belerakod a zsebedbe a pénztárcát akkor a külső cipzár ki tud nyitódni. Arra figyelni kell. Ha fordítva lenne rátéve a cipzár az sokkal jobb lenne.",
+      "rating": 3,
       "language_hint": "latin",
       "is_informative": true,
       "skip_reason": null
     }
   ],
+  "sampling_plan": {
+    "profile_name": "problem_first_default",
+    "requested_reviews": 20,
+    "total_available_reviews": 200,
+    "selected_reviews": 20,
+    "fallback_order": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "allocations": [
+      {
+        "rating": 5,
+        "configured_ratio": 0.1,
+        "target_count": 2,
+        "available_count": 168,
+        "selected_count": 2,
+        "redistributed_in_count": 0,
+        "shortfall_count": 0
+      },
+      {
+        "rating": 4,
+        "configured_ratio": 0.15,
+        "target_count": 3,
+        "available_count": 28,
+        "selected_count": 14,
+        "redistributed_in_count": 11,
+        "shortfall_count": 0
+      },
+      {
+        "rating": 3,
+        "configured_ratio": 0.2,
+        "target_count": 4,
+        "available_count": 3,
+        "selected_count": 3,
+        "redistributed_in_count": 0,
+        "shortfall_count": 1
+      },
+      {
+        "rating": 2,
+        "configured_ratio": 0.25,
+        "target_count": 5,
+        "available_count": 0,
+        "selected_count": 0,
+        "redistributed_in_count": 0,
+        "shortfall_count": 5
+      },
+      {
+        "rating": 1,
+        "configured_ratio": 0.3,
+        "target_count": 6,
+        "available_count": 1,
+        "selected_count": 1,
+        "redistributed_in_count": 0,
+        "shortfall_count": 5
+      }
+    ]
+  },
   "aspects": [
     {
       "aspect_id": "backpack_010_review_0001_aspect_01",
@@ -80,44 +290,240 @@
       "extraction_mode": "heuristic"
     },
     {
-      "aspect_id": "backpack_010_review_0004_aspect_01",
-      "review_id": "backpack_010_review_0004",
+      "aspect_id": "backpack_010_review_0013_aspect_01",
+      "review_id": "backpack_010_review_0013",
       "product_id": "backpack_010",
-      "aspect": "usability",
+      "aspect": "capacity_storage",
       "sentiment": "positive",
-      "opinion": "Wygodny i ergonomiczny",
-      "evidence_span": "Wygodny i ergonomiczny",
+      "opinion": "lo lascio nello zaino, molti scomparti per l'indispensabile",
+      "evidence_span": "lo lascio nello zaino, molti scomparti per l'indispensabile",
       "usage_scene": null,
       "confidence": 0.68,
       "extraction_mode": "heuristic"
     },
     {
-      "aspect_id": "backpack_010_review_0005_aspect_01",
-      "review_id": "backpack_010_review_0005",
+      "aspect_id": "backpack_010_review_0021_aspect_01",
+      "review_id": "backpack_010_review_0021",
       "product_id": "backpack_010",
-      "aspect": "capacity_storage",
+      "aspect": "usability",
       "sentiment": "positive",
-      "opinion": "Alwasy wanted to have a wallet/purse that is durable and keeps a lot of cards. Once hailed and ask where i bought it.",
-      "evidence_span": "Alwasy wanted to have a wallet/purse that is durable and keeps a lot of cards. Once hailed and ask where i bought it.",
+      "opinion": "It's good for daily use too.",
+      "evidence_span": "It's good for daily use too.",
       "usage_scene": "daily_use",
       "confidence": 0.68,
       "extraction_mode": "heuristic"
     },
     {
-      "aspect_id": "backpack_010_review_0005_aspect_02",
-      "review_id": "backpack_010_review_0005",
+      "aspect_id": "backpack_010_review_0029_aspect_01",
+      "review_id": "backpack_010_review_0029",
+      "product_id": "backpack_010",
+      "aspect": "overall_experience",
+      "sentiment": "positive",
+      "opinion": "Good product",
+      "evidence_span": "Good product",
+      "usage_scene": null,
+      "confidence": 0.56,
+      "extraction_mode": "heuristic"
+    },
+    {
+      "aspect_id": "backpack_010_review_0036_aspect_01",
+      "review_id": "backpack_010_review_0036",
+      "product_id": "backpack_010",
+      "aspect": "overall_experience",
+      "sentiment": "positive",
+      "opinion": "Good wallet",
+      "evidence_span": "Good wallet",
+      "usage_scene": "daily_use",
+      "confidence": 0.56,
+      "extraction_mode": "heuristic"
+    },
+    {
+      "aspect_id": "backpack_010_review_0039_aspect_01",
+      "review_id": "backpack_010_review_0039",
+      "product_id": "backpack_010",
+      "aspect": "capacity_storage",
+      "sentiment": "positive",
+      "opinion": "Bought mine to carry a thin MagSafe Powerbank. Excellent fit (of course it wouldn’t work for all!).",
+      "evidence_span": "Bought mine to carry a thin MagSafe Powerbank. Excellent fit (of course it wouldn’t work for all!).",
+      "usage_scene": null,
+      "confidence": 0.68,
+      "extraction_mode": "heuristic"
+    },
+    {
+      "aspect_id": "backpack_010_review_0045_aspect_01",
+      "review_id": "backpack_010_review_0045",
+      "product_id": "backpack_010",
+      "aspect": "overall_experience",
+      "sentiment": "positive",
+      "opinion": "je recommande",
+      "evidence_span": "je recommande",
+      "usage_scene": null,
+      "confidence": 0.56,
+      "extraction_mode": "heuristic"
+    },
+    {
+      "aspect_id": "backpack_010_review_0055_aspect_01",
+      "review_id": "backpack_010_review_0055",
+      "product_id": "backpack_010",
+      "aspect": "usability",
+      "sentiment": "positive",
+      "opinion": "Pratique pour voyager, mais également pour tous les jours. Format pratique, avec une grande ouverture rapide pour une bonne visibilité sur la monnaie et les cartes. Manque peut-être de quelques poches.",
+      "evidence_span": "Pratique pour voyager, mais également pour tous les jours. Format pratique, avec une grande ouverture rapide pour une bonne visibilité sur la monnaie et les cartes. Manque peut-être de quelques poches.",
+      "usage_scene": "travel",
+      "confidence": 0.68,
+      "extraction_mode": "heuristic"
+    },
+    {
+      "aspect_id": "backpack_010_review_0057_aspect_01",
+      "review_id": "backpack_010_review_0057",
+      "product_id": "backpack_010",
+      "aspect": "overall_experience",
+      "sentiment": "positive",
+      "opinion": "İşini yapıyor",
+      "evidence_span": "İşini yapıyor",
+      "usage_scene": null,
+      "confidence": 0.56,
+      "extraction_mode": "heuristic"
+    },
+    {
+      "aspect_id": "backpack_010_review_0067_aspect_01",
+      "review_id": "backpack_010_review_0067",
+      "product_id": "backpack_010",
+      "aspect": "capacity_storage",
+      "sentiment": "negative",
+      "opinion": "Compact design: It measures around 14 × 10 × 2 cm and weighs only ~75 g — very easy to slip into a backpack or a jacket pocket. Good compartmentalization: Comes with a large zip opening, a coin pocket, and multiple card slots — helps keep travel documents, cash, and cards neatly organized. Travel-friendly: Several users mention it's ideal for travel, especially for passports, cards, ID, and other small essentials. Good build quality: Made from polyester with a polyurethane coating, so it feels durable for normal travel use. Value for money: The product tends to score ~4.6–4.7 out of 5 in user reviews, indicating strong satisfaction for the price. Who It’s Best For: Travellers who want a simple, no-frills travel wallet for passports, cards, and some cash. Hikers, backpackers, or day-trippers who need something lightweight and compact. People who prefer a wallet that stays inside a backpack (rather than in a tight pocket), thanks to its slim form.",
+      "evidence_span": "Compact design: It measures around 14 × 10 × 2 cm and weighs only ~75 g — very easy to slip into a backpack or a jacket pocket. Good compartmentalization: Comes with a large zip opening, a coin pocket, and multiple card slots — helps keep travel documents, cash, and cards neatly organized. Travel-friendly: Several users mention it's ideal for travel, especially for passports, cards, ID, and other small essentials. Good build quality: Made from polyester with a polyurethane coating, so it feels durable for normal travel use. Value for money: The product tends to score ~4.6–4.7 out of 5 in user reviews, indicating strong satisfaction for the price. Who It’s Best For: Travellers who want a simple, no-frills travel wallet for passports, cards, and some cash. Hikers, backpackers, or day-trippers who need something lightweight and compact. People who prefer a wallet that stays inside a backpack (rather than in a tight pocket), thanks to its slim form.",
+      "usage_scene": "travel",
+      "confidence": 0.68,
+      "extraction_mode": "heuristic"
+    },
+    {
+      "aspect_id": "backpack_010_review_0067_aspect_02",
+      "review_id": "backpack_010_review_0067",
+      "product_id": "backpack_010",
+      "aspect": "portability_size",
+      "sentiment": "negative",
+      "opinion": "Compact design: It measures around 14 × 10 × 2 cm and weighs only ~75 g — very easy to slip into a backpack or a jacket pocket. Good compartmentalization: Comes with a large zip opening, a coin pocket, and multiple card slots — helps keep travel documents, cash, and cards neatly organized. Travel-friendly: Several users mention it's ideal for travel, especially for passports, cards, ID, and other small essentials. Good build quality: Made from polyester with a polyurethane coating, so it feels durable for normal travel use. Value for money: The product tends to score ~4.6–4.7 out of 5 in user reviews, indicating strong satisfaction for the price. Who It’s Best For: Travellers who want a simple, no-frills travel wallet for passports, cards, and some cash. Hikers, backpackers, or day-trippers who need something lightweight and compact. People who prefer a wallet that stays inside a backpack (rather than in a tight pocket), thanks to its slim form.",
+      "evidence_span": "Compact design: It measures around 14 × 10 × 2 cm and weighs only ~75 g — very easy to slip into a backpack or a jacket pocket. Good compartmentalization: Comes with a large zip opening, a coin pocket, and multiple card slots — helps keep travel documents, cash, and cards neatly organized. Travel-friendly: Several users mention it's ideal for travel, especially for passports, cards, ID, and other small essentials. Good build quality: Made from polyester with a polyurethane coating, so it feels durable for normal travel use. Value for money: The product tends to score ~4.6–4.7 out of 5 in user reviews, indicating strong satisfaction for the price. Who It’s Best For: Travellers who want a simple, no-frills travel wallet for passports, cards, and some cash. Hikers, backpackers, or day-trippers who need something lightweight and compact. People who prefer a wallet that stays inside a backpack (rather than in a tight pocket), thanks to its slim form.",
+      "usage_scene": "travel",
+      "confidence": 0.68,
+      "extraction_mode": "heuristic"
+    },
+    {
+      "aspect_id": "backpack_010_review_0067_aspect_03",
+      "review_id": "backpack_010_review_0067",
+      "product_id": "backpack_010",
+      "aspect": "usability",
+      "sentiment": "negative",
+      "opinion": "Compact design: It measures around 14 × 10 × 2 cm and weighs only ~75 g — very easy to slip into a backpack or a jacket pocket. Good compartmentalization: Comes with a large zip opening, a coin pocket, and multiple card slots — helps keep travel documents, cash, and cards neatly organized. Travel-friendly: Several users mention it's ideal for travel, especially for passports, cards, ID, and other small essentials. Good build quality: Made from polyester with a polyurethane coating, so it feels durable for normal travel use. Value for money: The product tends to score ~4.6–4.7 out of 5 in user reviews, indicating strong satisfaction for the price. Who It’s Best For: Travellers who want a simple, no-frills travel wallet for passports, cards, and some cash. Hikers, backpackers, or day-trippers who need something lightweight and compact. People who prefer a wallet that stays inside a backpack (rather than in a tight pocket), thanks to its slim form.",
+      "evidence_span": "Compact design: It measures around 14 × 10 × 2 cm and weighs only ~75 g — very easy to slip into a backpack or a jacket pocket. Good compartmentalization: Comes with a large zip opening, a coin pocket, and multiple card slots — helps keep travel documents, cash, and cards neatly organized. Travel-friendly: Several users mention it's ideal for travel, especially for passports, cards, ID, and other small essentials. Good build quality: Made from polyester with a polyurethane coating, so it feels durable for normal travel use. Value for money: The product tends to score ~4.6–4.7 out of 5 in user reviews, indicating strong satisfaction for the price. Who It’s Best For: Travellers who want a simple, no-frills travel wallet for passports, cards, and some cash. Hikers, backpackers, or day-trippers who need something lightweight and compact. People who prefer a wallet that stays inside a backpack (rather than in a tight pocket), thanks to its slim form.",
+      "usage_scene": "travel",
+      "confidence": 0.68,
+      "extraction_mode": "heuristic"
+    },
+    {
+      "aspect_id": "backpack_010_review_0067_aspect_04",
+      "review_id": "backpack_010_review_0067",
       "product_id": "backpack_010",
       "aspect": "durability_quality",
-      "sentiment": "positive",
-      "opinion": "Alwasy wanted to have a wallet/purse that is durable and keeps a lot of cards. Once hailed and ask where i bought it.",
-      "evidence_span": "Alwasy wanted to have a wallet/purse that is durable and keeps a lot of cards. Once hailed and ask where i bought it.",
-      "usage_scene": "daily_use",
+      "sentiment": "negative",
+      "opinion": "Compact design: It measures around 14 × 10 × 2 cm and weighs only ~75 g — very easy to slip into a backpack or a jacket pocket. Good compartmentalization: Comes with a large zip opening, a coin pocket, and multiple card slots — helps keep travel documents, cash, and cards neatly organized. Travel-friendly: Several users mention it's ideal for travel, especially for passports, cards, ID, and other small essentials. Good build quality: Made from polyester with a polyurethane coating, so it feels durable for normal travel use. Value for money: The product tends to score ~4.6–4.7 out of 5 in user reviews, indicating strong satisfaction for the price. Who It’s Best For: Travellers who want a simple, no-frills travel wallet for passports, cards, and some cash. Hikers, backpackers, or day-trippers who need something lightweight and compact. People who prefer a wallet that stays inside a backpack (rather than in a tight pocket), thanks to its slim form.",
+      "evidence_span": "Compact design: It measures around 14 × 10 × 2 cm and weighs only ~75 g — very easy to slip into a backpack or a jacket pocket. Good compartmentalization: Comes with a large zip opening, a coin pocket, and multiple card slots — helps keep travel documents, cash, and cards neatly organized. Travel-friendly: Several users mention it's ideal for travel, especially for passports, cards, ID, and other small essentials. Good build quality: Made from polyester with a polyurethane coating, so it feels durable for normal travel use. Value for money: The product tends to score ~4.6–4.7 out of 5 in user reviews, indicating strong satisfaction for the price. Who It’s Best For: Travellers who want a simple, no-frills travel wallet for passports, cards, and some cash. Hikers, backpackers, or day-trippers who need something lightweight and compact. People who prefer a wallet that stays inside a backpack (rather than in a tight pocket), thanks to its slim form.",
+      "usage_scene": "travel",
       "confidence": 0.68,
+      "extraction_mode": "heuristic"
+    },
+    {
+      "aspect_id": "backpack_010_review_0067_aspect_05",
+      "review_id": "backpack_010_review_0067",
+      "product_id": "backpack_010",
+      "aspect": "value_price",
+      "sentiment": "negative",
+      "opinion": "Compact design: It measures around 14 × 10 × 2 cm and weighs only ~75 g — very easy to slip into a backpack or a jacket pocket. Good compartmentalization: Comes with a large zip opening, a coin pocket, and multiple card slots — helps keep travel documents, cash, and cards neatly organized. Travel-friendly: Several users mention it's ideal for travel, especially for passports, cards, ID, and other small essentials. Good build quality: Made from polyester with a polyurethane coating, so it feels durable for normal travel use. Value for money: The product tends to score ~4.6–4.7 out of 5 in user reviews, indicating strong satisfaction for the price. Who It’s Best For: Travellers who want a simple, no-frills travel wallet for passports, cards, and some cash. Hikers, backpackers, or day-trippers who need something lightweight and compact. People who prefer a wallet that stays inside a backpack (rather than in a tight pocket), thanks to its slim form.",
+      "evidence_span": "Compact design: It measures around 14 × 10 × 2 cm and weighs only ~75 g — very easy to slip into a backpack or a jacket pocket. Good compartmentalization: Comes with a large zip opening, a coin pocket, and multiple card slots — helps keep travel documents, cash, and cards neatly organized. Travel-friendly: Several users mention it's ideal for travel, especially for passports, cards, ID, and other small essentials. Good build quality: Made from polyester with a polyurethane coating, so it feels durable for normal travel use. Value for money: The product tends to score ~4.6–4.7 out of 5 in user reviews, indicating strong satisfaction for the price. Who It’s Best For: Travellers who want a simple, no-frills travel wallet for passports, cards, and some cash. Hikers, backpackers, or day-trippers who need something lightweight and compact. People who prefer a wallet that stays inside a backpack (rather than in a tight pocket), thanks to its slim form.",
+      "usage_scene": "travel",
+      "confidence": 0.68,
+      "extraction_mode": "heuristic"
+    },
+    {
+      "aspect_id": "backpack_010_review_0090_aspect_01",
+      "review_id": "backpack_010_review_0090",
+      "product_id": "backpack_010",
+      "aspect": "overall_experience",
+      "sentiment": "neutral",
+      "opinion": "Beau mais trop grand",
+      "evidence_span": "Beau mais trop grand",
+      "usage_scene": null,
+      "confidence": 0.56,
+      "extraction_mode": "heuristic"
+    },
+    {
+      "aspect_id": "backpack_010_review_0138_aspect_01",
+      "review_id": "backpack_010_review_0138",
+      "product_id": "backpack_010",
+      "aspect": "portability_size",
+      "sentiment": "negative",
+      "opinion": "The quality is excellent. +5 Workmanship is excellent. +5 Delivery process is excellent +5 I did not get the product I wanted. -3 I did not see size (dimensions) mentioned on the site. -3 I am however a satisfied customer +4 I have not used it because it is smaller than the size (one above) that I have.",
+      "evidence_span": "The quality is excellent. +5 Workmanship is excellent. +5 Delivery process is excellent +5 I did not get the product I wanted. -3 I did not see size (dimensions) mentioned on the site. -3 I am however a satisfied customer +4 I have not used it because it is smaller than the size (one above) that I have.",
+      "usage_scene": null,
+      "confidence": 0.68,
+      "extraction_mode": "heuristic"
+    },
+    {
+      "aspect_id": "backpack_010_review_0138_aspect_02",
+      "review_id": "backpack_010_review_0138",
+      "product_id": "backpack_010",
+      "aspect": "usability",
+      "sentiment": "negative",
+      "opinion": "The quality is excellent. +5 Workmanship is excellent. +5 Delivery process is excellent +5 I did not get the product I wanted. -3 I did not see size (dimensions) mentioned on the site. -3 I am however a satisfied customer +4 I have not used it because it is smaller than the size (one above) that I have.",
+      "evidence_span": "The quality is excellent. +5 Workmanship is excellent. +5 Delivery process is excellent +5 I did not get the product I wanted. -3 I did not see size (dimensions) mentioned on the site. -3 I am however a satisfied customer +4 I have not used it because it is smaller than the size (one above) that I have.",
+      "usage_scene": null,
+      "confidence": 0.68,
+      "extraction_mode": "heuristic"
+    },
+    {
+      "aspect_id": "backpack_010_review_0138_aspect_03",
+      "review_id": "backpack_010_review_0138",
+      "product_id": "backpack_010",
+      "aspect": "durability_quality",
+      "sentiment": "negative",
+      "opinion": "The quality is excellent. +5 Workmanship is excellent. +5 Delivery process is excellent +5 I did not get the product I wanted. -3 I did not see size (dimensions) mentioned on the site. -3 I am however a satisfied customer +4 I have not used it because it is smaller than the size (one above) that I have.",
+      "evidence_span": "The quality is excellent. +5 Workmanship is excellent. +5 Delivery process is excellent +5 I did not get the product I wanted. -3 I did not see size (dimensions) mentioned on the site. -3 I am however a satisfied customer +4 I have not used it because it is smaller than the size (one above) that I have.",
+      "usage_scene": null,
+      "confidence": 0.68,
+      "extraction_mode": "heuristic"
+    },
+    {
+      "aspect_id": "backpack_010_review_0153_aspect_01",
+      "review_id": "backpack_010_review_0153",
+      "product_id": "backpack_010",
+      "aspect": "portability_size",
+      "sentiment": "negative",
+      "opinion": "Very small",
+      "evidence_span": "Very small",
+      "usage_scene": null,
+      "confidence": 0.68,
+      "extraction_mode": "heuristic"
+    },
+    {
+      "aspect_id": "backpack_010_review_0189_aspect_01",
+      "review_id": "backpack_010_review_0189",
+      "product_id": "backpack_010",
+      "aspect": "overall_experience",
+      "sentiment": "neutral",
+      "opinion": "A bankkártya tartóban a kártya elég lazán van. Könnyen kicsúszik, ha fejjel lefelé tartod. Amikor belerakod a zsebedbe a pénztárcát akkor a külső cipzár ki tud nyitódni. Arra figyelni kell. Ha fordítva lenne rátéve a cipzár az sokkal jobb lenne.",
+      "evidence_span": "A bankkártya tartóban a kártya elég lazán van. Könnyen kicsúszik, ha fejjel lefelé tartod. Amikor belerakod a zsebedbe a pénztárcát akkor a külső cipzár ki tud nyitódni. Arra figyelni kell. Ha fordítva lenne rátéve a cipzár az sokkal jobb lenne.",
+      "usage_scene": null,
+      "confidence": 0.56,
       "extraction_mode": "heuristic"
     }
   ],
   "skipped_review_ids": [
-    "backpack_010_review_0003"
+    "backpack_010_review_0003",
+    "backpack_010_review_0011",
+    "backpack_010_review_0022",
+    "backpack_010_review_0033",
+    "backpack_010_review_0044"
   ],
   "warnings": []
 }

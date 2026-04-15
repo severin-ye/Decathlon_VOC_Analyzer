@@ -1,0 +1,16 @@
+{
+  "active_profile": "problem_first_default",
+  "profiles": {
+    "problem_first_default": {
+      "description": "Prefer lower-star reviews when building the review extraction pool.",
+      "weights": {
+        "5": 0.1,
+        "4": 0.15,
+        "3": 0.2,
+        "2": 0.25,
+        "1": 0.3
+      },
+      "fallback_order": [1, 2, 3, 4, 5]
+    }
+  }
+}

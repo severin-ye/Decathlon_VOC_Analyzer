@@ -15,10 +15,12 @@ from decathlon_voc_analyzer.schemas.review import (
     ReviewExtractionRequest,
     ReviewExtractionResponse,
     ReviewInput,
+    ReviewSamplingPlan,
 )
 from decathlon_voc_analyzer.prompts import get_prompt_template
 from decathlon_voc_analyzer.stage1_dataset.dataset_service import DatasetService
 from decathlon_voc_analyzer.stage2_review_modeling.deduplication_service import ReviewDeduplicationService
+from decathlon_voc_analyzer.stage2_review_modeling.review_sampling_service import ReviewSamplingService
 
 
 LOW_SIGNAL_REVIEW_PATTERNS = {
@@ -138,9 +140,10 @@ class ReviewExtractionService:
         self.dataset_service = DatasetService()
         self.chat_gateway = QwenChatGateway()
         self.deduplication_service = ReviewDeduplicationService()
+        self.review_sampling_service = ReviewSamplingService()
 
     def extract(self, request: ReviewExtractionRequest) -> ReviewExtractionResponse:
-        reviews, product_id, category_slug = self._resolve_reviews(request)
+        reviews, product_id, category_slug, sampling_plan = self._resolve_reviews(request)
         preprocessed_reviews = [self._preprocess_review(review) for review in reviews]
 
         aspects: list[ReviewAspect] = []
@@ -178,6 +181,7 @@ class ReviewExtractionService:
                 category_slug=category_slug,
                 extraction_mode=extraction_mode,
                 preprocessed_reviews=preprocessed_reviews,
+                sampling_plan=sampling_plan,
                 aspects=aspects,
                 skipped_review_ids=skipped_review_ids,
                 warnings=warnings,
@@ -188,6 +192,7 @@ class ReviewExtractionService:
             category_slug=category_slug,
             extraction_mode=extraction_mode,
             preprocessed_reviews=preprocessed_reviews,
+            sampling_plan=sampling_plan,
             aspects=aspects,
             skipped_review_ids=skipped_review_ids,
             warnings=warnings,
@@ -196,16 +201,19 @@ class ReviewExtractionService:
 
     def _resolve_reviews(
         self, request: ReviewExtractionRequest
-    ) -> tuple[list[ReviewInput], str | None, str | None]:
+    ) -> tuple[list[ReviewInput], str | None, str | None, ReviewSamplingPlan | None]:
         if request.reviews:
-            reviews = request.reviews[: request.max_reviews] if request.max_reviews else request.reviews
+            reviews, sampling_plan = self.review_sampling_service.select_reviews(
+                reviews=request.reviews,
+                max_reviews=request.max_reviews,
+            )
             product_id = request.product_id or next(
                 (review.product_id for review in reviews if review.product_id),
                 None,
             )
             if self._should_project_reviews_to_english(request):
                 reviews = self._project_reviews_to_english(reviews)
-            return reviews, product_id, request.category_slug
+            return reviews, product_id, request.category_slug, sampling_plan
 
         if not request.product_id:
             raise ValueError("product_id is required when reviews are not provided")
@@ -214,7 +222,7 @@ class ReviewExtractionService:
             product_id=request.product_id,
             category_slug=request.category_slug,
         )
-        reviews = [
+        source_reviews = [
             ReviewInput(
                 review_id=review.review_id,
                 product_id=review.product_id,
@@ -222,11 +230,15 @@ class ReviewExtractionService:
                 review_text=review.review_text,
                 language_hint=review.language_hint,
             )
-            for review in package.reviews[: request.max_reviews]
+            for review in package.reviews
         ]
+        reviews, sampling_plan = self.review_sampling_service.select_reviews(
+            reviews=source_reviews,
+            max_reviews=request.max_reviews,
+        )
         if self._should_project_reviews_to_english(request):
             reviews = self._project_reviews_to_english(reviews)
-        return reviews, package.product_id, package.category_slug
+        return reviews, package.product_id, package.category_slug, sampling_plan
 
     def _should_project_reviews_to_english(self, request: ReviewExtractionRequest) -> bool:
         return (
@@ -377,6 +389,7 @@ class ReviewExtractionService:
         category_slug: str | None,
         extraction_mode: ExtractionMode,
         preprocessed_reviews: list[PreprocessedReview],
+        sampling_plan: ReviewSamplingPlan | None,
         aspects: list[ReviewAspect],
         skipped_review_ids: list[str],
         warnings: list[str],
@@ -390,6 +403,7 @@ class ReviewExtractionService:
             "category_slug": category_slug,
             "extraction_mode": extraction_mode,
             "preprocessed_reviews": [item.model_dump(mode="json") for item in preprocessed_reviews],
+            "sampling_plan": sampling_plan.model_dump(mode="json") if sampling_plan is not None else None,
             "aspects": [item.model_dump(mode="json") for item in aspects],
             "skipped_review_ids": skipped_review_ids,
             "warnings": warnings,

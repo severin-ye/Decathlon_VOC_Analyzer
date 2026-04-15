@@ -70,6 +70,21 @@ class RetrievalRuntimeProfile(BaseModel):
     summary: str
 
 
+class AnalysisArtifactBundle(BaseModel):
+    analysis_path: str
+    feedback_path: str | None = None
+    replay_path: str | None = None
+
+
+class ReplayContinuationSummary(BaseModel):
+    replay_path: str
+    previous_analysis_mode: AnalysisMode | None = None
+    applied: bool = False
+    persistent_issue_labels: list[str] = Field(default_factory=list)
+    resolved_issue_labels: list[str] = Field(default_factory=list)
+    new_issue_labels: list[str] = Field(default_factory=list)
+
+
 class AspectAggregate(BaseModel):
     aspect: str
     frequency: int
@@ -143,6 +158,7 @@ class ProductAnalysisRequest(BaseModel):
     max_reviews: int | None = Field(default=None, ge=1)
     use_llm: bool = True
     persist_artifact: bool = False
+    use_replay: bool = False
     top_k_per_route: int = Field(default=2, ge=1, le=5)
     questions_per_aspect: int = Field(default=2, ge=1, le=5)
 
@@ -157,5 +173,7 @@ class ProductAnalysisResponse(BaseModel):
     aggregates: list[AspectAggregate]
     report: ProductAnalysisReport
     trace: list[ProcessTraceItem] = Field(default_factory=list)
+    replay_summary: ReplayContinuationSummary | None = None
+    artifact_bundle: AnalysisArtifactBundle | None = None
     artifact_path: str | None = None
     warnings: list[str] = Field(default_factory=list)

@@ -7,6 +7,7 @@ from pydantic import BaseModel, Field
 from decathlon_voc_analyzer.app.core.config import get_settings
 from decathlon_voc_analyzer.llm import QwenChatGateway
 from decathlon_voc_analyzer.schemas.analysis import (
+    AnalysisArtifactBundle,
     AnalysisMode,
     AspectAggregate,
     ConfidenceBreakdown,
@@ -16,6 +17,7 @@ from decathlon_voc_analyzer.schemas.analysis import (
     ProductAnalysisReport,
     ProductAnalysisRequest,
     ProductAnalysisResponse,
+    ReplayContinuationSummary,
     RetrievalQualityMetrics,
     RetrievalRuntimeProfile,
     SupportingEvidence,
@@ -94,6 +96,12 @@ class ProductAnalysisService:
         retrieval_quality = self._assess_retrieval_quality(retrievals)
         retrieval_runtime = self._build_retrieval_runtime_profile()
         aggregates = self._aggregate_aspects(extraction.aspects)
+        replay_payload = None
+        if request.use_replay:
+            replay_payload = self.artifact_sidecar_service.load_replay_payload(
+                product_id=package.product_id,
+                category_slug=package.category_slug,
+            )
         warnings = list(extraction.warnings) + question_warnings
 
         llm_requested = request.use_llm and bool(self.settings.qwen_plus_api_key)
@@ -110,12 +118,16 @@ class ProductAnalysisService:
             report = self._build_report_heuristic(package.product_id, package.category_slug, aggregates, retrievals)
 
         report = self.report_refinement_service.refine(report)
+        report, replay_summary = self._apply_replay_context(report, replay_payload)
+        replay_warning = self._build_replay_warning(replay_summary)
+        if replay_warning is not None:
+            warnings.append(replay_warning)
 
-        trace = self._build_process_trace(extraction.aspects, questions, retrievals, report)
+        trace = self._build_process_trace(extraction.aspects, questions, retrievals, report, replay_summary)
 
-        artifact_path: str | None = None
+        artifact_bundle: AnalysisArtifactBundle | None = None
         if request.persist_artifact:
-            artifact_path = self._persist_report(package.product_id, package.category_slug, analysis_mode, extraction, questions, retrievals, retrieval_quality, retrieval_runtime, aggregates, report, trace, warnings)
+            artifact_bundle = self._persist_report(package.product_id, package.category_slug, analysis_mode, extraction, questions, retrievals, retrieval_quality, retrieval_runtime, aggregates, report, trace, warnings, replay_summary)
 
         return ProductAnalysisResponse(
             analysis_mode=analysis_mode,
@@ -127,7 +139,9 @@ class ProductAnalysisService:
             aggregates=aggregates,
             report=report,
             trace=trace,
-            artifact_path=artifact_path,
+            replay_summary=replay_summary,
+            artifact_bundle=artifact_bundle,
+            artifact_path=artifact_bundle.analysis_path if artifact_bundle is not None else None,
             warnings=warnings,
         )
 
@@ -461,10 +475,61 @@ class ProductAnalysisService:
             )
         return hydrated or fallback_items
 
-    def _persist_report(self, product_id: str, category_slug: str | None, analysis_mode: AnalysisMode, extraction, questions, retrievals, retrieval_quality, retrieval_runtime: RetrievalRuntimeProfile, aggregates, report, trace, warnings: list[str]) -> str:
+    def _apply_replay_context(
+        self,
+        report: ProductAnalysisReport,
+        replay_payload: dict[str, object] | None,
+    ) -> tuple[ProductAnalysisReport, ReplayContinuationSummary | None]:
+        if not replay_payload:
+            return report, None
+
+        previous_report = replay_payload.get("report")
+        if not isinstance(previous_report, dict):
+            return report, None
+
+        previous_issue_labels = self._extract_issue_labels(previous_report)
+        current_issue_labels = self._unique_labels([item.label for item in report.weaknesses + report.controversies])
+        previous_issue_set = set(previous_issue_labels)
+        current_issue_set = set(current_issue_labels)
+        persistent_issue_labels = [label for label in current_issue_labels if label in previous_issue_set]
+        resolved_issue_labels = [label for label in previous_issue_labels if label not in current_issue_set]
+        new_issue_labels = [label for label in current_issue_labels if label not in previous_issue_set]
+
+        updated_report = report.model_copy(
+            update={
+                "weaknesses": self._prioritize_replayed_insights(report.weaknesses, persistent_issue_labels),
+                "controversies": self._prioritize_replayed_insights(report.controversies, persistent_issue_labels),
+                "suggestions": self._annotate_suggestions_with_replay(report.suggestions, persistent_issue_labels),
+            }
+        )
+        replay_summary = ReplayContinuationSummary(
+            replay_path=str(replay_payload.get("replay_path")),
+            previous_analysis_mode=self._normalize_analysis_mode(replay_payload.get("analysis_mode")),
+            applied=True,
+            persistent_issue_labels=persistent_issue_labels,
+            resolved_issue_labels=resolved_issue_labels,
+            new_issue_labels=new_issue_labels,
+        )
+        return updated_report, replay_summary
+
+    def _persist_report(self, product_id: str, category_slug: str | None, analysis_mode: AnalysisMode, extraction, questions, retrievals, retrieval_quality, retrieval_runtime: RetrievalRuntimeProfile, aggregates, report, trace, warnings: list[str], replay_summary: ReplayContinuationSummary | None) -> AnalysisArtifactBundle:
         target_dir = self.settings.reports_output_dir / (category_slug or "adhoc")
         target_dir.mkdir(parents=True, exist_ok=True)
         output_path = target_dir / f"{product_id}_analysis.json"
+        sidecar_paths = self.artifact_sidecar_service.persist_sidecars(
+            product_id=product_id,
+            category_slug=category_slug,
+            analysis_mode=analysis_mode,
+            report=report,
+            trace=trace,
+            retrieval_quality=retrieval_quality,
+            warnings=warnings,
+        )
+        artifact_bundle = AnalysisArtifactBundle(
+            analysis_path=str(output_path),
+            feedback_path=sidecar_paths.get("feedback_path"),
+            replay_path=sidecar_paths.get("replay_path"),
+        )
         payload = {
             "analysis_mode": analysis_mode,
             "extraction": extraction.model_dump(mode="json"),
@@ -475,22 +540,31 @@ class ProductAnalysisService:
             "aggregates": [item.model_dump(mode="json") for item in aggregates],
             "report": report.model_dump(mode="json"),
             "trace": [item.model_dump(mode="json") for item in trace],
+            "replay_summary": replay_summary.model_dump(mode="json") if replay_summary is not None else None,
+            "artifact_bundle": artifact_bundle.model_dump(mode="json"),
             "warnings": warnings,
         }
         output_path.write_bytes(orjson.dumps(payload, option=orjson.OPT_INDENT_2))
-        self.artifact_sidecar_service.persist_sidecars(
-            product_id=product_id,
-            category_slug=category_slug,
-            analysis_mode=analysis_mode,
-            report=report,
-            trace=trace,
-            retrieval_quality=retrieval_quality,
-            warnings=warnings,
-        )
-        return str(output_path)
+        return artifact_bundle
 
-    def _build_process_trace(self, aspects: list[ReviewAspect], questions: list, retrievals: list, report: ProductAnalysisReport) -> list[ProcessTraceItem]:
+    def _build_process_trace(
+        self,
+        aspects: list[ReviewAspect],
+        questions: list,
+        retrievals: list,
+        report: ProductAnalysisReport,
+        replay_summary: ReplayContinuationSummary | None,
+    ) -> list[ProcessTraceItem]:
         trace: list[ProcessTraceItem] = []
+        if replay_summary is not None and replay_summary.applied:
+            trace.append(
+                ProcessTraceItem(
+                    trace_type="observation",
+                    aspect="replay_continuity",
+                    summary=self._summarize_replay_continuity(replay_summary),
+                    supporting_evidence=SupportingEvidence(),
+                )
+            )
         aggregate_lookup = {item.label: item for item in report.strengths + report.weaknesses + report.controversies}
         for aspect in aspects[:8]:
             insight = aggregate_lookup.get(aspect.aspect)
@@ -545,6 +619,102 @@ class ProductAnalysisService:
         return (
             f"reviews={len(evidence.review_ids)}, text_blocks={len(evidence.product_text_block_ids)}, images={len(evidence.product_image_ids)}.{question_hint}"
         )
+
+    def _extract_issue_labels(self, report_payload: dict[str, object]) -> list[str]:
+        labels: list[str] = []
+        for key in ("weaknesses", "controversies"):
+            items = report_payload.get(key)
+            if not isinstance(items, list):
+                continue
+            for item in items:
+                if not isinstance(item, dict):
+                    continue
+                label = item.get("label")
+                if isinstance(label, str) and label:
+                    labels.append(label)
+        return self._unique_labels(labels)
+
+    def _prioritize_replayed_insights(self, items: list[InsightItem], persistent_issue_labels: list[str]) -> list[InsightItem]:
+        persistent_issue_set = set(persistent_issue_labels)
+        prioritized = [item for item in items if item.label in persistent_issue_set]
+        remaining = [item for item in items if item.label not in persistent_issue_set]
+        return prioritized + remaining
+
+    def _annotate_suggestions_with_replay(
+        self,
+        suggestions: list[ImprovementSuggestion],
+        persistent_issue_labels: list[str],
+    ) -> list[ImprovementSuggestion]:
+        if not suggestions or not persistent_issue_labels:
+            return suggestions
+
+        updated: list[ImprovementSuggestion] = []
+        matched_labels: set[str] = set()
+        for suggestion in suggestions:
+            matched_label = next(
+                (label for label in persistent_issue_labels if self._suggestion_matches_label(suggestion, label)),
+                None,
+            )
+            if matched_label is None:
+                updated.append(suggestion)
+                continue
+            matched_labels.add(matched_label)
+            note = self._replay_continuity_note([matched_label])
+            reasons = list(suggestion.reason)
+            if note not in reasons:
+                reasons.append(note)
+            updated.append(suggestion.model_copy(update={"reason": reasons}))
+
+        unmatched_labels = [label for label in persistent_issue_labels if label not in matched_labels]
+        if unmatched_labels and updated:
+            note = self._replay_continuity_note(unmatched_labels[:2])
+            reasons = list(updated[0].reason)
+            if note not in reasons:
+                updated[0] = updated[0].model_copy(update={"reason": reasons + [note]})
+        return updated
+
+    def _suggestion_matches_label(self, suggestion: ImprovementSuggestion, label: str) -> bool:
+        haystack = " ".join([suggestion.suggestion, *suggestion.reason]).lower()
+        return label.lower() in haystack
+
+    def _replay_continuity_note(self, labels: list[str]) -> str:
+        joined = ", ".join(labels)
+        if os.getenv("PROMPT_VARIANT", "main") == "main":
+            return f"Replay continuity: the issue around {joined} also appeared in the previous run."
+        return f"回放延续性：{joined} 在上一轮分析中也出现过。"
+
+    def _build_replay_warning(self, replay_summary: ReplayContinuationSummary | None) -> str | None:
+        if replay_summary is None or not replay_summary.applied:
+            return None
+        if os.getenv("PROMPT_VARIANT", "main") == "main":
+            return (
+                "replay continuity applied: "
+                f"persistent={len(replay_summary.persistent_issue_labels)}, "
+                f"resolved={len(replay_summary.resolved_issue_labels)}, "
+                f"new={len(replay_summary.new_issue_labels)}"
+            )
+        return (
+            "已应用 replay 回放延续性："
+            f"持续问题 {len(replay_summary.persistent_issue_labels)} 个，"
+            f"已消退问题 {len(replay_summary.resolved_issue_labels)} 个，"
+            f"新增问题 {len(replay_summary.new_issue_labels)} 个"
+        )
+
+    def _summarize_replay_continuity(self, replay_summary: ReplayContinuationSummary) -> str:
+        persistent = ", ".join(replay_summary.persistent_issue_labels[:3]) or "none"
+        resolved = ", ".join(replay_summary.resolved_issue_labels[:3]) or "none"
+        new_labels = ", ".join(replay_summary.new_issue_labels[:3]) or "none"
+        return (
+            f"replay_path={replay_summary.replay_path}, persistent={persistent}, resolved={resolved}, new={new_labels}"
+        )
+
+    def _unique_labels(self, labels: list[str]) -> list[str]:
+        return list(dict.fromkeys(label for label in labels if label))
+
+    def _normalize_analysis_mode(self, value: object) -> AnalysisMode | None:
+        if value in {"heuristic", "llm"}:
+            return value
+        return None
 
     def _build_confidence_breakdown(self, aggregate: AspectAggregate, evidence: SupportingEvidence) -> ConfidenceBreakdown:
         extract_confidence = self._clamp_confidence(0.52 + 0.08 * min(aggregate.frequency, 4), 0.7)

@@ -67,6 +67,7 @@ def build_single_product_workflow():
                 max_reviews=state.get("max_reviews"),
                 use_llm=state["use_llm"],
                 persist_artifact=True,
+                use_replay=True,
                 top_k_per_route=state["top_k_per_route"],
                 questions_per_aspect=state["questions_per_aspect"],
             )

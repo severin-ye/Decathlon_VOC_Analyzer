@@ -92,6 +92,61 @@ def test_product_analysis_service_emits_trace_and_owner_metadata() -> None:
     assert result.retrieval_runtime.image_embedding_backend == "proxy_text"
     assert result.retrieval_runtime.native_multimodal_enabled is False
     assert "proxy text" in result.retrieval_runtime.summary.lower() or "代理文本" in result.retrieval_runtime.summary
+    assert result.artifact_bundle is None
     assert all(metric.top_k_count >= 1 for metric in result.retrieval_quality)
     assert all(0.0 <= metric.evidence_coverage <= 1.0 for metric in result.retrieval_quality)
     assert all(0.0 <= metric.score_drift <= 1.0 for metric in result.retrieval_quality)
+
+
+def test_product_analysis_service_returns_artifact_bundle_when_persisted() -> None:
+    service = ProductAnalysisService()
+
+    result = service.analyze(
+        ProductAnalysisRequest(
+            product_id="backpack_010",
+            category_slug="backpack",
+            max_reviews=4,
+            use_llm=False,
+            top_k_per_route=1,
+            persist_artifact=True,
+        )
+    )
+
+    assert result.artifact_bundle is not None
+    assert result.artifact_bundle.analysis_path == result.artifact_path
+    assert result.artifact_bundle.feedback_path is not None
+    assert result.artifact_bundle.replay_path is not None
+
+
+def test_product_analysis_service_can_apply_replay_continuity() -> None:
+    service = ProductAnalysisService()
+
+    service.analyze(
+        ProductAnalysisRequest(
+            product_id="backpack_010",
+            category_slug="backpack",
+            max_reviews=4,
+            use_llm=False,
+            top_k_per_route=1,
+            persist_artifact=True,
+            use_replay=False,
+        )
+    )
+
+    replayed = service.analyze(
+        ProductAnalysisRequest(
+            product_id="backpack_010",
+            category_slug="backpack",
+            max_reviews=4,
+            use_llm=False,
+            top_k_per_route=1,
+            persist_artifact=True,
+            use_replay=True,
+        )
+    )
+
+    assert replayed.replay_summary is not None
+    assert replayed.replay_summary.applied is True
+    assert replayed.replay_summary.replay_path.endswith("backpack_010_replay.json")
+    assert any(item.aspect == "replay_continuity" for item in replayed.trace)
+    assert any("replay" in warning.lower() or "回放" in warning for warning in replayed.warnings)
