@@ -80,13 +80,14 @@ class LocalIndexBackend(IndexBackend):
         )
         if snapshot is None:
             return []
-        query_vector = self.embedding_service.embed_text(query)
         ranked: dict[str, list[tuple[float, IndexedEvidence]]] = {"text": [], "image": []}
-        for evidence in snapshot.evidence:
-            if evidence.route not in routes:
-                continue
-            score = self.embedding_service.similarity(query_vector, evidence.vector)
-            ranked[evidence.route].append((score, evidence))
+        for route in routes:
+            query_vector = self.embedding_service.embed_query_for_route(query, route)
+            for evidence in snapshot.evidence:
+                if evidence.route != route:
+                    continue
+                score = self.embedding_service.similarity(query_vector, evidence.vector)
+                ranked[evidence.route].append((score, evidence))
 
         results: list[IndexedEvidence] = []
         for route in routes:
@@ -109,25 +110,27 @@ class QdrantIndexBackend(IndexBackend):
         self.settings.qdrant_path.mkdir(parents=True, exist_ok=True)
         self.client = QdrantClient(path=str(self.settings.qdrant_path))
         self.collection_name = self.settings.qdrant_collection_name
-        self._ensure_collection()
 
     def save_snapshots(self, snapshots: list[ProductIndexSnapshot]) -> str | None:
-        points: list[PointStruct] = []
+        points_by_route: dict[str, list[PointStruct]] = {"text": [], "image": []}
         point_id = 1
         for snapshot in snapshots:
             for evidence in snapshot.evidence:
                 payload = evidence.model_dump(mode="json")
                 payload["product_id"] = snapshot.product_id
                 payload["category_slug"] = snapshot.category_slug
-                points.append(PointStruct(id=point_id, vector=evidence.vector, payload=payload))
+                points_by_route[evidence.route].append(PointStruct(id=point_id, vector=evidence.vector, payload=payload))
                 point_id += 1
 
         collections = {item.name for item in self.client.get_collections().collections}
-        if self.collection_name in collections:
-            self.client.delete_collection(collection_name=self.collection_name)
-        self._ensure_collection()
-        if points:
-            self.client.upsert(collection_name=self.collection_name, points=points)
+        for route in ("text", "image"):
+            collection_name = self._collection_name_for_route(route)
+            if collection_name in collections:
+                self.client.delete_collection(collection_name=collection_name)
+            self._ensure_collection(route)
+            route_points = points_by_route[route]
+            if route_points:
+                self.client.upsert(collection_name=collection_name, points=route_points)
         manifest_path = self.settings.qdrant_path / "manifest.json"
         manifest_path.write_bytes(
             orjson.dumps(
@@ -152,9 +155,12 @@ class QdrantIndexBackend(IndexBackend):
         routes: list[str],
         top_k_per_route: int,
     ) -> list[IndexedEvidence]:
-        query_vector = self.embedding_service.embed_text(query)
         results: list[IndexedEvidence] = []
         for route in routes:
+            collection_name = self._collection_name_for_route(route)
+            if collection_name not in {item.name for item in self.client.get_collections().collections}:
+                continue
+            query_vector = self.embedding_service.embed_query_for_route(query, route)
             conditions = [
                 FieldCondition(key="product_id", match=MatchValue(value=product_id)),
                 FieldCondition(key="route", match=MatchValue(value=route)),
@@ -162,7 +168,7 @@ class QdrantIndexBackend(IndexBackend):
             if category_slug:
                 conditions.append(FieldCondition(key="category_slug", match=MatchValue(value=category_slug)))
             response = self.client.query_points(
-                collection_name=self.collection_name,
+                collection_name=collection_name,
                 query=query_vector,
                 limit=top_k_per_route,
                 query_filter=Filter(must=conditions),
@@ -183,13 +189,20 @@ class QdrantIndexBackend(IndexBackend):
         self.client.close()
 
     def _ensure_collection(self) -> None:
+        raise NotImplementedError
+
+    def _ensure_collection(self, route: str) -> None:
+        collection_name = self._collection_name_for_route(route)
         collections = {item.name for item in self.client.get_collections().collections}
-        if self.collection_name in collections:
+        if collection_name in collections:
             return
         self.client.create_collection(
-            collection_name=self.collection_name,
-            vectors_config=VectorParams(size=self.embedding_service.vector_size(), distance=Distance.COSINE),
+            collection_name=collection_name,
+            vectors_config=VectorParams(size=self.embedding_service.vector_size_for_route(route), distance=Distance.COSINE),
         )
+
+    def _collection_name_for_route(self, route: str) -> str:
+        return f"{self.collection_name}_{route}"
 
 
 @lru_cache(maxsize=4)

@@ -1,4 +1,5 @@
 import json
+from pathlib import Path
 
 from decathlon_voc_analyzer.schemas.index import IndexedEvidence
 from decathlon_voc_analyzer.stage3_retrieval.embedding_service import EmbeddingService
@@ -101,3 +102,65 @@ def test_reranker_service_uses_dedicated_api(monkeypatch) -> None:
     assert reranked[0].evidence_id == "b"
     assert reranked[0].score == 0.91
     assert reranked[1].evidence_id == "a"
+
+
+def test_embedding_service_uses_clip_for_image_route(monkeypatch, tmp_path) -> None:
+    service = EmbeddingService()
+    service.settings.image_embedding_backend = "clip"
+
+    monkeypatch.setattr(service, "_clip_image_embedding", lambda _path: [0.0, 1.0])
+    monkeypatch.setattr(service, "_clip_text_embedding", lambda _text: [1.0, 0.0])
+
+    image_path = tmp_path / "probe.png"
+    image_path.write_bytes(b"fake-image")
+
+    image_vector = service.embed_image(image_path=image_path, text_hint="wallet")
+    query_vector = service.embed_query_for_route("travel wallet", "image")
+
+    assert image_vector == [0.0, 1.0]
+    assert query_vector == [1.0, 0.0]
+
+
+def test_reranker_service_uses_multimodal_backend_for_image_candidates(monkeypatch) -> None:
+    service = RerankerService()
+    service.settings.multimodal_reranker_backend = "qwen_vl"
+    service.settings.qwen_plus_api_key = "test-key"
+
+    candidates = [
+        IndexedEvidence(
+            evidence_id="img_a",
+            product_id="backpack_010",
+            category_slug="backpack",
+            route="image",
+            image_id="img_a",
+            image_path="images/8512010/img1.png",
+            content="zippered travel wallet",
+            vector=[0.1, 0.2],
+            score=0.2,
+        ),
+        IndexedEvidence(
+            evidence_id="img_b",
+            product_id="backpack_010",
+            category_slug="backpack",
+            route="image",
+            image_id="img_b",
+            image_path="images/8512010/img2.png",
+            content="passport compartment close-up",
+            vector=[0.2, 0.1],
+            score=0.1,
+        ),
+    ]
+
+    def fake_multimodal_rerank(query: str, image_candidates: list[IndexedEvidence]) -> list[IndexedEvidence]:
+        assert query == "passport wallet"
+        return [
+            IndexedEvidence.model_validate({**image_candidates[1].model_dump(mode="json"), "score": 0.93}),
+            IndexedEvidence.model_validate({**image_candidates[0].model_dump(mode="json"), "score": 0.11}),
+        ]
+
+    monkeypatch.setattr(service, "_rerank_image_candidates_with_vl", fake_multimodal_rerank)
+
+    reranked = service.rerank(query="passport wallet", candidates=candidates, use_llm=True)
+
+    assert reranked[0].evidence_id == "img_b"
+    assert reranked[0].score == 0.93

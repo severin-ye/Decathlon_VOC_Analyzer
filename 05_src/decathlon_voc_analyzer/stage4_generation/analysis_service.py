@@ -775,7 +775,11 @@ class ProductAnalysisService:
             text_embedding_backend=self.settings.embedding_backend,
             text_embedding_model=self.settings.qwen_embedding_model,
             image_embedding_backend=image_backend,
-            image_embedding_model=self.settings.qwen_vl_embedding_model if image_backend not in {"proxy_text", "disabled"} else None,
+            image_embedding_model=(
+                self.settings.clip_vl_embedding_model
+                if image_backend == "clip"
+                else self.settings.qwen_vl_embedding_model if image_backend not in {"proxy_text", "disabled"} else None
+            ),
             reranker_backend=self.settings.reranker_backend,
             reranker_model=self.settings.qwen_reranker_model,
             multimodal_reranker_backend=multimodal_backend,

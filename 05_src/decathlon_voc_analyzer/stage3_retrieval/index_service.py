@@ -123,6 +123,7 @@ class IndexService:
             proxy_text = " ".join(
                 part for part in [package.product_name, package.category_text, package.model_description, image.variant, image.image_path] if part
             )
+            image_source_path = self.dataset_service.settings.dataset_root / package.category_slug / package.product_id / image.image_path
             evidence.append(
                 IndexedEvidence(
                     evidence_id=image.image_id,
@@ -133,7 +134,7 @@ class IndexService:
                     image_path=image.image_path,
                     variant=image.variant,
                     content=proxy_text,
-                    vector=self.embedding_service.embed_image_proxy_text(proxy_text),
+                    vector=self.embedding_service.embed_image(image_path=image_source_path, text_hint=proxy_text),
                 )
             )
         return evidence

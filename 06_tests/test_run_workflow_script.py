@@ -38,6 +38,10 @@ def test_build_cli_config_for_cn_namespace() -> None:
         prompt_variant=None,
         output_namespace=None,
         retrieval_backend="qdrant",
+        qdrant_path=None,
+        qdrant_scope="isolated",
+        category="backpack",
+        product_id="backpack_010",
     )
 
     config = module.build_cli_config(args)
@@ -47,6 +51,27 @@ def test_build_cli_config_for_cn_namespace() -> None:
     assert config.retrieval_backend == "qdrant"
     assert str(config.dataset_root).endswith("01_data/02_audit_zh_products/products")
     assert str(config.output_base).endswith("02_outputs/CN")
+    assert "qdrant_runs/backpack/backpack_010/run_" in str(config.qdrant_path)
+
+
+def test_build_cli_config_can_use_shared_qdrant_path() -> None:
+    module = _load_run_workflow_module()
+
+    args = Namespace(
+        cn=False,
+        dataset_root=None,
+        prompt_variant=None,
+        output_namespace=None,
+        retrieval_backend="qdrant",
+        qdrant_path=None,
+        qdrant_scope="shared",
+        category="backpack",
+        product_id="backpack_010",
+    )
+
+    config = module.build_cli_config(args)
+
+    assert str(config.qdrant_path).endswith("02_outputs/3_indexes/qdrant_store")
 
 
 def test_configure_environment_defaults_batch_runs_to_qdrant(tmp_path, monkeypatch) -> None:
@@ -58,6 +83,7 @@ def test_configure_environment_defaults_batch_runs_to_qdrant(tmp_path, monkeypat
         prompt_variant="main",
         mode_label="主项目原始数据集",
         retrieval_backend="qdrant",
+        qdrant_path=tmp_path / "outputs" / "3_indexes" / "qdrant_store",
     )
 
     module.configure_environment(config)
@@ -85,6 +111,11 @@ def test_render_text_summary_quiet_mode() -> None:
             "selected_reviews": 5,
             "allocations": [{"rating": 1, "selected_count": 2}],
         },
+        retrieval_runtime={
+            "native_multimodal_enabled": True,
+            "image_embedding_backend": "clip",
+            "multimodal_reranker_backend": "qwen_vl",
+        },
         analysis={
             "analysis_mode": "heuristic",
             "artifact_path": "/tmp/analysis.json",
@@ -109,6 +140,9 @@ def test_render_text_summary_quiet_mode() -> None:
     assert "[完成] 分析已生成" in text
     assert "[1/4]" not in text
     assert "analysis_mode = heuristic" in text
+    assert "native_multimodal_enabled = True" in text
+    assert "image_embedding_backend = clip" in text
+    assert "multimodal_reranker_backend = qwen_vl" in text
     assert "feedback_path = /tmp/feedback.json" in text
     assert "replay_path = /tmp/replay.json" in text
     assert "html_export_path = /tmp/report.html" in text
@@ -135,6 +169,11 @@ def test_render_json_summary_contains_batch_fields() -> None:
             "selected_reviews": 5,
             "allocations": [{"rating": 1, "selected_count": 2}],
         },
+        retrieval_runtime={
+            "native_multimodal_enabled": True,
+            "image_embedding_backend": "clip",
+            "multimodal_reranker_backend": "qwen_vl",
+        },
         analysis={
             "analysis_mode": "heuristic",
             "artifact_path": "/tmp/analysis.json",
@@ -159,6 +198,8 @@ def test_render_json_summary_contains_batch_fields() -> None:
     assert payload["prompt_variant"] == "main"
     assert payload["overview"]["total_reviews"] == 33697
     assert payload["review_sampling"]["profile_name"] == "problem_first"
+    assert payload["retrieval_runtime"]["native_multimodal_enabled"] is True
+    assert payload["retrieval_runtime"]["image_embedding_backend"] == "clip"
     assert payload["analysis"]["artifact_path"] == "/tmp/analysis.json"
     assert payload["analysis"]["replay_applied"] is True
     assert payload["artifact_bundle"]["feedback_path"] == "/tmp/feedback.json"

@@ -9,10 +9,11 @@ def test_create_index_backend_defaults_to_local() -> None:
     assert backend is not None
 
 
-def test_create_index_backend_can_switch_to_qdrant() -> None:
+def test_create_index_backend_can_switch_to_qdrant(tmp_path) -> None:
     import os
 
     os.environ["RETRIEVAL_BACKEND"] = "qdrant"
+    os.environ["QDRANT_PATH"] = str(tmp_path / "qdrant_store")
     get_settings.cache_clear()
     create_index_backend.cache_clear()
     backend = create_index_backend()

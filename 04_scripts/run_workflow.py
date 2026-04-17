@@ -2,6 +2,7 @@ import argparse
 import os
 import sys
 import re
+from datetime import datetime, timezone
 from dataclasses import dataclass, replace
 from pathlib import Path
 
@@ -25,6 +26,7 @@ class WorkflowCliConfig:
     prompt_variant: str
     mode_label: str
     retrieval_backend: str
+    qdrant_path: Path
 
 
 @dataclass(frozen=True)
@@ -40,6 +42,7 @@ class WorkflowExecutionSummary:
     normalization: dict[str, object] | None
     index_result: dict[str, object] | None
     review_sampling: dict[str, object] | None
+    retrieval_runtime: dict[str, object] | None
     analysis: dict[str, object]
     artifact_bundle: dict[str, str | None] | None
     html_export_path: str | None
@@ -66,6 +69,13 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--prompt-variant", default=None, help="可选，显式指定提示词变体，例如 main、cn、zh-cn")
     parser.add_argument("--output-namespace", default=None, help="可选，输出命名空间目录，例如 CN；为空时写入默认 02_outputs 根目录")
     parser.add_argument("--retrieval-backend", choices=["qdrant", "local"], default="qdrant", help="批跑默认使用 qdrant；如需回退可显式指定 local")
+    parser.add_argument("--qdrant-path", default=None, help="可选，显式指定 Qdrant 存储目录；未指定时按 qdrant-scope 自动生成")
+    parser.add_argument(
+        "--qdrant-scope",
+        choices=["isolated", "shared"],
+        default="isolated",
+        help="Qdrant 目录作用域；isolated 为每次运行单独目录，shared 复用固定 qdrant_store",
+    )
     parser.add_argument("--max-reviews", type=int, default=None, help="限制参与分析的评论数量")
     parser.add_argument("--top-k-per-route", type=int, default=2, help="每个模态召回的证据数量")
     parser.add_argument("--questions-per-aspect", type=int, default=2, help="每个 aspect 生成的问题数量")
@@ -105,17 +115,34 @@ def _resolve_prompt_variant(args: argparse.Namespace) -> str:
     return normalize_prompt_variant("CN" if args.cn else "main")
 
 
+def _build_run_stamp() -> str:
+    timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S_%fZ")
+    return f"run_{timestamp}_pid{os.getpid()}"
+
+
+def _resolve_qdrant_path(args: argparse.Namespace, output_base: Path) -> Path:
+    if args.qdrant_path:
+        candidate = Path(args.qdrant_path)
+        return candidate if candidate.is_absolute() else (ROOT_DIR / candidate)
+    shared_path = output_base / "3_indexes" / "qdrant_store"
+    if args.qdrant_scope == "shared":
+        return shared_path
+    return output_base / "3_indexes" / "qdrant_runs" / args.category / args.product_id / _build_run_stamp()
+
+
 def build_cli_config(args: argparse.Namespace) -> WorkflowCliConfig:
     dataset_root = _resolve_dataset_root(args)
     output_base = _resolve_output_base(args)
     prompt_variant = _resolve_prompt_variant(args)
     mode_label = "中文数据集" if prompt_variant == "CN" else "主项目原始数据集"
+    qdrant_path = _resolve_qdrant_path(args, output_base)
     return WorkflowCliConfig(
         dataset_root=dataset_root,
         output_base=output_base,
         prompt_variant=prompt_variant,
         mode_label=mode_label,
         retrieval_backend=args.retrieval_backend,
+        qdrant_path=qdrant_path,
     )
 
 
@@ -130,7 +157,7 @@ def configure_environment(config: WorkflowCliConfig) -> dict[str, Path]:
         "replay_output_dir": config.output_base / "5_replay",
         "html_output_dir": config.output_base / "6_html",
         "manifests_output_dir": config.output_base / "7_manifests",
-        "qdrant_path": config.output_base / "3_indexes" / "qdrant_store",
+        "qdrant_path": config.qdrant_path,
     }
 
     os.environ["PROMPT_VARIANT"] = config.prompt_variant
@@ -181,6 +208,7 @@ def execute_workflow(args: argparse.Namespace, paths: dict[str, Path]) -> Workfl
     index_result = result.get("index_result")
     analysis = result["analysis"]
     sampling_plan = analysis.extraction.sampling_plan
+    retrieval_runtime = analysis.retrieval_runtime.model_dump(mode="json") if analysis.retrieval_runtime is not None else None
     html_export_path = None
     if args.export_html:
         analysis_path = Path(str(analysis.artifact_path)) if analysis.artifact_path else None
@@ -226,6 +254,7 @@ def execute_workflow(args: argparse.Namespace, paths: dict[str, Path]) -> Workfl
             else None
         ),
         review_sampling=(sampling_plan.model_dump(mode="json") if sampling_plan is not None else None),
+        retrieval_runtime=retrieval_runtime,
         analysis={
             "analysis_mode": analysis.analysis_mode,
             "artifact_path": analysis.artifact_path,
@@ -255,6 +284,7 @@ def _summary_payload(summary: WorkflowExecutionSummary) -> dict[str, object]:
         "normalization": summary.normalization,
         "index_result": summary.index_result,
         "review_sampling": summary.review_sampling,
+        "retrieval_runtime": summary.retrieval_runtime,
         "analysis": summary.analysis,
         "artifact_bundle": summary.artifact_bundle,
         "html_export_path": summary.html_export_path,
@@ -307,6 +337,10 @@ def _render_text_summary(summary: WorkflowExecutionSummary, quiet: bool) -> str:
     lines.append(f"       artifact_path = {summary.analysis['artifact_path']}")
     lines.append(f"       strengths = {summary.analysis['strengths']}")
     lines.append(f"       weaknesses = {summary.analysis['weaknesses']}")
+    if summary.retrieval_runtime is not None:
+        lines.append(f"       native_multimodal_enabled = {summary.retrieval_runtime.get('native_multimodal_enabled')}")
+        lines.append(f"       image_embedding_backend = {summary.retrieval_runtime.get('image_embedding_backend')}")
+        lines.append(f"       multimodal_reranker_backend = {summary.retrieval_runtime.get('multimodal_reranker_backend')}")
     if summary.artifact_bundle is not None:
         lines.append(f"       feedback_path = {summary.artifact_bundle.get('feedback_path')}")
         lines.append(f"       replay_path = {summary.artifact_bundle.get('replay_path')}")
