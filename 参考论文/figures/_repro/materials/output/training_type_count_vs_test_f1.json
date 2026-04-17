@@ -1,0 +1,550 @@
+{
+  "generation_dir": "/home/severin/Codelib/CuraView/langchain/hallucination_generation_medical_agent/output",
+  "baseline_detection_dir": "/home/severin/Codelib/CuraView/langchain/hallucination_detection_graphrag_agent/outputs/qwen3-14b-base/detection_results",
+  "detection_dir": "/home/severin/Codelib/CuraView/langchain/hallucination_detection_graphrag_agent/outputs/qwen3-14b-base-2026-01-03_02-52/detection_results",
+  "test_spec": "201-232",
+  "test_patient_count": 32,
+  "difficulty_groups": {
+    "easy": [
+      "time_error",
+      "value_error",
+      "medication_error"
+    ],
+    "medium": [
+      "exam_result_error",
+      "diagnosis_error"
+    ],
+    "hard": [
+      "negation_error",
+      "invented_fact"
+    ]
+  },
+  "train_analyses": [
+    {
+      "train_spec": "1-155",
+      "train_patient_count": 155,
+      "train_total_hallucinations": 1265,
+      "pearson_count_vs_tuned_f1": 0.33767527597192104,
+      "spearman_count_vs_tuned_f1": 0.3214285714285714,
+      "pearson_count_vs_headroom_normalized_f1_gain_percent": 0.9046472759673156,
+      "spearman_count_vs_headroom_normalized_f1_gain_percent": 0.857142857142857,
+      "per_type": [
+        {
+          "hallucination_type": "exam_result_error",
+          "train_count": 529,
+          "baseline_precision": 1.0,
+          "baseline_recall": 0.0423728813559322,
+          "baseline_f1": 0.0813008130081301,
+          "tuned_precision": 0.8333333333333334,
+          "tuned_recall": 0.3389830508474576,
+          "tuned_f1": 0.48192771084337344,
+          "absolute_f1_gain": 0.40062689783524336,
+          "headroom_normalized_f1_gain_percent": 43.60806056082737
+        },
+        {
+          "hallucination_type": "medication_error",
+          "train_count": 294,
+          "baseline_precision": 0.6956521739130435,
+          "baseline_recall": 0.26229508196721313,
+          "baseline_f1": 0.38095238095238093,
+          "tuned_precision": 0.75,
+          "tuned_recall": 0.4918032786885246,
+          "tuned_f1": 0.5940594059405939,
+          "absolute_f1_gain": 0.213107024988213,
+          "headroom_normalized_f1_gain_percent": 34.424980959634404
+        },
+        {
+          "hallucination_type": "value_error",
+          "train_count": 117,
+          "baseline_precision": 0.5142857142857142,
+          "baseline_recall": 0.5142857142857142,
+          "baseline_f1": 0.5142857142857142,
+          "tuned_precision": 0.5333333333333333,
+          "tuned_recall": 0.6857142857142857,
+          "tuned_f1": 0.6,
+          "absolute_f1_gain": 0.08571428571428574,
+          "headroom_normalized_f1_gain_percent": 17.647058823529417
+        },
+        {
+          "hallucination_type": "diagnosis_error",
+          "train_count": 105,
+          "baseline_precision": 0.14285714285714285,
+          "baseline_recall": 0.07142857142857142,
+          "baseline_f1": 0.09523809523809523,
+          "tuned_precision": 0.22727272727272727,
+          "tuned_recall": 0.35714285714285715,
+          "tuned_f1": 0.2777777777777778,
+          "absolute_f1_gain": 0.18253968253968256,
+          "headroom_normalized_f1_gain_percent": 20.17543859649123
+        },
+        {
+          "hallucination_type": "negation_error",
+          "train_count": 95,
+          "baseline_precision": 0.06315789473684211,
+          "baseline_recall": 0.4,
+          "baseline_f1": 0.1090909090909091,
+          "tuned_precision": 0.09210526315789473,
+          "tuned_recall": 0.4666666666666667,
+          "tuned_f1": 0.15384615384615383,
+          "absolute_f1_gain": 0.04475524475524473,
+          "headroom_normalized_f1_gain_percent": 5.023547880690734
+        },
+        {
+          "hallucination_type": "time_error",
+          "train_count": 66,
+          "baseline_precision": 0.75,
+          "baseline_recall": 0.5454545454545454,
+          "baseline_f1": 0.631578947368421,
+          "tuned_precision": 1.0,
+          "tuned_recall": 0.45454545454545453,
+          "tuned_f1": 0.625,
+          "absolute_f1_gain": -0.006578947368421018,
+          "headroom_normalized_f1_gain_percent": -1.7857142857142758
+        },
+        {
+          "hallucination_type": "invented_fact",
+          "train_count": 59,
+          "baseline_precision": 0.030612244897959183,
+          "baseline_recall": 0.6,
+          "baseline_f1": 0.058252427184466014,
+          "tuned_precision": 0.061224489795918366,
+          "tuned_recall": 0.6,
+          "tuned_f1": 0.1111111111111111,
+          "absolute_f1_gain": 0.05285868392664509,
+          "headroom_normalized_f1_gain_percent": 5.61282932416953
+        }
+      ],
+      "difficulty_group_analyses": [
+        {
+          "group_name": "easy",
+          "types": [
+            "time_error",
+            "value_error",
+            "medication_error"
+          ],
+          "group_size": 3,
+          "pearson_count_vs_tuned_f1": -0.7957513201079325,
+          "spearman_count_vs_tuned_f1": -0.9999999999999998,
+          "pearson_count_vs_uplift_percent": 0.938975684281502,
+          "spearman_count_vs_uplift_percent": 0.9999999999999998,
+          "count_rank_desc": [
+            "medication_error",
+            "value_error",
+            "time_error"
+          ],
+          "tuned_f1_rank_desc": [
+            "time_error",
+            "value_error",
+            "medication_error"
+          ],
+          "uplift_rank_desc": [
+            "medication_error",
+            "value_error",
+            "time_error"
+          ],
+          "per_type": [
+            {
+              "hallucination_type": "medication_error",
+              "train_count": 294,
+              "baseline_precision": 0.6956521739130435,
+              "baseline_recall": 0.26229508196721313,
+              "baseline_f1": 0.38095238095238093,
+              "tuned_precision": 0.75,
+              "tuned_recall": 0.4918032786885246,
+              "tuned_f1": 0.5940594059405939,
+              "absolute_f1_gain": 0.213107024988213,
+              "headroom_normalized_f1_gain_percent": 34.424980959634404
+            },
+            {
+              "hallucination_type": "value_error",
+              "train_count": 117,
+              "baseline_precision": 0.5142857142857142,
+              "baseline_recall": 0.5142857142857142,
+              "baseline_f1": 0.5142857142857142,
+              "tuned_precision": 0.5333333333333333,
+              "tuned_recall": 0.6857142857142857,
+              "tuned_f1": 0.6,
+              "absolute_f1_gain": 0.08571428571428574,
+              "headroom_normalized_f1_gain_percent": 17.647058823529417
+            },
+            {
+              "hallucination_type": "time_error",
+              "train_count": 66,
+              "baseline_precision": 0.75,
+              "baseline_recall": 0.5454545454545454,
+              "baseline_f1": 0.631578947368421,
+              "tuned_precision": 1.0,
+              "tuned_recall": 0.45454545454545453,
+              "tuned_f1": 0.625,
+              "absolute_f1_gain": -0.006578947368421018,
+              "headroom_normalized_f1_gain_percent": -1.7857142857142758
+            }
+          ]
+        },
+        {
+          "group_name": "medium",
+          "types": [
+            "exam_result_error",
+            "diagnosis_error"
+          ],
+          "group_size": 2,
+          "pearson_count_vs_tuned_f1": 1.0,
+          "spearman_count_vs_tuned_f1": 0.9999999999999998,
+          "pearson_count_vs_uplift_percent": 0.9999999999999998,
+          "spearman_count_vs_uplift_percent": 0.9999999999999998,
+          "count_rank_desc": [
+            "exam_result_error",
+            "diagnosis_error"
+          ],
+          "tuned_f1_rank_desc": [
+            "exam_result_error",
+            "diagnosis_error"
+          ],
+          "uplift_rank_desc": [
+            "exam_result_error",
+            "diagnosis_error"
+          ],
+          "per_type": [
+            {
+              "hallucination_type": "exam_result_error",
+              "train_count": 529,
+              "baseline_precision": 1.0,
+              "baseline_recall": 0.0423728813559322,
+              "baseline_f1": 0.0813008130081301,
+              "tuned_precision": 0.8333333333333334,
+              "tuned_recall": 0.3389830508474576,
+              "tuned_f1": 0.48192771084337344,
+              "absolute_f1_gain": 0.40062689783524336,
+              "headroom_normalized_f1_gain_percent": 43.60806056082737
+            },
+            {
+              "hallucination_type": "diagnosis_error",
+              "train_count": 105,
+              "baseline_precision": 0.14285714285714285,
+              "baseline_recall": 0.07142857142857142,
+              "baseline_f1": 0.09523809523809523,
+              "tuned_precision": 0.22727272727272727,
+              "tuned_recall": 0.35714285714285715,
+              "tuned_f1": 0.2777777777777778,
+              "absolute_f1_gain": 0.18253968253968256,
+              "headroom_normalized_f1_gain_percent": 20.17543859649123
+            }
+          ]
+        },
+        {
+          "group_name": "hard",
+          "types": [
+            "negation_error",
+            "invented_fact"
+          ],
+          "group_size": 2,
+          "pearson_count_vs_tuned_f1": 1.0,
+          "spearman_count_vs_tuned_f1": 0.9999999999999998,
+          "pearson_count_vs_uplift_percent": -1.0,
+          "spearman_count_vs_uplift_percent": -0.9999999999999998,
+          "count_rank_desc": [
+            "negation_error",
+            "invented_fact"
+          ],
+          "tuned_f1_rank_desc": [
+            "negation_error",
+            "invented_fact"
+          ],
+          "uplift_rank_desc": [
+            "invented_fact",
+            "negation_error"
+          ],
+          "per_type": [
+            {
+              "hallucination_type": "negation_error",
+              "train_count": 95,
+              "baseline_precision": 0.06315789473684211,
+              "baseline_recall": 0.4,
+              "baseline_f1": 0.1090909090909091,
+              "tuned_precision": 0.09210526315789473,
+              "tuned_recall": 0.4666666666666667,
+              "tuned_f1": 0.15384615384615383,
+              "absolute_f1_gain": 0.04475524475524473,
+              "headroom_normalized_f1_gain_percent": 5.023547880690734
+            },
+            {
+              "hallucination_type": "invented_fact",
+              "train_count": 59,
+              "baseline_precision": 0.030612244897959183,
+              "baseline_recall": 0.6,
+              "baseline_f1": 0.058252427184466014,
+              "tuned_precision": 0.061224489795918366,
+              "tuned_recall": 0.6,
+              "tuned_f1": 0.1111111111111111,
+              "absolute_f1_gain": 0.05285868392664509,
+              "headroom_normalized_f1_gain_percent": 5.61282932416953
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "train_spec": "1-200",
+      "train_patient_count": 200,
+      "train_total_hallucinations": 1658,
+      "pearson_count_vs_tuned_f1": 0.3360592523256934,
+      "spearman_count_vs_tuned_f1": 0.3214285714285714,
+      "pearson_count_vs_headroom_normalized_f1_gain_percent": 0.8958365905045226,
+      "spearman_count_vs_headroom_normalized_f1_gain_percent": 0.857142857142857,
+      "per_type": [
+        {
+          "hallucination_type": "exam_result_error",
+          "train_count": 700,
+          "baseline_precision": 1.0,
+          "baseline_recall": 0.0423728813559322,
+          "baseline_f1": 0.0813008130081301,
+          "tuned_precision": 0.8333333333333334,
+          "tuned_recall": 0.3389830508474576,
+          "tuned_f1": 0.48192771084337344,
+          "absolute_f1_gain": 0.40062689783524336,
+          "headroom_normalized_f1_gain_percent": 43.60806056082737
+        },
+        {
+          "hallucination_type": "medication_error",
+          "train_count": 381,
+          "baseline_precision": 0.6956521739130435,
+          "baseline_recall": 0.26229508196721313,
+          "baseline_f1": 0.38095238095238093,
+          "tuned_precision": 0.75,
+          "tuned_recall": 0.4918032786885246,
+          "tuned_f1": 0.5940594059405939,
+          "absolute_f1_gain": 0.213107024988213,
+          "headroom_normalized_f1_gain_percent": 34.424980959634404
+        },
+        {
+          "hallucination_type": "value_error",
+          "train_count": 144,
+          "baseline_precision": 0.5142857142857142,
+          "baseline_recall": 0.5142857142857142,
+          "baseline_f1": 0.5142857142857142,
+          "tuned_precision": 0.5333333333333333,
+          "tuned_recall": 0.6857142857142857,
+          "tuned_f1": 0.6,
+          "absolute_f1_gain": 0.08571428571428574,
+          "headroom_normalized_f1_gain_percent": 17.647058823529417
+        },
+        {
+          "hallucination_type": "diagnosis_error",
+          "train_count": 136,
+          "baseline_precision": 0.14285714285714285,
+          "baseline_recall": 0.07142857142857142,
+          "baseline_f1": 0.09523809523809523,
+          "tuned_precision": 0.22727272727272727,
+          "tuned_recall": 0.35714285714285715,
+          "tuned_f1": 0.2777777777777778,
+          "absolute_f1_gain": 0.18253968253968256,
+          "headroom_normalized_f1_gain_percent": 20.17543859649123
+        },
+        {
+          "hallucination_type": "negation_error",
+          "train_count": 118,
+          "baseline_precision": 0.06315789473684211,
+          "baseline_recall": 0.4,
+          "baseline_f1": 0.1090909090909091,
+          "tuned_precision": 0.09210526315789473,
+          "tuned_recall": 0.4666666666666667,
+          "tuned_f1": 0.15384615384615383,
+          "absolute_f1_gain": 0.04475524475524473,
+          "headroom_normalized_f1_gain_percent": 5.023547880690734
+        },
+        {
+          "hallucination_type": "time_error",
+          "train_count": 96,
+          "baseline_precision": 0.75,
+          "baseline_recall": 0.5454545454545454,
+          "baseline_f1": 0.631578947368421,
+          "tuned_precision": 1.0,
+          "tuned_recall": 0.45454545454545453,
+          "tuned_f1": 0.625,
+          "absolute_f1_gain": -0.006578947368421018,
+          "headroom_normalized_f1_gain_percent": -1.7857142857142758
+        },
+        {
+          "hallucination_type": "invented_fact",
+          "train_count": 83,
+          "baseline_precision": 0.030612244897959183,
+          "baseline_recall": 0.6,
+          "baseline_f1": 0.058252427184466014,
+          "tuned_precision": 0.061224489795918366,
+          "tuned_recall": 0.6,
+          "tuned_f1": 0.1111111111111111,
+          "absolute_f1_gain": 0.05285868392664509,
+          "headroom_normalized_f1_gain_percent": 5.61282932416953
+        }
+      ],
+      "difficulty_group_analyses": [
+        {
+          "group_name": "easy",
+          "types": [
+            "time_error",
+            "value_error",
+            "medication_error"
+          ],
+          "group_size": 3,
+          "pearson_count_vs_tuned_f1": -0.7600841930032447,
+          "spearman_count_vs_tuned_f1": -0.9999999999999998,
+          "pearson_count_vs_uplift_percent": 0.9179318754889814,
+          "spearman_count_vs_uplift_percent": 0.9999999999999998,
+          "count_rank_desc": [
+            "medication_error",
+            "value_error",
+            "time_error"
+          ],
+          "tuned_f1_rank_desc": [
+            "time_error",
+            "value_error",
+            "medication_error"
+          ],
+          "uplift_rank_desc": [
+            "medication_error",
+            "value_error",
+            "time_error"
+          ],
+          "per_type": [
+            {
+              "hallucination_type": "medication_error",
+              "train_count": 381,
+              "baseline_precision": 0.6956521739130435,
+              "baseline_recall": 0.26229508196721313,
+              "baseline_f1": 0.38095238095238093,
+              "tuned_precision": 0.75,
+              "tuned_recall": 0.4918032786885246,
+              "tuned_f1": 0.5940594059405939,
+              "absolute_f1_gain": 0.213107024988213,
+              "headroom_normalized_f1_gain_percent": 34.424980959634404
+            },
+            {
+              "hallucination_type": "value_error",
+              "train_count": 144,
+              "baseline_precision": 0.5142857142857142,
+              "baseline_recall": 0.5142857142857142,
+              "baseline_f1": 0.5142857142857142,
+              "tuned_precision": 0.5333333333333333,
+              "tuned_recall": 0.6857142857142857,
+              "tuned_f1": 0.6,
+              "absolute_f1_gain": 0.08571428571428574,
+              "headroom_normalized_f1_gain_percent": 17.647058823529417
+            },
+            {
+              "hallucination_type": "time_error",
+              "train_count": 96,
+              "baseline_precision": 0.75,
+              "baseline_recall": 0.5454545454545454,
+              "baseline_f1": 0.631578947368421,
+              "tuned_precision": 1.0,
+              "tuned_recall": 0.45454545454545453,
+              "tuned_f1": 0.625,
+              "absolute_f1_gain": -0.006578947368421018,
+              "headroom_normalized_f1_gain_percent": -1.7857142857142758
+            }
+          ]
+        },
+        {
+          "group_name": "medium",
+          "types": [
+            "exam_result_error",
+            "diagnosis_error"
+          ],
+          "group_size": 2,
+          "pearson_count_vs_tuned_f1": 0.9999999999999999,
+          "spearman_count_vs_tuned_f1": 0.9999999999999998,
+          "pearson_count_vs_uplift_percent": 0.9999999999999999,
+          "spearman_count_vs_uplift_percent": 0.9999999999999998,
+          "count_rank_desc": [
+            "exam_result_error",
+            "diagnosis_error"
+          ],
+          "tuned_f1_rank_desc": [
+            "exam_result_error",
+            "diagnosis_error"
+          ],
+          "uplift_rank_desc": [
+            "exam_result_error",
+            "diagnosis_error"
+          ],
+          "per_type": [
+            {
+              "hallucination_type": "exam_result_error",
+              "train_count": 700,
+              "baseline_precision": 1.0,
+              "baseline_recall": 0.0423728813559322,
+              "baseline_f1": 0.0813008130081301,
+              "tuned_precision": 0.8333333333333334,
+              "tuned_recall": 0.3389830508474576,
+              "tuned_f1": 0.48192771084337344,
+              "absolute_f1_gain": 0.40062689783524336,
+              "headroom_normalized_f1_gain_percent": 43.60806056082737
+            },
+            {
+              "hallucination_type": "diagnosis_error",
+              "train_count": 136,
+              "baseline_precision": 0.14285714285714285,
+              "baseline_recall": 0.07142857142857142,
+              "baseline_f1": 0.09523809523809523,
+              "tuned_precision": 0.22727272727272727,
+              "tuned_recall": 0.35714285714285715,
+              "tuned_f1": 0.2777777777777778,
+              "absolute_f1_gain": 0.18253968253968256,
+              "headroom_normalized_f1_gain_percent": 20.17543859649123
+            }
+          ]
+        },
+        {
+          "group_name": "hard",
+          "types": [
+            "negation_error",
+            "invented_fact"
+          ],
+          "group_size": 2,
+          "pearson_count_vs_tuned_f1": 1.0,
+          "spearman_count_vs_tuned_f1": 0.9999999999999998,
+          "pearson_count_vs_uplift_percent": -0.9999999999999998,
+          "spearman_count_vs_uplift_percent": -0.9999999999999998,
+          "count_rank_desc": [
+            "negation_error",
+            "invented_fact"
+          ],
+          "tuned_f1_rank_desc": [
+            "negation_error",
+            "invented_fact"
+          ],
+          "uplift_rank_desc": [
+            "invented_fact",
+            "negation_error"
+          ],
+          "per_type": [
+            {
+              "hallucination_type": "negation_error",
+              "train_count": 118,
+              "baseline_precision": 0.06315789473684211,
+              "baseline_recall": 0.4,
+              "baseline_f1": 0.1090909090909091,
+              "tuned_precision": 0.09210526315789473,
+              "tuned_recall": 0.4666666666666667,
+              "tuned_f1": 0.15384615384615383,
+              "absolute_f1_gain": 0.04475524475524473,
+              "headroom_normalized_f1_gain_percent": 5.023547880690734
+            },
+            {
+              "hallucination_type": "invented_fact",
+              "train_count": 83,
+              "baseline_precision": 0.030612244897959183,
+              "baseline_recall": 0.6,
+              "baseline_f1": 0.058252427184466014,
+              "tuned_precision": 0.061224489795918366,
+              "tuned_recall": 0.6,
+              "tuned_f1": 0.1111111111111111,
+              "absolute_f1_gain": 0.05285868392664509,
+              "headroom_normalized_f1_gain_percent": 5.61282932416953
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

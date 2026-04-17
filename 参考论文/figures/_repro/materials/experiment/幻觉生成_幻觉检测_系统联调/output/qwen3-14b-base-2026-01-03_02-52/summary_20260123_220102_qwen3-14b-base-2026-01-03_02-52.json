@@ -1,0 +1,18 @@
+{
+  "range": "patient_201 - patient_232",
+  "summary": {
+    "total": 32,
+    "success": 32,
+    "failed": 0,
+    "all_checks_passed": 32
+  },
+  "timestamp": "2026-01-23T22:01:02.484741",
+  "average_performance": {
+    "recall": 0.8354847471285164,
+    "precision": 0.8122834142715057,
+    "f1_score": 0.811869333829907,
+    "e4_recall": 0.8141305804618498,
+    "e4_precision": 0.8367149343711844,
+    "e4_f1_score": 0.8193062403766337
+  }
+}
