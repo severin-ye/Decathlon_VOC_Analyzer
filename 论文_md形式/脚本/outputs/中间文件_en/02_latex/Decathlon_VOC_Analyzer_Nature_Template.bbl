@@ -1,0 +1,69 @@
+\begin{thebibliography}{6}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Lewis et~al.(2020)Lewis, Perez, Piktus, Petroni, Karpukhin, Goyal,
+  K{"u}ttler, et~al.]{lewis2020retrievalAugmentedGeneration}
+Patrick Lewis, Ethan Perez, Aleksandra Piktus, Fabio Petroni, Vladimir
+  Karpukhin, Naman Goyal, Heinrich K{"u}ttler, et~al.
+\newblock Retrieval-augmented generation for knowledge-intensive {NLP} tasks.
+\newblock In \emph{Advances in Neural Information Processing Systems},
+  volume~33, pages 9459--9474, 2020.
+\newblock URL \url{https://arxiv.org/abs/2005.11401}.
+
+\bibitem[Gao et~al.(2023)Gao, Dai, Pasupat, Chen, Chaganty, Fan, Zhao, Lao,
+  Lee, Juan, and Guu]{gao2023rarr}
+Luyu Gao, Zhuyun Dai, Panupong Pasupat, Anthony Chen, Arun~Tejasvi Chaganty,
+  Yicheng Fan, Vincent~Y. Zhao, Ni~Lao, Hongrae Lee, Da-Cheng Juan, and Kelvin
+  Guu.
+\newblock {RARR}: Researching and revising what language models say, using
+  language models.
+\newblock In \emph{Proceedings of the 61st Annual Meeting of the Association
+  for Computational Linguistics (Volume 1: Long Papers)}, pages 16477--16508,
+  2023.
+\newblock \doi{10.18653/v1/2023.acl-long.910}.
+\newblock URL \url{https://doi.org/10.18653/v1/2023.acl-long.910}.
+
+\bibitem[Radford et~al.(2021)Radford, Kim, Hallacy, Ramesh, Goh, Agarwal,
+  Sastry, Askell, Mishkin, Clark, Krueger, and Sutskever]{radford2021clip}
+Alec Radford, Jong~Wook Kim, Chris Hallacy, Aditya Ramesh, Gabriel Goh,
+  Sandhini Agarwal, Girish Sastry, Amanda Askell, Pamela Mishkin, Jack Clark,
+  Gretchen Krueger, and Ilya Sutskever.
+\newblock Learning transferable visual models from natural language
+  supervision.
+\newblock In \emph{Proceedings of the 38th International Conference on Machine
+  Learning}, pages 8748--8763. PMLR, 2021.
+\newblock URL \url{https://proceedings.mlr.press/v139/radford21a.html}.
+
+\bibitem[Liu et~al.(2024)Liu, Li, Wang, Xiong, Shi, Wang, Li, and
+  Hang]{liu2024structuredOutputBenchmark}
+Yu~Liu, Duantengchuan Li, Kaili Wang, Zhuoran Xiong, Fobo Shi, Jian Wang, Bing
+  Li, and Bo~Hang.
+\newblock Are {LLMs} good at structured outputs? a benchmark for evaluating
+  structured output capabilities in {LLMs}.
+\newblock \emph{Information Processing \& Management}, 61\penalty0
+  (5):\penalty0 103809, 2024.
+\newblock \doi{10.1016/j.ipm.2024.103809}.
+\newblock URL \url{https://doi.org/10.1016/j.ipm.2024.103809}.
+
+\bibitem[Geng et~al.(2023)Geng, Josifoski, Peyrard, and
+  West]{geng2023grammarConstrainedDecoding}
+Saibo Geng, Martin Josifoski, Maxime Peyrard, and Robert West.
+\newblock Grammar-constrained decoding for structured {NLP} tasks without
+  finetuning.
+\newblock In \emph{Proceedings of the 2023 Conference on Empirical Methods in
+  Natural Language Processing}, pages 10932--10952, 2023.
+\newblock \doi{10.18653/v1/2023.emnlp-main.674}.
+\newblock URL \url{https://doi.org/10.18653/v1/2023.emnlp-main.674}.
+
+\bibitem[Yao et~al.(2023)Yao, Zhao, Yu, Du, Shafran, Narasimhan, and
+  Cao]{yao2023react}
+Shunyu Yao, Jeffrey Zhao, Dian Yu, Nan Du, Izhak Shafran, Karthik Narasimhan,
+  and Yuan Cao.
+\newblock {ReAct}: Synergizing reasoning and acting in language models, 2023.
+\newblock URL \url{https://arxiv.org/abs/2210.03629}.
+
+\end{thebibliography}

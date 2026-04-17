@@ -7,15 +7,63 @@
       "slot_id": "issue_01",
       "item_type": "insight",
       "label": "portability_size",
-      "summary": "Clear negative feedback exists for portability_size, appearing 1 times.",
-      "owner": "content_presentation",
+      "summary": "Clear negative feedback exists for portability_size, appearing 2 times.",
+      "owner": "product_issue",
+      "status": "pending_review",
+      "confidence_breakdown": {
+        "extract_confidence": 0.68,
+        "question_confidence": 0.67,
+        "evidence_confidence": 0.89,
+        "consistency_confidence": 0.75,
+        "final_confidence": 0.7655000000000001
+      },
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "issue_02",
+      "item_type": "insight",
+      "label": "usability",
+      "summary": "Clear negative feedback exists for usability, appearing 1 times.",
+      "owner": "product_issue",
       "status": "pending_review",
       "confidence_breakdown": {
         "extract_confidence": 0.6,
-        "question_confidence": 0.62,
-        "evidence_confidence": 0.71,
+        "question_confidence": 0.67,
+        "evidence_confidence": 0.89,
         "consistency_confidence": 0.65,
-        "final_confidence": 0.6525
+        "final_confidence": 0.7255
+      },
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "issue_03",
+      "item_type": "insight",
+      "label": "durability_quality",
+      "summary": "Clear negative feedback exists for durability_quality, appearing 1 times.",
+      "owner": "product_issue",
+      "status": "pending_review",
+      "confidence_breakdown": {
+        "extract_confidence": 0.6,
+        "question_confidence": 0.67,
+        "evidence_confidence": 0.89,
+        "consistency_confidence": 0.65,
+        "final_confidence": 0.7255
+      },
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "issue_04",
+      "item_type": "insight",
+      "label": "overall_experience",
+      "summary": "Opinions on overall_experience are relatively mixed and somewhat controversial.",
+      "owner": "expectation_mismatch",
+      "status": "pending_review",
+      "confidence_breakdown": {
+        "extract_confidence": 0.6,
+        "question_confidence": 0.67,
+        "evidence_confidence": 0.89,
+        "consistency_confidence": 0.65,
+        "final_confidence": 0.7255
       },
       "reviewer_note": null
     },
@@ -23,20 +71,92 @@
       "slot_id": "suggestion_01",
       "item_type": "suggestion",
       "label": "Prioritize improvements to the design or presentation related to portability_size, and strengthen the corresponding explanation on the product page.",
-      "summary": "Clear negative feedback exists for portability_size, appearing 1 times.",
+      "summary": "Clear negative feedback exists for portability_size, appearing 2 times.; Replay continuity: the issue around portability_size also appeared in the previous run.; Replay continuity: the issue around durability_quality also appeared in the previous run.",
+      "owner": "product_issue",
+      "status": "pending_review",
+      "confidence_breakdown": {
+        "extract_confidence": 0.68,
+        "question_confidence": 0.67,
+        "evidence_confidence": 0.89,
+        "consistency_confidence": 0.75,
+        "final_confidence": 0.7655000000000001
+      },
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "suggestion_02",
+      "item_type": "suggestion",
+      "label": "Prioritize improvements to the design or presentation related to usability, and strengthen the corresponding explanation on the product page.",
+      "summary": "Clear negative feedback exists for usability, appearing 1 times.; Replay continuity: the issue around usability also appeared in the previous run.",
+      "owner": "product_issue",
+      "status": "pending_review",
+      "confidence_breakdown": {
+        "extract_confidence": 0.6,
+        "question_confidence": 0.67,
+        "evidence_confidence": 0.89,
+        "consistency_confidence": 0.65,
+        "final_confidence": 0.7255
+      },
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "suggestion_03",
+      "item_type": "suggestion",
+      "label": "Add clearer usage-scenario guidance for overall_experience to reduce expectation mismatch.",
+      "summary": "Opinions on overall_experience are relatively mixed and somewhat controversial.; Replay continuity: the issue around overall_experience also appeared in the previous run.",
       "owner": "content_presentation",
       "status": "pending_review",
       "confidence_breakdown": {
         "extract_confidence": 0.6,
-        "question_confidence": 0.62,
-        "evidence_confidence": 0.71,
+        "question_confidence": 0.67,
+        "evidence_confidence": 0.89,
         "consistency_confidence": 0.65,
-        "final_confidence": 0.6525
+        "final_confidence": 0.7255
       },
       "reviewer_note": null
     },
     {
       "slot_id": "retrieval_01",
+      "item_type": "retrieval_quality",
+      "label": "value_price",
+      "summary": "coverage=0.50, drift=0.00, conflict=0.40",
+      "owner": "product_issue",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "retrieval_02",
+      "item_type": "retrieval_quality",
+      "label": "value_price",
+      "summary": "coverage=0.50, drift=0.00, conflict=0.60",
+      "owner": "evidence_gap",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "retrieval_03",
+      "item_type": "retrieval_quality",
+      "label": "overall_experience",
+      "summary": "coverage=0.50, drift=0.00, conflict=0.40",
+      "owner": "product_issue",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "retrieval_04",
+      "item_type": "retrieval_quality",
+      "label": "overall_experience",
+      "summary": "coverage=0.50, drift=0.00, conflict=0.60",
+      "owner": "evidence_gap",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "retrieval_05",
       "item_type": "retrieval_quality",
       "label": "portability_size",
       "summary": "coverage=0.50, drift=0.00, conflict=0.40",
@@ -44,9 +164,79 @@
       "status": "pending_review",
       "confidence_breakdown": null,
       "reviewer_note": null
+    },
+    {
+      "slot_id": "retrieval_06",
+      "item_type": "retrieval_quality",
+      "label": "portability_size",
+      "summary": "coverage=0.50, drift=0.00, conflict=0.60",
+      "owner": "evidence_gap",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "retrieval_07",
+      "item_type": "retrieval_quality",
+      "label": "usability",
+      "summary": "coverage=0.50, drift=0.00, conflict=0.40",
+      "owner": "product_issue",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "retrieval_08",
+      "item_type": "retrieval_quality",
+      "label": "usability",
+      "summary": "coverage=0.50, drift=0.00, conflict=0.60",
+      "owner": "evidence_gap",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "retrieval_09",
+      "item_type": "retrieval_quality",
+      "label": "durability_quality",
+      "summary": "coverage=0.50, drift=0.00, conflict=0.40",
+      "owner": "product_issue",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "retrieval_10",
+      "item_type": "retrieval_quality",
+      "label": "durability_quality",
+      "summary": "coverage=0.50, drift=0.00, conflict=0.60",
+      "owner": "evidence_gap",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "retrieval_11",
+      "item_type": "retrieval_quality",
+      "label": "portability_size",
+      "summary": "coverage=0.50, drift=0.00, conflict=0.40",
+      "owner": "product_issue",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "retrieval_12",
+      "item_type": "retrieval_quality",
+      "label": "portability_size",
+      "summary": "coverage=0.50, drift=0.00, conflict=0.60",
+      "owner": "evidence_gap",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
     }
   ],
   "warnings": [
-    "replay continuity applied: persistent=0, resolved=2, new=1"
+    "replay continuity applied: persistent=4, resolved=0, new=0"
   ]
 }

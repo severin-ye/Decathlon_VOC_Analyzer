@@ -1,0 +1,344 @@
+\documentclass[11pt]{article}
+
+% ===== 基本宏包：尽量保持简单 =====
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{chngcntr}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{calc}
+\usepackage{amsmath, amssymb}
+\setlength{\LTcapwidth}{\textwidth}
+\usepackage{xurl}
+\usepackage{hyperref}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{setspace}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% ===== 图表编号风格：全文连续编号，使用 Figure / Table =====
+\renewcommand{\figurename}{Figure}
+\renewcommand{\tablename}{Table}
+
+% ===== 字体与换行策略 =====
+\defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\IfFontExistsTF{Noto Serif}{\setmainfont{Noto Serif}}{\IfFontExistsTF{DejaVu Serif}{\setmainfont{DejaVu Serif}}{\setmainfont{Latin Modern Roman}}}
+\IfFontExistsTF{Noto Sans}{\setsansfont{Noto Sans}}{\IfFontExistsTF{DejaVu Sans}{\setsansfont{DejaVu Sans}}{\setsansfont{Latin Modern Sans}}}
+\IfFontExistsTF{Noto Sans Mono}{\setmonofont{Noto Sans Mono}}{\IfFontExistsTF{DejaVu Sans Mono}{\setmonofont{DejaVu Sans Mono}}{\setmonofont{Latin Modern Mono}}}
+\IfFontExistsTF{Noto Serif CJK SC}{\setCJKmainfont[AutoFakeBold=3,AutoFakeSlant=.2]{Noto Serif CJK SC}}{\IfFontExistsTF{Source Han Serif SC}{\setCJKmainfont[AutoFakeBold=3,AutoFakeSlant=.2]{Source Han Serif SC}}{\IfFontExistsTF{AR PL UMing CN}{\setCJKmainfont[AutoFakeBold=3,AutoFakeSlant=.2]{AR PL UMing CN}}{\setCJKmainfont[AutoFakeBold=3,AutoFakeSlant=.2]{WenQuanYi Zen Hei}}}}
+\IfFontExistsTF{Noto Sans CJK SC}{\setCJKsansfont[AutoFakeBold=3,AutoFakeSlant=.2]{Noto Sans CJK SC}}{\IfFontExistsTF{Source Han Sans SC}{\setCJKsansfont[AutoFakeBold=3,AutoFakeSlant=.2]{Source Han Sans SC}}{\IfFontExistsTF{Droid Sans Fallback}{\setCJKsansfont[AutoFakeBold=3,AutoFakeSlant=.2]{Droid Sans Fallback}}{\setCJKsansfont[AutoFakeBold=3,AutoFakeSlant=.2]{AR PL UMing CN}}}}
+\IfFontExistsTF{Noto Sans Mono CJK SC}{\setCJKmonofont[AutoFakeBold=3]{Noto Sans Mono CJK SC}}{\IfFontExistsTF{Droid Sans Fallback}{\setCJKmonofont[AutoFakeBold=3]{Droid Sans Fallback}}{\setCJKmonofont[AutoFakeBold=3]{AR PL UMing CN}}}
+\setlength{\emergencystretch}{6em}
+\sloppy
+
+% 可选：让行距略宽一些，便于审稿阅读
+\onehalfspacing
+
+\title{\textbf{Decathlon VOC Analyzer：面向商品图文证据与用户评论对齐的证据驱动多模态 VOC 分析系统}}
+
+\author{{\small
+\begin{tabular}{@{}cccc@{}}
+\multicolumn{4}{c}{\parbox[t]{0.6200\textwidth}{\centering \textbf{Severin Ye} \\ \textit{School of Computer Science and Engineering} \\ \textit{Kyungpook National University} \\ Daegu, Republic of Korea \\ {\ttfamily\small 6severin9\allowbreak@gmail.\allowbreak{}com}}} \\
+\multicolumn{4}{c}{} \\
+\parbox[t]{0.2200\textwidth}{\centering \textbf{Seowan Jung} \\ \textit{School of Computer Science and Engineering} \\ \textit{Kyungpook National University} \\ Daegu, Republic of Korea \\ {\ttfamily\small swan041014\allowbreak@gmail.\allowbreak{}com}} & \parbox[t]{0.2200\textwidth}{\centering \textbf{HyunJun Jung} \\ \textit{School of Computer Science and Engineering} \\ \textit{Kyungpook National University} \\ Daegu, Republic of Korea \\ {\ttfamily\small beanbeansummon\allowbreak@naver.\allowbreak{}com}} & \parbox[t]{0.2200\textwidth}{\centering \textbf{Hye Jeon} \\ \textit{School of Computer Science and Engineering} \\ \textit{Kyungpook National University} \\ Daegu, Republic of Korea \\ {\ttfamily\small prajna0426\allowbreak@naver.\allowbreak{}com}} & \parbox[t]{0.2200\textwidth}{\centering \textbf{Dokeun Lee} \\ \textit{Department of Physics} \\ \textit{Kyungpook National University} \\ Daegu, Republic of Korea \\ {\ttfamily\small nsa08008\allowbreak@naver.\allowbreak{}com}} \\
+\end{tabular}
+}}
+
+\date{} % Nature 系列投稿一般不需要显示日期
+
+\begin{document}
+\maketitle
+
+% =========================
+% Abstract
+% =========================
+\begin{abstract}
+用户之声分析是电商智能运营中的基础任务，但单纯依赖评论文本往往只能得到宽泛的情感归纳，难以解释结论是否得到商品文案或商品图像的支持。另一方面，直接将商品图文与评论整体交给大语言模型生成总结，虽然能够快速产出自然语言结论，却常常缺乏稳定的证据链和可审查性。针对这一问题，本文提出 Decathlon VOC Analyzer，一种面向商品分析场景的证据驱动多模态 VOC 分析框架。该框架以商品为中心构建标准化证据包，在评论侧执行 Aspect 级结构化建模，并通过``Aspect 到问题''的中间层将主观评论改写为可检索的证据搜索任务，再对商品文本与商品图像执行双路召回与精排，最终生成带有支持证据和改进建议的结构化分析结果。
+
+本文当前版本聚焦于方法设计与系统组织本身，而不在正文中纳入尚未完成的正式实验部分。文章重点说明三件事：其一，如何以商品为中心组织可追溯的图文证据包；其二，如何将评论中的 Aspect 转写为证据检索任务；其三，如何通过图文双路召回、聚合与证据约束生成把评论理解与商品本体证据显式对齐。由此，本文更接近一篇系统方法论文的第一版骨架，而不是一篇已经完成大规模评测的实验论文。
+
+本文的主要贡献在于：提出面向商品 VOC 的问题驱动多模态分析框架；实现一个可复现、可持续扩展的研究原型与中英文统一导出链路；并将后续实验、人工评测与误差分析所需的论文结构预先固定下来，为下一阶段补充正式结果提供稳定基线。
+
+关键词：多模态 RAG；用户之声分析；Aspect 抽取；证据约束生成；商品评论分析
+\end{abstract}
+
+% =========================
+% Introduction
+% =========================
+\section{引言}
+用户评论分析长期是电商智能分析的重要基础任务，但现有方法通常在两类范式之间摇摆。一类方法聚焦于情感分类或 Aspect-Based Sentiment Analysis，能够归纳评论中的正负倾向和若干属性极性，却难以判断这些结论是否获得商品本体证据的支持。另一类方法将商品文案、商品图像与评论整体输入大语言模型，直接生成商品总结或推荐意见。这类方法能够快速产出可读文本，但往往缺少明确的证据来源，使系统难以回答某一结论究竟来自评论、规格还是图片，也不利于人工审查和误差定位。对于需要稳定输出商品优点、缺点、适用场景、争议点和改进建议的实际分析任务而言，这两种范式都存在明显不足。
+
+本文研究的核心问题是：如何在电商商品场景中，将评论中的主观体验与商品图文中的客观证据显式对齐，并进一步生成可追溯、可验证且可审查的 VOC 洞察结果。我们认为，商品侧天然构成多模态证据空间，而评论侧更适合先进入结构化文本建模；真正困难的部分不在于让模型生成一段总结，而在于建立一条可以把评论需求转写为证据检索任务的分析链。因此，本文提出的 Decathlon VOC Analyzer 并不采用一步式黑盒总结，而是将系统拆解为标准化、Aspect 抽取、问题生成、图文双路召回、聚合统计、报告生成与 replay 复用等多个阶段，并在各阶段之间维持统一的结构化协议。
+
+与侧重最终分类分数的传统实验论文不同，本文当前版本定位为系统型论文草稿。研究目标不是在尚未完成评测之前提前报告 benchmark 结果，而是先把一种面向商品 VOC 的方法论阐述清楚，并将其落实为稳定工作流与清晰的中间产物体系。换言之，本文首先回答``系统应如何构造''，而将``系统在多大规模上优于哪些基线''的问题留给后续正式实验部分。
+
+本文的主要贡献可以概括为三点。第一，提出一种``评论结构化建模 + 问题驱动检索 + 证据约束生成''的商品 VOC 分析框架，将评论理解与多模态证据检索明确解耦。第二，实现一个可复现的研究原型，统一组织 API、工作流脚本、导出脚本与中间产物。第三，为后续正式实验保留一个中英文一致、引用链路规范、章节结构稳定的系统论文骨架。
+
+本文其余部分组织如下：第 2 节介绍任务背景与问题定义；第 3 节回顾相关工作；第 4 节说明系统方法；第 5 节讨论该框架的意义、适用边界与扩展方向；第 6 节总结全文；第 7 节说明当前局限。
+
+% =========================
+% 背景与问题定义
+% =========================
+\section{背景与问题定义}
+\subsection{任务背景}
+
+面向商品的 VOC 分析并不等价于通用评论摘要。真实业务中，分析者通常关心一组稳定且可消费的输出，例如商品优点、缺点、用户关注点、适用场景、争议点，以及能够回指到商品证据和评论证据的改进建议。这样的输出天然要求系统同时处理两类信息源：一类是评论中显式表达的体验、偏好与不满；另一类是商品图像、规格与文案中可被检索和引用的客观证据。
+
+如果系统仅处理评论文本，它可以得到``背包太小''``镜片容易滑落''这类主观判断，但无法回答这些判断是否能够从商品文案、尺寸描述或商品图片中获得支持或冲突证据。如果系统仅围绕商品图文做问答检索，则又难以将口语化、冗长且经常混杂情绪与背景叙事的评论稳定地转写为分析对象。因此，本任务的关键不是简单做文本聚类，也不是把多模态输入直接交给一个问答模型，而是建立一条能够显式对齐主观评论和客观商品证据的分析链路。
+
+\subsection{问题定义}
+
+给定一个商品的原始数据包 \(P\)，其中包含商品基础信息、商品文本块、商品图片和评论集合，系统目标是输出一个结构化分析结果 \(R\)。其中，评论集合中的每条评论需要被拆解为多个方面级对象，商品图文证据需要支持后续检索，最终报告需要同时满足以下约束：
+
+\[
+R = f(P_{text}, P_{image}, C_{reviews})
+\]
+
+但这里的 \(f\) 不是单步生成函数，而是一条分阶段流程：
+
+\[
+C_{reviews} \rightarrow A_{aspects} \rightarrow Q_{questions} \rightarrow E_{retrieval} \rightarrow G_{aggregates} \rightarrow R
+\]
+
+其中，\(A_{aspects}\) 表示方面级评论对象，\(Q_{questions}\) 表示由 Aspect 生成的待澄清问题，\(E_{retrieval}\) 表示从商品图文中召回的证据，\(G_{aggregates}\) 表示聚合后的商品体验统计。
+
+\subsection{设计约束}
+
+本文方法建立在四项系统约束之上。
+
+第一，商品侧证据应尽量保留原始模态，而不是在系统入口处将所有图像信息预先压缩为纯文本摘要。第二，评论侧应尽快进入结构化建模，使后续统计、检索与建议生成可以围绕稳定字段展开。第三，检索的查询对象不直接使用评论原句，而是先转写为待验证问题。第四，系统必须保留可导出的中间结果和最终结果，以支持复现、人工审核与误差分析。
+
+\subsection{与纯问答系统的区别}
+
+本项目虽然使用了多模态检索、向量索引、结构化输出与 LLM，但其目标不是回答一个开放问题，而是形成一套商品画像。因此，它与通用 RAG 问答系统至少存在三点差异。
+
+第一，输出对象不是单条答案，而是成组洞察，包括 strengths、weaknesses、controversies、applicable scenes 和 suggestions。第二，检索锚点来自评论方面对象生成的问题，而不是用户即时提出的自然语言查询。第三，系统更加重视过程产物的可追溯性，这一点体现在标准化证据包、检索记录、confidence breakdown、replay sidecar 和 manifest 等工程对象上。
+
+% =========================
+% 相关工作
+% =========================
+\section{相关工作}
+\subsection{评论分析与 Aspect 建模}
+
+传统评论分析研究多聚焦于情感分类、方面级情感分析和主题聚类。这些方法适合回答``评论总体偏正向还是负向''以及``用户集中讨论了哪些属性''，但通常难以把评论结论与商品本体证据显式对齐。对于电商商品分析而言，Aspect 建模仍然重要，因为它能把冗长评论转化为 aspect、sentiment、opinion、evidence span 与 usage scene 等稳定对象；但如果缺少后续证据检索，系统仍会停留在``评论怎么说''的层面，而无法回答``商品证据是否支持或解释这些评价''。
+
+\subsection{多模态 RAG 与跨模态检索}
+
+检索增强生成的经典工作表明，将参数化生成与外部证据检索显式分离，是提升可追溯性与知识密集任务表现的一条有效路径 \citep{lewis2020retrievalAugmentedGeneration}。进一步的检索校正研究也说明，外部证据不仅可用于回答问题，还可用于约束和修订模型生成内容 \citep{gao2023rarr}。在视觉侧，CLIP 式图文对齐模型证明了统一语义空间能够支持大规模图文检索，这为将商品图片视为一等证据对象提供了直接技术基础 \citep{radford2021clip}。这些研究共同支撑了本文``商品侧保留图文双路检索''的设计判断。
+
+不过，现有多模态 RAG 工作更多面向文档问答、知识问答或开放领域助手，查询通常来自用户问题，而不是来自评论中抽象出的需求与抱怨。相比之下，本项目把多模态检索放入商品 VOC 分析链路中，检索目标不是回答任何开放问题，而是为商品优缺点、争议点与建议生成补充支持或澄清证据。
+
+\subsection{两阶段检索与向量库工程}
+
+从方法论上看，RAG 及其后续工作普遍采用由候选召回到高精度筛选的粗到细范式 \citep{lewis2020retrievalAugmentedGeneration,gao2023rarr}。这一思想并不要求系统必须绑定某一种向量库或某一个 reranker，而强调检索阶段与最终生成阶段之间需要存在清晰的对象边界。本文延续这一层次化设计，将 embedding 服务、索引后端、重排序与证据聚合显式解耦，使``问题生成 -\textgreater{} 图文双路召回 -\textgreater{} 精排 -\textgreater{} 证据聚合''成为可替换、可扩展的中间链路，而不是被压缩进一次性提示词中。
+
+\subsection{结构化输出与工作流编排}
+
+近期关于结构化输出的研究指出，面向 schema 的任务若仍依赖完全自由生成，往往会在字段一致性、类型约束与可解析性上暴露明显脆弱性 \citep{liu2024structuredOutputBenchmark,geng2023grammarConstrainedDecoding}。与此同时，显式的 reasoning-and-acting 路线进一步表明，多步状态化工作流通常比单轮提示更适合组织工具调用、外部检索与中间对象管理 \citep{yao2023react}。这与本文的系统设计高度一致，因为评论抽取、问题生成、证据聚合与报告生成都要求输出可解析、可落盘并可供后续阶段继续消费。
+
+\subsection{本项目与现有工作的差异}
+
+综合来看，当前项目并不试图提出一种新的通用多模态检索算法，也不试图用单一模型端到端取代全部中间层。它的定位更接近一个面向商品 VOC 任务的系统化整合方案：保留多模态证据，利用 Aspect 级评论建模把主观体验转成可验证对象，再以问题驱动检索和证据约束生成把评论总结、图文支持和改进建议串成一个统一闭环。正是在这个意义上，本文更关注``系统层设计是否合理、是否可复现、是否支持人审与误差分析''，而非仅仅关注某个单点模型分数。
+
+% =========================
+% 方法
+% =========================
+\section{方法}
+\subsection{系统总体架构}
+
+本文系统围绕单商品分析建立六层结构：数据层、召回层、评论建模层、聚合层、生成与建议层，以及可解释性与评估层。该结构的核心思想是将``评论理解''和``证据检索''拆分为两个相邻但职责清晰的阶段，而不是直接使用评论原句与商品证据做表层匹配。换言之，系统首先识别评论中的体验维度与判断对象，再将其转写为待验证问题，最后在商品图文证据空间中进行查询与聚合。
+
+在工作流层面，单商品分析被组织为四个固定节点：数据概览、标准化、索引构建和综合分析。数据概览用于扫描当前数据样例并建立最小统计信息；标准化阶段将商品原始目录转为统一证据包；索引构建阶段为文本块和图片建立检索索引；综合分析阶段则在索引之上完成评论抽取、问题生成、双路召回、聚合与报告生成。这样的设计使系统既具有稳定的流程顺序，也能够在每个节点输出独立 artifact，从而支持局部调试、错误定位和人工审查。
+
+\subsection{商品证据建模与标准化}
+
+系统以 product\_id 为中心组织商品证据包。标准化后的对象至少包含商品基础信息、商品文本块、图片列表和评论集合。文本块通常来自标题、品类、模型描述等字段，图片对象则保留 image\_id、variant 和 image\_path 等标识信息。与将图片预先压缩成长文本描述的流程不同，本文在索引阶段保留图片作为独立 evidence route，仅在图像向量化时引入 proxy text 作为辅助提示，以兼顾原始模态保留与当前原型系统的实现复杂度。
+
+在索引阶段，文本证据通过文本 embedding 建立向量表示，图像证据则通过原生图像 embedding 建立向量表示。当前验证环境下，文本 embedding 使用 text-embedding-v4，图像 embedding 使用 openai/clip-vit-base-patch32，文本 reranker 使用 gte-rerank-v2，多模态图文重排使用 qwen-vl-max-latest。若外部能力不可用，系统能够退回启发式路径或本地后端，保证端到端流程仍然可执行。
+
+\subsection{评论建模：从自然语言到 Aspect 对象}
+
+评论建模层的任务并非直接生成最终结论，而是将评论转化为可统计、可检索、可聚合的结构化对象。本文采用的 Aspect 对象至少包含 aspect、sentiment、opinion、evidence span、usage scene 和 confidence 等字段。这样的设计使系统能够围绕具体体验维度执行频次统计、正负比例分析、场景归纳和建议生成；若仅保留整条评论文本，这些后续步骤将明显变得脆弱。
+
+在实现层面，评论抽取服务支持两条路径。第一条是 LLM 路径，使用统一提示词与结构化输出协议生成 Aspect 对象；第二条是 heuristic 路径，用于外部模型不可用时的可复现回退。为了避免评论样本过度偏向高星评价，系统同时引入了基于星级配额的抽样机制，支持 problem\_first、balanced 和 praise\_first 三种 profile。该设计的目的不在于提出新的抽样算法，而在于使评论输入更加可控，并使抽样计划本身成为可解释 artifact 的一部分。
+
+\subsection{问题生成：把主观评论改写为检索任务}
+
+问题生成是本文方法区别于评论直召回的重要步骤。评论原句往往高度口语化，同时混合情绪、背景、结论和使用场景，若直接作为检索 query，通常会产生噪声较高的候选。因此，系统先将每个 Aspect 转写为一组待澄清问题，例如某一体验是否得到商品文案明确支持、商品图片中是否出现对应结构，或者某一负面评价更接近真实缺陷还是预期偏差。
+
+在当前原型中，问题生成服务允许为每个 Aspect 生成多个问题。问题对象至少包含 source\_review\_id、source\_aspect、question、rationale 和 expected\_evidence\_routes。该步骤本质上是将``主观评论''转换为``证据搜索任务''，也是后续检索质量评估、误差诊断和改进建议解释性的关键接口。
+
+\subsection{双路召回与精排}
+
+检索层对每个问题同时执行文本路和图像路召回。文本路面向商品标题、模型描述和其他文本块；图像路面向产品主图、细节图和变体图。两路候选在 product\_id 维度被统一到同一商品证据空间中，并结合 reranker 得分形成最终 evidence bundle。实现上，embedding 服务与索引后端相互解耦：前者负责文本与图像向量化，后者负责索引保存、加载和搜索。这样一来，上层分析逻辑无需感知底层存储是本地持久化索引还是 Qdrant。
+
+两阶段检索在这里至关重要。embedding 粗召回有助于保持候选覆盖，但会引入噪声；reranker 精排则使用更高成本的模型对小规模候选进行重排，以压缩误召回。虽然当前验证仍主要基于整图级对象，尚未进入区域级视觉检索阶段，但该接口设计已经为后续从 page-level 走向 region-level 的扩展保留了空间。
+
+\subsection{聚合、报告与 replay 机制}
+
+召回结果不会被原样交给大模型直接总结，而是先被聚合为 AspectAggregate 对象，统计每个 aspect 的出现频次、正负比例、代表评论和场景分布。随后，系统基于这些聚合对象生成 strengths、weaknesses、controversies、applicable scenes、supporting evidence 与 suggestions。若 LLM 可用，报告生成进入结构化 LLM 路径；若不可用，则退回启发式报告构造。两条路径在输出协议上保持一致，因此下游 artifact 与 API 不需要区分具体模式。
+
+本文还引入 replay sidecar 机制，用于在新的分析轮次中读取上一轮的 replay payload，并将持续存在的问题、已解决的问题及回放摘要并入当前报告、trace 与 manifest。该机制使系统不仅能够给出单次分析结论，也能够支持多轮实验或人工审查后的连续性跟踪，从而增强过程可复现性和问题闭环能力。
+
+\subsection{产物优先的可解释性设计}
+
+本文系统并不将所有中间状态隐藏在内存中，而是将其按阶段写入标准化产物目录。标准化结果、Aspect 结果、索引、最终报告、feedback、replay、HTML 页面和 manifest 均具有固定位置；分析报告内部还保留 extraction、questions、retrievals、retrieval quality、retrieval runtime、aggregates、report、trace 和 warnings 等结构对象。这种``artifact-first''的设计使系统可解释性不再停留于概念层，而是落实为可直接审查的 JSON、Markdown 和 HTML 文件。
+
+% =========================
+% 讨论
+% =========================
+\section{讨论}
+\subsection{为什么当前路线适合商品 VOC 场景}
+
+本文方法的价值并不在于某个单独模块，而在于将商品图文、评论结构和最终报告纳入同一证据闭环。对于商品 VOC 场景，这一路线具有天然适配性。商品信息本身就是多模态的，而评论又高度口语化且经常混杂主观表达、使用场景和总结性判断。若直接从评论生成最终结论，系统往往缺乏真实性约束；若仅围绕商品图文做检索，则又缺少用户真实关注点的锚定。本文采用 Aspect 作为评论抽象层，再用问题生成将其转写为检索任务，恰好在二者之间建立了可解释接口。
+
+\subsection{当前实现最值得保留的工程经验}
+
+从当前阶段的实现可以提炼出三条工程经验。第一，方法层与实现层应保持同构关系，即数据层、评论建模层、检索层和生成层在代码结构中有清晰映射，这会显著降低系统论文写作和后续扩展的摩擦。第二，产物优先而非日志优先。标准化结果、Aspect 结果、索引、报告、feedback、replay 与 manifest 的固定落盘，使研究过程具备天然的可回溯性。第三，真实能力与回退能力并存。LLM 与 heuristic、local 与 qdrant 的双路径设计，使系统既能走真实链路，也能在测试和调试环境中保持稳定复现。
+
+\subsection{与纯大模型总结路线的对比}
+
+若将商品图文和评论整体拼接后直接交由模型输出总结，短期内确实可以更快得到``看起来合理''的文本。然而，这一路线至少存在三类问题：其一，难以区分结论究竟来自评论还是商品证据；其二，难以对错误做局部定位和修复；其三，难以积累可复用的中间对象，用于后续训练和人工审核。相比之下，本文采用分阶段设计，虽然增加了实现复杂度，却换来了对象清晰、链路可控和结果可解释的优势。这种取舍更符合研究导向系统的长期价值。
+
+\subsection{对后续研究的启示}
+
+本文当前阶段给出的一个重要启示是，电商多模态分析未必应直接从``多模态生成''切入，更值得优先研究的是``评论需求如何转写为证据检索任务''。在这一框架下，许多后续能力都能自然接入，例如更强的区域级图像证据召回、更细粒度的人群分层分析、更严格的检索评测指标、人工反馈驱动的 replay 优化，以及与 HTML 审查界面联动的半自动校订流程。
+
+\subsection{论文层面的意义}
+
+从论文写作角度看，当前阶段更重要的是先把问题定义、系统路线和方法边界阐述清楚，而不是在正式实验尚未完成时提前堆叠结果段落。这样做的价值在于，后续无论补充更大规模样本、引入更强视觉检索，还是加入人工评测，都可以在这一系统论文骨架上直接扩展，而无需重新改写研究问题与方法主线。
+
+% =========================
+% 结论
+% =========================
+\section{结论}
+本文提出并整理了 Decathlon VOC Analyzer 的系统型论文初稿。本文研究的核心主张是：面向商品场景的多模态 VOC 分析，不应被简化为一步式大模型总结，而更适合采用``评论结构化建模 + 问题驱动检索 + 证据约束生成''的分层方案。在该框架下，标准化、Aspect 抽取、问题生成、双路召回、聚合与报告生成被组织为统一闭环，从而使最终结果具备更强的可解释性、可调试性与可复现性。
+
+当前版本的重点不在于报告正式实验结果，而在于给出一条自洽的系统方法主线，并把后续实验所需的章节结构、引用链路与中英文导出流程预先固定下来。后续工作将集中在完成正式实验设计、补充标准检索指标、引入更严格的人类评测，以及推进更细粒度的视觉证据对齐。
+
+% =========================
+% 局限性
+% =========================
+\section{局限性}
+本文需要明确区分``已经被验证的系统事实''和``尚未完成的正式评测''。第一项局限在于实验规模。本文目前主要依赖代表性样例、脚本验证和自动化测试，而尚未形成覆盖大规模商品集合的冻结 benchmark 与人工标注评测，因此不能据此对全部商品类别的统计表现做外推。
+
+第二项局限在于检索评估仍不完整。尽管系统已经完成双路召回、reranker 与 artifact 落盘，但尚未系统引入 Recall@k、MRR、NDCG 等标准检索指标，也缺少对``评论直召回''和``问题驱动召回''的统一离线对照。现阶段结果更能说明该路线在系统层面是合理且可运行的，而不是已经充分量化了每个中间模块的最优性能。
+
+第三项局限在于视觉证据粒度。当前图像检索仍以整图级对象为主，尚未进入局部区域证据检索、区域裁剪对齐和更细粒度视觉 grounding 阶段。对于鞋底、镜片、缝线、背负系统等强局部结构依赖的商品属性分析，这会限制系统解释细节问题的能力。
+
+第四项局限在于系统验证与论文基线之间仍存在少量未同步之处。当前自动化测试中唯一失败的断言来自提示词语言切换后的测试基线不一致，这提示我们在推进多语言支持和论文写作链路的同时，还需要进一步清理和统一工程验证标准。
+
+第五项局限在于论文元信息与参考文献仍需进一步打磨。若面向正式投稿，仍需补充更系统的相关工作综述、统一引文格式，并完善标题页中的作者、单位和邮箱信息。
+
+% =========================
+% 致谢
+% =========================
+\section{致谢}
+本稿基于当前仓库中的设计文档、源码实现、脚本、测试与输出产物整理而成。后续正式版本可在此补充项目指导、数据来源支持和实验环境协助等致谢信息。
+
+% =========================
+% 附录
+% =========================
+\section{附录}
+\subsection{A. 关键目录与对应职责}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+目录
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+职责
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+01\_data & 原始商品数据与中文审查数据 \\
+02\_outputs & 标准化结果、Aspect 结果、索引、报告、feedback、replay、HTML 与 manifest \\
+03\_docs & 设计文档、技术文档与引用材料 \\
+04\_scripts & 运行工作流、导出结果、验证多模态运行时 \\
+05\_src & 核心源码实现 \\
+06\_tests & API、服务与工作流测试 \\
+\end{longtable}
+
+\subsection{B. 当前 API 入口}
+
+系统当前至少包含以下 API 路由：
+
+\begin{itemize}
+\tightlist
+\item
+  /health
+\item
+  /api/v1/dataset/overview
+\item
+  /api/v1/dataset/normalize
+\item
+  /api/v1/index/overview
+\item
+  /api/v1/index/build
+\item
+  /api/v1/reviews/extract
+\item
+  /api/v1/analysis/product
+\end{itemize}
+
+这些接口分别覆盖数据集概览、标准化、索引构建、评论结构化抽取和单商品综合分析。
+
+\subsection{C. 复现主链示例}
+
+端到端主链可以通过以下命令触发：
+
+\begin{verbatim}
+.venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010
+\end{verbatim}
+
+如需验证真实多模态运行态，可使用：
+
+\begin{verbatim}
+.venv/bin/python 04_scripts/validate_multimodal_runtime.py --category backpack --product-id backpack_010
+\end{verbatim}
+
+如需在本目录合并完整论文稿，可使用：
+
+\begin{verbatim}
+.venv/bin/python 论文_md形式/脚本/build_complete_paper.py
+\end{verbatim}
+
+\subsection{D. 当前论文稿适用边界}
+
+本稿适用于：
+
+\begin{itemize}
+\tightlist
+\item
+  系统设计说明
+\item
+  阶段性论文初稿
+\item
+  项目答辩或中期汇报底稿
+\end{itemize}
+
+本稿暂不适用于：
+
+\begin{itemize}
+\tightlist
+\item
+  需要大规模 benchmark 统计显著性的正式实验论文终稿
+\item
+  需要完整图表、全量人工标注与严格引文规范的投稿版本
+\end{itemize}
+
+% =========================
+% References
+% =========================
+\bibliographystyle{unsrtnat}
+\bibliography{ref}
+
+\end{document}

@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99d (TeX Live 2023/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: Decathlon_VOC_Analyzer_Nature_Template.aux
+The style file: unsrtnat.bst
+Database file #1: ref.bib
+You've used 6 entries,
+            2481 wiz_defined-function locations,
+            599 strings with 6808 characters,
+and the built_in function-call counts, 4049 in all, are:
+= -- 307
+> -- 318
+< -- 5
++ -- 112
+- -- 100
+* -- 358
+:= -- 647
+add.period$ -- 27
+call.type$ -- 6
+change.case$ -- 12
+chr.to.int$ -- 6
+cite$ -- 6
+duplicate$ -- 169
+empty$ -- 290
+format.name$ -- 106
+if$ -- 862
+int.to.chr$ -- 1
+int.to.str$ -- 7
+missing$ -- 5
+newline$ -- 46
+num.names$ -- 18
+pop$ -- 57
+preamble$ -- 1
+purify$ -- 6
+quote$ -- 0
+skip$ -- 132
+stack$ -- 0
+substring$ -- 206
+swap$ -- 65
+text.length$ -- 5
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 42
+warning$ -- 0
+while$ -- 25
+width$ -- 0
+write$ -- 102
