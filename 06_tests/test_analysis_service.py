@@ -4,13 +4,17 @@ import orjson
 import pytest
 
 from decathlon_voc_analyzer.schemas.analysis import (
+    AspectAggregate,
+    EvidenceGapItem,
     ImprovementSuggestion,
     InsightItem,
+    ProductAnalysisReport,
     ProductAnalysisRequest,
     RetrievedEvidence,
     RetrievalRecord,
     SupportingEvidence,
 )
+from decathlon_voc_analyzer.schemas.review import ReviewAspect
 from decathlon_voc_analyzer.stage4_generation.analysis_service import ProductAnalysisService
 
 
@@ -80,6 +84,29 @@ def test_product_analysis_service_derives_impression_models() -> None:
         assert result.report.customer_impressions[0].focus_aspects
 
 
+def test_product_analysis_service_keeps_all_aggregates_in_impressions_and_supporting_aspects() -> None:
+    service = ProductAnalysisService()
+    aggregates = [
+        AspectAggregate(
+            aspect=f"aspect_{index}",
+            frequency=1,
+            positive_ratio=1.0,
+            negative_ratio=0.0,
+            neutral_ratio=0.0,
+            mixed_ratio=0.0,
+            scenes={},
+            representative_review_ids=[f"review_{index}"],
+        )
+        for index in range(6)
+    ]
+
+    impressions = service._build_product_impressions(aggregates)
+
+    assert len(impressions) == 6
+    assert service._build_supporting_aspects(aggregates)[-1] == "aspect_5"
+    assert service._build_supporting_reviews(aggregates)[-1] == "review_5"
+
+
 def test_product_analysis_service_normalizes_prompt_variant_alias(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setenv("PROMPT_VARIANT", "en")
     service = ProductAnalysisService()
@@ -126,6 +153,7 @@ def test_product_analysis_service_emits_trace_and_owner_metadata() -> None:
     assert any(item.trace_type == "action_generation" for item in result.trace)
     allowed_owners = {"product_issue", "content_presentation", "evidence_gap", "expectation_mismatch"}
     assert all(item.owner in allowed_owners for item in result.report.strengths + result.report.weaknesses + result.report.controversies)
+    assert all(item.evidence_level in {"review_only", "partial_product_support", "product_supported"} for item in result.report.strengths + result.report.weaknesses + result.report.controversies)
     assert all(item.confidence_breakdown is not None for item in result.report.strengths + result.report.weaknesses + result.report.controversies)
     assert all(item.confidence_breakdown.final_confidence >= 0.0 for item in result.report.strengths + result.report.weaknesses + result.report.controversies)
     assert result.retrieval_quality
@@ -138,6 +166,8 @@ def test_product_analysis_service_emits_trace_and_owner_metadata() -> None:
     assert all(0.0 <= metric.route_coverage <= 1.0 for metric in result.retrieval_quality)
     assert all(0.0 <= metric.answer_coverage <= 1.0 for metric in result.retrieval_quality)
     assert all(0.0 <= metric.score_drift <= 1.0 for metric in result.retrieval_quality)
+    assert result.report.supporting_review_evidence.review_ids
+    assert not result.report.supporting_product_evidence.review_ids
 
 
 def test_product_analysis_service_hydrates_llm_insights_by_review_reference() -> None:
@@ -273,6 +303,94 @@ def test_product_analysis_service_hydrates_suggestions_from_related_insights() -
     assert hydrated[0].supporting_evidence.review_ids == ["sunglasses_010_review_0064"]
 
 
+def test_product_analysis_service_hydrates_report_suggestions_from_hydrated_insights() -> None:
+    service = ProductAnalysisService()
+    aggregates = [
+        AspectAggregate(
+            aspect="price",
+            frequency=1,
+            positive_ratio=1.0,
+            negative_ratio=0.0,
+            neutral_ratio=0.0,
+            mixed_ratio=0.0,
+            scenes={},
+            representative_review_ids=["sunglasses_010_review_0064"],
+        )
+    ]
+    retrievals = [
+        RetrievalRecord(
+            retrieval_id="r1",
+            product_id="sunglasses_010",
+            query="What is the listed price of the product on the product page?",
+            source_review_id="sunglasses_010_review_0064",
+            source_aspect="price",
+            source_question_id="q1",
+            source_question="What is the listed price of the product on the product page?",
+            source_evidence_span="Price feedback",
+            expected_evidence_routes=["text"],
+            retrieved=[],
+        )
+    ]
+
+    report = service._hydrate_report_from_llm(
+        "sunglasses_010",
+        "sunglasses",
+        aggregates,
+        retrievals,
+        {
+            "strengths": [
+                {
+                    "label": "price",
+                    "summary": "Price is praised in sunglasses_010_review_0064.",
+                    "confidence": 0.8,
+                }
+            ],
+            "weaknesses": [],
+            "controversies": [],
+            "suggestions": [
+                {
+                    "suggestion": "Surface the exact listed price and any active promotions in primary product metadata.",
+                    "suggestion_type": "perception",
+                    "reason": ["No numeric price or discount indicators were retrieved despite a positive price sentiment."],
+                    "confidence": 0.8,
+                }
+            ],
+            "applicable_scenes": [],
+            "confidence": 0.8,
+        },
+    )
+
+    assert report.suggestions[0].supporting_evidence.review_ids == ["sunglasses_010_review_0064"]
+
+
+def test_product_analysis_service_prefers_reason_alignment_for_suggestion_hydration() -> None:
+    service = ProductAnalysisService()
+    evidence_candidates = [
+        InsightItem(
+            label="comfort",
+            summary="comfort concern from sunglasses_010_review_0064",
+            confidence=0.8,
+            supporting_evidence=SupportingEvidence(review_ids=["sunglasses_010_review_0064"]),
+        )
+    ]
+
+    hydrated = service._hydrate_suggestions(
+        [
+            {
+                "suggestion": "Add durability-validation notes and warranty scope for the rubber ear insert.",
+                "suggestion_type": "perception",
+                "reason": ["Comfort is positive but the product page does not explain fit or ergonomic cues."],
+                "confidence": 0.8,
+            }
+        ],
+        [],
+        evidence_candidates=evidence_candidates,
+    )
+
+    assert hydrated[0].supporting_evidence.review_ids == ["sunglasses_010_review_0064"]
+    assert "comfort" in hydrated[0].suggestion.lower()
+
+
 def test_product_analysis_service_tracks_mixed_ratio_in_aggregates() -> None:
     service = ProductAnalysisService()
 
@@ -329,6 +447,451 @@ def test_product_analysis_service_uses_conservative_answer_coverage_for_unanswer
     price_metric = service._assess_retrieval_quality(retrievals)[0]
     assert price_metric.route_coverage >= 0.5
     assert price_metric.answer_coverage == 0.0
+    assert price_metric.answer_status == "none"
+    assert price_metric.conflict_risk == 0.0
+    assert price_metric.answer_value is None
+
+
+def test_product_analysis_service_extracts_answer_value_for_supported_tint_question() -> None:
+    service = ProductAnalysisService()
+
+    retrievals = [
+        RetrievalRecord(
+            retrieval_id="r1",
+            product_id="demo_product",
+            query="What specific tint color or hue is used in the lenses?",
+            source_review_id="review_1",
+            source_aspect="lens tinting",
+            source_question_id="q1",
+            source_question="What specific tint color or hue is used in the lenses?",
+            source_evidence_span="Need actual tint clue.",
+            expected_evidence_routes=["text", "image"],
+            retrieved=[
+                RetrievedEvidence(
+                    product_id="demo_product",
+                    route="text",
+                    text_block_id="model_description",
+                    source_section="model_description",
+                    content_preview="100% UV protection and Category 4 lenses fully block intense sunlight and glare.",
+                    embedding_score=0.58,
+                    rerank_score=0.18,
+                ),
+                RetrievedEvidence(
+                    product_id="demo_product",
+                    route="image",
+                    image_id="img1",
+                    image_path="images/img1.png",
+                    content_preview="Lens appears visibly tinted in the front-facing image.",
+                    embedding_score=0.29,
+                    rerank_score=0.97,
+                ),
+            ],
+        )
+    ]
+
+    tint_metric = service._assess_retrieval_quality(retrievals)[0]
+
+    assert tint_metric.answer_coverage == 0.5
+    assert tint_metric.answer_status == "partial"
+    assert tint_metric.answer_value is not None
+    assert tint_metric.answer_source == "image"
+
+
+def test_product_analysis_service_marks_trace_with_valid_evidence_counts() -> None:
+    service = ProductAnalysisService()
+
+    summary = service._summarize_evidence_check(
+        SupportingEvidence(
+            review_ids=["r1"],
+            product_text_block_ids=["t1", "t2"],
+            product_image_ids=["img1"],
+        ),
+        ["Question A"],
+    )
+
+    assert "valid_text_blocks=2" in summary
+    assert "valid_images=1" in summary
+
+
+def test_report_refinement_service_calibrates_unsupported_summaries_and_filters_relation_controversy() -> None:
+    service = ProductAnalysisService()
+    report = ProductAnalysisReport(
+        product_id="p1",
+        answer="placeholder",
+        strengths=[
+            InsightItem(
+                label="comfort",
+                summary="Comfort is partially supported by lifestyle imagery.",
+                confidence=0.7,
+                supporting_evidence=SupportingEvidence(review_ids=["r1"]),
+            )
+        ],
+        weaknesses=[
+            InsightItem(
+                label="rubber insert durability",
+                summary="The issue is corroborated by multiple retrieval queries.",
+                confidence=0.7,
+                supporting_evidence=SupportingEvidence(review_ids=["r2"]),
+            )
+        ],
+        controversies=[
+            InsightItem(
+                label="rubber insert durability vs. overall experience",
+                summary="This looks like a root-cause link to overall experience rather than a disagreement.",
+                confidence=0.7,
+                supporting_evidence=SupportingEvidence(review_ids=["r2"]),
+            )
+        ],
+        supporting_product_evidence=SupportingEvidence(),
+        confidence=0.7,
+        suggestions=[
+            ImprovementSuggestion(
+                suggestion="Validate lens quality against ANSI Z80.3 prism-deviation thresholds before publishing claims.",
+                suggestion_type="perception",
+                reason=["Current evidence does not justify that threshold claim."],
+                confidence=0.7,
+                supporting_evidence=SupportingEvidence(review_ids=["r3"]),
+            )
+        ],
+    )
+
+    refined = service.report_refinement_service.refine(report)
+
+    assert "lifestyle imagery" not in refined.strengths[0].summary.lower()
+    assert "corroborated by multiple retrieval queries" not in refined.weaknesses[0].summary.lower()
+    assert not refined.controversies
+    assert "ansi" not in refined.suggestions[0].suggestion.lower()
+
+
+def test_report_refinement_service_rewrites_price_and_duration_suggestions() -> None:
+    service = ProductAnalysisService()
+    report = ProductAnalysisReport(
+        product_id="p1",
+        answer="placeholder",
+        strengths=[],
+        weaknesses=[],
+        controversies=[],
+        supporting_product_evidence=SupportingEvidence(),
+        confidence=0.7,
+        suggestions=[
+            ImprovementSuggestion(
+                suggestion="Replace unsupported external-standard references with a simpler explanation.",
+                suggestion_type="perception",
+                reason=["No pricing context such as MSRP or discount was retrieved for the excellent price claim."],
+                confidence=0.7,
+                supporting_evidence=SupportingEvidence(review_ids=["r1"]),
+            ),
+            ImprovementSuggestion(
+                suggestion="Add a 2-year warranty claim for the rubber insert.",
+                suggestion_type="perception",
+                reason=["No warranty terms or durability scope were retrieved for the rubber ear insert."],
+                confidence=0.7,
+                supporting_evidence=SupportingEvidence(review_ids=["r2"]),
+            ),
+        ],
+    )
+
+    refined = service.report_refinement_service.refine(report)
+
+    assert "selling price" in refined.suggestions[0].suggestion.lower()
+    assert "unsupported lifetime thresholds" in refined.suggestions[1].suggestion.lower()
+
+
+def test_report_refinement_service_sanitizes_optical_external_validation_reason() -> None:
+    service = ProductAnalysisService()
+    report = ProductAnalysisReport(
+        product_id="p1",
+        answer="placeholder",
+        strengths=[],
+        weaknesses=[],
+        controversies=[],
+        supporting_product_evidence=SupportingEvidence(),
+        confidence=0.7,
+        suggestions=[
+            ImprovementSuggestion(
+                suggestion="Include optical performance claim validated for motion and link to third-party test summary if available.",
+                suggestion_type="perception",
+                reason=["No product-page claims or test data regarding optical clarity, ANSI Z80.3 compliance, or distortion-free field of view were retrieved."],
+                confidence=0.7,
+                supporting_evidence=SupportingEvidence(review_ids=["r1"]),
+            )
+        ],
+    )
+
+    refined = service.report_refinement_service.refine(report)
+
+    assert "third-party" not in refined.suggestions[0].suggestion.lower()
+    assert "ansi" not in " ".join(refined.suggestions[0].reason).lower()
+
+
+def test_product_analysis_service_normalizes_issues_gaps_and_suggestion_bindings() -> None:
+    service = ProductAnalysisService()
+    aspects = [
+        ReviewAspect(
+            aspect_id="a1",
+            review_id="sunglasses_010_review_0021",
+            product_id="sunglasses_010",
+            aspect="rubber insert durability",
+            sentiment="negative",
+            opinion="poor durability",
+            evidence_span="the rubber insert deteriorates in less than two years and falls apart",
+            usage_scene="long-term wear",
+            confidence=0.95,
+            extraction_mode="llm",
+        ),
+        ReviewAspect(
+            aspect_id="a2",
+            review_id="sunglasses_010_review_0064",
+            product_id="sunglasses_010",
+            aspect="price",
+            sentiment="positive",
+            opinion="excellent",
+            evidence_span="Excellent price",
+            usage_scene="",
+            confidence=0.95,
+            extraction_mode="llm",
+        ),
+        ReviewAspect(
+            aspect_id="a3",
+            review_id="sunglasses_010_review_0064",
+            product_id="sunglasses_010",
+            aspect="comfort",
+            sentiment="positive",
+            opinion="comfortable",
+            evidence_span="comfortable to wear",
+            usage_scene="",
+            confidence=0.9,
+            extraction_mode="llm",
+        ),
+        ReviewAspect(
+            aspect_id="a4",
+            review_id="sunglasses_010_review_0064",
+            product_id="sunglasses_010",
+            aspect="optical accuracy",
+            sentiment="negative",
+            opinion="slight magnification causing distorted depth perception",
+            evidence_span="they slightly magnify vision, so the ground beneath appears closer than it actually is",
+            usage_scene="walking/outdoor navigation",
+            confidence=0.98,
+            extraction_mode="llm",
+        ),
+        ReviewAspect(
+            aspect_id="a5",
+            review_id="sunglasses_010_review_0064",
+            product_id="sunglasses_010",
+            aspect="lens tinting",
+            sentiment="positive",
+            opinion="excellent",
+            evidence_span="excellent tinting",
+            usage_scene="",
+            confidence=0.95,
+            extraction_mode="llm",
+        ),
+    ]
+    report = ProductAnalysisReport(
+        product_id="sunglasses_010",
+        answer="placeholder",
+        strengths=[
+            InsightItem(
+                label="Price perception",
+                summary="Positive feedback on Price perception comes from user reviews.",
+                confidence=0.95,
+                supporting_evidence=SupportingEvidence(review_ids=["sunglasses_010_review_0064"]),
+            ),
+            InsightItem(
+                label="Comfort perception",
+                summary="Positive feedback on Comfort perception comes from user reviews.",
+                confidence=0.89,
+                supporting_evidence=SupportingEvidence(review_ids=["sunglasses_010_review_0064"]),
+            ),
+            InsightItem(
+                label="Lens tinting perception",
+                summary="Tinting looks good and product images show visible tint.",
+                confidence=0.9,
+                supporting_evidence=SupportingEvidence(
+                    review_ids=["sunglasses_010_review_0064"],
+                    product_image_ids=["image_1"],
+                ),
+            ),
+        ],
+        weaknesses=[
+            InsightItem(
+                label="Optical accuracy communication",
+                summary="Concerns about Optical accuracy communication are clear in user reviews.",
+                confidence=0.96,
+                supporting_evidence=SupportingEvidence(review_ids=["sunglasses_010_review_0064"]),
+            ),
+            InsightItem(
+                label="ergonomic and fit specification gaps",
+                summary="Concerns about ergonomic and fit specification gaps are clear in user reviews.",
+                confidence=0.88,
+                supporting_evidence=SupportingEvidence(review_ids=["sunglasses_010_review_0064"]),
+            ),
+        ],
+        controversies=[],
+        supporting_product_evidence=SupportingEvidence(),
+        confidence=0.94,
+        suggestions=[
+            ImprovementSuggestion(
+                suggestion="Add product-page optical verification notes and publish the measured distortion or prism-control results before making strong visual-performance claims.",
+                suggestion_type="perception",
+                reason=["No product-page claims or test data about optical clarity, distortion control, or motion-relevant visual performance were retrieved."],
+                confidence=0.91,
+                supporting_evidence=SupportingEvidence(review_ids=["sunglasses_010_review_0021"]),
+            ),
+            ImprovementSuggestion(
+                suggestion="Include quantified comfort-related specs: list frame weight (g), describe nose-pad material, and add annotated imagery highlighting pressure-distribution features.",
+                suggestion_type="perception",
+                reason=[
+                    "The positive comfort rating lacks supporting evidence in specs or imagery.",
+                    "Replay continuity: the issue around Comfort substantiation gap, Missing optical distortion validation also appeared in the previous run.",
+                ],
+                confidence=0.87,
+                supporting_evidence=SupportingEvidence(review_ids=["sunglasses_010_review_0021"]),
+            ),
+            ImprovementSuggestion(
+                suggestion="State the specific lens tint (e.g., 'gray polarized') in both product title/description and on lens close-up images.",
+                suggestion_type="perception",
+                reason=["Three positive aspects (price, lens tinting, comfort) lack clear product-page support in current copy."],
+                confidence=0.86,
+                supporting_evidence=SupportingEvidence(
+                    review_ids=["sunglasses_010_review_0064"],
+                    product_text_block_ids=["text_1"],
+                    product_image_ids=["image_1"],
+                ),
+            ),
+        ],
+    )
+
+    normalized = service._normalize_report_structure(report, aspects)
+
+    weakness_labels = {item.label for item in normalized.weaknesses}
+    gap_labels = {item.label for item in normalized.evidence_gaps}
+
+    assert "Rubber insert durability failure" in weakness_labels
+    assert "Potential optical magnification affecting depth perception" in weakness_labels
+    assert "ergonomic and fit specification gaps" not in weakness_labels
+    assert "Missing rubber insert durability disclosure" in gap_labels
+    assert "Missing optical distortion validation" in gap_labels
+    assert "Comfort substantiation gap" in gap_labels
+    assert "Price substantiation gap" in gap_labels
+    assert "Missing explicit lens tint hue disclosure" in gap_labels
+    assert any("optical" in suggestion.suggestion.lower() and suggestion.supporting_evidence.review_ids == ["sunglasses_010_review_0064"] for suggestion in normalized.suggestions)
+    assert any("comfort" in suggestion.suggestion.lower() and suggestion.supporting_evidence.review_ids == ["sunglasses_010_review_0064"] for suggestion in normalized.suggestions)
+    assert any("selling price" in suggestion.suggestion.lower() and suggestion.supporting_evidence.review_ids == ["sunglasses_010_review_0064"] for suggestion in normalized.suggestions)
+    assert len(normalized.suggestions) >= 5
+
+
+def test_product_analysis_service_builds_grammatically_correct_answer_with_partial_support() -> None:
+    service = ProductAnalysisService()
+
+    answer = service._build_answer(
+        strengths=[
+            InsightItem(
+                label="perceived value",
+                summary="review-supported",
+                confidence=0.78,
+                supporting_evidence=SupportingEvidence(review_ids=["r1"]),
+            ),
+            InsightItem(
+                label="lens tinting",
+                summary="image-supported",
+                confidence=0.88,
+                supporting_evidence=SupportingEvidence(review_ids=["r2"], product_image_ids=["img1"]),
+            ),
+            InsightItem(
+                label="comfort",
+                summary="review-supported",
+                confidence=0.78,
+                supporting_evidence=SupportingEvidence(review_ids=["r2"]),
+            ),
+        ],
+        weaknesses=[
+            InsightItem(
+                label="Rubber insert durability failure",
+                summary="negative",
+                confidence=0.78,
+                supporting_evidence=SupportingEvidence(review_ids=["r3"]),
+            )
+        ],
+        controversies=[],
+    )
+
+    assert answer.startswith("Positive feedback appears")
+    assert "lens tinting is partially supported by product images" in answer
+    assert "perceived value and comfort are mainly review-supported" in answer
+    assert "The most important negative issue is Rubber insert durability failure." in answer
+
+
+def test_product_analysis_service_attaches_replay_note_without_polluting_reason() -> None:
+    service = ProductAnalysisService()
+    suggestions = [
+        ImprovementSuggestion(
+            suggestion="Clarify the fit and comfort-related design cues on the product page.",
+            suggestion_type="perception",
+            reason=["Comfort is positively mentioned by a user review, but no product-page text was retrieved."],
+            confidence=0.82,
+            supporting_evidence=SupportingEvidence(review_ids=["review_1"]),
+        )
+    ]
+
+    annotated = service._annotate_suggestions_with_replay(
+        suggestions,
+        persistent_issue_labels=["Comfort substantiation gap"],
+        accepted_issue_labels=[],
+        rejected_issue_labels=[],
+    )
+
+    assert annotated[0].replay_note is not None
+    assert all("Replay continuity:" not in reason for reason in annotated[0].reason)
+
+
+def test_product_analysis_service_uses_canonical_issue_keys_for_replay_continuity() -> None:
+    service = ProductAnalysisService()
+    report = ProductAnalysisReport(
+        product_id="p1",
+        answer="placeholder",
+        strengths=[],
+        weaknesses=[],
+        controversies=[],
+        evidence_gaps=[
+            EvidenceGapItem(
+                label="Missing rubber insert durability disclosure",
+                summary="No product-page durability detail was retrieved.",
+                confidence=0.9,
+                source_aspect="rubber insert durability",
+                supporting_evidence=SupportingEvidence(review_ids=["review_1"]),
+            )
+        ],
+        supporting_product_evidence=SupportingEvidence(),
+        confidence=0.8,
+        suggestions=[],
+    )
+
+    replayed_report, replay_summary = service._apply_replay_context(
+        report,
+        {
+            "replay_path": "demo_replay.json",
+            "analysis_mode": "llm",
+            "report": {
+                "weaknesses": [],
+                "controversies": [],
+                "evidence_gaps": [
+                    {
+                        "label": "rubber insert durability disclosure gap",
+                        "supporting_evidence": {"review_ids": ["review_1"], "product_text_block_ids": [], "product_image_ids": []},
+                    }
+                ],
+            },
+        },
+        None,
+    )
+
+    assert replayed_report.evidence_gaps[0].label == "Missing rubber insert durability disclosure"
+    assert replay_summary is not None
+    assert replay_summary.persistent_issue_labels == ["Missing rubber insert durability disclosure"]
+    assert replay_summary.persistent_issue_keys == ["rubber_insert_durability:evidence_gap"]
+
 
 
 def test_product_analysis_service_returns_artifact_bundle_when_persisted() -> None:

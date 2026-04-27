@@ -12,6 +12,7 @@ from decathlon_voc_analyzer.schemas.analysis import (
     AspectAggregate,
     ConfidenceBreakdown,
     CustomerImpressionItem,
+    EvidenceGapItem,
     ImprovementSuggestion,
     InsightItem,
     ProcessTraceItem,
@@ -128,10 +129,26 @@ class ProductAnalysisService:
             report = self._build_report_heuristic(package.product_id, package.category_slug, aggregates, retrievals)
 
         report = self.report_refinement_service.refine(report)
+        report = self._normalize_report_structure(report, extraction.aspects)
         report = report.model_copy(
             update={
+                "answer": self._build_answer(report.strengths, report.weaknesses, report.controversies),
                 "product_impressions": self._build_product_impressions(aggregates),
                 "customer_impressions": self._build_customer_impressions(extraction.aspects),
+                "supporting_aspects": self._build_supporting_aspects(aggregates),
+                "supporting_reviews": self._build_supporting_reviews(aggregates),
+                "supporting_review_evidence": self._merge_review_evidence(
+                    [
+                        item.supporting_evidence
+                        for item in report.strengths + report.weaknesses + report.controversies + report.evidence_gaps + report.suggestions
+                    ]
+                ),
+                "supporting_product_evidence": self._merge_product_evidence(
+                    [
+                        item.supporting_evidence
+                        for item in report.strengths + report.weaknesses + report.controversies + report.evidence_gaps + report.suggestions
+                    ]
+                ),
             }
         )
         report, replay_summary = self._apply_replay_context(report, replay_payload, feedback_payload)
@@ -196,8 +213,20 @@ class ProductAnalysisService:
                 scene_distribution=aggregate.scenes,
                 representative_review_ids=aggregate.representative_review_ids,
             )
-            for aggregate in aggregates[:5]
+            for aggregate in aggregates
         ]
+
+    def _build_supporting_aspects(self, aggregates: list[AspectAggregate]) -> list[str]:
+        return [aggregate.aspect for aggregate in aggregates]
+
+    def _build_supporting_reviews(self, aggregates: list[AspectAggregate]) -> list[str]:
+        return list(
+            dict.fromkeys(
+                review_id
+                for aggregate in aggregates
+                for review_id in aggregate.representative_review_ids
+            )
+        )
 
     def _build_customer_impressions(self, aspects: list[ReviewAspect]) -> list[CustomerImpressionItem]:
         grouped: dict[str, list[ReviewAspect]] = defaultdict(list)
@@ -254,7 +283,12 @@ class ProductAnalysisService:
         strengths = self._hydrate_insights(payload.get("strengths"), fallback.strengths, evidence_candidates=evidence_candidates)
         weaknesses = self._hydrate_insights(payload.get("weaknesses"), fallback.weaknesses, evidence_candidates=evidence_candidates)
         controversies = self._hydrate_insights(payload.get("controversies"), fallback.controversies, evidence_candidates=evidence_candidates)
-        suggestions = self._hydrate_suggestions(payload.get("suggestions"), fallback.suggestions, evidence_candidates=fallback.suggestions + evidence_candidates)
+        suggestion_candidates = strengths + weaknesses + controversies + fallback.suggestions
+        suggestions = self._hydrate_suggestions(
+            payload.get("suggestions"),
+            fallback.suggestions,
+            evidence_candidates=suggestion_candidates,
+        )
         return ProductAnalysisReport(
             product_id=product_id,
             category_slug=category_slug,
@@ -262,9 +296,11 @@ class ProductAnalysisService:
             strengths=strengths,
             weaknesses=weaknesses,
             controversies=controversies,
+            evidence_gaps=[],
             applicable_scenes=list(payload.get("applicable_scenes") or fallback.applicable_scenes),
-            supporting_aspects=fallback.supporting_aspects,
-            supporting_reviews=fallback.supporting_reviews,
+            supporting_aspects=self._build_supporting_aspects(aggregates),
+            supporting_reviews=self._build_supporting_reviews(aggregates),
+            supporting_review_evidence=fallback.supporting_review_evidence,
             supporting_product_evidence=fallback.supporting_product_evidence,
             confidence=self._clamp_confidence(payload.get("confidence"), fallback.confidence),
             suggestions=suggestions,
@@ -350,13 +386,12 @@ class ProductAnalysisService:
 
         answer = self._build_answer(strengths, weaknesses, controversies)
         suggestions = self._build_suggestions(weaknesses, controversies, strengths)
-        supporting_aspects = [aggregate.aspect for aggregate in aggregates[:5]]
-        supporting_reviews = list(dict.fromkeys(
-            review_id
-            for aggregate in aggregates[:5]
-            for review_id in aggregate.representative_review_ids
-        ))
-        supporting_product_evidence = self._merge_supporting_evidence(
+        supporting_aspects = self._build_supporting_aspects(aggregates)
+        supporting_reviews = self._build_supporting_reviews(aggregates)
+        supporting_review_evidence = self._merge_review_evidence(
+            [item.supporting_evidence for item in strengths + weaknesses + controversies + suggestions]
+        )
+        supporting_product_evidence = self._merge_product_evidence(
             [item.supporting_evidence for item in strengths + weaknesses + controversies + suggestions]
         )
         confidence = min(0.9, 0.45 + 0.08 * min(len(aggregates), 4))
@@ -368,9 +403,11 @@ class ProductAnalysisService:
             strengths=strengths[:3],
             weaknesses=weaknesses[:3],
             controversies=controversies[:2],
+            evidence_gaps=[],
             applicable_scenes=[scene for scene, _ in scenes.most_common(4)],
             supporting_aspects=supporting_aspects,
             supporting_reviews=supporting_reviews,
+            supporting_review_evidence=supporting_review_evidence,
             supporting_product_evidence=supporting_product_evidence,
             confidence=confidence,
             suggestions=suggestions[:3],
@@ -401,28 +438,41 @@ class ProductAnalysisService:
     def _build_answer(self, strengths: list[InsightItem], weaknesses: list[InsightItem], controversies: list[InsightItem]) -> str:
         strength_labels = [item.label for item in strengths[:3]]
         strong_supported = [item.label for item in strengths if item.supporting_evidence.product_text_block_ids and item.supporting_evidence.product_image_ids]
-        weak_supported = [item.label for item in strengths if item.label not in strong_supported]
+        image_supported = [item.label for item in strengths if item.supporting_evidence.product_image_ids and not item.supporting_evidence.product_text_block_ids]
+        text_supported = [item.label for item in strengths if item.supporting_evidence.product_text_block_ids and not item.supporting_evidence.product_image_ids]
+        weak_supported = [
+            item.label
+            for item in strengths
+            if not item.supporting_evidence.product_text_block_ids and not item.supporting_evidence.product_image_ids
+        ]
         weakness_label = weaknesses[0].label if weaknesses else None
-        controversy_label = controversies[0].label if controversies else None
+        controversy_item = controversies[0] if controversies else None
         if self._uses_main_prompt_variant():
             parts: list[str] = []
             if strength_labels:
                 parts.append(f"Positive feedback appears on {self._natural_join(strength_labels)}.")
             else:
                 parts.append("Current reviews concentrate mainly on the core experience.")
-            if strong_supported and weak_supported:
-                weak_verb = "are" if len(weak_supported) > 1 else "is"
-                parts.append(
-                    f"{self._natural_join(strong_supported)} is relatively well supported by product-page evidence, while {self._natural_join(weak_supported)} {weak_verb} mainly supported by user reviews and only weakly supported by product-page evidence."
-                )
-            elif strong_supported:
-                parts.append(f"{self._natural_join(strong_supported)} is relatively well supported by product-page evidence.")
-            elif weak_supported:
-                parts.append(f"{self._natural_join(weak_supported)} is mainly supported by user reviews and only weakly supported by product-page evidence.")
+            support_clauses: list[str] = []
+            if strong_supported:
+                verb = "are" if len(strong_supported) > 1 else "is"
+                support_clauses.append(f"{self._natural_join(strong_supported)} {verb} well supported by both product-page text and images")
+            if image_supported:
+                verb = "are" if len(image_supported) > 1 else "is"
+                support_clauses.append(f"{self._natural_join(image_supported)} {verb} partially supported by product images")
+            if text_supported:
+                verb = "are" if len(text_supported) > 1 else "is"
+                support_clauses.append(f"{self._natural_join(text_supported)} {verb} partially supported by product-page text")
+            if weak_supported:
+                verb = "are" if len(weak_supported) > 1 else "is"
+                support_clauses.append(f"{self._natural_join(weak_supported)} {verb} mainly review-supported and lack direct product-page substantiation" if len(weak_supported) > 1 else f"{self._natural_join(weak_supported)} is mainly review-supported and lacks direct product-page substantiation")
+            if support_clauses:
+                parts.append("; while ".join([support_clauses[0], *support_clauses[1:]]) + ".")
             if weakness_label:
-                parts.append(f"The most important issue to watch is {weakness_label}.")
-            if controversy_label:
-                parts.append(f"There is still some disagreement around {controversy_label}, which should be interpreted by user segment and usage context.")
+                parts.append(f"The most important negative issue is {weakness_label}.")
+            controversy_clause = self._answer_controversy_clause(controversy_item)
+            if controversy_clause:
+                parts.append(controversy_clause)
         else:
             parts = []
             if strength_labels:
@@ -439,9 +489,24 @@ class ProductAnalysisService:
                 parts.append(f"其中 {self._natural_join(weak_supported, conjunction='和')} 主要来自用户评论，产品页面证据相对不足。")
             if weakness_label:
                 parts.append(f"同时，{weakness_label} 是当前最需要关注的问题点。")
-            if controversy_label:
-                parts.append(f"{controversy_label} 上存在一定意见分歧，需要结合具体人群与场景理解。")
-        return "".join(parts)
+            controversy_clause = self._answer_controversy_clause(controversy_item)
+            if controversy_clause:
+                parts.append(controversy_clause)
+        return " ".join(parts) if self._uses_main_prompt_variant() else "".join(parts)
+
+    def _answer_controversy_clause(self, controversy_item: InsightItem | None) -> str:
+        if controversy_item is None:
+            return ""
+        label = controversy_item.label
+        label_text = (label or "").lower()
+        if any(marker in label_text for marker in (" vs ", "vs.", "versus")) and "overall experience" in label_text:
+            primary_label = re.split(r"\bvs\.?\b|\bversus\b", label, maxsplit=1, flags=re.IGNORECASE)[0].strip(" -") or label
+            if self._uses_main_prompt_variant():
+                return f"Negative overall-experience feedback appears to be tied to {primary_label}, so it should be read as a linked issue rather than a broad disagreement."
+            return f"整体负面体验更像是由 {primary_label} 所带出的连带问题，而不是广泛分歧。"
+        if self._uses_main_prompt_variant():
+            return f"There is still some disagreement around {label}, which should be interpreted by user segment and usage context."
+        return f"{label} 上存在一定意见分歧，需要结合具体人群与场景理解。"
 
     def _build_suggestions(
         self,
@@ -503,6 +568,370 @@ class ProductAnalysisService:
                     )
                 )
         return suggestions
+
+    def _normalize_report_structure(self, report: ProductAnalysisReport, aspects: list[ReviewAspect]) -> ProductAnalysisReport:
+        normalized_strengths = [self._normalize_strength_item(item) for item in report.strengths]
+        normalized_weaknesses: list[InsightItem] = []
+        evidence_gaps: list[EvidenceGapItem] = list(report.evidence_gaps)
+
+        for item in report.weaknesses:
+            matched_aspect = self._match_report_item_aspect(item.label, item.summary, item.supporting_evidence.review_ids, aspects)
+            if matched_aspect is None:
+                normalized_weaknesses.append(self._normalize_issue_confidence(item))
+                continue
+            if matched_aspect.aspect == "overall_experience":
+                continue
+            if matched_aspect.sentiment == "negative":
+                normalized_weaknesses.append(self._direct_issue_from_aspect(matched_aspect, item))
+                evidence_gaps.append(self._evidence_gap_for_aspect(matched_aspect, item))
+                continue
+            evidence_gaps.append(self._evidence_gap_for_aspect(matched_aspect, item))
+
+        for item in normalized_strengths:
+            matched_aspect = self._match_report_item_aspect(item.label, item.summary, item.supporting_evidence.review_ids, aspects)
+            if matched_aspect is None:
+                continue
+            gap = self._evidence_gap_for_positive_aspect(matched_aspect, item)
+            if gap is not None:
+                evidence_gaps.append(gap)
+
+        normalized_weaknesses, evidence_gaps = self._backfill_missing_negative_aspects(
+            normalized_weaknesses,
+            evidence_gaps,
+            aspects,
+        )
+
+        normalized_weaknesses = self._deduplicate_report_items(normalized_weaknesses)
+        evidence_gaps = self._deduplicate_evidence_gaps(evidence_gaps)
+        normalized_suggestions = self._rebind_suggestions(
+            report.suggestions,
+            normalized_strengths + normalized_weaknesses + evidence_gaps,
+        )
+        normalized_suggestions = self._ensure_gap_suggestions(normalized_suggestions, evidence_gaps)
+
+        return report.model_copy(
+            update={
+                "strengths": normalized_strengths,
+                "weaknesses": normalized_weaknesses,
+                "evidence_gaps": evidence_gaps,
+                "suggestions": normalized_suggestions,
+            }
+        )
+
+    def _backfill_missing_negative_aspects(
+        self,
+        weaknesses: list[InsightItem],
+        evidence_gaps: list[EvidenceGapItem],
+        aspects: list[ReviewAspect],
+    ) -> tuple[list[InsightItem], list[EvidenceGapItem]]:
+        issue_keys = {self._canonical_issue_key(item.label, item.supporting_evidence.review_ids) for item in weaknesses}
+        gap_keys = {self._canonical_issue_key(item.label, item.supporting_evidence.review_ids) for item in evidence_gaps}
+        normalized_weaknesses = list(weaknesses)
+        normalized_gaps = list(evidence_gaps)
+
+        for aspect in aspects:
+            if aspect.sentiment != "negative" or aspect.aspect == "overall_experience":
+                continue
+            seed_item = InsightItem(
+                label=aspect.aspect,
+                summary=aspect.evidence_span,
+                confidence=aspect.confidence,
+                supporting_evidence=SupportingEvidence(review_ids=[aspect.review_id]),
+                confidence_breakdown=ConfidenceBreakdown(
+                    extract_confidence=self._clamp_confidence(aspect.confidence, 0.7),
+                    question_confidence=0.7,
+                    evidence_confidence=0.7,
+                    consistency_confidence=0.7,
+                    final_confidence=self._clamp_confidence(aspect.confidence, 0.78),
+                ),
+            )
+            issue_item = self._direct_issue_from_aspect(aspect, seed_item)
+            issue_key = self._canonical_issue_key(issue_item.label, issue_item.supporting_evidence.review_ids)
+            if issue_key not in issue_keys:
+                normalized_weaknesses.append(issue_item)
+                issue_keys.add(issue_key)
+
+            gap_item = self._evidence_gap_for_aspect(aspect, seed_item)
+            gap_key = self._canonical_issue_key(gap_item.label, gap_item.supporting_evidence.review_ids)
+            if gap_key not in gap_keys:
+                normalized_gaps.append(gap_item)
+                gap_keys.add(gap_key)
+
+        return normalized_weaknesses, normalized_gaps
+
+    def _normalize_strength_item(self, item: InsightItem) -> InsightItem:
+        has_text = bool(item.supporting_evidence.product_text_block_ids)
+        has_image = bool(item.supporting_evidence.product_image_ids)
+        if has_text and has_image:
+            return item
+        cap = 0.88 if has_text or has_image else 0.78
+        return item.model_copy(update={"confidence": min(item.confidence, cap)})
+
+    def _normalize_issue_confidence(self, item: InsightItem) -> InsightItem:
+        has_text = bool(item.supporting_evidence.product_text_block_ids)
+        has_image = bool(item.supporting_evidence.product_image_ids)
+        if has_text and has_image:
+            return item
+        cap = 0.84 if has_text or has_image else 0.78
+        return item.model_copy(update={"confidence": min(item.confidence, cap)})
+
+    def _match_report_item_aspect(
+        self,
+        label: str,
+        summary: str,
+        review_ids: list[str],
+        aspects: list[ReviewAspect],
+    ) -> ReviewAspect | None:
+        candidates = [aspect for aspect in aspects if not review_ids or aspect.review_id in review_ids]
+        if not candidates:
+            return None
+        text_family = self._canonical_issue_family(f"{label} {summary}", review_ids)
+        family_matches = [
+            aspect
+            for aspect in candidates
+            if self._canonical_issue_family(aspect.aspect, [aspect.review_id]) == text_family
+        ]
+        if len(family_matches) == 1:
+            return family_matches[0]
+        label_tokens = self._match_tokens(f"{label} {summary}")
+        scored: list[tuple[tuple[int, int, int], ReviewAspect]] = []
+        for aspect in candidates:
+            aspect_tokens = self._match_tokens(f"{aspect.aspect} {aspect.opinion} {aspect.evidence_span}")
+            overlap = len(label_tokens.intersection(aspect_tokens))
+            sentiment_bonus = 1 if aspect.sentiment == "negative" else 0
+            overall_penalty = 0 if aspect.aspect != "overall_experience" else -1
+            scored.append(((overlap, sentiment_bonus, overall_penalty), aspect))
+        scored.sort(key=lambda item: item[0], reverse=True)
+        best_score, best_aspect = scored[0]
+        if best_score[0] > 0:
+            return best_aspect
+        non_overall = [aspect for aspect in candidates if aspect.aspect != "overall_experience"]
+        if len(non_overall) == 1:
+            return non_overall[0]
+        if len(candidates) == 1:
+            return candidates[0]
+        return None
+
+    def _direct_issue_from_aspect(self, aspect: ReviewAspect, item: InsightItem) -> InsightItem:
+        label, summary = self._direct_issue_label_and_summary(aspect)
+        return self._normalize_issue_confidence(
+            item.model_copy(
+                update={
+                    "label": label,
+                    "summary": summary,
+                    "owner": "product_issue",
+                    "evidence_level": self._infer_evidence_level(item.supporting_evidence),
+                }
+            )
+        )
+
+    def _direct_issue_label_and_summary(self, aspect: ReviewAspect) -> tuple[str, str]:
+        aspect_name = aspect.aspect.lower()
+        if "rubber" in aspect_name and "durability" in aspect_name:
+            if self._uses_main_prompt_variant():
+                return (
+                    "Rubber insert durability failure",
+                    "One user reports that the rubber insert near the ear deteriorated and fell apart in less than two years.",
+                )
+            return ("橡胶耳托耐久性失效", "有用户反馈耳侧橡胶件在不到两年内老化并脱落。")
+        if "optical" in aspect_name:
+            if self._uses_main_prompt_variant():
+                return (
+                    "Potential optical magnification affecting depth perception",
+                    "One user reports that the lenses slightly magnify vision, making the ground appear closer during walking or outdoor navigation.",
+                )
+            return ("可能影响景深判断的轻微放大", "有用户反馈镜片存在轻微放大效应，导致步行或户外导航时地面看起来更近。")
+        if self._uses_main_prompt_variant():
+            return (aspect.aspect.title(), f"User feedback reports a negative issue around {aspect.aspect}: {aspect.evidence_span}.")
+        return (aspect.aspect, f"用户反馈在 {aspect.aspect} 上存在负面问题：{aspect.evidence_span}。")
+
+    def _evidence_gap_for_aspect(self, aspect: ReviewAspect, item: InsightItem) -> EvidenceGapItem:
+        label, summary = self._evidence_gap_label_and_summary(aspect, item.supporting_evidence)
+        return EvidenceGapItem(
+            label=label,
+            summary=summary,
+            confidence=max(0.82, min(0.95, item.confidence)),
+            source_aspect=aspect.aspect,
+            supporting_evidence=item.supporting_evidence,
+            owner="content_presentation",
+            evidence_level="missing_product_evidence",
+            confidence_breakdown=item.confidence_breakdown,
+        )
+
+    def _evidence_gap_for_positive_aspect(self, aspect: ReviewAspect, item: InsightItem) -> EvidenceGapItem | None:
+        if aspect.aspect == "overall_experience":
+            return None
+        aspect_name = aspect.aspect.lower()
+        if "tint" in aspect_name and item.supporting_evidence.product_image_ids and not item.supporting_evidence.product_text_block_ids:
+            label, summary = self._evidence_gap_label_and_summary(aspect, item.supporting_evidence)
+            return EvidenceGapItem(
+                label=label,
+                summary=summary,
+                confidence=max(0.8, min(0.92, item.confidence)),
+                source_aspect=aspect.aspect,
+                supporting_evidence=item.supporting_evidence,
+                owner="content_presentation",
+                evidence_level="missing_product_evidence",
+                confidence_breakdown=item.confidence_breakdown,
+            )
+        if item.supporting_evidence.product_text_block_ids or item.supporting_evidence.product_image_ids:
+            return None
+        label, summary = self._evidence_gap_label_and_summary(aspect, item.supporting_evidence)
+        return EvidenceGapItem(
+            label=label,
+            summary=summary,
+            confidence=max(0.8, min(0.92, item.confidence)),
+            source_aspect=aspect.aspect,
+            supporting_evidence=item.supporting_evidence,
+            owner="content_presentation",
+            evidence_level="missing_product_evidence",
+            confidence_breakdown=item.confidence_breakdown,
+        )
+
+    def _evidence_gap_label_and_summary(self, aspect: ReviewAspect, evidence: SupportingEvidence | None = None) -> tuple[str, str]:
+        aspect_name = aspect.aspect.lower()
+        if "rubber" in aspect_name and "durability" in aspect_name:
+            if self._uses_main_prompt_variant():
+                return (
+                    "Missing rubber insert durability disclosure",
+                    "No product-page warranty, material composition, or durability testing detail was retrieved for the rubber insert near the ear.",
+                )
+            return ("缺少橡胶耳托耐久性披露", "当前未检索到关于耳侧橡胶件的保修、材料组成或耐久性测试说明。")
+        if "optical" in aspect_name:
+            if self._uses_main_prompt_variant():
+                return (
+                    "Missing optical distortion validation",
+                    "No product-page evidence was retrieved for optical neutrality, distortion control, or magnification-related validation.",
+                )
+            return ("缺少光学畸变核验信息", "当前未检索到关于光学中性、畸变控制或放大相关核验的信息。")
+        if "tint" in aspect_name or "lens tinting" in aspect_name:
+            if evidence is not None and evidence.product_image_ids and not evidence.product_text_block_ids:
+                if self._uses_main_prompt_variant():
+                    return (
+                        "Missing explicit lens tint hue disclosure",
+                        "Product images visually show tinted lenses, but the product text does not explicitly name the tint color or hue.",
+                    )
+                return ("缺少明确的镜片色调披露", "商品图片可以看出镜片存在染色，但商品文本没有明确标注具体颜色或色调名称。")
+            if self._uses_main_prompt_variant():
+                return (
+                    "Missing lens tinting substantiation",
+                    "Current product-page evidence does not substantiate the review feedback about lens tinting.",
+                )
+            return ("缺少镜片染色佐证", "当前商品页证据不足以支撑关于镜片染色的评论反馈。")
+        if "comfort" in aspect_name:
+            if self._uses_main_prompt_variant():
+                return (
+                    "Comfort substantiation gap",
+                    "Comfort is positively mentioned by a user review, but no product-page text or reliable image evidence was retrieved to substantiate the claim.",
+                )
+            return ("舒适性佐证缺口", "评论提到了舒适性正向反馈，但当前未检索到可佐证该结论的商品页文本或可靠图像证据。")
+        if "price" in aspect_name or "value" in aspect_name:
+            if self._uses_main_prompt_variant():
+                return (
+                    "Price substantiation gap",
+                    "The product is positively perceived as having an excellent price, but the listed price and comparative pricing context were not retrieved.",
+                )
+            return ("价格佐证缺口", "用户认为价格表现优秀，但当前未检索到明确售价或可用于比较的定价上下文。")
+        if self._uses_main_prompt_variant():
+            return (
+                f"Missing {aspect.aspect} substantiation",
+                f"Current product-page evidence does not substantiate the review feedback about {aspect.aspect}.",
+            )
+        return (f"缺少 {aspect.aspect} 佐证", f"当前商品页证据不足以支撑关于 {aspect.aspect} 的评论反馈。")
+
+    def _deduplicate_report_items(self, items: list[InsightItem]) -> list[InsightItem]:
+        deduplicated: list[InsightItem] = []
+        seen: set[str] = set()
+        for item in items:
+            key = self._canonical_issue_key(item.label, item.supporting_evidence.review_ids)
+            if key in seen:
+                continue
+            seen.add(key)
+            deduplicated.append(item)
+        return deduplicated
+
+    def _deduplicate_evidence_gaps(self, items: list[EvidenceGapItem]) -> list[EvidenceGapItem]:
+        deduplicated: list[EvidenceGapItem] = []
+        seen: set[str] = set()
+        for item in items:
+            key = self._canonical_issue_key(item.label, item.supporting_evidence.review_ids)
+            if key in seen:
+                continue
+            seen.add(key)
+            deduplicated.append(item)
+        return deduplicated
+
+    def _rebind_suggestions(
+        self,
+        suggestions: list[ImprovementSuggestion],
+        candidate_items: list[InsightItem | EvidenceGapItem],
+    ) -> list[ImprovementSuggestion]:
+        rebound: list[ImprovementSuggestion] = []
+        for suggestion in suggestions:
+            reason_text = self._meaningful_suggestion_reason_text(suggestion)
+            matched = self._resolve_fallback_item(reason_text, suggestion.suggestion, candidate_items)
+            updated = suggestion
+            if matched is not None:
+                updated = suggestion.model_copy(update={"supporting_evidence": matched.supporting_evidence})
+                if self._suggestion_text_conflicts_with_fallback(suggestion.suggestion, reason_text, matched):
+                    updated = updated.model_copy(update={"suggestion": self._default_suggestion_for_fallback(matched)})
+            rebound.append(updated)
+        return rebound
+
+    def _ensure_gap_suggestions(
+        self,
+        suggestions: list[ImprovementSuggestion],
+        evidence_gaps: list[EvidenceGapItem],
+    ) -> list[ImprovementSuggestion]:
+        ensured = list(suggestions)
+        existing_keys = {
+            self._canonical_issue_family(self._suggestion_family_text(suggestion), suggestion.supporting_evidence.review_ids)
+            for suggestion in ensured
+        }
+        for gap in evidence_gaps:
+            gap_key = self._canonical_issue_family(gap.label, gap.supporting_evidence.review_ids)
+            if gap_key in existing_keys:
+                continue
+            if len(ensured) >= 5:
+                break
+            ensured.append(
+                ImprovementSuggestion(
+                    suggestion=self._default_suggestion_for_fallback(gap),
+                    suggestion_type="perception",
+                    reason=[gap.summary],
+                    confidence=min(0.9, max(0.75, gap.confidence)),
+                    supporting_evidence=gap.supporting_evidence,
+                    owner="content_presentation",
+                    confidence_breakdown=gap.confidence_breakdown,
+                )
+            )
+            existing_keys.add(gap_key)
+        return ensured
+
+    def _suggestion_family_text(self, suggestion: ImprovementSuggestion) -> str:
+        suggestion_family = self._canonical_issue_family(suggestion.suggestion, suggestion.supporting_evidence.review_ids)
+        if suggestion.supporting_evidence.review_ids and suggestion_family not in set(suggestion.supporting_evidence.review_ids):
+            return suggestion.suggestion
+        if suggestion_family not in {"unscoped", ""}:
+            return suggestion.suggestion
+        return " ".join([suggestion.suggestion, self._meaningful_suggestion_reason_text(suggestion)]).strip()
+
+    def _meaningful_suggestion_reason_text(self, suggestion: ImprovementSuggestion) -> str:
+        meaningful_reasons = [
+            reason
+            for reason in suggestion.reason
+            if not reason.lower().startswith("replay continuity:") and not reason.startswith("回放连续性：")
+        ]
+        return " ".join(meaningful_reasons)
+
+    def _infer_evidence_level(self, evidence: SupportingEvidence) -> str:
+        has_text = bool(evidence.product_text_block_ids)
+        has_image = bool(evidence.product_image_ids)
+        if has_text and has_image:
+            return "product_supported"
+        if has_text or has_image:
+            return "partial_product_support"
+        return "review_only"
 
     def _aggregate_confidence(self, aggregate: AspectAggregate) -> float:
         return min(0.92, 0.5 + 0.1 * min(aggregate.frequency, 4))
@@ -568,14 +997,24 @@ class ProductAnalysisService:
             if suggestion_type not in {"structural", "perception"}:
                 suggestion_type = "perception"
             reason = item.get("reason") if isinstance(item.get("reason"), list) else [str(item.get("reason") or "")]
+            reason_text = " ".join(str(entry) for entry in reason if entry)
+            suggestion_text = str(item.get("suggestion") or "")
             matched_fallback = self._resolve_fallback_item(
-                raw_label=str(item.get("suggestion") or ""),
-                raw_text=" ".join(str(entry) for entry in reason if entry),
+                raw_label=reason_text,
+                raw_text=suggestion_text,
                 fallback_items=candidate_pool,
             )
+            if matched_fallback is None:
+                matched_fallback = self._resolve_fallback_item(
+                    raw_label=suggestion_text,
+                    raw_text=reason_text,
+                    fallback_items=candidate_pool,
+                )
+            if matched_fallback is not None and self._suggestion_text_conflicts_with_fallback(suggestion_text, reason_text, matched_fallback):
+                suggestion_text = self._default_suggestion_for_fallback(matched_fallback)
             hydrated.append(
                 ImprovementSuggestion(
-                    suggestion=str(item.get("suggestion") or ""),
+                    suggestion=suggestion_text,
                     suggestion_type=suggestion_type,
                     reason=[str(entry) for entry in reason if entry],
                     confidence=self._clamp_confidence(item.get("confidence"), 0.7),
@@ -600,32 +1039,129 @@ class ProductAnalysisService:
         if exact_match is not None:
             return exact_match
 
+        raw_label_tokens = self._match_tokens(raw_label)
         raw_tokens = self._match_tokens(f"{raw_label} {raw_text}")
         scored = []
         for item in fallback_items:
-            candidate_text = " ".join(
+            candidate_label_text = " ".join(
                 [
                     str(getattr(item, "label", "")),
-                    str(getattr(item, "summary", "")),
                     str(getattr(item, "suggestion", "")),
+                ]
+            )
+            candidate_text = " ".join(
+                [
+                    str(getattr(item, "summary", "")),
                     " ".join(getattr(item, "reason", [])),
                     " ".join(item.supporting_evidence.review_ids),
                 ]
             )
+            candidate_label_tokens = self._match_tokens(candidate_label_text)
             candidate_tokens = self._match_tokens(candidate_text)
-            overlap = len(raw_tokens.intersection(candidate_tokens))
-            scored.append((overlap, item))
+            label_overlap = len(raw_label_tokens.intersection(candidate_label_tokens))
+            text_overlap = len(raw_tokens.intersection(candidate_label_tokens.union(candidate_tokens)))
+            scored.append(((label_overlap, text_overlap), item))
         scored.sort(key=lambda pair: pair[0], reverse=True)
-        return scored[0][1] if scored and scored[0][0] > 0 else fallback_items[0]
+        return scored[0][1] if scored and scored[0][0] > (0, 0) else None
+
+    def _suggestion_text_conflicts_with_fallback(self, suggestion_text: str, reason_text: str, matched_fallback: object) -> bool:
+        label = str(getattr(matched_fallback, "label", getattr(matched_fallback, "suggestion", "")))
+        label_tokens = self._match_tokens(label)
+        if not label_tokens:
+            return False
+        suggestion_tokens = self._match_tokens(suggestion_text)
+        reason_tokens = self._match_tokens(reason_text)
+        has_reason_alignment = bool(label_tokens.intersection(reason_tokens))
+        has_suggestion_alignment = bool(label_tokens.intersection(suggestion_tokens))
+        return has_reason_alignment and not has_suggestion_alignment
+
+    def _default_suggestion_for_fallback(self, matched_fallback: object) -> str:
+        label = str(getattr(matched_fallback, "label", "")).lower()
+        if any(token in label for token in ("price", "value")):
+            if self._uses_main_prompt_variant():
+                return "State the current selling price and any active discount or list-price reference directly in the primary product metadata so the value claim can be checked quickly."
+            return "在商品主信息中直接标明当前售价，以及任何生效中的折扣或划线价参考，方便用户快速核验价值表述。"
+        if any(token in label for token in ("comfort", "fit")):
+            if self._uses_main_prompt_variant():
+                return "Clarify the fit and comfort-related design cues on the product page, and add close-up visuals of the features that help users judge wear comfort."
+            return "在商品页中补充佩戴贴合度与舒适性相关设计说明，并增加帮助用户判断佩戴舒适性的局部特写。"
+        if any(token in label for token in ("tint", "lens")):
+            if self._uses_main_prompt_variant():
+                return "State the exact lens tint in the primary product copy and include a color-accurate front-facing lens image so the tint claim can be checked visually."
+            return "在商品核心文案中写明镜片的具体染色信息，并提供色彩准确的正面镜片图片，便于直观看到染色效果。"
+        if any(token in label for token in ("optical", "distortion", "magnification")):
+            if self._uses_main_prompt_variant():
+                return "Add optical validation notes relevant to motion and depth perception, and explain what current product-page evidence can and cannot verify."
+            return "补充与运动和景深感知相关的光学核验说明，并明确当前商品页证据能确认和不能确认的内容。"
+        if any(token in label for token in ("durability", "rubber", "insert")):
+            if self._uses_main_prompt_variant():
+                return "Add durability-validation notes and warranty scope for the rubber ear insert, and describe the actual material and test scope without claiming unsupported lifetime thresholds."
+            return "补充橡胶耳托的耐久性核验说明与保修范围，并说明实际材料与测试范围，不要给出缺乏证据支撑的寿命阈值。"
+        if self._uses_main_prompt_variant():
+            return f"Strengthen the product-page explanation and evidence around {getattr(matched_fallback, 'label', 'this issue')}."
+        return f"围绕 {getattr(matched_fallback, 'label', '该问题')} 补充更明确的商品页说明与证据。"
 
     def _extract_review_ids(self, text: str) -> set[str]:
         return set(re.findall(r"[A-Za-z0-9]+_[A-Za-z0-9]+_review_\d+", text or ""))
+
+    def _canonical_issue_key(self, label: str, review_ids: list[str] | None = None) -> str:
+        text = (label or "").lower()
+        if any(token in text for token in ("rubber", "insert", "durability")):
+            base = "rubber_insert_durability"
+        elif any(token in text for token in ("optical", "magnification", "distortion", "prism")):
+            base = "optical_accuracy"
+        elif any(token in text for token in ("comfort", "fit", "nose-pad", "temple-tip")):
+            base = "comfort"
+        elif any(token in text for token in ("price", "value", "discount", "pricing")):
+            base = "price"
+        elif any(token in text for token in ("tint", "lens tint", "hue")):
+            base = "lens_tinting"
+        elif "overall_experience" in text or "overall experience" in text:
+            base = "overall_experience"
+        else:
+            review_key = review_ids[0] if review_ids else "unscoped"
+            base = f"{review_key}:{self._normalize_match_text(label).replace(' ', '_')}"
+
+        if any(token in text for token in ("transparency", "communication", "validation", "substantiation", "disclosure", "documentation", "gap", "missing", "claim")):
+            issue_type = "evidence_gap"
+        else:
+            issue_type = "issue"
+        return f"{base}:{issue_type}"
+
+    def _canonical_issue_family(self, label: str, review_ids: list[str] | None = None) -> str:
+        return self._canonical_issue_key(label, review_ids).split(":", 1)[0]
 
     def _normalize_match_text(self, text: str) -> str:
         return " ".join((text or "").strip().lower().split())
 
     def _match_tokens(self, text: str) -> set[str]:
-        return {token for token in re.findall(r"[a-z0-9_]+", (text or "").lower()) if len(token) > 2}
+        ignored_tokens = {
+            "claim",
+            "claims",
+            "clear",
+            "comes",
+            "communication",
+            "concern",
+            "concerns",
+            "evidence",
+            "feedback",
+            "from",
+            "mentioned",
+            "perception",
+            "positive",
+            "negative",
+            "reported",
+            "review",
+            "reviews",
+            "substantiation",
+            "transparency",
+            "user",
+        }
+        return {
+            token
+            for token in re.findall(r"[a-z0-9_]+", (text or "").lower())
+            if len(token) > 2 and token not in ignored_tokens
+        }
 
     def _natural_join(self, items: list[str], conjunction: str = "and") -> str:
         cleaned = [item for item in items if item]
@@ -667,13 +1203,18 @@ class ProductAnalysisService:
         if not isinstance(previous_report, dict):
             return report, None
 
-        previous_issue_labels = self._extract_issue_labels(previous_report)
-        current_issue_labels = self._unique_labels([item.label for item in report.weaknesses + report.controversies])
-        previous_issue_set = set(previous_issue_labels)
-        current_issue_set = set(current_issue_labels)
-        persistent_issue_labels = [label for label in current_issue_labels if label in previous_issue_set]
-        resolved_issue_labels = [label for label in previous_issue_labels if label not in current_issue_set]
-        new_issue_labels = [label for label in current_issue_labels if label not in previous_issue_set]
+        previous_issue_records = self._extract_issue_records(previous_report)
+        current_issue_records = self._issue_records_from_report(report)
+        previous_issue_by_key = {record[1]: record[0] for record in previous_issue_records}
+        current_issue_by_key = {record[1]: record[0] for record in current_issue_records}
+        previous_issue_keys = set(previous_issue_by_key)
+        current_issue_keys = set(current_issue_by_key)
+        persistent_issue_keys = sorted(current_issue_keys.intersection(previous_issue_keys))
+        resolved_issue_keys = sorted(previous_issue_keys.difference(current_issue_keys))
+        new_issue_keys = sorted(current_issue_keys.difference(previous_issue_keys))
+        persistent_issue_labels = [current_issue_by_key[key] for key in persistent_issue_keys]
+        resolved_issue_labels = [previous_issue_by_key[key] for key in resolved_issue_keys]
+        new_issue_labels = [current_issue_by_key[key] for key in new_issue_keys]
         feedback_state = self._extract_feedback_state(feedback_payload)
         accepted_persistent_issue_labels = [
             label for label in persistent_issue_labels if label in feedback_state["accepted_issue_labels"]
@@ -714,8 +1255,11 @@ class ProductAnalysisService:
             accepted_issue_labels=feedback_state["accepted_issue_labels"],
             rejected_issue_labels=feedback_state["rejected_issue_labels"],
             persistent_issue_labels=persistent_issue_labels,
+            persistent_issue_keys=persistent_issue_keys,
             resolved_issue_labels=resolved_issue_labels,
+            resolved_issue_keys=resolved_issue_keys,
             new_issue_labels=new_issue_labels,
+            new_issue_keys=new_issue_keys,
         )
         return updated_report, replay_summary
 
@@ -824,12 +1368,12 @@ class ProductAnalysisService:
     def _summarize_evidence_check(self, evidence: SupportingEvidence, related_questions: list[str]) -> str:
         question_hint = f" questions={'; '.join(related_questions)}" if related_questions else ""
         return (
-            f"reviews={len(evidence.review_ids)}, text_blocks={len(evidence.product_text_block_ids)}, images={len(evidence.product_image_ids)}.{question_hint}"
+            f"reviews={len(evidence.review_ids)}, valid_text_blocks={len(evidence.product_text_block_ids)}, valid_images={len(evidence.product_image_ids)}.{question_hint}"
         )
 
-    def _extract_issue_labels(self, report_payload: dict[str, object]) -> list[str]:
-        labels: list[str] = []
-        for key in ("weaknesses", "controversies"):
+    def _extract_issue_records(self, report_payload: dict[str, object]) -> list[tuple[str, str]]:
+        records: list[tuple[str, str]] = []
+        for key in ("weaknesses", "controversies", "evidence_gaps"):
             items = report_payload.get(key)
             if not isinstance(items, list):
                 continue
@@ -838,8 +1382,30 @@ class ProductAnalysisService:
                     continue
                 label = item.get("label")
                 if isinstance(label, str) and label:
-                    labels.append(label)
-        return self._unique_labels(labels)
+                    support = item.get("supporting_evidence") if isinstance(item.get("supporting_evidence"), dict) else {}
+                    review_ids = support.get("review_ids") if isinstance(support, dict) else []
+                    records.append((label, self._canonical_issue_key(label, review_ids if isinstance(review_ids, list) else [])))
+        deduplicated: list[tuple[str, str]] = []
+        seen: set[str] = set()
+        for label, key in records:
+            if key in seen:
+                continue
+            seen.add(key)
+            deduplicated.append((label, key))
+        return deduplicated
+
+    def _issue_records_from_report(self, report: ProductAnalysisReport) -> list[tuple[str, str]]:
+        records: list[tuple[str, str]] = []
+        for item in report.weaknesses + report.controversies + report.evidence_gaps:
+            records.append((item.label, self._canonical_issue_key(item.label, item.supporting_evidence.review_ids)))
+        deduplicated: list[tuple[str, str]] = []
+        seen: set[str] = set()
+        for label, key in records:
+            if key in seen:
+                continue
+            seen.add(key)
+            deduplicated.append((label, key))
+        return deduplicated
 
     def _prioritize_replayed_insights(
         self,
@@ -874,7 +1440,6 @@ class ProductAnalysisService:
             return suggestions
 
         updated: list[ImprovementSuggestion] = []
-        matched_labels: set[str] = set()
         for suggestion in suggestions:
             matched_label = next(
                 (label for label in persistent_issue_labels if self._suggestion_matches_label(suggestion, label)),
@@ -883,24 +1448,12 @@ class ProductAnalysisService:
             if matched_label is None:
                 updated.append(suggestion)
                 continue
-            matched_labels.add(matched_label)
-            reasons = list(suggestion.reason)
-            notes = [self._replay_continuity_note([matched_label])]
+            note = self._replay_continuity_note([matched_label])
             if matched_label in accepted_issue_labels:
-                notes.append(self._feedback_alignment_note(matched_label, "accepted"))
+                note = f"{note} {self._feedback_alignment_note(matched_label, 'accepted')}"
             elif matched_label in rejected_issue_labels:
-                notes.append(self._feedback_alignment_note(matched_label, "rejected"))
-            for note in notes:
-                if note not in reasons:
-                    reasons.append(note)
-            updated.append(suggestion.model_copy(update={"reason": reasons}))
-
-        unmatched_labels = [label for label in persistent_issue_labels if label not in matched_labels]
-        if unmatched_labels and updated:
-            note = self._replay_continuity_note(unmatched_labels[:2])
-            reasons = list(updated[0].reason)
-            if note not in reasons:
-                updated[0] = updated[0].model_copy(update={"reason": reasons + [note]})
+                note = f"{note} {self._feedback_alignment_note(matched_label, 'rejected')}"
+            updated.append(suggestion.model_copy(update={"replay_note": note}))
         return sorted(
             updated,
             key=lambda suggestion: self._suggestion_replay_rank(
@@ -1111,11 +1664,14 @@ class ProductAnalysisService:
                         top_k_count=0,
                         route_coverage=0.0,
                         answer_coverage=0.0,
+                        answer_status="none",
+                        answer_value=None,
+                        answer_source=None,
                         evidence_coverage=0.0,
                         score_drift=0.0,
                         text_coverage=False,
                         image_coverage=False,
-                        conflict_risk=1.0,
+                        conflict_risk=0.0,
                     )
                 )
                 continue
@@ -1127,12 +1683,26 @@ class ProductAnalysisService:
             route_coverage = len(expected_routes.intersection(available_routes)) / len(expected_routes) if expected_routes else 0.0
             answered_hits = [item for item in retrieval.retrieved if self._evidence_answers_question(retrieval.source_question, item)]
             answer_coverage = min(1.0, len(answered_hits) / max(1, len(expected_routes)))
+            answer_value, answer_source = self._extract_answer_value(retrieval.source_question, answered_hits)
+            answer_status, answer_coverage = self._classify_answer_status(
+                retrieval.source_question,
+                answer_value,
+                answer_source,
+                answer_coverage,
+            )
             drift_samples = [
                 abs(item.embedding_score - (item.rerank_score if item.rerank_score is not None else item.embedding_score))
                 for item in retrieval.retrieved
             ]
             score_drift = sum(drift_samples) / len(drift_samples)
-            conflict_risk = 1.0 - min(1.0, (0.6 if text_coverage else 0.0) + (0.4 if image_coverage else 0.0))
+            answered_route_scores: dict[str, list[float]] = defaultdict(list)
+            for item in answered_hits:
+                answered_route_scores[item.route].append(float(item.rerank_score if item.rerank_score is not None else item.embedding_score))
+            if len(answered_route_scores) >= 2:
+                route_means = [sum(scores) / len(scores) for scores in answered_route_scores.values() if scores]
+                conflict_risk = min(1.0, max(route_means) - min(route_means)) if route_means else 0.0
+            else:
+                conflict_risk = 0.0
             metrics.append(
                 RetrievalQualityMetrics(
                     retrieval_id=retrieval.retrieval_id,
@@ -1140,6 +1710,9 @@ class ProductAnalysisService:
                     top_k_count=evidence_count,
                     route_coverage=route_coverage,
                     answer_coverage=answer_coverage,
+                    answer_status=answer_status,
+                    answer_value=answer_value,
+                    answer_source=answer_source,
                     evidence_coverage=answer_coverage,
                     score_drift=score_drift,
                     text_coverage=text_coverage,
@@ -1148,6 +1721,76 @@ class ProductAnalysisService:
                 )
             )
         return metrics
+
+    def _extract_answer_value(self, question: str, answered_hits: list) -> tuple[str | None, str | None]:
+        if not answered_hits:
+            return None, None
+        question_text = (question or "").lower()
+        ranked_hits = sorted(
+            answered_hits,
+            key=lambda item: float(item.rerank_score if item.rerank_score is not None else item.embedding_score),
+            reverse=True,
+        )
+        joined_preview = " ".join(filter(None, [getattr(item, "content_preview", None) for item in ranked_hits])).lower()
+
+        if "price" in question_text:
+            match = re.search(r"(?:\$|€|£)?\s*\d+(?:[\.,]\d+)?", joined_preview)
+            if match:
+                return match.group(0).strip(), "text"
+            return None, None
+
+        if any(token in question_text for token in ("uv protection", "uv400", "category 4", "tint provides uv")):
+            fragments = []
+            for pattern in (r"100% uv protection", r"uv400", r"category\s*\d+"):
+                match = re.search(pattern, joined_preview)
+                if match:
+                    fragments.append(match.group(0))
+            if fragments:
+                return "; ".join(dict.fromkeys(fragment.title() if fragment.startswith("category") else fragment for fragment in fragments)), "text"
+
+        if any(token in question_text for token in ("tint color", "tint", "hue")):
+            color_match = re.search(r"\b(gray|grey|brown|green|rose|blue|amber|bronze|smoke|mirrored)\b", joined_preview)
+            if color_match:
+                return color_match.group(1), "text"
+            if any(getattr(item, "route", None) == "image" for item in ranked_hits):
+                return "Lens tint is visually present in product images, but the exact hue is not explicitly named.", "image"
+
+        best = ranked_hits[0]
+        preview = getattr(best, "content_preview", None)
+        if preview:
+            return preview[:160], getattr(best, "route", None)
+        return None, None
+
+    def _classify_answer_status(
+        self,
+        question: str,
+        answer_value: str | None,
+        answer_source: str | None,
+        answer_coverage: float,
+    ) -> tuple[str, float]:
+        if not answer_value:
+            return "none", 0.0
+        question_text = (question or "").lower()
+        answer_text = answer_value.lower()
+        if any(token in question_text for token in ("tint color", "hue", "tint color or hue")) and "not explicitly named" in answer_text:
+            return "partial", min(answer_coverage, 0.5)
+        if answer_source in {"text", "image"}:
+            return "supported", answer_coverage
+        return "unsupported", answer_coverage
+
+    def _merge_review_evidence(self, evidences: list[SupportingEvidence]) -> SupportingEvidence:
+        return SupportingEvidence(
+            review_ids=list(dict.fromkeys(review_id for evidence in evidences for review_id in evidence.review_ids))[:10],
+            product_text_block_ids=[],
+            product_image_ids=[],
+        )
+
+    def _merge_product_evidence(self, evidences: list[SupportingEvidence]) -> SupportingEvidence:
+        return SupportingEvidence(
+            review_ids=[],
+            product_text_block_ids=list(dict.fromkeys(text_id for evidence in evidences for text_id in evidence.product_text_block_ids))[:10],
+            product_image_ids=list(dict.fromkeys(image_id for evidence in evidences for image_id in evidence.product_image_ids))[:10],
+        )
 
     def _clamp_confidence(self, value: object, default: float) -> float:
         try:

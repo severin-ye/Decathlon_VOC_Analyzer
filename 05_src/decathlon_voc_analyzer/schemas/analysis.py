@@ -8,6 +8,8 @@ from decathlon_voc_analyzer.schemas.review import ReviewAspect, ReviewExtraction
 EvidenceRoute = Literal["text", "image"]
 AnalysisMode = Literal["heuristic", "llm"]
 IssueOwner = Literal["product_issue", "content_presentation", "evidence_gap", "expectation_mismatch"]
+EvidenceLevel = Literal["review_only", "partial_product_support", "product_supported", "missing_product_evidence"]
+AnswerStatus = Literal["none", "partial", "supported", "contradicted", "unsupported"]
 ProcessTraceType = Literal["observation", "evidence_check", "owner_judgement", "action_generation"]
 
 
@@ -56,6 +58,9 @@ class RetrievalQualityMetrics(BaseModel):
     top_k_count: int = Field(ge=0)
     route_coverage: float = Field(default=0.0, ge=0.0, le=1.0)
     answer_coverage: float = Field(default=0.0, ge=0.0, le=1.0)
+    answer_status: AnswerStatus = "none"
+    answer_value: str | None = None
+    answer_source: EvidenceRoute | None = None
     evidence_coverage: float = Field(ge=0.0, le=1.0)
     score_drift: float = Field(ge=0.0, le=1.0)
     text_coverage: bool = False
@@ -92,8 +97,11 @@ class ReplayContinuationSummary(BaseModel):
     accepted_issue_labels: list[str] = Field(default_factory=list)
     rejected_issue_labels: list[str] = Field(default_factory=list)
     persistent_issue_labels: list[str] = Field(default_factory=list)
+    persistent_issue_keys: list[str] = Field(default_factory=list)
     resolved_issue_labels: list[str] = Field(default_factory=list)
+    resolved_issue_keys: list[str] = Field(default_factory=list)
     new_issue_labels: list[str] = Field(default_factory=list)
+    new_issue_keys: list[str] = Field(default_factory=list)
 
 
 class AspectAggregate(BaseModel):
@@ -141,6 +149,17 @@ class ConfidenceBreakdown(BaseModel):
     final_confidence: float = Field(ge=0.0, le=1.0)
 
 
+class EvidenceGapItem(BaseModel):
+    label: str
+    summary: str
+    confidence: float = Field(ge=0.0, le=1.0)
+    source_aspect: str | None = None
+    supporting_evidence: SupportingEvidence = Field(default_factory=SupportingEvidence)
+    owner: IssueOwner = "evidence_gap"
+    evidence_level: EvidenceLevel = "missing_product_evidence"
+    confidence_breakdown: ConfidenceBreakdown | None = None
+
+
 class ProcessTraceItem(BaseModel):
     trace_type: ProcessTraceType
     aspect: str
@@ -156,6 +175,7 @@ class InsightItem(BaseModel):
     confidence: float = Field(ge=0.0, le=1.0)
     supporting_evidence: SupportingEvidence
     owner: IssueOwner = "product_issue"
+    evidence_level: EvidenceLevel = "review_only"
     confidence_breakdown: ConfidenceBreakdown | None = None
 
 
@@ -166,6 +186,7 @@ class ImprovementSuggestion(BaseModel):
     confidence: float = Field(ge=0.0, le=1.0)
     supporting_evidence: SupportingEvidence
     owner: IssueOwner = "content_presentation"
+    replay_note: str | None = None
     confidence_breakdown: ConfidenceBreakdown | None = None
 
 
@@ -176,11 +197,13 @@ class ProductAnalysisReport(BaseModel):
     strengths: list[InsightItem] = Field(default_factory=list)
     weaknesses: list[InsightItem] = Field(default_factory=list)
     controversies: list[InsightItem] = Field(default_factory=list)
+    evidence_gaps: list[EvidenceGapItem] = Field(default_factory=list)
     product_impressions: list[ProductImpressionItem] = Field(default_factory=list)
     customer_impressions: list[CustomerImpressionItem] = Field(default_factory=list)
     applicable_scenes: list[str] = Field(default_factory=list)
     supporting_aspects: list[str] = Field(default_factory=list)
     supporting_reviews: list[str] = Field(default_factory=list)
+    supporting_review_evidence: SupportingEvidence = Field(default_factory=SupportingEvidence)
     supporting_product_evidence: SupportingEvidence
     confidence: float = Field(ge=0.0, le=1.0)
     suggestions: list[ImprovementSuggestion] = Field(default_factory=list)

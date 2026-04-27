@@ -24,4 +24,7 @@ Rules:
 - All natural language values must be written in English.
 - Do not make claims that are not supported by the provided evidence.
 - Keep the wording concise and reviewer-friendly.
+- Do not describe causal links, co-occurrence, or root-cause chains as controversies unless the evidence actually shows conflicting opinions.
+- Do not cite external standards, exact thresholds, or named test protocols unless they are explicitly present in the provided evidence.
+- Keep suggestions grounded in realistic product-page or product-validation actions that follow directly from the evidence.
 - Do not output Markdown code fences.
