@@ -118,8 +118,8 @@
     {
       "slot_id": "suggestion_03",
       "item_type": "suggestion",
-      "label": "Add durability-validation notes and warranty scope for the rubber ear insert, and describe the actual material and test scope without claiming unsupported lifetime thresholds.",
-      "summary": "Current product-page evidence does not substantiate the review feedback about durability_quality.",
+      "label": "Prioritize improvements to the design or presentation related to usability, and strengthen the corresponding explanation on the product page.",
+      "summary": "Clear negative feedback exists for usability, appearing 1 times.",
       "owner": "content_presentation",
       "status": "pending_review",
       "confidence_breakdown": {
@@ -134,8 +134,8 @@
     {
       "slot_id": "suggestion_04",
       "item_type": "suggestion",
-      "label": "Prioritize improvements to the design or presentation related to usability, and strengthen the corresponding explanation on the product page.",
-      "summary": "Clear negative feedback exists for usability, appearing 1 times.",
+      "label": "Add durability-validation notes and warranty scope for the rubber ear insert, and describe the actual material and test scope without claiming unsupported lifetime thresholds.",
+      "summary": "Current product-page evidence does not substantiate the review feedback about durability_quality.",
       "owner": "content_presentation",
       "status": "pending_review",
       "confidence_breakdown": {

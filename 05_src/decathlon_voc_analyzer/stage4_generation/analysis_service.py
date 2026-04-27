@@ -465,9 +465,19 @@ class ProductAnalysisService:
                 support_clauses.append(f"{self._natural_join(text_supported)} {verb} partially supported by product-page text")
             if weak_supported:
                 verb = "are" if len(weak_supported) > 1 else "is"
-                support_clauses.append(f"{self._natural_join(weak_supported)} {verb} mainly review-supported and lack direct product-page substantiation" if len(weak_supported) > 1 else f"{self._natural_join(weak_supported)} is mainly review-supported and lacks direct product-page substantiation")
+                weak_clause = f"{self._natural_join(weak_supported)} {verb} mainly review-supported and lack direct product-page substantiation" if len(weak_supported) > 1 else f"{self._natural_join(weak_supported)} is mainly review-supported and lacks direct product-page substantiation"
+            else:
+                weak_clause = None
             if support_clauses:
-                parts.append("; while ".join([support_clauses[0], *support_clauses[1:]]) + ".")
+                supported_text = "; ".join(support_clauses)
+                supported_text = supported_text[:1].upper() + supported_text[1:] if supported_text else supported_text
+                if weak_clause:
+                    parts.append(f"{supported_text}, while {weak_clause}.")
+                else:
+                    parts.append(f"{supported_text}.")
+            elif weak_clause:
+                weak_clause = weak_clause[:1].upper() + weak_clause[1:] if weak_clause else weak_clause
+                parts.append(f"{weak_clause}.")
             if weakness_label:
                 parts.append(f"The most important negative issue is {weakness_label}.")
             controversy_clause = self._answer_controversy_clause(controversy_item)
@@ -608,6 +618,7 @@ class ProductAnalysisService:
             normalized_strengths + normalized_weaknesses + evidence_gaps,
         )
         normalized_suggestions = self._ensure_gap_suggestions(normalized_suggestions, evidence_gaps)
+        normalized_suggestions = self._deduplicate_suggestions(normalized_suggestions)
 
         return report.model_copy(
             update={
@@ -617,6 +628,17 @@ class ProductAnalysisService:
                 "suggestions": normalized_suggestions,
             }
         )
+
+    def _deduplicate_suggestions(self, items: list[ImprovementSuggestion]) -> list[ImprovementSuggestion]:
+        deduplicated: list[ImprovementSuggestion] = []
+        seen: set[str] = set()
+        for item in items:
+            key = self._normalize_match_text(item.suggestion)
+            if key in seen:
+                continue
+            seen.add(key)
+            deduplicated.append(item)
+        return deduplicated
 
     def _backfill_missing_negative_aspects(
         self,
@@ -1449,10 +1471,27 @@ class ProductAnalysisService:
                 updated.append(suggestion)
                 continue
             note = self._replay_continuity_note([matched_label])
-            if matched_label in accepted_issue_labels:
-                note = f"{note} {self._feedback_alignment_note(matched_label, 'accepted')}"
-            elif matched_label in rejected_issue_labels:
-                note = f"{note} {self._feedback_alignment_note(matched_label, 'rejected')}"
+            matched_family = self._canonical_issue_family(matched_label, suggestion.supporting_evidence.review_ids)
+            accepted_match = next(
+                (
+                    label
+                    for label in accepted_issue_labels
+                    if self._canonical_issue_family(label, suggestion.supporting_evidence.review_ids) == matched_family
+                ),
+                None,
+            )
+            rejected_match = next(
+                (
+                    label
+                    for label in rejected_issue_labels
+                    if self._canonical_issue_family(label, suggestion.supporting_evidence.review_ids) == matched_family
+                ),
+                None,
+            )
+            if accepted_match is not None:
+                note = f"{note} {self._feedback_alignment_note(accepted_match, 'accepted')}"
+            elif rejected_match is not None:
+                note = f"{note} {self._feedback_alignment_note(rejected_match, 'rejected')}"
             updated.append(suggestion.model_copy(update={"replay_note": note}))
         return sorted(
             updated,
@@ -1465,6 +1504,13 @@ class ProductAnalysisService:
         )
 
     def _suggestion_matches_label(self, suggestion: ImprovementSuggestion, label: str) -> bool:
+        suggestion_family = self._canonical_issue_family(
+            " ".join([suggestion.suggestion, *suggestion.reason]),
+            suggestion.supporting_evidence.review_ids,
+        )
+        label_family = self._canonical_issue_family(label, suggestion.supporting_evidence.review_ids)
+        if suggestion_family == label_family:
+            return True
         haystack = " ".join([suggestion.suggestion, *suggestion.reason]).lower()
         return label.lower() in haystack
 

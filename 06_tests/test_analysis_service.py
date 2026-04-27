@@ -818,7 +818,7 @@ def test_product_analysis_service_builds_grammatically_correct_answer_with_parti
     )
 
     assert answer.startswith("Positive feedback appears")
-    assert "lens tinting is partially supported by product images" in answer
+    assert "Lens tinting is partially supported by product images" in answer
     assert "perceived value and comfort are mainly review-supported" in answer
     assert "The most important negative issue is Rubber insert durability failure." in answer
 
@@ -988,7 +988,10 @@ def test_product_analysis_service_can_apply_feedback_aware_replay() -> None:
     assert replayed.replay_summary.reviewed_slot_count >= 1
     assert replayed.replay_summary.feedback_path is not None
     assert replayed.replay_summary.accepted_issue_labels
-    assert any("Reviewer feedback" in reason or "人工反馈" in reason for suggestion in replayed.report.suggestions for reason in suggestion.reason)
+    assert any(
+        suggestion.replay_note and ("Reviewer feedback" in suggestion.replay_note or "人工反馈" in suggestion.replay_note)
+        for suggestion in replayed.report.suggestions
+    )
 
     preserved_payload = orjson.loads(Path(feedback_path).read_bytes())
     assert preserved_payload["slots"][0]["status"] == "accepted"

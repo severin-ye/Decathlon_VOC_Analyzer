@@ -5,11 +5,11 @@
   "report": {
     "product_id": "sunglasses_010",
     "category_slug": "sunglasses",
-    "answer": "Positive feedback appears on perceived value (price), lens tinting (subjective quality), and comfort (subjective fit). perceived value (price), lens tinting (subjective quality), and comfort (subjective fit) is mainly supported by user reviews and only weakly supported by product-page evidence. The most important issue to watch is Rubber insert durability failure.",
+    "answer": "Positive feedback appears on Perceived value, Lens tinting perception, and Comfort perception. Lens tinting perception is partially supported by product images, while Perceived value and Comfort perception are mainly review-supported and lack direct product-page substantiation. The most important negative issue is Rubber insert durability failure.",
     "strengths": [
       {
-        "label": "perceived value (price)",
-        "summary": "Positive feedback on perceived value (price) comes from user reviews, but no direct product-page text or reliable image evidence was retrieved.",
+        "label": "Perceived value",
+        "summary": "Positive feedback on Perceived value comes from user reviews, but no direct product-page text or reliable image evidence was retrieved.",
         "confidence": 0.78,
         "supporting_evidence": {
           "review_ids": [
@@ -19,11 +19,12 @@
           "product_image_ids": []
         },
         "owner": "expectation_mismatch",
+        "evidence_level": "review_only",
         "confidence_breakdown": null
       },
       {
-        "label": "lens tinting (subjective quality)",
-        "summary": "One reviewer affirms 'excellent tinting', and product images show uniform lens tint across visible regions — though the specific tint color (e.g., gray, brown) is not disclosed in text or image metadata.",
+        "label": "Lens tinting perception",
+        "summary": "One reviewer affirms 'excellent tinting', and product images show visible lens coloration under standard lighting — providing weak but observable visual support for tint presence (though exact hue remains unspecified).",
         "confidence": 0.88,
         "supporting_evidence": {
           "review_ids": [
@@ -35,11 +36,12 @@
           ]
         },
         "owner": "content_presentation",
+        "evidence_level": "partial_product_support",
         "confidence_breakdown": null
       },
       {
-        "label": "comfort (subjective fit)",
-        "summary": "Positive feedback on comfort (subjective fit) comes from user reviews, but no direct product-page text or reliable image evidence was retrieved.",
+        "label": "Comfort perception",
+        "summary": "Positive feedback on Comfort perception comes from user reviews, but no direct product-page text or reliable image evidence was retrieved.",
         "confidence": 0.78,
         "supporting_evidence": {
           "review_ids": [
@@ -49,6 +51,7 @@
           "product_image_ids": []
         },
         "owner": "expectation_mismatch",
+        "evidence_level": "review_only",
         "confidence_breakdown": null
       }
     ],
@@ -64,7 +67,8 @@
           "product_text_block_ids": [],
           "product_image_ids": []
         },
-        "owner": "evidence_gap",
+        "owner": "product_issue",
+        "evidence_level": "review_only",
         "confidence_breakdown": null
       },
       {
@@ -78,7 +82,8 @@
           "product_text_block_ids": [],
           "product_image_ids": []
         },
-        "owner": "evidence_gap",
+        "owner": "product_issue",
+        "evidence_level": "review_only",
         "confidence_breakdown": null
       }
     ],
@@ -96,13 +101,14 @@
           "product_text_block_ids": [],
           "product_image_ids": []
         },
-        "owner": "evidence_gap",
+        "owner": "content_presentation",
+        "evidence_level": "missing_product_evidence",
         "confidence_breakdown": null
       },
       {
         "label": "Missing optical distortion validation",
         "summary": "No product-page evidence was retrieved for optical neutrality, distortion control, or magnification-related validation.",
-        "confidence": 0.95,
+        "confidence": 0.94,
         "source_aspect": "optical accuracy",
         "supporting_evidence": {
           "review_ids": [
@@ -111,13 +117,14 @@
           "product_text_block_ids": [],
           "product_image_ids": []
         },
-        "owner": "evidence_gap",
+        "owner": "content_presentation",
+        "evidence_level": "missing_product_evidence",
         "confidence_breakdown": null
       },
       {
-        "label": "Missing lens tinting substantiation",
-        "summary": "Current product-page evidence does not substantiate the review feedback about lens tinting.",
-        "confidence": 0.95,
+        "label": "Missing explicit lens tint hue disclosure",
+        "summary": "Product images visually show tinted lenses, but the product text does not explicitly name the tint color or hue.",
+        "confidence": 0.85,
         "source_aspect": "lens tinting",
         "supporting_evidence": {
           "review_ids": [
@@ -128,7 +135,8 @@
             "sunglasses_010_8941928_34a49d933aaf"
           ]
         },
-        "owner": "evidence_gap",
+        "owner": "content_presentation",
+        "evidence_level": "missing_product_evidence",
         "confidence_breakdown": null
       },
       {
@@ -143,7 +151,8 @@
           "product_text_block_ids": [],
           "product_image_ids": []
         },
-        "owner": "evidence_gap",
+        "owner": "content_presentation",
+        "evidence_level": "missing_product_evidence",
         "confidence_breakdown": null
       },
       {
@@ -158,7 +167,8 @@
           "product_text_block_ids": [],
           "product_image_ids": []
         },
-        "owner": "evidence_gap",
+        "owner": "content_presentation",
+        "evidence_level": "missing_product_evidence",
         "confidence_breakdown": null
       }
     ],
@@ -180,8 +190,8 @@
         "aspect": "overall_experience",
         "aspect_frequency": 1,
         "positive_ratio": 0.0,
-        "negative_ratio": 0.0,
-        "mixed_ratio": 1.0,
+        "negative_ratio": 1.0,
+        "mixed_ratio": 0.0,
         "scene_distribution": {},
         "representative_review_ids": [
           "sunglasses_010_review_0021"
@@ -227,7 +237,7 @@
         "negative_ratio": 1.0,
         "mixed_ratio": 0.0,
         "scene_distribution": {
-          "walking or ground navigation": 1
+          "walking/outdoor navigation": 1
         },
         "representative_review_ids": [
           "sunglasses_010_review_0064"
@@ -251,8 +261,8 @@
         ]
       },
       {
-        "segment_label": "Users in the 'walking or ground navigation' scenario",
-        "scene": "walking or ground navigation",
+        "segment_label": "Users in the 'walking/outdoor navigation' scenario",
+        "scene": "walking/outdoor navigation",
         "review_count": 1,
         "focus_aspects": [
           "optical accuracy"
@@ -268,7 +278,7 @@
     ],
     "applicable_scenes": [
       "long-term wear",
-      "walking or ground navigation"
+      "walking/outdoor navigation"
     ],
     "supporting_aspects": [
       "rubber insert durability",
@@ -297,17 +307,16 @@
         "sunglasses_010_8941928_34a49d933aaf"
       ]
     },
-    "confidence": 0.94,
+    "confidence": 0.92,
     "suggestions": [
       {
         "suggestion": "Add durability-validation notes and warranty scope for the rubber ear insert, and describe the actual material and test scope without claiming unsupported lifetime thresholds.",
         "suggestion_type": "perception",
         "reason": [
-          "Rubber insert failure is cited as a primary pain point in long-term wear; absence of warranty or material info erodes trust and increases post-purchase risk.",
-          "No retrieved evidence shows warranty, material grade (e.g., 'TPR', 'silicone'), or durability testing claims — all standard for sports eyewear.",
-          "Replay continuity: the issue around Comfort substantiation gap, Missing optical distortion validation also appeared in the previous run."
+          "The rubber insert near the ear is cited as failing within two years, yet no warranty, material specification, or durability claim appears anywhere in text or image content — creating unmanaged customer expectations.",
+          "Retrievals confirm zero mention of rubber composition, reinforcement, or warranty in all examined text blocks and image regions."
         ],
-        "confidence": 0.99,
+        "confidence": 0.9,
         "supporting_evidence": {
           "review_ids": [
             "sunglasses_010_review_0021"
@@ -316,16 +325,17 @@
           "product_image_ids": []
         },
         "owner": "content_presentation",
+        "replay_note": "Replay continuity: the issue around Missing rubber insert durability disclosure also appeared in the previous run.",
         "confidence_breakdown": null
       },
       {
         "suggestion": "Add product-page optical verification notes and publish the measured distortion or prism-control results before making strong visual-performance claims.",
         "suggestion_type": "perception",
         "reason": [
-          "Optical accuracy is flagged in a functional scene (walking/navigation), suggesting real-world visual distortion; no optical performance specs exist on-page.",
-          "Category 4 lenses imply high-glare use but do not guarantee distortion-free vision — users need clarity on optical class (e.g., 'optical-grade polycarbonate', 'AB-rated lenses')."
+          "No product-page claims or test data about optical clarity, distortion control, non-prescription status, or measured visual performance were retrieved.",
+          "No retrieved text or image content references optical clarity, edge distortion, or real-world visual use cases."
         ],
-        "confidence": 0.98,
+        "confidence": 0.9,
         "supporting_evidence": {
           "review_ids": [
             "sunglasses_010_review_0064"
@@ -334,16 +344,35 @@
           "product_image_ids": []
         },
         "owner": "content_presentation",
+        "replay_note": "Replay continuity: the issue around Missing optical distortion validation also appeared in the previous run.",
         "confidence_breakdown": null
       },
       {
-        "suggestion": "Label lens tint explicitly in product title variant or bullet points (e.g., 'Brown Polarized Tint') and add annotated close-ups with tint name overlaid on lens images.",
+        "suggestion": "State the current selling price and any active discount or list-price reference directly in the primary product metadata so the value claim can be checked quickly.",
         "suggestion_type": "perception",
         "reason": [
-          "Lens tint color is unlisted despite being a key differentiator for sport-specific performance (e.g., brown for contrast, gray for true color).",
-          "Image reranking scores for lens-focused regions are high (0.94–0.99), confirming visual prominence — yet no annotation or caption identifies tint hue."
+          "Price is praised as 'excellent' but no numeric price or comparative context (e.g., original vs. current, % off) appears in any retrieved text block — undermining credibility of the value claim.",
+          "All retrievals for price-related queries returned only category breadcrumbs or product name, with no pricing data found."
         ],
-        "confidence": 0.97,
+        "confidence": 0.89,
+        "supporting_evidence": {
+          "review_ids": [
+            "sunglasses_010_review_0064"
+          ],
+          "product_text_block_ids": [],
+          "product_image_ids": []
+        },
+        "owner": "content_presentation",
+        "replay_note": "Replay continuity: the issue around Price substantiation gap also appeared in the previous run.",
+        "confidence_breakdown": null
+      },
+      {
+        "suggestion": "State the exact lens tint in the primary product copy and include a color-accurate front-facing lens image so the tint claim can be checked visually.",
+        "suggestion_type": "perception",
+        "reason": [
+          "Product images visually show tinted lenses, but the product text does not explicitly name the tint color or hue."
+        ],
+        "confidence": 0.85,
         "supporting_evidence": {
           "review_ids": [
             "sunglasses_010_review_0064"
@@ -354,31 +383,14 @@
           ]
         },
         "owner": "content_presentation",
+        "replay_note": "Replay continuity: the issue around Missing explicit lens tint hue disclosure also appeared in the previous run.",
         "confidence_breakdown": null
       },
       {
         "suggestion": "Clarify the fit and comfort-related design cues on the product page, and add close-up visuals of the features that help users judge wear comfort.",
         "suggestion_type": "perception",
         "reason": [
-          "Comfort is praised subjectively, but no objective fit features (e.g., 'flex-hinge temples', 'adjustable nose pads', 'weight: 28g') are provided to validate or guide expectations.",
-          "Retrievals returned multiple temple/earpiece images (rerank scores up to 0.8), indicating opportunity for annotated detail."
-        ],
-        "confidence": 0.96,
-        "supporting_evidence": {
-          "review_ids": [
-            "sunglasses_010_review_0064"
-          ],
-          "product_text_block_ids": [],
-          "product_image_ids": []
-        },
-        "owner": "content_presentation",
-        "confidence_breakdown": null
-      },
-      {
-        "suggestion": "State the current selling price and any active discount or list-price reference directly in the primary product metadata so the value claim can be checked quickly.",
-        "suggestion_type": "perception",
-        "reason": [
-          "The product is positively perceived as having an excellent price, but the listed price and comparative pricing context were not retrieved."
+          "Comfort is positively mentioned by a user review, but no product-page text or reliable image evidence was retrieved to substantiate the claim."
         ],
         "confidence": 0.8,
         "supporting_evidence": {
@@ -389,6 +401,7 @@
           "product_image_ids": []
         },
         "owner": "content_presentation",
+        "replay_note": "Replay continuity: the issue around Comfort substantiation gap also appeared in the previous run.",
         "confidence_breakdown": null
       }
     ]
@@ -397,7 +410,7 @@
     {
       "trace_type": "observation",
       "aspect": "replay_continuity",
-      "summary": "replay_path=/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/5_replay/sunglasses/sunglasses_010_replay.json, feedback_path=/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/5_feedback/sunglasses/sunglasses_010_feedback_slots.json, persistent=Comfort substantiation gap, Missing optical distortion validation, Potential optical magnification affecting depth perception, resolved=none, new=Missing lens tinting substantiation, accepted=none, rejected=none, reviewed=0",
+      "summary": "replay_path=/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/5_replay/sunglasses/sunglasses_010_replay.json, feedback_path=/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/5_feedback/sunglasses/sunglasses_010_feedback_slots.json, persistent=Comfort substantiation gap, Missing explicit lens tint hue disclosure, Missing optical distortion validation, resolved=none, new=none, accepted=none, rejected=none, reviewed=0",
       "owner": null,
       "supporting_evidence": {
         "review_ids": [],
@@ -409,7 +422,7 @@
     {
       "trace_type": "observation",
       "aspect": "rubber insert durability",
-      "summary": "review=sunglasses_010_review_0021, sentiment=negative, evidence_span=the rubber insert on them near the ear completely deteriorates in less than two years—literally falling apart",
+      "summary": "review=sunglasses_010_review_0021, sentiment=negative, evidence_span=the rubber insert on them near the ear completely deteriorates in less than two years. It literally fell apart.",
       "owner": null,
       "supporting_evidence": {
         "review_ids": [
@@ -423,7 +436,7 @@
     {
       "trace_type": "evidence_check",
       "aspect": "rubber insert durability",
-      "summary": "reviews=1, valid_text_blocks=0, valid_images=0. questions=Does the product listing specify a warranty period or durability guarantee for the rubber insert near the ear?; Does the product page provide material specifications, durability-validation notes, warranty terms, or close-up imagery that can realistically support the durability claim for this component?",
+      "summary": "reviews=1, valid_text_blocks=0, valid_images=0. questions=Does the product listing specify a warranty or durability guarantee for the rubber insert near the ear?; Do close-up product images show reinforced stitching, material texture, or branding (e.g., 'high-elasticity rubber') on the rubber insert near the ear?",
       "owner": "evidence_gap",
       "supporting_evidence": {
         "review_ids": [
@@ -437,7 +450,7 @@
     {
       "trace_type": "observation",
       "aspect": "overall_experience",
-      "summary": "review=sunglasses_010_review_0021, sentiment=mixed, evidence_span=The sunglasses are great! However, the rubber insert on them near the ear completely deteriorates in less than two years—literally falling apart. Sad…",
+      "summary": "review=sunglasses_010_review_0021, sentiment=negative, evidence_span=The sunglasses are great! However, the rubber insert on them near the ear completely deteriorates in less than two years. It literally fell apart. Sad...",
       "owner": null,
       "supporting_evidence": {
         "review_ids": [
@@ -451,7 +464,7 @@
     {
       "trace_type": "evidence_check",
       "aspect": "overall_experience",
-      "summary": "reviews=1, valid_text_blocks=0, valid_images=0. questions=Does the product listing specify a warranty period or durability guarantee for the rubber ear inserts?; Do product images clearly show the material composition or construction details of the rubber insert near the earpiece?",
+      "summary": "reviews=1, valid_text_blocks=0, valid_images=0. questions=Does the product description or specifications mention the material composition or durability rating of the rubber insert near the ear?; Is there an image in the product gallery showing the rubber insert near the ear, clearly revealing its texture, thickness, and attachment method?",
       "owner": "evidence_gap",
       "supporting_evidence": {
         "review_ids": [
@@ -479,7 +492,7 @@
     {
       "trace_type": "evidence_check",
       "aspect": "price",
-      "summary": "reviews=1, valid_text_blocks=0, valid_images=0. questions=What is the listed price of the product on the product page?; Does the product page display any price-related context such as 'was/now' pricing, discount percentage, or comparison to MSRP or competitor pricing?",
+      "summary": "reviews=1, valid_text_blocks=0, valid_images=0. questions=What is the listed selling price of the product on this page?; Does the product page display any price-related context—such as original price, discount amount, percentage off, or comparison to MSRP—that supports why the price is described as 'excellent'?",
       "owner": "evidence_gap",
       "supporting_evidence": {
         "review_ids": [
@@ -507,7 +520,7 @@
     {
       "trace_type": "evidence_check",
       "aspect": "lens tinting",
-      "summary": "reviews=1, valid_text_blocks=0, valid_images=1. questions=What specific tint color or hue is used in the lenses (e.g., gray, brown, green, rose, mirrored)?; Is the lens tint uniform across the entire lens surface, with no visible inconsistencies, fading, or patchiness?",
+      "summary": "reviews=1, valid_text_blocks=0, valid_images=1. questions=What specific tint color or hue is used in the lenses (e.g., gray, brown, green, rose, mirrored)?; Do product images clearly show the lens tint when viewed under standard lighting (e.g., visible color cast or reflectivity distinguishing it from clear lenses)?",
       "owner": "evidence_gap",
       "supporting_evidence": {
         "review_ids": [
@@ -551,7 +564,7 @@
     {
       "trace_type": "observation",
       "aspect": "optical accuracy",
-      "summary": "review=sunglasses_010_review_0064, sentiment=negative, evidence_span=they slightly magnify vision, making the ground beneath appear closer than it actually is",
+      "summary": "review=sunglasses_010_review_0064, sentiment=negative, evidence_span=they slightly magnify vision, so the ground beneath appears closer than it actually is",
       "owner": null,
       "supporting_evidence": {
         "review_ids": [
@@ -578,7 +591,7 @@
     },
     {
       "trace_type": "action_generation",
-      "aspect": "Rubber insert failure is cited as a primary pain point in long-term wear; absence of warranty or material info erodes trust and increases post-purchase risk.",
+      "aspect": "The rubber insert near the ear is cited as failing within two years, yet no warranty, material specification, or durability claim appears anywhere in text or image content — creating unmanaged customer expectations.",
       "summary": "Add durability-validation notes and warranty scope for the rubber ear insert, and describe the actual material and test scope without claiming unsupported lifetime thresholds.",
       "owner": "content_presentation",
       "supporting_evidence": {
@@ -592,7 +605,7 @@
     },
     {
       "trace_type": "action_generation",
-      "aspect": "Optical accuracy is flagged in a functional scene (walking/navigation), suggesting real-world visual distortion; no optical performance specs exist on-page.",
+      "aspect": "No product-page claims or test data about optical clarity, distortion control, non-prescription status, or measured visual performance were retrieved.",
       "summary": "Add product-page optical verification notes and publish the measured distortion or prism-control results before making strong visual-performance claims.",
       "owner": "content_presentation",
       "supporting_evidence": {
@@ -606,102 +619,106 @@
     },
     {
       "trace_type": "action_generation",
-      "aspect": "Lens tint color is unlisted despite being a key differentiator for sport-specific performance (e.g., brown for contrast, gray for true color).",
-      "summary": "Label lens tint explicitly in product title variant or bullet points (e.g., 'Brown Polarized Tint') and add annotated close-ups with tint name overlaid on lens images.",
+      "aspect": "Price is praised as 'excellent' but no numeric price or comparative context (e.g., original vs. current, % off) appears in any retrieved text block — undermining credibility of the value claim.",
+      "summary": "State the current selling price and any active discount or list-price reference directly in the primary product metadata so the value claim can be checked quickly.",
       "owner": "content_presentation",
       "supporting_evidence": {
         "review_ids": [
           "sunglasses_010_review_0064"
         ],
         "product_text_block_ids": [],
-        "product_image_ids": [
-          "sunglasses_010_8941928_34a49d933aaf"
-        ]
+        "product_image_ids": []
       },
       "confidence_breakdown": null
     }
   ],
   "retrieval_quality": [
     {
-      "retrieval_id": "retrieval_1aaf68f90ad0",
+      "retrieval_id": "retrieval_6ae11aa95940",
       "source_aspect": "rubber insert durability",
       "top_k_count": 2,
       "route_coverage": 1.0,
       "answer_coverage": 0.0,
+      "answer_status": "none",
       "answer_value": null,
       "answer_source": null,
       "evidence_coverage": 0.0,
-      "score_drift": 0.33970836180547936,
+      "score_drift": 0.340779955448622,
       "text_coverage": true,
       "image_coverage": false,
       "conflict_risk": 0.0
     },
     {
-      "retrieval_id": "retrieval_8d8196fc8233",
+      "retrieval_id": "retrieval_4ae5915e54c6",
       "source_aspect": "rubber insert durability",
-      "top_k_count": 4,
-      "route_coverage": 1.0,
-      "answer_coverage": 0.0,
-      "answer_value": null,
-      "answer_source": null,
-      "evidence_coverage": 0.0,
-      "score_drift": 0.46250553037533393,
-      "text_coverage": true,
-      "image_coverage": true,
-      "conflict_risk": 0.0
-    },
-    {
-      "retrieval_id": "retrieval_af352ca843d8",
-      "source_aspect": "overall_experience",
       "top_k_count": 2,
       "route_coverage": 1.0,
       "answer_coverage": 0.0,
+      "answer_status": "none",
       "answer_value": null,
       "answer_source": null,
       "evidence_coverage": 0.0,
-      "score_drift": 0.36057836922312647,
-      "text_coverage": true,
-      "image_coverage": false,
-      "conflict_risk": 0.0
-    },
-    {
-      "retrieval_id": "retrieval_109fdb8c2720",
-      "source_aspect": "overall_experience",
-      "top_k_count": 2,
-      "route_coverage": 1.0,
-      "answer_coverage": 0.0,
-      "answer_value": null,
-      "answer_source": null,
-      "evidence_coverage": 0.0,
-      "score_drift": 0.0865646376249748,
+      "score_drift": 0.3548932064027903,
       "text_coverage": false,
       "image_coverage": true,
       "conflict_risk": 0.0
     },
     {
-      "retrieval_id": "retrieval_938b31073492",
-      "source_aspect": "price",
+      "retrieval_id": "retrieval_0fa4cd423984",
+      "source_aspect": "overall_experience",
       "top_k_count": 2,
       "route_coverage": 1.0,
       "answer_coverage": 0.0,
+      "answer_status": "none",
       "answer_value": null,
       "answer_source": null,
       "evidence_coverage": 0.0,
-      "score_drift": 0.24430594097795216,
+      "score_drift": 0.31815367710191816,
       "text_coverage": true,
       "image_coverage": false,
       "conflict_risk": 0.0
     },
     {
-      "retrieval_id": "retrieval_98a7ccfdb6b9",
+      "retrieval_id": "retrieval_748439149c6c",
+      "source_aspect": "overall_experience",
+      "top_k_count": 2,
+      "route_coverage": 1.0,
+      "answer_coverage": 0.0,
+      "answer_status": "none",
+      "answer_value": null,
+      "answer_source": null,
+      "evidence_coverage": 0.0,
+      "score_drift": 0.4102118295028687,
+      "text_coverage": false,
+      "image_coverage": true,
+      "conflict_risk": 0.0
+    },
+    {
+      "retrieval_id": "retrieval_10e8be11e54c",
       "source_aspect": "price",
       "top_k_count": 2,
       "route_coverage": 1.0,
       "answer_coverage": 0.0,
+      "answer_status": "none",
       "answer_value": null,
       "answer_source": null,
       "evidence_coverage": 0.0,
-      "score_drift": 0.3101362251582436,
+      "score_drift": 0.303498845585227,
+      "text_coverage": true,
+      "image_coverage": false,
+      "conflict_risk": 0.0
+    },
+    {
+      "retrieval_id": "retrieval_a8ae3ef7c8ff",
+      "source_aspect": "price",
+      "top_k_count": 2,
+      "route_coverage": 1.0,
+      "answer_coverage": 0.0,
+      "answer_status": "none",
+      "answer_value": null,
+      "answer_source": null,
+      "evidence_coverage": 0.0,
+      "score_drift": 0.3175699101987143,
       "text_coverage": true,
       "image_coverage": false,
       "conflict_risk": 0.0
@@ -709,27 +726,29 @@
     {
       "retrieval_id": "retrieval_e523c43d7524",
       "source_aspect": "lens tinting",
-      "top_k_count": 4,
+      "top_k_count": 2,
       "route_coverage": 1.0,
-      "answer_coverage": 1.0,
-      "answer_value": "Lens tint is visually present in product images, but the exact hue is not explicitly named.",
-      "answer_source": "image",
-      "evidence_coverage": 1.0,
-      "score_drift": 0.5946321451918408,
+      "answer_coverage": 0.0,
+      "answer_status": "none",
+      "answer_value": null,
+      "answer_source": null,
+      "evidence_coverage": 0.0,
+      "score_drift": 0.3962310001098027,
       "text_coverage": true,
-      "image_coverage": true,
+      "image_coverage": false,
       "conflict_risk": 0.0
     },
     {
-      "retrieval_id": "retrieval_873cde4a94c6",
+      "retrieval_id": "retrieval_34b06a7f84b9",
       "source_aspect": "lens tinting",
       "top_k_count": 2,
       "route_coverage": 1.0,
       "answer_coverage": 1.0,
+      "answer_status": "supported",
       "answer_value": "Lens tint is visually present in product images, but the exact hue is not explicitly named.",
       "answer_source": "image",
       "evidence_coverage": 1.0,
-      "score_drift": 0.7302122383059777,
+      "score_drift": 0.5673072468551137,
       "text_coverage": false,
       "image_coverage": true,
       "conflict_risk": 0.0
@@ -740,6 +759,7 @@
       "top_k_count": 2,
       "route_coverage": 1.0,
       "answer_coverage": 0.0,
+      "answer_status": "none",
       "answer_value": null,
       "answer_source": null,
       "evidence_coverage": 0.0,
@@ -754,10 +774,11 @@
       "top_k_count": 4,
       "route_coverage": 1.0,
       "answer_coverage": 0.0,
+      "answer_status": "none",
       "answer_value": null,
       "answer_source": null,
       "evidence_coverage": 0.0,
-      "score_drift": 0.23982373458159092,
+      "score_drift": 0.23988992004688375,
       "text_coverage": true,
       "image_coverage": true,
       "conflict_risk": 0.0
@@ -768,10 +789,11 @@
       "top_k_count": 2,
       "route_coverage": 1.0,
       "answer_coverage": 0.0,
+      "answer_status": "none",
       "answer_value": null,
       "answer_source": null,
       "evidence_coverage": 0.0,
-      "score_drift": 0.2781245592709502,
+      "score_drift": 0.27804707951051083,
       "text_coverage": true,
       "image_coverage": false,
       "conflict_risk": 0.0
@@ -782,6 +804,7 @@
       "top_k_count": 2,
       "route_coverage": 1.0,
       "answer_coverage": 0.0,
+      "answer_status": "none",
       "answer_value": null,
       "answer_source": null,
       "evidence_coverage": 0.0,
@@ -792,6 +815,6 @@
     }
   ],
   "warnings": [
-    "replay continuity applied: persistent=6, resolved=0, new=1, reviewed=0"
+    "replay continuity applied: persistent=7, resolved=0, new=0, reviewed=0"
   ]
 }
