@@ -52,9 +52,14 @@ class RetrievalService:
             for hit in indexed_hits
         }
         reranked_hits = self.reranker_service.rerank(query=query, candidates=indexed_hits, use_llm=use_llm)
+        selected_hits = self._select_hits_with_route_coverage(
+            reranked_hits=reranked_hits,
+            expected_routes=question.expected_evidence_routes,
+            top_k_per_route=top_k_per_route,
+        )
         retrieved = [
             self._to_retrieved_evidence(hit, embedding_scores.get(hit.evidence_id, 0.0))
-            for hit in reranked_hits[: len(question.expected_evidence_routes) * top_k_per_route]
+            for hit in selected_hits
         ]
 
         return RetrievalRecord(
@@ -66,8 +71,43 @@ class RetrievalService:
             source_question_id=question.question_id,
             source_question=question.question,
             source_evidence_span=question.rationale,
+            expected_evidence_routes=list(question.expected_evidence_routes),
             retrieved=retrieved,
         )
+
+    def _select_hits_with_route_coverage(
+        self,
+        reranked_hits: list,
+        expected_routes: list[str],
+        top_k_per_route: int,
+    ) -> list:
+        if not reranked_hits:
+            return []
+
+        normalized_routes = list(dict.fromkeys(route for route in expected_routes if route))
+        target_count = max(1, len(normalized_routes)) * top_k_per_route
+        selected: list = []
+        selected_ids: set[str] = set()
+
+        for route in normalized_routes:
+            route_hit = next(
+                (hit for hit in reranked_hits if getattr(hit, "route", None) == route and hit.evidence_id not in selected_ids),
+                None,
+            )
+            if route_hit is None:
+                continue
+            selected.append(route_hit)
+            selected_ids.add(route_hit.evidence_id)
+
+        for hit in reranked_hits:
+            if hit.evidence_id in selected_ids:
+                continue
+            selected.append(hit)
+            selected_ids.add(hit.evidence_id)
+            if len(selected) >= target_count:
+                break
+
+        return selected[:target_count]
 
     def _to_retrieved_evidence(self, evidence, embedding_score: float) -> RetrievedEvidence:
         rerank_score = self._extract_score(evidence)
@@ -76,6 +116,9 @@ class RetrievalService:
             route=evidence.route,
             text_block_id=evidence.text_block_id,
             image_id=evidence.image_id,
+            region_id=getattr(evidence, "region_id", None),
+            region_label=getattr(evidence, "region_label", None),
+            region_box=getattr(evidence, "region_box", None),
             source_section=evidence.source_section,
             image_path=evidence.image_path,
             content_preview=evidence.content[:200],

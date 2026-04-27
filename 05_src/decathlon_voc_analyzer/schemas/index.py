@@ -16,6 +16,9 @@ class IndexedEvidence(BaseModel):
     source_section: str | None = None
     image_path: str | None = None
     variant: str | None = None
+    region_id: str | None = None
+    region_label: str | None = None
+    region_box: list[int] | None = Field(default=None, min_length=4, max_length=4)
     content: str
     vector: list[float] = Field(default_factory=list)
     score: float | None = Field(default=None, ge=0.0, le=1.0)
@@ -26,6 +29,7 @@ class ProductIndexSnapshot(BaseModel):
     category_slug: str
     text_count: int
     image_count: int
+    image_region_count: int = 0
     evidence: list[IndexedEvidence] = Field(default_factory=list)
 
 
@@ -40,6 +44,7 @@ class IndexBuildStats(BaseModel):
     indexed_products: int = 0
     indexed_text_blocks: int = 0
     indexed_images: int = 0
+    indexed_image_regions: int = 0
 
 
 class IndexBuildResponse(BaseModel):
@@ -55,4 +60,5 @@ class IndexOverview(BaseModel):
     indexed_products: int
     indexed_text_blocks: int
     indexed_images: int
+    indexed_image_regions: int = 0
     index_path: str

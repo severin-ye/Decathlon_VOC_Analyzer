@@ -105,6 +105,30 @@ def test_review_service_redistributes_shortfall_to_next_lower_priority_bucket() 
     assert allocation_by_rating[2].redistributed_in_count == 2
 
 
+def test_review_service_cascades_shortfall_across_multiple_priority_buckets() -> None:
+    service = ReviewExtractionService()
+    reviews = []
+    reviews.extend(_build_reviews(rating=3, count=6))
+    reviews.extend(_build_reviews(rating=2, count=3))
+    reviews.extend(_build_reviews(rating=1, count=1))
+
+    result = service.extract(
+        ReviewExtractionRequest(
+            product_id="demo_product",
+            use_llm=False,
+            max_reviews=6,
+            reviews=reviews,
+        )
+    )
+
+    assert result.sampling_plan is not None
+    allocation_by_rating = {item.rating: item for item in result.sampling_plan.allocations}
+    assert allocation_by_rating[1].selected_count == 1
+    assert allocation_by_rating[2].selected_count >= 2
+    assert allocation_by_rating[3].selected_count >= 2
+    assert len(result.preprocessed_reviews) == 6
+
+
 def test_review_service_uses_active_profile_from_config_file(tmp_path) -> None:
         service = ReviewExtractionService()
         config_path = tmp_path / "review_sampling_profiles.json"
@@ -149,3 +173,15 @@ def test_review_service_uses_active_profile_from_config_file(tmp_path) -> None:
         assert selected_by_rating[5] == 6
         assert selected_by_rating[4] == 5
         assert selected_by_rating[1] == 2
+
+
+def test_review_service_normalizes_prompt_variant_alias_for_projection(monkeypatch) -> None:
+    monkeypatch.setenv("PROMPT_VARIANT", "en")
+    service = ReviewExtractionService()
+    service.settings.qwen_plus_api_key = "demo-key"
+
+    should_project = service._should_project_reviews_to_english(
+        ReviewExtractionRequest(product_id="demo_product", use_llm=True, reviews=[])
+    )
+
+    assert should_project is True

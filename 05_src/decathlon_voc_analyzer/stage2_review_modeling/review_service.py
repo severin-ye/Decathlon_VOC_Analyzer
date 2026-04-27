@@ -1,4 +1,3 @@
-import os
 import hashlib
 import re
 
@@ -17,7 +16,7 @@ from decathlon_voc_analyzer.schemas.review import (
     ReviewInput,
     ReviewSamplingPlan,
 )
-from decathlon_voc_analyzer.prompts import get_prompt_template
+from decathlon_voc_analyzer.prompts import get_prompt_template, get_prompt_variant
 from decathlon_voc_analyzer.stage1_dataset.dataset_service import DatasetService
 from decathlon_voc_analyzer.stage2_review_modeling.deduplication_service import ReviewDeduplicationService
 from decathlon_voc_analyzer.stage2_review_modeling.review_sampling_service import ReviewSamplingService
@@ -242,7 +241,7 @@ class ReviewExtractionService:
 
     def _should_project_reviews_to_english(self, request: ReviewExtractionRequest) -> bool:
         return (
-            os.getenv("PROMPT_VARIANT", "main") == "main"
+            get_prompt_variant() == "main"
             and bool(self.settings.qwen_plus_api_key)
             and request.use_llm
         )

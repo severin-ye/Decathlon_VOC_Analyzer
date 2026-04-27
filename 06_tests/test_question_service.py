@@ -19,7 +19,7 @@ def _build_aspect() -> ReviewAspect:
 
 
 def test_question_prompt_template_formats_payload() -> None:
-    prompt = get_prompt_template("question_generation_system")
+    prompt = get_prompt_template("question_generation_system", variant="CN")
 
     messages = prompt.format_messages(payload={"aspect": "收纳容量"})
 
@@ -52,3 +52,12 @@ def test_question_service_uses_gateway_payload(monkeypatch) -> None:
     assert questions[0].question == "商品文案是否明确说明了收纳容量？"
     assert questions[0].expected_evidence_routes == ["text"]
     assert "收纳容量" in str(seen["messages"][1].content)
+
+
+def test_question_service_normalizes_prompt_variant_alias_for_heuristic(monkeypatch) -> None:
+    monkeypatch.setenv("PROMPT_VARIANT", "en")
+    service = QuestionGenerationService()
+
+    questions = service._generate_with_heuristic(_build_aspect(), questions_per_aspect=1)
+
+    assert questions[0].question.startswith("Does the product text explicitly support")

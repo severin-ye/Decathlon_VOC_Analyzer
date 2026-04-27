@@ -340,17 +340,23 @@
       "source_question_id": "backpack_010_review_0001_aspect_01_q_01",
       "source_question": "Does the product text explicitly support the experience claim related to 'value_price'?",
       "source_evidence_span": "This checks whether the product page text directly supports the review claim.",
+      "expected_evidence_routes": [
+        "text"
+      ],
       "retrieved": [
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_model_description_f37263d36db2",
+          "text_block_id": "backpack_010_model_description_c74c9858c2a6",
           "image_id": null,
+          "region_id": null,
+          "region_label": null,
+          "region_box": null,
           "source_section": "model_description",
           "image_path": null,
-          "content_preview": "This durable and practical travel wallet is the top choice for securely storing personal items. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels with pea",
-          "embedding_score": 0.1781741612749496,
-          "rerank_score": 0.1781741612749496
+          "content_preview": "이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2",
+          "embedding_score": 0.3614031611621005,
+          "rerank_score": 0.3614031611621005
         }
       ]
     },
@@ -363,17 +369,23 @@
       "source_question_id": "backpack_010_review_0001_aspect_01_q_02",
       "source_question": "Do the product images provide structural or visual evidence for the 'value_price' judgment?",
       "source_evidence_span": "This checks whether visual evidence supports the experience described in the review.",
+      "expected_evidence_routes": [
+        "image"
+      ],
       "retrieved": [
         {
           "product_id": "backpack_010",
           "route": "image",
           "text_block_id": null,
-          "image_id": "backpack_010_8512010_3d8cd9fb54f5",
+          "image_id": "backpack_010_8512010_75917bd74847",
+          "region_id": null,
+          "region_label": null,
+          "region_box": null,
           "source_section": null,
-          "image_path": "images/8512010/img4.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal items. It is sui",
-          "embedding_score": 0.23862350360052176,
-          "rerank_score": 0.23862350360052176
+          "image_path": "images/8512010/img2.png",
+          "content_preview": "백패킹 오거나이저 여행 지갑 S 모든 스포츠 > 등산 > 용품 > 가방 > 가방 용품 이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2 8512010 images/8512010/img2.p",
+          "embedding_score": 0.2685108067705273,
+          "rerank_score": 0.2685108067705273
         }
       ]
     },
@@ -386,17 +398,23 @@
       "source_question_id": "backpack_010_review_0090_aspect_01_q_01",
       "source_question": "Does the product text explicitly support the experience claim related to 'overall_experience'?",
       "source_evidence_span": "This checks whether the product page text directly supports the review claim.",
+      "expected_evidence_routes": [
+        "text"
+      ],
       "retrieved": [
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_model_description_f37263d36db2",
+          "text_block_id": "backpack_010_model_description_c74c9858c2a6",
           "image_id": null,
+          "region_id": null,
+          "region_label": null,
+          "region_box": null,
           "source_section": "model_description",
           "image_path": null,
-          "content_preview": "This durable and practical travel wallet is the top choice for securely storing personal items. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels with pea",
-          "embedding_score": 0.1781741612749496,
-          "rerank_score": 0.1781741612749496
+          "content_preview": "이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2",
+          "embedding_score": 0.40657855630736306,
+          "rerank_score": 0.40657855630736306
         }
       ]
     },
@@ -409,17 +427,23 @@
       "source_question_id": "backpack_010_review_0090_aspect_01_q_02",
       "source_question": "Do the product images provide structural or visual evidence for the 'overall_experience' judgment?",
       "source_evidence_span": "This checks whether visual evidence supports the experience described in the review.",
+      "expected_evidence_routes": [
+        "image"
+      ],
       "retrieved": [
         {
           "product_id": "backpack_010",
           "route": "image",
           "text_block_id": null,
-          "image_id": "backpack_010_8512010_3d8cd9fb54f5",
+          "image_id": "backpack_010_8512010_75917bd74847",
+          "region_id": null,
+          "region_label": null,
+          "region_box": null,
           "source_section": null,
-          "image_path": "images/8512010/img4.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal items. It is sui",
-          "embedding_score": 0.24623480450043694,
-          "rerank_score": 0.24623480450043694
+          "image_path": "images/8512010/img2.png",
+          "content_preview": "백패킹 오거나이저 여행 지갑 S 모든 스포츠 > 등산 > 용품 > 가방 > 가방 용품 이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2 8512010 images/8512010/img2.p",
+          "embedding_score": 0.3222129681246328,
+          "rerank_score": 0.3222129681246328
         }
       ]
     },
@@ -432,17 +456,23 @@
       "source_question_id": "backpack_010_review_0138_aspect_01_q_01",
       "source_question": "Does the product text explicitly support the experience claim related to 'portability_size'?",
       "source_evidence_span": "This checks whether the product page text directly supports the review claim.",
+      "expected_evidence_routes": [
+        "text"
+      ],
       "retrieved": [
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_model_description_f37263d36db2",
+          "text_block_id": "backpack_010_model_description_c74c9858c2a6",
           "image_id": null,
+          "region_id": null,
+          "region_label": null,
+          "region_box": null,
           "source_section": "model_description",
           "image_path": null,
-          "content_preview": "This durable and practical travel wallet is the top choice for securely storing personal items. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels with pea",
-          "embedding_score": 0.1781741612749496,
-          "rerank_score": 0.1781741612749496
+          "content_preview": "이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2",
+          "embedding_score": 0.3614031611621005,
+          "rerank_score": 0.3614031611621005
         }
       ]
     },
@@ -455,17 +485,23 @@
       "source_question_id": "backpack_010_review_0138_aspect_01_q_02",
       "source_question": "Do the product images provide structural or visual evidence for the 'portability_size' judgment?",
       "source_evidence_span": "This checks whether visual evidence supports the experience described in the review.",
+      "expected_evidence_routes": [
+        "image"
+      ],
       "retrieved": [
         {
           "product_id": "backpack_010",
           "route": "image",
           "text_block_id": null,
-          "image_id": "backpack_010_8512010_3d8cd9fb54f5",
+          "image_id": "backpack_010_8512010_75917bd74847",
+          "region_id": null,
+          "region_label": null,
+          "region_box": null,
           "source_section": null,
-          "image_path": "images/8512010/img4.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal items. It is sui",
-          "embedding_score": 0.23862350360052176,
-          "rerank_score": 0.23862350360052176
+          "image_path": "images/8512010/img2.png",
+          "content_preview": "백패킹 오거나이저 여행 지갑 S 모든 스포츠 > 등산 > 용품 > 가방 > 가방 용품 이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2 8512010 images/8512010/img2.p",
+          "embedding_score": 0.2685108067705273,
+          "rerank_score": 0.2685108067705273
         }
       ]
     },
@@ -478,17 +514,23 @@
       "source_question_id": "backpack_010_review_0138_aspect_02_q_01",
       "source_question": "Does the product text explicitly support the experience claim related to 'usability'?",
       "source_evidence_span": "This checks whether the product page text directly supports the review claim.",
+      "expected_evidence_routes": [
+        "text"
+      ],
       "retrieved": [
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_model_description_f37263d36db2",
+          "text_block_id": "backpack_010_model_description_c74c9858c2a6",
           "image_id": null,
+          "region_id": null,
+          "region_label": null,
+          "region_box": null,
           "source_section": "model_description",
           "image_path": null,
-          "content_preview": "This durable and practical travel wallet is the top choice for securely storing personal items. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels with pea",
-          "embedding_score": 0.1781741612749496,
-          "rerank_score": 0.1781741612749496
+          "content_preview": "이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2",
+          "embedding_score": 0.3614031611621005,
+          "rerank_score": 0.3614031611621005
         }
       ]
     },
@@ -501,17 +543,23 @@
       "source_question_id": "backpack_010_review_0138_aspect_02_q_02",
       "source_question": "Do the product images provide structural or visual evidence for the 'usability' judgment?",
       "source_evidence_span": "This checks whether visual evidence supports the experience described in the review.",
+      "expected_evidence_routes": [
+        "image"
+      ],
       "retrieved": [
         {
           "product_id": "backpack_010",
           "route": "image",
           "text_block_id": null,
-          "image_id": "backpack_010_8512010_3d8cd9fb54f5",
+          "image_id": "backpack_010_8512010_75917bd74847",
+          "region_id": null,
+          "region_label": null,
+          "region_box": null,
           "source_section": null,
-          "image_path": "images/8512010/img4.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal items. It is sui",
-          "embedding_score": 0.22571523745873387,
-          "rerank_score": 0.22571523745873387
+          "image_path": "images/8512010/img2.png",
+          "content_preview": "백패킹 오거나이저 여행 지갑 S 모든 스포츠 > 등산 > 용품 > 가방 > 가방 용품 이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2 8512010 images/8512010/img2.p",
+          "embedding_score": 0.2685108067705273,
+          "rerank_score": 0.2685108067705273
         }
       ]
     },
@@ -524,17 +572,23 @@
       "source_question_id": "backpack_010_review_0138_aspect_03_q_01",
       "source_question": "Does the product text explicitly support the experience claim related to 'durability_quality'?",
       "source_evidence_span": "This checks whether the product page text directly supports the review claim.",
+      "expected_evidence_routes": [
+        "text"
+      ],
       "retrieved": [
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_model_description_f37263d36db2",
+          "text_block_id": "backpack_010_model_description_c74c9858c2a6",
           "image_id": null,
+          "region_id": null,
+          "region_label": null,
+          "region_box": null,
           "source_section": "model_description",
           "image_path": null,
-          "content_preview": "This durable and practical travel wallet is the top choice for securely storing personal items. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels with pea",
-          "embedding_score": 0.20786985482077452,
-          "rerank_score": 0.20786985482077452
+          "content_preview": "이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2",
+          "embedding_score": 0.3614031611621005,
+          "rerank_score": 0.3614031611621005
         }
       ]
     },
@@ -547,17 +601,23 @@
       "source_question_id": "backpack_010_review_0138_aspect_03_q_02",
       "source_question": "Do the product images provide structural or visual evidence for the 'durability_quality' judgment?",
       "source_evidence_span": "This checks whether visual evidence supports the experience described in the review.",
+      "expected_evidence_routes": [
+        "image"
+      ],
       "retrieved": [
         {
           "product_id": "backpack_010",
           "route": "image",
           "text_block_id": null,
-          "image_id": "backpack_010_8512010_3d8cd9fb54f5",
+          "image_id": "backpack_010_8512010_75917bd74847",
+          "region_id": null,
+          "region_label": null,
+          "region_box": null,
           "source_section": null,
-          "image_path": "images/8512010/img4.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal items. It is sui",
-          "embedding_score": 0.24623480450043694,
-          "rerank_score": 0.24623480450043694
+          "image_path": "images/8512010/img2.png",
+          "content_preview": "백패킹 오거나이저 여행 지갑 S 모든 스포츠 > 등산 > 용품 > 가방 > 가방 용품 이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2 8512010 images/8512010/img2.p",
+          "embedding_score": 0.2953618874475801,
+          "rerank_score": 0.2953618874475801
         }
       ]
     },
@@ -570,17 +630,23 @@
       "source_question_id": "backpack_010_review_0153_aspect_01_q_01",
       "source_question": "Does the product text explicitly support the experience claim related to 'portability_size'?",
       "source_evidence_span": "This checks whether the product page text directly supports the review claim.",
+      "expected_evidence_routes": [
+        "text"
+      ],
       "retrieved": [
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_model_description_f37263d36db2",
+          "text_block_id": "backpack_010_model_description_c74c9858c2a6",
           "image_id": null,
+          "region_id": null,
+          "region_label": null,
+          "region_box": null,
           "source_section": "model_description",
           "image_path": null,
-          "content_preview": "This durable and practical travel wallet is the top choice for securely storing personal items. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels with pea",
-          "embedding_score": 0.1781741612749496,
-          "rerank_score": 0.1781741612749496
+          "content_preview": "이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2",
+          "embedding_score": 0.3614031611621005,
+          "rerank_score": 0.3614031611621005
         }
       ]
     },
@@ -593,17 +659,23 @@
       "source_question_id": "backpack_010_review_0153_aspect_01_q_02",
       "source_question": "Do the product images provide structural or visual evidence for the 'portability_size' judgment?",
       "source_evidence_span": "This checks whether visual evidence supports the experience described in the review.",
+      "expected_evidence_routes": [
+        "image"
+      ],
       "retrieved": [
         {
           "product_id": "backpack_010",
           "route": "image",
           "text_block_id": null,
-          "image_id": "backpack_010_8512010_3d8cd9fb54f5",
+          "image_id": "backpack_010_8512010_75917bd74847",
+          "region_id": null,
+          "region_label": null,
+          "region_box": null,
           "source_section": null,
-          "image_path": "images/8512010/img4.png",
-          "content_preview": "Backpacking Organizer Travel Wallet S All Sports > Hiking > Equipment > Bags > Bag Accessories This durable and practical travel wallet is the top choice for securely storing personal items. It is sui",
-          "embedding_score": 0.23862350360052176,
-          "rerank_score": 0.23862350360052176
+          "image_path": "images/8512010/img2.png",
+          "content_preview": "백패킹 오거나이저 여행 지갑 S 모든 스포츠 > 등산 > 용품 > 가방 > 가방 용품 이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2 8512010 images/8512010/img2.p",
+          "embedding_score": 0.2685108067705273,
+          "rerank_score": 0.2685108067705273
         }
       ]
     }
@@ -613,7 +685,9 @@
       "retrieval_id": "retrieval_0e153df67267",
       "source_aspect": "value_price",
       "top_k_count": 1,
-      "evidence_coverage": 0.5,
+      "route_coverage": 1.0,
+      "answer_coverage": 1.0,
+      "evidence_coverage": 1.0,
       "score_drift": 0.0,
       "text_coverage": true,
       "image_coverage": false,
@@ -623,7 +697,9 @@
       "retrieval_id": "retrieval_69edf73c8728",
       "source_aspect": "value_price",
       "top_k_count": 1,
-      "evidence_coverage": 0.5,
+      "route_coverage": 1.0,
+      "answer_coverage": 0.0,
+      "evidence_coverage": 0.0,
       "score_drift": 0.0,
       "text_coverage": false,
       "image_coverage": true,
@@ -633,7 +709,9 @@
       "retrieval_id": "retrieval_2af973b7dd0d",
       "source_aspect": "overall_experience",
       "top_k_count": 1,
-      "evidence_coverage": 0.5,
+      "route_coverage": 1.0,
+      "answer_coverage": 1.0,
+      "evidence_coverage": 1.0,
       "score_drift": 0.0,
       "text_coverage": true,
       "image_coverage": false,
@@ -643,7 +721,9 @@
       "retrieval_id": "retrieval_1df798c458eb",
       "source_aspect": "overall_experience",
       "top_k_count": 1,
-      "evidence_coverage": 0.5,
+      "route_coverage": 1.0,
+      "answer_coverage": 0.0,
+      "evidence_coverage": 0.0,
       "score_drift": 0.0,
       "text_coverage": false,
       "image_coverage": true,
@@ -653,7 +733,9 @@
       "retrieval_id": "retrieval_9a8566df6bf9",
       "source_aspect": "portability_size",
       "top_k_count": 1,
-      "evidence_coverage": 0.5,
+      "route_coverage": 1.0,
+      "answer_coverage": 1.0,
+      "evidence_coverage": 1.0,
       "score_drift": 0.0,
       "text_coverage": true,
       "image_coverage": false,
@@ -663,7 +745,9 @@
       "retrieval_id": "retrieval_2ababc5d6c13",
       "source_aspect": "portability_size",
       "top_k_count": 1,
-      "evidence_coverage": 0.5,
+      "route_coverage": 1.0,
+      "answer_coverage": 0.0,
+      "evidence_coverage": 0.0,
       "score_drift": 0.0,
       "text_coverage": false,
       "image_coverage": true,
@@ -673,7 +757,9 @@
       "retrieval_id": "retrieval_ca81e13cb2a8",
       "source_aspect": "usability",
       "top_k_count": 1,
-      "evidence_coverage": 0.5,
+      "route_coverage": 1.0,
+      "answer_coverage": 1.0,
+      "evidence_coverage": 1.0,
       "score_drift": 0.0,
       "text_coverage": true,
       "image_coverage": false,
@@ -683,7 +769,9 @@
       "retrieval_id": "retrieval_49c7016b78ab",
       "source_aspect": "usability",
       "top_k_count": 1,
-      "evidence_coverage": 0.5,
+      "route_coverage": 1.0,
+      "answer_coverage": 0.0,
+      "evidence_coverage": 0.0,
       "score_drift": 0.0,
       "text_coverage": false,
       "image_coverage": true,
@@ -693,7 +781,9 @@
       "retrieval_id": "retrieval_fccf7943a8aa",
       "source_aspect": "durability_quality",
       "top_k_count": 1,
-      "evidence_coverage": 0.5,
+      "route_coverage": 1.0,
+      "answer_coverage": 1.0,
+      "evidence_coverage": 1.0,
       "score_drift": 0.0,
       "text_coverage": true,
       "image_coverage": false,
@@ -703,7 +793,9 @@
       "retrieval_id": "retrieval_475c88c225ff",
       "source_aspect": "durability_quality",
       "top_k_count": 1,
-      "evidence_coverage": 0.5,
+      "route_coverage": 1.0,
+      "answer_coverage": 0.0,
+      "evidence_coverage": 0.0,
       "score_drift": 0.0,
       "text_coverage": false,
       "image_coverage": true,
@@ -713,7 +805,9 @@
       "retrieval_id": "retrieval_c70a9128b6d5",
       "source_aspect": "portability_size",
       "top_k_count": 1,
-      "evidence_coverage": 0.5,
+      "route_coverage": 1.0,
+      "answer_coverage": 1.0,
+      "evidence_coverage": 1.0,
       "score_drift": 0.0,
       "text_coverage": true,
       "image_coverage": false,
@@ -723,7 +817,9 @@
       "retrieval_id": "retrieval_5488af320d7a",
       "source_aspect": "portability_size",
       "top_k_count": 1,
-      "evidence_coverage": 0.5,
+      "route_coverage": 1.0,
+      "answer_coverage": 0.0,
+      "evidence_coverage": 0.0,
       "score_drift": 0.0,
       "text_coverage": false,
       "image_coverage": true,
@@ -749,6 +845,7 @@
       "positive_ratio": 0.0,
       "negative_ratio": 1.0,
       "neutral_ratio": 0.0,
+      "mixed_ratio": 0.0,
       "scenes": {},
       "representative_review_ids": [
         "backpack_010_review_0138",
@@ -761,6 +858,7 @@
       "positive_ratio": 1.0,
       "negative_ratio": 0.0,
       "neutral_ratio": 0.0,
+      "mixed_ratio": 0.0,
       "scenes": {},
       "representative_review_ids": [
         "backpack_010_review_0001"
@@ -772,6 +870,7 @@
       "positive_ratio": 0.0,
       "negative_ratio": 0.0,
       "neutral_ratio": 1.0,
+      "mixed_ratio": 0.0,
       "scenes": {},
       "representative_review_ids": [
         "backpack_010_review_0090"
@@ -783,6 +882,7 @@
       "positive_ratio": 0.0,
       "negative_ratio": 1.0,
       "neutral_ratio": 0.0,
+      "mixed_ratio": 0.0,
       "scenes": {},
       "representative_review_ids": [
         "backpack_010_review_0138"
@@ -794,6 +894,7 @@
       "positive_ratio": 0.0,
       "negative_ratio": 1.0,
       "neutral_ratio": 0.0,
+      "mixed_ratio": 0.0,
       "scenes": {},
       "representative_review_ids": [
         "backpack_010_review_0138"
@@ -803,7 +904,7 @@
   "report": {
     "product_id": "backpack_010",
     "category_slug": "backpack",
-    "answer": "Current reviews concentrate mainly on the 'value_price' experience.At the same time, 'portability_size' is the most important issue to watch.There is some disagreement around 'overall_experience', which should be interpreted by user segment and usage context.",
+    "answer": "Positive feedback appears on value_price.value_price is mainly supported by user reviews and only weakly supported by product-page evidence.The most important issue to watch is portability_size.There is still some disagreement around overall_experience, which should be interpreted by user segment and usage context.",
     "strengths": [
       {
         "label": "value_price",
@@ -814,19 +915,17 @@
             "backpack_010_review_0001"
           ],
           "product_text_block_ids": [
-            "backpack_010_model_description_f37263d36db2"
+            "backpack_010_model_description_c74c9858c2a6"
           ],
-          "product_image_ids": [
-            "backpack_010_8512010_3d8cd9fb54f5"
-          ]
+          "product_image_ids": []
         },
-        "owner": "product_issue",
+        "owner": "content_presentation",
         "confidence_breakdown": {
           "extract_confidence": 0.6,
-          "question_confidence": 0.67,
-          "evidence_confidence": 0.89,
+          "question_confidence": 0.62,
+          "evidence_confidence": 0.71,
           "consistency_confidence": 0.65,
-          "final_confidence": 0.7255
+          "final_confidence": 0.6525
         }
       }
     ],
@@ -841,19 +940,17 @@
             "backpack_010_review_0153"
           ],
           "product_text_block_ids": [
-            "backpack_010_model_description_f37263d36db2"
+            "backpack_010_model_description_c74c9858c2a6"
           ],
-          "product_image_ids": [
-            "backpack_010_8512010_3d8cd9fb54f5"
-          ]
+          "product_image_ids": []
         },
-        "owner": "product_issue",
+        "owner": "content_presentation",
         "confidence_breakdown": {
           "extract_confidence": 0.68,
-          "question_confidence": 0.67,
-          "evidence_confidence": 0.89,
+          "question_confidence": 0.62,
+          "evidence_confidence": 0.71,
           "consistency_confidence": 0.75,
-          "final_confidence": 0.7655000000000001
+          "final_confidence": 0.6925
         }
       },
       {
@@ -865,19 +962,17 @@
             "backpack_010_review_0138"
           ],
           "product_text_block_ids": [
-            "backpack_010_model_description_f37263d36db2"
+            "backpack_010_model_description_c74c9858c2a6"
           ],
-          "product_image_ids": [
-            "backpack_010_8512010_3d8cd9fb54f5"
-          ]
+          "product_image_ids": []
         },
-        "owner": "product_issue",
+        "owner": "content_presentation",
         "confidence_breakdown": {
           "extract_confidence": 0.6,
-          "question_confidence": 0.67,
-          "evidence_confidence": 0.89,
+          "question_confidence": 0.62,
+          "evidence_confidence": 0.71,
           "consistency_confidence": 0.65,
-          "final_confidence": 0.7255
+          "final_confidence": 0.6525
         }
       },
       {
@@ -889,19 +984,17 @@
             "backpack_010_review_0138"
           ],
           "product_text_block_ids": [
-            "backpack_010_model_description_f37263d36db2"
+            "backpack_010_model_description_c74c9858c2a6"
           ],
-          "product_image_ids": [
-            "backpack_010_8512010_3d8cd9fb54f5"
-          ]
+          "product_image_ids": []
         },
-        "owner": "product_issue",
+        "owner": "content_presentation",
         "confidence_breakdown": {
           "extract_confidence": 0.6,
-          "question_confidence": 0.67,
-          "evidence_confidence": 0.89,
+          "question_confidence": 0.62,
+          "evidence_confidence": 0.71,
           "consistency_confidence": 0.65,
-          "final_confidence": 0.7255
+          "final_confidence": 0.6525
         }
       }
     ],
@@ -915,22 +1008,79 @@
             "backpack_010_review_0090"
           ],
           "product_text_block_ids": [
-            "backpack_010_model_description_f37263d36db2"
+            "backpack_010_model_description_c74c9858c2a6"
           ],
-          "product_image_ids": [
-            "backpack_010_8512010_3d8cd9fb54f5"
-          ]
+          "product_image_ids": []
         },
-        "owner": "expectation_mismatch",
+        "owner": "content_presentation",
         "confidence_breakdown": {
           "extract_confidence": 0.6,
-          "question_confidence": 0.67,
-          "evidence_confidence": 0.89,
+          "question_confidence": 0.62,
+          "evidence_confidence": 0.71,
           "consistency_confidence": 0.65,
-          "final_confidence": 0.7255
+          "final_confidence": 0.6525
         }
       }
     ],
+    "product_impressions": [
+      {
+        "aspect": "portability_size",
+        "aspect_frequency": 2,
+        "positive_ratio": 0.0,
+        "negative_ratio": 1.0,
+        "mixed_ratio": 0.0,
+        "scene_distribution": {},
+        "representative_review_ids": [
+          "backpack_010_review_0138",
+          "backpack_010_review_0153"
+        ]
+      },
+      {
+        "aspect": "value_price",
+        "aspect_frequency": 1,
+        "positive_ratio": 1.0,
+        "negative_ratio": 0.0,
+        "mixed_ratio": 0.0,
+        "scene_distribution": {},
+        "representative_review_ids": [
+          "backpack_010_review_0001"
+        ]
+      },
+      {
+        "aspect": "overall_experience",
+        "aspect_frequency": 1,
+        "positive_ratio": 0.0,
+        "negative_ratio": 0.0,
+        "mixed_ratio": 0.0,
+        "scene_distribution": {},
+        "representative_review_ids": [
+          "backpack_010_review_0090"
+        ]
+      },
+      {
+        "aspect": "usability",
+        "aspect_frequency": 1,
+        "positive_ratio": 0.0,
+        "negative_ratio": 1.0,
+        "mixed_ratio": 0.0,
+        "scene_distribution": {},
+        "representative_review_ids": [
+          "backpack_010_review_0138"
+        ]
+      },
+      {
+        "aspect": "durability_quality",
+        "aspect_frequency": 1,
+        "positive_ratio": 0.0,
+        "negative_ratio": 1.0,
+        "mixed_ratio": 0.0,
+        "scene_distribution": {},
+        "representative_review_ids": [
+          "backpack_010_review_0138"
+        ]
+      }
+    ],
+    "customer_impressions": [],
     "applicable_scenes": [],
     "supporting_aspects": [
       "portability_size",
@@ -953,20 +1103,19 @@
         "backpack_010_review_0090"
       ],
       "product_text_block_ids": [
-        "backpack_010_model_description_f37263d36db2"
+        "backpack_010_model_description_c74c9858c2a6"
       ],
-      "product_image_ids": [
-        "backpack_010_8512010_3d8cd9fb54f5"
-      ]
+      "product_image_ids": []
     },
     "confidence": 0.77,
     "suggestions": [
       {
         "suggestion": "Prioritize improvements to the design or presentation related to portability_size, and strengthen the corresponding explanation on the product page.",
-        "suggestion_type": "structural",
+        "suggestion_type": "perception",
         "reason": [
           "Clear negative feedback exists for portability_size, appearing 2 times.",
           "Replay continuity: the issue around portability_size also appeared in the previous run.",
+          "Reviewer feedback: portability_size was explicitly accepted in the previous review round.",
           "Replay continuity: the issue around durability_quality also appeared in the previous run."
         ],
         "confidence": 0.7,
@@ -976,24 +1125,22 @@
             "backpack_010_review_0153"
           ],
           "product_text_block_ids": [
-            "backpack_010_model_description_f37263d36db2"
+            "backpack_010_model_description_c74c9858c2a6"
           ],
-          "product_image_ids": [
-            "backpack_010_8512010_3d8cd9fb54f5"
-          ]
+          "product_image_ids": []
         },
-        "owner": "product_issue",
+        "owner": "content_presentation",
         "confidence_breakdown": {
           "extract_confidence": 0.68,
-          "question_confidence": 0.67,
-          "evidence_confidence": 0.89,
+          "question_confidence": 0.62,
+          "evidence_confidence": 0.71,
           "consistency_confidence": 0.75,
-          "final_confidence": 0.7655000000000001
+          "final_confidence": 0.6925
         }
       },
       {
         "suggestion": "Prioritize improvements to the design or presentation related to usability, and strengthen the corresponding explanation on the product page.",
-        "suggestion_type": "structural",
+        "suggestion_type": "perception",
         "reason": [
           "Clear negative feedback exists for usability, appearing 1 times.",
           "Replay continuity: the issue around usability also appeared in the previous run."
@@ -1004,19 +1151,17 @@
             "backpack_010_review_0138"
           ],
           "product_text_block_ids": [
-            "backpack_010_model_description_f37263d36db2"
+            "backpack_010_model_description_c74c9858c2a6"
           ],
-          "product_image_ids": [
-            "backpack_010_8512010_3d8cd9fb54f5"
-          ]
+          "product_image_ids": []
         },
-        "owner": "product_issue",
+        "owner": "content_presentation",
         "confidence_breakdown": {
           "extract_confidence": 0.6,
-          "question_confidence": 0.67,
-          "evidence_confidence": 0.89,
+          "question_confidence": 0.62,
+          "evidence_confidence": 0.71,
           "consistency_confidence": 0.65,
-          "final_confidence": 0.7255
+          "final_confidence": 0.6525
         }
       },
       {
@@ -1032,19 +1177,17 @@
             "backpack_010_review_0090"
           ],
           "product_text_block_ids": [
-            "backpack_010_model_description_f37263d36db2"
+            "backpack_010_model_description_c74c9858c2a6"
           ],
-          "product_image_ids": [
-            "backpack_010_8512010_3d8cd9fb54f5"
-          ]
+          "product_image_ids": []
         },
         "owner": "content_presentation",
         "confidence_breakdown": {
           "extract_confidence": 0.6,
-          "question_confidence": 0.67,
-          "evidence_confidence": 0.89,
+          "question_confidence": 0.62,
+          "evidence_confidence": 0.71,
           "consistency_confidence": 0.65,
-          "final_confidence": 0.7255
+          "final_confidence": 0.6525
         }
       }
     ]
@@ -1053,7 +1196,7 @@
     {
       "trace_type": "observation",
       "aspect": "replay_continuity",
-      "summary": "replay_path=/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/5_replay/backpack/backpack_010_replay.json, persistent=portability_size, usability, durability_quality, resolved=none, new=none",
+      "summary": "replay_path=/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/5_replay/backpack/backpack_010_replay.json, feedback_path=/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/5_feedback/backpack/backpack_010_feedback_slots.json, persistent=portability_size, usability, durability_quality, resolved=none, new=none, accepted=portability_size, rejected=none, reviewed=1",
       "owner": null,
       "supporting_evidence": {
         "review_ids": [],
@@ -1076,58 +1219,54 @@
       },
       "confidence_breakdown": {
         "extract_confidence": 0.6,
-        "question_confidence": 0.67,
-        "evidence_confidence": 0.89,
+        "question_confidence": 0.62,
+        "evidence_confidence": 0.71,
         "consistency_confidence": 0.65,
-        "final_confidence": 0.7255
+        "final_confidence": 0.6525
       }
     },
     {
       "trace_type": "evidence_check",
       "aspect": "value_price",
-      "summary": "reviews=1, text_blocks=1, images=1. questions=Does the product text explicitly support the experience claim related to 'value_price'?; Do the product images provide structural or visual evidence for the 'value_price' judgment?",
-      "owner": "product_issue",
+      "summary": "reviews=1, text_blocks=1, images=0. questions=Does the product text explicitly support the experience claim related to 'value_price'?; Do the product images provide structural or visual evidence for the 'value_price' judgment?",
+      "owner": "content_presentation",
       "supporting_evidence": {
         "review_ids": [
           "backpack_010_review_0001"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_f37263d36db2"
+          "backpack_010_model_description_c74c9858c2a6"
         ],
-        "product_image_ids": [
-          "backpack_010_8512010_3d8cd9fb54f5"
-        ]
+        "product_image_ids": []
       },
       "confidence_breakdown": {
         "extract_confidence": 0.6,
-        "question_confidence": 0.67,
-        "evidence_confidence": 0.89,
+        "question_confidence": 0.62,
+        "evidence_confidence": 0.71,
         "consistency_confidence": 0.65,
-        "final_confidence": 0.7255
+        "final_confidence": 0.6525
       }
     },
     {
       "trace_type": "owner_judgement",
       "aspect": "value_price",
       "summary": "Positive feedback dominates for value_price, appearing 1 times.",
-      "owner": "product_issue",
+      "owner": "content_presentation",
       "supporting_evidence": {
         "review_ids": [
           "backpack_010_review_0001"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_f37263d36db2"
+          "backpack_010_model_description_c74c9858c2a6"
         ],
-        "product_image_ids": [
-          "backpack_010_8512010_3d8cd9fb54f5"
-        ]
+        "product_image_ids": []
       },
       "confidence_breakdown": {
         "extract_confidence": 0.6,
-        "question_confidence": 0.67,
-        "evidence_confidence": 0.89,
+        "question_confidence": 0.62,
+        "evidence_confidence": 0.71,
         "consistency_confidence": 0.65,
-        "final_confidence": 0.7255
+        "final_confidence": 0.6525
       }
     },
     {
@@ -1144,58 +1283,54 @@
       },
       "confidence_breakdown": {
         "extract_confidence": 0.6,
-        "question_confidence": 0.67,
-        "evidence_confidence": 0.89,
+        "question_confidence": 0.62,
+        "evidence_confidence": 0.71,
         "consistency_confidence": 0.65,
-        "final_confidence": 0.7255
+        "final_confidence": 0.6525
       }
     },
     {
       "trace_type": "evidence_check",
       "aspect": "overall_experience",
-      "summary": "reviews=1, text_blocks=1, images=1. questions=Does the product text explicitly support the experience claim related to 'overall_experience'?; Do the product images provide structural or visual evidence for the 'overall_experience' judgment?",
-      "owner": "expectation_mismatch",
+      "summary": "reviews=1, text_blocks=1, images=0. questions=Does the product text explicitly support the experience claim related to 'overall_experience'?; Do the product images provide structural or visual evidence for the 'overall_experience' judgment?",
+      "owner": "content_presentation",
       "supporting_evidence": {
         "review_ids": [
           "backpack_010_review_0090"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_f37263d36db2"
+          "backpack_010_model_description_c74c9858c2a6"
         ],
-        "product_image_ids": [
-          "backpack_010_8512010_3d8cd9fb54f5"
-        ]
+        "product_image_ids": []
       },
       "confidence_breakdown": {
         "extract_confidence": 0.6,
-        "question_confidence": 0.67,
-        "evidence_confidence": 0.89,
+        "question_confidence": 0.62,
+        "evidence_confidence": 0.71,
         "consistency_confidence": 0.65,
-        "final_confidence": 0.7255
+        "final_confidence": 0.6525
       }
     },
     {
       "trace_type": "owner_judgement",
       "aspect": "overall_experience",
       "summary": "Opinions on overall_experience are relatively mixed and somewhat controversial.",
-      "owner": "expectation_mismatch",
+      "owner": "content_presentation",
       "supporting_evidence": {
         "review_ids": [
           "backpack_010_review_0090"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_f37263d36db2"
+          "backpack_010_model_description_c74c9858c2a6"
         ],
-        "product_image_ids": [
-          "backpack_010_8512010_3d8cd9fb54f5"
-        ]
+        "product_image_ids": []
       },
       "confidence_breakdown": {
         "extract_confidence": 0.6,
-        "question_confidence": 0.67,
-        "evidence_confidence": 0.89,
+        "question_confidence": 0.62,
+        "evidence_confidence": 0.71,
         "consistency_confidence": 0.65,
-        "final_confidence": 0.7255
+        "final_confidence": 0.6525
       }
     },
     {
@@ -1212,60 +1347,56 @@
       },
       "confidence_breakdown": {
         "extract_confidence": 0.68,
-        "question_confidence": 0.67,
-        "evidence_confidence": 0.89,
+        "question_confidence": 0.62,
+        "evidence_confidence": 0.71,
         "consistency_confidence": 0.75,
-        "final_confidence": 0.7655000000000001
+        "final_confidence": 0.6925
       }
     },
     {
       "trace_type": "evidence_check",
       "aspect": "portability_size",
-      "summary": "reviews=2, text_blocks=1, images=1. questions=Does the product text explicitly support the experience claim related to 'portability_size'?; Do the product images provide structural or visual evidence for the 'portability_size' judgment?",
-      "owner": "product_issue",
+      "summary": "reviews=2, text_blocks=1, images=0. questions=Does the product text explicitly support the experience claim related to 'portability_size'?; Do the product images provide structural or visual evidence for the 'portability_size' judgment?",
+      "owner": "content_presentation",
       "supporting_evidence": {
         "review_ids": [
           "backpack_010_review_0138",
           "backpack_010_review_0153"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_f37263d36db2"
+          "backpack_010_model_description_c74c9858c2a6"
         ],
-        "product_image_ids": [
-          "backpack_010_8512010_3d8cd9fb54f5"
-        ]
+        "product_image_ids": []
       },
       "confidence_breakdown": {
         "extract_confidence": 0.68,
-        "question_confidence": 0.67,
-        "evidence_confidence": 0.89,
+        "question_confidence": 0.62,
+        "evidence_confidence": 0.71,
         "consistency_confidence": 0.75,
-        "final_confidence": 0.7655000000000001
+        "final_confidence": 0.6925
       }
     },
     {
       "trace_type": "owner_judgement",
       "aspect": "portability_size",
       "summary": "Clear negative feedback exists for portability_size, appearing 2 times.",
-      "owner": "product_issue",
+      "owner": "content_presentation",
       "supporting_evidence": {
         "review_ids": [
           "backpack_010_review_0138",
           "backpack_010_review_0153"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_f37263d36db2"
+          "backpack_010_model_description_c74c9858c2a6"
         ],
-        "product_image_ids": [
-          "backpack_010_8512010_3d8cd9fb54f5"
-        ]
+        "product_image_ids": []
       },
       "confidence_breakdown": {
         "extract_confidence": 0.68,
-        "question_confidence": 0.67,
-        "evidence_confidence": 0.89,
+        "question_confidence": 0.62,
+        "evidence_confidence": 0.71,
         "consistency_confidence": 0.75,
-        "final_confidence": 0.7655000000000001
+        "final_confidence": 0.6925
       }
     },
     {
@@ -1282,58 +1413,54 @@
       },
       "confidence_breakdown": {
         "extract_confidence": 0.6,
-        "question_confidence": 0.67,
-        "evidence_confidence": 0.89,
+        "question_confidence": 0.62,
+        "evidence_confidence": 0.71,
         "consistency_confidence": 0.65,
-        "final_confidence": 0.7255
+        "final_confidence": 0.6525
       }
     },
     {
       "trace_type": "evidence_check",
       "aspect": "usability",
-      "summary": "reviews=1, text_blocks=1, images=1. questions=Does the product text explicitly support the experience claim related to 'usability'?; Do the product images provide structural or visual evidence for the 'usability' judgment?",
-      "owner": "product_issue",
+      "summary": "reviews=1, text_blocks=1, images=0. questions=Does the product text explicitly support the experience claim related to 'usability'?; Do the product images provide structural or visual evidence for the 'usability' judgment?",
+      "owner": "content_presentation",
       "supporting_evidence": {
         "review_ids": [
           "backpack_010_review_0138"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_f37263d36db2"
+          "backpack_010_model_description_c74c9858c2a6"
         ],
-        "product_image_ids": [
-          "backpack_010_8512010_3d8cd9fb54f5"
-        ]
+        "product_image_ids": []
       },
       "confidence_breakdown": {
         "extract_confidence": 0.6,
-        "question_confidence": 0.67,
-        "evidence_confidence": 0.89,
+        "question_confidence": 0.62,
+        "evidence_confidence": 0.71,
         "consistency_confidence": 0.65,
-        "final_confidence": 0.7255
+        "final_confidence": 0.6525
       }
     },
     {
       "trace_type": "owner_judgement",
       "aspect": "usability",
       "summary": "Clear negative feedback exists for usability, appearing 1 times.",
-      "owner": "product_issue",
+      "owner": "content_presentation",
       "supporting_evidence": {
         "review_ids": [
           "backpack_010_review_0138"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_f37263d36db2"
+          "backpack_010_model_description_c74c9858c2a6"
         ],
-        "product_image_ids": [
-          "backpack_010_8512010_3d8cd9fb54f5"
-        ]
+        "product_image_ids": []
       },
       "confidence_breakdown": {
         "extract_confidence": 0.6,
-        "question_confidence": 0.67,
-        "evidence_confidence": 0.89,
+        "question_confidence": 0.62,
+        "evidence_confidence": 0.71,
         "consistency_confidence": 0.65,
-        "final_confidence": 0.7255
+        "final_confidence": 0.6525
       }
     },
     {
@@ -1350,58 +1477,54 @@
       },
       "confidence_breakdown": {
         "extract_confidence": 0.6,
-        "question_confidence": 0.67,
-        "evidence_confidence": 0.89,
+        "question_confidence": 0.62,
+        "evidence_confidence": 0.71,
         "consistency_confidence": 0.65,
-        "final_confidence": 0.7255
+        "final_confidence": 0.6525
       }
     },
     {
       "trace_type": "evidence_check",
       "aspect": "durability_quality",
-      "summary": "reviews=1, text_blocks=1, images=1. questions=Does the product text explicitly support the experience claim related to 'durability_quality'?; Do the product images provide structural or visual evidence for the 'durability_quality' judgment?",
-      "owner": "product_issue",
+      "summary": "reviews=1, text_blocks=1, images=0. questions=Does the product text explicitly support the experience claim related to 'durability_quality'?; Do the product images provide structural or visual evidence for the 'durability_quality' judgment?",
+      "owner": "content_presentation",
       "supporting_evidence": {
         "review_ids": [
           "backpack_010_review_0138"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_f37263d36db2"
+          "backpack_010_model_description_c74c9858c2a6"
         ],
-        "product_image_ids": [
-          "backpack_010_8512010_3d8cd9fb54f5"
-        ]
+        "product_image_ids": []
       },
       "confidence_breakdown": {
         "extract_confidence": 0.6,
-        "question_confidence": 0.67,
-        "evidence_confidence": 0.89,
+        "question_confidence": 0.62,
+        "evidence_confidence": 0.71,
         "consistency_confidence": 0.65,
-        "final_confidence": 0.7255
+        "final_confidence": 0.6525
       }
     },
     {
       "trace_type": "owner_judgement",
       "aspect": "durability_quality",
       "summary": "Clear negative feedback exists for durability_quality, appearing 1 times.",
-      "owner": "product_issue",
+      "owner": "content_presentation",
       "supporting_evidence": {
         "review_ids": [
           "backpack_010_review_0138"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_f37263d36db2"
+          "backpack_010_model_description_c74c9858c2a6"
         ],
-        "product_image_ids": [
-          "backpack_010_8512010_3d8cd9fb54f5"
-        ]
+        "product_image_ids": []
       },
       "confidence_breakdown": {
         "extract_confidence": 0.6,
-        "question_confidence": 0.67,
-        "evidence_confidence": 0.89,
+        "question_confidence": 0.62,
+        "evidence_confidence": 0.71,
         "consistency_confidence": 0.65,
-        "final_confidence": 0.7255
+        "final_confidence": 0.6525
       }
     },
     {
@@ -1418,109 +1541,101 @@
       },
       "confidence_breakdown": {
         "extract_confidence": 0.68,
-        "question_confidence": 0.67,
-        "evidence_confidence": 0.89,
+        "question_confidence": 0.62,
+        "evidence_confidence": 0.71,
         "consistency_confidence": 0.75,
-        "final_confidence": 0.7655000000000001
+        "final_confidence": 0.6925
       }
     },
     {
       "trace_type": "evidence_check",
       "aspect": "portability_size",
-      "summary": "reviews=2, text_blocks=1, images=1. questions=Does the product text explicitly support the experience claim related to 'portability_size'?; Do the product images provide structural or visual evidence for the 'portability_size' judgment?",
-      "owner": "product_issue",
+      "summary": "reviews=2, text_blocks=1, images=0. questions=Does the product text explicitly support the experience claim related to 'portability_size'?; Do the product images provide structural or visual evidence for the 'portability_size' judgment?",
+      "owner": "content_presentation",
       "supporting_evidence": {
         "review_ids": [
           "backpack_010_review_0138",
           "backpack_010_review_0153"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_f37263d36db2"
+          "backpack_010_model_description_c74c9858c2a6"
         ],
-        "product_image_ids": [
-          "backpack_010_8512010_3d8cd9fb54f5"
-        ]
+        "product_image_ids": []
       },
       "confidence_breakdown": {
         "extract_confidence": 0.68,
-        "question_confidence": 0.67,
-        "evidence_confidence": 0.89,
+        "question_confidence": 0.62,
+        "evidence_confidence": 0.71,
         "consistency_confidence": 0.75,
-        "final_confidence": 0.7655000000000001
+        "final_confidence": 0.6925
       }
     },
     {
       "trace_type": "owner_judgement",
       "aspect": "portability_size",
       "summary": "Clear negative feedback exists for portability_size, appearing 2 times.",
-      "owner": "product_issue",
+      "owner": "content_presentation",
       "supporting_evidence": {
         "review_ids": [
           "backpack_010_review_0138",
           "backpack_010_review_0153"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_f37263d36db2"
+          "backpack_010_model_description_c74c9858c2a6"
         ],
-        "product_image_ids": [
-          "backpack_010_8512010_3d8cd9fb54f5"
-        ]
+        "product_image_ids": []
       },
       "confidence_breakdown": {
         "extract_confidence": 0.68,
-        "question_confidence": 0.67,
-        "evidence_confidence": 0.89,
+        "question_confidence": 0.62,
+        "evidence_confidence": 0.71,
         "consistency_confidence": 0.75,
-        "final_confidence": 0.7655000000000001
+        "final_confidence": 0.6925
       }
     },
     {
       "trace_type": "action_generation",
       "aspect": "Clear negative feedback exists for portability_size, appearing 2 times.",
       "summary": "Prioritize improvements to the design or presentation related to portability_size, and strengthen the corresponding explanation on the product page.",
-      "owner": "product_issue",
+      "owner": "content_presentation",
       "supporting_evidence": {
         "review_ids": [
           "backpack_010_review_0138",
           "backpack_010_review_0153"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_f37263d36db2"
+          "backpack_010_model_description_c74c9858c2a6"
         ],
-        "product_image_ids": [
-          "backpack_010_8512010_3d8cd9fb54f5"
-        ]
+        "product_image_ids": []
       },
       "confidence_breakdown": {
         "extract_confidence": 0.68,
-        "question_confidence": 0.67,
-        "evidence_confidence": 0.89,
+        "question_confidence": 0.62,
+        "evidence_confidence": 0.71,
         "consistency_confidence": 0.75,
-        "final_confidence": 0.7655000000000001
+        "final_confidence": 0.6925
       }
     },
     {
       "trace_type": "action_generation",
       "aspect": "Clear negative feedback exists for usability, appearing 1 times.",
       "summary": "Prioritize improvements to the design or presentation related to usability, and strengthen the corresponding explanation on the product page.",
-      "owner": "product_issue",
+      "owner": "content_presentation",
       "supporting_evidence": {
         "review_ids": [
           "backpack_010_review_0138"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_f37263d36db2"
+          "backpack_010_model_description_c74c9858c2a6"
         ],
-        "product_image_ids": [
-          "backpack_010_8512010_3d8cd9fb54f5"
-        ]
+        "product_image_ids": []
       },
       "confidence_breakdown": {
         "extract_confidence": 0.6,
-        "question_confidence": 0.67,
-        "evidence_confidence": 0.89,
+        "question_confidence": 0.62,
+        "evidence_confidence": 0.71,
         "consistency_confidence": 0.65,
-        "final_confidence": 0.7255
+        "final_confidence": 0.6525
       }
     },
     {
@@ -1533,25 +1648,30 @@
           "backpack_010_review_0090"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_f37263d36db2"
+          "backpack_010_model_description_c74c9858c2a6"
         ],
-        "product_image_ids": [
-          "backpack_010_8512010_3d8cd9fb54f5"
-        ]
+        "product_image_ids": []
       },
       "confidence_breakdown": {
         "extract_confidence": 0.6,
-        "question_confidence": 0.67,
-        "evidence_confidence": 0.89,
+        "question_confidence": 0.62,
+        "evidence_confidence": 0.71,
         "consistency_confidence": 0.65,
-        "final_confidence": 0.7255
+        "final_confidence": 0.6525
       }
     }
   ],
   "replay_summary": {
     "replay_path": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/5_replay/backpack/backpack_010_replay.json",
+    "feedback_path": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/5_feedback/backpack/backpack_010_feedback_slots.json",
     "previous_analysis_mode": "heuristic",
     "applied": true,
+    "reviewed_slot_count": 1,
+    "pending_slot_count": 18,
+    "accepted_issue_labels": [
+      "portability_size"
+    ],
+    "rejected_issue_labels": [],
     "persistent_issue_labels": [
       "portability_size",
       "usability",
@@ -1567,6 +1687,6 @@
     "replay_path": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/5_replay/backpack/backpack_010_replay.json"
   },
   "warnings": [
-    "replay continuity applied: persistent=4, resolved=0, new=0"
+    "replay continuity applied: persistent=4, resolved=0, new=0, reviewed=1"
   ]
 }

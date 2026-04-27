@@ -35,19 +35,22 @@ class IndexService:
             )
             evidence = self._build_evidence_for_package(package)
             text_count = sum(1 for item in evidence if item.route == "text")
-            image_count = sum(1 for item in evidence if item.route == "image")
+            image_count = len(package.images)
+            image_region_count = sum(len(image.regions) for image in package.images)
             snapshots.append(
                 ProductIndexSnapshot(
                     product_id=package.product_id,
                     category_slug=package.category_slug,
                     text_count=text_count,
                     image_count=image_count,
+                    image_region_count=image_region_count,
                     evidence=evidence,
                 )
             )
             stats.indexed_products += 1
             stats.indexed_text_blocks += text_count
             stats.indexed_images += image_count
+            stats.indexed_image_regions += image_region_count
 
         index_path = self.backend.save_snapshots(snapshots) if request.persist_artifact else None
 
@@ -66,6 +69,7 @@ class IndexService:
             indexed_products=len(snapshots),
             indexed_text_blocks=sum(snapshot.text_count for snapshot in snapshots),
             indexed_images=sum(snapshot.image_count for snapshot in snapshots),
+            indexed_image_regions=sum(snapshot.image_region_count for snapshot in snapshots),
             index_path=self.backend.index_location(),
         )
 
@@ -81,6 +85,7 @@ class IndexService:
             category_slug=package.category_slug,
             text_count=len(package.text_blocks),
             image_count=len(package.images),
+            image_region_count=sum(len(image.regions) for image in package.images),
             evidence=self._build_evidence_for_package(package),
         )
         snapshots.append(snapshot)
@@ -137,4 +142,38 @@ class IndexService:
                     vector=self.embedding_service.embed_image(image_path=image_source_path, text_hint=proxy_text),
                 )
             )
+            for region in image.regions:
+                region_box = tuple(region.region_box)
+                region_text = " ".join(
+                    part
+                    for part in [
+                        package.product_name,
+                        package.category_text,
+                        package.model_description,
+                        image.variant,
+                        region.region_label,
+                        image.image_path,
+                    ]
+                    if part
+                )
+                evidence.append(
+                    IndexedEvidence(
+                        evidence_id=region.region_id,
+                        product_id=package.product_id,
+                        category_slug=package.category_slug,
+                        route="image",
+                        image_id=image.image_id,
+                        image_path=image.image_path,
+                        variant=image.variant,
+                        region_id=region.region_id,
+                        region_label=region.region_label,
+                        region_box=region.region_box,
+                        content=region_text,
+                        vector=self.embedding_service.embed_image(
+                            image_path=image_source_path,
+                            text_hint=region_text,
+                            crop_box=region_box,
+                        ),
+                    )
+                )
         return evidence

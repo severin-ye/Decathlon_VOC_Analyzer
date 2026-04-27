@@ -1,4 +1,3 @@
-import os
 import hashlib
 import json
 import re
@@ -6,16 +5,18 @@ from pathlib import Path
 
 import orjson
 from pydantic import BaseModel
+from PIL import Image
 
 from decathlon_voc_analyzer.app.core.config import get_settings
 from decathlon_voc_analyzer.llm import QwenChatGateway
-from decathlon_voc_analyzer.prompts import get_prompt_template
+from decathlon_voc_analyzer.prompts import get_prompt_template, get_prompt_variant
 from decathlon_voc_analyzer.schemas.dataset import (
     CategoryOverview,
     DatasetNormalizationResult,
     DatasetNormalizeRequest,
     DatasetOverview,
     ImageEvidence,
+    ImageRegion,
     NormalizationStats,
     ProductDirectory,
     ProductEvidencePackage,
@@ -214,7 +215,7 @@ class DatasetService:
             model_description=model_description,
             category_text=category_text,
         )
-        images = self._build_images(directory.product_id, product_payload)
+        images = self._build_images(directory, product_payload)
         reviews = self._build_reviews(directory.product_id, reviews_payload)
 
         if not images:
@@ -234,7 +235,7 @@ class DatasetService:
         )
 
     def _should_project_main_to_english(self) -> bool:
-        return os.getenv("PROMPT_VARIANT", "main") == "main" and bool(self.settings.qwen_plus_api_key)
+        return get_prompt_variant() == "main" and bool(self.settings.qwen_plus_api_key)
 
     def _project_product_fields_to_english(
         self,
@@ -290,7 +291,7 @@ class DatasetService:
             )
         return blocks
 
-    def _build_images(self, product_id: str, product_payload: dict[str, object]) -> list[ImageEvidence]:
+    def _build_images(self, directory: ProductDirectory, product_payload: dict[str, object]) -> list[ImageEvidence]:
         variants = product_payload.get("variants") or []
         images: list[ImageEvidence] = []
         for variant_payload in variants:
@@ -301,15 +302,73 @@ class DatasetService:
             for image_path in image_paths:
                 if not isinstance(image_path, str):
                     continue
+                image_id = self._make_id(directory.product_id, variant or "default", image_path)
+                width, height, regions = self._inspect_image_regions(
+                    image_id=image_id,
+                    image_path=directory.product_dir / image_path,
+                )
                 images.append(
                     ImageEvidence(
-                        image_id=self._make_id(product_id, variant or "default", image_path),
-                        product_id=product_id,
+                        image_id=image_id,
+                        product_id=directory.product_id,
                         variant=variant,
                         image_path=image_path,
+                        width=width,
+                        height=height,
+                        regions=regions,
                     )
                 )
         return images
+
+    def _inspect_image_regions(self, image_id: str, image_path: Path) -> tuple[int | None, int | None, list[ImageRegion]]:
+        if not image_path.exists():
+            return None, None, []
+        try:
+            with Image.open(image_path) as image:
+                width, height = image.size
+        except Exception:
+            return None, None, []
+        return width, height, self._build_default_image_regions(image_id, width, height)
+
+    def _build_default_image_regions(self, image_id: str, width: int, height: int) -> list[ImageRegion]:
+        if width < 2 or height < 2:
+            return []
+        candidates = [
+            ("center_focus", (0.2, 0.2, 0.8, 0.8)),
+            ("upper_focus", (0.0, 0.0, 1.0, 0.6)),
+            ("lower_focus", (0.0, 0.4, 1.0, 1.0)),
+            ("left_focus", (0.0, 0.0, 0.6, 1.0)),
+            ("right_focus", (0.4, 0.0, 1.0, 1.0)),
+        ]
+        regions: list[ImageRegion] = []
+        seen_boxes: set[tuple[int, int, int, int]] = set()
+        for label, ratios in candidates:
+            box = self._region_box_from_ratios(width, height, ratios)
+            if box is None or box in seen_boxes:
+                continue
+            seen_boxes.add(box)
+            regions.append(
+                ImageRegion(
+                    region_id=self._make_id(image_id, "region", f"{label}:{box}"),
+                    region_label=label,
+                    region_box=list(box),
+                )
+            )
+        return regions
+
+    def _region_box_from_ratios(
+        self,
+        width: int,
+        height: int,
+        ratios: tuple[float, float, float, float],
+    ) -> tuple[int, int, int, int] | None:
+        left = max(0, min(width - 1, int(round(width * ratios[0]))))
+        top = max(0, min(height - 1, int(round(height * ratios[1]))))
+        right = max(left + 1, min(width, int(round(width * ratios[2]))))
+        bottom = max(top + 1, min(height, int(round(height * ratios[3]))))
+        if right <= left or bottom <= top:
+            return None
+        return (left, top, right, bottom)
 
     def _build_reviews(self, product_id: str, reviews_payload: dict[str, object]) -> list[ReviewRecord]:
         review_items = reviews_payload.get("reviews") or []

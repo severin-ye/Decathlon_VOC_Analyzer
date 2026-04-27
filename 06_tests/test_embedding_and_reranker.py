@@ -108,7 +108,7 @@ def test_embedding_service_uses_clip_for_image_route(monkeypatch, tmp_path) -> N
     service = EmbeddingService()
     service.settings.image_embedding_backend = "clip"
 
-    monkeypatch.setattr(service, "_clip_image_embedding", lambda _path: [0.0, 1.0])
+    monkeypatch.setattr(service, "_clip_image_embedding", lambda _path, crop_box=None: [0.0, 1.0])
     monkeypatch.setattr(service, "_clip_text_embedding", lambda _text: [1.0, 0.0])
 
     image_path = tmp_path / "probe.png"

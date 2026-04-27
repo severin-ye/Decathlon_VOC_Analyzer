@@ -1,0 +1,228 @@
+{
+  "product_id": "shoes_010",
+  "category_slug": "shoes",
+  "analysis_mode": "llm",
+  "slots": [
+    {
+      "slot_id": "issue_01",
+      "item_type": "insight",
+      "label": "Rigid, non-padded heel tab causing rubbing",
+      "summary": "100% of reviews mentioning the heel tab (n=1) report it as 'too rigid and causes rubbing' during running; product images (img4.png) show no visible padding or contouring in the heel tab region, and no official documentation validates rigidity as intentional.",
+      "owner": "product_issue",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "issue_02",
+      "item_type": "insight",
+      "label": "Poor heel fit leading to blisters",
+      "summary": "100% of reviews mentioning heel fit (n=1) state it 'causes blisters on my left heel' while running; no product imagery shows interior heel seam alignment or friction-mitigating features, and no specs reference heel lockdown or gusseting.",
+      "owner": "product_issue",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "issue_03",
+      "item_type": "insight",
+      "label": "Foot pain in long-distance running",
+      "summary": "One review (review_0029) reports 'foot pain' specifically during long-distance running; this occurs alongside low comfort positive ratio (50%) and overlaps with scenes where heel and toe comfort are contested, suggesting systemic support deficiency.",
+      "owner": "product_issue",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "issue_04",
+      "item_type": "insight",
+      "label": "Heel tab rigidity vs. design intent",
+      "summary": "Reviewers report the heel tab is 'too rigid and causes rubbing' during running, but official product documentation does not explicitly describe its rigidity as a design feature; no marketing or spec text confirms intentional stiffness.",
+      "owner": "evidence_gap",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "issue_05",
+      "item_type": "insight",
+      "label": "'Very quick' performance claim without technical validation",
+      "summary": "A reviewer states the shoes 'feel very quick' in racing, but product descriptions mention only VFOAM PLUS and carbon plate—no metrics (e.g., energy return %, stack height differential, or lab-tested responsiveness) or imagery demonstrating real-time responsiveness or motion efficiency.",
+      "owner": "evidence_gap",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "suggestion_01",
+      "item_type": "suggestion",
+      "label": "Redesign the heel tab with segmented padding or flexible gusseting to reduce friction; add explicit language in specs/marketing clarifying intended stiffness level and break-in guidance.",
+      "summary": "Heel tab rigidity is the top-negative aspect (100% negative ratio, frequency=1) and directly linked to blister formation and rubbing discomfort in running; visual evidence (img4.png) shows minimal contouring or padding in the heel tab region, suggesting a design gap.; No official documentation clarifies whether rigidity is intentional or a flaw, creating ambiguity for buyers.",
+      "owner": "content_presentation",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "suggestion_02",
+      "item_type": "suggestion",
+      "label": "Introduce a dynamic heel-lock system (e.g., padded internal heel counter + adjustable pull tab) and validate fit across foot widths via standardized last testing.",
+      "summary": "'Foot pain' is reported in long-distance running (review_0029), and 'heel fit' is fully negative (100% negative ratio), indicating systemic fit issues beyond isolated heel tab problems.; No evidence retrieved supports heel lockdown, collar softness, or adaptive fit technologies in official materials.",
+      "owner": "content_presentation",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "suggestion_03",
+      "item_type": "suggestion",
+      "label": "Publish lab-tested performance metrics (e.g., vertical deformation under load, carbon plate deflection angle, time-to-rebound) and include slow-motion video of shoe flexion/return in racing context.",
+      "summary": "The 'very quick' performance claim lacks technical substantiation in specs or imagery; reviewers may conflate subjective feel with objective metrics, risking credibility erosion.; Competitors often quantify responsiveness (e.g., '15% faster energy return vs. prior model')—absence here creates a comparative disadvantage.",
+      "owner": "content_presentation",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "retrieval_01",
+      "item_type": "retrieval_quality",
+      "label": "heel tab",
+      "summary": "coverage=1.00, drift=0.26, conflict=0.40",
+      "owner": "product_issue",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "retrieval_02",
+      "item_type": "retrieval_quality",
+      "label": "heel tab",
+      "summary": "coverage=1.00, drift=0.55, conflict=0.60",
+      "owner": "evidence_gap",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "retrieval_03",
+      "item_type": "retrieval_quality",
+      "label": "toe box",
+      "summary": "coverage=1.00, drift=0.27, conflict=0.40",
+      "owner": "product_issue",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "retrieval_04",
+      "item_type": "retrieval_quality",
+      "label": "toe box",
+      "summary": "coverage=1.00, drift=0.24, conflict=0.60",
+      "owner": "evidence_gap",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "retrieval_05",
+      "item_type": "retrieval_quality",
+      "label": "comfort",
+      "summary": "coverage=1.00, drift=0.44, conflict=0.60",
+      "owner": "evidence_gap",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "retrieval_06",
+      "item_type": "retrieval_quality",
+      "label": "comfort",
+      "summary": "coverage=1.00, drift=0.33, conflict=0.40",
+      "owner": "product_issue",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "retrieval_07",
+      "item_type": "retrieval_quality",
+      "label": "heel fit",
+      "summary": "coverage=1.00, drift=0.34, conflict=0.00",
+      "owner": "product_issue",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "retrieval_08",
+      "item_type": "retrieval_quality",
+      "label": "heel fit",
+      "summary": "coverage=1.00, drift=0.15, conflict=0.00",
+      "owner": "product_issue",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "retrieval_09",
+      "item_type": "retrieval_quality",
+      "label": "performance",
+      "summary": "coverage=1.00, drift=0.28, conflict=0.40",
+      "owner": "product_issue",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "retrieval_10",
+      "item_type": "retrieval_quality",
+      "label": "performance",
+      "summary": "coverage=1.00, drift=0.28, conflict=0.60",
+      "owner": "evidence_gap",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "retrieval_11",
+      "item_type": "retrieval_quality",
+      "label": "comfort",
+      "summary": "coverage=1.00, drift=0.35, conflict=0.40",
+      "owner": "product_issue",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "retrieval_12",
+      "item_type": "retrieval_quality",
+      "label": "comfort",
+      "summary": "coverage=1.00, drift=0.03, conflict=0.60",
+      "owner": "evidence_gap",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "retrieval_13",
+      "item_type": "retrieval_quality",
+      "label": "foot pain",
+      "summary": "coverage=1.00, drift=0.35, conflict=0.40",
+      "owner": "product_issue",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "retrieval_14",
+      "item_type": "retrieval_quality",
+      "label": "foot pain",
+      "summary": "coverage=1.00, drift=0.24, conflict=0.40",
+      "owner": "product_issue",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    }
+  ],
+  "warnings": []
+}

@@ -37,10 +37,15 @@ class EmbeddingService:
     def embed_image_proxy_text(self, text: str) -> list[float]:
         return self.embed_text(text)
 
-    def embed_image(self, image_path: Path, text_hint: str | None = None) -> list[float]:
+    def embed_image(
+        self,
+        image_path: Path,
+        text_hint: str | None = None,
+        crop_box: tuple[int, int, int, int] | None = None,
+    ) -> list[float]:
         if self.settings.image_embedding_backend == "clip":
             try:
-                return self._clip_image_embedding(image_path)
+                return self._clip_image_embedding(image_path, crop_box=crop_box)
             except Exception:
                 return self.embed_image_proxy_text(text_hint or image_path.name)
         return self.embed_image_proxy_text(text_hint or image_path.name)
@@ -114,10 +119,16 @@ class EmbeddingService:
         self._clip_vector_size = len(features)
         return self._normalize_vector(features)
 
-    def _clip_image_embedding(self, image_path: Path) -> list[float]:
+    def _clip_image_embedding(
+        self,
+        image_path: Path,
+        crop_box: tuple[int, int, int, int] | None = None,
+    ) -> list[float]:
         model, processor = self._get_clip_resources()
         with Image.open(image_path) as image:
             rgb_image = image.convert("RGB")
+            if crop_box is not None:
+                rgb_image = rgb_image.crop(crop_box)
             inputs = processor(images=rgb_image, return_tensors="pt")
         with torch.no_grad():
             features = self._to_feature_vector(model.get_image_features(**inputs))

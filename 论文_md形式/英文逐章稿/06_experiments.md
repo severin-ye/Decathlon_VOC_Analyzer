@@ -43,7 +43,7 @@ This intermediate question layer is also crucial for error diagnosis. Because ea
 
 ## 6.6 Current Boundaries of the Results
 
-Despite these encouraging findings, the present results should still be interpreted as system-validation outcomes rather than final benchmark claims. First, the current framework does not yet report standard retrieval metrics such as Recall@k, MRR, or NDCG, so the marginal benefit of dual-route retrieval and reranking has not yet been quantitatively isolated. Second, the representative artifacts demonstrate capability across different types of scenarios, but they do not constitute a statistically representative evaluation set. Third, image retrieval remains object-level rather than region-level, which limits the analysis of highly localized visual properties.
+Despite these encouraging findings, the present results should still be interpreted as system-validation outcomes rather than final benchmark claims. First, the framework can now report Recall@1/3/5, MRR, and NDCG@3/5 when gold labels are available, but the repository still lacks a frozen multi-category benchmark, so the overall marginal benefit of dual-route retrieval and reranking has not yet been quantified rigorously. Second, the representative artifacts demonstrate capability across different types of scenarios, but they do not constitute a statistically representative evaluation set. Third, image retrieval has now entered a region-level v1 stage, yet the current regions are still fixed crops rather than fine-grained semantic grounding, which continues to limit analysis of highly localized visual properties.
 
 ## 6.7 Summary
 

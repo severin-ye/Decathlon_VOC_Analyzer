@@ -22,3 +22,11 @@ def test_normalize_single_product_without_persisting() -> None:
     assert result.stats.scanned_products == 1
     assert result.stats.normalized_products == 1
     assert result.stats.total_reviews >= 0
+
+
+def test_dataset_service_normalizes_prompt_variant_alias_for_projection(monkeypatch) -> None:
+    monkeypatch.setenv("PROMPT_VARIANT", "en")
+    service = DatasetService()
+    service.settings.qwen_plus_api_key = "demo-key"
+
+    assert service._should_project_main_to_english() is True

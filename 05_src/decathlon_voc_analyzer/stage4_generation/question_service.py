@@ -1,11 +1,10 @@
-import os
 import hashlib
 
 from decathlon_voc_analyzer.llm import QwenChatGateway
 from decathlon_voc_analyzer.app.core.config import get_settings
 from decathlon_voc_analyzer.schemas.analysis import RetrievalQuestion
 from decathlon_voc_analyzer.schemas.review import ReviewAspect
-from decathlon_voc_analyzer.prompts import get_prompt_template
+from decathlon_voc_analyzer.prompts import get_prompt_template, get_prompt_variant
 
 
 class QuestionGenerationService:
@@ -75,7 +74,7 @@ class QuestionGenerationService:
         return questions or self._generate_with_heuristic(aspect, questions_per_aspect)
 
     def _generate_with_heuristic(self, aspect: ReviewAspect, questions_per_aspect: int) -> list[RetrievalQuestion]:
-        if os.getenv("PROMPT_VARIANT", "main") == "main":
+        if get_prompt_variant() == "main":
             candidates = [
                 (
                     f"Does the product text explicitly support the experience claim related to '{aspect.aspect}'?",

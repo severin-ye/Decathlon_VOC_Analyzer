@@ -1,9 +1,11 @@
 import base64
+from io import BytesIO
 import json
 from pathlib import Path
 from urllib import request
 
 from openai import OpenAI
+from PIL import Image
 
 from decathlon_voc_analyzer.app.core.config import get_settings
 from decathlon_voc_analyzer.schemas.index import IndexedEvidence
@@ -143,6 +145,16 @@ class RerankerService:
         image_path = Path(self.settings.dataset_root) / candidate.category_slug / candidate.product_id / candidate.image_path
         if not image_path.exists():
             return None
+        if candidate.region_box is not None:
+            try:
+                with Image.open(image_path) as image:
+                    cropped = image.convert("RGB").crop(tuple(candidate.region_box))
+                    buffer = BytesIO()
+                    cropped.save(buffer, format="PNG")
+                encoded = base64.b64encode(buffer.getvalue()).decode("ascii")
+                return f"data:image/png;base64,{encoded}"
+            except Exception:
+                return None
         mime = "image/png" if image_path.suffix.lower() == ".png" else "image/jpeg"
         encoded = base64.b64encode(image_path.read_bytes()).decode("ascii")
         return f"data:{mime};base64,{encoded}"

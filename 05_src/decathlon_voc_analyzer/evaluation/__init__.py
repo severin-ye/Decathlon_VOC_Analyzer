@@ -1,0 +1,3 @@
+from decathlon_voc_analyzer.evaluation.manifest_evaluation_service import ManifestEvaluationService
+
+__all__ = ["ManifestEvaluationService"]

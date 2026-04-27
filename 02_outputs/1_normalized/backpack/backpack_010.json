@@ -3,7 +3,7 @@
   "category_slug": "backpack",
   "product_name": "Backpacking Organizer Travel Wallet S",
   "category_text": "All Sports > Hiking > Gear > Bags > Bag Accessories",
-  "model_description": "This durable and practical travel wallet is the top choice for safely storing personal items. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels with peace of mind. [Warranty Period] 2 years",
+  "model_description": "This durable and practical travel wallet is the top choice for securely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels with peace of mind. [Warranty Period] 2 years",
   "source_dir": "/home/severin/Codelib/Decathlon_VOC_Analyzer/01_data/01_raw_products/products/backpack/backpack_010",
   "text_blocks": [
     {
@@ -14,11 +14,11 @@
       "content": "Backpacking Organizer Travel Wallet S"
     },
     {
-      "text_block_id": "backpack_010_model_description_676b23089ef7",
+      "text_block_id": "backpack_010_model_description_519cf5b81d86",
       "product_id": "backpack_010",
       "text_type": "description",
       "source_section": "model_description",
-      "content": "This durable and practical travel wallet is the top choice for safely storing personal items. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels with peace of mind. [Warranty Period] 2 years"
+      "content": "This durable and practical travel wallet is the top choice for securely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels with peace of mind. [Warranty Period] 2 years"
     },
     {
       "text_block_id": "backpack_010_category_df8dbdbf76c1",
@@ -35,7 +35,61 @@
       "variant": "8512010",
       "image_type": "product",
       "image_path": "images/8512010/img1.png",
-      "aux_text": null
+      "aux_text": null,
+      "width": 1920,
+      "height": 1920,
+      "regions": [
+        {
+          "region_id": "backpack_010_8512010_224bc9da0299_region_ff8ef8b1e71a",
+          "region_label": "center_focus",
+          "region_box": [
+            384,
+            384,
+            1536,
+            1536
+          ]
+        },
+        {
+          "region_id": "backpack_010_8512010_224bc9da0299_region_09d620076e2d",
+          "region_label": "upper_focus",
+          "region_box": [
+            0,
+            0,
+            1920,
+            1152
+          ]
+        },
+        {
+          "region_id": "backpack_010_8512010_224bc9da0299_region_f359b8ad2043",
+          "region_label": "lower_focus",
+          "region_box": [
+            0,
+            768,
+            1920,
+            1920
+          ]
+        },
+        {
+          "region_id": "backpack_010_8512010_224bc9da0299_region_6cb77d6cf3d1",
+          "region_label": "left_focus",
+          "region_box": [
+            0,
+            0,
+            1152,
+            1920
+          ]
+        },
+        {
+          "region_id": "backpack_010_8512010_224bc9da0299_region_9096703dc64f",
+          "region_label": "right_focus",
+          "region_box": [
+            768,
+            0,
+            1920,
+            1920
+          ]
+        }
+      ]
     },
     {
       "image_id": "backpack_010_8512010_75917bd74847",
@@ -43,7 +97,61 @@
       "variant": "8512010",
       "image_type": "product",
       "image_path": "images/8512010/img2.png",
-      "aux_text": null
+      "aux_text": null,
+      "width": 1920,
+      "height": 1920,
+      "regions": [
+        {
+          "region_id": "backpack_010_8512010_75917bd74847_region_ff8ef8b1e71a",
+          "region_label": "center_focus",
+          "region_box": [
+            384,
+            384,
+            1536,
+            1536
+          ]
+        },
+        {
+          "region_id": "backpack_010_8512010_75917bd74847_region_09d620076e2d",
+          "region_label": "upper_focus",
+          "region_box": [
+            0,
+            0,
+            1920,
+            1152
+          ]
+        },
+        {
+          "region_id": "backpack_010_8512010_75917bd74847_region_f359b8ad2043",
+          "region_label": "lower_focus",
+          "region_box": [
+            0,
+            768,
+            1920,
+            1920
+          ]
+        },
+        {
+          "region_id": "backpack_010_8512010_75917bd74847_region_6cb77d6cf3d1",
+          "region_label": "left_focus",
+          "region_box": [
+            0,
+            0,
+            1152,
+            1920
+          ]
+        },
+        {
+          "region_id": "backpack_010_8512010_75917bd74847_region_9096703dc64f",
+          "region_label": "right_focus",
+          "region_box": [
+            768,
+            0,
+            1920,
+            1920
+          ]
+        }
+      ]
     },
     {
       "image_id": "backpack_010_8512010_95f26bad8172",
@@ -51,7 +159,61 @@
       "variant": "8512010",
       "image_type": "product",
       "image_path": "images/8512010/img3.png",
-      "aux_text": null
+      "aux_text": null,
+      "width": 1920,
+      "height": 1920,
+      "regions": [
+        {
+          "region_id": "backpack_010_8512010_95f26bad8172_region_ff8ef8b1e71a",
+          "region_label": "center_focus",
+          "region_box": [
+            384,
+            384,
+            1536,
+            1536
+          ]
+        },
+        {
+          "region_id": "backpack_010_8512010_95f26bad8172_region_09d620076e2d",
+          "region_label": "upper_focus",
+          "region_box": [
+            0,
+            0,
+            1920,
+            1152
+          ]
+        },
+        {
+          "region_id": "backpack_010_8512010_95f26bad8172_region_f359b8ad2043",
+          "region_label": "lower_focus",
+          "region_box": [
+            0,
+            768,
+            1920,
+            1920
+          ]
+        },
+        {
+          "region_id": "backpack_010_8512010_95f26bad8172_region_6cb77d6cf3d1",
+          "region_label": "left_focus",
+          "region_box": [
+            0,
+            0,
+            1152,
+            1920
+          ]
+        },
+        {
+          "region_id": "backpack_010_8512010_95f26bad8172_region_9096703dc64f",
+          "region_label": "right_focus",
+          "region_box": [
+            768,
+            0,
+            1920,
+            1920
+          ]
+        }
+      ]
     },
     {
       "image_id": "backpack_010_8512010_3d8cd9fb54f5",
@@ -59,7 +221,61 @@
       "variant": "8512010",
       "image_type": "product",
       "image_path": "images/8512010/img4.png",
-      "aux_text": null
+      "aux_text": null,
+      "width": 1920,
+      "height": 1920,
+      "regions": [
+        {
+          "region_id": "backpack_010_8512010_3d8cd9fb54f5_region_ff8ef8b1e71a",
+          "region_label": "center_focus",
+          "region_box": [
+            384,
+            384,
+            1536,
+            1536
+          ]
+        },
+        {
+          "region_id": "backpack_010_8512010_3d8cd9fb54f5_region_09d620076e2d",
+          "region_label": "upper_focus",
+          "region_box": [
+            0,
+            0,
+            1920,
+            1152
+          ]
+        },
+        {
+          "region_id": "backpack_010_8512010_3d8cd9fb54f5_region_f359b8ad2043",
+          "region_label": "lower_focus",
+          "region_box": [
+            0,
+            768,
+            1920,
+            1920
+          ]
+        },
+        {
+          "region_id": "backpack_010_8512010_3d8cd9fb54f5_region_6cb77d6cf3d1",
+          "region_label": "left_focus",
+          "region_box": [
+            0,
+            0,
+            1152,
+            1920
+          ]
+        },
+        {
+          "region_id": "backpack_010_8512010_3d8cd9fb54f5_region_9096703dc64f",
+          "region_label": "right_focus",
+          "region_box": [
+            768,
+            0,
+            1920,
+            1920
+          ]
+        }
+      ]
     },
     {
       "image_id": "backpack_010_8512010_2cbe72e4eb39",
@@ -67,7 +283,61 @@
       "variant": "8512010",
       "image_type": "product",
       "image_path": "images/8512010/img5.png",
-      "aux_text": null
+      "aux_text": null,
+      "width": 1920,
+      "height": 1920,
+      "regions": [
+        {
+          "region_id": "backpack_010_8512010_2cbe72e4eb39_region_ff8ef8b1e71a",
+          "region_label": "center_focus",
+          "region_box": [
+            384,
+            384,
+            1536,
+            1536
+          ]
+        },
+        {
+          "region_id": "backpack_010_8512010_2cbe72e4eb39_region_09d620076e2d",
+          "region_label": "upper_focus",
+          "region_box": [
+            0,
+            0,
+            1920,
+            1152
+          ]
+        },
+        {
+          "region_id": "backpack_010_8512010_2cbe72e4eb39_region_f359b8ad2043",
+          "region_label": "lower_focus",
+          "region_box": [
+            0,
+            768,
+            1920,
+            1920
+          ]
+        },
+        {
+          "region_id": "backpack_010_8512010_2cbe72e4eb39_region_6cb77d6cf3d1",
+          "region_label": "left_focus",
+          "region_box": [
+            0,
+            0,
+            1152,
+            1920
+          ]
+        },
+        {
+          "region_id": "backpack_010_8512010_2cbe72e4eb39_region_9096703dc64f",
+          "region_label": "right_focus",
+          "region_box": [
+            768,
+            0,
+            1920,
+            1920
+          ]
+        }
+      ]
     }
   ],
   "reviews": [

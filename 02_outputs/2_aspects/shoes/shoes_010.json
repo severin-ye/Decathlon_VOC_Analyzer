@@ -1,0 +1,175 @@
+{
+  "product_id": "shoes_010",
+  "category_slug": "shoes",
+  "extraction_mode": "llm",
+  "preprocessed_reviews": [
+    {
+      "review_id": "shoes_010_review_0010",
+      "product_id": "shoes_010",
+      "original_text": "The heel tab is a bit too rigid and rubs, more so on my left foot. I used to get blisters on my little toes until trying wider toe box trainers which worked great and these have a slightly wider toe box than your average running trainers which is why I went for them but unfortunately cause blisters on my left heel which again I never get. I bought these 26th November 2024 and have just tried them before a race in December—only the second time wearing them—and got another blister after only 4 km, leaving me having to purchase another pair of trainers. These trainers are comfortable in the toe box and midsole and feel very quick, but unfortunately for me they rub on the heel.",
+      "cleaned_text": "The heel tab is a bit too rigid and rubs, more so on my left foot. I used to get blisters on my little toes until trying wider toe box trainers which worked great and these have a slightly wider toe box than your average running trainers which is why I went for them but unfortunately cause blisters on my left heel which again I never get. I bought these 26th November 2024 and have just tried them before a race in December—only the second time wearing them—and got another blister after only 4 km, leaving me having to purchase another pair of trainers. These trainers are comfortable in the toe box and midsole and feel very quick, but unfortunately for me they rub on the heel.",
+      "rating": 2,
+      "language_hint": "en",
+      "is_informative": true,
+      "skip_reason": null
+    },
+    {
+      "review_id": "shoes_010_review_0029",
+      "product_id": "shoes_010",
+      "original_text": "Honestly, these Kiprun shoes caused foot pain when I ran in them—even after several attempts. I find them completely uncomfortable, especially for long distances.",
+      "cleaned_text": "Honestly, these Kiprun shoes caused foot pain when I ran in them—even after several attempts. I find them completely uncomfortable, especially for long distances.",
+      "rating": 1,
+      "language_hint": "en",
+      "is_informative": true,
+      "skip_reason": null
+    }
+  ],
+  "sampling_plan": {
+    "profile_name": "problem_first",
+    "requested_reviews": 2,
+    "total_available_reviews": 200,
+    "selected_reviews": 2,
+    "fallback_order": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "allocations": [
+      {
+        "rating": 5,
+        "configured_ratio": 0.1,
+        "target_count": 0,
+        "available_count": 134,
+        "selected_count": 0,
+        "redistributed_in_count": 0,
+        "shortfall_count": 0
+      },
+      {
+        "rating": 4,
+        "configured_ratio": 0.15,
+        "target_count": 0,
+        "available_count": 30,
+        "selected_count": 0,
+        "redistributed_in_count": 0,
+        "shortfall_count": 0
+      },
+      {
+        "rating": 3,
+        "configured_ratio": 0.2,
+        "target_count": 0,
+        "available_count": 5,
+        "selected_count": 0,
+        "redistributed_in_count": 0,
+        "shortfall_count": 0
+      },
+      {
+        "rating": 2,
+        "configured_ratio": 0.25,
+        "target_count": 1,
+        "available_count": 12,
+        "selected_count": 1,
+        "redistributed_in_count": 0,
+        "shortfall_count": 0
+      },
+      {
+        "rating": 1,
+        "configured_ratio": 0.3,
+        "target_count": 1,
+        "available_count": 19,
+        "selected_count": 1,
+        "redistributed_in_count": 0,
+        "shortfall_count": 0
+      }
+    ]
+  },
+  "aspects": [
+    {
+      "aspect_id": "shoes_010_review_0010_aspect_01",
+      "review_id": "shoes_010_review_0010",
+      "product_id": "shoes_010",
+      "aspect": "heel tab",
+      "sentiment": "negative",
+      "opinion": "too rigid and causes rubbing",
+      "evidence_span": "The heel tab is a bit too rigid and rubs, more so on my left foot.",
+      "usage_scene": "running",
+      "confidence": 0.95,
+      "extraction_mode": "llm"
+    },
+    {
+      "aspect_id": "shoes_010_review_0010_aspect_02",
+      "review_id": "shoes_010_review_0010",
+      "product_id": "shoes_010",
+      "aspect": "toe box",
+      "sentiment": "positive",
+      "opinion": "slightly wider than average",
+      "evidence_span": "these have a slightly wider toe box than your average running trainers",
+      "usage_scene": "running",
+      "confidence": 0.92,
+      "extraction_mode": "llm"
+    },
+    {
+      "aspect_id": "shoes_010_review_0010_aspect_03",
+      "review_id": "shoes_010_review_0010",
+      "product_id": "shoes_010",
+      "aspect": "comfort",
+      "sentiment": "positive",
+      "opinion": "comfortable in toe box and midsole",
+      "evidence_span": "These trainers are comfortable in the toe box and midsole",
+      "usage_scene": "running",
+      "confidence": 0.88,
+      "extraction_mode": "llm"
+    },
+    {
+      "aspect_id": "shoes_010_review_0010_aspect_04",
+      "review_id": "shoes_010_review_0010",
+      "product_id": "shoes_010",
+      "aspect": "heel fit",
+      "sentiment": "negative",
+      "opinion": "causes blisters on left heel",
+      "evidence_span": "unfortunately cause blisters on my left heel which again I never get",
+      "usage_scene": "running",
+      "confidence": 0.96,
+      "extraction_mode": "llm"
+    },
+    {
+      "aspect_id": "shoes_010_review_0010_aspect_05",
+      "review_id": "shoes_010_review_0010",
+      "product_id": "shoes_010",
+      "aspect": "performance",
+      "sentiment": "positive",
+      "opinion": "feel very quick",
+      "evidence_span": "feel very quick",
+      "usage_scene": "racing",
+      "confidence": 0.85,
+      "extraction_mode": "llm"
+    },
+    {
+      "aspect_id": "shoes_010_review_0029_aspect_01",
+      "review_id": "shoes_010_review_0029",
+      "product_id": "shoes_010",
+      "aspect": "comfort",
+      "sentiment": "negative",
+      "opinion": "uncomfortable",
+      "evidence_span": "I find them completely uncomfortable, especially for long distances.",
+      "usage_scene": "running, long distances",
+      "confidence": 0.95,
+      "extraction_mode": "llm"
+    },
+    {
+      "aspect_id": "shoes_010_review_0029_aspect_02",
+      "review_id": "shoes_010_review_0029",
+      "product_id": "shoes_010",
+      "aspect": "foot pain",
+      "sentiment": "negative",
+      "opinion": "caused foot pain",
+      "evidence_span": "these Kiprun shoes caused foot pain when I ran in them—even after several attempts.",
+      "usage_scene": "running",
+      "confidence": 0.98,
+      "extraction_mode": "llm"
+    }
+  ],
+  "skipped_review_ids": [],
+  "warnings": []
+}

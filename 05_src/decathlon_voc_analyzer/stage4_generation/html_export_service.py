@@ -1,8 +1,79 @@
 from pathlib import Path
 import html
 
+from decathlon_voc_analyzer.prompts import get_prompt_variant
+
 
 class HtmlExportService:
+    def _is_cn_variant(self) -> bool:
+        return get_prompt_variant() == "CN"
+
+    def _document_lang(self) -> str:
+        return "zh-CN" if self._is_cn_variant() else "en"
+
+    def _labels(self) -> dict[str, str]:
+        if self._is_cn_variant():
+            return {
+                "page_title_suffix": "VOC 报告",
+                "strengths": "优势",
+                "gallery": "证据图集",
+                "weaknesses": "问题点",
+                "controversies": "争议点",
+                "suggestions": "改进建议",
+                "retrieval_judge": "检索质检",
+                "runtime_profile": "运行配置",
+                "process_drawer": "过程抽屉",
+                "no_items": "暂无条目。",
+                "no_suggestions": "暂无建议。",
+                "no_retrieval_metrics": "暂无检索指标。",
+                "no_runtime_profile": "暂无运行配置。",
+                "no_trace": "暂无过程记录。",
+                "no_images": "暂无图片证据。",
+                "owner": "归因",
+                "confidence": "置信度",
+                "type": "类型",
+                "coverage": "覆盖度",
+                "drift": "漂移",
+                "conflict": "冲突风险",
+                "text": "文本",
+                "image": "图像",
+                "text_embedding": "文本向量",
+                "image_embedding": "图像向量",
+                "text_reranker": "文本精排",
+                "multimodal_reranker": "多模态精排",
+                "native_multimodal_enabled": "原生多模态启用",
+            }
+        return {
+            "page_title_suffix": "VOC Report",
+            "strengths": "Strengths",
+            "gallery": "Evidence Gallery",
+            "weaknesses": "Weaknesses",
+            "controversies": "Controversies",
+            "suggestions": "Suggestions",
+            "retrieval_judge": "Retrieval Judge",
+            "runtime_profile": "Runtime Profile",
+            "process_drawer": "Process Drawer",
+            "no_items": "No items.",
+            "no_suggestions": "No suggestions.",
+            "no_retrieval_metrics": "No retrieval metrics.",
+            "no_runtime_profile": "No runtime profile.",
+            "no_trace": "No trace.",
+            "no_images": "No images available.",
+            "owner": "owner",
+            "confidence": "confidence",
+            "type": "type",
+            "coverage": "coverage",
+            "drift": "drift",
+            "conflict": "conflict",
+            "text": "text",
+            "image": "image",
+            "text_embedding": "text_embedding",
+            "image_embedding": "image_embedding",
+            "text_reranker": "text_reranker",
+            "multimodal_reranker": "multimodal_reranker",
+            "native_multimodal_enabled": "native_multimodal_enabled",
+        }
+
     def render(self, analysis_payload: dict, normalized_payload: dict | None = None) -> str:
         report = analysis_payload.get("report", {})
         trace = analysis_payload.get("trace", [])
@@ -14,13 +85,14 @@ class HtmlExportService:
         model_description = normalized_payload.get("model_description") or ""
         hero_answer = report.get("answer", "")
         images = normalized_payload.get("images", [])[:5]
+        labels = self._labels()
 
         return f"""<!DOCTYPE html>
-<html lang=\"zh-CN\">
+    <html lang=\"{self._document_lang()}\">
 <head>
   <meta charset=\"utf-8\" />
   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />
-  <title>{html.escape(str(product_name))} VOC Report</title>
+  <title>{html.escape(str(product_name))} {labels['page_title_suffix']}</title>
   <style>
     :root {{
       --bg: #f4f5f7;
@@ -71,74 +143,74 @@ class HtmlExportService:
       <p class=\"sub\">{html.escape(str(model_description))}</p>
     </section>
     <section class=\"grid\">
-      <article class=\"card span-8\"><h2 class=\"section-title\">Strengths</h2>{self._render_insight_list(report.get('strengths', []))}</article>
-      <article class=\"card span-4\"><h2 class=\"section-title\">Evidence Gallery</h2>{self._render_gallery(images, normalized_payload.get('source_dir'))}</article>
-      <article class=\"card span-6\"><h2 class=\"section-title\">Weaknesses</h2>{self._render_insight_list(report.get('weaknesses', []))}</article>
-      <article class=\"card span-6\"><h2 class=\"section-title\">Controversies</h2>{self._render_insight_list(report.get('controversies', []))}</article>
-      <article class=\"card span-6\"><h2 class=\"section-title\">Suggestions</h2>{self._render_suggestion_list(report.get('suggestions', []))}</article>
-    <article class=\"card span-6\"><h2 class=\"section-title\">Retrieval Judge</h2>{self._render_retrieval_quality(retrieval_quality)}</article>
-    <article class=\"card span-12\"><h2 class=\"section-title\">Runtime Profile</h2>{self._render_retrieval_runtime(retrieval_runtime)}</article>
-    <article class=\"card span-12\"><h2 class=\"section-title\">Process Drawer</h2>{self._render_trace(trace)}</article>
+      <article class=\"card span-8\"><h2 class=\"section-title\">{labels['strengths']}</h2>{self._render_insight_list(report.get('strengths', []), labels)}</article>
+      <article class=\"card span-4\"><h2 class=\"section-title\">{labels['gallery']}</h2>{self._render_gallery(images, normalized_payload.get('source_dir'), labels)}</article>
+      <article class=\"card span-6\"><h2 class=\"section-title\">{labels['weaknesses']}</h2>{self._render_insight_list(report.get('weaknesses', []), labels)}</article>
+      <article class=\"card span-6\"><h2 class=\"section-title\">{labels['controversies']}</h2>{self._render_insight_list(report.get('controversies', []), labels)}</article>
+      <article class=\"card span-6\"><h2 class=\"section-title\">{labels['suggestions']}</h2>{self._render_suggestion_list(report.get('suggestions', []), labels)}</article>
+      <article class=\"card span-6\"><h2 class=\"section-title\">{labels['retrieval_judge']}</h2>{self._render_retrieval_quality(retrieval_quality, labels)}</article>
+      <article class=\"card span-12\"><h2 class=\"section-title\">{labels['runtime_profile']}</h2>{self._render_retrieval_runtime(retrieval_runtime, labels)}</article>
+      <article class=\"card span-12\"><h2 class=\"section-title\">{labels['process_drawer']}</h2>{self._render_trace(trace, labels)}</article>
     </section>
   </main>
 </body>
 </html>"""
 
-    def _render_insight_list(self, items: list[dict]) -> str:
+    def _render_insight_list(self, items: list[dict], labels: dict[str, str]) -> str:
         if not items:
-            return "<p class=\"meta\">No items.</p>"
+            return f"<p class=\"meta\">{labels['no_items']}</p>"
         html_parts: list[str] = []
         for item in items:
             owner = str(item.get("owner") or "")
             confidence = item.get("confidence_breakdown", {}).get("final_confidence", item.get("confidence", 0.0))
             html_parts.append(
-                f"<div class='item'><h3>{html.escape(str(item.get('label') or ''))}</h3><p>{html.escape(str(item.get('summary') or ''))}</p><div class='meta owner-{html.escape(owner)}'>owner={html.escape(owner)} | confidence={float(confidence):.2f}</div></div>"
+                f"<div class='item'><h3>{html.escape(str(item.get('label') or ''))}</h3><p>{html.escape(str(item.get('summary') or ''))}</p><div class='meta owner-{html.escape(owner)}'>{labels['owner']}={html.escape(owner)} | {labels['confidence']}={float(confidence):.2f}</div></div>"
             )
         return "".join(html_parts)
 
-    def _render_suggestion_list(self, items: list[dict]) -> str:
+    def _render_suggestion_list(self, items: list[dict], labels: dict[str, str]) -> str:
         if not items:
-            return "<p class=\"meta\">No suggestions.</p>"
+            return f"<p class=\"meta\">{labels['no_suggestions']}</p>"
         html_parts: list[str] = []
         for item in items:
             owner = str(item.get("owner") or "")
             reasons = item.get("reason") or []
             html_parts.append(
-                f"<div class='item'><h3>{html.escape(str(item.get('suggestion') or ''))}</h3><p>{html.escape('; '.join(str(reason) for reason in reasons))}</p><div class='meta owner-{html.escape(owner)}'>type={html.escape(str(item.get('suggestion_type') or ''))} | owner={html.escape(owner)}</div></div>"
+                f"<div class='item'><h3>{html.escape(str(item.get('suggestion') or ''))}</h3><p>{html.escape('; '.join(str(reason) for reason in reasons))}</p><div class='meta owner-{html.escape(owner)}'>{labels['type']}={html.escape(str(item.get('suggestion_type') or ''))} | {labels['owner']}={html.escape(owner)}</div></div>"
             )
         return "".join(html_parts)
 
-    def _render_retrieval_quality(self, items: list[dict]) -> str:
+    def _render_retrieval_quality(self, items: list[dict], labels: dict[str, str]) -> str:
         if not items:
-            return "<p class=\"meta\">No retrieval metrics.</p>"
+            return f"<p class=\"meta\">{labels['no_retrieval_metrics']}</p>"
         return "".join(
-            f"<div class='item'><h3>{html.escape(str(item.get('source_aspect') or ''))}</h3><p>coverage={float(item.get('evidence_coverage', 0.0)):.2f}, drift={float(item.get('score_drift', 0.0)):.2f}, conflict={float(item.get('conflict_risk', 0.0)):.2f}</p><div class='meta'>text={bool(item.get('text_coverage'))} | image={bool(item.get('image_coverage'))}</div></div>"
+            f"<div class='item'><h3>{html.escape(str(item.get('source_aspect') or ''))}</h3><p>{labels['coverage']}={float(item.get('evidence_coverage', 0.0)):.2f}, {labels['drift']}={float(item.get('score_drift', 0.0)):.2f}, {labels['conflict']}={float(item.get('conflict_risk', 0.0)):.2f}</p><div class='meta'>{labels['text']}={bool(item.get('text_coverage'))} | {labels['image']}={bool(item.get('image_coverage'))}</div></div>"
             for item in items
         )
 
-    def _render_retrieval_runtime(self, item: dict) -> str:
+    def _render_retrieval_runtime(self, item: dict, labels: dict[str, str]) -> str:
         if not item:
-            return "<p class=\"meta\">No runtime profile.</p>"
+            return f"<p class=\"meta\">{labels['no_runtime_profile']}</p>"
         return (
             f"<div class='item'><h3>{html.escape(str(item.get('summary') or ''))}</h3>"
-            f"<div class='meta'>text_embedding={html.escape(str(item.get('text_embedding_backend') or ''))}:{html.escape(str(item.get('text_embedding_model') or ''))}</div>"
-            f"<div class='meta'>image_embedding={html.escape(str(item.get('image_embedding_backend') or ''))}:{html.escape(str(item.get('image_embedding_model') or 'none'))}</div>"
-            f"<div class='meta'>text_reranker={html.escape(str(item.get('reranker_backend') or ''))}:{html.escape(str(item.get('reranker_model') or ''))}</div>"
-            f"<div class='meta'>multimodal_reranker={html.escape(str(item.get('multimodal_reranker_backend') or ''))}:{html.escape(str(item.get('multimodal_reranker_model') or 'none'))}</div>"
-            f"<div class='meta'>native_multimodal_enabled={bool(item.get('native_multimodal_enabled'))}</div></div>"
+            f"<div class='meta'>{labels['text_embedding']}={html.escape(str(item.get('text_embedding_backend') or ''))}:{html.escape(str(item.get('text_embedding_model') or ''))}</div>"
+            f"<div class='meta'>{labels['image_embedding']}={html.escape(str(item.get('image_embedding_backend') or ''))}:{html.escape(str(item.get('image_embedding_model') or 'none'))}</div>"
+            f"<div class='meta'>{labels['text_reranker']}={html.escape(str(item.get('reranker_backend') or ''))}:{html.escape(str(item.get('reranker_model') or ''))}</div>"
+            f"<div class='meta'>{labels['multimodal_reranker']}={html.escape(str(item.get('multimodal_reranker_backend') or ''))}:{html.escape(str(item.get('multimodal_reranker_model') or 'none'))}</div>"
+            f"<div class='meta'>{labels['native_multimodal_enabled']}={bool(item.get('native_multimodal_enabled'))}</div></div>"
         )
 
-    def _render_trace(self, items: list[dict]) -> str:
+    def _render_trace(self, items: list[dict], labels: dict[str, str]) -> str:
         if not items:
-            return "<p class=\"meta\">No trace.</p>"
+            return f"<p class=\"meta\">{labels['no_trace']}</p>"
         return "".join(
-            f"<details><summary>{html.escape(str(item.get('trace_type') or ''))} · {html.escape(str(item.get('aspect') or ''))}</summary><p>{html.escape(str(item.get('summary') or ''))}</p><div class='meta'>owner={html.escape(str(item.get('owner') or ''))}</div></details>"
+            f"<details><summary>{html.escape(str(item.get('trace_type') or ''))} · {html.escape(str(item.get('aspect') or ''))}</summary><p>{html.escape(str(item.get('summary') or ''))}</p><div class='meta'>{labels['owner']}={html.escape(str(item.get('owner') or ''))}</div></details>"
             for item in items
         )
 
-    def _render_gallery(self, images: list[dict], source_dir: str | None) -> str:
+    def _render_gallery(self, images: list[dict], source_dir: str | None, labels: dict[str, str]) -> str:
         if not images:
-            return "<p class=\"meta\">No images available.</p>"
+            return f"<p class=\"meta\">{labels['no_images']}</p>"
         cards: list[str] = []
         root = Path(source_dir) if source_dir else None
         for item in images:

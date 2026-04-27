@@ -13,6 +13,20 @@ def test_index_service_builds_local_index() -> None:
     assert result.stats.indexed_products == 1
     assert result.stats.indexed_text_blocks >= 1
     assert result.stats.indexed_images >= 1
+    assert result.stats.indexed_image_regions >= 1
+
+
+def test_index_service_builds_region_level_image_evidence() -> None:
+    service = IndexService()
+
+    snapshot = service.get_or_create_product_snapshot(
+        product_id="backpack_010",
+        category_slug="backpack",
+    )
+
+    assert snapshot.image_count >= 1
+    assert snapshot.image_region_count >= 1
+    assert any(item.region_id for item in snapshot.evidence if item.route == "image")
 
 
 def test_index_service_search_returns_hits() -> None:

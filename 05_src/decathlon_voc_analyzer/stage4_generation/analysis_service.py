@@ -1,5 +1,5 @@
-import os
 from collections import Counter, defaultdict
+import re
 
 import orjson
 from pydantic import BaseModel, Field
@@ -11,9 +11,11 @@ from decathlon_voc_analyzer.schemas.analysis import (
     AnalysisMode,
     AspectAggregate,
     ConfidenceBreakdown,
+    CustomerImpressionItem,
     ImprovementSuggestion,
     InsightItem,
     ProcessTraceItem,
+    ProductImpressionItem,
     ProductAnalysisReport,
     ProductAnalysisRequest,
     ProductAnalysisResponse,
@@ -23,7 +25,7 @@ from decathlon_voc_analyzer.schemas.analysis import (
     SupportingEvidence,
 )
 from decathlon_voc_analyzer.schemas.review import ReviewAspect, ReviewExtractionRequest
-from decathlon_voc_analyzer.prompts import get_prompt_template
+from decathlon_voc_analyzer.prompts import get_prompt_template, get_prompt_variant
 from decathlon_voc_analyzer.stage1_dataset.dataset_service import DatasetService
 from decathlon_voc_analyzer.stage2_review_modeling.review_service import ReviewExtractionService
 from decathlon_voc_analyzer.stage3_retrieval.retrieval_service import RetrievalService
@@ -66,6 +68,9 @@ class ProductAnalysisService:
         self.report_refinement_service = ReportRefinementService()
         self.artifact_sidecar_service = ArtifactSidecarService()
 
+    def _uses_main_prompt_variant(self) -> bool:
+        return get_prompt_variant() == "main"
+
     def analyze(self, request: ProductAnalysisRequest) -> ProductAnalysisResponse:
         package = self.dataset_service.load_product_package(
             product_id=request.product_id,
@@ -97,8 +102,13 @@ class ProductAnalysisService:
         retrieval_runtime = self._build_retrieval_runtime_profile()
         aggregates = self._aggregate_aspects(extraction.aspects)
         replay_payload = None
+        feedback_payload = None
         if request.use_replay:
             replay_payload = self.artifact_sidecar_service.load_replay_payload(
+                product_id=package.product_id,
+                category_slug=package.category_slug,
+            )
+            feedback_payload = self.artifact_sidecar_service.load_feedback_payload(
                 product_id=package.product_id,
                 category_slug=package.category_slug,
             )
@@ -118,7 +128,13 @@ class ProductAnalysisService:
             report = self._build_report_heuristic(package.product_id, package.category_slug, aggregates, retrievals)
 
         report = self.report_refinement_service.refine(report)
-        report, replay_summary = self._apply_replay_context(report, replay_payload)
+        report = report.model_copy(
+            update={
+                "product_impressions": self._build_product_impressions(aggregates),
+                "customer_impressions": self._build_customer_impressions(extraction.aspects),
+            }
+        )
+        report, replay_summary = self._apply_replay_context(report, replay_payload, feedback_payload)
         replay_warning = self._build_replay_warning(replay_summary)
         if replay_warning is not None:
             warnings.append(replay_warning)
@@ -162,11 +178,55 @@ class ProductAnalysisService:
                     positive_ratio=sentiment_counter.get("positive", 0) / total,
                     negative_ratio=sentiment_counter.get("negative", 0) / total,
                     neutral_ratio=sentiment_counter.get("neutral", 0) / total,
+                    mixed_ratio=sentiment_counter.get("mixed", 0) / total,
                     scenes=dict(scenes),
                     representative_review_ids=list(dict.fromkeys(item.review_id for item in items[:3])),
                 )
             )
         return sorted(aggregates, key=lambda item: item.frequency, reverse=True)
+
+    def _build_product_impressions(self, aggregates: list[AspectAggregate]) -> list[ProductImpressionItem]:
+        return [
+            ProductImpressionItem(
+                aspect=aggregate.aspect,
+                aspect_frequency=aggregate.frequency,
+                positive_ratio=aggregate.positive_ratio,
+                negative_ratio=aggregate.negative_ratio,
+                mixed_ratio=aggregate.mixed_ratio,
+                scene_distribution=aggregate.scenes,
+                representative_review_ids=aggregate.representative_review_ids,
+            )
+            for aggregate in aggregates[:5]
+        ]
+
+    def _build_customer_impressions(self, aspects: list[ReviewAspect]) -> list[CustomerImpressionItem]:
+        grouped: dict[str, list[ReviewAspect]] = defaultdict(list)
+        for aspect in aspects:
+            if aspect.usage_scene:
+                grouped[aspect.usage_scene].append(aspect)
+
+        impressions: list[CustomerImpressionItem] = []
+        for scene, items in sorted(grouped.items(), key=lambda entry: len(entry[1]), reverse=True)[:4]:
+            aspect_counter = Counter(item.aspect for item in items)
+            positive_counter = Counter(item.aspect for item in items if item.sentiment == "positive")
+            negative_counter = Counter(item.aspect for item in items if item.sentiment == "negative")
+            impressions.append(
+                CustomerImpressionItem(
+                    segment_label=self._scene_segment_label(scene),
+                    scene=scene,
+                    review_count=len({item.review_id for item in items}),
+                    focus_aspects=[aspect for aspect, _ in aspect_counter.most_common(3)],
+                    positive_aspects=[aspect for aspect, _ in positive_counter.most_common(2)],
+                    negative_aspects=[aspect for aspect, _ in negative_counter.most_common(2)],
+                    representative_review_ids=list(dict.fromkeys(item.review_id for item in items))[:4],
+                )
+            )
+        return impressions
+
+    def _scene_segment_label(self, scene: str) -> str:
+        if self._uses_main_prompt_variant():
+            return f"Users in the '{scene}' scenario"
+        return f"{scene} 场景用户"
 
     def _build_report_with_llm(
         self,
@@ -190,14 +250,15 @@ class ProductAnalysisService:
 
     def _hydrate_report_from_llm(self, product_id: str, category_slug: str | None, aggregates: list[AspectAggregate], retrievals: list, payload: dict) -> ProductAnalysisReport:
         fallback = self._build_report_heuristic(product_id, category_slug, aggregates, retrievals)
-        strengths = self._hydrate_insights(payload.get("strengths"), fallback.strengths)
-        weaknesses = self._hydrate_insights(payload.get("weaknesses"), fallback.weaknesses)
-        controversies = self._hydrate_insights(payload.get("controversies"), fallback.controversies)
-        suggestions = self._hydrate_suggestions(payload.get("suggestions"), fallback.suggestions)
+        evidence_candidates = fallback.strengths + fallback.weaknesses + fallback.controversies
+        strengths = self._hydrate_insights(payload.get("strengths"), fallback.strengths, evidence_candidates=evidence_candidates)
+        weaknesses = self._hydrate_insights(payload.get("weaknesses"), fallback.weaknesses, evidence_candidates=evidence_candidates)
+        controversies = self._hydrate_insights(payload.get("controversies"), fallback.controversies, evidence_candidates=evidence_candidates)
+        suggestions = self._hydrate_suggestions(payload.get("suggestions"), fallback.suggestions, evidence_candidates=fallback.suggestions + evidence_candidates)
         return ProductAnalysisReport(
             product_id=product_id,
             category_slug=category_slug,
-            answer=str(payload.get("answer") or fallback.answer),
+            answer=self._build_answer(strengths, weaknesses, controversies),
             strengths=strengths,
             weaknesses=weaknesses,
             controversies=controversies,
@@ -227,7 +288,7 @@ class ProductAnalysisService:
             if aggregate.positive_ratio >= 0.6:
                 summary = (
                     f"Positive feedback dominates for {aggregate.aspect}, appearing {aggregate.frequency} times."
-                    if os.getenv("PROMPT_VARIANT", "main") == "main"
+                    if self._uses_main_prompt_variant()
                     else f"用户对 {aggregate.aspect} 的反馈以正向为主，出现 {aggregate.frequency} 次。"
                 )
                 strengths.append(
@@ -242,7 +303,7 @@ class ProductAnalysisService:
             elif aggregate.negative_ratio >= 0.4:
                 summary = (
                     f"Clear negative feedback exists for {aggregate.aspect}, appearing {aggregate.frequency} times."
-                    if os.getenv("PROMPT_VARIANT", "main") == "main"
+                    if self._uses_main_prompt_variant()
                     else f"用户对 {aggregate.aspect} 存在明显负向反馈，出现 {aggregate.frequency} 次。"
                 )
                 weaknesses.append(
@@ -257,7 +318,7 @@ class ProductAnalysisService:
             else:
                 summary = (
                     f"Opinions on {aggregate.aspect} are relatively mixed and somewhat controversial."
-                    if os.getenv("PROMPT_VARIANT", "main") == "main"
+                    if self._uses_main_prompt_variant()
                     else f"{aggregate.aspect} 的意见分布较分散，存在一定争议。"
                 )
                 controversies.append(
@@ -274,7 +335,7 @@ class ProductAnalysisService:
             aggregate = aggregates[0]
             summary = (
                 f"{aggregate.aspect} is the most frequently mentioned experience theme in current reviews."
-                if os.getenv("PROMPT_VARIANT", "main") == "main"
+                if self._uses_main_prompt_variant()
                 else f"{aggregate.aspect} 是当前评论中最常见的体验主题。"
             )
             strengths.append(
@@ -317,35 +378,65 @@ class ProductAnalysisService:
 
     def _support_for_aspect(self, aspect: str, retrievals: list) -> SupportingEvidence:
         matching = [record for record in retrievals if record.source_aspect == aspect]
+        supporting_hits = [
+            evidence
+            for record in matching
+            for evidence in record.retrieved
+            if self._evidence_answers_question(record.source_question, evidence)
+        ]
         return SupportingEvidence(
             review_ids=list(dict.fromkeys(record.source_review_id for record in matching))[:3],
             product_text_block_ids=list(dict.fromkeys(
                 evidence.text_block_id
-                for record in matching
-                for evidence in record.retrieved
+                for evidence in supporting_hits
                 if evidence.text_block_id
             ))[:3],
             product_image_ids=list(dict.fromkeys(
                 evidence.image_id
-                for record in matching
-                for evidence in record.retrieved
+                for evidence in supporting_hits
                 if evidence.image_id
             ))[:3],
         )
 
     def _build_answer(self, strengths: list[InsightItem], weaknesses: list[InsightItem], controversies: list[InsightItem]) -> str:
-        strength_label = strengths[0].label if strengths else "核心体验"
+        strength_labels = [item.label for item in strengths[:3]]
+        strong_supported = [item.label for item in strengths if item.supporting_evidence.product_text_block_ids and item.supporting_evidence.product_image_ids]
+        weak_supported = [item.label for item in strengths if item.label not in strong_supported]
         weakness_label = weaknesses[0].label if weaknesses else None
         controversy_label = controversies[0].label if controversies else None
-        if os.getenv("PROMPT_VARIANT", "main") == "main":
-            strength_label = strengths[0].label if strengths else "core experience"
-            parts = [f"Current reviews concentrate mainly on the '{strength_label}' experience."]
+        if self._uses_main_prompt_variant():
+            parts: list[str] = []
+            if strength_labels:
+                parts.append(f"Positive feedback appears on {self._natural_join(strength_labels)}.")
+            else:
+                parts.append("Current reviews concentrate mainly on the core experience.")
+            if strong_supported and weak_supported:
+                weak_verb = "are" if len(weak_supported) > 1 else "is"
+                parts.append(
+                    f"{self._natural_join(strong_supported)} is relatively well supported by product-page evidence, while {self._natural_join(weak_supported)} {weak_verb} mainly supported by user reviews and only weakly supported by product-page evidence."
+                )
+            elif strong_supported:
+                parts.append(f"{self._natural_join(strong_supported)} is relatively well supported by product-page evidence.")
+            elif weak_supported:
+                parts.append(f"{self._natural_join(weak_supported)} is mainly supported by user reviews and only weakly supported by product-page evidence.")
             if weakness_label:
-                parts.append(f"At the same time, '{weakness_label}' is the most important issue to watch.")
+                parts.append(f"The most important issue to watch is {weakness_label}.")
             if controversy_label:
-                parts.append(f"There is some disagreement around '{controversy_label}', which should be interpreted by user segment and usage context.")
+                parts.append(f"There is still some disagreement around {controversy_label}, which should be interpreted by user segment and usage context.")
         else:
-            parts = [f"该商品当前评论主要集中在 {strength_label} 相关体验。"]
+            parts = []
+            if strength_labels:
+                parts.append(f"用户对 {self._natural_join(strength_labels, conjunction='和')} 给出了正面反馈。")
+            else:
+                parts.append("该商品当前评论主要集中在核心体验相关反馈。")
+            if strong_supported and weak_supported:
+                parts.append(
+                    f"其中 {self._natural_join(strong_supported, conjunction='和')} 有较明确的产品页面证据支持；{self._natural_join(weak_supported, conjunction='和')} 主要来自用户评论，产品页面证据相对不足。"
+                )
+            elif strong_supported:
+                parts.append(f"其中 {self._natural_join(strong_supported, conjunction='和')} 有较明确的产品页面证据支持。")
+            elif weak_supported:
+                parts.append(f"其中 {self._natural_join(weak_supported, conjunction='和')} 主要来自用户评论，产品页面证据相对不足。")
             if weakness_label:
                 parts.append(f"同时，{weakness_label} 是当前最需要关注的问题点。")
             if controversy_label:
@@ -364,7 +455,7 @@ class ProductAnalysisService:
             suggestion_type = "structural" if item.supporting_evidence.product_image_ids and item.supporting_evidence.product_text_block_ids else "perception"
             suggestion = (
                 f"Prioritize improvements to the design or presentation related to {item.label}, and strengthen the corresponding explanation on the product page."
-                if os.getenv("PROMPT_VARIANT", "main") == "main"
+                if self._uses_main_prompt_variant()
                 else f"优先优化 {item.label} 相关设计或表达，并在商品页中强化对应说明。"
             )
             suggestions.append(
@@ -380,7 +471,7 @@ class ProductAnalysisService:
         for item in controversies[:1]:
             suggestion = (
                 f"Add clearer usage-scenario guidance for {item.label} to reduce expectation mismatch."
-                if os.getenv("PROMPT_VARIANT", "main") == "main"
+                if self._uses_main_prompt_variant()
                 else f"针对 {item.label} 增加更明确的适用场景说明，降低用户预期偏差。"
             )
             suggestions.append(
@@ -398,7 +489,7 @@ class ProductAnalysisService:
             if fallback is not None:
                 suggestion = (
                     f"Add more specific product explanation and usage examples around {fallback.label} to reduce interpretation gaps."
-                    if os.getenv("PROMPT_VARIANT", "main") == "main"
+                    if self._uses_main_prompt_variant()
                     else f"围绕 {fallback.label} 补充更具体的商品说明和使用场景示例，减少用户理解偏差。"
                 )
                 suggestions.append(
@@ -429,32 +520,47 @@ class ProductAnalysisService:
             ))[:10],
         )
 
-    def _hydrate_insights(self, raw_items: object, fallback_items: list[InsightItem]) -> list[InsightItem]:
+    def _hydrate_insights(
+        self,
+        raw_items: object,
+        fallback_items: list[InsightItem],
+        evidence_candidates: list[InsightItem] | None = None,
+    ) -> list[InsightItem]:
         if not isinstance(raw_items, list) or not raw_items:
             return fallback_items
         hydrated: list[InsightItem] = []
-        fallback_lookup = {item.label: item.supporting_evidence for item in fallback_items}
+        candidate_pool = evidence_candidates or fallback_items
         for item in raw_items:
             if not isinstance(item, dict):
                 continue
             label = str(item.get("label") or "overall_experience")
+            matched_fallback = self._resolve_fallback_item(
+                raw_label=label,
+                raw_text=" ".join([str(item.get("summary") or "")]),
+                fallback_items=candidate_pool,
+            )
             hydrated.append(
                 InsightItem(
                     label=label,
                     summary=str(item.get("summary") or ""),
                     confidence=self._clamp_confidence(item.get("confidence"), 0.7),
-                    supporting_evidence=fallback_lookup.get(label, fallback_items[0].supporting_evidence if fallback_items else SupportingEvidence()),
-                    owner=self._normalize_owner(item.get("owner"), default=fallback_items[0].owner if fallback_items else "product_issue"),
+                    supporting_evidence=matched_fallback.supporting_evidence if matched_fallback is not None else SupportingEvidence(),
+                    owner=self._normalize_owner(item.get("owner"), default=matched_fallback.owner if matched_fallback is not None else "product_issue"),
                     confidence_breakdown=self._parse_confidence_breakdown(item.get("confidence_breakdown")),
                 )
             )
         return hydrated or fallback_items
 
-    def _hydrate_suggestions(self, raw_items: object, fallback_items: list[ImprovementSuggestion]) -> list[ImprovementSuggestion]:
+    def _hydrate_suggestions(
+        self,
+        raw_items: object,
+        fallback_items: list[ImprovementSuggestion],
+        evidence_candidates: list | None = None,
+    ) -> list[ImprovementSuggestion]:
         if not isinstance(raw_items, list) or not raw_items:
             return fallback_items
-        fallback_support = fallback_items[0].supporting_evidence if fallback_items else SupportingEvidence()
         hydrated: list[ImprovementSuggestion] = []
+        candidate_pool = evidence_candidates or fallback_items
         for item in raw_items:
             if not isinstance(item, dict):
                 continue
@@ -462,23 +568,97 @@ class ProductAnalysisService:
             if suggestion_type not in {"structural", "perception"}:
                 suggestion_type = "perception"
             reason = item.get("reason") if isinstance(item.get("reason"), list) else [str(item.get("reason") or "")]
+            matched_fallback = self._resolve_fallback_item(
+                raw_label=str(item.get("suggestion") or ""),
+                raw_text=" ".join(str(entry) for entry in reason if entry),
+                fallback_items=candidate_pool,
+            )
             hydrated.append(
                 ImprovementSuggestion(
                     suggestion=str(item.get("suggestion") or ""),
                     suggestion_type=suggestion_type,
                     reason=[str(entry) for entry in reason if entry],
                     confidence=self._clamp_confidence(item.get("confidence"), 0.7),
-                    supporting_evidence=fallback_support,
-                    owner=self._normalize_owner(item.get("owner"), default=fallback_items[0].owner if fallback_items else "content_presentation"),
+                    supporting_evidence=matched_fallback.supporting_evidence if matched_fallback is not None else SupportingEvidence(),
+                    owner=self._normalize_owner(item.get("owner"), default=matched_fallback.owner if matched_fallback is not None else "content_presentation"),
                     confidence_breakdown=self._parse_confidence_breakdown(item.get("confidence_breakdown")),
                 )
             )
         return hydrated or fallback_items
 
+    def _resolve_fallback_item(self, raw_label: str, raw_text: str, fallback_items: list) -> object | None:
+        if not fallback_items:
+            return None
+        mentioned_review_ids = self._extract_review_ids(f"{raw_label} {raw_text}")
+        if mentioned_review_ids:
+            for item in fallback_items:
+                if mentioned_review_ids.intersection(item.supporting_evidence.review_ids):
+                    return item
+
+        raw_label_key = self._normalize_match_text(raw_label)
+        exact_match = next((item for item in fallback_items if self._normalize_match_text(getattr(item, "label", getattr(item, "suggestion", ""))) == raw_label_key), None)
+        if exact_match is not None:
+            return exact_match
+
+        raw_tokens = self._match_tokens(f"{raw_label} {raw_text}")
+        scored = []
+        for item in fallback_items:
+            candidate_text = " ".join(
+                [
+                    str(getattr(item, "label", "")),
+                    str(getattr(item, "summary", "")),
+                    str(getattr(item, "suggestion", "")),
+                    " ".join(getattr(item, "reason", [])),
+                    " ".join(item.supporting_evidence.review_ids),
+                ]
+            )
+            candidate_tokens = self._match_tokens(candidate_text)
+            overlap = len(raw_tokens.intersection(candidate_tokens))
+            scored.append((overlap, item))
+        scored.sort(key=lambda pair: pair[0], reverse=True)
+        return scored[0][1] if scored and scored[0][0] > 0 else fallback_items[0]
+
+    def _extract_review_ids(self, text: str) -> set[str]:
+        return set(re.findall(r"[A-Za-z0-9]+_[A-Za-z0-9]+_review_\d+", text or ""))
+
+    def _normalize_match_text(self, text: str) -> str:
+        return " ".join((text or "").strip().lower().split())
+
+    def _match_tokens(self, text: str) -> set[str]:
+        return {token for token in re.findall(r"[a-z0-9_]+", (text or "").lower()) if len(token) > 2}
+
+    def _natural_join(self, items: list[str], conjunction: str = "and") -> str:
+        cleaned = [item for item in items if item]
+        if not cleaned:
+            return ""
+        if len(cleaned) == 1:
+            return cleaned[0]
+        if len(cleaned) == 2:
+            return f"{cleaned[0]} {conjunction} {cleaned[1]}"
+        return ", ".join(cleaned[:-1]) + f", {conjunction} {cleaned[-1]}"
+
+    def _evidence_answers_question(self, question: str, evidence) -> bool:
+        question_text = (question or "").lower()
+        preview = ((getattr(evidence, "content_preview", None) or "") + " " + (getattr(evidence, "source_section", None) or "")).lower()
+        rerank_score = float(getattr(evidence, "rerank_score", 0.0) or 0.0)
+
+        if getattr(evidence, "route", None) == "text":
+            if any(term in question_text for term in ("price", "discount", "sale", "was/now")):
+                return bool(re.search(r"\b\d+(?:[\.,]\d+)?\b", preview)) and rerank_score >= 0.1
+            if any(term in question_text for term in ("comfortable", "comfort")):
+                return any(term in preview for term in ("comfortable", "comfort", "ergonomic")) and rerank_score >= 0.1
+            return rerank_score >= 0.2
+
+        asks_visual = any(term in question_text for term in ("visible", "images", "show", "shown", "worn", "tinted", "hue", "mirrored"))
+        defect_like = any(term in question_text for term in ("deteriorat", "crack", "crumbl", "fall apart", "detachment", "magnification", "distortion", "diopter"))
+        threshold = 0.95 if defect_like else 0.9
+        return asks_visual and rerank_score >= threshold
+
     def _apply_replay_context(
         self,
         report: ProductAnalysisReport,
         replay_payload: dict[str, object] | None,
+        feedback_payload: dict[str, object] | None,
     ) -> tuple[ProductAnalysisReport, ReplayContinuationSummary | None]:
         if not replay_payload:
             return report, None
@@ -494,18 +674,45 @@ class ProductAnalysisService:
         persistent_issue_labels = [label for label in current_issue_labels if label in previous_issue_set]
         resolved_issue_labels = [label for label in previous_issue_labels if label not in current_issue_set]
         new_issue_labels = [label for label in current_issue_labels if label not in previous_issue_set]
+        feedback_state = self._extract_feedback_state(feedback_payload)
+        accepted_persistent_issue_labels = [
+            label for label in persistent_issue_labels if label in feedback_state["accepted_issue_labels"]
+        ]
+        rejected_persistent_issue_labels = [
+            label for label in persistent_issue_labels if label in feedback_state["rejected_issue_labels"]
+        ]
 
         updated_report = report.model_copy(
             update={
-                "weaknesses": self._prioritize_replayed_insights(report.weaknesses, persistent_issue_labels),
-                "controversies": self._prioritize_replayed_insights(report.controversies, persistent_issue_labels),
-                "suggestions": self._annotate_suggestions_with_replay(report.suggestions, persistent_issue_labels),
+                "weaknesses": self._prioritize_replayed_insights(
+                    report.weaknesses,
+                    persistent_issue_labels,
+                    accepted_persistent_issue_labels,
+                    rejected_persistent_issue_labels,
+                ),
+                "controversies": self._prioritize_replayed_insights(
+                    report.controversies,
+                    persistent_issue_labels,
+                    accepted_persistent_issue_labels,
+                    rejected_persistent_issue_labels,
+                ),
+                "suggestions": self._annotate_suggestions_with_replay(
+                    report.suggestions,
+                    persistent_issue_labels,
+                    accepted_persistent_issue_labels,
+                    rejected_persistent_issue_labels,
+                ),
             }
         )
         replay_summary = ReplayContinuationSummary(
             replay_path=str(replay_payload.get("replay_path")),
+            feedback_path=str(feedback_payload.get("feedback_path")) if isinstance(feedback_payload, dict) else None,
             previous_analysis_mode=self._normalize_analysis_mode(replay_payload.get("analysis_mode")),
             applied=True,
+            reviewed_slot_count=int(feedback_state["reviewed_slot_count"]),
+            pending_slot_count=int(feedback_state["pending_slot_count"]),
+            accepted_issue_labels=feedback_state["accepted_issue_labels"],
+            rejected_issue_labels=feedback_state["rejected_issue_labels"],
             persistent_issue_labels=persistent_issue_labels,
             resolved_issue_labels=resolved_issue_labels,
             new_issue_labels=new_issue_labels,
@@ -634,16 +841,34 @@ class ProductAnalysisService:
                     labels.append(label)
         return self._unique_labels(labels)
 
-    def _prioritize_replayed_insights(self, items: list[InsightItem], persistent_issue_labels: list[str]) -> list[InsightItem]:
+    def _prioritize_replayed_insights(
+        self,
+        items: list[InsightItem],
+        persistent_issue_labels: list[str],
+        accepted_issue_labels: list[str],
+        rejected_issue_labels: list[str],
+    ) -> list[InsightItem]:
         persistent_issue_set = set(persistent_issue_labels)
-        prioritized = [item for item in items if item.label in persistent_issue_set]
-        remaining = [item for item in items if item.label not in persistent_issue_set]
-        return prioritized + remaining
+        accepted_issue_set = set(accepted_issue_labels)
+        rejected_issue_set = set(rejected_issue_labels)
+
+        def rank(item: InsightItem) -> tuple[int, float]:
+            if item.label in accepted_issue_set:
+                return (0, -(item.confidence_breakdown.final_confidence if item.confidence_breakdown else item.confidence))
+            if item.label in persistent_issue_set and item.label not in rejected_issue_set:
+                return (1, -(item.confidence_breakdown.final_confidence if item.confidence_breakdown else item.confidence))
+            if item.label in rejected_issue_set:
+                return (3, -(item.confidence_breakdown.final_confidence if item.confidence_breakdown else item.confidence))
+            return (2, -(item.confidence_breakdown.final_confidence if item.confidence_breakdown else item.confidence))
+
+        return sorted(items, key=rank)
 
     def _annotate_suggestions_with_replay(
         self,
         suggestions: list[ImprovementSuggestion],
         persistent_issue_labels: list[str],
+        accepted_issue_labels: list[str],
+        rejected_issue_labels: list[str],
     ) -> list[ImprovementSuggestion]:
         if not suggestions or not persistent_issue_labels:
             return suggestions
@@ -659,10 +884,15 @@ class ProductAnalysisService:
                 updated.append(suggestion)
                 continue
             matched_labels.add(matched_label)
-            note = self._replay_continuity_note([matched_label])
             reasons = list(suggestion.reason)
-            if note not in reasons:
-                reasons.append(note)
+            notes = [self._replay_continuity_note([matched_label])]
+            if matched_label in accepted_issue_labels:
+                notes.append(self._feedback_alignment_note(matched_label, "accepted"))
+            elif matched_label in rejected_issue_labels:
+                notes.append(self._feedback_alignment_note(matched_label, "rejected"))
+            for note in notes:
+                if note not in reasons:
+                    reasons.append(note)
             updated.append(suggestion.model_copy(update={"reason": reasons}))
 
         unmatched_labels = [label for label in persistent_issue_labels if label not in matched_labels]
@@ -671,7 +901,15 @@ class ProductAnalysisService:
             reasons = list(updated[0].reason)
             if note not in reasons:
                 updated[0] = updated[0].model_copy(update={"reason": reasons + [note]})
-        return updated
+        return sorted(
+            updated,
+            key=lambda suggestion: self._suggestion_replay_rank(
+                suggestion,
+                accepted_issue_labels=accepted_issue_labels,
+                rejected_issue_labels=rejected_issue_labels,
+                persistent_issue_labels=persistent_issue_labels,
+            ),
+        )
 
     def _suggestion_matches_label(self, suggestion: ImprovementSuggestion, label: str) -> bool:
         haystack = " ".join([suggestion.suggestion, *suggestion.reason]).lower()
@@ -679,34 +917,106 @@ class ProductAnalysisService:
 
     def _replay_continuity_note(self, labels: list[str]) -> str:
         joined = ", ".join(labels)
-        if os.getenv("PROMPT_VARIANT", "main") == "main":
+        if self._uses_main_prompt_variant():
             return f"Replay continuity: the issue around {joined} also appeared in the previous run."
         return f"回放延续性：{joined} 在上一轮分析中也出现过。"
+
+    def _feedback_alignment_note(self, label: str, status: str) -> str:
+        if self._uses_main_prompt_variant():
+            if status == "accepted":
+                return f"Reviewer feedback: {label} was explicitly accepted in the previous review round."
+            return f"Reviewer feedback: {label} was previously marked as rejected or disputed."
+        if status == "accepted":
+            return f"人工反馈：{label} 在上一轮审核中被明确接受。"
+        return f"人工反馈：{label} 在上一轮审核中被标记为拒绝或存在争议。"
+
+    def _suggestion_replay_rank(
+        self,
+        suggestion: ImprovementSuggestion,
+        accepted_issue_labels: list[str],
+        rejected_issue_labels: list[str],
+        persistent_issue_labels: list[str],
+    ) -> tuple[int, float]:
+        matched_persistent = any(self._suggestion_matches_label(suggestion, label) for label in persistent_issue_labels)
+        matched_accepted = any(self._suggestion_matches_label(suggestion, label) for label in accepted_issue_labels)
+        matched_rejected = any(self._suggestion_matches_label(suggestion, label) for label in rejected_issue_labels)
+        if matched_accepted:
+            return (0, -suggestion.confidence)
+        if matched_persistent and not matched_rejected:
+            return (1, -suggestion.confidence)
+        if matched_rejected:
+            return (3, -suggestion.confidence)
+        return (2, -suggestion.confidence)
 
     def _build_replay_warning(self, replay_summary: ReplayContinuationSummary | None) -> str | None:
         if replay_summary is None or not replay_summary.applied:
             return None
-        if os.getenv("PROMPT_VARIANT", "main") == "main":
+        if self._uses_main_prompt_variant():
             return (
                 "replay continuity applied: "
                 f"persistent={len(replay_summary.persistent_issue_labels)}, "
                 f"resolved={len(replay_summary.resolved_issue_labels)}, "
-                f"new={len(replay_summary.new_issue_labels)}"
+                f"new={len(replay_summary.new_issue_labels)}, "
+                f"reviewed={replay_summary.reviewed_slot_count}"
             )
         return (
             "已应用 replay 回放延续性："
             f"持续问题 {len(replay_summary.persistent_issue_labels)} 个，"
             f"已消退问题 {len(replay_summary.resolved_issue_labels)} 个，"
-            f"新增问题 {len(replay_summary.new_issue_labels)} 个"
+            f"新增问题 {len(replay_summary.new_issue_labels)} 个，"
+            f"已审核反馈 {replay_summary.reviewed_slot_count} 项"
         )
 
     def _summarize_replay_continuity(self, replay_summary: ReplayContinuationSummary) -> str:
         persistent = ", ".join(replay_summary.persistent_issue_labels[:3]) or "none"
         resolved = ", ".join(replay_summary.resolved_issue_labels[:3]) or "none"
         new_labels = ", ".join(replay_summary.new_issue_labels[:3]) or "none"
+        accepted = ", ".join(replay_summary.accepted_issue_labels[:3]) or "none"
+        rejected = ", ".join(replay_summary.rejected_issue_labels[:3]) or "none"
         return (
-            f"replay_path={replay_summary.replay_path}, persistent={persistent}, resolved={resolved}, new={new_labels}"
+            f"replay_path={replay_summary.replay_path}, feedback_path={replay_summary.feedback_path}, "
+            f"persistent={persistent}, resolved={resolved}, new={new_labels}, "
+            f"accepted={accepted}, rejected={rejected}, reviewed={replay_summary.reviewed_slot_count}"
         )
+
+    def _extract_feedback_state(self, feedback_payload: dict[str, object] | None) -> dict[str, object]:
+        slots = feedback_payload.get("slots") if isinstance(feedback_payload, dict) else None
+        if not isinstance(slots, list):
+            return {
+                "accepted_issue_labels": [],
+                "rejected_issue_labels": [],
+                "reviewed_slot_count": 0,
+                "pending_slot_count": 0,
+            }
+
+        accepted_issue_labels: list[str] = []
+        rejected_issue_labels: list[str] = []
+        reviewed_slot_count = 0
+        pending_slot_count = 0
+
+        for slot in slots:
+            if not isinstance(slot, dict):
+                continue
+            status = str(slot.get("status") or "pending_review").lower()
+            label = str(slot.get("label") or "")
+            item_type = str(slot.get("item_type") or "")
+            if status == "pending_review":
+                pending_slot_count += 1
+            else:
+                reviewed_slot_count += 1
+            if item_type != "insight" or not label:
+                continue
+            if status in {"accepted", "confirmed", "keep", "resolved"}:
+                accepted_issue_labels.append(label)
+            elif status in {"rejected", "dismissed", "false_positive", "disputed"}:
+                rejected_issue_labels.append(label)
+
+        return {
+            "accepted_issue_labels": self._unique_labels(accepted_issue_labels),
+            "rejected_issue_labels": self._unique_labels(rejected_issue_labels),
+            "reviewed_slot_count": reviewed_slot_count,
+            "pending_slot_count": pending_slot_count,
+        }
 
     def _unique_labels(self, labels: list[str]) -> list[str]:
         return list(dict.fromkeys(label for label in labels if label))
@@ -760,7 +1070,7 @@ class ProductAnalysisService:
         multimodal_backend = self.settings.multimodal_reranker_backend
         native_multimodal_enabled = image_backend not in {"proxy_text", "disabled"} or multimodal_backend not in {"disabled", "off"}
 
-        if os.getenv("PROMPT_VARIANT", "main") == "main":
+        if self._uses_main_prompt_variant():
             if native_multimodal_enabled:
                 summary = "Image evidence is configured to use native multimodal retrieval or reranking paths."
             else:
@@ -792,12 +1102,15 @@ class ProductAnalysisService:
         metrics: list[RetrievalQualityMetrics] = []
         for retrieval in retrievals:
             evidence_count = len(retrieval.retrieved)
+            expected_routes = set(retrieval.expected_evidence_routes or [])
             if evidence_count == 0:
                 metrics.append(
                     RetrievalQualityMetrics(
                         retrieval_id=retrieval.retrieval_id,
                         source_aspect=retrieval.source_aspect,
                         top_k_count=0,
+                        route_coverage=0.0,
+                        answer_coverage=0.0,
                         evidence_coverage=0.0,
                         score_drift=0.0,
                         text_coverage=False,
@@ -808,7 +1121,12 @@ class ProductAnalysisService:
                 continue
             text_coverage = any(item.route == "text" for item in retrieval.retrieved)
             image_coverage = any(item.route == "image" for item in retrieval.retrieved)
-            evidence_coverage = min(1.0, evidence_count / 2.0)
+            available_routes = {item.route for item in retrieval.retrieved}
+            if not expected_routes:
+                expected_routes = set(available_routes)
+            route_coverage = len(expected_routes.intersection(available_routes)) / len(expected_routes) if expected_routes else 0.0
+            answered_hits = [item for item in retrieval.retrieved if self._evidence_answers_question(retrieval.source_question, item)]
+            answer_coverage = min(1.0, len(answered_hits) / max(1, len(expected_routes)))
             drift_samples = [
                 abs(item.embedding_score - (item.rerank_score if item.rerank_score is not None else item.embedding_score))
                 for item in retrieval.retrieved
@@ -820,7 +1138,9 @@ class ProductAnalysisService:
                     retrieval_id=retrieval.retrieval_id,
                     source_aspect=retrieval.source_aspect,
                     top_k_count=evidence_count,
-                    evidence_coverage=evidence_coverage,
+                    route_coverage=route_coverage,
+                    answer_coverage=answer_coverage,
+                    evidence_coverage=answer_coverage,
                     score_drift=score_drift,
                     text_coverage=text_coverage,
                     image_coverage=image_coverage,

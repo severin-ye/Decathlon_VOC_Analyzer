@@ -10,6 +10,16 @@ class ArtifactSidecarService:
     def __init__(self) -> None:
         self.settings = get_settings()
 
+    def load_feedback_payload(self, product_id: str, category_slug: str | None) -> dict[str, Any] | None:
+        feedback_path = self._feedback_path(product_id=product_id, category_slug=category_slug)
+        if not feedback_path.exists():
+            return None
+        payload = orjson.loads(feedback_path.read_bytes())
+        if not isinstance(payload, dict):
+            return None
+        payload["feedback_path"] = str(feedback_path)
+        return payload
+
     def load_replay_payload(self, product_id: str, category_slug: str | None) -> dict[str, Any] | None:
         replay_path = self._replay_path(product_id=product_id, category_slug=category_slug)
         if not replay_path.exists():
@@ -38,12 +48,17 @@ class ArtifactSidecarService:
 
         feedback_path = feedback_dir / f"{product_id}_feedback_slots.json"
         replay_path = self._replay_path(product_id=product_id, category_slug=category_slug)
+        existing_feedback_payload = self.load_feedback_payload(product_id=product_id, category_slug=category_slug)
+        existing_feedback_slots = (existing_feedback_payload or {}).get("slots") or []
 
         feedback_payload = {
             "product_id": product_id,
             "category_slug": category_slug,
             "analysis_mode": analysis_mode,
-            "slots": self._build_feedback_slots(report, retrieval_quality),
+            "slots": self._merge_feedback_slots(
+                existing_slots=existing_feedback_slots,
+                new_slots=self._build_feedback_slots(report, retrieval_quality),
+            ),
             "warnings": warnings,
         }
         replay_payload = {
@@ -65,6 +80,39 @@ class ArtifactSidecarService:
     def _replay_path(self, product_id: str, category_slug: str | None) -> Path:
         category = category_slug or "adhoc"
         return self.settings.replay_output_dir / category / f"{product_id}_replay.json"
+
+    def _feedback_path(self, product_id: str, category_slug: str | None) -> Path:
+        category = category_slug or "adhoc"
+        return self.settings.feedback_output_dir / category / f"{product_id}_feedback_slots.json"
+
+    def _merge_feedback_slots(
+        self,
+        existing_slots: list[dict[str, object]],
+        new_slots: list[dict[str, object]],
+    ) -> list[dict[str, object]]:
+        existing_by_key = {
+            self._feedback_slot_key(slot): slot
+            for slot in existing_slots
+            if isinstance(slot, dict)
+        }
+        merged: list[dict[str, object]] = []
+        for slot in new_slots:
+            key = self._feedback_slot_key(slot)
+            previous = existing_by_key.get(key)
+            if previous is None:
+                merged.append(slot)
+                continue
+            merged.append(
+                {
+                    **slot,
+                    "status": previous.get("status") or slot.get("status") or "pending_review",
+                    "reviewer_note": previous.get("reviewer_note"),
+                }
+            )
+        return merged
+
+    def _feedback_slot_key(self, slot: dict[str, object]) -> tuple[str, str]:
+        return (str(slot.get("item_type") or "unknown"), str(slot.get("label") or ""))
 
     def _build_feedback_slots(self, report, retrieval_quality) -> list[dict[str, object]]:
         slots: list[dict[str, object]] = []

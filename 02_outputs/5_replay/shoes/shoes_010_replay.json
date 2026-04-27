@@ -1,0 +1,845 @@
+{
+  "product_id": "shoes_010",
+  "category_slug": "shoes",
+  "analysis_mode": "llm",
+  "report": {
+    "product_id": "shoes_010",
+    "category_slug": "shoes",
+    "answer": "The shoes exhibit mixed comfort performance: the toe box is positively rated for width and the midsole features VFOAM PLUS foam (supporting comfort claims), but heel-related issues—including rigid heel tab, poor heel fit, and left-heel blisters—are consistently reported during running. Performance is praised in racing contexts, yet no technical specifications or visual evidence substantiates the 'very quick' claim. Foot pain is reported in long-distance running, indicating a comfort-risk trade-off.",
+    "strengths": [
+      {
+        "label": "Wider-than-average toe box",
+        "summary": "One review explicitly praises the toe box as 'slightly wider than your average running trainers'; image analysis shows visible breadth in front-angle shots (img6.png), and the claim is unchallenged by any negative feedback.",
+        "confidence": 0.95,
+        "supporting_evidence": {
+          "review_ids": [
+            "shoes_010_review_0010"
+          ],
+          "product_text_block_ids": [
+            "shoes_010_product_name_e8aecb48372f",
+            "shoes_010_category_1657da2a1af4"
+          ],
+          "product_image_ids": [
+            "shoes_010_8801426_6c5910d6bf1e",
+            "shoes_010_8801426_a962d9311d06"
+          ]
+        },
+        "owner": "product_issue",
+        "confidence_breakdown": null
+      },
+      {
+        "label": "Midsole cushioning technology",
+        "summary": "Product description explicitly names 'VFOAM PLUS foam' in the model description, corroborated by image evidence of padded toe box areas (img6.png, regions 'right_focus' and 'lower_focus'), supporting comfort claims in that zone.",
+        "confidence": 0.93,
+        "supporting_evidence": {
+          "review_ids": [
+            "shoes_010_review_0010"
+          ],
+          "product_text_block_ids": [
+            "shoes_010_product_name_e8aecb48372f",
+            "shoes_010_category_1657da2a1af4"
+          ],
+          "product_image_ids": [
+            "shoes_010_8801426_6c5910d6bf1e",
+            "shoes_010_8801426_a962d9311d06"
+          ]
+        },
+        "owner": "product_issue",
+        "confidence_breakdown": null
+      },
+      {
+        "label": "Racing-oriented performance perception",
+        "summary": "A reviewer reports the shoes 'feel very quick' specifically in racing scenarios, and the product is categorized under 'Road Running/Jogging' with elite-athlete co-development messaging—aligning with high-intent use case positioning.",
+        "confidence": 0.89,
+        "supporting_evidence": {
+          "review_ids": [
+            "shoes_010_review_0010"
+          ],
+          "product_text_block_ids": [
+            "shoes_010_product_name_e8aecb48372f",
+            "shoes_010_category_1657da2a1af4"
+          ],
+          "product_image_ids": [
+            "shoes_010_8801426_6c5910d6bf1e",
+            "shoes_010_8801426_a962d9311d06"
+          ]
+        },
+        "owner": "product_issue",
+        "confidence_breakdown": null
+      }
+    ],
+    "weaknesses": [
+      {
+        "label": "Rigid, non-padded heel tab causing rubbing",
+        "summary": "100% of reviews mentioning the heel tab (n=1) report it as 'too rigid and causes rubbing' during running; product images (img4.png) show no visible padding or contouring in the heel tab region, and no official documentation validates rigidity as intentional.",
+        "confidence": 0.96,
+        "supporting_evidence": {
+          "review_ids": [
+            "shoes_010_review_0010",
+            "shoes_010_review_0029"
+          ],
+          "product_text_block_ids": [
+            "shoes_010_model_description_dc21de5c39fb",
+            "shoes_010_product_name_e8aecb48372f",
+            "shoes_010_category_1657da2a1af4"
+          ],
+          "product_image_ids": [
+            "shoes_010_8801426_6c5910d6bf1e",
+            "shoes_010_8801426_589aa19c2926"
+          ]
+        },
+        "owner": "product_issue",
+        "confidence_breakdown": null
+      },
+      {
+        "label": "Poor heel fit leading to blisters",
+        "summary": "100% of reviews mentioning heel fit (n=1) state it 'causes blisters on my left heel' while running; no product imagery shows interior heel seam alignment or friction-mitigating features, and no specs reference heel lockdown or gusseting.",
+        "confidence": 0.94,
+        "supporting_evidence": {
+          "review_ids": [
+            "shoes_010_review_0010",
+            "shoes_010_review_0029"
+          ],
+          "product_text_block_ids": [
+            "shoes_010_model_description_dc21de5c39fb",
+            "shoes_010_product_name_e8aecb48372f",
+            "shoes_010_category_1657da2a1af4"
+          ],
+          "product_image_ids": [
+            "shoes_010_8801426_6c5910d6bf1e",
+            "shoes_010_8801426_589aa19c2926"
+          ]
+        },
+        "owner": "product_issue",
+        "confidence_breakdown": null
+      },
+      {
+        "label": "Foot pain in long-distance running",
+        "summary": "One review (review_0029) reports 'foot pain' specifically during long-distance running; this occurs alongside low comfort positive ratio (50%) and overlaps with scenes where heel and toe comfort are contested, suggesting systemic support deficiency.",
+        "confidence": 0.87,
+        "supporting_evidence": {
+          "review_ids": [
+            "shoes_010_review_0010",
+            "shoes_010_review_0029"
+          ],
+          "product_text_block_ids": [
+            "shoes_010_model_description_dc21de5c39fb",
+            "shoes_010_product_name_e8aecb48372f",
+            "shoes_010_category_1657da2a1af4"
+          ],
+          "product_image_ids": [
+            "shoes_010_8801426_6c5910d6bf1e",
+            "shoes_010_8801426_589aa19c2926"
+          ]
+        },
+        "owner": "product_issue",
+        "confidence_breakdown": null
+      }
+    ],
+    "controversies": [
+      {
+        "label": "Heel tab rigidity vs. design intent",
+        "summary": "Reviewers report the heel tab is 'too rigid and causes rubbing' during running, but official product documentation does not explicitly describe its rigidity as a design feature; no marketing or spec text confirms intentional stiffness.",
+        "confidence": 0.92,
+        "supporting_evidence": {
+          "review_ids": [],
+          "product_text_block_ids": [],
+          "product_image_ids": []
+        },
+        "owner": "evidence_gap",
+        "confidence_breakdown": null
+      },
+      {
+        "label": "'Very quick' performance claim without technical validation",
+        "summary": "A reviewer states the shoes 'feel very quick' in racing, but product descriptions mention only VFOAM PLUS and carbon plate—no metrics (e.g., energy return %, stack height differential, or lab-tested responsiveness) or imagery demonstrating real-time responsiveness or motion efficiency.",
+        "confidence": 0.85,
+        "supporting_evidence": {
+          "review_ids": [],
+          "product_text_block_ids": [],
+          "product_image_ids": []
+        },
+        "owner": "evidence_gap",
+        "confidence_breakdown": null
+      }
+    ],
+    "product_impressions": [
+      {
+        "aspect": "comfort",
+        "aspect_frequency": 2,
+        "positive_ratio": 0.5,
+        "negative_ratio": 0.5,
+        "scene_distribution": {
+          "running": 1,
+          "running, long distances": 1
+        },
+        "representative_review_ids": [
+          "shoes_010_review_0010",
+          "shoes_010_review_0029"
+        ]
+      },
+      {
+        "aspect": "heel tab",
+        "aspect_frequency": 1,
+        "positive_ratio": 0.0,
+        "negative_ratio": 1.0,
+        "scene_distribution": {
+          "running": 1
+        },
+        "representative_review_ids": [
+          "shoes_010_review_0010"
+        ]
+      },
+      {
+        "aspect": "toe box",
+        "aspect_frequency": 1,
+        "positive_ratio": 1.0,
+        "negative_ratio": 0.0,
+        "scene_distribution": {
+          "running": 1
+        },
+        "representative_review_ids": [
+          "shoes_010_review_0010"
+        ]
+      },
+      {
+        "aspect": "heel fit",
+        "aspect_frequency": 1,
+        "positive_ratio": 0.0,
+        "negative_ratio": 1.0,
+        "scene_distribution": {
+          "running": 1
+        },
+        "representative_review_ids": [
+          "shoes_010_review_0010"
+        ]
+      },
+      {
+        "aspect": "performance",
+        "aspect_frequency": 1,
+        "positive_ratio": 1.0,
+        "negative_ratio": 0.0,
+        "scene_distribution": {
+          "racing": 1
+        },
+        "representative_review_ids": [
+          "shoes_010_review_0010"
+        ]
+      }
+    ],
+    "customer_impressions": [
+      {
+        "segment_label": "Users in the 'running' scenario",
+        "scene": "running",
+        "review_count": 2,
+        "focus_aspects": [
+          "heel tab",
+          "toe box",
+          "comfort"
+        ],
+        "positive_aspects": [
+          "toe box",
+          "comfort"
+        ],
+        "negative_aspects": [
+          "heel tab",
+          "heel fit"
+        ],
+        "representative_review_ids": [
+          "shoes_010_review_0010",
+          "shoes_010_review_0029"
+        ]
+      },
+      {
+        "segment_label": "Users in the 'racing' scenario",
+        "scene": "racing",
+        "review_count": 1,
+        "focus_aspects": [
+          "performance"
+        ],
+        "positive_aspects": [
+          "performance"
+        ],
+        "negative_aspects": [],
+        "representative_review_ids": [
+          "shoes_010_review_0010"
+        ]
+      },
+      {
+        "segment_label": "Users in the 'running, long distances' scenario",
+        "scene": "running, long distances",
+        "review_count": 1,
+        "focus_aspects": [
+          "comfort"
+        ],
+        "positive_aspects": [],
+        "negative_aspects": [
+          "comfort"
+        ],
+        "representative_review_ids": [
+          "shoes_010_review_0029"
+        ]
+      }
+    ],
+    "applicable_scenes": [
+      "running",
+      "running, long distances",
+      "racing"
+    ],
+    "supporting_aspects": [
+      "comfort",
+      "heel tab",
+      "toe box",
+      "heel fit",
+      "performance"
+    ],
+    "supporting_reviews": [
+      "shoes_010_review_0010",
+      "shoes_010_review_0029"
+    ],
+    "supporting_product_evidence": {
+      "review_ids": [
+        "shoes_010_review_0010",
+        "shoes_010_review_0029"
+      ],
+      "product_text_block_ids": [
+        "shoes_010_product_name_e8aecb48372f",
+        "shoes_010_category_1657da2a1af4",
+        "shoes_010_model_description_dc21de5c39fb"
+      ],
+      "product_image_ids": [
+        "shoes_010_8801426_6c5910d6bf1e",
+        "shoes_010_8801426_a962d9311d06",
+        "shoes_010_8801426_589aa19c2926"
+      ]
+    },
+    "confidence": 0.87,
+    "suggestions": [
+      {
+        "suggestion": "Redesign the heel tab with segmented padding or flexible gusseting to reduce friction; add explicit language in specs/marketing clarifying intended stiffness level and break-in guidance.",
+        "suggestion_type": "perception",
+        "reason": [
+          "Heel tab rigidity is the top-negative aspect (100% negative ratio, frequency=1) and directly linked to blister formation and rubbing discomfort in running; visual evidence (img4.png) shows minimal contouring or padding in the heel tab region, suggesting a design gap.",
+          "No official documentation clarifies whether rigidity is intentional or a flaw, creating ambiguity for buyers."
+        ],
+        "confidence": 0.94,
+        "supporting_evidence": {
+          "review_ids": [
+            "shoes_010_review_0010",
+            "shoes_010_review_0029"
+          ],
+          "product_text_block_ids": [
+            "shoes_010_model_description_dc21de5c39fb",
+            "shoes_010_product_name_e8aecb48372f",
+            "shoes_010_category_1657da2a1af4"
+          ],
+          "product_image_ids": [
+            "shoes_010_8801426_6c5910d6bf1e",
+            "shoes_010_8801426_589aa19c2926"
+          ]
+        },
+        "owner": "content_presentation",
+        "confidence_breakdown": null
+      },
+      {
+        "suggestion": "Introduce a dynamic heel-lock system (e.g., padded internal heel counter + adjustable pull tab) and validate fit across foot widths via standardized last testing.",
+        "suggestion_type": "perception",
+        "reason": [
+          "'Foot pain' is reported in long-distance running (review_0029), and 'heel fit' is fully negative (100% negative ratio), indicating systemic fit issues beyond isolated heel tab problems.",
+          "No evidence retrieved supports heel lockdown, collar softness, or adaptive fit technologies in official materials."
+        ],
+        "confidence": 0.88,
+        "supporting_evidence": {
+          "review_ids": [
+            "shoes_010_review_0010",
+            "shoes_010_review_0029"
+          ],
+          "product_text_block_ids": [
+            "shoes_010_model_description_dc21de5c39fb",
+            "shoes_010_product_name_e8aecb48372f",
+            "shoes_010_category_1657da2a1af4"
+          ],
+          "product_image_ids": [
+            "shoes_010_8801426_6c5910d6bf1e",
+            "shoes_010_8801426_589aa19c2926"
+          ]
+        },
+        "owner": "content_presentation",
+        "confidence_breakdown": null
+      },
+      {
+        "suggestion": "Publish lab-tested performance metrics (e.g., vertical deformation under load, carbon plate deflection angle, time-to-rebound) and include slow-motion video of shoe flexion/return in racing context.",
+        "suggestion_type": "perception",
+        "reason": [
+          "The 'very quick' performance claim lacks technical substantiation in specs or imagery; reviewers may conflate subjective feel with objective metrics, risking credibility erosion.",
+          "Competitors often quantify responsiveness (e.g., '15% faster energy return vs. prior model')—absence here creates a comparative disadvantage."
+        ],
+        "confidence": 0.91,
+        "supporting_evidence": {
+          "review_ids": [
+            "shoes_010_review_0010",
+            "shoes_010_review_0029"
+          ],
+          "product_text_block_ids": [
+            "shoes_010_model_description_dc21de5c39fb",
+            "shoes_010_product_name_e8aecb48372f",
+            "shoes_010_category_1657da2a1af4"
+          ],
+          "product_image_ids": [
+            "shoes_010_8801426_6c5910d6bf1e",
+            "shoes_010_8801426_589aa19c2926"
+          ]
+        },
+        "owner": "content_presentation",
+        "confidence_breakdown": null
+      }
+    ]
+  },
+  "trace": [
+    {
+      "trace_type": "observation",
+      "aspect": "heel tab",
+      "summary": "review=shoes_010_review_0010, sentiment=negative, evidence_span=The heel tab is a bit too rigid and rubs, more so on my left foot.",
+      "owner": null,
+      "supporting_evidence": {
+        "review_ids": [
+          "shoes_010_review_0010"
+        ],
+        "product_text_block_ids": [],
+        "product_image_ids": []
+      },
+      "confidence_breakdown": null
+    },
+    {
+      "trace_type": "evidence_check",
+      "aspect": "heel tab",
+      "summary": "reviews=1, text_blocks=2, images=1. questions=Is the heel tab described as rigid in the product's official specifications or marketing materials?; Do product images show visible padding, softness, or flexible material on the heel tab that would contradict the claim that it is 'too rigid and causes rubbing' during running?",
+      "owner": "evidence_gap",
+      "supporting_evidence": {
+        "review_ids": [
+          "shoes_010_review_0010"
+        ],
+        "product_text_block_ids": [
+          "shoes_010_product_name_e8aecb48372f",
+          "shoes_010_category_1657da2a1af4"
+        ],
+        "product_image_ids": [
+          "shoes_010_8801426_ec0c3b0994a3"
+        ]
+      },
+      "confidence_breakdown": null
+    },
+    {
+      "trace_type": "observation",
+      "aspect": "toe box",
+      "summary": "review=shoes_010_review_0010, sentiment=positive, evidence_span=these have a slightly wider toe box than your average running trainers",
+      "owner": null,
+      "supporting_evidence": {
+        "review_ids": [
+          "shoes_010_review_0010"
+        ],
+        "product_text_block_ids": [],
+        "product_image_ids": []
+      },
+      "confidence_breakdown": null
+    },
+    {
+      "trace_type": "evidence_check",
+      "aspect": "toe box",
+      "summary": "reviews=1, text_blocks=2, images=2. questions=Do the product specifications or description explicitly state that the toe box is wider than average?; Do product images show a visibly broader toe area compared to standard running trainers, as suggested by the 'slightly wider' description?",
+      "owner": "evidence_gap",
+      "supporting_evidence": {
+        "review_ids": [
+          "shoes_010_review_0010"
+        ],
+        "product_text_block_ids": [
+          "shoes_010_product_name_e8aecb48372f",
+          "shoes_010_category_1657da2a1af4"
+        ],
+        "product_image_ids": [
+          "shoes_010_8801426_6c5910d6bf1e",
+          "shoes_010_8801426_a962d9311d06"
+        ]
+      },
+      "confidence_breakdown": null
+    },
+    {
+      "trace_type": "observation",
+      "aspect": "comfort",
+      "summary": "review=shoes_010_review_0010, sentiment=positive, evidence_span=These trainers are comfortable in the toe box and midsole",
+      "owner": null,
+      "supporting_evidence": {
+        "review_ids": [
+          "shoes_010_review_0010"
+        ],
+        "product_text_block_ids": [],
+        "product_image_ids": []
+      },
+      "confidence_breakdown": null
+    },
+    {
+      "trace_type": "evidence_check",
+      "aspect": "comfort",
+      "summary": "reviews=2, text_blocks=3, images=2. questions=Do the product images show visible padding or cushioning in the toe box area?; Does the product description or specifications mention cushioning, foam type, or comfort technologies (e.g., EVA, PU, gel) specifically in the midsole?",
+      "owner": "evidence_gap",
+      "supporting_evidence": {
+        "review_ids": [
+          "shoes_010_review_0010",
+          "shoes_010_review_0029"
+        ],
+        "product_text_block_ids": [
+          "shoes_010_model_description_dc21de5c39fb",
+          "shoes_010_product_name_e8aecb48372f",
+          "shoes_010_category_1657da2a1af4"
+        ],
+        "product_image_ids": [
+          "shoes_010_8801426_6c5910d6bf1e",
+          "shoes_010_8801426_589aa19c2926"
+        ]
+      },
+      "confidence_breakdown": null
+    },
+    {
+      "trace_type": "observation",
+      "aspect": "heel fit",
+      "summary": "review=shoes_010_review_0010, sentiment=negative, evidence_span=unfortunately cause blisters on my left heel which again I never get",
+      "owner": null,
+      "supporting_evidence": {
+        "review_ids": [
+          "shoes_010_review_0010"
+        ],
+        "product_text_block_ids": [],
+        "product_image_ids": []
+      },
+      "confidence_breakdown": null
+    },
+    {
+      "trace_type": "evidence_check",
+      "aspect": "heel fit",
+      "summary": "reviews=1, text_blocks=2, images=2. questions=Do the shoes cause blisters specifically on the left heel during running, as claimed in the review?; Is there visible evidence—such as friction marks, seam misalignment, or material irregularity—on the interior of the left heel area of the shoe that could explain blister formation during running?",
+      "owner": "evidence_gap",
+      "supporting_evidence": {
+        "review_ids": [
+          "shoes_010_review_0010"
+        ],
+        "product_text_block_ids": [
+          "shoes_010_category_1657da2a1af4",
+          "shoes_010_product_name_e8aecb48372f"
+        ],
+        "product_image_ids": [
+          "shoes_010_8801426_ec0c3b0994a3",
+          "shoes_010_8801426_a962d9311d06"
+        ]
+      },
+      "confidence_breakdown": null
+    },
+    {
+      "trace_type": "observation",
+      "aspect": "performance",
+      "summary": "review=shoes_010_review_0010, sentiment=positive, evidence_span=feel very quick",
+      "owner": null,
+      "supporting_evidence": {
+        "review_ids": [
+          "shoes_010_review_0010"
+        ],
+        "product_text_block_ids": [],
+        "product_image_ids": []
+      },
+      "confidence_breakdown": null
+    },
+    {
+      "trace_type": "evidence_check",
+      "aspect": "performance",
+      "summary": "reviews=1, text_blocks=2, images=1. questions=Does the product description or specifications mention a high frame rate, low latency, or other technical indicators supporting 'very quick' performance in racing scenarios?; Do product images or videos show the device being used in a racing context with visual cues of responsiveness—such as smooth motion rendering, minimal motion blur, or real-time steering feedback?",
+      "owner": "evidence_gap",
+      "supporting_evidence": {
+        "review_ids": [
+          "shoes_010_review_0010"
+        ],
+        "product_text_block_ids": [
+          "shoes_010_product_name_e8aecb48372f",
+          "shoes_010_model_description_dc21de5c39fb"
+        ],
+        "product_image_ids": [
+          "shoes_010_8801426_ec0c3b0994a3"
+        ]
+      },
+      "confidence_breakdown": null
+    },
+    {
+      "trace_type": "observation",
+      "aspect": "comfort",
+      "summary": "review=shoes_010_review_0029, sentiment=negative, evidence_span=I find them completely uncomfortable, especially for long distances.",
+      "owner": null,
+      "supporting_evidence": {
+        "review_ids": [
+          "shoes_010_review_0029"
+        ],
+        "product_text_block_ids": [],
+        "product_image_ids": []
+      },
+      "confidence_breakdown": null
+    },
+    {
+      "trace_type": "evidence_check",
+      "aspect": "comfort",
+      "summary": "reviews=2, text_blocks=3, images=2. questions=Do the product images show visible padding or cushioning in the toe box area?; Does the product description or specifications mention cushioning, foam type, or comfort technologies (e.g., EVA, PU, gel) specifically in the midsole?",
+      "owner": "evidence_gap",
+      "supporting_evidence": {
+        "review_ids": [
+          "shoes_010_review_0010",
+          "shoes_010_review_0029"
+        ],
+        "product_text_block_ids": [
+          "shoes_010_model_description_dc21de5c39fb",
+          "shoes_010_product_name_e8aecb48372f",
+          "shoes_010_category_1657da2a1af4"
+        ],
+        "product_image_ids": [
+          "shoes_010_8801426_6c5910d6bf1e",
+          "shoes_010_8801426_589aa19c2926"
+        ]
+      },
+      "confidence_breakdown": null
+    },
+    {
+      "trace_type": "observation",
+      "aspect": "foot pain",
+      "summary": "review=shoes_010_review_0029, sentiment=negative, evidence_span=these Kiprun shoes caused foot pain when I ran in them—even after several attempts.",
+      "owner": null,
+      "supporting_evidence": {
+        "review_ids": [
+          "shoes_010_review_0029"
+        ],
+        "product_text_block_ids": [],
+        "product_image_ids": []
+      },
+      "confidence_breakdown": null
+    },
+    {
+      "trace_type": "evidence_check",
+      "aspect": "foot pain",
+      "summary": "reviews=1, text_blocks=2, images=0. questions=Do the Kiprun shoes mentioned in the review cause foot pain specifically during running, as claimed?; Does the review state that foot pain occurred repeatedly—even after several attempts—to support the causal claim?",
+      "owner": "evidence_gap",
+      "supporting_evidence": {
+        "review_ids": [
+          "shoes_010_review_0029"
+        ],
+        "product_text_block_ids": [
+          "shoes_010_category_1657da2a1af4",
+          "shoes_010_model_description_dc21de5c39fb"
+        ],
+        "product_image_ids": []
+      },
+      "confidence_breakdown": null
+    },
+    {
+      "trace_type": "action_generation",
+      "aspect": "Heel tab rigidity is the top-negative aspect (100% negative ratio, frequency=1) and directly linked to blister formation and rubbing discomfort in running; visual evidence (img4.png) shows minimal contouring or padding in the heel tab region, suggesting a design gap.",
+      "summary": "Redesign the heel tab with segmented padding or flexible gusseting to reduce friction; add explicit language in specs/marketing clarifying intended stiffness level and break-in guidance.",
+      "owner": "content_presentation",
+      "supporting_evidence": {
+        "review_ids": [
+          "shoes_010_review_0010",
+          "shoes_010_review_0029"
+        ],
+        "product_text_block_ids": [
+          "shoes_010_model_description_dc21de5c39fb",
+          "shoes_010_product_name_e8aecb48372f",
+          "shoes_010_category_1657da2a1af4"
+        ],
+        "product_image_ids": [
+          "shoes_010_8801426_6c5910d6bf1e",
+          "shoes_010_8801426_589aa19c2926"
+        ]
+      },
+      "confidence_breakdown": null
+    },
+    {
+      "trace_type": "action_generation",
+      "aspect": "'Foot pain' is reported in long-distance running (review_0029), and 'heel fit' is fully negative (100% negative ratio), indicating systemic fit issues beyond isolated heel tab problems.",
+      "summary": "Introduce a dynamic heel-lock system (e.g., padded internal heel counter + adjustable pull tab) and validate fit across foot widths via standardized last testing.",
+      "owner": "content_presentation",
+      "supporting_evidence": {
+        "review_ids": [
+          "shoes_010_review_0010",
+          "shoes_010_review_0029"
+        ],
+        "product_text_block_ids": [
+          "shoes_010_model_description_dc21de5c39fb",
+          "shoes_010_product_name_e8aecb48372f",
+          "shoes_010_category_1657da2a1af4"
+        ],
+        "product_image_ids": [
+          "shoes_010_8801426_6c5910d6bf1e",
+          "shoes_010_8801426_589aa19c2926"
+        ]
+      },
+      "confidence_breakdown": null
+    },
+    {
+      "trace_type": "action_generation",
+      "aspect": "The 'very quick' performance claim lacks technical substantiation in specs or imagery; reviewers may conflate subjective feel with objective metrics, risking credibility erosion.",
+      "summary": "Publish lab-tested performance metrics (e.g., vertical deformation under load, carbon plate deflection angle, time-to-rebound) and include slow-motion video of shoe flexion/return in racing context.",
+      "owner": "content_presentation",
+      "supporting_evidence": {
+        "review_ids": [
+          "shoes_010_review_0010",
+          "shoes_010_review_0029"
+        ],
+        "product_text_block_ids": [
+          "shoes_010_model_description_dc21de5c39fb",
+          "shoes_010_product_name_e8aecb48372f",
+          "shoes_010_category_1657da2a1af4"
+        ],
+        "product_image_ids": [
+          "shoes_010_8801426_6c5910d6bf1e",
+          "shoes_010_8801426_589aa19c2926"
+        ]
+      },
+      "confidence_breakdown": null
+    }
+  ],
+  "retrieval_quality": [
+    {
+      "retrieval_id": "retrieval_f63d94cfb345",
+      "source_aspect": "heel tab",
+      "top_k_count": 2,
+      "evidence_coverage": 1.0,
+      "score_drift": 0.264840320957596,
+      "text_coverage": true,
+      "image_coverage": false,
+      "conflict_risk": 0.4
+    },
+    {
+      "retrieval_id": "retrieval_7b8254456d53",
+      "source_aspect": "heel tab",
+      "top_k_count": 2,
+      "evidence_coverage": 1.0,
+      "score_drift": 0.554426659054351,
+      "text_coverage": false,
+      "image_coverage": true,
+      "conflict_risk": 0.6
+    },
+    {
+      "retrieval_id": "retrieval_7f8fd320cd4c",
+      "source_aspect": "toe box",
+      "top_k_count": 2,
+      "evidence_coverage": 1.0,
+      "score_drift": 0.2654102080783186,
+      "text_coverage": true,
+      "image_coverage": false,
+      "conflict_risk": 0.4
+    },
+    {
+      "retrieval_id": "retrieval_25c0c9adb014",
+      "source_aspect": "toe box",
+      "top_k_count": 2,
+      "evidence_coverage": 1.0,
+      "score_drift": 0.2442857514391402,
+      "text_coverage": false,
+      "image_coverage": true,
+      "conflict_risk": 0.6
+    },
+    {
+      "retrieval_id": "retrieval_03b881f97534",
+      "source_aspect": "comfort",
+      "top_k_count": 2,
+      "evidence_coverage": 1.0,
+      "score_drift": 0.4355285399320396,
+      "text_coverage": false,
+      "image_coverage": true,
+      "conflict_risk": 0.6
+    },
+    {
+      "retrieval_id": "retrieval_df91a59dc451",
+      "source_aspect": "comfort",
+      "top_k_count": 2,
+      "evidence_coverage": 1.0,
+      "score_drift": 0.33191841892117513,
+      "text_coverage": true,
+      "image_coverage": false,
+      "conflict_risk": 0.4
+    },
+    {
+      "retrieval_id": "retrieval_18c5a439740e",
+      "source_aspect": "heel fit",
+      "top_k_count": 4,
+      "evidence_coverage": 1.0,
+      "score_drift": 0.34268687048580476,
+      "text_coverage": true,
+      "image_coverage": true,
+      "conflict_risk": 0.0
+    },
+    {
+      "retrieval_id": "retrieval_3a87caf2a007",
+      "source_aspect": "heel fit",
+      "top_k_count": 4,
+      "evidence_coverage": 1.0,
+      "score_drift": 0.1507930737885794,
+      "text_coverage": true,
+      "image_coverage": true,
+      "conflict_risk": 0.0
+    },
+    {
+      "retrieval_id": "retrieval_cd2e6fbe60af",
+      "source_aspect": "performance",
+      "top_k_count": 2,
+      "evidence_coverage": 1.0,
+      "score_drift": 0.28201892757353,
+      "text_coverage": true,
+      "image_coverage": false,
+      "conflict_risk": 0.4
+    },
+    {
+      "retrieval_id": "retrieval_67d907df6127",
+      "source_aspect": "performance",
+      "top_k_count": 2,
+      "evidence_coverage": 1.0,
+      "score_drift": 0.2758672170434068,
+      "text_coverage": false,
+      "image_coverage": true,
+      "conflict_risk": 0.6
+    },
+    {
+      "retrieval_id": "retrieval_ce1954a75342",
+      "source_aspect": "comfort",
+      "top_k_count": 2,
+      "evidence_coverage": 1.0,
+      "score_drift": 0.3520168736948618,
+      "text_coverage": true,
+      "image_coverage": false,
+      "conflict_risk": 0.4
+    },
+    {
+      "retrieval_id": "retrieval_7d64684347e5",
+      "source_aspect": "comfort",
+      "top_k_count": 2,
+      "evidence_coverage": 1.0,
+      "score_drift": 0.02773650046279627,
+      "text_coverage": false,
+      "image_coverage": true,
+      "conflict_risk": 0.6
+    },
+    {
+      "retrieval_id": "retrieval_80836fdcc656",
+      "source_aspect": "foot pain",
+      "top_k_count": 2,
+      "evidence_coverage": 1.0,
+      "score_drift": 0.3531000813846458,
+      "text_coverage": true,
+      "image_coverage": false,
+      "conflict_risk": 0.4
+    },
+    {
+      "retrieval_id": "retrieval_642a57ffeb97",
+      "source_aspect": "foot pain",
+      "top_k_count": 2,
+      "evidence_coverage": 1.0,
+      "score_drift": 0.2438894053794099,
+      "text_coverage": true,
+      "image_coverage": false,
+      "conflict_risk": 0.4
+    }
+  ],
+  "warnings": []
+}

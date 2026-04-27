@@ -6,6 +6,7 @@ from decathlon_voc_analyzer.prompts.registry import (
     build_review_extraction_user_prompt,
     build_review_translation_user_prompt,
     get_prompt,
+    get_prompt_variant,
     get_prompt_template,
     normalize_prompt_variant,
 )
@@ -18,6 +19,7 @@ __all__ = [
     "build_review_extraction_user_prompt",
     "build_review_translation_user_prompt",
     "get_prompt",
+    "get_prompt_variant",
     "get_prompt_template",
     "normalize_prompt_variant",
 ]

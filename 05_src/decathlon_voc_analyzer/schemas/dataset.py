@@ -4,6 +4,12 @@ from typing import Literal
 from pydantic import BaseModel, Field
 
 
+class ImageRegion(BaseModel):
+    region_id: str
+    region_label: str
+    region_box: list[int] = Field(default_factory=list, min_length=4, max_length=4)
+
+
 class ImageEvidence(BaseModel):
     image_id: str
     product_id: str
@@ -11,6 +17,9 @@ class ImageEvidence(BaseModel):
     image_type: str = "product"
     image_path: str
     aux_text: str | None = None
+    width: int | None = None
+    height: int | None = None
+    regions: list[ImageRegion] = Field(default_factory=list)
 
 
 class TextEvidence(BaseModel):

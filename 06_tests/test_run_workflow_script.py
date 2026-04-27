@@ -74,6 +74,36 @@ def test_build_cli_config_can_use_shared_qdrant_path() -> None:
     assert str(config.qdrant_path).endswith("02_outputs/3_indexes/qdrant_store")
 
 
+def test_build_cli_config_normalizes_prompt_variant_alias() -> None:
+    module = _load_run_workflow_module()
+
+    args = Namespace(
+        cn=False,
+        dataset_root=None,
+        prompt_variant="zh-cn",
+        output_namespace=None,
+        retrieval_backend="qdrant",
+        qdrant_path=None,
+        qdrant_scope="isolated",
+        category="backpack",
+        product_id="backpack_010",
+    )
+
+    config = module.build_cli_config(args)
+
+    assert config.prompt_variant == "CN"
+    assert config.mode_label == "中文数据集"
+
+
+def test_thread_scope_label_uses_normalized_prompt_variant() -> None:
+    module = _load_run_workflow_module()
+
+    args = Namespace(cn=False)
+
+    assert module._thread_scope_label(args, "CN") == "cn"
+    assert module._thread_scope_label(args, "main") == "default"
+
+
 def test_configure_environment_defaults_batch_runs_to_qdrant(tmp_path, monkeypatch) -> None:
     module = _load_run_workflow_module()
 

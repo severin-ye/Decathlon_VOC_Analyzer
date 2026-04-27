@@ -1,0 +1,89 @@
+{
+  "manifest_root": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/7_manifests",
+  "run_count": 1,
+  "analysis_mode_counts": {
+    "heuristic": 1
+  },
+  "category_counts": {
+    "backpack": 1
+  },
+  "sampling_profile_counts": {
+    "unknown": 1
+  },
+  "native_multimodal_rate": 0.0,
+  "aggregate_metrics": {
+    "avg_aspects_per_informative_review": 1.5,
+    "avg_extract_confidence": 0.66,
+    "avg_question_confidence": 0.66,
+    "avg_questions_per_aspect": 2.0,
+    "avg_candidates_per_query": 1.0,
+    "avg_evidence_coverage": 0.5,
+    "avg_conflict_risk": 0.5,
+    "avg_citation_coverage_rate": 1.0,
+    "avg_final_confidence": 0.7355
+  },
+  "runs": [
+    {
+      "manifest_path": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/7_manifests/backpack/backpack_010_run_manifest.json",
+      "category": "backpack",
+      "product_id": "backpack_010",
+      "analysis_mode": "heuristic",
+      "retrieval_backend": "qdrant",
+      "native_multimodal_enabled": false,
+      "prompt_variant": "main",
+      "review_sampling_profile": null,
+      "warnings": [
+        "replay continuity applied: persistent=0, resolved=0, new=0"
+      ],
+      "extraction_metrics": {
+        "requested_reviews": 0,
+        "preprocessed_review_count": 4,
+        "informative_review_count": 4,
+        "aspect_count": 6,
+        "avg_aspects_per_informative_review": 1.5,
+        "avg_extract_confidence": 0.66,
+        "skipped_review_count": 0
+      },
+      "question_metrics": {
+        "question_count": 12,
+        "avg_question_confidence": 0.66,
+        "avg_questions_per_aspect": 2.0
+      },
+      "retrieval_metrics": {
+        "retrieval_record_count": 12,
+        "avg_candidates_per_query": 1.0,
+        "avg_evidence_coverage": 0.5,
+        "avg_score_drift": 0.0,
+        "avg_conflict_risk": 0.5,
+        "text_coverage_rate": 0.5,
+        "image_coverage_rate": 0.5
+      },
+      "generation_metrics": {
+        "strength_count": 1,
+        "weakness_count": 3,
+        "controversy_count": 1,
+        "suggestion_count": 3,
+        "citation_coverage_rate": 1.0,
+        "avg_final_confidence": 0.7355
+      },
+      "feedback_metrics": {
+        "slot_count": 19,
+        "status_counts": {
+          "pending_review": 19
+        },
+        "item_type_counts": {
+          "insight": 4,
+          "suggestion": 3,
+          "retrieval_quality": 12
+        },
+        "reviewed_slot_count": 0
+      },
+      "replay_metrics": {
+        "applied": true,
+        "persistent_issue_count": 4,
+        "resolved_issue_count": 0,
+        "new_issue_count": 0
+      }
+    }
+  ]
+}

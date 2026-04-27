@@ -115,6 +115,14 @@ def _resolve_prompt_variant(args: argparse.Namespace) -> str:
     return normalize_prompt_variant("CN" if args.cn else "main")
 
 
+def _mode_label_for_variant(prompt_variant: str) -> str:
+    return "中文数据集" if prompt_variant == "CN" else "主项目原始数据集"
+
+
+def _thread_scope_label(args: argparse.Namespace, prompt_variant: str) -> str:
+    return "cn" if prompt_variant == "CN" else "default"
+
+
 def _build_run_stamp() -> str:
     timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S_%fZ")
     return f"run_{timestamp}_pid{os.getpid()}"
@@ -134,7 +142,7 @@ def build_cli_config(args: argparse.Namespace) -> WorkflowCliConfig:
     dataset_root = _resolve_dataset_root(args)
     output_base = _resolve_output_base(args)
     prompt_variant = _resolve_prompt_variant(args)
-    mode_label = "中文数据集" if prompt_variant == "CN" else "主项目原始数据集"
+    mode_label = _mode_label_for_variant(prompt_variant)
     qdrant_path = _resolve_qdrant_path(args, output_base)
     return WorkflowCliConfig(
         dataset_root=dataset_root,
@@ -200,7 +208,7 @@ def execute_workflow(args: argparse.Namespace, paths: dict[str, Path]) -> Workfl
             "skip_normalize": args.skip_normalize,
             "skip_index": args.skip_index,
         },
-        config={"configurable": {"thread_id": f"workflow:{'cn' if args.cn else 'default'}:{args.category}:{args.product_id}"}},
+        config={"configurable": {"thread_id": f"workflow:{_thread_scope_label(args, str(os.environ.get('PROMPT_VARIANT') or 'main'))}:{args.category}:{args.product_id}"}},
     )
 
     overview = result["overview"]
@@ -224,7 +232,7 @@ def execute_workflow(args: argparse.Namespace, paths: dict[str, Path]) -> Workfl
             html_export_path = str(html_output_path)
 
     return WorkflowExecutionSummary(
-        mode_label="中文数据集" if os.environ.get("PROMPT_VARIANT") == "CN" else "主项目原始数据集",
+        mode_label=_mode_label_for_variant(str(os.environ.get("PROMPT_VARIANT") or "main")),
         dataset_root=str(paths["dataset_root"]),
         prompt_variant=str(os.environ.get("PROMPT_VARIANT") or "main"),
         reports_output_dir=str(paths["reports_output_dir"]),

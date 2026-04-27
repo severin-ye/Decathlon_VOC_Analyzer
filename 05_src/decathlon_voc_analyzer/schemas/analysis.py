@@ -27,6 +27,9 @@ class RetrievedEvidence(BaseModel):
     route: EvidenceRoute
     text_block_id: str | None = None
     image_id: str | None = None
+    region_id: str | None = None
+    region_label: str | None = None
+    region_box: list[int] | None = Field(default=None, min_length=4, max_length=4)
     source_section: str | None = None
     image_path: str | None = None
     content_preview: str | None = None
@@ -43,6 +46,7 @@ class RetrievalRecord(BaseModel):
     source_question_id: str
     source_question: str
     source_evidence_span: str
+    expected_evidence_routes: list[EvidenceRoute] = Field(default_factory=list)
     retrieved: list[RetrievedEvidence]
 
 
@@ -50,6 +54,8 @@ class RetrievalQualityMetrics(BaseModel):
     retrieval_id: str
     source_aspect: str
     top_k_count: int = Field(ge=0)
+    route_coverage: float = Field(default=0.0, ge=0.0, le=1.0)
+    answer_coverage: float = Field(default=0.0, ge=0.0, le=1.0)
     evidence_coverage: float = Field(ge=0.0, le=1.0)
     score_drift: float = Field(ge=0.0, le=1.0)
     text_coverage: bool = False
@@ -78,8 +84,13 @@ class AnalysisArtifactBundle(BaseModel):
 
 class ReplayContinuationSummary(BaseModel):
     replay_path: str
+    feedback_path: str | None = None
     previous_analysis_mode: AnalysisMode | None = None
     applied: bool = False
+    reviewed_slot_count: int = Field(default=0, ge=0)
+    pending_slot_count: int = Field(default=0, ge=0)
+    accepted_issue_labels: list[str] = Field(default_factory=list)
+    rejected_issue_labels: list[str] = Field(default_factory=list)
     persistent_issue_labels: list[str] = Field(default_factory=list)
     resolved_issue_labels: list[str] = Field(default_factory=list)
     new_issue_labels: list[str] = Field(default_factory=list)
@@ -91,7 +102,28 @@ class AspectAggregate(BaseModel):
     positive_ratio: float = Field(ge=0.0, le=1.0)
     negative_ratio: float = Field(ge=0.0, le=1.0)
     neutral_ratio: float = Field(ge=0.0, le=1.0)
+    mixed_ratio: float = Field(default=0.0, ge=0.0, le=1.0)
     scenes: dict[str, int] = Field(default_factory=dict)
+    representative_review_ids: list[str] = Field(default_factory=list)
+
+
+class ProductImpressionItem(BaseModel):
+    aspect: str
+    aspect_frequency: int = Field(ge=0)
+    positive_ratio: float = Field(ge=0.0, le=1.0)
+    negative_ratio: float = Field(ge=0.0, le=1.0)
+    mixed_ratio: float = Field(default=0.0, ge=0.0, le=1.0)
+    scene_distribution: dict[str, int] = Field(default_factory=dict)
+    representative_review_ids: list[str] = Field(default_factory=list)
+
+
+class CustomerImpressionItem(BaseModel):
+    segment_label: str
+    scene: str
+    review_count: int = Field(ge=0)
+    focus_aspects: list[str] = Field(default_factory=list)
+    positive_aspects: list[str] = Field(default_factory=list)
+    negative_aspects: list[str] = Field(default_factory=list)
     representative_review_ids: list[str] = Field(default_factory=list)
 
 
@@ -144,6 +176,8 @@ class ProductAnalysisReport(BaseModel):
     strengths: list[InsightItem] = Field(default_factory=list)
     weaknesses: list[InsightItem] = Field(default_factory=list)
     controversies: list[InsightItem] = Field(default_factory=list)
+    product_impressions: list[ProductImpressionItem] = Field(default_factory=list)
+    customer_impressions: list[CustomerImpressionItem] = Field(default_factory=list)
     applicable_scenes: list[str] = Field(default_factory=list)
     supporting_aspects: list[str] = Field(default_factory=list)
     supporting_reviews: list[str] = Field(default_factory=list)
