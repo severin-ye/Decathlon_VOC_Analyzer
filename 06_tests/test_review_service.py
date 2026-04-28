@@ -185,3 +185,46 @@ def test_review_service_normalizes_prompt_variant_alias_for_projection(monkeypat
     )
 
     assert should_project is True
+
+
+def test_review_service_normalizes_mixed_overall_experience_from_contrastive_review() -> None:
+    service = ReviewExtractionService()
+
+    normalized = service._normalize_overall_experience_aspect(
+        aspect=service._extract_with_heuristic(
+            service._preprocess_review(
+                ReviewInput(
+                    review_id="r1",
+                    product_id="demo_product",
+                    rating=1,
+                    review_text="The sunglasses are great! However, the rubber insert near the ear deteriorates and fell apart. Sad...",
+                )
+            )
+        )[0].model_copy(update={"aspect": "overall_experience", "sentiment": "negative"}),
+        review_text="The sunglasses are great! However, the rubber insert near the ear deteriorates and fell apart. Sad...",
+    )
+
+    assert normalized.sentiment == "mixed"
+    assert normalized.opinion == "initially positive but ultimately disappointing due to premature rubber insert failure"
+
+
+def test_review_service_keeps_mixed_overall_experience_but_upgrades_opinion_text() -> None:
+    service = ReviewExtractionService()
+    review_text = "The sunglasses are great! However, the rubber insert near the ear deteriorates and fell apart. Sad..."
+
+    normalized = service._normalize_overall_experience_aspect(
+        aspect=service._extract_with_heuristic(
+            service._preprocess_review(
+                ReviewInput(
+                    review_id="r2",
+                    product_id="demo_product",
+                    rating=1,
+                    review_text=review_text,
+                )
+            )
+        )[0].model_copy(update={"aspect": "overall_experience", "sentiment": "mixed", "opinion": "disappointing due to premature failure"}),
+        review_text=review_text,
+    )
+
+    assert normalized.sentiment == "mixed"
+    assert normalized.opinion == "initially positive but ultimately disappointing due to premature rubber insert failure"

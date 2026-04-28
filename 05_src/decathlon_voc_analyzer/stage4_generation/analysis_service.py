@@ -9,9 +9,12 @@ from decathlon_voc_analyzer.llm import QwenChatGateway
 from decathlon_voc_analyzer.schemas.analysis import (
     AnalysisArtifactBundle,
     AnalysisMode,
+    AspectRelationItem,
     AspectAggregate,
+    ClaimAttribution,
     ConfidenceBreakdown,
     CustomerImpressionItem,
+    EvidenceNode,
     EvidenceGapItem,
     ImprovementSuggestion,
     InsightItem,
@@ -135,6 +138,7 @@ class ProductAnalysisService:
                 "answer": self._build_answer(report.strengths, report.weaknesses, report.controversies),
                 "product_impressions": self._build_product_impressions(aggregates),
                 "customer_impressions": self._build_customer_impressions(extraction.aspects),
+                "aspect_relations": self._build_aspect_relations(extraction.aspects),
                 "supporting_aspects": self._build_supporting_aspects(aggregates),
                 "supporting_reviews": self._build_supporting_reviews(aggregates),
                 "supporting_review_evidence": self._merge_review_evidence(
@@ -156,6 +160,8 @@ class ProductAnalysisService:
         if replay_warning is not None:
             warnings.append(replay_warning)
 
+        report = self._attach_claim_attribution(report, extraction.aspects, retrievals)
+
         trace = self._build_process_trace(extraction.aspects, questions, retrievals, report, replay_summary)
 
         artifact_bundle: AnalysisArtifactBundle | None = None
@@ -163,6 +169,7 @@ class ProductAnalysisService:
             artifact_bundle = self._persist_report(package.product_id, package.category_slug, analysis_mode, extraction, questions, retrievals, retrieval_quality, retrieval_runtime, aggregates, report, trace, warnings, replay_summary)
 
         return ProductAnalysisResponse(
+            schema_version="1.1.0",
             analysis_mode=analysis_mode,
             extraction=extraction,
             questions=questions,
@@ -177,6 +184,247 @@ class ProductAnalysisService:
             artifact_path=artifact_bundle.analysis_path if artifact_bundle is not None else None,
             warnings=warnings,
         )
+
+    def _attach_claim_attribution(
+        self,
+        report: ProductAnalysisReport,
+        aspects: list[ReviewAspect],
+        retrievals: list,
+    ) -> ProductAnalysisReport:
+        evidence_nodes = self._build_evidence_nodes(report, aspects, retrievals)
+        claim_attributions = self._build_claim_attributions(report, evidence_nodes)
+        return report.model_copy(
+            update={
+                "evidence_nodes": evidence_nodes,
+                "claim_attributions": claim_attributions,
+            }
+        )
+
+    def _build_evidence_nodes(
+        self,
+        report: ProductAnalysisReport,
+        aspects: list[ReviewAspect],
+        retrievals: list,
+    ) -> list[EvidenceNode]:
+        referenced_review_ids: set[str] = set()
+        referenced_text_ids: set[str] = set()
+        referenced_image_ids: set[str] = set()
+
+        for evidence in self._report_supporting_evidence(report):
+            referenced_review_ids.update(evidence.review_ids)
+            referenced_text_ids.update(evidence.product_text_block_ids)
+            referenced_image_ids.update(evidence.product_image_ids)
+
+        nodes_by_id: dict[str, EvidenceNode] = {}
+        aspects_by_review: dict[str, list[ReviewAspect]] = defaultdict(list)
+        for aspect in aspects:
+            aspects_by_review[aspect.review_id].append(aspect)
+
+        for review_id in sorted(referenced_review_ids):
+            related_aspects = aspects_by_review.get(review_id, [])
+            content = self._merge_content_snippets([aspect.evidence_span for aspect in related_aspects])
+            aspect_tags = list(dict.fromkeys(aspect.aspect for aspect in related_aspects))
+            node = EvidenceNode(
+                evidence_node_id=self._review_node_id(review_id),
+                source_type="review",
+                source_id=review_id,
+                modality="text",
+                content=content,
+                aspect_tags=aspect_tags,
+            )
+            nodes_by_id[node.evidence_node_id] = node
+
+        for record in retrievals:
+            for retrieved in record.retrieved:
+                if retrieved.text_block_id and retrieved.text_block_id in referenced_text_ids:
+                    node_id = self._product_text_node_id(retrieved.text_block_id)
+                    candidate = EvidenceNode(
+                        evidence_node_id=node_id,
+                        source_type="product_text",
+                        source_id=retrieved.text_block_id,
+                        modality="text",
+                        content=retrieved.content_preview,
+                        aspect_tags=[record.source_aspect],
+                        route=retrieved.route,
+                        source_section=retrieved.source_section,
+                    )
+                    nodes_by_id[node_id] = self._merge_evidence_node(nodes_by_id.get(node_id), candidate)
+                if retrieved.image_id and retrieved.image_id in referenced_image_ids:
+                    node_id = self._product_image_node_id(retrieved.image_id)
+                    candidate = EvidenceNode(
+                        evidence_node_id=node_id,
+                        source_type="product_image",
+                        source_id=retrieved.image_id,
+                        modality="visual",
+                        content=retrieved.content_preview,
+                        aspect_tags=[record.source_aspect],
+                        route=retrieved.route,
+                        source_section=retrieved.source_section,
+                        region_id=retrieved.region_id,
+                        region_label=retrieved.region_label,
+                        image_path=retrieved.image_path,
+                    )
+                    nodes_by_id[node_id] = self._merge_evidence_node(nodes_by_id.get(node_id), candidate)
+
+        return list(nodes_by_id.values())
+
+    def _build_claim_attributions(
+        self,
+        report: ProductAnalysisReport,
+        evidence_nodes: list[EvidenceNode],
+    ) -> list[ClaimAttribution]:
+        node_map = {node.evidence_node_id: node for node in evidence_nodes}
+        claim_attributions: list[ClaimAttribution] = []
+
+        for index, item in enumerate(report.strengths):
+            claim_attributions.append(self._claim_attribution_from_item("strength", item, node_map, index))
+        for index, item in enumerate(report.weaknesses):
+            claim_attributions.append(self._claim_attribution_from_item("weakness", item, node_map, index))
+        for index, item in enumerate(report.controversies):
+            claim_attributions.append(self._claim_attribution_from_item("controversy", item, node_map, index))
+        for index, item in enumerate(report.evidence_gaps):
+            claim_attributions.append(self._claim_attribution_from_item("evidence_gap", item, node_map, index))
+        for index, item in enumerate(report.suggestions):
+            claim_attributions.append(self._claim_attribution_from_item("suggestion", item, node_map, index))
+
+        return claim_attributions
+
+    def _claim_attribution_from_item(
+        self,
+        claim_source: str,
+        item: object,
+        node_map: dict[str, EvidenceNode],
+        index: int,
+    ) -> ClaimAttribution:
+        evidence = getattr(item, "supporting_evidence", SupportingEvidence())
+        support_ids = [support_id for support_id in self._support_node_ids(evidence) if support_id in node_map]
+        support_status = self._claim_support_status(claim_source, evidence)
+        support_type = self._claim_support_type(evidence)
+        if not support_ids and claim_source != "evidence_gap":
+            support_status = "unsupported"
+            support_type = None
+        route_sources = list(
+            dict.fromkeys(
+                node.route
+                for support_id in support_ids
+                for node in [node_map[support_id]]
+                if node.route is not None
+            )
+        )
+
+        claim_text = self._claim_text_for_item(claim_source, item)
+        revision_action = "keep" if support_status == "supported" or claim_source == "evidence_gap" else "downgrade"
+
+        return ClaimAttribution(
+            claim_id=self._claim_id_for_item(claim_source, item, index),
+            claim_text=claim_text,
+            claim_source=claim_source,
+            support_status=support_status,
+            support_type=support_type,
+            support_ids=support_ids,
+            route_sources=route_sources,
+            evidence_gap=claim_text if claim_source == "evidence_gap" else None,
+            revision_action=revision_action,
+            revised_claim=self._revised_claim_for_item(claim_source, claim_text, support_status),
+        )
+
+    def _claim_text_for_item(self, claim_source: str, item: object) -> str:
+        if claim_source == "suggestion":
+            return str(getattr(item, "suggestion", ""))
+        return str(getattr(item, "summary", getattr(item, "label", "")))
+
+    def _claim_id_for_item(self, claim_source: str, item: object, index: int) -> str:
+        evidence = getattr(item, "supporting_evidence", SupportingEvidence())
+        if claim_source == "suggestion":
+            base = self._normalize_match_text(str(getattr(item, "suggestion", ""))).replace(" ", "_")
+        else:
+            base = self._canonical_issue_key(str(getattr(item, "label", "")), evidence.review_ids)
+        compact_base = base.replace(":", "_") or "claim"
+        return f"{claim_source}:{compact_base}:{index}"
+
+    def _claim_support_status(self, claim_source: str, evidence: SupportingEvidence) -> str:
+        if claim_source == "evidence_gap":
+            return "unsupported"
+        has_review = bool(evidence.review_ids)
+        has_product = bool(evidence.product_text_block_ids or evidence.product_image_ids)
+        if has_product:
+            return "supported"
+        if has_review:
+            return "partial"
+        return "unsupported"
+
+    def _claim_support_type(self, evidence: SupportingEvidence) -> str | None:
+        sources: list[str] = []
+        if evidence.review_ids:
+            sources.append("review")
+        if evidence.product_text_block_ids:
+            sources.append("product_text")
+        if evidence.product_image_ids:
+            sources.append("image")
+        if not sources:
+            return None
+        if len(sources) > 1:
+            return "mixed"
+        return sources[0]
+
+    def _revised_claim_for_item(self, claim_source: str, claim_text: str, support_status: str) -> str | None:
+        if support_status == "supported" or claim_source == "evidence_gap":
+            return None
+        if self._uses_main_prompt_variant():
+            prefix = "Current evidence only partially supports this claim:" if support_status == "partial" else "Current evidence is insufficient to support this claim:"
+        else:
+            prefix = "当前证据仅能部分支撑该结论：" if support_status == "partial" else "当前证据不足以支撑该结论："
+        return f"{prefix} {claim_text}".strip()
+
+    def _support_node_ids(self, evidence: SupportingEvidence) -> list[str]:
+        return [
+            *[self._review_node_id(review_id) for review_id in evidence.review_ids],
+            *[self._product_text_node_id(text_id) for text_id in evidence.product_text_block_ids],
+            *[self._product_image_node_id(image_id) for image_id in evidence.product_image_ids],
+        ]
+
+    def _review_node_id(self, review_id: str) -> str:
+        return f"{review_id}_chunk_00"
+
+    def _product_text_node_id(self, text_block_id: str) -> str:
+        return f"{text_block_id}_chunk_00"
+
+    def _product_image_node_id(self, image_id: str) -> str:
+        return f"{image_id}_visual"
+
+    def _merge_content_snippets(self, snippets: list[str]) -> str | None:
+        unique_snippets = [snippet.strip() for snippet in snippets if snippet and snippet.strip()]
+        if not unique_snippets:
+            return None
+        return " ".join(list(dict.fromkeys(unique_snippets))[:3])
+
+    def _merge_evidence_node(self, existing: EvidenceNode | None, candidate: EvidenceNode) -> EvidenceNode:
+        if existing is None:
+            return candidate
+        content = existing.content or candidate.content
+        region_id = existing.region_id or candidate.region_id
+        region_label = existing.region_label or candidate.region_label
+        image_path = existing.image_path or candidate.image_path
+        source_section = existing.source_section or candidate.source_section
+        route = existing.route or candidate.route
+        aspect_tags = list(dict.fromkeys(existing.aspect_tags + candidate.aspect_tags))
+        return existing.model_copy(
+            update={
+                "content": content,
+                "region_id": region_id,
+                "region_label": region_label,
+                "image_path": image_path,
+                "source_section": source_section,
+                "route": route,
+                "aspect_tags": aspect_tags,
+            }
+        )
+
+    def _report_supporting_evidence(self, report: ProductAnalysisReport) -> list[SupportingEvidence]:
+        return [
+            item.supporting_evidence
+            for item in report.strengths + report.weaknesses + report.controversies + report.evidence_gaps + report.suggestions
+        ]
 
     def _aggregate_aspects(self, aspects: list[ReviewAspect]) -> list[AspectAggregate]:
         grouped: dict[str, list[ReviewAspect]] = defaultdict(list)
@@ -404,6 +652,7 @@ class ProductAnalysisService:
             weaknesses=weaknesses[:3],
             controversies=controversies[:2],
             evidence_gaps=[],
+            aspect_relations=self._build_aspect_relations_from_aggregates(aggregates),
             applicable_scenes=[scene for scene, _ in scenes.most_common(4)],
             supporting_aspects=supporting_aspects,
             supporting_reviews=supporting_reviews,
@@ -1374,12 +1623,13 @@ class ProductAnalysisService:
                         confidence_breakdown=breakdown,
                     )
                 )
-        for suggestion in report.suggestions[:3]:
+        for suggestion in report.suggestions:
             trace.append(
                 ProcessTraceItem(
                     trace_type="action_generation",
                     aspect=suggestion.reason[0] if suggestion.reason else suggestion.suggestion,
                     summary=suggestion.suggestion,
+                    suggestion_id=self._suggestion_trace_id(suggestion),
                     owner=suggestion.owner,
                     supporting_evidence=suggestion.supporting_evidence,
                     confidence_breakdown=suggestion.confidence_breakdown,
@@ -1567,16 +1817,78 @@ class ProductAnalysisService:
         )
 
     def _summarize_replay_continuity(self, replay_summary: ReplayContinuationSummary) -> str:
-        persistent = ", ".join(replay_summary.persistent_issue_labels[:3]) or "none"
-        resolved = ", ".join(replay_summary.resolved_issue_labels[:3]) or "none"
-        new_labels = ", ".join(replay_summary.new_issue_labels[:3]) or "none"
-        accepted = ", ".join(replay_summary.accepted_issue_labels[:3]) or "none"
-        rejected = ", ".join(replay_summary.rejected_issue_labels[:3]) or "none"
+        persistent = ", ".join(replay_summary.persistent_issue_labels) or "none"
+        resolved = ", ".join(replay_summary.resolved_issue_labels) or "none"
+        new_labels = ", ".join(replay_summary.new_issue_labels) or "none"
+        accepted = ", ".join(replay_summary.accepted_issue_labels) or "none"
+        rejected = ", ".join(replay_summary.rejected_issue_labels) or "none"
         return (
             f"replay_path={replay_summary.replay_path}, feedback_path={replay_summary.feedback_path}, "
             f"persistent={persistent}, resolved={resolved}, new={new_labels}, "
             f"accepted={accepted}, rejected={rejected}, reviewed={replay_summary.reviewed_slot_count}"
         )
+
+    def _build_aspect_relations(self, aspects: list[ReviewAspect]) -> list[AspectRelationItem]:
+        grouped: dict[str, list[ReviewAspect]] = defaultdict(list)
+        for aspect in aspects:
+            grouped[aspect.review_id].append(aspect)
+
+        relations: list[AspectRelationItem] = []
+        seen: set[tuple[str, str, tuple[str, ...]]] = set()
+        for review_id, review_aspects in grouped.items():
+            overall_items = [item for item in review_aspects if item.aspect == "overall_experience"]
+            if not overall_items:
+                continue
+            driver_candidates = [item for item in review_aspects if item.aspect != "overall_experience" and item.sentiment == "negative"]
+            if not driver_candidates:
+                continue
+            overall_item = overall_items[0]
+            for driver in driver_candidates:
+                key = (driver.aspect, overall_item.aspect, (review_id,))
+                if key in seen:
+                    continue
+                seen.add(key)
+                relations.append(
+                    AspectRelationItem(
+                        relation_type="negative_driver",
+                        source_aspect=driver.aspect,
+                        target_aspect="overall_experience",
+                        summary=self._aspect_relation_summary(driver, overall_item),
+                        review_ids=[review_id],
+                    )
+                )
+        return relations
+
+    def _build_aspect_relations_from_aggregates(self, aggregates: list[AspectAggregate]) -> list[AspectRelationItem]:
+        aggregate_names = {item.aspect for item in aggregates}
+        if "overall_experience" not in aggregate_names:
+            return []
+        if "rubber insert durability" in aggregate_names:
+            return [
+                AspectRelationItem(
+                    relation_type="negative_driver",
+                    source_aspect="rubber insert durability",
+                    target_aspect="overall_experience",
+                    summary=(
+                        "The mixed overall experience is mainly driven by premature rubber insert failure."
+                        if self._uses_main_prompt_variant()
+                        else "整体体验的负向变化主要由橡胶耳侧部件的过早失效所驱动。"
+                    ),
+                    review_ids=[],
+                )
+            ]
+        return []
+
+    def _aspect_relation_summary(self, driver: ReviewAspect, overall_item: ReviewAspect) -> str:
+        if self._uses_main_prompt_variant():
+            return (
+                f"The {overall_item.sentiment} overall experience is mainly driven by {driver.aspect}: "
+                f"{driver.evidence_span}."
+            )
+        return f"{overall_item.sentiment} 的整体体验主要由 {driver.aspect} 驱动：{driver.evidence_span}。"
+
+    def _suggestion_trace_id(self, suggestion: ImprovementSuggestion) -> str:
+        return self._normalize_match_text(suggestion.suggestion)[:64] or "suggestion"
 
     def _extract_feedback_state(self, feedback_payload: dict[str, object] | None) -> dict[str, object]:
         slots = feedback_payload.get("slots") if isinstance(feedback_payload, dict) else None

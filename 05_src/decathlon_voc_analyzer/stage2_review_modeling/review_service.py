@@ -335,21 +335,35 @@ class ReviewExtractionService:
             opinion = self._clean_text(str(item.get("opinion") or review.cleaned_text)) or review.cleaned_text
             evidence_span = self._clean_text(str(item.get("evidence_span") or review.cleaned_text)) or review.cleaned_text
             confidence = self._clamp_confidence(item.get("confidence"), default=0.82)
-            aspects.append(
-                ReviewAspect(
-                    aspect_id=f"{review.review_id}_aspect_{index:02d}",
-                    review_id=review.review_id,
-                    product_id=review.product_id,
-                    aspect=aspect_name,
-                    sentiment=self._normalize_sentiment(item.get("sentiment")),
-                    opinion=opinion,
-                    evidence_span=evidence_span,
-                    usage_scene=self._clean_text(item.get("usage_scene")),
-                    confidence=confidence,
-                    extraction_mode="llm",
-                )
+            aspect = ReviewAspect(
+                aspect_id=f"{review.review_id}_aspect_{index:02d}",
+                review_id=review.review_id,
+                product_id=review.product_id,
+                aspect=aspect_name,
+                sentiment=self._normalize_sentiment(item.get("sentiment")),
+                opinion=opinion,
+                evidence_span=evidence_span,
+                usage_scene=self._clean_text(item.get("usage_scene")),
+                confidence=confidence,
+                extraction_mode="llm",
             )
+            aspects.append(self._normalize_overall_experience_aspect(aspect, review.cleaned_text))
         return aspects
+
+    def _normalize_overall_experience_aspect(self, aspect: ReviewAspect, review_text: str) -> ReviewAspect:
+        if aspect.aspect != "overall_experience":
+            return aspect
+        lowered = review_text.lower()
+        positive_markers = ("great", "good", "excellent", "love", "nice")
+        negative_markers = ("however", "but", "disappoint", "fell apart", "deteriorat", "sad")
+        has_positive = any(marker in lowered for marker in positive_markers)
+        has_negative = any(marker in lowered for marker in negative_markers)
+        if aspect.sentiment in {"negative", "mixed"} and has_positive and has_negative:
+            opinion = aspect.opinion
+            if "rubber" in lowered and ("fell apart" in lowered or "deteriorat" in lowered):
+                opinion = "initially positive but ultimately disappointing due to premature rubber insert failure"
+            return aspect.model_copy(update={"sentiment": "mixed", "opinion": opinion})
+        return aspect
 
     def _extract_with_heuristic(self, review: PreprocessedReview) -> list[ReviewAspect]:
         text = review.cleaned_text

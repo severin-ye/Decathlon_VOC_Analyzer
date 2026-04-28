@@ -102,8 +102,8 @@
       "review_id": "sunglasses_010_review_0021",
       "product_id": "sunglasses_010",
       "aspect": "overall_experience",
-      "sentiment": "negative",
-      "opinion": "disappointing due to premature failure",
+      "sentiment": "mixed",
+      "opinion": "initially positive but ultimately disappointing due to premature rubber insert failure",
       "evidence_span": "The sunglasses are great! However, the rubber insert on them near the ear completely deteriorates in less than two years. It literally fell apart. Sad...",
       "usage_scene": "",
       "confidence": 0.85,
@@ -153,7 +153,7 @@
       "sentiment": "negative",
       "opinion": "slight magnification causing distorted depth perception",
       "evidence_span": "they slightly magnify vision, so the ground beneath appears closer than it actually is",
-      "usage_scene": "walking/outdoor navigation",
+      "usage_scene": "walking or navigating terrain",
       "confidence": 0.98,
       "extraction_mode": "llm"
     }

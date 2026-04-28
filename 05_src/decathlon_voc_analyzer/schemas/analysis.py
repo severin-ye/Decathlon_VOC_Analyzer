@@ -11,6 +11,12 @@ IssueOwner = Literal["product_issue", "content_presentation", "evidence_gap", "e
 EvidenceLevel = Literal["review_only", "partial_product_support", "product_supported", "missing_product_evidence"]
 AnswerStatus = Literal["none", "partial", "supported", "contradicted", "unsupported"]
 ProcessTraceType = Literal["observation", "evidence_check", "owner_judgement", "action_generation"]
+EvidenceSourceType = Literal["review", "product_text", "product_image"]
+EvidenceModality = Literal["text", "visual"]
+ClaimSource = Literal["strength", "weakness", "controversy", "suggestion", "evidence_gap"]
+ClaimSupportStatus = Literal["supported", "partial", "unsupported", "contradicted"]
+ClaimSupportType = Literal["review", "product_text", "image", "mixed"]
+ClaimRevisionAction = Literal["keep", "downgrade", "remove", "flag"]
 
 
 class RetrievalQuestion(BaseModel):
@@ -135,10 +141,32 @@ class CustomerImpressionItem(BaseModel):
     representative_review_ids: list[str] = Field(default_factory=list)
 
 
+class AspectRelationItem(BaseModel):
+    relation_type: str
+    source_aspect: str
+    target_aspect: str
+    summary: str
+    review_ids: list[str] = Field(default_factory=list)
+
+
 class SupportingEvidence(BaseModel):
     review_ids: list[str] = Field(default_factory=list)
     product_text_block_ids: list[str] = Field(default_factory=list)
     product_image_ids: list[str] = Field(default_factory=list)
+
+
+class EvidenceNode(BaseModel):
+    evidence_node_id: str
+    source_type: EvidenceSourceType
+    source_id: str
+    modality: EvidenceModality
+    content: str | None = None
+    aspect_tags: list[str] = Field(default_factory=list)
+    route: EvidenceRoute | None = None
+    source_section: str | None = None
+    region_id: str | None = None
+    region_label: str | None = None
+    image_path: str | None = None
 
 
 class ConfidenceBreakdown(BaseModel):
@@ -147,6 +175,19 @@ class ConfidenceBreakdown(BaseModel):
     evidence_confidence: float = Field(ge=0.0, le=1.0)
     consistency_confidence: float = Field(ge=0.0, le=1.0)
     final_confidence: float = Field(ge=0.0, le=1.0)
+
+
+class ClaimAttribution(BaseModel):
+    claim_id: str
+    claim_text: str
+    claim_source: ClaimSource
+    support_status: ClaimSupportStatus
+    support_type: ClaimSupportType | None = None
+    support_ids: list[str] = Field(default_factory=list)
+    route_sources: list[EvidenceRoute] = Field(default_factory=list)
+    evidence_gap: str | None = None
+    revision_action: ClaimRevisionAction = "keep"
+    revised_claim: str | None = None
 
 
 class EvidenceGapItem(BaseModel):
@@ -164,6 +205,7 @@ class ProcessTraceItem(BaseModel):
     trace_type: ProcessTraceType
     aspect: str
     summary: str
+    suggestion_id: str | None = None
     owner: IssueOwner | None = None
     supporting_evidence: SupportingEvidence = Field(default_factory=SupportingEvidence)
     confidence_breakdown: ConfidenceBreakdown | None = None
@@ -200,11 +242,14 @@ class ProductAnalysisReport(BaseModel):
     evidence_gaps: list[EvidenceGapItem] = Field(default_factory=list)
     product_impressions: list[ProductImpressionItem] = Field(default_factory=list)
     customer_impressions: list[CustomerImpressionItem] = Field(default_factory=list)
+    aspect_relations: list[AspectRelationItem] = Field(default_factory=list)
     applicable_scenes: list[str] = Field(default_factory=list)
     supporting_aspects: list[str] = Field(default_factory=list)
     supporting_reviews: list[str] = Field(default_factory=list)
     supporting_review_evidence: SupportingEvidence = Field(default_factory=SupportingEvidence)
     supporting_product_evidence: SupportingEvidence
+    evidence_nodes: list[EvidenceNode] = Field(default_factory=list)
+    claim_attributions: list[ClaimAttribution] = Field(default_factory=list)
     confidence: float = Field(ge=0.0, le=1.0)
     suggestions: list[ImprovementSuggestion] = Field(default_factory=list)
 
@@ -221,6 +266,7 @@ class ProductAnalysisRequest(BaseModel):
 
 
 class ProductAnalysisResponse(BaseModel):
+    schema_version: str = "1.1.0"
     analysis_mode: AnalysisMode
     extraction: ReviewExtractionResponse
     questions: list[RetrievalQuestion]

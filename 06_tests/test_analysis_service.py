@@ -10,6 +10,7 @@ from decathlon_voc_analyzer.schemas.analysis import (
     InsightItem,
     ProductAnalysisReport,
     ProductAnalysisRequest,
+    ReplayContinuationSummary,
     RetrievedEvidence,
     RetrievalRecord,
     SupportingEvidence,
@@ -31,6 +32,7 @@ def test_product_analysis_service_returns_report_and_retrievals() -> None:
         )
     )
 
+    assert result.schema_version == "1.1.0"
     assert result.analysis_mode == "heuristic"
     assert result.report.product_id == "backpack_010"
     assert len(result.questions) >= 1
@@ -40,6 +42,31 @@ def test_product_analysis_service_returns_report_and_retrievals() -> None:
     assert len(result.aggregates) >= 1
     assert len(result.report.supporting_aspects) >= 1
     assert result.report.supporting_reviews
+
+
+def test_product_analysis_service_emits_evidence_nodes_and_claim_attributions() -> None:
+    service = ProductAnalysisService()
+
+    result = service.analyze(
+        ProductAnalysisRequest(
+            product_id="backpack_010",
+            category_slug="backpack",
+            max_reviews=8,
+            use_llm=False,
+            top_k_per_route=1,
+        )
+    )
+
+    assert result.report.evidence_nodes
+    assert result.report.claim_attributions
+
+    node_ids = {node.evidence_node_id for node in result.report.evidence_nodes}
+    assert any(node.source_type == "review" for node in result.report.evidence_nodes)
+    assert any(node.source_type in {"product_text", "product_image"} for node in result.report.evidence_nodes)
+    assert any(attribution.claim_source == "suggestion" for attribution in result.report.claim_attributions)
+    assert all(attribution.claim_id for attribution in result.report.claim_attributions)
+    assert all(attribution.support_status in {"supported", "partial", "unsupported"} for attribution in result.report.claim_attributions)
+    assert all(support_id in node_ids for attribution in result.report.claim_attributions for support_id in attribution.support_ids)
 
 
 def test_product_analysis_service_builds_improvement_suggestions() -> None:
@@ -624,6 +651,35 @@ def test_report_refinement_service_sanitizes_optical_external_validation_reason(
     assert "ansi" not in " ".join(refined.suggestions[0].reason).lower()
 
 
+def test_report_refinement_service_sanitizes_tint_over_specificity() -> None:
+    service = ProductAnalysisService()
+    report = ProductAnalysisReport(
+        product_id="p1",
+        answer="placeholder",
+        strengths=[],
+        weaknesses=[],
+        controversies=[],
+        supporting_product_evidence=SupportingEvidence(),
+        confidence=0.7,
+        suggestions=[
+            ImprovementSuggestion(
+                suggestion="State exact lens tint (e.g., 'gray-green') and uniformity ('full-surface uniform tint') in bullet-point specs.",
+                suggestion_type="perception",
+                reason=["Lens tint color and uniformity are not stated in text, and customers cannot assess color fidelity or contrast suitability for their activity."],
+                confidence=0.8,
+                supporting_evidence=SupportingEvidence(review_ids=["r1"]),
+            )
+        ],
+    )
+
+    refined = service.report_refinement_service.refine(report)
+
+    assert "gray-green" not in refined.suggestions[0].suggestion.lower()
+    assert "uniform tint" not in refined.suggestions[0].suggestion.lower()
+    assert "exact lens tint" in refined.suggestions[0].suggestion.lower()
+    assert "color fidelity" not in " ".join(refined.suggestions[0].reason).lower()
+
+
 def test_product_analysis_service_normalizes_issues_gaps_and_suggestion_bindings() -> None:
     service = ProductAnalysisService()
     aspects = [
@@ -891,6 +947,80 @@ def test_product_analysis_service_uses_canonical_issue_keys_for_replay_continuit
     assert replay_summary is not None
     assert replay_summary.persistent_issue_labels == ["Missing rubber insert durability disclosure"]
     assert replay_summary.persistent_issue_keys == ["rubber_insert_durability:evidence_gap"]
+
+
+def test_product_analysis_service_trace_uses_full_replay_summary_and_all_suggestions() -> None:
+    service = ProductAnalysisService()
+    aspects = [
+        ReviewAspect(
+            aspect_id="a1",
+            review_id="review_1",
+            product_id="p1",
+            aspect="overall_experience",
+            sentiment="mixed",
+            opinion="initially positive but ultimately disappointing",
+            evidence_span="The sunglasses are great! However, the rubber insert fell apart.",
+            usage_scene=None,
+            confidence=0.9,
+            extraction_mode="llm",
+        ),
+        ReviewAspect(
+            aspect_id="a2",
+            review_id="review_1",
+            product_id="p1",
+            aspect="rubber insert durability",
+            sentiment="negative",
+            opinion="poor durability",
+            evidence_span="the rubber insert fell apart",
+            usage_scene=None,
+            confidence=0.9,
+            extraction_mode="llm",
+        ),
+    ]
+    report = ProductAnalysisReport(
+        product_id="p1",
+        answer="placeholder",
+        strengths=[],
+        weaknesses=[
+            InsightItem(
+                label="Rubber insert durability failure",
+                summary="negative",
+                confidence=0.8,
+                supporting_evidence=SupportingEvidence(review_ids=["review_1"]),
+            )
+        ],
+        controversies=[],
+        suggestions=[
+            ImprovementSuggestion(
+                suggestion=f"Suggestion {index}",
+                suggestion_type="perception",
+                reason=[f"Reason {index}"],
+                confidence=0.8,
+                supporting_evidence=SupportingEvidence(review_ids=["review_1"]),
+            )
+            for index in range(5)
+        ],
+        supporting_product_evidence=SupportingEvidence(),
+        confidence=0.8,
+    ).model_copy(update={"aspect_relations": service._build_aspect_relations(aspects)})
+    replay_summary = ReplayContinuationSummary(
+        replay_path="demo_replay.json",
+        applied=True,
+        persistent_issue_labels=[f"persistent_{index}" for index in range(5)],
+        resolved_issue_labels=["resolved_1"],
+        new_issue_labels=["new_1"],
+    )
+
+    trace = service._build_process_trace(aspects, [], [], report, replay_summary)
+
+    replay_trace = next(item for item in trace if item.aspect == "replay_continuity")
+    assert "persistent_4" in replay_trace.summary
+    action_traces = [item for item in trace if item.trace_type == "action_generation"]
+    assert len(action_traces) == 5
+    assert all(item.suggestion_id for item in action_traces)
+    assert report.aspect_relations
+    assert report.aspect_relations[0].source_aspect == "rubber insert durability"
+    assert report.aspect_relations[0].target_aspect == "overall_experience"
 
 
 

@@ -202,6 +202,14 @@ class ReportRefinementService:
             )
             return item.model_copy(update={"suggestion": suggestion, "reason": self._sanitize_suggestion_reasons(item.reason, category="price")})
 
+        if any(token in text for token in ("tint", "tinting", "hue", "gradient", "mirrored", "uniformity", "lens color")):
+            suggestion = (
+                "State the exact lens tint in the primary product copy and include a clear front-facing lens image so the tint claim can be checked visually."
+                if self._uses_main_prompt_variant()
+                else "在商品主文案中明确标注镜片色调，并提供清晰的正面镜片图片，方便用户直观核验染色相关表述。"
+            )
+            return item.model_copy(update={"suggestion": suggestion, "reason": self._sanitize_suggestion_reasons(item.reason, category="tint")})
+
         if any(token in text for token in ("durability", "rubber", "insert", "warranty", "2-year", "2 year", "2+ years", "daily wear")):
             suggestion = (
                 "Add durability-validation notes and warranty scope for the rubber ear insert, and describe the actual material and test scope without claiming unsupported lifetime thresholds."
@@ -256,6 +264,8 @@ class ReportRefinementService:
                         sanitized.append("No product-page durability note, warranty scope, or material-validation detail was retrieved for this component.")
                     elif category == "comfort":
                         sanitized.append("No product-page fit details, frame-weight information, or comfort-related design cues were retrieved.")
+                    elif category == "tint":
+                        sanitized.append("Current product-page evidence does not clearly specify the lens tint or provide enough visual context to verify the tint claim.")
                     else:
                         sanitized.append("Current product-page evidence does not provide the validation detail needed to support this claim.")
                 else:
@@ -267,8 +277,20 @@ class ReportRefinementService:
                         sanitized.append("当前未检索到该部件的耐久性说明、保修范围或材料核验细节。")
                     elif category == "comfort":
                         sanitized.append("当前未检索到关于贴合度、重量或舒适性设计线索的商品页说明。")
+                    elif category == "tint":
+                        sanitized.append("当前商品页未明确标注镜片色调，也缺少足够的视觉线索来核验染色相关表述。")
                     else:
                         sanitized.append("当前商品页证据不足以提供支撑该判断所需的核验细节。")
+            elif category == "tint" and any(token in lower_reason for token in ("gray-green", "grey-green", "uniform non-gradient", "full-surface uniform tint", "color fidelity", "contrast suitability")):
+                if self._uses_main_prompt_variant():
+                    sanitized.append("Current product-page evidence does not clearly specify the lens tint or provide enough visual context to verify the tint claim.")
+                else:
+                    sanitized.append("当前商品页未明确标注镜片色调，也缺少足够的视觉线索来核验染色相关表述。")
+            elif category == "durability" and any(token in lower_reason for token in ("confirm zero mention", "confirms zero mention", "all examined text blocks", "all examined image regions")):
+                if self._uses_main_prompt_variant():
+                    sanitized.append("Retrieval did not identify valid material, reinforcement, or warranty evidence in the examined text blocks or image regions.")
+                else:
+                    sanitized.append("在已检查的文本块和图像区域中，检索未识别到有效的材料、强化结构或保修信息。")
             else:
                 sanitized.append(reason)
         return sanitized

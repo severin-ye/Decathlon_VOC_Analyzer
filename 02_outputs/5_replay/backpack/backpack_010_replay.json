@@ -305,6 +305,7 @@
       }
     ],
     "customer_impressions": [],
+    "aspect_relations": [],
     "applicable_scenes": [],
     "supporting_aspects": [
       "portability_size",
@@ -473,7 +474,8 @@
     {
       "trace_type": "observation",
       "aspect": "replay_continuity",
-      "summary": "replay_path=/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/5_replay/backpack/backpack_010_replay.json, feedback_path=/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/5_feedback/backpack/backpack_010_feedback_slots.json, persistent=Missing portability_size substantiation, Missing usability substantiation, Portability_Size, resolved=none, new=none, accepted=Portability_Size, rejected=none, reviewed=2",
+      "summary": "replay_path=/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/5_replay/backpack/backpack_010_replay.json, feedback_path=/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/5_feedback/backpack/backpack_010_feedback_slots.json, persistent=Missing portability_size substantiation, Missing usability substantiation, Portability_Size, Usability, Missing portability_size substantiation, Portability_Size, overall_experience, Missing durability_quality substantiation, Durability_Quality, resolved=none, new=none, accepted=Portability_Size, rejected=none, reviewed=2",
+      "suggestion_id": null,
       "owner": null,
       "supporting_evidence": {
         "review_ids": [],
@@ -486,6 +488,7 @@
       "trace_type": "observation",
       "aspect": "value_price",
       "summary": "review=backpack_010_review_0001, sentiment=positive, evidence_span=한곳에 넣을 수 있는 장점이 있네요. 가성비템입니다.",
+      "suggestion_id": null,
       "owner": null,
       "supporting_evidence": {
         "review_ids": [
@@ -506,6 +509,7 @@
       "trace_type": "evidence_check",
       "aspect": "value_price",
       "summary": "reviews=1, valid_text_blocks=1, valid_images=0. questions=Does the product text explicitly support the experience claim related to 'value_price'?; Do the product images provide structural or visual evidence for the 'value_price' judgment?",
+      "suggestion_id": null,
       "owner": "content_presentation",
       "supporting_evidence": {
         "review_ids": [
@@ -528,6 +532,7 @@
       "trace_type": "owner_judgement",
       "aspect": "value_price",
       "summary": "Positive feedback dominates for value_price, appearing 1 times.",
+      "suggestion_id": null,
       "owner": "content_presentation",
       "supporting_evidence": {
         "review_ids": [
@@ -550,6 +555,7 @@
       "trace_type": "observation",
       "aspect": "overall_experience",
       "summary": "review=backpack_010_review_0090, sentiment=neutral, evidence_span=Beau mais trop grand",
+      "suggestion_id": null,
       "owner": null,
       "supporting_evidence": {
         "review_ids": [
@@ -570,6 +576,7 @@
       "trace_type": "evidence_check",
       "aspect": "overall_experience",
       "summary": "reviews=1, valid_text_blocks=1, valid_images=0. questions=Does the product text explicitly support the experience claim related to 'overall_experience'?; Do the product images provide structural or visual evidence for the 'overall_experience' judgment?",
+      "suggestion_id": null,
       "owner": "content_presentation",
       "supporting_evidence": {
         "review_ids": [
@@ -592,6 +599,7 @@
       "trace_type": "owner_judgement",
       "aspect": "overall_experience",
       "summary": "Opinions on overall_experience are relatively mixed and somewhat controversial.",
+      "suggestion_id": null,
       "owner": "content_presentation",
       "supporting_evidence": {
         "review_ids": [
@@ -614,6 +622,7 @@
       "trace_type": "observation",
       "aspect": "portability_size",
       "summary": "review=backpack_010_review_0138, sentiment=negative, evidence_span=The quality is excellent. +5 Workmanship is excellent. +5 Delivery process is excellent +5 I did not get the product I wanted. -3 I did not see size (dimensions) mentioned on the site. -3 I am however a satisfied customer +4 I have not used it because it is smaller than the size (one above) that I have.",
+      "suggestion_id": null,
       "owner": null,
       "supporting_evidence": {
         "review_ids": [
@@ -628,6 +637,7 @@
       "trace_type": "evidence_check",
       "aspect": "portability_size",
       "summary": "reviews=2, valid_text_blocks=1, valid_images=0. questions=Does the product text explicitly support the experience claim related to 'portability_size'?; Do the product images provide structural or visual evidence for the 'portability_size' judgment?",
+      "suggestion_id": null,
       "owner": "evidence_gap",
       "supporting_evidence": {
         "review_ids": [
@@ -645,6 +655,7 @@
       "trace_type": "observation",
       "aspect": "usability",
       "summary": "review=backpack_010_review_0138, sentiment=negative, evidence_span=The quality is excellent. +5 Workmanship is excellent. +5 Delivery process is excellent +5 I did not get the product I wanted. -3 I did not see size (dimensions) mentioned on the site. -3 I am however a satisfied customer +4 I have not used it because it is smaller than the size (one above) that I have.",
+      "suggestion_id": null,
       "owner": null,
       "supporting_evidence": {
         "review_ids": [
@@ -659,6 +670,7 @@
       "trace_type": "evidence_check",
       "aspect": "usability",
       "summary": "reviews=1, valid_text_blocks=1, valid_images=0. questions=Does the product text explicitly support the experience claim related to 'usability'?; Do the product images provide structural or visual evidence for the 'usability' judgment?",
+      "suggestion_id": null,
       "owner": "evidence_gap",
       "supporting_evidence": {
         "review_ids": [
@@ -675,6 +687,7 @@
       "trace_type": "observation",
       "aspect": "durability_quality",
       "summary": "review=backpack_010_review_0138, sentiment=negative, evidence_span=The quality is excellent. +5 Workmanship is excellent. +5 Delivery process is excellent +5 I did not get the product I wanted. -3 I did not see size (dimensions) mentioned on the site. -3 I am however a satisfied customer +4 I have not used it because it is smaller than the size (one above) that I have.",
+      "suggestion_id": null,
       "owner": null,
       "supporting_evidence": {
         "review_ids": [
@@ -689,6 +702,7 @@
       "trace_type": "evidence_check",
       "aspect": "durability_quality",
       "summary": "reviews=1, valid_text_blocks=1, valid_images=0. questions=Does the product text explicitly support the experience claim related to 'durability_quality'?; Do the product images provide structural or visual evidence for the 'durability_quality' judgment?",
+      "suggestion_id": null,
       "owner": "evidence_gap",
       "supporting_evidence": {
         "review_ids": [
@@ -705,6 +719,7 @@
       "trace_type": "observation",
       "aspect": "portability_size",
       "summary": "review=backpack_010_review_0153, sentiment=negative, evidence_span=Very small",
+      "suggestion_id": null,
       "owner": null,
       "supporting_evidence": {
         "review_ids": [
@@ -719,6 +734,7 @@
       "trace_type": "evidence_check",
       "aspect": "portability_size",
       "summary": "reviews=2, valid_text_blocks=1, valid_images=0. questions=Does the product text explicitly support the experience claim related to 'portability_size'?; Do the product images provide structural or visual evidence for the 'portability_size' judgment?",
+      "suggestion_id": null,
       "owner": "evidence_gap",
       "supporting_evidence": {
         "review_ids": [
@@ -736,6 +752,7 @@
       "trace_type": "action_generation",
       "aspect": "Current product-page evidence does not substantiate the review feedback about portability_size.",
       "summary": "Strengthen the product-page explanation and evidence around Missing portability_size substantiation.",
+      "suggestion_id": "strengthen the product-page explanation and evidence around miss",
       "owner": "content_presentation",
       "supporting_evidence": {
         "review_ids": [
@@ -756,6 +773,7 @@
       "trace_type": "action_generation",
       "aspect": "Clear negative feedback exists for portability_size, appearing 2 times.",
       "summary": "Prioritize improvements to the design or presentation related to portability_size, and strengthen the corresponding explanation on the product page.",
+      "suggestion_id": "prioritize improvements to the design or presentation related to",
       "owner": "content_presentation",
       "supporting_evidence": {
         "review_ids": [
@@ -779,10 +797,57 @@
       "trace_type": "action_generation",
       "aspect": "Clear negative feedback exists for usability, appearing 1 times.",
       "summary": "Prioritize improvements to the design or presentation related to usability, and strengthen the corresponding explanation on the product page.",
+      "suggestion_id": "prioritize improvements to the design or presentation related to",
       "owner": "content_presentation",
       "supporting_evidence": {
         "review_ids": [
           "backpack_010_review_0138"
+        ],
+        "product_text_block_ids": [
+          "backpack_010_model_description_c74c9858c2a6"
+        ],
+        "product_image_ids": []
+      },
+      "confidence_breakdown": {
+        "extract_confidence": 0.6,
+        "question_confidence": 0.62,
+        "evidence_confidence": 0.71,
+        "consistency_confidence": 0.65,
+        "final_confidence": 0.6525
+      }
+    },
+    {
+      "trace_type": "action_generation",
+      "aspect": "Current product-page evidence does not substantiate the review feedback about durability_quality.",
+      "summary": "Add durability-validation notes and warranty scope for the rubber ear insert, and describe the actual material and test scope without claiming unsupported lifetime thresholds.",
+      "suggestion_id": "add durability-validation notes and warranty scope for the rubbe",
+      "owner": "content_presentation",
+      "supporting_evidence": {
+        "review_ids": [
+          "backpack_010_review_0138"
+        ],
+        "product_text_block_ids": [
+          "backpack_010_model_description_c74c9858c2a6"
+        ],
+        "product_image_ids": []
+      },
+      "confidence_breakdown": {
+        "extract_confidence": 0.6,
+        "question_confidence": 0.62,
+        "evidence_confidence": 0.71,
+        "consistency_confidence": 0.65,
+        "final_confidence": 0.6525
+      }
+    },
+    {
+      "trace_type": "action_generation",
+      "aspect": "Opinions on overall_experience are relatively mixed and somewhat controversial.",
+      "summary": "Add clearer usage-scenario guidance for overall_experience to reduce expectation mismatch.",
+      "suggestion_id": "add clearer usage-scenario guidance for overall_experience to re",
+      "owner": "content_presentation",
+      "supporting_evidence": {
+        "review_ids": [
+          "backpack_010_review_0001"
         ],
         "product_text_block_ids": [
           "backpack_010_model_description_c74c9858c2a6"

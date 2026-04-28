@@ -190,6 +190,18 @@ class QuestionGenerationService:
                 "优先使用普通商品页通常能够提供的证据类型，而不是要求长期磨损图片或时间跨度证明。",
                 ["text", "image"],
             )
+        if any(token in question_text for token in ("rubber insert", "rubber inserts", "earpiece", "earpieces")) and any(token in question_text for token in ("stitching", "stitch", "seam", "seams")):
+            if get_prompt_variant() == "main":
+                return (
+                    "Do close-up product images show the rubber insert's thickness, surface texture, attachment method, or anti-slip structure near the ear?",
+                    "Prefer visual cues that realistically apply to a sunglasses rubber insert instead of apparel-style stitching or seam assumptions.",
+                    ["image"],
+                )
+            return (
+                "商品局部特写中是否展示了耳侧橡胶件的厚度、表面纹理、连接方式或防滑结构？",
+                "优先使用真正适用于太阳镜橡胶部件的视觉线索，而不是服饰类的缝线或接缝假设。",
+                ["image"],
+            )
         if self._looks_like_unrealistic_optical_question(aspect_text, question_text):
             if get_prompt_variant() == "main":
                 return (
@@ -252,6 +264,10 @@ class QuestionGenerationService:
             "zero magnification",
             "true-to-life vision",
             "base curve",
+            "front/rear surface profile",
+            "lens thickness gradient",
+            "convex geometry",
+            "optical scaling",
         )
         return any(token in question_text for token in unrealistic_tokens)
 
@@ -264,8 +280,11 @@ class QuestionGenerationService:
             "ear cup",
             "ear cups",
             "soft lining",
+            "soft fabric",
             "cushioned",
+            "memory foam",
             "breathable fabric",
+            "breathable mesh",
         )
         return any(token in question_text for token in unrealistic_tokens)
 

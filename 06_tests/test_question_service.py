@@ -192,3 +192,78 @@ def test_question_service_rewrites_unrealistic_comfort_question(monkeypatch) -> 
     assert "ear cups" not in questions[0].question.lower()
     assert "nose-pad" in questions[0].question.lower()
     assert questions[0].expected_evidence_routes == ["text", "image"]
+
+
+def test_question_service_rewrites_memory_foam_style_comfort_question(monkeypatch) -> None:
+    service = QuestionGenerationService()
+    aspect = _build_aspect().model_copy(update={"aspect": "comfort"})
+
+    def fake_invoke_json(*, prompt_template, variables):
+        return {
+            "questions": [
+                {
+                    "question": "Does the product description list soft fabric, memory foam, or breathable mesh details that support comfort?",
+                    "rationale": "Need material comfort cues.",
+                    "expected_evidence_routes": ["text"],
+                    "confidence": 0.84,
+                }
+            ]
+        }
+
+    monkeypatch.setattr(service.chat_gateway, "invoke_json", fake_invoke_json)
+
+    questions = service._generate_with_llm(aspect, questions_per_aspect=1)
+
+    assert "memory foam" not in questions[0].question.lower()
+    assert "frame weight" in questions[0].question.lower()
+    assert questions[0].expected_evidence_routes == ["text", "image"]
+
+
+def test_question_service_rewrites_convex_geometry_optical_question(monkeypatch) -> None:
+    service = QuestionGenerationService()
+    aspect = _build_aspect().model_copy(update={"aspect": "optical accuracy"})
+
+    def fake_invoke_json(*, prompt_template, variables):
+        return {
+            "questions": [
+                {
+                    "question": "Do close-up product images of the lens curvature or optical design, such as front/rear surface profile, lens thickness gradient, or convex geometry, suggest mild magnification?",
+                    "rationale": "Need geometry-based optical cues.",
+                    "expected_evidence_routes": ["image"],
+                    "confidence": 0.84,
+                }
+            ]
+        }
+
+    monkeypatch.setattr(service.chat_gateway, "invoke_json", fake_invoke_json)
+
+    questions = service._generate_with_llm(aspect, questions_per_aspect=1)
+
+    assert "convex geometry" not in questions[0].question.lower()
+    assert "distortion-free" in questions[0].question.lower()
+    assert questions[0].expected_evidence_routes == ["text"]
+
+
+def test_question_service_rewrites_seam_style_rubber_insert_question(monkeypatch) -> None:
+    service = QuestionGenerationService()
+    aspect = _build_aspect().model_copy(update={"aspect": "rubber insert durability"})
+
+    def fake_invoke_json(*, prompt_template, variables):
+        return {
+            "questions": [
+                {
+                    "question": "Do close-up product images show reinforced seams or stitching on the rubber insert near the ear?",
+                    "rationale": "Need visible reinforcement cues.",
+                    "expected_evidence_routes": ["image"],
+                    "confidence": 0.84,
+                }
+            ]
+        }
+
+    monkeypatch.setattr(service.chat_gateway, "invoke_json", fake_invoke_json)
+
+    questions = service._generate_with_llm(aspect, questions_per_aspect=1)
+
+    assert "stitch" not in questions[0].question.lower()
+    assert "surface texture" in questions[0].question.lower()
+    assert questions[0].expected_evidence_routes == ["image"]
