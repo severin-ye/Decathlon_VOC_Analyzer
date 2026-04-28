@@ -3,6 +3,7 @@ import re
 
 from decathlon_voc_analyzer.schemas.analysis import RetrievedEvidence, RetrievalQuestion, RetrievalRecord
 from decathlon_voc_analyzer.schemas.dataset import ProductEvidencePackage
+from decathlon_voc_analyzer.runtime_progress import get_workflow_progress
 from decathlon_voc_analyzer.stage3_retrieval.index_service import IndexService
 from decathlon_voc_analyzer.stage3_retrieval.reranker_service import RerankerService
 
@@ -22,15 +23,21 @@ class RetrievalService:
         top_k_per_route: int = 2,
         use_llm: bool = True,
     ) -> list[RetrievalRecord]:
-        return [
-            self._retrieve_for_question(
-                package=package,
-                question=question,
-                top_k_per_route=top_k_per_route,
-                use_llm=use_llm,
+        progress = get_workflow_progress()
+        progress.start_count_step("analyze", "retrieve", total=len(questions), detail=f"准备检索 {len(questions)} 个问题")
+        records: list[RetrievalRecord] = []
+        for question in questions:
+            records.append(
+                self._retrieve_for_question(
+                    package=package,
+                    question=question,
+                    top_k_per_route=top_k_per_route,
+                    use_llm=use_llm,
+                )
             )
-            for question in questions
-        ]
+            progress.advance_step("analyze", "retrieve", detail=question.question_id)
+        progress.complete_step("analyze", "retrieve")
+        return records
 
     def _retrieve_for_question(
         self,

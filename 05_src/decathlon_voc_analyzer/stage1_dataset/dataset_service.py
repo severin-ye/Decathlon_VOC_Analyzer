@@ -10,6 +10,7 @@ from PIL import Image
 from decathlon_voc_analyzer.app.core.config import get_settings
 from decathlon_voc_analyzer.llm import QwenChatGateway
 from decathlon_voc_analyzer.prompts import get_prompt_template, get_prompt_variant
+from decathlon_voc_analyzer.runtime_progress import get_workflow_progress
 from decathlon_voc_analyzer.schemas.dataset import (
     CategoryOverview,
     DatasetNormalizationResult,
@@ -97,6 +98,7 @@ class DatasetService:
         )
 
     def normalize_dataset(self, request: DatasetNormalizeRequest) -> DatasetNormalizationResult:
+        progress = get_workflow_progress()
         stats = NormalizationStats()
         warnings: list[str] = []
         normalized_files: list[str] = []
@@ -107,9 +109,14 @@ class DatasetService:
             max_products=request.max_products,
         )
 
+        progress.start_count_step("normalize", "select", total=1, detail=f"选中 {len(product_directories)} 个目标商品")
+        progress.complete_step("normalize", "select")
+        progress.start_count_step("normalize", "normalize_products", total=len(product_directories), detail="逐个标准化商品包")
+
         for directory in product_directories:
             stats.scanned_products += 1
             package = self._normalize_product(directory)
+            progress.advance_step("normalize", "normalize_products", detail=package.product_id)
             stats.normalized_products += 1
             stats.total_reviews += len(package.reviews)
             stats.total_images += len(package.images)
@@ -126,9 +133,14 @@ class DatasetService:
                 output_path = self._persist_package(package)
                 normalized_files.append(str(output_path))
 
+        progress.complete_step("normalize", "normalize_products")
         report_path: str | None = None
         if request.persist_artifacts:
+            progress.start_count_step("normalize", "persist", total=1, detail="写入标准化报告和商品文件")
             report_path = str(self._persist_report(stats, warnings))
+            progress.complete_step("normalize", "persist", detail=report_path)
+
+        progress.complete_module("normalize")
 
         return DatasetNormalizationResult(
             stats=stats,

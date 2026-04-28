@@ -11,14 +11,11 @@
     "total_products": 192,
     "total_reviews": 33697
   },
-  "normalization": {
-    "normalized_products": 1,
-    "report_path": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/4_reports/dataset_normalization_report.json"
-  },
+  "normalization": null,
   "index_result": {
     "backend": "qdrant",
     "indexed_products": 1,
-    "index_path": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/3_indexes/qdrant_runs/sunglasses/sunglasses_010/run_20260428T053925_270388Z_pid248039"
+    "index_path": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/3_indexes/qdrant_runs/sunglasses/sunglasses_010/run_20260428T062556_181658Z_pid261978"
   },
   "review_sampling": {
     "profile_name": "problem_first",
@@ -83,25 +80,27 @@
   "retrieval_runtime": {
     "text_embedding_backend": "api",
     "text_embedding_model": "text-embedding-v4",
-    "image_embedding_backend": "clip",
-    "image_embedding_model": "openai/clip-vit-base-patch32",
+    "image_embedding_backend": "proxy_text",
+    "image_embedding_model": null,
     "reranker_backend": "api",
     "reranker_model": "gte-rerank-v2",
-    "multimodal_reranker_backend": "qwen_vl",
-    "multimodal_reranker_model": "qwen-vl-max-latest",
-    "native_multimodal_enabled": true,
-    "summary": "Image evidence is configured to use native multimodal retrieval or reranking paths."
+    "multimodal_reranker_backend": "disabled",
+    "multimodal_reranker_model": null,
+    "native_multimodal_enabled": false,
+    "summary": "Image evidence is currently indexed through proxy text, and reranking remains text-only rather than native multimodal."
   },
   "analysis": {
-    "analysis_mode": "llm",
+    "analysis_mode": "heuristic",
     "artifact_path": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/4_reports/sunglasses/sunglasses_010_analysis.json",
-    "strengths": 3,
-    "weaknesses": 2,
+    "strengths": 1,
+    "weaknesses": 0,
     "replay_applied": true,
-    "replay_persistent_issue_count": 6,
-    "replay_resolved_issue_count": 0,
+    "replay_persistent_issue_count": 0,
+    "replay_resolved_issue_count": 7,
     "warnings": [
-      "replay continuity applied: persistent=6, resolved=0, new=1, reviewed=0"
+      "sunglasses_010_review_0021_aspect_01_q_02: applied corrective retrieval (expand_topk) bad->bad",
+      "sunglasses_010_review_0064_aspect_01_q_02: applied corrective retrieval (expand_topk) bad->bad",
+      "replay continuity applied: persistent=0, resolved=7, new=0, reviewed=0"
     ]
   },
   "artifact_bundle": {

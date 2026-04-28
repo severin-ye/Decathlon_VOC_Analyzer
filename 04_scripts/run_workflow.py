@@ -15,6 +15,8 @@ SRC_DIR = ROOT_DIR / "05_src"
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 
+from decathlon_voc_analyzer.runtime_progress import WorkflowProgressReporter, use_workflow_progress
+
 
 REVIEW_FLAG_PATTERN = re.compile(r"^--R_(\d+)$")
 
@@ -47,6 +49,16 @@ class WorkflowExecutionSummary:
     artifact_bundle: dict[str, str | None] | None
     html_export_path: str | None
     manifest_path: str | None
+
+
+WORKFLOW_PROGRESS_PLAN = [
+    ("overview", "数据集概览", [("scan", "扫描类目与商品"), ("summarize", "汇总概览")]),
+    ("normalize", "标准化数据", [("select", "选择目标商品"), ("normalize_products", "逐个标准化商品"), ("persist", "落盘标准化产物")]),
+    ("index", "构建索引", [("load_packages", "加载商品包"), ("embed_text", "生成文本向量"), ("embed_image", "生成图像向量"), ("persist", "保存索引快照")]),
+    ("analyze", "生成分析", [("extract", "抽取评论"), ("questions", "规划和生成问题"), ("retrieve", "检索证据"), ("quality", "评估检索质量"), ("report", "生成报告"), ("attribution", "归因和修订"), ("persist", "写入分析产物")]),
+    ("export_html", "导出 HTML", [("render", "渲染 HTML"), ("write", "写入 HTML 文件")]),
+    ("write_manifest", "写入 Manifest", [("serialize", "序列化摘要"), ("write", "写入 Manifest 文件")]),
+]
 
 
 def _preprocess_argv(argv: list[str]) -> list[str]:
@@ -190,13 +202,15 @@ def _resolve_manifest_path(args: argparse.Namespace, paths: dict[str, Path]) -> 
     return paths["manifests_output_dir"] / args.category / f"{args.product_id}_run_manifest.json"
 
 
-def execute_workflow(args: argparse.Namespace, paths: dict[str, Path]) -> WorkflowExecutionSummary:
+def execute_workflow(args: argparse.Namespace, paths: dict[str, Path], progress: WorkflowProgressReporter | None = None) -> WorkflowExecutionSummary:
     from decathlon_voc_analyzer.app.core.config import get_settings
     from decathlon_voc_analyzer.stage4_generation.html_export_service import HtmlExportService
     from decathlon_voc_analyzer.workflows.single_product_workflow import get_single_product_workflow
 
     get_settings.cache_clear()
     workflow = get_single_product_workflow()
+    if progress is not None:
+        progress.note("工作流已启动，正在按顺序执行各模块。")
     result = workflow.invoke(
         {
             "category": args.category,
@@ -219,6 +233,9 @@ def execute_workflow(args: argparse.Namespace, paths: dict[str, Path]) -> Workfl
     retrieval_runtime = analysis.retrieval_runtime.model_dump(mode="json") if analysis.retrieval_runtime is not None else None
     html_export_path = None
     if args.export_html:
+        if progress is not None:
+            progress.activate_module("export_html", detail="准备导出单商品 HTML 页面")
+            progress.activate_step("export_html", "render", detail="读取分析结果并生成 HTML 内容")
         analysis_path = Path(str(analysis.artifact_path)) if analysis.artifact_path else None
         normalized_path = paths["normalized_output_dir"] / args.category / f"{args.product_id}.json"
         if analysis_path is not None and analysis_path.exists():
@@ -230,6 +247,11 @@ def execute_workflow(args: argparse.Namespace, paths: dict[str, Path]) -> Workfl
             html_output_path = html_target_dir / f"{args.product_id}.html"
             html_output_path.write_text(html_content, encoding="utf-8")
             html_export_path = str(html_output_path)
+        if progress is not None:
+            progress.complete_step("export_html", "render")
+            progress.activate_step("export_html", "write", detail=f"{html_export_path or 'no output written'}")
+            progress.complete_step("export_html", "write")
+            progress.complete_module("export_html")
 
     return WorkflowExecutionSummary(
         mode_label=_mode_label_for_variant(str(os.environ.get("PROMPT_VARIANT") or "main")),
@@ -300,13 +322,21 @@ def _summary_payload(summary: WorkflowExecutionSummary) -> dict[str, object]:
     }
 
 
-def maybe_write_manifest(args: argparse.Namespace, summary: WorkflowExecutionSummary, paths: dict[str, Path]) -> WorkflowExecutionSummary:
+def maybe_write_manifest(args: argparse.Namespace, summary: WorkflowExecutionSummary, paths: dict[str, Path], progress: WorkflowProgressReporter | None = None) -> WorkflowExecutionSummary:
     if not args.write_manifest and not args.manifest_path:
         return summary
     manifest_path = _resolve_manifest_path(args, paths)
     manifest_path.parent.mkdir(parents=True, exist_ok=True)
+    if progress is not None:
+        progress.activate_module("write_manifest", detail="准备写入本次运行摘要")
+        progress.activate_step("write_manifest", "serialize", detail="整理摘要 JSON")
     materialized_summary = replace(summary, manifest_path=str(manifest_path))
     manifest_path.write_bytes(orjson.dumps(_summary_payload(materialized_summary), option=orjson.OPT_INDENT_2))
+    if progress is not None:
+        progress.complete_step("write_manifest", "serialize")
+        progress.activate_step("write_manifest", "write", detail=str(manifest_path))
+        progress.complete_step("write_manifest", "write")
+        progress.complete_module("write_manifest")
     return materialized_summary
 
 
@@ -374,14 +404,18 @@ def main() -> None:
     args = parse_args()
     config = build_cli_config(args)
     paths = configure_environment(config)
+    progress = WorkflowProgressReporter(WORKFLOW_PROGRESS_PLAN, enabled=not args.quiet)
     try:
-        summary = execute_workflow(args, paths)
-        summary = maybe_write_manifest(args, summary, paths)
-        if args.output_format == "json":
-            sys.stdout.buffer.write(_render_json_summary(summary))
-            sys.stdout.write("\n")
-            return
-        print(_render_text_summary(summary, quiet=args.quiet))
+        with progress:
+            with use_workflow_progress(progress):
+                progress.note("工作流已启动，正在按顺序执行各模块。")
+                summary = execute_workflow(args, paths, progress=progress)
+                summary = maybe_write_manifest(args, summary, paths, progress=progress)
+                if args.output_format == "json":
+                    sys.stdout.buffer.write(_render_json_summary(summary))
+                    sys.stdout.write("\n")
+                    return
+                print(_render_text_summary(summary, quiet=args.quiet))
     finally:
         dispose_index_backend()
 

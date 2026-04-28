@@ -6,6 +6,7 @@ from decathlon_voc_analyzer.app.core.config import get_settings
 from decathlon_voc_analyzer.schemas.analysis import QuestionIntent, RetrievalQuestion
 from decathlon_voc_analyzer.schemas.review import ReviewAspect
 from decathlon_voc_analyzer.prompts import get_prompt_template, get_prompt_variant
+from decathlon_voc_analyzer.runtime_progress import get_workflow_progress
 
 
 class QuestionGenerationService:
@@ -19,6 +20,8 @@ class QuestionGenerationService:
         questions_per_aspect: int = 2,
         use_llm: bool = True,
     ) -> tuple[list[QuestionIntent], list[RetrievalQuestion], list[str], str]:
+        progress = get_workflow_progress()
+        progress.start_count_step("analyze", "questions", total=len(aspects), detail=f"规划 {len(aspects)} 个方面的问题")
         intents = self.plan_question_intents(aspects, questions_per_aspect)
         questions: list[RetrievalQuestion] = []
         warnings: list[str] = []
@@ -36,7 +39,9 @@ class QuestionGenerationService:
             else:
                 generated = self._generate_with_heuristic(aspect, questions_per_aspect)
             questions.extend(generated)
+            progress.advance_step("analyze", "questions", detail=aspect.aspect)
 
+        progress.complete_step("analyze", "questions")
         return intents, questions, warnings, mode
 
     def plan_question_intents(

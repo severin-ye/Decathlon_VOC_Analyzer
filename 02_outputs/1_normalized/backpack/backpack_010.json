@@ -3,7 +3,7 @@
   "category_slug": "backpack",
   "product_name": "Backpacking Organizer Travel Wallet S",
   "category_text": "All Sports > Hiking > Gear > Bags > Bag Accessories",
-  "model_description": "This durable and practical travel wallet is the top choice for securely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels with peace of mind. [Warranty Period] 2 years",
+  "model_description": "This durable and practical travel wallet is the top choice for safely storing personal items. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels with peace of mind. [Warranty Period] 2 years",
   "source_dir": "/home/severin/Codelib/Decathlon_VOC_Analyzer/01_data/01_raw_products/products/backpack/backpack_010",
   "text_blocks": [
     {
@@ -14,11 +14,11 @@
       "content": "Backpacking Organizer Travel Wallet S"
     },
     {
-      "text_block_id": "backpack_010_model_description_519cf5b81d86",
+      "text_block_id": "backpack_010_model_description_676b23089ef7",
       "product_id": "backpack_010",
       "text_type": "description",
       "source_section": "model_description",
-      "content": "This durable and practical travel wallet is the top choice for securely storing personal belongings. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels with peace of mind. [Warranty Period] 2 years"
+      "content": "This durable and practical travel wallet is the top choice for safely storing personal items. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels with peace of mind. [Warranty Period] 2 years"
     },
     {
       "text_block_id": "backpack_010_category_df8dbdbf76c1",

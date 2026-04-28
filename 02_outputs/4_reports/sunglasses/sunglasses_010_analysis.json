@@ -1,27 +1,27 @@
 {
-  "analysis_mode": "llm",
+  "analysis_mode": "heuristic",
   "extraction": {
     "product_id": "sunglasses_010",
     "category_slug": "sunglasses",
-    "extraction_mode": "llm",
+    "extraction_mode": "heuristic",
     "preprocessed_reviews": [
       {
         "review_id": "sunglasses_010_review_0021",
         "product_id": "sunglasses_010",
-        "original_text": "The sunglasses are great! However, the rubber insert on them near the ear completely deteriorates in less than two years—literally falling apart. Sad...",
-        "cleaned_text": "The sunglasses are great! However, the rubber insert on them near the ear completely deteriorates in less than two years—literally falling apart. Sad...",
+        "original_text": "Maga a szemüveg jó! Viszont a rajta levő gumi berakás a fülnél teljesen tönkre megy kevesebb mint 2ev alatt. Konkrétan szétmállott. Szomorú…",
+        "cleaned_text": "Maga a szemüveg jó! Viszont a rajta levő gumi berakás a fülnél teljesen tönkre megy kevesebb mint 2ev alatt. Konkrétan szétmállott. Szomorú…",
         "rating": 1,
-        "language_hint": "en",
+        "language_hint": "latin",
         "is_informative": true,
         "skip_reason": null
       },
       {
         "review_id": "sunglasses_010_review_0064",
         "product_id": "sunglasses_010",
-        "original_text": "Excellent price and excellent tinting; comfortable to wear. One drawback: they slightly magnify vision, making the ground beneath appear closer than it actually is.",
-        "cleaned_text": "Excellent price and excellent tinting; comfortable to wear. One drawback: they slightly magnify vision, making the ground beneath appear closer than it actually is.",
+        "original_text": "Ottimo prezzo ed ottimo oscuramento, comodi. Un difetto, ingrandiscono leggermente la vista, quindi si vede il terreno sottostante attraverso la lente, più vicino di quanto non sia.",
+        "cleaned_text": "Ottimo prezzo ed ottimo oscuramento, comodi. Un difetto, ingrandiscono leggermente la vista, quindi si vede il terreno sottostante attraverso la lente, più vicino di quanto non sia.",
         "rating": 2,
-        "language_hint": "en",
+        "language_hint": "latin",
         "is_informative": true,
         "skip_reason": null
       }
@@ -91,772 +91,144 @@
         "aspect_id": "sunglasses_010_review_0021_aspect_01",
         "review_id": "sunglasses_010_review_0021",
         "product_id": "sunglasses_010",
-        "aspect": "rubber insert durability",
-        "sentiment": "negative",
-        "opinion": "poor durability",
-        "evidence_span": "the rubber insert on them near the ear completely deteriorates in less than two years—literally falling apart",
-        "usage_scene": "long-term wear",
-        "confidence": 0.95,
-        "extraction_mode": "llm"
-      },
-      {
-        "aspect_id": "sunglasses_010_review_0021_aspect_02",
-        "review_id": "sunglasses_010_review_0021",
-        "product_id": "sunglasses_010",
         "aspect": "overall_experience",
-        "sentiment": "mixed",
-        "opinion": "initially positive but ultimately disappointing due to premature rubber insert failure",
-        "evidence_span": "The sunglasses are great! However, the rubber insert on them near the ear completely deteriorates in less than two years—literally falling apart. Sad...",
-        "usage_scene": "",
-        "confidence": 0.85,
-        "extraction_mode": "llm"
+        "sentiment": "negative",
+        "opinion": "Maga a szemüveg jó! Viszont a rajta levő gumi berakás a fülnél teljesen tönkre megy kevesebb mint 2ev alatt. Konkrétan szétmállott. Szomorú…",
+        "evidence_span": "Maga a szemüveg jó! Viszont a rajta levő gumi berakás a fülnél teljesen tönkre megy kevesebb mint 2ev alatt. Konkrétan szétmállott. Szomorú…",
+        "usage_scene": null,
+        "confidence": 0.56,
+        "extraction_mode": "heuristic"
       },
       {
         "aspect_id": "sunglasses_010_review_0064_aspect_01",
         "review_id": "sunglasses_010_review_0064",
         "product_id": "sunglasses_010",
-        "aspect": "price",
-        "sentiment": "positive",
-        "opinion": "excellent",
-        "evidence_span": "Excellent price",
-        "usage_scene": "",
-        "confidence": 0.95,
-        "extraction_mode": "llm"
-      },
-      {
-        "aspect_id": "sunglasses_010_review_0064_aspect_02",
-        "review_id": "sunglasses_010_review_0064",
-        "product_id": "sunglasses_010",
-        "aspect": "lens tinting",
-        "sentiment": "positive",
-        "opinion": "excellent",
-        "evidence_span": "excellent tinting",
-        "usage_scene": "",
-        "confidence": 0.95,
-        "extraction_mode": "llm"
-      },
-      {
-        "aspect_id": "sunglasses_010_review_0064_aspect_03",
-        "review_id": "sunglasses_010_review_0064",
-        "product_id": "sunglasses_010",
-        "aspect": "comfort",
-        "sentiment": "positive",
-        "opinion": "comfortable",
-        "evidence_span": "comfortable to wear",
-        "usage_scene": "",
-        "confidence": 0.9,
-        "extraction_mode": "llm"
-      },
-      {
-        "aspect_id": "sunglasses_010_review_0064_aspect_04",
-        "review_id": "sunglasses_010_review_0064",
-        "product_id": "sunglasses_010",
-        "aspect": "optical accuracy",
+        "aspect": "overall_experience",
         "sentiment": "negative",
-        "opinion": "slight magnification causing perceptual distortion",
-        "evidence_span": "they slightly magnify vision, making the ground beneath appear closer than it actually is",
-        "usage_scene": "walking/outdoor navigation",
-        "confidence": 0.98,
-        "extraction_mode": "llm"
+        "opinion": "Ottimo prezzo ed ottimo oscuramento, comodi. Un difetto, ingrandiscono leggermente la vista, quindi si vede il terreno sottostante attraverso la lente, più vicino di quanto non sia.",
+        "evidence_span": "Ottimo prezzo ed ottimo oscuramento, comodi. Un difetto, ingrandiscono leggermente la vista, quindi si vede il terreno sottostante attraverso la lente, più vicino di quanto non sia.",
+        "usage_scene": null,
+        "confidence": 0.56,
+        "extraction_mode": "heuristic"
       }
     ],
     "skipped_review_ids": [],
     "warnings": [],
     "artifact_path": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/2_aspects/sunglasses/sunglasses_010.json"
   },
+  "question_intents": [
+    {
+      "intent_id": "sunglasses_010_review_0021_aspect_01_intent_01",
+      "source_review_id": "sunglasses_010_review_0021",
+      "source_aspect": "overall_experience",
+      "source_aspect_id": "sunglasses_010_review_0021_aspect_01",
+      "intent_type": "explicit_support",
+      "rationale": "Check whether product-page text directly substantiates the review claim about 'overall_experience'.",
+      "expected_evidence_routes": [
+        "text"
+      ],
+      "forbidden_concepts": [],
+      "specificity_bound": "Only ask for evidence that can plausibly appear on a normal retail product page."
+    },
+    {
+      "intent_id": "sunglasses_010_review_0021_aspect_01_intent_02",
+      "source_review_id": "sunglasses_010_review_0021",
+      "source_aspect": "overall_experience",
+      "source_aspect_id": "sunglasses_010_review_0021_aspect_01",
+      "intent_type": "visual_confirmation",
+      "rationale": "Check whether product images provide concrete visual evidence for 'overall_experience'.",
+      "expected_evidence_routes": [
+        "image"
+      ],
+      "forbidden_concepts": [],
+      "specificity_bound": "Only ask for evidence that can plausibly appear on a normal retail product page."
+    },
+    {
+      "intent_id": "sunglasses_010_review_0064_aspect_01_intent_01",
+      "source_review_id": "sunglasses_010_review_0064",
+      "source_aspect": "overall_experience",
+      "source_aspect_id": "sunglasses_010_review_0064_aspect_01",
+      "intent_type": "explicit_support",
+      "rationale": "Check whether product-page text directly substantiates the review claim about 'overall_experience'.",
+      "expected_evidence_routes": [
+        "text"
+      ],
+      "forbidden_concepts": [],
+      "specificity_bound": "Only ask for evidence that can plausibly appear on a normal retail product page."
+    },
+    {
+      "intent_id": "sunglasses_010_review_0064_aspect_01_intent_02",
+      "source_review_id": "sunglasses_010_review_0064",
+      "source_aspect": "overall_experience",
+      "source_aspect_id": "sunglasses_010_review_0064_aspect_01",
+      "intent_type": "visual_confirmation",
+      "rationale": "Check whether product images provide concrete visual evidence for 'overall_experience'.",
+      "expected_evidence_routes": [
+        "image"
+      ],
+      "forbidden_concepts": [],
+      "specificity_bound": "Only ask for evidence that can plausibly appear on a normal retail product page."
+    }
+  ],
   "questions": [
     {
       "question_id": "sunglasses_010_review_0021_aspect_01_q_01",
       "source_review_id": "sunglasses_010_review_0021",
-      "source_aspect": "rubber insert durability",
+      "source_aspect": "overall_experience",
       "source_aspect_id": "sunglasses_010_review_0021_aspect_01",
-      "question": "Does the product listing specify a warranty period or durability guarantee for the rubber ear inserts?",
-      "rationale": "A warranty or durability claim would directly contradict or support the claim of 'poor durability' and is commonly found in product specifications or warranty details.",
+      "question": "Does the product text explicitly support the experience claim related to 'overall_experience'?",
+      "rationale": "This checks whether the product page text directly supports the review claim.",
       "expected_evidence_routes": [
         "text"
       ],
-      "confidence": 0.95
+      "confidence": 0.66
     },
     {
       "question_id": "sunglasses_010_review_0021_aspect_01_q_02",
       "source_review_id": "sunglasses_010_review_0021",
-      "source_aspect": "rubber insert durability",
+      "source_aspect": "overall_experience",
       "source_aspect_id": "sunglasses_010_review_0021_aspect_01",
-      "question": "Do close-up product images show intact, flexible rubber ear inserts without visible cracking, flaking, or separation from the earcup structure?",
-      "rationale": "Visible structural integrity of the rubber inserts in official product imagery serves as direct visual evidence against deterioration claims.",
+      "question": "Do the product images provide structural or visual evidence for the 'overall_experience' judgment?",
+      "rationale": "This checks whether visual evidence supports the experience described in the review.",
       "expected_evidence_routes": [
         "image"
       ],
-      "confidence": 0.9
-    },
-    {
-      "question_id": "sunglasses_010_review_0021_aspect_02_q_01",
-      "source_review_id": "sunglasses_010_review_0021",
-      "source_aspect": "overall_experience",
-      "source_aspect_id": "sunglasses_010_review_0021_aspect_02",
-      "question": "Does the product listing specify the material composition or durability rating of the rubber insert near the earpieces?",
-      "rationale": "The review claims premature deterioration of the rubber insert; verifying whether material specs or durability claims are disclosed helps assess transparency and alignment with expectations.",
-      "expected_evidence_routes": [
-        "text"
-      ],
-      "confidence": 0.92
-    },
-    {
-      "question_id": "sunglasses_010_review_0021_aspect_02_q_02",
-      "source_review_id": "sunglasses_010_review_0021",
-      "source_aspect": "overall_experience",
-      "source_aspect_id": "sunglasses_010_review_0021_aspect_02",
-      "question": "Is there a close-up image or product diagram showing the rubber insert near the earpieces, and does it appear to be a replaceable or reinforced component?",
-      "rationale": "Visual evidence of the insert’s construction (e.g., seam quality, thickness, attachment method) could corroborate or contradict claims about its susceptibility to early failure.",
-      "expected_evidence_routes": [
-        "image"
-      ],
-      "confidence": 0.87
+      "confidence": 0.66
     },
     {
       "question_id": "sunglasses_010_review_0064_aspect_01_q_01",
       "source_review_id": "sunglasses_010_review_0064",
-      "source_aspect": "price",
+      "source_aspect": "overall_experience",
       "source_aspect_id": "sunglasses_010_review_0064_aspect_01",
-      "question": "What is the listed price of the product on the page?",
-      "rationale": "To verify whether the price is objectively excellent, we need the actual numeric price value for context and comparison.",
+      "question": "Does the product text explicitly support the experience claim related to 'overall_experience'?",
+      "rationale": "This checks whether the product page text directly supports the review claim.",
       "expected_evidence_routes": [
         "text"
       ],
-      "confidence": 0.95
+      "confidence": 0.66
     },
     {
       "question_id": "sunglasses_010_review_0064_aspect_01_q_02",
       "source_review_id": "sunglasses_010_review_0064",
-      "source_aspect": "price",
+      "source_aspect": "overall_experience",
       "source_aspect_id": "sunglasses_010_review_0064_aspect_01",
-      "question": "Does the product page display any price-related claims such as 'discounted', 'on sale', 'below MSRP', or comparison to a higher 'original' or 'retail' price?",
-      "rationale": "The judgment 'excellent price' often implies relative value—evidence of discounting, pricing context, or comparative benchmarks supports or undermines that claim.",
-      "expected_evidence_routes": [
-        "text"
-      ],
-      "confidence": 0.9
-    },
-    {
-      "question_id": "sunglasses_010_review_0064_aspect_02_q_01",
-      "source_review_id": "sunglasses_010_review_0064",
-      "source_aspect": "lens tinting",
-      "source_aspect_id": "sunglasses_010_review_0064_aspect_02",
-      "question": "What specific tint color or hue is used in the lenses (e.g., gray, brown, green, rose, mirrored)?",
-      "rationale": "The review praises 'excellent tinting' but does not specify the tint type; product pages commonly list tint color in specifications or marketing copy.",
-      "expected_evidence_routes": [
-        "text"
-      ],
-      "confidence": 0.95
-    },
-    {
-      "question_id": "sunglasses_010_review_0064_aspect_02_q_02",
-      "source_review_id": "sunglasses_010_review_0064",
-      "source_aspect": "lens tinting",
-      "source_aspect_id": "sunglasses_010_review_0064_aspect_02",
-      "question": "Does the product page include a close-up image of the lenses showing the tint appearance under standard lighting?",
-      "rationale": "A visual confirmation of tint uniformity, depth, and hue is necessary to verify 'excellent tinting'; such images are routinely provided in product galleries.",
+      "question": "Do the product images provide structural or visual evidence for the 'overall_experience' judgment?",
+      "rationale": "This checks whether visual evidence supports the experience described in the review.",
       "expected_evidence_routes": [
         "image"
-      ],
-      "confidence": 0.92
-    },
-    {
-      "question_id": "sunglasses_010_review_0064_aspect_03_q_01",
-      "source_review_id": "sunglasses_010_review_0064",
-      "source_aspect": "comfort",
-      "source_aspect_id": "sunglasses_010_review_0064_aspect_03",
-      "question": "Does the product description or specifications state that the item is designed for extended wear or all-day comfort?",
-      "rationale": "The phrase 'comfortable to wear' implies suitability for sustained use; official claims about wear duration or ergonomic design would corroborate this.",
-      "expected_evidence_routes": [
-        "text"
-      ],
-      "confidence": 0.85
-    },
-    {
-      "question_id": "sunglasses_010_review_0064_aspect_03_q_02",
-      "source_review_id": "sunglasses_010_review_0064",
-      "source_aspect": "comfort",
-      "source_aspect_id": "sunglasses_010_review_0064_aspect_03",
-      "question": "Does the product description list frame weight, nose-pad design, temple-tip material, hinge flexibility, or other fit details that realistically support long-wear comfort?",
-      "rationale": "Prefer comfort cues that a sunglasses product page can realistically show, rather than cross-category features such as straps or ear cups.",
-      "expected_evidence_routes": [
-        "text",
-        "image"
-      ],
-      "confidence": 0.78
-    },
-    {
-      "question_id": "sunglasses_010_review_0064_aspect_04_q_01",
-      "source_review_id": "sunglasses_010_review_0064",
-      "source_aspect": "optical accuracy",
-      "source_aspect_id": "sunglasses_010_review_0064_aspect_04",
-      "question": "Does the product page provide any optical clarity, distortion-free, or non-prescription lens information that can help evaluate the reported magnification effect?",
-      "rationale": "Prefer ordinary product-page claims or technical notes that could realistically appear on a retail page, rather than highly specialized lens terminology or off-page demonstrations.",
-      "expected_evidence_routes": [
-        "text"
-      ],
-      "confidence": 0.85
-    },
-    {
-      "question_id": "sunglasses_010_review_0064_aspect_04_q_02",
-      "source_review_id": "sunglasses_010_review_0064",
-      "source_aspect": "optical accuracy",
-      "source_aspect_id": "sunglasses_010_review_0064_aspect_04",
-      "question": "Does the product text explicitly support the experience claim related to 'optical accuracy'?",
-      "rationale": "This checks whether the product page text directly supports the review claim.",
-      "expected_evidence_routes": [
-        "text"
       ],
       "confidence": 0.66
     }
   ],
   "retrievals": [
     {
-      "retrieval_id": "retrieval_fab294f85cbb",
+      "retrieval_id": "retrieval_4a2db9774fca",
       "product_id": "sunglasses_010",
-      "query": "Does the product listing specify a warranty period or durability guarantee for the rubber ear inserts?",
+      "query": "Does the product text explicitly support the experience claim related to 'overall_experience'?",
       "source_review_id": "sunglasses_010_review_0021",
-      "source_aspect": "rubber insert durability",
+      "source_aspect": "overall_experience",
       "source_question_id": "sunglasses_010_review_0021_aspect_01_q_01",
-      "source_question": "Does the product listing specify a warranty period or durability guarantee for the rubber ear inserts?",
-      "source_evidence_span": "A warranty or durability claim would directly contradict or support the claim of 'poor durability' and is commonly found in product specifications or warranty details.",
-      "expected_evidence_routes": [
-        "text"
-      ],
-      "retrieved": [
-        {
-          "product_id": "sunglasses_010",
-          "route": "text",
-          "text_block_id": "sunglasses_010_category_afcfe308543f",
-          "image_id": null,
-          "region_id": null,
-          "region_label": null,
-          "region_box": null,
-          "source_section": "category",
-          "image_path": null,
-          "content_preview": "All Sports > Running > Accessories > Sunglasses",
-          "embedding_score": 0.4072437650438421,
-          "rerank_score": 0.05780938411002485
-        },
-        {
-          "product_id": "sunglasses_010",
-          "route": "text",
-          "text_block_id": "sunglasses_010_model_description_5124b465e538",
-          "image_id": null,
-          "region_id": null,
-          "region_label": null,
-          "region_box": null,
-          "source_section": "model_description",
-          "image_path": null,
-          "content_preview": "100% UV protection and Category 4 lenses fully block intense sunlight and glare. Polarized lens technology enhances object definition and contrast for safer outdoor enjoyment. Designed specifically fo",
-          "embedding_score": 0.3775331892372622,
-          "rerank_score": 0.005904099567803819
-        }
-      ]
-    },
-    {
-      "retrieval_id": "retrieval_6acc71b01a75",
-      "product_id": "sunglasses_010",
-      "query": "Do close-up product images show intact, flexible rubber ear inserts without visible cracking, flaking, or separation from the earcup structure?",
-      "source_review_id": "sunglasses_010_review_0021",
-      "source_aspect": "rubber insert durability",
-      "source_question_id": "sunglasses_010_review_0021_aspect_01_q_02",
-      "source_question": "Do close-up product images show intact, flexible rubber ear inserts without visible cracking, flaking, or separation from the earcup structure?",
-      "source_evidence_span": "Visible structural integrity of the rubber inserts in official product imagery serves as direct visual evidence against deterioration claims.",
-      "expected_evidence_routes": [
-        "image"
-      ],
-      "retrieved": [
-        {
-          "product_id": "sunglasses_010",
-          "route": "image",
-          "text_block_id": null,
-          "image_id": "sunglasses_010_8587974_d0f2321f6129",
-          "region_id": "sunglasses_010_8587974_d0f2321f6129_region_f359b8ad2043",
-          "region_label": "lower_focus",
-          "region_box": [
-            0,
-            768,
-            1920,
-            1920
-          ],
-          "source_section": null,
-          "image_path": "images/8587974/img6.png",
-          "content_preview": "MH580 Sports Polarized Sunglasses All Sports > Running > Accessories > Sunglasses 100% UV protection and Category 4 lenses fully block intense sunlight and glare. Polarized lens technology enhances ob",
-          "embedding_score": 0.29565487796919515,
-          "rerank_score": 0.0
-        },
-        {
-          "product_id": "sunglasses_010",
-          "route": "image",
-          "text_block_id": null,
-          "image_id": "sunglasses_010_8587974_d0f2321f6129",
-          "region_id": null,
-          "region_label": null,
-          "region_box": null,
-          "source_section": null,
-          "image_path": "images/8587974/img6.png",
-          "content_preview": "MH580 Sports Polarized Sunglasses All Sports > Running > Accessories > Sunglasses 100% UV protection and Category 4 lenses fully block intense sunlight and glare. Polarized lens technology enhances ob",
-          "embedding_score": 0.2915756448893863,
-          "rerank_score": 0.0
-        }
-      ]
-    },
-    {
-      "retrieval_id": "retrieval_1d741f723caa",
-      "product_id": "sunglasses_010",
-      "query": "Does the product listing specify the material composition or durability rating of the rubber insert near the earpieces?",
-      "source_review_id": "sunglasses_010_review_0021",
-      "source_aspect": "overall_experience",
-      "source_question_id": "sunglasses_010_review_0021_aspect_02_q_01",
-      "source_question": "Does the product listing specify the material composition or durability rating of the rubber insert near the earpieces?",
-      "source_evidence_span": "The review claims premature deterioration of the rubber insert; verifying whether material specs or durability claims are disclosed helps assess transparency and alignment with expectations.",
-      "expected_evidence_routes": [
-        "text"
-      ],
-      "retrieved": [
-        {
-          "product_id": "sunglasses_010",
-          "route": "text",
-          "text_block_id": "sunglasses_010_category_afcfe308543f",
-          "image_id": null,
-          "region_id": null,
-          "region_label": null,
-          "region_box": null,
-          "source_section": "category",
-          "image_path": null,
-          "content_preview": "All Sports > Running > Accessories > Sunglasses",
-          "embedding_score": 0.41375313388388857,
-          "rerank_score": 0.08830949887265965
-        },
-        {
-          "product_id": "sunglasses_010",
-          "route": "text",
-          "text_block_id": "sunglasses_010_model_description_5124b465e538",
-          "image_id": null,
-          "region_id": null,
-          "region_label": null,
-          "region_box": null,
-          "source_section": "model_description",
-          "image_path": null,
-          "content_preview": "100% UV protection and Category 4 lenses fully block intense sunlight and glare. Polarized lens technology enhances object definition and contrast for safer outdoor enjoyment. Designed specifically fo",
-          "embedding_score": 0.41813886853124904,
-          "rerank_score": 0.00597244825582377
-        }
-      ]
-    },
-    {
-      "retrieval_id": "retrieval_3e78753fa716",
-      "product_id": "sunglasses_010",
-      "query": "Is there a close-up image or product diagram showing the rubber insert near the earpieces, and does it appear to be a replaceable or reinforced component?",
-      "source_review_id": "sunglasses_010_review_0021",
-      "source_aspect": "overall_experience",
-      "source_question_id": "sunglasses_010_review_0021_aspect_02_q_02",
-      "source_question": "Is there a close-up image or product diagram showing the rubber insert near the earpieces, and does it appear to be a replaceable or reinforced component?",
-      "source_evidence_span": "Visual evidence of the insert’s construction (e.g., seam quality, thickness, attachment method) could corroborate or contradict claims about its susceptibility to early failure.",
-      "expected_evidence_routes": [
-        "image"
-      ],
-      "retrieved": [
-        {
-          "product_id": "sunglasses_010",
-          "route": "image",
-          "text_block_id": null,
-          "image_id": "sunglasses_010_8587974_d0f2321f6129",
-          "region_id": "sunglasses_010_8587974_d0f2321f6129_region_09d620076e2d",
-          "region_label": "upper_focus",
-          "region_box": [
-            0,
-            0,
-            1920,
-            1152
-          ],
-          "source_section": null,
-          "image_path": "images/8587974/img6.png",
-          "content_preview": "MH580 Sports Polarized Sunglasses All Sports > Running > Accessories > Sunglasses 100% UV protection and Category 4 lenses fully block intense sunlight and glare. Polarized lens technology enhances ob",
-          "embedding_score": 0.2795303480127943,
-          "rerank_score": 0.6
-        },
-        {
-          "product_id": "sunglasses_010",
-          "route": "image",
-          "text_block_id": null,
-          "image_id": "sunglasses_010_8587974_d0f2321f6129",
-          "region_id": "sunglasses_010_8587974_d0f2321f6129_region_ff8ef8b1e71a",
-          "region_label": "center_focus",
-          "region_box": [
-            384,
-            384,
-            1536,
-            1536
-          ],
-          "source_section": null,
-          "image_path": "images/8587974/img6.png",
-          "content_preview": "MH580 Sports Polarized Sunglasses All Sports > Running > Accessories > Sunglasses 100% UV protection and Category 4 lenses fully block intense sunlight and glare. Polarized lens technology enhances ob",
-          "embedding_score": 0.2911607985283313,
-          "rerank_score": 0.5
-        }
-      ]
-    },
-    {
-      "retrieval_id": "retrieval_8488c3ff070d",
-      "product_id": "sunglasses_010",
-      "query": "What is the listed price of the product on the page?",
-      "source_review_id": "sunglasses_010_review_0064",
-      "source_aspect": "price",
-      "source_question_id": "sunglasses_010_review_0064_aspect_01_q_01",
-      "source_question": "What is the listed price of the product on the page?",
-      "source_evidence_span": "To verify whether the price is objectively excellent, we need the actual numeric price value for context and comparison.",
-      "expected_evidence_routes": [
-        "text"
-      ],
-      "retrieved": [
-        {
-          "product_id": "sunglasses_010",
-          "route": "text",
-          "text_block_id": "sunglasses_010_product_name_6c34f465521e",
-          "image_id": null,
-          "region_id": null,
-          "region_label": null,
-          "region_box": null,
-          "source_section": "product_name",
-          "image_path": null,
-          "content_preview": "MH580 Sports Polarized Sunglasses",
-          "embedding_score": 0.33465940657076704,
-          "rerank_score": 0.07610950718549003
-        },
-        {
-          "product_id": "sunglasses_010",
-          "route": "text",
-          "text_block_id": "sunglasses_010_category_afcfe308543f",
-          "image_id": null,
-          "region_id": null,
-          "region_label": null,
-          "region_box": null,
-          "source_section": "category",
-          "image_path": null,
-          "content_preview": "All Sports > Running > Accessories > Sunglasses",
-          "embedding_score": 0.33129244823844545,
-          "rerank_score": 0.07513887194502558
-        }
-      ]
-    },
-    {
-      "retrieval_id": "retrieval_eea9b0105690",
-      "product_id": "sunglasses_010",
-      "query": "Does the product page display any price-related claims such as 'discounted', 'on sale', 'below MSRP', or comparison to a higher 'original' or 'retail' price?",
-      "source_review_id": "sunglasses_010_review_0064",
-      "source_aspect": "price",
-      "source_question_id": "sunglasses_010_review_0064_aspect_01_q_02",
-      "source_question": "Does the product page display any price-related claims such as 'discounted', 'on sale', 'below MSRP', or comparison to a higher 'original' or 'retail' price?",
-      "source_evidence_span": "The judgment 'excellent price' often implies relative value—evidence of discounting, pricing context, or comparative benchmarks supports or undermines that claim.",
-      "expected_evidence_routes": [
-        "text"
-      ],
-      "retrieved": [
-        {
-          "product_id": "sunglasses_010",
-          "route": "text",
-          "text_block_id": "sunglasses_010_product_name_6c34f465521e",
-          "image_id": null,
-          "region_id": null,
-          "region_label": null,
-          "region_box": null,
-          "source_section": "product_name",
-          "image_path": null,
-          "content_preview": "MH580 Sports Polarized Sunglasses",
-          "embedding_score": 0.3148941034329522,
-          "rerank_score": 0.09732975710964706
-        },
-        {
-          "product_id": "sunglasses_010",
-          "route": "text",
-          "text_block_id": "sunglasses_010_category_afcfe308543f",
-          "image_id": null,
-          "region_id": null,
-          "region_label": null,
-          "region_box": null,
-          "source_section": "category",
-          "image_path": null,
-          "content_preview": "All Sports > Running > Accessories > Sunglasses",
-          "embedding_score": 0.32508285375745105,
-          "rerank_score": 0.02862081876651823
-        }
-      ]
-    },
-    {
-      "retrieval_id": "retrieval_e523c43d7524",
-      "product_id": "sunglasses_010",
-      "query": "What specific tint color or hue is used in the lenses (e.g., gray, brown, green, rose, mirrored)?",
-      "source_review_id": "sunglasses_010_review_0064",
-      "source_aspect": "lens tinting",
-      "source_question_id": "sunglasses_010_review_0064_aspect_02_q_01",
-      "source_question": "What specific tint color or hue is used in the lenses (e.g., gray, brown, green, rose, mirrored)?",
-      "source_evidence_span": "The review praises 'excellent tinting' but does not specify the tint type; product pages commonly list tint color in specifications or marketing copy.",
-      "expected_evidence_routes": [
-        "text"
-      ],
-      "retrieved": [
-        {
-          "product_id": "sunglasses_010",
-          "route": "text",
-          "text_block_id": "sunglasses_010_model_description_5124b465e538",
-          "image_id": null,
-          "region_id": null,
-          "region_label": null,
-          "region_box": null,
-          "source_section": "model_description",
-          "image_path": null,
-          "content_preview": "100% UV protection and Category 4 lenses fully block intense sunlight and glare. Polarized lens technology enhances object definition and contrast for safer outdoor enjoyment. Designed specifically fo",
-          "embedding_score": 0.6019296734204542,
-          "rerank_score": 0.18135825311179724
-        },
-        {
-          "product_id": "sunglasses_010",
-          "route": "text",
-          "text_block_id": "sunglasses_010_product_name_6c34f465521e",
-          "image_id": null,
-          "region_id": null,
-          "region_label": null,
-          "region_box": null,
-          "source_section": "product_name",
-          "image_path": null,
-          "content_preview": "MH580 Sports Polarized Sunglasses",
-          "embedding_score": 0.5156920858863576,
-          "rerank_score": 0.14380150597540914
-        }
-      ]
-    },
-    {
-      "retrieval_id": "retrieval_4279ae411659",
-      "product_id": "sunglasses_010",
-      "query": "Does the product page include a close-up image of the lenses showing the tint appearance under standard lighting?",
-      "source_review_id": "sunglasses_010_review_0064",
-      "source_aspect": "lens tinting",
-      "source_question_id": "sunglasses_010_review_0064_aspect_02_q_02",
-      "source_question": "Does the product page include a close-up image of the lenses showing the tint appearance under standard lighting?",
-      "source_evidence_span": "A visual confirmation of tint uniformity, depth, and hue is necessary to verify 'excellent tinting'; such images are routinely provided in product galleries.",
-      "expected_evidence_routes": [
-        "image"
-      ],
-      "retrieved": [
-        {
-          "product_id": "sunglasses_010",
-          "route": "image",
-          "text_block_id": null,
-          "image_id": "sunglasses_010_8941928_34a49d933aaf",
-          "region_id": "sunglasses_010_8941928_34a49d933aaf_region_9096703dc64f",
-          "region_label": "right_focus",
-          "region_box": [
-            768,
-            0,
-            1920,
-            1920
-          ],
-          "source_section": null,
-          "image_path": "images/8941928/img5.png",
-          "content_preview": "MH580 Sports Polarized Sunglasses All Sports > Running > Accessories > Sunglasses 100% UV protection and Category 4 lenses fully block intense sunlight and glare. Polarized lens technology enhances ob",
-          "embedding_score": 0.30394157906846203,
-          "rerank_score": 0.8
-        },
-        {
-          "product_id": "sunglasses_010",
-          "route": "image",
-          "text_block_id": null,
-          "image_id": "sunglasses_010_8941928_34a49d933aaf",
-          "region_id": "sunglasses_010_8941928_34a49d933aaf_region_6cb77d6cf3d1",
-          "region_label": "left_focus",
-          "region_box": [
-            0,
-            0,
-            1152,
-            1920
-          ],
-          "source_section": null,
-          "image_path": "images/8941928/img5.png",
-          "content_preview": "MH580 Sports Polarized Sunglasses All Sports > Running > Accessories > Sunglasses 100% UV protection and Category 4 lenses fully block intense sunlight and glare. Polarized lens technology enhances ob",
-          "embedding_score": 0.30326661391935006,
-          "rerank_score": 0.75
-        }
-      ]
-    },
-    {
-      "retrieval_id": "retrieval_2bc254a9be27",
-      "product_id": "sunglasses_010",
-      "query": "Does the product description or specifications state that the item is designed for extended wear or all-day comfort?",
-      "source_review_id": "sunglasses_010_review_0064",
-      "source_aspect": "comfort",
-      "source_question_id": "sunglasses_010_review_0064_aspect_03_q_01",
-      "source_question": "Does the product description or specifications state that the item is designed for extended wear or all-day comfort?",
-      "source_evidence_span": "The phrase 'comfortable to wear' implies suitability for sustained use; official claims about wear duration or ergonomic design would corroborate this.",
-      "expected_evidence_routes": [
-        "text"
-      ],
-      "retrieved": [
-        {
-          "product_id": "sunglasses_010",
-          "route": "text",
-          "text_block_id": "sunglasses_010_product_name_6c34f465521e",
-          "image_id": null,
-          "region_id": null,
-          "region_label": null,
-          "region_box": null,
-          "source_section": "product_name",
-          "image_path": null,
-          "content_preview": "MH580 Sports Polarized Sunglasses",
-          "embedding_score": 0.39447785964272525,
-          "rerank_score": 0.15083522781023206
-        },
-        {
-          "product_id": "sunglasses_010",
-          "route": "text",
-          "text_block_id": "sunglasses_010_category_afcfe308543f",
-          "image_id": null,
-          "region_id": null,
-          "region_label": null,
-          "region_box": null,
-          "source_section": "category",
-          "image_path": null,
-          "content_preview": "All Sports > Running > Accessories > Sunglasses",
-          "embedding_score": 0.4483617322645138,
-          "rerank_score": 0.1404775867520616
-        }
-      ]
-    },
-    {
-      "retrieval_id": "retrieval_7c0748efc340",
-      "product_id": "sunglasses_010",
-      "query": "Does the product description list frame weight, nose-pad design, temple-tip material, hinge flexibility, or other fit details that realistically support long-wear comfort?",
-      "source_review_id": "sunglasses_010_review_0064",
-      "source_aspect": "comfort",
-      "source_question_id": "sunglasses_010_review_0064_aspect_03_q_02",
-      "source_question": "Does the product description list frame weight, nose-pad design, temple-tip material, hinge flexibility, or other fit details that realistically support long-wear comfort?",
-      "source_evidence_span": "Prefer comfort cues that a sunglasses product page can realistically show, rather than cross-category features such as straps or ear cups.",
-      "expected_evidence_routes": [
-        "text",
-        "image"
-      ],
-      "retrieved": [
-        {
-          "product_id": "sunglasses_010",
-          "route": "text",
-          "text_block_id": "sunglasses_010_category_afcfe308543f",
-          "image_id": null,
-          "region_id": null,
-          "region_label": null,
-          "region_box": null,
-          "source_section": "category",
-          "image_path": null,
-          "content_preview": "All Sports > Running > Accessories > Sunglasses",
-          "embedding_score": 0.3335253355655342,
-          "rerank_score": 0.12253691696955725
-        },
-        {
-          "product_id": "sunglasses_010",
-          "route": "image",
-          "text_block_id": null,
-          "image_id": "sunglasses_010_8941928_d9869cb0d0e3",
-          "region_id": null,
-          "region_label": null,
-          "region_box": null,
-          "source_section": null,
-          "image_path": "images/8941928/img6.png",
-          "content_preview": "MH580 Sports Polarized Sunglasses All Sports > Running > Accessories > Sunglasses 100% UV protection and Category 4 lenses fully block intense sunlight and glare. Polarized lens technology enhances ob",
-          "embedding_score": 0.28368566723235633,
-          "rerank_score": 0.6
-        },
-        {
-          "product_id": "sunglasses_010",
-          "route": "image",
-          "text_block_id": null,
-          "image_id": "sunglasses_010_8941928_3b2c1ec9c473",
-          "region_id": "sunglasses_010_8941928_3b2c1ec9c473_region_6cb77d6cf3d1",
-          "region_label": "left_focus",
-          "region_box": [
-            0,
-            0,
-            1152,
-            1920
-          ],
-          "source_section": null,
-          "image_path": "images/8941928/img1.png",
-          "content_preview": "MH580 Sports Polarized Sunglasses All Sports > Running > Accessories > Sunglasses 100% UV protection and Category 4 lenses fully block intense sunlight and glare. Polarized lens technology enhances ob",
-          "embedding_score": 0.28425080853811335,
-          "rerank_score": 0.5
-        },
-        {
-          "product_id": "sunglasses_010",
-          "route": "image",
-          "text_block_id": null,
-          "image_id": "sunglasses_010_8587974_6171b82938ae",
-          "region_id": "sunglasses_010_8587974_6171b82938ae_region_6cb77d6cf3d1",
-          "region_label": "left_focus",
-          "region_box": [
-            0,
-            0,
-            1152,
-            1920
-          ],
-          "source_section": null,
-          "image_path": "images/8587974/img1.png",
-          "content_preview": "MH580 Sports Polarized Sunglasses All Sports > Running > Accessories > Sunglasses 100% UV protection and Category 4 lenses fully block intense sunlight and glare. Polarized lens technology enhances ob",
-          "embedding_score": 0.28375700449914354,
-          "rerank_score": 0.5
-        }
-      ]
-    },
-    {
-      "retrieval_id": "retrieval_9750b1c1c17a",
-      "product_id": "sunglasses_010",
-      "query": "Does the product page provide any optical clarity, distortion-free, or non-prescription lens information that can help evaluate the reported magnification effect?",
-      "source_review_id": "sunglasses_010_review_0064",
-      "source_aspect": "optical accuracy",
-      "source_question_id": "sunglasses_010_review_0064_aspect_04_q_01",
-      "source_question": "Does the product page provide any optical clarity, distortion-free, or non-prescription lens information that can help evaluate the reported magnification effect?",
-      "source_evidence_span": "Prefer ordinary product-page claims or technical notes that could realistically appear on a retail page, rather than highly specialized lens terminology or off-page demonstrations.",
-      "expected_evidence_routes": [
-        "text"
-      ],
-      "retrieved": [
-        {
-          "product_id": "sunglasses_010",
-          "route": "text",
-          "text_block_id": "sunglasses_010_product_name_6c34f465521e",
-          "image_id": null,
-          "region_id": null,
-          "region_label": null,
-          "region_box": null,
-          "source_section": "product_name",
-          "image_path": null,
-          "content_preview": "MH580 Sports Polarized Sunglasses",
-          "embedding_score": 0.4333332217206828,
-          "rerank_score": 0.14954587602513755
-        },
-        {
-          "product_id": "sunglasses_010",
-          "route": "text",
-          "text_block_id": "sunglasses_010_category_afcfe308543f",
-          "image_id": null,
-          "region_id": null,
-          "region_label": null,
-          "region_box": null,
-          "source_section": "category",
-          "image_path": null,
-          "content_preview": "All Sports > Running > Accessories > Sunglasses",
-          "embedding_score": 0.3980772134740163,
-          "rerank_score": 0.12577040014853988
-        }
-      ]
-    },
-    {
-      "retrieval_id": "retrieval_e9ed89665588",
-      "product_id": "sunglasses_010",
-      "query": "Does the product text explicitly support the experience claim related to 'optical accuracy'?",
-      "source_review_id": "sunglasses_010_review_0064",
-      "source_aspect": "optical accuracy",
-      "source_question_id": "sunglasses_010_review_0064_aspect_04_q_02",
-      "source_question": "Does the product text explicitly support the experience claim related to 'optical accuracy'?",
+      "source_question": "Does the product text explicitly support the experience claim related to 'overall_experience'?",
       "source_evidence_span": "This checks whether the product page text directly supports the review claim.",
       "expected_evidence_routes": [
         "text"
@@ -865,16 +237,16 @@
         {
           "product_id": "sunglasses_010",
           "route": "text",
-          "text_block_id": "sunglasses_010_product_name_6c34f465521e",
+          "text_block_id": "sunglasses_010_model_description_5124b465e538",
           "image_id": null,
           "region_id": null,
           "region_label": null,
           "region_box": null,
-          "source_section": "product_name",
+          "source_section": "model_description",
           "image_path": null,
-          "content_preview": "MH580 Sports Polarized Sunglasses",
-          "embedding_score": 0.4547133386283849,
-          "rerank_score": 0.13829961526558962
+          "content_preview": "100% UV protection and Category 4 lenses fully block intense sunlight and glare. Polarized lens technology enhances object definition and contrast for safer outdoor enjoyment. Designed specifically fo",
+          "embedding_score": 0.45112752743668694,
+          "rerank_score": 0.45112752743668694
         },
         {
           "product_id": "sunglasses_010",
@@ -887,328 +259,300 @@
           "source_section": "category",
           "image_path": null,
           "content_preview": "All Sports > Running > Accessories > Sunglasses",
-          "embedding_score": 0.4247507058590876,
-          "rerank_score": 0.08284472865510628
+          "embedding_score": 0.3780464549784338,
+          "rerank_score": 0.3780464549784338
+        }
+      ]
+    },
+    {
+      "retrieval_id": "retrieval_e313074c878b",
+      "product_id": "sunglasses_010",
+      "query": "Do the product images provide structural or visual evidence for the 'overall_experience' judgment?",
+      "source_review_id": "sunglasses_010_review_0021",
+      "source_aspect": "overall_experience",
+      "source_question_id": "sunglasses_010_review_0021_aspect_01_q_02",
+      "source_question": "Do the product images provide structural or visual evidence for the 'overall_experience' judgment?",
+      "source_evidence_span": "This checks whether visual evidence supports the experience described in the review.",
+      "expected_evidence_routes": [
+        "image"
+      ],
+      "retrieved": [
+        {
+          "product_id": "sunglasses_010",
+          "route": "image",
+          "text_block_id": null,
+          "image_id": "sunglasses_010_8587974_3059d95e8817",
+          "region_id": "sunglasses_010_8587974_3059d95e8817_region_9096703dc64f",
+          "region_label": "right_focus",
+          "region_box": [
+            768,
+            0,
+            1920,
+            1920
+          ],
+          "source_section": null,
+          "image_path": "images/8587974/img2.png",
+          "content_preview": "MH580 Sports Polarized Sunglasses All Sports > Running > Accessories > Sunglasses 100% UV protection and Category 4 lenses fully block intense sunlight and glare. Polarized lens technology enhances ob",
+          "embedding_score": 0.38388487576899893,
+          "rerank_score": 0.38388487576899893
+        },
+        {
+          "product_id": "sunglasses_010",
+          "route": "image",
+          "text_block_id": null,
+          "image_id": "sunglasses_010_8941928_b634f229e1a1",
+          "region_id": "sunglasses_010_8941928_b634f229e1a1_region_9096703dc64f",
+          "region_label": "right_focus",
+          "region_box": [
+            768,
+            0,
+            1920,
+            1920
+          ],
+          "source_section": null,
+          "image_path": "images/8941928/img2.png",
+          "content_preview": "MH580 Sports Polarized Sunglasses All Sports > Running > Accessories > Sunglasses 100% UV protection and Category 4 lenses fully block intense sunlight and glare. Polarized lens technology enhances ob",
+          "embedding_score": 0.3834015999567905,
+          "rerank_score": 0.3834015999567905
+        },
+        {
+          "product_id": "sunglasses_010",
+          "route": "image",
+          "text_block_id": null,
+          "image_id": "sunglasses_010_8587974_6171b82938ae",
+          "region_id": "sunglasses_010_8587974_6171b82938ae_region_9096703dc64f",
+          "region_label": "right_focus",
+          "region_box": [
+            768,
+            0,
+            1920,
+            1920
+          ],
+          "source_section": null,
+          "image_path": "images/8587974/img1.png",
+          "content_preview": "MH580 Sports Polarized Sunglasses All Sports > Running > Accessories > Sunglasses 100% UV protection and Category 4 lenses fully block intense sunlight and glare. Polarized lens technology enhances ob",
+          "embedding_score": 0.3832880132005107,
+          "rerank_score": 0.3832880132005107
+        }
+      ]
+    },
+    {
+      "retrieval_id": "retrieval_1a743b89fb28",
+      "product_id": "sunglasses_010",
+      "query": "Does the product text explicitly support the experience claim related to 'overall_experience'?",
+      "source_review_id": "sunglasses_010_review_0064",
+      "source_aspect": "overall_experience",
+      "source_question_id": "sunglasses_010_review_0064_aspect_01_q_01",
+      "source_question": "Does the product text explicitly support the experience claim related to 'overall_experience'?",
+      "source_evidence_span": "This checks whether the product page text directly supports the review claim.",
+      "expected_evidence_routes": [
+        "text"
+      ],
+      "retrieved": [
+        {
+          "product_id": "sunglasses_010",
+          "route": "text",
+          "text_block_id": "sunglasses_010_model_description_5124b465e538",
+          "image_id": null,
+          "region_id": null,
+          "region_label": null,
+          "region_box": null,
+          "source_section": "model_description",
+          "image_path": null,
+          "content_preview": "100% UV protection and Category 4 lenses fully block intense sunlight and glare. Polarized lens technology enhances object definition and contrast for safer outdoor enjoyment. Designed specifically fo",
+          "embedding_score": 0.45112752743668694,
+          "rerank_score": 0.45112752743668694
+        },
+        {
+          "product_id": "sunglasses_010",
+          "route": "text",
+          "text_block_id": "sunglasses_010_category_afcfe308543f",
+          "image_id": null,
+          "region_id": null,
+          "region_label": null,
+          "region_box": null,
+          "source_section": "category",
+          "image_path": null,
+          "content_preview": "All Sports > Running > Accessories > Sunglasses",
+          "embedding_score": 0.3780464549784338,
+          "rerank_score": 0.3780464549784338
+        }
+      ]
+    },
+    {
+      "retrieval_id": "retrieval_dadcb47da45e",
+      "product_id": "sunglasses_010",
+      "query": "Do the product images provide structural or visual evidence for the 'overall_experience' judgment?",
+      "source_review_id": "sunglasses_010_review_0064",
+      "source_aspect": "overall_experience",
+      "source_question_id": "sunglasses_010_review_0064_aspect_01_q_02",
+      "source_question": "Do the product images provide structural or visual evidence for the 'overall_experience' judgment?",
+      "source_evidence_span": "This checks whether visual evidence supports the experience described in the review.",
+      "expected_evidence_routes": [
+        "image"
+      ],
+      "retrieved": [
+        {
+          "product_id": "sunglasses_010",
+          "route": "image",
+          "text_block_id": null,
+          "image_id": "sunglasses_010_8587974_3059d95e8817",
+          "region_id": "sunglasses_010_8587974_3059d95e8817_region_9096703dc64f",
+          "region_label": "right_focus",
+          "region_box": [
+            768,
+            0,
+            1920,
+            1920
+          ],
+          "source_section": null,
+          "image_path": "images/8587974/img2.png",
+          "content_preview": "MH580 Sports Polarized Sunglasses All Sports > Running > Accessories > Sunglasses 100% UV protection and Category 4 lenses fully block intense sunlight and glare. Polarized lens technology enhances ob",
+          "embedding_score": 0.38388487576899893,
+          "rerank_score": 0.38388487576899893
+        },
+        {
+          "product_id": "sunglasses_010",
+          "route": "image",
+          "text_block_id": null,
+          "image_id": "sunglasses_010_8941928_b634f229e1a1",
+          "region_id": "sunglasses_010_8941928_b634f229e1a1_region_9096703dc64f",
+          "region_label": "right_focus",
+          "region_box": [
+            768,
+            0,
+            1920,
+            1920
+          ],
+          "source_section": null,
+          "image_path": "images/8941928/img2.png",
+          "content_preview": "MH580 Sports Polarized Sunglasses All Sports > Running > Accessories > Sunglasses 100% UV protection and Category 4 lenses fully block intense sunlight and glare. Polarized lens technology enhances ob",
+          "embedding_score": 0.3834015999567905,
+          "rerank_score": 0.3834015999567905
+        },
+        {
+          "product_id": "sunglasses_010",
+          "route": "image",
+          "text_block_id": null,
+          "image_id": "sunglasses_010_8587974_6171b82938ae",
+          "region_id": "sunglasses_010_8587974_6171b82938ae_region_9096703dc64f",
+          "region_label": "right_focus",
+          "region_box": [
+            768,
+            0,
+            1920,
+            1920
+          ],
+          "source_section": null,
+          "image_path": "images/8587974/img1.png",
+          "content_preview": "MH580 Sports Polarized Sunglasses All Sports > Running > Accessories > Sunglasses 100% UV protection and Category 4 lenses fully block intense sunlight and glare. Polarized lens technology enhances ob",
+          "embedding_score": 0.3832880132005107,
+          "rerank_score": 0.3832880132005107
         }
       ]
     }
   ],
   "retrieval_quality": [
     {
-      "retrieval_id": "retrieval_fab294f85cbb",
-      "source_aspect": "rubber insert durability",
-      "top_k_count": 2,
-      "route_coverage": 1.0,
-      "answer_coverage": 0.0,
-      "answer_status": "none",
-      "answer_value": null,
-      "answer_source": null,
-      "evidence_coverage": 0.0,
-      "score_drift": 0.36053173530163785,
-      "text_coverage": true,
-      "image_coverage": false,
-      "conflict_risk": 0.0,
-      "retrieval_quality_label": "bad",
-      "failure_reason": "low_precision",
-      "corrective_action": "filter_noise",
-      "evaluator_explanation": "Retrieved hits do not answer the question and rerank drift is high, indicating low precision."
-    },
-    {
-      "retrieval_id": "retrieval_6acc71b01a75",
-      "source_aspect": "rubber insert durability",
-      "top_k_count": 2,
-      "route_coverage": 1.0,
-      "answer_coverage": 0.0,
-      "answer_status": "none",
-      "answer_value": null,
-      "answer_source": null,
-      "evidence_coverage": 0.0,
-      "score_drift": 0.29361526142929073,
-      "text_coverage": false,
-      "image_coverage": true,
-      "conflict_risk": 0.0,
-      "retrieval_quality_label": "bad",
-      "failure_reason": "low_precision",
-      "corrective_action": "filter_noise",
-      "evaluator_explanation": "Retrieved hits do not answer the question and rerank drift is high, indicating low precision."
-    },
-    {
-      "retrieval_id": "retrieval_1d741f723caa",
+      "retrieval_id": "retrieval_4a2db9774fca",
       "source_aspect": "overall_experience",
       "top_k_count": 2,
       "route_coverage": 1.0,
+      "answer_coverage": 1.0,
+      "answer_status": "supported",
+      "answer_value": "100% UV protection and Category 4 lenses fully block intense sunlight and glare. Polarized lens technology enhances object definition and contrast for safer out",
+      "answer_source": "text",
+      "evidence_coverage": 1.0,
+      "score_drift": 0.0,
+      "text_coverage": true,
+      "image_coverage": false,
+      "conflict_risk": 0.0,
+      "retrieval_quality_label": "good",
+      "failure_reason": "none",
+      "corrective_action": "keep_current",
+      "evaluator_explanation": "Retrieved evidence covers the expected routes and supports the question without notable conflict."
+    },
+    {
+      "retrieval_id": "retrieval_e313074c878b",
+      "source_aspect": "overall_experience",
+      "top_k_count": 3,
+      "route_coverage": 1.0,
       "answer_coverage": 0.0,
       "answer_status": "none",
       "answer_value": null,
       "answer_source": null,
       "evidence_coverage": 0.0,
-      "score_drift": 0.3688050276433271,
-      "text_coverage": true,
-      "image_coverage": false,
+      "score_drift": 0.0,
+      "text_coverage": false,
+      "image_coverage": true,
       "conflict_risk": 0.0,
       "retrieval_quality_label": "bad",
-      "failure_reason": "low_precision",
-      "corrective_action": "filter_noise",
-      "evaluator_explanation": "Retrieved hits do not answer the question and rerank drift is high, indicating low precision."
+      "failure_reason": "low_recall",
+      "corrective_action": "expand_topk",
+      "evaluator_explanation": "Retrieved evidence does not answer the question, so recall should be expanded before rewriting the claim."
     },
     {
-      "retrieval_id": "retrieval_3e78753fa716",
+      "retrieval_id": "retrieval_1a743b89fb28",
       "source_aspect": "overall_experience",
       "top_k_count": 2,
       "route_coverage": 1.0,
+      "answer_coverage": 1.0,
+      "answer_status": "supported",
+      "answer_value": "100% UV protection and Category 4 lenses fully block intense sunlight and glare. Polarized lens technology enhances object definition and contrast for safer out",
+      "answer_source": "text",
+      "evidence_coverage": 1.0,
+      "score_drift": 0.0,
+      "text_coverage": true,
+      "image_coverage": false,
+      "conflict_risk": 0.0,
+      "retrieval_quality_label": "good",
+      "failure_reason": "none",
+      "corrective_action": "keep_current",
+      "evaluator_explanation": "Retrieved evidence covers the expected routes and supports the question without notable conflict."
+    },
+    {
+      "retrieval_id": "retrieval_dadcb47da45e",
+      "source_aspect": "overall_experience",
+      "top_k_count": 3,
+      "route_coverage": 1.0,
       "answer_coverage": 0.0,
       "answer_status": "none",
       "answer_value": null,
       "answer_source": null,
       "evidence_coverage": 0.0,
-      "score_drift": 0.2646544267294372,
+      "score_drift": 0.0,
       "text_coverage": false,
       "image_coverage": true,
       "conflict_risk": 0.0,
       "retrieval_quality_label": "bad",
-      "failure_reason": "low_precision",
-      "corrective_action": "filter_noise",
-      "evaluator_explanation": "Retrieved hits do not answer the question and rerank drift is high, indicating low precision."
-    },
-    {
-      "retrieval_id": "retrieval_8488c3ff070d",
-      "source_aspect": "price",
-      "top_k_count": 2,
-      "route_coverage": 1.0,
-      "answer_coverage": 0.0,
-      "answer_status": "none",
-      "answer_value": null,
-      "answer_source": null,
-      "evidence_coverage": 0.0,
-      "score_drift": 0.2573517378393484,
-      "text_coverage": true,
-      "image_coverage": false,
-      "conflict_risk": 0.0,
-      "retrieval_quality_label": "bad",
-      "failure_reason": "low_precision",
-      "corrective_action": "filter_noise",
-      "evaluator_explanation": "Retrieved hits do not answer the question and rerank drift is high, indicating low precision."
-    },
-    {
-      "retrieval_id": "retrieval_eea9b0105690",
-      "source_aspect": "price",
-      "top_k_count": 2,
-      "route_coverage": 1.0,
-      "answer_coverage": 0.0,
-      "answer_status": "none",
-      "answer_value": null,
-      "answer_source": null,
-      "evidence_coverage": 0.0,
-      "score_drift": 0.257013190657119,
-      "text_coverage": true,
-      "image_coverage": false,
-      "conflict_risk": 0.0,
-      "retrieval_quality_label": "bad",
-      "failure_reason": "low_precision",
-      "corrective_action": "filter_noise",
-      "evaluator_explanation": "Retrieved hits do not answer the question and rerank drift is high, indicating low precision."
-    },
-    {
-      "retrieval_id": "retrieval_e523c43d7524",
-      "source_aspect": "lens tinting",
-      "top_k_count": 2,
-      "route_coverage": 1.0,
-      "answer_coverage": 0.0,
-      "answer_status": "none",
-      "answer_value": null,
-      "answer_source": null,
-      "evidence_coverage": 0.0,
-      "score_drift": 0.3962310001098027,
-      "text_coverage": true,
-      "image_coverage": false,
-      "conflict_risk": 0.0,
-      "retrieval_quality_label": "bad",
-      "failure_reason": "low_precision",
-      "corrective_action": "filter_noise",
-      "evaluator_explanation": "Retrieved hits do not answer the question and rerank drift is high, indicating low precision."
-    },
-    {
-      "retrieval_id": "retrieval_4279ae411659",
-      "source_aspect": "lens tinting",
-      "top_k_count": 2,
-      "route_coverage": 1.0,
-      "answer_coverage": 0.0,
-      "answer_status": "none",
-      "answer_value": null,
-      "answer_source": null,
-      "evidence_coverage": 0.0,
-      "score_drift": 0.47139590350609395,
-      "text_coverage": false,
-      "image_coverage": true,
-      "conflict_risk": 0.0,
-      "retrieval_quality_label": "bad",
-      "failure_reason": "low_precision",
-      "corrective_action": "filter_noise",
-      "evaluator_explanation": "Retrieved hits do not answer the question and rerank drift is high, indicating low precision."
-    },
-    {
-      "retrieval_id": "retrieval_2bc254a9be27",
-      "source_aspect": "comfort",
-      "top_k_count": 2,
-      "route_coverage": 1.0,
-      "answer_coverage": 0.0,
-      "answer_status": "none",
-      "answer_value": null,
-      "answer_source": null,
-      "evidence_coverage": 0.0,
-      "score_drift": 0.27576338867247274,
-      "text_coverage": true,
-      "image_coverage": false,
-      "conflict_risk": 0.0,
-      "retrieval_quality_label": "bad",
-      "failure_reason": "low_precision",
-      "corrective_action": "filter_noise",
-      "evaluator_explanation": "Retrieved hits do not answer the question and rerank drift is high, indicating low precision."
-    },
-    {
-      "retrieval_id": "retrieval_7c0748efc340",
-      "source_aspect": "comfort",
-      "top_k_count": 4,
-      "route_coverage": 1.0,
-      "answer_coverage": 0.0,
-      "answer_status": "none",
-      "answer_value": null,
-      "answer_source": null,
-      "evidence_coverage": 0.0,
-      "score_drift": 0.23982373458159092,
-      "text_coverage": true,
-      "image_coverage": true,
-      "conflict_risk": 0.0,
-      "retrieval_quality_label": "bad",
-      "failure_reason": "low_precision",
-      "corrective_action": "filter_noise",
-      "evaluator_explanation": "Retrieved hits do not answer the question and rerank drift is high, indicating low precision."
-    },
-    {
-      "retrieval_id": "retrieval_9750b1c1c17a",
-      "source_aspect": "optical accuracy",
-      "top_k_count": 2,
-      "route_coverage": 1.0,
-      "answer_coverage": 0.0,
-      "answer_status": "none",
-      "answer_value": null,
-      "answer_source": null,
-      "evidence_coverage": 0.0,
-      "score_drift": 0.27804707951051083,
-      "text_coverage": true,
-      "image_coverage": false,
-      "conflict_risk": 0.0,
-      "retrieval_quality_label": "bad",
-      "failure_reason": "low_precision",
-      "corrective_action": "filter_noise",
-      "evaluator_explanation": "Retrieved hits do not answer the question and rerank drift is high, indicating low precision."
-    },
-    {
-      "retrieval_id": "retrieval_e9ed89665588",
-      "source_aspect": "optical accuracy",
-      "top_k_count": 2,
-      "route_coverage": 1.0,
-      "answer_coverage": 0.0,
-      "answer_status": "none",
-      "answer_value": null,
-      "answer_source": null,
-      "evidence_coverage": 0.0,
-      "score_drift": 0.3291598502833883,
-      "text_coverage": true,
-      "image_coverage": false,
-      "conflict_risk": 0.0,
-      "retrieval_quality_label": "bad",
-      "failure_reason": "low_precision",
-      "corrective_action": "filter_noise",
-      "evaluator_explanation": "Retrieved hits do not answer the question and rerank drift is high, indicating low precision."
+      "failure_reason": "low_recall",
+      "corrective_action": "expand_topk",
+      "evaluator_explanation": "Retrieved evidence does not answer the question, so recall should be expanded before rewriting the claim."
     }
   ],
   "retrieval_runtime": {
     "text_embedding_backend": "api",
     "text_embedding_model": "text-embedding-v4",
-    "image_embedding_backend": "clip",
-    "image_embedding_model": "openai/clip-vit-base-patch32",
+    "image_embedding_backend": "proxy_text",
+    "image_embedding_model": null,
     "reranker_backend": "api",
     "reranker_model": "gte-rerank-v2",
-    "multimodal_reranker_backend": "qwen_vl",
-    "multimodal_reranker_model": "qwen-vl-max-latest",
-    "native_multimodal_enabled": true,
-    "summary": "Image evidence is configured to use native multimodal retrieval or reranking paths."
+    "multimodal_reranker_backend": "disabled",
+    "multimodal_reranker_model": null,
+    "native_multimodal_enabled": false,
+    "summary": "Image evidence is currently indexed through proxy text, and reranking remains text-only rather than native multimodal."
   },
   "aggregates": [
     {
-      "aspect": "rubber insert durability",
-      "frequency": 1,
-      "positive_ratio": 0.0,
-      "negative_ratio": 1.0,
-      "neutral_ratio": 0.0,
-      "mixed_ratio": 0.0,
-      "scenes": {
-        "long-term wear": 1
-      },
-      "representative_review_ids": [
-        "sunglasses_010_review_0021"
-      ]
-    },
-    {
       "aspect": "overall_experience",
-      "frequency": 1,
-      "positive_ratio": 0.0,
-      "negative_ratio": 0.0,
-      "neutral_ratio": 0.0,
-      "mixed_ratio": 1.0,
-      "scenes": {},
-      "representative_review_ids": [
-        "sunglasses_010_review_0021"
-      ]
-    },
-    {
-      "aspect": "price",
-      "frequency": 1,
-      "positive_ratio": 1.0,
-      "negative_ratio": 0.0,
-      "neutral_ratio": 0.0,
-      "mixed_ratio": 0.0,
-      "scenes": {},
-      "representative_review_ids": [
-        "sunglasses_010_review_0064"
-      ]
-    },
-    {
-      "aspect": "lens tinting",
-      "frequency": 1,
-      "positive_ratio": 1.0,
-      "negative_ratio": 0.0,
-      "neutral_ratio": 0.0,
-      "mixed_ratio": 0.0,
-      "scenes": {},
-      "representative_review_ids": [
-        "sunglasses_010_review_0064"
-      ]
-    },
-    {
-      "aspect": "comfort",
-      "frequency": 1,
-      "positive_ratio": 1.0,
-      "negative_ratio": 0.0,
-      "neutral_ratio": 0.0,
-      "mixed_ratio": 0.0,
-      "scenes": {},
-      "representative_review_ids": [
-        "sunglasses_010_review_0064"
-      ]
-    },
-    {
-      "aspect": "optical accuracy",
-      "frequency": 1,
+      "frequency": 2,
       "positive_ratio": 0.0,
       "negative_ratio": 1.0,
       "neutral_ratio": 0.0,
       "mixed_ratio": 0.0,
-      "scenes": {
-        "walking/outdoor navigation": 1
-      },
+      "scenes": {},
       "representative_review_ids": [
+        "sunglasses_010_review_0021",
         "sunglasses_010_review_0064"
       ]
     }
@@ -1216,295 +560,56 @@
   "report": {
     "product_id": "sunglasses_010",
     "category_slug": "sunglasses",
-    "answer": "Positive feedback appears on Price perception, Lens tinting perception, and Comfort perception. Price perception, Lens tinting perception, and Comfort perception are mainly review-supported and lack direct product-page substantiation. The most important negative issue is Rubber insert durability failure.",
+    "answer": "Positive feedback appears on overall_experience. Overall_experience is partially supported by product-page text.",
     "strengths": [
       {
-        "label": "Price perception",
-        "summary": "Current evidence only partially supports this claim: Positive feedback on Price perception comes from user reviews, but no direct product-page text or reliable image evidence was retrieved.",
-        "confidence": 0.78,
+        "label": "overall_experience",
+        "summary": "overall_experience is the most frequently mentioned experience theme in current reviews.",
+        "confidence": 0.7,
         "supporting_evidence": {
           "review_ids": [
+            "sunglasses_010_review_0021",
             "sunglasses_010_review_0064"
           ],
-          "product_text_block_ids": [],
-          "product_image_ids": []
-        },
-        "owner": "expectation_mismatch",
-        "evidence_level": "review_only",
-        "confidence_breakdown": null
-      },
-      {
-        "label": "Lens tinting perception",
-        "summary": "Current evidence only partially supports this claim: Positive feedback on Lens tinting perception comes from user reviews, but no direct product-page text or reliable image evidence was retrieved.",
-        "confidence": 0.78,
-        "supporting_evidence": {
-          "review_ids": [
-            "sunglasses_010_review_0064"
+          "product_text_block_ids": [
+            "sunglasses_010_model_description_5124b465e538",
+            "sunglasses_010_category_afcfe308543f"
           ],
-          "product_text_block_ids": [],
           "product_image_ids": []
         },
-        "owner": "expectation_mismatch",
-        "evidence_level": "review_only",
-        "confidence_breakdown": null
-      },
-      {
-        "label": "Comfort perception",
-        "summary": "Current evidence only partially supports this claim: Positive feedback on Comfort perception comes from user reviews, but no direct product-page text or reliable image evidence was retrieved.",
-        "confidence": 0.78,
-        "supporting_evidence": {
-          "review_ids": [
-            "sunglasses_010_review_0064"
-          ],
-          "product_text_block_ids": [],
-          "product_image_ids": []
-        },
-        "owner": "expectation_mismatch",
-        "evidence_level": "review_only",
-        "confidence_breakdown": null
+        "owner": "content_presentation",
+        "evidence_level": "partial_product_support",
+        "confidence_breakdown": {
+          "extract_confidence": 0.68,
+          "question_confidence": 0.62,
+          "evidence_confidence": 0.71,
+          "consistency_confidence": 0.75,
+          "final_confidence": 0.6925
+        }
       }
     ],
-    "weaknesses": [
-      {
-        "label": "Rubber insert durability failure",
-        "summary": "Current evidence only partially supports this claim: One user reports that the rubber insert near the ear deteriorated and fell apart in less than two years.",
-        "confidence": 0.78,
-        "supporting_evidence": {
-          "review_ids": [
-            "sunglasses_010_review_0021"
-          ],
-          "product_text_block_ids": [],
-          "product_image_ids": []
-        },
-        "owner": "product_issue",
-        "evidence_level": "review_only",
-        "confidence_breakdown": null
-      },
-      {
-        "label": "Potential optical magnification affecting depth perception",
-        "summary": "Current evidence only partially supports this claim: One user reports that the lenses slightly magnify vision, making the ground appear closer during walking or outdoor navigation.",
-        "confidence": 0.78,
-        "supporting_evidence": {
-          "review_ids": [
-            "sunglasses_010_review_0064"
-          ],
-          "product_text_block_ids": [],
-          "product_image_ids": []
-        },
-        "owner": "product_issue",
-        "evidence_level": "review_only",
-        "confidence_breakdown": null
-      }
-    ],
+    "weaknesses": [],
     "controversies": [],
-    "evidence_gaps": [
-      {
-        "label": "Missing rubber insert durability disclosure",
-        "summary": "No product-page warranty, material composition, or durability testing detail was retrieved for the rubber insert near the ear.",
-        "confidence": 0.95,
-        "source_aspect": "rubber insert durability",
-        "supporting_evidence": {
-          "review_ids": [
-            "sunglasses_010_review_0021"
-          ],
-          "product_text_block_ids": [],
-          "product_image_ids": []
-        },
-        "owner": "content_presentation",
-        "evidence_level": "review_only",
-        "confidence_breakdown": null
-      },
-      {
-        "label": "Missing optical distortion validation",
-        "summary": "No product-page evidence was retrieved for optical neutrality, distortion control, or magnification-related validation.",
-        "confidence": 0.94,
-        "source_aspect": "optical accuracy",
-        "supporting_evidence": {
-          "review_ids": [
-            "sunglasses_010_review_0064"
-          ],
-          "product_text_block_ids": [],
-          "product_image_ids": []
-        },
-        "owner": "content_presentation",
-        "evidence_level": "review_only",
-        "confidence_breakdown": null
-      },
-      {
-        "label": "Comfort substantiation gap",
-        "summary": "Comfort is positively mentioned by a user review, but no product-page text or reliable image evidence was retrieved to substantiate the claim.",
-        "confidence": 0.86,
-        "source_aspect": "comfort",
-        "supporting_evidence": {
-          "review_ids": [
-            "sunglasses_010_review_0064"
-          ],
-          "product_text_block_ids": [],
-          "product_image_ids": []
-        },
-        "owner": "content_presentation",
-        "evidence_level": "review_only",
-        "confidence_breakdown": null
-      },
-      {
-        "label": "Price substantiation gap",
-        "summary": "The product is positively perceived as having an excellent price, but the listed price and comparative pricing context were not retrieved.",
-        "confidence": 0.8,
-        "source_aspect": "price",
-        "supporting_evidence": {
-          "review_ids": [
-            "sunglasses_010_review_0064"
-          ],
-          "product_text_block_ids": [],
-          "product_image_ids": []
-        },
-        "owner": "content_presentation",
-        "evidence_level": "review_only",
-        "confidence_breakdown": null
-      },
-      {
-        "label": "Missing lens tinting substantiation",
-        "summary": "Current product-page evidence does not substantiate the review feedback about lens tinting.",
-        "confidence": 0.8,
-        "source_aspect": "lens tinting",
-        "supporting_evidence": {
-          "review_ids": [
-            "sunglasses_010_review_0064"
-          ],
-          "product_text_block_ids": [],
-          "product_image_ids": []
-        },
-        "owner": "content_presentation",
-        "evidence_level": "review_only",
-        "confidence_breakdown": null
-      }
-    ],
+    "evidence_gaps": [],
     "product_impressions": [
       {
-        "aspect": "rubber insert durability",
-        "aspect_frequency": 1,
-        "positive_ratio": 0.0,
-        "negative_ratio": 1.0,
-        "mixed_ratio": 0.0,
-        "scene_distribution": {
-          "long-term wear": 1
-        },
-        "representative_review_ids": [
-          "sunglasses_010_review_0021"
-        ]
-      },
-      {
         "aspect": "overall_experience",
-        "aspect_frequency": 1,
-        "positive_ratio": 0.0,
-        "negative_ratio": 0.0,
-        "mixed_ratio": 1.0,
-        "scene_distribution": {},
-        "representative_review_ids": [
-          "sunglasses_010_review_0021"
-        ]
-      },
-      {
-        "aspect": "price",
-        "aspect_frequency": 1,
-        "positive_ratio": 1.0,
-        "negative_ratio": 0.0,
-        "mixed_ratio": 0.0,
-        "scene_distribution": {},
-        "representative_review_ids": [
-          "sunglasses_010_review_0064"
-        ]
-      },
-      {
-        "aspect": "lens tinting",
-        "aspect_frequency": 1,
-        "positive_ratio": 1.0,
-        "negative_ratio": 0.0,
-        "mixed_ratio": 0.0,
-        "scene_distribution": {},
-        "representative_review_ids": [
-          "sunglasses_010_review_0064"
-        ]
-      },
-      {
-        "aspect": "comfort",
-        "aspect_frequency": 1,
-        "positive_ratio": 1.0,
-        "negative_ratio": 0.0,
-        "mixed_ratio": 0.0,
-        "scene_distribution": {},
-        "representative_review_ids": [
-          "sunglasses_010_review_0064"
-        ]
-      },
-      {
-        "aspect": "optical accuracy",
-        "aspect_frequency": 1,
+        "aspect_frequency": 2,
         "positive_ratio": 0.0,
         "negative_ratio": 1.0,
         "mixed_ratio": 0.0,
-        "scene_distribution": {
-          "walking/outdoor navigation": 1
-        },
+        "scene_distribution": {},
         "representative_review_ids": [
+          "sunglasses_010_review_0021",
           "sunglasses_010_review_0064"
         ]
       }
     ],
-    "customer_impressions": [
-      {
-        "segment_label": "Users in the 'long-term wear' scenario",
-        "scene": "long-term wear",
-        "review_count": 1,
-        "focus_aspects": [
-          "rubber insert durability"
-        ],
-        "positive_aspects": [],
-        "negative_aspects": [
-          "rubber insert durability"
-        ],
-        "representative_review_ids": [
-          "sunglasses_010_review_0021"
-        ]
-      },
-      {
-        "segment_label": "Users in the 'walking/outdoor navigation' scenario",
-        "scene": "walking/outdoor navigation",
-        "review_count": 1,
-        "focus_aspects": [
-          "optical accuracy"
-        ],
-        "positive_aspects": [],
-        "negative_aspects": [
-          "optical accuracy"
-        ],
-        "representative_review_ids": [
-          "sunglasses_010_review_0064"
-        ]
-      }
-    ],
-    "aspect_relations": [
-      {
-        "relation_type": "negative_driver",
-        "source_aspect": "rubber insert durability",
-        "target_aspect": "overall_experience",
-        "summary": "The mixed overall experience is mainly driven by rubber insert durability: the rubber insert on them near the ear completely deteriorates in less than two years—literally falling apart.",
-        "review_ids": [
-          "sunglasses_010_review_0021"
-        ]
-      }
-    ],
-    "applicable_scenes": [
-      "long-term wear",
-      "walking/outdoor navigation"
-    ],
+    "customer_impressions": [],
+    "aspect_relations": [],
+    "applicable_scenes": [],
     "supporting_aspects": [
-      "rubber insert durability",
-      "overall_experience",
-      "price",
-      "lens tinting",
-      "comfort",
-      "optical accuracy"
+      "overall_experience"
     ],
     "supporting_reviews": [
       "sunglasses_010_review_0021",
@@ -1512,15 +617,18 @@
     ],
     "supporting_review_evidence": {
       "review_ids": [
-        "sunglasses_010_review_0064",
-        "sunglasses_010_review_0021"
+        "sunglasses_010_review_0021",
+        "sunglasses_010_review_0064"
       ],
       "product_text_block_ids": [],
       "product_image_ids": []
     },
     "supporting_product_evidence": {
       "review_ids": [],
-      "product_text_block_ids": [],
+      "product_text_block_ids": [
+        "sunglasses_010_model_description_5124b465e538",
+        "sunglasses_010_category_afcfe308543f"
+      ],
       "product_image_ids": []
     },
     "evidence_nodes": [
@@ -1529,9 +637,8 @@
         "source_type": "review",
         "source_id": "sunglasses_010_review_0021",
         "modality": "text",
-        "content": "the rubber insert on them near the ear completely deteriorates in less than two years—literally falling apart The sunglasses are great! However, the rubber insert on them near the ear completely deteriorates in less than two years—literally falling apart. Sad...",
+        "content": "Maga a szemüveg jó! Viszont a rajta levő gumi berakás a fülnél teljesen tönkre megy kevesebb mint 2ev alatt. Konkrétan szétmállott. Szomorú…",
         "aspect_tags": [
-          "rubber insert durability",
           "overall_experience"
         ],
         "route": null,
@@ -1545,15 +652,42 @@
         "source_type": "review",
         "source_id": "sunglasses_010_review_0064",
         "modality": "text",
-        "content": "Excellent price excellent tinting comfortable to wear",
+        "content": "Ottimo prezzo ed ottimo oscuramento, comodi. Un difetto, ingrandiscono leggermente la vista, quindi si vede il terreno sottostante attraverso la lente, più vicino di quanto non sia.",
         "aspect_tags": [
-          "price",
-          "lens tinting",
-          "comfort",
-          "optical accuracy"
+          "overall_experience"
         ],
         "route": null,
         "source_section": null,
+        "region_id": null,
+        "region_label": null,
+        "image_path": null
+      },
+      {
+        "evidence_node_id": "sunglasses_010_model_description_5124b465e538_chunk_00",
+        "source_type": "product_text",
+        "source_id": "sunglasses_010_model_description_5124b465e538",
+        "modality": "text",
+        "content": "100% UV protection and Category 4 lenses fully block intense sunlight and glare. Polarized lens technology enhances object definition and contrast for safer outdoor enjoyment. Designed specifically fo",
+        "aspect_tags": [
+          "overall_experience"
+        ],
+        "route": "text",
+        "source_section": "model_description",
+        "region_id": null,
+        "region_label": null,
+        "image_path": null
+      },
+      {
+        "evidence_node_id": "sunglasses_010_category_afcfe308543f_chunk_00",
+        "source_type": "product_text",
+        "source_id": "sunglasses_010_category_afcfe308543f",
+        "modality": "text",
+        "content": "All Sports > Running > Accessories > Sunglasses",
+        "aspect_tags": [
+          "overall_experience"
+        ],
+        "route": "text",
+        "source_section": "category",
         "region_id": null,
         "region_label": null,
         "image_path": null
@@ -1561,277 +695,73 @@
     ],
     "claim_attributions": [
       {
-        "claim_id": "strength:price_issue:0",
-        "claim_text": "Positive feedback on Price perception comes from user reviews, but no direct product-page text or reliable image evidence was retrieved.",
+        "claim_id": "strength:overall_experience_issue:0",
+        "claim_text": "overall_experience is the most frequently mentioned experience theme in current reviews.",
         "claim_source": "strength",
-        "support_status": "partial",
-        "support_type": "review",
+        "support_status": "supported",
+        "support_type": "mixed",
         "support_ids": [
-          "sunglasses_010_review_0064_chunk_00"
+          "sunglasses_010_review_0021_chunk_00",
+          "sunglasses_010_review_0064_chunk_00",
+          "sunglasses_010_model_description_5124b465e538_chunk_00",
+          "sunglasses_010_category_afcfe308543f_chunk_00"
         ],
-        "route_sources": [],
+        "route_sources": [
+          "text"
+        ],
         "evidence_gap": null,
-        "revision_action": "downgrade",
-        "revised_claim": "Current evidence only partially supports this claim: Positive feedback on Price perception comes from user reviews, but no direct product-page text or reliable image evidence was retrieved."
-      },
-      {
-        "claim_id": "strength:lens_tinting_issue:1",
-        "claim_text": "Positive feedback on Lens tinting perception comes from user reviews, but no direct product-page text or reliable image evidence was retrieved.",
-        "claim_source": "strength",
-        "support_status": "partial",
-        "support_type": "review",
-        "support_ids": [
-          "sunglasses_010_review_0064_chunk_00"
-        ],
-        "route_sources": [],
-        "evidence_gap": null,
-        "revision_action": "downgrade",
-        "revised_claim": "Current evidence only partially supports this claim: Positive feedback on Lens tinting perception comes from user reviews, but no direct product-page text or reliable image evidence was retrieved."
-      },
-      {
-        "claim_id": "strength:comfort_issue:2",
-        "claim_text": "Positive feedback on Comfort perception comes from user reviews, but no direct product-page text or reliable image evidence was retrieved.",
-        "claim_source": "strength",
-        "support_status": "partial",
-        "support_type": "review",
-        "support_ids": [
-          "sunglasses_010_review_0064_chunk_00"
-        ],
-        "route_sources": [],
-        "evidence_gap": null,
-        "revision_action": "downgrade",
-        "revised_claim": "Current evidence only partially supports this claim: Positive feedback on Comfort perception comes from user reviews, but no direct product-page text or reliable image evidence was retrieved."
-      },
-      {
-        "claim_id": "weakness:rubber_insert_durability_issue:0",
-        "claim_text": "One user reports that the rubber insert near the ear deteriorated and fell apart in less than two years.",
-        "claim_source": "weakness",
-        "support_status": "partial",
-        "support_type": "review",
-        "support_ids": [
-          "sunglasses_010_review_0021_chunk_00"
-        ],
-        "route_sources": [],
-        "evidence_gap": null,
-        "revision_action": "downgrade",
-        "revised_claim": "Current evidence only partially supports this claim: One user reports that the rubber insert near the ear deteriorated and fell apart in less than two years."
-      },
-      {
-        "claim_id": "weakness:optical_accuracy_issue:1",
-        "claim_text": "One user reports that the lenses slightly magnify vision, making the ground appear closer during walking or outdoor navigation.",
-        "claim_source": "weakness",
-        "support_status": "partial",
-        "support_type": "review",
-        "support_ids": [
-          "sunglasses_010_review_0064_chunk_00"
-        ],
-        "route_sources": [],
-        "evidence_gap": null,
-        "revision_action": "downgrade",
-        "revised_claim": "Current evidence only partially supports this claim: One user reports that the lenses slightly magnify vision, making the ground appear closer during walking or outdoor navigation."
-      },
-      {
-        "claim_id": "evidence_gap:rubber_insert_durability_evidence_gap:0",
-        "claim_text": "No product-page warranty, material composition, or durability testing detail was retrieved for the rubber insert near the ear.",
-        "claim_source": "evidence_gap",
-        "support_status": "unsupported",
-        "support_type": "review",
-        "support_ids": [
-          "sunglasses_010_review_0021_chunk_00"
-        ],
-        "route_sources": [],
-        "evidence_gap": "No product-page warranty, material composition, or durability testing detail was retrieved for the rubber insert near the ear.",
         "revision_action": "keep",
         "revised_claim": null
       },
       {
-        "claim_id": "evidence_gap:optical_accuracy_evidence_gap:1",
-        "claim_text": "No product-page evidence was retrieved for optical neutrality, distortion control, or magnification-related validation.",
-        "claim_source": "evidence_gap",
-        "support_status": "unsupported",
-        "support_type": "review",
-        "support_ids": [
-          "sunglasses_010_review_0064_chunk_00"
-        ],
-        "route_sources": [],
-        "evidence_gap": "No product-page evidence was retrieved for optical neutrality, distortion control, or magnification-related validation.",
-        "revision_action": "keep",
-        "revised_claim": null
-      },
-      {
-        "claim_id": "evidence_gap:comfort_evidence_gap:2",
-        "claim_text": "Comfort is positively mentioned by a user review, but no product-page text or reliable image evidence was retrieved to substantiate the claim.",
-        "claim_source": "evidence_gap",
-        "support_status": "unsupported",
-        "support_type": "review",
-        "support_ids": [
-          "sunglasses_010_review_0064_chunk_00"
-        ],
-        "route_sources": [],
-        "evidence_gap": "Comfort is positively mentioned by a user review, but no product-page text or reliable image evidence was retrieved to substantiate the claim.",
-        "revision_action": "keep",
-        "revised_claim": null
-      },
-      {
-        "claim_id": "evidence_gap:price_evidence_gap:3",
-        "claim_text": "The product is positively perceived as having an excellent price, but the listed price and comparative pricing context were not retrieved.",
-        "claim_source": "evidence_gap",
-        "support_status": "unsupported",
-        "support_type": "review",
-        "support_ids": [
-          "sunglasses_010_review_0064_chunk_00"
-        ],
-        "route_sources": [],
-        "evidence_gap": "The product is positively perceived as having an excellent price, but the listed price and comparative pricing context were not retrieved.",
-        "revision_action": "keep",
-        "revised_claim": null
-      },
-      {
-        "claim_id": "evidence_gap:lens_tinting_evidence_gap:4",
-        "claim_text": "Current product-page evidence does not substantiate the review feedback about lens tinting.",
-        "claim_source": "evidence_gap",
-        "support_status": "unsupported",
-        "support_type": "review",
-        "support_ids": [
-          "sunglasses_010_review_0064_chunk_00"
-        ],
-        "route_sources": [],
-        "evidence_gap": "Current product-page evidence does not substantiate the review feedback about lens tinting.",
-        "revision_action": "keep",
-        "revised_claim": null
-      },
-      {
-        "claim_id": "suggestion:add_durability-validation_notes_and_warranty_scope_for_the_rubber_ear_insert,_and_describe_the_actual_material_and_test_scope_without_claiming_unsupported_lifetime_thresholds.:0",
-        "claim_text": "Add durability-validation notes and warranty scope for the rubber ear insert, and describe the actual material and test scope without claiming unsupported lifetime thresholds.",
+        "claim_id": "suggestion:prioritize_improvements_to_the_design_or_presentation_related_to_overall_experience,_and_strengthen_the_corresponding_explanation_on_the_product_page.:0",
+        "claim_text": "Prioritize improvements to the design or presentation related to overall_experience, and strengthen the corresponding explanation on the product page.",
         "claim_source": "suggestion",
-        "support_status": "partial",
-        "support_type": "review",
+        "support_status": "supported",
+        "support_type": "mixed",
         "support_ids": [
-          "sunglasses_010_review_0021_chunk_00"
+          "sunglasses_010_review_0021_chunk_00",
+          "sunglasses_010_review_0064_chunk_00",
+          "sunglasses_010_model_description_5124b465e538_chunk_00",
+          "sunglasses_010_category_afcfe308543f_chunk_00"
         ],
-        "route_sources": [],
-        "evidence_gap": null,
-        "revision_action": "downgrade",
-        "revised_claim": "Current evidence only partially supports this claim: Add durability-validation notes and warranty scope for the rubber ear insert, and describe the actual material and test scope without claiming unsupported lifetime thresholds."
-      },
-      {
-        "claim_id": "suggestion:add_optical_validation_notes_relevant_to_motion_and_depth_perception,_and_explain_what_current_product-page_evidence_can_and_cannot_verify.:1",
-        "claim_text": "Add optical validation notes relevant to motion and depth perception, and explain what current product-page evidence can and cannot verify.",
-        "claim_source": "suggestion",
-        "support_status": "partial",
-        "support_type": "review",
-        "support_ids": [
-          "sunglasses_010_review_0064_chunk_00"
+        "route_sources": [
+          "text"
         ],
-        "route_sources": [],
         "evidence_gap": null,
-        "revision_action": "downgrade",
-        "revised_claim": "Current evidence only partially supports this claim: Add optical validation notes relevant to motion and depth perception, and explain what current product-page evidence can and cannot verify."
-      },
-      {
-        "claim_id": "suggestion:clarify_the_fit_and_comfort-related_design_cues_on_the_product_page,_and_add_close-up_visuals_of_the_features_that_help_users_judge_wear_comfort.:2",
-        "claim_text": "Clarify the fit and comfort-related design cues on the product page, and add close-up visuals of the features that help users judge wear comfort.",
-        "claim_source": "suggestion",
-        "support_status": "partial",
-        "support_type": "review",
-        "support_ids": [
-          "sunglasses_010_review_0064_chunk_00"
-        ],
-        "route_sources": [],
-        "evidence_gap": null,
-        "revision_action": "downgrade",
-        "revised_claim": "Current evidence only partially supports this claim: Clarify the fit and comfort-related design cues on the product page, and add close-up visuals of the features that help users judge wear comfort."
-      },
-      {
-        "claim_id": "suggestion:state_the_current_selling_price_and_any_active_discount_or_list-price_reference_directly_in_the_primary_product_metadata_so_the_value_claim_can_be_checked_quickly.:3",
-        "claim_text": "State the current selling price and any active discount or list-price reference directly in the primary product metadata so the value claim can be checked quickly.",
-        "claim_source": "suggestion",
-        "support_status": "partial",
-        "support_type": "review",
-        "support_ids": [
-          "sunglasses_010_review_0064_chunk_00"
-        ],
-        "route_sources": [],
-        "evidence_gap": null,
-        "revision_action": "downgrade",
-        "revised_claim": "Current evidence only partially supports this claim: State the current selling price and any active discount or list-price reference directly in the primary product metadata so the value claim can be checked quickly."
+        "revision_action": "keep",
+        "revised_claim": null
       }
     ],
-    "confidence": 0.92,
+    "confidence": 0.53,
     "suggestions": [
       {
-        "suggestion": "Current evidence only partially supports this claim: Add durability-validation notes and warranty scope for the rubber ear insert, and describe the actual material and test scope without claiming unsupported lifetime thresholds.",
+        "suggestion": "Prioritize improvements to the design or presentation related to overall_experience, and strengthen the corresponding explanation on the product page.",
         "suggestion_type": "perception",
         "reason": [
-          "Rubber insert durability is the only aspect with 100% negative sentiment and is tied to long-term wear — a critical use case for sports sunglasses. No warranty, material spec, or durability claim exists on the product page, creating a trust gap.",
-          "Retrieval attempts found zero textual or visual evidence addressing rubber insert composition, warranty, or replaceability — indicating a material omission in product documentation."
+          "Clear negative feedback exists for overall_experience, appearing 2 times."
         ],
-        "confidence": 0.9,
+        "confidence": 0.7,
         "supporting_evidence": {
           "review_ids": [
-            "sunglasses_010_review_0021"
-          ],
-          "product_text_block_ids": [],
-          "product_image_ids": []
-        },
-        "owner": "content_presentation",
-        "replay_note": "Replay continuity: the issue around Missing rubber insert durability disclosure also appeared in the previous run.",
-        "confidence_breakdown": null
-      },
-      {
-        "suggestion": "Current evidence only partially supports this claim: Add optical validation notes relevant to motion and depth perception, and explain what current product-page evidence can and cannot verify.",
-        "suggestion_type": "perception",
-        "reason": [
-          "Optical accuracy is rated 100% negative in walking/outdoor navigation — a high-stakes scene where distortion or chromatic aberration could impair safety.",
-          "No product-page claims or test data about optical clarity, distortion control, non-prescription status, or measured visual performance were retrieved."
-        ],
-        "confidence": 0.88,
-        "supporting_evidence": {
-          "review_ids": [
+            "sunglasses_010_review_0021",
             "sunglasses_010_review_0064"
           ],
-          "product_text_block_ids": [],
-          "product_image_ids": []
-        },
-        "owner": "content_presentation",
-        "replay_note": "Replay continuity: the issue around Missing optical distortion validation also appeared in the previous run.",
-        "confidence_breakdown": null
-      },
-      {
-        "suggestion": "Current evidence only partially supports this claim: Clarify the fit and comfort-related design cues on the product page, and add close-up visuals of the features that help users judge wear comfort.",
-        "suggestion_type": "perception",
-        "reason": [
-          "Comfort is positively mentioned by a user review, but no product-page text or reliable image evidence was retrieved to substantiate the claim."
-        ],
-        "confidence": 0.86,
-        "supporting_evidence": {
-          "review_ids": [
-            "sunglasses_010_review_0064"
+          "product_text_block_ids": [
+            "sunglasses_010_model_description_5124b465e538",
+            "sunglasses_010_category_afcfe308543f"
           ],
-          "product_text_block_ids": [],
           "product_image_ids": []
         },
         "owner": "content_presentation",
-        "replay_note": "Replay continuity: the issue around Comfort substantiation gap also appeared in the previous run.",
-        "confidence_breakdown": null
-      },
-      {
-        "suggestion": "Current evidence only partially supports this claim: State the current selling price and any active discount or list-price reference directly in the primary product metadata so the value claim can be checked quickly.",
-        "suggestion_type": "perception",
-        "reason": [
-          "The product is positively perceived as having an excellent price, but the listed price and comparative pricing context were not retrieved."
-        ],
-        "confidence": 0.8,
-        "supporting_evidence": {
-          "review_ids": [
-            "sunglasses_010_review_0064"
-          ],
-          "product_text_block_ids": [],
-          "product_image_ids": []
-        },
-        "owner": "content_presentation",
-        "replay_note": "Replay continuity: the issue around Price substantiation gap also appeared in the previous run.",
-        "confidence_breakdown": null
+        "replay_note": null,
+        "confidence_breakdown": {
+          "extract_confidence": 0.68,
+          "question_confidence": 0.62,
+          "evidence_confidence": 0.71,
+          "consistency_confidence": 0.75,
+          "final_confidence": 0.6925
+        }
       }
     ]
   },
@@ -1839,7 +769,7 @@
     {
       "trace_type": "observation",
       "aspect": "replay_continuity",
-      "summary": "replay_path=/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/5_replay/sunglasses/sunglasses_010_replay.json, feedback_path=/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/5_feedback/sunglasses/sunglasses_010_feedback_slots.json, persistent=Comfort substantiation gap, Missing optical distortion validation, Potential optical magnification affecting depth perception, Price substantiation gap, Missing rubber insert durability disclosure, Rubber insert durability failure, resolved=none, new=Missing lens tinting substantiation, accepted=none, rejected=none, reviewed=0",
+      "summary": "replay_path=/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/5_replay/sunglasses/sunglasses_010_replay.json, feedback_path=/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/5_feedback/sunglasses/sunglasses_010_feedback_slots.json, persistent=none, resolved=Comfort substantiation gap, Missing lens tinting substantiation, Missing optical distortion validation, Potential optical magnification affecting depth perception, Price substantiation gap, Missing rubber insert durability disclosure, Rubber insert durability failure, new=none, accepted=none, rejected=none, reviewed=0",
       "suggestion_id": null,
       "owner": null,
       "supporting_evidence": {
@@ -1851,38 +781,8 @@
     },
     {
       "trace_type": "observation",
-      "aspect": "rubber insert durability",
-      "summary": "review=sunglasses_010_review_0021, sentiment=negative, evidence_span=the rubber insert on them near the ear completely deteriorates in less than two years—literally falling apart",
-      "suggestion_id": null,
-      "owner": null,
-      "supporting_evidence": {
-        "review_ids": [
-          "sunglasses_010_review_0021"
-        ],
-        "product_text_block_ids": [],
-        "product_image_ids": []
-      },
-      "confidence_breakdown": null
-    },
-    {
-      "trace_type": "evidence_check",
-      "aspect": "rubber insert durability",
-      "summary": "reviews=1, valid_text_blocks=0, valid_images=0. questions=Does the product listing specify a warranty period or durability guarantee for the rubber ear inserts?; Do close-up product images show intact, flexible rubber ear inserts without visible cracking, flaking, or separation from the earcup structure?",
-      "suggestion_id": null,
-      "owner": "evidence_gap",
-      "supporting_evidence": {
-        "review_ids": [
-          "sunglasses_010_review_0021"
-        ],
-        "product_text_block_ids": [],
-        "product_image_ids": []
-      },
-      "confidence_breakdown": null
-    },
-    {
-      "trace_type": "observation",
       "aspect": "overall_experience",
-      "summary": "review=sunglasses_010_review_0021, sentiment=mixed, evidence_span=The sunglasses are great! However, the rubber insert on them near the ear completely deteriorates in less than two years—literally falling apart. Sad...",
+      "summary": "review=sunglasses_010_review_0021, sentiment=negative, evidence_span=Maga a szemüveg jó! Viszont a rajta levő gumi berakás a fülnél teljesen tönkre megy kevesebb mint 2ev alatt. Konkrétan szétmállott. Szomorú…",
       "suggestion_id": null,
       "owner": null,
       "supporting_evidence": {
@@ -1892,27 +792,68 @@
         "product_text_block_ids": [],
         "product_image_ids": []
       },
-      "confidence_breakdown": null
+      "confidence_breakdown": {
+        "extract_confidence": 0.68,
+        "question_confidence": 0.62,
+        "evidence_confidence": 0.71,
+        "consistency_confidence": 0.75,
+        "final_confidence": 0.6925
+      }
     },
     {
       "trace_type": "evidence_check",
       "aspect": "overall_experience",
-      "summary": "reviews=1, valid_text_blocks=0, valid_images=0. questions=Does the product listing specify the material composition or durability rating of the rubber insert near the earpieces?; Is there a close-up image or product diagram showing the rubber insert near the earpieces, and does it appear to be a replaceable or reinforced component?",
+      "summary": "reviews=2, valid_text_blocks=2, valid_images=0. questions=Does the product text explicitly support the experience claim related to 'overall_experience'?; Do the product images provide structural or visual evidence for the 'overall_experience' judgment?",
       "suggestion_id": null,
-      "owner": "evidence_gap",
+      "owner": "content_presentation",
       "supporting_evidence": {
         "review_ids": [
-          "sunglasses_010_review_0021"
+          "sunglasses_010_review_0021",
+          "sunglasses_010_review_0064"
         ],
-        "product_text_block_ids": [],
+        "product_text_block_ids": [
+          "sunglasses_010_model_description_5124b465e538",
+          "sunglasses_010_category_afcfe308543f"
+        ],
         "product_image_ids": []
       },
-      "confidence_breakdown": null
+      "confidence_breakdown": {
+        "extract_confidence": 0.68,
+        "question_confidence": 0.62,
+        "evidence_confidence": 0.71,
+        "consistency_confidence": 0.75,
+        "final_confidence": 0.6925
+      }
+    },
+    {
+      "trace_type": "owner_judgement",
+      "aspect": "overall_experience",
+      "summary": "overall_experience is the most frequently mentioned experience theme in current reviews.",
+      "suggestion_id": null,
+      "owner": "content_presentation",
+      "supporting_evidence": {
+        "review_ids": [
+          "sunglasses_010_review_0021",
+          "sunglasses_010_review_0064"
+        ],
+        "product_text_block_ids": [
+          "sunglasses_010_model_description_5124b465e538",
+          "sunglasses_010_category_afcfe308543f"
+        ],
+        "product_image_ids": []
+      },
+      "confidence_breakdown": {
+        "extract_confidence": 0.68,
+        "question_confidence": 0.62,
+        "evidence_confidence": 0.71,
+        "consistency_confidence": 0.75,
+        "final_confidence": 0.6925
+      }
     },
     {
       "trace_type": "observation",
-      "aspect": "price",
-      "summary": "review=sunglasses_010_review_0064, sentiment=positive, evidence_span=Excellent price",
+      "aspect": "overall_experience",
+      "summary": "review=sunglasses_010_review_0064, sentiment=negative, evidence_span=Ottimo prezzo ed ottimo oscuramento, comodi. Un difetto, ingrandiscono leggermente la vista, quindi si vede il terreno sottostante attraverso la lente, più vicino di quanto non sia.",
       "suggestion_id": null,
       "owner": null,
       "supporting_evidence": {
@@ -1922,172 +863,88 @@
         "product_text_block_ids": [],
         "product_image_ids": []
       },
-      "confidence_breakdown": null
+      "confidence_breakdown": {
+        "extract_confidence": 0.68,
+        "question_confidence": 0.62,
+        "evidence_confidence": 0.71,
+        "consistency_confidence": 0.75,
+        "final_confidence": 0.6925
+      }
     },
     {
       "trace_type": "evidence_check",
-      "aspect": "price",
-      "summary": "reviews=1, valid_text_blocks=0, valid_images=0. questions=What is the listed price of the product on the page?; Does the product page display any price-related claims such as 'discounted', 'on sale', 'below MSRP', or comparison to a higher 'original' or 'retail' price?",
+      "aspect": "overall_experience",
+      "summary": "reviews=2, valid_text_blocks=2, valid_images=0. questions=Does the product text explicitly support the experience claim related to 'overall_experience'?; Do the product images provide structural or visual evidence for the 'overall_experience' judgment?",
       "suggestion_id": null,
-      "owner": "evidence_gap",
-      "supporting_evidence": {
-        "review_ids": [
-          "sunglasses_010_review_0064"
-        ],
-        "product_text_block_ids": [],
-        "product_image_ids": []
-      },
-      "confidence_breakdown": null
-    },
-    {
-      "trace_type": "observation",
-      "aspect": "lens tinting",
-      "summary": "review=sunglasses_010_review_0064, sentiment=positive, evidence_span=excellent tinting",
-      "suggestion_id": null,
-      "owner": null,
-      "supporting_evidence": {
-        "review_ids": [
-          "sunglasses_010_review_0064"
-        ],
-        "product_text_block_ids": [],
-        "product_image_ids": []
-      },
-      "confidence_breakdown": null
-    },
-    {
-      "trace_type": "evidence_check",
-      "aspect": "lens tinting",
-      "summary": "reviews=1, valid_text_blocks=0, valid_images=0. questions=What specific tint color or hue is used in the lenses (e.g., gray, brown, green, rose, mirrored)?; Does the product page include a close-up image of the lenses showing the tint appearance under standard lighting?",
-      "suggestion_id": null,
-      "owner": "evidence_gap",
-      "supporting_evidence": {
-        "review_ids": [
-          "sunglasses_010_review_0064"
-        ],
-        "product_text_block_ids": [],
-        "product_image_ids": []
-      },
-      "confidence_breakdown": null
-    },
-    {
-      "trace_type": "observation",
-      "aspect": "comfort",
-      "summary": "review=sunglasses_010_review_0064, sentiment=positive, evidence_span=comfortable to wear",
-      "suggestion_id": null,
-      "owner": null,
-      "supporting_evidence": {
-        "review_ids": [
-          "sunglasses_010_review_0064"
-        ],
-        "product_text_block_ids": [],
-        "product_image_ids": []
-      },
-      "confidence_breakdown": null
-    },
-    {
-      "trace_type": "evidence_check",
-      "aspect": "comfort",
-      "summary": "reviews=1, valid_text_blocks=0, valid_images=0. questions=Does the product description or specifications state that the item is designed for extended wear or all-day comfort?; Does the product description list frame weight, nose-pad design, temple-tip material, hinge flexibility, or other fit details that realistically support long-wear comfort?",
-      "suggestion_id": null,
-      "owner": "evidence_gap",
-      "supporting_evidence": {
-        "review_ids": [
-          "sunglasses_010_review_0064"
-        ],
-        "product_text_block_ids": [],
-        "product_image_ids": []
-      },
-      "confidence_breakdown": null
-    },
-    {
-      "trace_type": "observation",
-      "aspect": "optical accuracy",
-      "summary": "review=sunglasses_010_review_0064, sentiment=negative, evidence_span=they slightly magnify vision, making the ground beneath appear closer than it actually is",
-      "suggestion_id": null,
-      "owner": null,
-      "supporting_evidence": {
-        "review_ids": [
-          "sunglasses_010_review_0064"
-        ],
-        "product_text_block_ids": [],
-        "product_image_ids": []
-      },
-      "confidence_breakdown": null
-    },
-    {
-      "trace_type": "evidence_check",
-      "aspect": "optical accuracy",
-      "summary": "reviews=1, valid_text_blocks=0, valid_images=0. questions=Does the product page provide any optical clarity, distortion-free, or non-prescription lens information that can help evaluate the reported magnification effect?; Does the product text explicitly support the experience claim related to 'optical accuracy'?",
-      "suggestion_id": null,
-      "owner": "evidence_gap",
-      "supporting_evidence": {
-        "review_ids": [
-          "sunglasses_010_review_0064"
-        ],
-        "product_text_block_ids": [],
-        "product_image_ids": []
-      },
-      "confidence_breakdown": null
-    },
-    {
-      "trace_type": "action_generation",
-      "aspect": "Rubber insert durability is the only aspect with 100% negative sentiment and is tied to long-term wear — a critical use case for sports sunglasses. No warranty, material spec, or durability claim exists on the product page, creating a trust gap.",
-      "summary": "Current evidence only partially supports this claim: Add durability-validation notes and warranty scope for the rubber ear insert, and describe the actual material and test scope without claiming unsupported lifetime thresholds.",
-      "suggestion_id": "current evidence only partially supports this claim: add durabil",
       "owner": "content_presentation",
       "supporting_evidence": {
         "review_ids": [
-          "sunglasses_010_review_0021"
+          "sunglasses_010_review_0021",
+          "sunglasses_010_review_0064"
         ],
-        "product_text_block_ids": [],
+        "product_text_block_ids": [
+          "sunglasses_010_model_description_5124b465e538",
+          "sunglasses_010_category_afcfe308543f"
+        ],
         "product_image_ids": []
       },
-      "confidence_breakdown": null
+      "confidence_breakdown": {
+        "extract_confidence": 0.68,
+        "question_confidence": 0.62,
+        "evidence_confidence": 0.71,
+        "consistency_confidence": 0.75,
+        "final_confidence": 0.6925
+      }
     },
     {
-      "trace_type": "action_generation",
-      "aspect": "Optical accuracy is rated 100% negative in walking/outdoor navigation — a high-stakes scene where distortion or chromatic aberration could impair safety.",
-      "summary": "Current evidence only partially supports this claim: Add optical validation notes relevant to motion and depth perception, and explain what current product-page evidence can and cannot verify.",
-      "suggestion_id": "current evidence only partially supports this claim: add optical",
+      "trace_type": "owner_judgement",
+      "aspect": "overall_experience",
+      "summary": "overall_experience is the most frequently mentioned experience theme in current reviews.",
+      "suggestion_id": null,
       "owner": "content_presentation",
       "supporting_evidence": {
         "review_ids": [
+          "sunglasses_010_review_0021",
           "sunglasses_010_review_0064"
         ],
-        "product_text_block_ids": [],
+        "product_text_block_ids": [
+          "sunglasses_010_model_description_5124b465e538",
+          "sunglasses_010_category_afcfe308543f"
+        ],
         "product_image_ids": []
       },
-      "confidence_breakdown": null
+      "confidence_breakdown": {
+        "extract_confidence": 0.68,
+        "question_confidence": 0.62,
+        "evidence_confidence": 0.71,
+        "consistency_confidence": 0.75,
+        "final_confidence": 0.6925
+      }
     },
     {
       "trace_type": "action_generation",
-      "aspect": "Comfort is positively mentioned by a user review, but no product-page text or reliable image evidence was retrieved to substantiate the claim.",
-      "summary": "Current evidence only partially supports this claim: Clarify the fit and comfort-related design cues on the product page, and add close-up visuals of the features that help users judge wear comfort.",
-      "suggestion_id": "current evidence only partially supports this claim: clarify the",
+      "aspect": "Clear negative feedback exists for overall_experience, appearing 2 times.",
+      "summary": "Prioritize improvements to the design or presentation related to overall_experience, and strengthen the corresponding explanation on the product page.",
+      "suggestion_id": "prioritize improvements to the design or presentation related to",
       "owner": "content_presentation",
       "supporting_evidence": {
         "review_ids": [
+          "sunglasses_010_review_0021",
           "sunglasses_010_review_0064"
         ],
-        "product_text_block_ids": [],
-        "product_image_ids": []
-      },
-      "confidence_breakdown": null
-    },
-    {
-      "trace_type": "action_generation",
-      "aspect": "The product is positively perceived as having an excellent price, but the listed price and comparative pricing context were not retrieved.",
-      "summary": "Current evidence only partially supports this claim: State the current selling price and any active discount or list-price reference directly in the primary product metadata so the value claim can be checked quickly.",
-      "suggestion_id": "current evidence only partially supports this claim: state the c",
-      "owner": "content_presentation",
-      "supporting_evidence": {
-        "review_ids": [
-          "sunglasses_010_review_0064"
+        "product_text_block_ids": [
+          "sunglasses_010_model_description_5124b465e538",
+          "sunglasses_010_category_afcfe308543f"
         ],
-        "product_text_block_ids": [],
         "product_image_ids": []
       },
-      "confidence_breakdown": null
+      "confidence_breakdown": {
+        "extract_confidence": 0.68,
+        "question_confidence": 0.62,
+        "evidence_confidence": 0.71,
+        "consistency_confidence": 0.75,
+        "final_confidence": 0.6925
+      }
     }
   ],
   "replay_summary": {
@@ -2096,33 +953,31 @@
     "previous_analysis_mode": "llm",
     "applied": true,
     "reviewed_slot_count": 0,
-    "pending_slot_count": 19,
+    "pending_slot_count": 18,
     "accepted_issue_labels": [],
     "rejected_issue_labels": [],
-    "persistent_issue_labels": [
+    "persistent_issue_labels": [],
+    "persistent_issue_keys": [],
+    "resolved_issue_labels": [
       "Comfort substantiation gap",
+      "Missing lens tinting substantiation",
       "Missing optical distortion validation",
       "Potential optical magnification affecting depth perception",
       "Price substantiation gap",
       "Missing rubber insert durability disclosure",
       "Rubber insert durability failure"
     ],
-    "persistent_issue_keys": [
+    "resolved_issue_keys": [
       "comfort:evidence_gap",
+      "lens_tinting:evidence_gap",
       "optical_accuracy:evidence_gap",
       "optical_accuracy:issue",
       "price:evidence_gap",
       "rubber_insert_durability:evidence_gap",
       "rubber_insert_durability:issue"
     ],
-    "resolved_issue_labels": [],
-    "resolved_issue_keys": [],
-    "new_issue_labels": [
-      "Missing lens tinting substantiation"
-    ],
-    "new_issue_keys": [
-      "lens_tinting:evidence_gap"
-    ]
+    "new_issue_labels": [],
+    "new_issue_keys": []
   },
   "artifact_bundle": {
     "analysis_path": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/4_reports/sunglasses/sunglasses_010_analysis.json",
@@ -2130,6 +985,8 @@
     "replay_path": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/5_replay/sunglasses/sunglasses_010_replay.json"
   },
   "warnings": [
-    "replay continuity applied: persistent=6, resolved=0, new=1, reviewed=0"
+    "sunglasses_010_review_0021_aspect_01_q_02: applied corrective retrieval (expand_topk) bad->bad",
+    "sunglasses_010_review_0064_aspect_01_q_02: applied corrective retrieval (expand_topk) bad->bad",
+    "replay continuity applied: persistent=0, resolved=7, new=0, reviewed=0"
   ]
 }

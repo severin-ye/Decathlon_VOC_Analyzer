@@ -6,30 +6,10 @@
     "extraction_mode": "heuristic",
     "preprocessed_reviews": [
       {
-        "review_id": "backpack_010_review_0001",
-        "product_id": "backpack_010",
-        "original_text": "한곳에 넣을 수 있는 장점이 있네요. 가성비템입니다.",
-        "cleaned_text": "한곳에 넣을 수 있는 장점이 있네요. 가성비템입니다.",
-        "rating": 4,
-        "language_hint": "ko",
-        "is_informative": true,
-        "skip_reason": null
-      },
-      {
         "review_id": "backpack_010_review_0090",
         "product_id": "backpack_010",
         "original_text": "Beau mais trop grand",
         "cleaned_text": "Beau mais trop grand",
-        "rating": 3,
-        "language_hint": "latin",
-        "is_informative": true,
-        "skip_reason": null
-      },
-      {
-        "review_id": "backpack_010_review_0138",
-        "product_id": "backpack_010",
-        "original_text": "The quality is excellent. +5 Workmanship is excellent. +5 Delivery process is excellent +5 I did not get the product I wanted. -3 I did not see size (dimensions) mentioned on the site. -3 I am however a satisfied customer +4 I have not used it because it is smaller than the size (one above) that I have.",
-        "cleaned_text": "The quality is excellent. +5 Workmanship is excellent. +5 Delivery process is excellent +5 I did not get the product I wanted. -3 I did not see size (dimensions) mentioned on the site. -3 I am however a satisfied customer +4 I have not used it because it is smaller than the size (one above) that I have.",
         "rating": 3,
         "language_hint": "latin",
         "is_informative": true,
@@ -48,9 +28,9 @@
     ],
     "sampling_plan": {
       "profile_name": "problem_first",
-      "requested_reviews": 4,
+      "requested_reviews": 2,
       "total_available_reviews": 200,
-      "selected_reviews": 4,
+      "selected_reviews": 2,
       "fallback_order": [
         1,
         2,
@@ -71,18 +51,18 @@
         {
           "rating": 4,
           "configured_ratio": 0.15,
-          "target_count": 1,
+          "target_count": 0,
           "available_count": 28,
-          "selected_count": 1,
+          "selected_count": 0,
           "redistributed_in_count": 0,
           "shortfall_count": 0
         },
         {
           "rating": 3,
           "configured_ratio": 0.2,
-          "target_count": 1,
+          "target_count": 0,
           "available_count": 3,
-          "selected_count": 2,
+          "selected_count": 1,
           "redistributed_in_count": 1,
           "shortfall_count": 0
         },
@@ -108,18 +88,6 @@
     },
     "aspects": [
       {
-        "aspect_id": "backpack_010_review_0001_aspect_01",
-        "review_id": "backpack_010_review_0001",
-        "product_id": "backpack_010",
-        "aspect": "value_price",
-        "sentiment": "positive",
-        "opinion": "한곳에 넣을 수 있는 장점이 있네요. 가성비템입니다.",
-        "evidence_span": "한곳에 넣을 수 있는 장점이 있네요. 가성비템입니다.",
-        "usage_scene": null,
-        "confidence": 0.68,
-        "extraction_mode": "heuristic"
-      },
-      {
         "aspect_id": "backpack_010_review_0090_aspect_01",
         "review_id": "backpack_010_review_0090",
         "product_id": "backpack_010",
@@ -129,42 +97,6 @@
         "evidence_span": "Beau mais trop grand",
         "usage_scene": null,
         "confidence": 0.56,
-        "extraction_mode": "heuristic"
-      },
-      {
-        "aspect_id": "backpack_010_review_0138_aspect_01",
-        "review_id": "backpack_010_review_0138",
-        "product_id": "backpack_010",
-        "aspect": "portability_size",
-        "sentiment": "negative",
-        "opinion": "The quality is excellent. +5 Workmanship is excellent. +5 Delivery process is excellent +5 I did not get the product I wanted. -3 I did not see size (dimensions) mentioned on the site. -3 I am however a satisfied customer +4 I have not used it because it is smaller than the size (one above) that I have.",
-        "evidence_span": "The quality is excellent. +5 Workmanship is excellent. +5 Delivery process is excellent +5 I did not get the product I wanted. -3 I did not see size (dimensions) mentioned on the site. -3 I am however a satisfied customer +4 I have not used it because it is smaller than the size (one above) that I have.",
-        "usage_scene": null,
-        "confidence": 0.68,
-        "extraction_mode": "heuristic"
-      },
-      {
-        "aspect_id": "backpack_010_review_0138_aspect_02",
-        "review_id": "backpack_010_review_0138",
-        "product_id": "backpack_010",
-        "aspect": "usability",
-        "sentiment": "negative",
-        "opinion": "The quality is excellent. +5 Workmanship is excellent. +5 Delivery process is excellent +5 I did not get the product I wanted. -3 I did not see size (dimensions) mentioned on the site. -3 I am however a satisfied customer +4 I have not used it because it is smaller than the size (one above) that I have.",
-        "evidence_span": "The quality is excellent. +5 Workmanship is excellent. +5 Delivery process is excellent +5 I did not get the product I wanted. -3 I did not see size (dimensions) mentioned on the site. -3 I am however a satisfied customer +4 I have not used it because it is smaller than the size (one above) that I have.",
-        "usage_scene": null,
-        "confidence": 0.68,
-        "extraction_mode": "heuristic"
-      },
-      {
-        "aspect_id": "backpack_010_review_0138_aspect_03",
-        "review_id": "backpack_010_review_0138",
-        "product_id": "backpack_010",
-        "aspect": "durability_quality",
-        "sentiment": "negative",
-        "opinion": "The quality is excellent. +5 Workmanship is excellent. +5 Delivery process is excellent +5 I did not get the product I wanted. -3 I did not see size (dimensions) mentioned on the site. -3 I am however a satisfied customer +4 I have not used it because it is smaller than the size (one above) that I have.",
-        "evidence_span": "The quality is excellent. +5 Workmanship is excellent. +5 Delivery process is excellent +5 I did not get the product I wanted. -3 I did not see size (dimensions) mentioned on the site. -3 I am however a satisfied customer +4 I have not used it because it is smaller than the size (one above) that I have.",
-        "usage_scene": null,
-        "confidence": 0.68,
         "extraction_mode": "heuristic"
       },
       {
@@ -184,31 +116,35 @@
     "warnings": [],
     "artifact_path": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/2_aspects/backpack/backpack_010.json"
   },
-  "questions": [
+  "question_intents": [
     {
-      "question_id": "backpack_010_review_0001_aspect_01_q_01",
-      "source_review_id": "backpack_010_review_0001",
-      "source_aspect": "value_price",
-      "source_aspect_id": "backpack_010_review_0001_aspect_01",
-      "question": "Does the product text explicitly support the experience claim related to 'value_price'?",
-      "rationale": "This checks whether the product page text directly supports the review claim.",
+      "intent_id": "backpack_010_review_0090_aspect_01_intent_01",
+      "source_review_id": "backpack_010_review_0090",
+      "source_aspect": "overall_experience",
+      "source_aspect_id": "backpack_010_review_0090_aspect_01",
+      "intent_type": "explicit_support",
+      "rationale": "Check whether product-page text directly substantiates the review claim about 'overall_experience'.",
       "expected_evidence_routes": [
         "text"
       ],
-      "confidence": 0.66
+      "forbidden_concepts": [],
+      "specificity_bound": "Only ask for evidence that can plausibly appear on a normal retail product page."
     },
     {
-      "question_id": "backpack_010_review_0001_aspect_01_q_02",
-      "source_review_id": "backpack_010_review_0001",
-      "source_aspect": "value_price",
-      "source_aspect_id": "backpack_010_review_0001_aspect_01",
-      "question": "Do the product images provide structural or visual evidence for the 'value_price' judgment?",
-      "rationale": "This checks whether visual evidence supports the experience described in the review.",
+      "intent_id": "backpack_010_review_0153_aspect_01_intent_01",
+      "source_review_id": "backpack_010_review_0153",
+      "source_aspect": "portability_size",
+      "source_aspect_id": "backpack_010_review_0153_aspect_01",
+      "intent_type": "explicit_support",
+      "rationale": "Check whether product-page text directly substantiates the review claim about 'portability_size'.",
       "expected_evidence_routes": [
-        "image"
+        "text"
       ],
-      "confidence": 0.66
-    },
+      "forbidden_concepts": [],
+      "specificity_bound": "Only ask for evidence that can plausibly appear on a normal retail product page."
+    }
+  ],
+  "questions": [
     {
       "question_id": "backpack_010_review_0090_aspect_01_q_01",
       "source_review_id": "backpack_010_review_0090",
@@ -218,90 +154,6 @@
       "rationale": "This checks whether the product page text directly supports the review claim.",
       "expected_evidence_routes": [
         "text"
-      ],
-      "confidence": 0.66
-    },
-    {
-      "question_id": "backpack_010_review_0090_aspect_01_q_02",
-      "source_review_id": "backpack_010_review_0090",
-      "source_aspect": "overall_experience",
-      "source_aspect_id": "backpack_010_review_0090_aspect_01",
-      "question": "Do the product images provide structural or visual evidence for the 'overall_experience' judgment?",
-      "rationale": "This checks whether visual evidence supports the experience described in the review.",
-      "expected_evidence_routes": [
-        "image"
-      ],
-      "confidence": 0.66
-    },
-    {
-      "question_id": "backpack_010_review_0138_aspect_01_q_01",
-      "source_review_id": "backpack_010_review_0138",
-      "source_aspect": "portability_size",
-      "source_aspect_id": "backpack_010_review_0138_aspect_01",
-      "question": "Does the product text explicitly support the experience claim related to 'portability_size'?",
-      "rationale": "This checks whether the product page text directly supports the review claim.",
-      "expected_evidence_routes": [
-        "text"
-      ],
-      "confidence": 0.66
-    },
-    {
-      "question_id": "backpack_010_review_0138_aspect_01_q_02",
-      "source_review_id": "backpack_010_review_0138",
-      "source_aspect": "portability_size",
-      "source_aspect_id": "backpack_010_review_0138_aspect_01",
-      "question": "Do the product images provide structural or visual evidence for the 'portability_size' judgment?",
-      "rationale": "This checks whether visual evidence supports the experience described in the review.",
-      "expected_evidence_routes": [
-        "image"
-      ],
-      "confidence": 0.66
-    },
-    {
-      "question_id": "backpack_010_review_0138_aspect_02_q_01",
-      "source_review_id": "backpack_010_review_0138",
-      "source_aspect": "usability",
-      "source_aspect_id": "backpack_010_review_0138_aspect_02",
-      "question": "Does the product text explicitly support the experience claim related to 'usability'?",
-      "rationale": "This checks whether the product page text directly supports the review claim.",
-      "expected_evidence_routes": [
-        "text"
-      ],
-      "confidence": 0.66
-    },
-    {
-      "question_id": "backpack_010_review_0138_aspect_02_q_02",
-      "source_review_id": "backpack_010_review_0138",
-      "source_aspect": "usability",
-      "source_aspect_id": "backpack_010_review_0138_aspect_02",
-      "question": "Do the product images provide structural or visual evidence for the 'usability' judgment?",
-      "rationale": "This checks whether visual evidence supports the experience described in the review.",
-      "expected_evidence_routes": [
-        "image"
-      ],
-      "confidence": 0.66
-    },
-    {
-      "question_id": "backpack_010_review_0138_aspect_03_q_01",
-      "source_review_id": "backpack_010_review_0138",
-      "source_aspect": "durability_quality",
-      "source_aspect_id": "backpack_010_review_0138_aspect_03",
-      "question": "Does the product text explicitly support the experience claim related to 'durability_quality'?",
-      "rationale": "This checks whether the product page text directly supports the review claim.",
-      "expected_evidence_routes": [
-        "text"
-      ],
-      "confidence": 0.66
-    },
-    {
-      "question_id": "backpack_010_review_0138_aspect_03_q_02",
-      "source_review_id": "backpack_010_review_0138",
-      "source_aspect": "durability_quality",
-      "source_aspect_id": "backpack_010_review_0138_aspect_03",
-      "question": "Do the product images provide structural or visual evidence for the 'durability_quality' judgment?",
-      "rationale": "This checks whether visual evidence supports the experience described in the review.",
-      "expected_evidence_routes": [
-        "image"
       ],
       "confidence": 0.66
     },
@@ -316,84 +168,9 @@
         "text"
       ],
       "confidence": 0.66
-    },
-    {
-      "question_id": "backpack_010_review_0153_aspect_01_q_02",
-      "source_review_id": "backpack_010_review_0153",
-      "source_aspect": "portability_size",
-      "source_aspect_id": "backpack_010_review_0153_aspect_01",
-      "question": "Do the product images provide structural or visual evidence for the 'portability_size' judgment?",
-      "rationale": "This checks whether visual evidence supports the experience described in the review.",
-      "expected_evidence_routes": [
-        "image"
-      ],
-      "confidence": 0.66
     }
   ],
   "retrievals": [
-    {
-      "retrieval_id": "retrieval_0e153df67267",
-      "product_id": "backpack_010",
-      "query": "Does the product text explicitly support the experience claim related to 'value_price'?",
-      "source_review_id": "backpack_010_review_0001",
-      "source_aspect": "value_price",
-      "source_question_id": "backpack_010_review_0001_aspect_01_q_01",
-      "source_question": "Does the product text explicitly support the experience claim related to 'value_price'?",
-      "source_evidence_span": "This checks whether the product page text directly supports the review claim.",
-      "expected_evidence_routes": [
-        "text"
-      ],
-      "retrieved": [
-        {
-          "product_id": "backpack_010",
-          "route": "text",
-          "text_block_id": "backpack_010_model_description_c74c9858c2a6",
-          "image_id": null,
-          "region_id": null,
-          "region_label": null,
-          "region_box": null,
-          "source_section": "model_description",
-          "image_path": null,
-          "content_preview": "이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2",
-          "embedding_score": 0.3803194146278324,
-          "rerank_score": 0.3803194146278324
-        }
-      ]
-    },
-    {
-      "retrieval_id": "retrieval_69edf73c8728",
-      "product_id": "backpack_010",
-      "query": "Do the product images provide structural or visual evidence for the 'value_price' judgment?",
-      "source_review_id": "backpack_010_review_0001",
-      "source_aspect": "value_price",
-      "source_question_id": "backpack_010_review_0001_aspect_01_q_02",
-      "source_question": "Do the product images provide structural or visual evidence for the 'value_price' judgment?",
-      "source_evidence_span": "This checks whether visual evidence supports the experience described in the review.",
-      "expected_evidence_routes": [
-        "image"
-      ],
-      "retrieved": [
-        {
-          "product_id": "backpack_010",
-          "route": "image",
-          "text_block_id": null,
-          "image_id": "backpack_010_8512010_224bc9da0299",
-          "region_id": "backpack_010_8512010_224bc9da0299_region_09d620076e2d",
-          "region_label": "upper_focus",
-          "region_box": [
-            0,
-            0,
-            1920,
-            1152
-          ],
-          "source_section": null,
-          "image_path": "images/8512010/img1.png",
-          "content_preview": "백패킹 오거나이저 여행 지갑 S 모든 스포츠 > 등산 > 용품 > 가방 > 가방 용품 이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2 8512010 upper_focus images/85",
-          "embedding_score": 0.30860669992418377,
-          "rerank_score": 0.30860669992418377
-        }
-      ]
-    },
     {
       "retrieval_id": "retrieval_2af973b7dd0d",
       "product_id": "backpack_010",
@@ -410,239 +187,16 @@
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_model_description_c74c9858c2a6",
+          "text_block_id": "backpack_010_model_description_b1904b8659a6",
           "image_id": null,
           "region_id": null,
           "region_label": null,
           "region_box": null,
           "source_section": "model_description",
           "image_path": null,
-          "content_preview": "이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2",
-          "embedding_score": 0.3803194146278324,
-          "rerank_score": 0.3803194146278324
-        }
-      ]
-    },
-    {
-      "retrieval_id": "retrieval_1df798c458eb",
-      "product_id": "backpack_010",
-      "query": "Do the product images provide structural or visual evidence for the 'overall_experience' judgment?",
-      "source_review_id": "backpack_010_review_0090",
-      "source_aspect": "overall_experience",
-      "source_question_id": "backpack_010_review_0090_aspect_01_q_02",
-      "source_question": "Do the product images provide structural or visual evidence for the 'overall_experience' judgment?",
-      "source_evidence_span": "This checks whether visual evidence supports the experience described in the review.",
-      "expected_evidence_routes": [
-        "image"
-      ],
-      "retrieved": [
-        {
-          "product_id": "backpack_010",
-          "route": "image",
-          "text_block_id": null,
-          "image_id": "backpack_010_8512010_224bc9da0299",
-          "region_id": "backpack_010_8512010_224bc9da0299_region_09d620076e2d",
-          "region_label": "upper_focus",
-          "region_box": [
-            0,
-            0,
-            1920,
-            1152
-          ],
-          "source_section": null,
-          "image_path": "images/8512010/img1.png",
-          "content_preview": "백패킹 오거나이저 여행 지갑 S 모든 스포츠 > 등산 > 용품 > 가방 > 가방 용품 이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2 8512010 upper_focus images/85",
-          "embedding_score": 0.2898855178262242,
-          "rerank_score": 0.2898855178262242
-        }
-      ]
-    },
-    {
-      "retrieval_id": "retrieval_9a8566df6bf9",
-      "product_id": "backpack_010",
-      "query": "Does the product text explicitly support the experience claim related to 'portability_size'?",
-      "source_review_id": "backpack_010_review_0138",
-      "source_aspect": "portability_size",
-      "source_question_id": "backpack_010_review_0138_aspect_01_q_01",
-      "source_question": "Does the product text explicitly support the experience claim related to 'portability_size'?",
-      "source_evidence_span": "This checks whether the product page text directly supports the review claim.",
-      "expected_evidence_routes": [
-        "text"
-      ],
-      "retrieved": [
-        {
-          "product_id": "backpack_010",
-          "route": "text",
-          "text_block_id": "backpack_010_model_description_c74c9858c2a6",
-          "image_id": null,
-          "region_id": null,
-          "region_label": null,
-          "region_box": null,
-          "source_section": "model_description",
-          "image_path": null,
-          "content_preview": "이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2",
-          "embedding_score": 0.42257712736425823,
-          "rerank_score": 0.42257712736425823
-        }
-      ]
-    },
-    {
-      "retrieval_id": "retrieval_2ababc5d6c13",
-      "product_id": "backpack_010",
-      "query": "Do the product images provide structural or visual evidence for the 'portability_size' judgment?",
-      "source_review_id": "backpack_010_review_0138",
-      "source_aspect": "portability_size",
-      "source_question_id": "backpack_010_review_0138_aspect_01_q_02",
-      "source_question": "Do the product images provide structural or visual evidence for the 'portability_size' judgment?",
-      "source_evidence_span": "This checks whether visual evidence supports the experience described in the review.",
-      "expected_evidence_routes": [
-        "image"
-      ],
-      "retrieved": [
-        {
-          "product_id": "backpack_010",
-          "route": "image",
-          "text_block_id": null,
-          "image_id": "backpack_010_8512010_224bc9da0299",
-          "region_id": "backpack_010_8512010_224bc9da0299_region_09d620076e2d",
-          "region_label": "upper_focus",
-          "region_box": [
-            0,
-            0,
-            1920,
-            1152
-          ],
-          "source_section": null,
-          "image_path": "images/8512010/img1.png",
-          "content_preview": "백패킹 오거나이저 여행 지갑 S 모든 스포츠 > 등산 > 용품 > 가방 > 가방 용품 이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2 8512010 upper_focus images/85",
-          "embedding_score": 0.33946736991660215,
-          "rerank_score": 0.33946736991660215
-        }
-      ]
-    },
-    {
-      "retrieval_id": "retrieval_ca81e13cb2a8",
-      "product_id": "backpack_010",
-      "query": "Does the product text explicitly support the experience claim related to 'usability'?",
-      "source_review_id": "backpack_010_review_0138",
-      "source_aspect": "usability",
-      "source_question_id": "backpack_010_review_0138_aspect_02_q_01",
-      "source_question": "Does the product text explicitly support the experience claim related to 'usability'?",
-      "source_evidence_span": "This checks whether the product page text directly supports the review claim.",
-      "expected_evidence_routes": [
-        "text"
-      ],
-      "retrieved": [
-        {
-          "product_id": "backpack_010",
-          "route": "text",
-          "text_block_id": "backpack_010_model_description_c74c9858c2a6",
-          "image_id": null,
-          "region_id": null,
-          "region_label": null,
-          "region_box": null,
-          "source_section": "model_description",
-          "image_path": null,
-          "content_preview": "이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2",
-          "embedding_score": 0.42257712736425823,
-          "rerank_score": 0.42257712736425823
-        }
-      ]
-    },
-    {
-      "retrieval_id": "retrieval_49c7016b78ab",
-      "product_id": "backpack_010",
-      "query": "Do the product images provide structural or visual evidence for the 'usability' judgment?",
-      "source_review_id": "backpack_010_review_0138",
-      "source_aspect": "usability",
-      "source_question_id": "backpack_010_review_0138_aspect_02_q_02",
-      "source_question": "Do the product images provide structural or visual evidence for the 'usability' judgment?",
-      "source_evidence_span": "This checks whether visual evidence supports the experience described in the review.",
-      "expected_evidence_routes": [
-        "image"
-      ],
-      "retrieved": [
-        {
-          "product_id": "backpack_010",
-          "route": "image",
-          "text_block_id": null,
-          "image_id": "backpack_010_8512010_224bc9da0299",
-          "region_id": "backpack_010_8512010_224bc9da0299_region_09d620076e2d",
-          "region_label": "upper_focus",
-          "region_box": [
-            0,
-            0,
-            1920,
-            1152
-          ],
-          "source_section": null,
-          "image_path": "images/8512010/img1.png",
-          "content_preview": "백패킹 오거나이저 여행 지갑 S 모든 스포츠 > 등산 > 용품 > 가방 > 가방 용품 이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2 8512010 upper_focus images/85",
-          "embedding_score": 0.3703280399090205,
-          "rerank_score": 0.3703280399090205
-        }
-      ]
-    },
-    {
-      "retrieval_id": "retrieval_fccf7943a8aa",
-      "product_id": "backpack_010",
-      "query": "Does the product text explicitly support the experience claim related to 'durability_quality'?",
-      "source_review_id": "backpack_010_review_0138",
-      "source_aspect": "durability_quality",
-      "source_question_id": "backpack_010_review_0138_aspect_03_q_01",
-      "source_question": "Does the product text explicitly support the experience claim related to 'durability_quality'?",
-      "source_evidence_span": "This checks whether the product page text directly supports the review claim.",
-      "expected_evidence_routes": [
-        "text"
-      ],
-      "retrieved": [
-        {
-          "product_id": "backpack_010",
-          "route": "text",
-          "text_block_id": "backpack_010_model_description_c74c9858c2a6",
-          "image_id": null,
-          "region_id": null,
-          "region_label": null,
-          "region_box": null,
-          "source_section": "model_description",
-          "image_path": null,
-          "content_preview": "이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2",
-          "embedding_score": 0.3803194146278324,
-          "rerank_score": 0.3803194146278324
-        }
-      ]
-    },
-    {
-      "retrieval_id": "retrieval_475c88c225ff",
-      "product_id": "backpack_010",
-      "query": "Do the product images provide structural or visual evidence for the 'durability_quality' judgment?",
-      "source_review_id": "backpack_010_review_0138",
-      "source_aspect": "durability_quality",
-      "source_question_id": "backpack_010_review_0138_aspect_03_q_02",
-      "source_question": "Do the product images provide structural or visual evidence for the 'durability_quality' judgment?",
-      "source_evidence_span": "This checks whether visual evidence supports the experience described in the review.",
-      "expected_evidence_routes": [
-        "image"
-      ],
-      "retrieved": [
-        {
-          "product_id": "backpack_010",
-          "route": "image",
-          "text_block_id": null,
-          "image_id": "backpack_010_8512010_224bc9da0299",
-          "region_id": "backpack_010_8512010_224bc9da0299_region_09d620076e2d",
-          "region_label": "upper_focus",
-          "region_box": [
-            0,
-            0,
-            1920,
-            1152
-          ],
-          "source_section": null,
-          "image_path": "images/8512010/img1.png",
-          "content_preview": "백패킹 오거나이저 여행 지갑 S 모든 스포츠 > 등산 > 용품 > 가방 > 가방 용품 이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2 8512010 upper_focus images/85",
-          "embedding_score": 0.30860669992418377,
-          "rerank_score": 0.30860669992418377
+          "content_preview": "This durable and practical travel wallet is the ultimate solution for securely storing personal belongings. Suitable for both travel and daily use, it’s a backpack that helps you enjoy your trips with",
+          "embedding_score": 0.39759435265737597,
+          "rerank_score": 0.39759435265737597
         }
       ]
     },
@@ -662,85 +216,21 @@
         {
           "product_id": "backpack_010",
           "route": "text",
-          "text_block_id": "backpack_010_model_description_c74c9858c2a6",
+          "text_block_id": "backpack_010_model_description_b1904b8659a6",
           "image_id": null,
           "region_id": null,
           "region_label": null,
           "region_box": null,
           "source_section": "model_description",
           "image_path": null,
-          "content_preview": "이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2",
-          "embedding_score": 0.42257712736425823,
-          "rerank_score": 0.42257712736425823
-        }
-      ]
-    },
-    {
-      "retrieval_id": "retrieval_5488af320d7a",
-      "product_id": "backpack_010",
-      "query": "Do the product images provide structural or visual evidence for the 'portability_size' judgment?",
-      "source_review_id": "backpack_010_review_0153",
-      "source_aspect": "portability_size",
-      "source_question_id": "backpack_010_review_0153_aspect_01_q_02",
-      "source_question": "Do the product images provide structural or visual evidence for the 'portability_size' judgment?",
-      "source_evidence_span": "This checks whether visual evidence supports the experience described in the review.",
-      "expected_evidence_routes": [
-        "image"
-      ],
-      "retrieved": [
-        {
-          "product_id": "backpack_010",
-          "route": "image",
-          "text_block_id": null,
-          "image_id": "backpack_010_8512010_224bc9da0299",
-          "region_id": "backpack_010_8512010_224bc9da0299_region_09d620076e2d",
-          "region_label": "upper_focus",
-          "region_box": [
-            0,
-            0,
-            1920,
-            1152
-          ],
-          "source_section": null,
-          "image_path": "images/8512010/img1.png",
-          "content_preview": "백패킹 오거나이저 여행 지갑 S 모든 스포츠 > 등산 > 용품 > 가방 > 가방 용품 이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2 8512010 upper_focus images/85",
-          "embedding_score": 0.33946736991660215,
-          "rerank_score": 0.33946736991660215
+          "content_preview": "This durable and practical travel wallet is the ultimate solution for securely storing personal belongings. Suitable for both travel and daily use, it’s a backpack that helps you enjoy your trips with",
+          "embedding_score": 0.4873572662751172,
+          "rerank_score": 0.4873572662751172
         }
       ]
     }
   ],
   "retrieval_quality": [
-    {
-      "retrieval_id": "retrieval_0e153df67267",
-      "source_aspect": "value_price",
-      "top_k_count": 1,
-      "route_coverage": 1.0,
-      "answer_coverage": 1.0,
-      "answer_status": "supported",
-      "answer_value": "2",
-      "answer_source": "text",
-      "evidence_coverage": 1.0,
-      "score_drift": 0.0,
-      "text_coverage": true,
-      "image_coverage": false,
-      "conflict_risk": 0.0
-    },
-    {
-      "retrieval_id": "retrieval_69edf73c8728",
-      "source_aspect": "value_price",
-      "top_k_count": 1,
-      "route_coverage": 1.0,
-      "answer_coverage": 0.0,
-      "answer_status": "none",
-      "answer_value": null,
-      "answer_source": null,
-      "evidence_coverage": 0.0,
-      "score_drift": 0.0,
-      "text_coverage": false,
-      "image_coverage": true,
-      "conflict_risk": 0.0
-    },
     {
       "retrieval_id": "retrieval_2af973b7dd0d",
       "source_aspect": "overall_experience",
@@ -748,118 +238,17 @@
       "route_coverage": 1.0,
       "answer_coverage": 1.0,
       "answer_status": "supported",
-      "answer_value": "이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2",
+      "answer_value": "This durable and practical travel wallet is the ultimate solution for securely storing personal belongings. Suitable for both travel and daily use, it’s a backp",
       "answer_source": "text",
       "evidence_coverage": 1.0,
       "score_drift": 0.0,
       "text_coverage": true,
       "image_coverage": false,
-      "conflict_risk": 0.0
-    },
-    {
-      "retrieval_id": "retrieval_1df798c458eb",
-      "source_aspect": "overall_experience",
-      "top_k_count": 1,
-      "route_coverage": 1.0,
-      "answer_coverage": 0.0,
-      "answer_status": "none",
-      "answer_value": null,
-      "answer_source": null,
-      "evidence_coverage": 0.0,
-      "score_drift": 0.0,
-      "text_coverage": false,
-      "image_coverage": true,
-      "conflict_risk": 0.0
-    },
-    {
-      "retrieval_id": "retrieval_9a8566df6bf9",
-      "source_aspect": "portability_size",
-      "top_k_count": 1,
-      "route_coverage": 1.0,
-      "answer_coverage": 1.0,
-      "answer_status": "supported",
-      "answer_value": "이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2",
-      "answer_source": "text",
-      "evidence_coverage": 1.0,
-      "score_drift": 0.0,
-      "text_coverage": true,
-      "image_coverage": false,
-      "conflict_risk": 0.0
-    },
-    {
-      "retrieval_id": "retrieval_2ababc5d6c13",
-      "source_aspect": "portability_size",
-      "top_k_count": 1,
-      "route_coverage": 1.0,
-      "answer_coverage": 0.0,
-      "answer_status": "none",
-      "answer_value": null,
-      "answer_source": null,
-      "evidence_coverage": 0.0,
-      "score_drift": 0.0,
-      "text_coverage": false,
-      "image_coverage": true,
-      "conflict_risk": 0.0
-    },
-    {
-      "retrieval_id": "retrieval_ca81e13cb2a8",
-      "source_aspect": "usability",
-      "top_k_count": 1,
-      "route_coverage": 1.0,
-      "answer_coverage": 1.0,
-      "answer_status": "supported",
-      "answer_value": "이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2",
-      "answer_source": "text",
-      "evidence_coverage": 1.0,
-      "score_drift": 0.0,
-      "text_coverage": true,
-      "image_coverage": false,
-      "conflict_risk": 0.0
-    },
-    {
-      "retrieval_id": "retrieval_49c7016b78ab",
-      "source_aspect": "usability",
-      "top_k_count": 1,
-      "route_coverage": 1.0,
-      "answer_coverage": 0.0,
-      "answer_status": "none",
-      "answer_value": null,
-      "answer_source": null,
-      "evidence_coverage": 0.0,
-      "score_drift": 0.0,
-      "text_coverage": false,
-      "image_coverage": true,
-      "conflict_risk": 0.0
-    },
-    {
-      "retrieval_id": "retrieval_fccf7943a8aa",
-      "source_aspect": "durability_quality",
-      "top_k_count": 1,
-      "route_coverage": 1.0,
-      "answer_coverage": 1.0,
-      "answer_status": "supported",
-      "answer_value": "이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2",
-      "answer_source": "text",
-      "evidence_coverage": 1.0,
-      "score_drift": 0.0,
-      "text_coverage": true,
-      "image_coverage": false,
-      "conflict_risk": 0.0
-    },
-    {
-      "retrieval_id": "retrieval_475c88c225ff",
-      "source_aspect": "durability_quality",
-      "top_k_count": 1,
-      "route_coverage": 1.0,
-      "answer_coverage": 0.0,
-      "answer_status": "none",
-      "answer_value": null,
-      "answer_source": null,
-      "evidence_coverage": 0.0,
-      "score_drift": 0.0,
-      "text_coverage": false,
-      "image_coverage": true,
-      "conflict_risk": 0.0
+      "conflict_risk": 0.0,
+      "retrieval_quality_label": "good",
+      "failure_reason": "none",
+      "corrective_action": "keep_current",
+      "evaluator_explanation": "Retrieved evidence covers the expected routes and supports the question without notable conflict."
     },
     {
       "retrieval_id": "retrieval_c70a9128b6d5",
@@ -868,68 +257,32 @@
       "route_coverage": 1.0,
       "answer_coverage": 1.0,
       "answer_status": "supported",
-      "answer_value": "이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2",
+      "answer_value": "This durable and practical travel wallet is the ultimate solution for securely storing personal belongings. Suitable for both travel and daily use, it’s a backp",
       "answer_source": "text",
       "evidence_coverage": 1.0,
       "score_drift": 0.0,
       "text_coverage": true,
       "image_coverage": false,
-      "conflict_risk": 0.0
-    },
-    {
-      "retrieval_id": "retrieval_5488af320d7a",
-      "source_aspect": "portability_size",
-      "top_k_count": 1,
-      "route_coverage": 1.0,
-      "answer_coverage": 0.0,
-      "answer_status": "none",
-      "answer_value": null,
-      "answer_source": null,
-      "evidence_coverage": 0.0,
-      "score_drift": 0.0,
-      "text_coverage": false,
-      "image_coverage": true,
-      "conflict_risk": 0.0
+      "conflict_risk": 0.0,
+      "retrieval_quality_label": "good",
+      "failure_reason": "none",
+      "corrective_action": "keep_current",
+      "evaluator_explanation": "Retrieved evidence covers the expected routes and supports the question without notable conflict."
     }
   ],
   "retrieval_runtime": {
-    "text_embedding_backend": "hash",
+    "text_embedding_backend": "api",
     "text_embedding_model": "text-embedding-v4",
-    "image_embedding_backend": "proxy_text",
-    "image_embedding_model": null,
-    "reranker_backend": "heuristic",
+    "image_embedding_backend": "clip",
+    "image_embedding_model": "openai/clip-vit-base-patch32",
+    "reranker_backend": "api",
     "reranker_model": "gte-rerank-v2",
-    "multimodal_reranker_backend": "disabled",
-    "multimodal_reranker_model": null,
-    "native_multimodal_enabled": false,
-    "summary": "Image evidence is currently indexed through proxy text, and reranking remains text-only rather than native multimodal."
+    "multimodal_reranker_backend": "qwen_vl",
+    "multimodal_reranker_model": "qwen-vl-max-latest",
+    "native_multimodal_enabled": true,
+    "summary": "Image evidence is configured to use native multimodal retrieval or reranking paths."
   },
   "aggregates": [
-    {
-      "aspect": "portability_size",
-      "frequency": 2,
-      "positive_ratio": 0.0,
-      "negative_ratio": 1.0,
-      "neutral_ratio": 0.0,
-      "mixed_ratio": 0.0,
-      "scenes": {},
-      "representative_review_ids": [
-        "backpack_010_review_0138",
-        "backpack_010_review_0153"
-      ]
-    },
-    {
-      "aspect": "value_price",
-      "frequency": 1,
-      "positive_ratio": 1.0,
-      "negative_ratio": 0.0,
-      "neutral_ratio": 0.0,
-      "mixed_ratio": 0.0,
-      "scenes": {},
-      "representative_review_ids": [
-        "backpack_010_review_0001"
-      ]
-    },
     {
       "aspect": "overall_experience",
       "frequency": 1,
@@ -943,7 +296,7 @@
       ]
     },
     {
-      "aspect": "usability",
+      "aspect": "portability_size",
       "frequency": 1,
       "positive_ratio": 0.0,
       "negative_ratio": 1.0,
@@ -951,37 +304,25 @@
       "mixed_ratio": 0.0,
       "scenes": {},
       "representative_review_ids": [
-        "backpack_010_review_0138"
-      ]
-    },
-    {
-      "aspect": "durability_quality",
-      "frequency": 1,
-      "positive_ratio": 0.0,
-      "negative_ratio": 1.0,
-      "neutral_ratio": 0.0,
-      "mixed_ratio": 0.0,
-      "scenes": {},
-      "representative_review_ids": [
-        "backpack_010_review_0138"
+        "backpack_010_review_0153"
       ]
     }
   ],
   "report": {
     "product_id": "backpack_010",
     "category_slug": "backpack",
-    "answer": "Positive feedback appears on value_price. Value_price is partially supported by product-page text. The most important negative issue is Portability_Size. There is still some disagreement around overall_experience, which should be interpreted by user segment and usage context.",
+    "answer": "Positive feedback appears on overall_experience. Overall_experience is partially supported by product-page text. The most important negative issue is Portability_Size. There is still some disagreement around overall_experience, which should be interpreted by user segment and usage context.",
     "strengths": [
       {
-        "label": "value_price",
-        "summary": "Positive feedback dominates for value_price, appearing 1 times.",
+        "label": "overall_experience",
+        "summary": "overall_experience is the most frequently mentioned experience theme in current reviews.",
         "confidence": 0.6,
         "supporting_evidence": {
           "review_ids": [
-            "backpack_010_review_0001"
+            "backpack_010_review_0090"
           ],
           "product_text_block_ids": [
-            "backpack_010_model_description_c74c9858c2a6"
+            "backpack_010_model_description_b1904b8659a6"
           ],
           "product_image_ids": []
         },
@@ -999,82 +340,14 @@
     "weaknesses": [
       {
         "label": "Portability_Size",
-        "summary": "User feedback reports a negative issue around portability_size: The quality is excellent. +5 Workmanship is excellent. +5 Delivery process is excellent +5 I did not get the product I wanted. -3 I did not see size (dimensions) mentioned on the site. -3 I am however a satisfied customer +4 I have not used it because it is smaller than the size (one above) that I have..",
-        "confidence": 0.7,
-        "supporting_evidence": {
-          "review_ids": [
-            "backpack_010_review_0138",
-            "backpack_010_review_0153"
-          ],
-          "product_text_block_ids": [
-            "backpack_010_model_description_c74c9858c2a6"
-          ],
-          "product_image_ids": []
-        },
-        "owner": "product_issue",
-        "evidence_level": "partial_product_support",
-        "confidence_breakdown": {
-          "extract_confidence": 0.68,
-          "question_confidence": 0.62,
-          "evidence_confidence": 0.71,
-          "consistency_confidence": 0.75,
-          "final_confidence": 0.6925
-        }
-      },
-      {
-        "label": "Portability_Size",
         "summary": "User feedback reports a negative issue around portability_size: Very small.",
-        "confidence": 0.68,
+        "confidence": 0.6,
         "supporting_evidence": {
           "review_ids": [
             "backpack_010_review_0153"
           ],
-          "product_text_block_ids": [],
-          "product_image_ids": []
-        },
-        "owner": "product_issue",
-        "evidence_level": "review_only",
-        "confidence_breakdown": {
-          "extract_confidence": 0.68,
-          "question_confidence": 0.7,
-          "evidence_confidence": 0.7,
-          "consistency_confidence": 0.7,
-          "final_confidence": 0.68
-        }
-      },
-      {
-        "label": "Usability",
-        "summary": "User feedback reports a negative issue around usability: The quality is excellent. +5 Workmanship is excellent. +5 Delivery process is excellent +5 I did not get the product I wanted. -3 I did not see size (dimensions) mentioned on the site. -3 I am however a satisfied customer +4 I have not used it because it is smaller than the size (one above) that I have..",
-        "confidence": 0.6,
-        "supporting_evidence": {
-          "review_ids": [
-            "backpack_010_review_0138"
-          ],
           "product_text_block_ids": [
-            "backpack_010_model_description_c74c9858c2a6"
-          ],
-          "product_image_ids": []
-        },
-        "owner": "product_issue",
-        "evidence_level": "partial_product_support",
-        "confidence_breakdown": {
-          "extract_confidence": 0.6,
-          "question_confidence": 0.62,
-          "evidence_confidence": 0.71,
-          "consistency_confidence": 0.65,
-          "final_confidence": 0.6525
-        }
-      },
-      {
-        "label": "Durability_Quality",
-        "summary": "User feedback reports a negative issue around durability_quality: The quality is excellent. +5 Workmanship is excellent. +5 Delivery process is excellent +5 I did not get the product I wanted. -3 I did not see size (dimensions) mentioned on the site. -3 I am however a satisfied customer +4 I have not used it because it is smaller than the size (one above) that I have..",
-        "confidence": 0.6,
-        "supporting_evidence": {
-          "review_ids": [
-            "backpack_010_review_0138"
-          ],
-          "product_text_block_ids": [
-            "backpack_010_model_description_c74c9858c2a6"
+            "backpack_010_model_description_b1904b8659a6"
           ],
           "product_image_ids": []
         },
@@ -1099,7 +372,7 @@
             "backpack_010_review_0090"
           ],
           "product_text_block_ids": [
-            "backpack_010_model_description_c74c9858c2a6"
+            "backpack_010_model_description_b1904b8659a6"
           ],
           "product_image_ids": []
         },
@@ -1122,119 +395,25 @@
         "source_aspect": "portability_size",
         "supporting_evidence": {
           "review_ids": [
-            "backpack_010_review_0138",
             "backpack_010_review_0153"
           ],
           "product_text_block_ids": [
-            "backpack_010_model_description_c74c9858c2a6"
+            "backpack_010_model_description_b1904b8659a6"
           ],
           "product_image_ids": []
         },
         "owner": "content_presentation",
-        "evidence_level": "missing_product_evidence",
-        "confidence_breakdown": {
-          "extract_confidence": 0.68,
-          "question_confidence": 0.62,
-          "evidence_confidence": 0.71,
-          "consistency_confidence": 0.75,
-          "final_confidence": 0.6925
-        }
-      },
-      {
-        "label": "Missing usability substantiation",
-        "summary": "Current product-page evidence does not substantiate the review feedback about usability.",
-        "confidence": 0.82,
-        "source_aspect": "usability",
-        "supporting_evidence": {
-          "review_ids": [
-            "backpack_010_review_0138"
-          ],
-          "product_text_block_ids": [
-            "backpack_010_model_description_c74c9858c2a6"
-          ],
-          "product_image_ids": []
-        },
-        "owner": "content_presentation",
-        "evidence_level": "missing_product_evidence",
+        "evidence_level": "partial_product_support",
         "confidence_breakdown": {
           "extract_confidence": 0.6,
           "question_confidence": 0.62,
           "evidence_confidence": 0.71,
           "consistency_confidence": 0.65,
           "final_confidence": 0.6525
-        }
-      },
-      {
-        "label": "Missing durability_quality substantiation",
-        "summary": "Current product-page evidence does not substantiate the review feedback about durability_quality.",
-        "confidence": 0.82,
-        "source_aspect": "durability_quality",
-        "supporting_evidence": {
-          "review_ids": [
-            "backpack_010_review_0138"
-          ],
-          "product_text_block_ids": [
-            "backpack_010_model_description_c74c9858c2a6"
-          ],
-          "product_image_ids": []
-        },
-        "owner": "content_presentation",
-        "evidence_level": "missing_product_evidence",
-        "confidence_breakdown": {
-          "extract_confidence": 0.6,
-          "question_confidence": 0.62,
-          "evidence_confidence": 0.71,
-          "consistency_confidence": 0.65,
-          "final_confidence": 0.6525
-        }
-      },
-      {
-        "label": "Missing portability_size substantiation",
-        "summary": "Current product-page evidence does not substantiate the review feedback about portability_size.",
-        "confidence": 0.82,
-        "source_aspect": "portability_size",
-        "supporting_evidence": {
-          "review_ids": [
-            "backpack_010_review_0153"
-          ],
-          "product_text_block_ids": [],
-          "product_image_ids": []
-        },
-        "owner": "content_presentation",
-        "evidence_level": "missing_product_evidence",
-        "confidence_breakdown": {
-          "extract_confidence": 0.68,
-          "question_confidence": 0.7,
-          "evidence_confidence": 0.7,
-          "consistency_confidence": 0.7,
-          "final_confidence": 0.68
         }
       }
     ],
     "product_impressions": [
-      {
-        "aspect": "portability_size",
-        "aspect_frequency": 2,
-        "positive_ratio": 0.0,
-        "negative_ratio": 1.0,
-        "mixed_ratio": 0.0,
-        "scene_distribution": {},
-        "representative_review_ids": [
-          "backpack_010_review_0138",
-          "backpack_010_review_0153"
-        ]
-      },
-      {
-        "aspect": "value_price",
-        "aspect_frequency": 1,
-        "positive_ratio": 1.0,
-        "negative_ratio": 0.0,
-        "mixed_ratio": 0.0,
-        "scene_distribution": {},
-        "representative_review_ids": [
-          "backpack_010_review_0001"
-        ]
-      },
       {
         "aspect": "overall_experience",
         "aspect_frequency": 1,
@@ -1247,25 +426,14 @@
         ]
       },
       {
-        "aspect": "usability",
+        "aspect": "portability_size",
         "aspect_frequency": 1,
         "positive_ratio": 0.0,
         "negative_ratio": 1.0,
         "mixed_ratio": 0.0,
         "scene_distribution": {},
         "representative_review_ids": [
-          "backpack_010_review_0138"
-        ]
-      },
-      {
-        "aspect": "durability_quality",
-        "aspect_frequency": 1,
-        "positive_ratio": 0.0,
-        "negative_ratio": 1.0,
-        "mixed_ratio": 0.0,
-        "scene_distribution": {},
-        "representative_review_ids": [
-          "backpack_010_review_0138"
+          "backpack_010_review_0153"
         ]
       }
     ],
@@ -1273,24 +441,17 @@
     "aspect_relations": [],
     "applicable_scenes": [],
     "supporting_aspects": [
-      "portability_size",
-      "value_price",
       "overall_experience",
-      "usability",
-      "durability_quality"
+      "portability_size"
     ],
     "supporting_reviews": [
-      "backpack_010_review_0138",
-      "backpack_010_review_0153",
-      "backpack_010_review_0001",
-      "backpack_010_review_0090"
+      "backpack_010_review_0090",
+      "backpack_010_review_0153"
     ],
     "supporting_review_evidence": {
       "review_ids": [
-        "backpack_010_review_0001",
-        "backpack_010_review_0138",
-        "backpack_010_review_0153",
-        "backpack_010_review_0090"
+        "backpack_010_review_0090",
+        "backpack_010_review_0153"
       ],
       "product_text_block_ids": [],
       "product_image_ids": []
@@ -1298,107 +459,182 @@
     "supporting_product_evidence": {
       "review_ids": [],
       "product_text_block_ids": [
-        "backpack_010_model_description_c74c9858c2a6"
+        "backpack_010_model_description_b1904b8659a6"
       ],
       "product_image_ids": []
     },
-    "confidence": 0.77,
+    "evidence_nodes": [
+      {
+        "evidence_node_id": "backpack_010_review_0090_chunk_00",
+        "source_type": "review",
+        "source_id": "backpack_010_review_0090",
+        "modality": "text",
+        "content": "Beau mais trop grand",
+        "aspect_tags": [
+          "overall_experience"
+        ],
+        "route": null,
+        "source_section": null,
+        "region_id": null,
+        "region_label": null,
+        "image_path": null
+      },
+      {
+        "evidence_node_id": "backpack_010_review_0153_chunk_00",
+        "source_type": "review",
+        "source_id": "backpack_010_review_0153",
+        "modality": "text",
+        "content": "Very small",
+        "aspect_tags": [
+          "portability_size"
+        ],
+        "route": null,
+        "source_section": null,
+        "region_id": null,
+        "region_label": null,
+        "image_path": null
+      },
+      {
+        "evidence_node_id": "backpack_010_model_description_b1904b8659a6_chunk_00",
+        "source_type": "product_text",
+        "source_id": "backpack_010_model_description_b1904b8659a6",
+        "modality": "text",
+        "content": "This durable and practical travel wallet is the ultimate solution for securely storing personal belongings. Suitable for both travel and daily use, it’s a backpack that helps you enjoy your trips with",
+        "aspect_tags": [
+          "overall_experience",
+          "portability_size"
+        ],
+        "route": "text",
+        "source_section": "model_description",
+        "region_id": null,
+        "region_label": null,
+        "image_path": null
+      }
+    ],
+    "claim_attributions": [
+      {
+        "claim_id": "strength:overall_experience_issue:0",
+        "claim_text": "overall_experience is the most frequently mentioned experience theme in current reviews.",
+        "claim_source": "strength",
+        "support_status": "supported",
+        "support_type": "mixed",
+        "support_ids": [
+          "backpack_010_review_0090_chunk_00",
+          "backpack_010_model_description_b1904b8659a6_chunk_00"
+        ],
+        "route_sources": [
+          "text"
+        ],
+        "evidence_gap": null,
+        "revision_action": "keep",
+        "revised_claim": null
+      },
+      {
+        "claim_id": "weakness:backpack_010_review_0153_portability_size_issue:0",
+        "claim_text": "User feedback reports a negative issue around portability_size: Very small.",
+        "claim_source": "weakness",
+        "support_status": "supported",
+        "support_type": "mixed",
+        "support_ids": [
+          "backpack_010_review_0153_chunk_00",
+          "backpack_010_model_description_b1904b8659a6_chunk_00"
+        ],
+        "route_sources": [
+          "text"
+        ],
+        "evidence_gap": null,
+        "revision_action": "keep",
+        "revised_claim": null
+      },
+      {
+        "claim_id": "controversy:overall_experience_issue:0",
+        "claim_text": "Opinions on overall_experience are relatively mixed and somewhat controversial.",
+        "claim_source": "controversy",
+        "support_status": "supported",
+        "support_type": "mixed",
+        "support_ids": [
+          "backpack_010_review_0090_chunk_00",
+          "backpack_010_model_description_b1904b8659a6_chunk_00"
+        ],
+        "route_sources": [
+          "text"
+        ],
+        "evidence_gap": null,
+        "revision_action": "keep",
+        "revised_claim": null
+      },
+      {
+        "claim_id": "evidence_gap:backpack_010_review_0153_missing_portability_size_substantiation_evidence_gap:0",
+        "claim_text": "Current product-page evidence does not substantiate the review feedback about portability_size.",
+        "claim_source": "evidence_gap",
+        "support_status": "unsupported",
+        "support_type": "mixed",
+        "support_ids": [
+          "backpack_010_review_0153_chunk_00",
+          "backpack_010_model_description_b1904b8659a6_chunk_00"
+        ],
+        "route_sources": [
+          "text"
+        ],
+        "evidence_gap": "Current product-page evidence does not substantiate the review feedback about portability_size.",
+        "revision_action": "keep",
+        "revised_claim": null
+      },
+      {
+        "claim_id": "suggestion:strengthen_the_product-page_explanation_and_evidence_around_missing_portability_size_substantiation.:0",
+        "claim_text": "Strengthen the product-page explanation and evidence around Missing portability_size substantiation.",
+        "claim_source": "suggestion",
+        "support_status": "supported",
+        "support_type": "mixed",
+        "support_ids": [
+          "backpack_010_review_0153_chunk_00",
+          "backpack_010_model_description_b1904b8659a6_chunk_00"
+        ],
+        "route_sources": [
+          "text"
+        ],
+        "evidence_gap": null,
+        "revision_action": "keep",
+        "revised_claim": null
+      },
+      {
+        "claim_id": "suggestion:add_clearer_usage-scenario_guidance_for_overall_experience_to_reduce_expectation_mismatch.:1",
+        "claim_text": "Add clearer usage-scenario guidance for overall_experience to reduce expectation mismatch.",
+        "claim_source": "suggestion",
+        "support_status": "supported",
+        "support_type": "mixed",
+        "support_ids": [
+          "backpack_010_review_0090_chunk_00",
+          "backpack_010_model_description_b1904b8659a6_chunk_00"
+        ],
+        "route_sources": [
+          "text"
+        ],
+        "evidence_gap": null,
+        "revision_action": "keep",
+        "revised_claim": null
+      }
+    ],
+    "confidence": 0.61,
     "suggestions": [
       {
         "suggestion": "Strengthen the product-page explanation and evidence around Missing portability_size substantiation.",
         "suggestion_type": "perception",
         "reason": [
-          "Current product-page evidence does not substantiate the review feedback about portability_size."
-        ],
-        "confidence": 0.82,
-        "supporting_evidence": {
-          "review_ids": [
-            "backpack_010_review_0153"
-          ],
-          "product_text_block_ids": [],
-          "product_image_ids": []
-        },
-        "owner": "content_presentation",
-        "replay_note": "Replay continuity: the issue around Missing portability_size substantiation also appeared in the previous run. Reviewer feedback: Portability_Size was explicitly accepted in the previous review round.",
-        "confidence_breakdown": {
-          "extract_confidence": 0.68,
-          "question_confidence": 0.7,
-          "evidence_confidence": 0.7,
-          "consistency_confidence": 0.7,
-          "final_confidence": 0.68
-        }
-      },
-      {
-        "suggestion": "Prioritize improvements to the design or presentation related to portability_size, and strengthen the corresponding explanation on the product page.",
-        "suggestion_type": "perception",
-        "reason": [
-          "Clear negative feedback exists for portability_size, appearing 2 times."
-        ],
-        "confidence": 0.7,
-        "supporting_evidence": {
-          "review_ids": [
-            "backpack_010_review_0138",
-            "backpack_010_review_0153"
-          ],
-          "product_text_block_ids": [
-            "backpack_010_model_description_c74c9858c2a6"
-          ],
-          "product_image_ids": []
-        },
-        "owner": "content_presentation",
-        "replay_note": "Replay continuity: the issue around Missing portability_size substantiation also appeared in the previous run. Reviewer feedback: Portability_Size was explicitly accepted in the previous review round.",
-        "confidence_breakdown": {
-          "extract_confidence": 0.68,
-          "question_confidence": 0.62,
-          "evidence_confidence": 0.71,
-          "consistency_confidence": 0.75,
-          "final_confidence": 0.6925
-        }
-      },
-      {
-        "suggestion": "Prioritize improvements to the design or presentation related to usability, and strengthen the corresponding explanation on the product page.",
-        "suggestion_type": "perception",
-        "reason": [
-          "Clear negative feedback exists for usability, appearing 1 times."
+          "Clear negative feedback exists for portability_size, appearing 1 times."
         ],
         "confidence": 0.6,
         "supporting_evidence": {
           "review_ids": [
-            "backpack_010_review_0138"
+            "backpack_010_review_0153"
           ],
           "product_text_block_ids": [
-            "backpack_010_model_description_c74c9858c2a6"
+            "backpack_010_model_description_b1904b8659a6"
           ],
           "product_image_ids": []
         },
         "owner": "content_presentation",
         "replay_note": "Replay continuity: the issue around Missing portability_size substantiation also appeared in the previous run. Reviewer feedback: Portability_Size was explicitly accepted in the previous review round.",
-        "confidence_breakdown": {
-          "extract_confidence": 0.6,
-          "question_confidence": 0.62,
-          "evidence_confidence": 0.71,
-          "consistency_confidence": 0.65,
-          "final_confidence": 0.6525
-        }
-      },
-      {
-        "suggestion": "Add durability-validation notes and warranty scope for the rubber ear insert, and describe the actual material and test scope without claiming unsupported lifetime thresholds.",
-        "suggestion_type": "perception",
-        "reason": [
-          "Current product-page evidence does not substantiate the review feedback about durability_quality."
-        ],
-        "confidence": 0.82,
-        "supporting_evidence": {
-          "review_ids": [
-            "backpack_010_review_0138"
-          ],
-          "product_text_block_ids": [
-            "backpack_010_model_description_c74c9858c2a6"
-          ],
-          "product_image_ids": []
-        },
-        "owner": "content_presentation",
-        "replay_note": "Replay continuity: the issue around Missing durability_quality substantiation also appeared in the previous run.",
         "confidence_breakdown": {
           "extract_confidence": 0.6,
           "question_confidence": 0.62,
@@ -1416,10 +652,10 @@
         "confidence": 0.6,
         "supporting_evidence": {
           "review_ids": [
-            "backpack_010_review_0001"
+            "backpack_010_review_0090"
           ],
           "product_text_block_ids": [
-            "backpack_010_model_description_c74c9858c2a6"
+            "backpack_010_model_description_b1904b8659a6"
           ],
           "product_image_ids": []
         },
@@ -1439,7 +675,7 @@
     {
       "trace_type": "observation",
       "aspect": "replay_continuity",
-      "summary": "replay_path=/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/5_replay/backpack/backpack_010_replay.json, feedback_path=/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/5_feedback/backpack/backpack_010_feedback_slots.json, persistent=Missing portability_size substantiation, Missing usability substantiation, Portability_Size, Usability, Missing portability_size substantiation, Portability_Size, overall_experience, Missing durability_quality substantiation, Durability_Quality, resolved=none, new=none, accepted=Portability_Size, rejected=none, reviewed=2",
+      "summary": "replay_path=/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/5_replay/backpack/backpack_010_replay.json, feedback_path=/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/5_feedback/backpack/backpack_010_feedback_slots.json, persistent=Missing portability_size substantiation, Portability_Size, overall_experience, resolved=none, new=none, accepted=Portability_Size, rejected=none, reviewed=1",
       "suggestion_id": null,
       "owner": null,
       "supporting_evidence": {
@@ -1448,73 +684,6 @@
         "product_image_ids": []
       },
       "confidence_breakdown": null
-    },
-    {
-      "trace_type": "observation",
-      "aspect": "value_price",
-      "summary": "review=backpack_010_review_0001, sentiment=positive, evidence_span=한곳에 넣을 수 있는 장점이 있네요. 가성비템입니다.",
-      "suggestion_id": null,
-      "owner": null,
-      "supporting_evidence": {
-        "review_ids": [
-          "backpack_010_review_0001"
-        ],
-        "product_text_block_ids": [],
-        "product_image_ids": []
-      },
-      "confidence_breakdown": {
-        "extract_confidence": 0.6,
-        "question_confidence": 0.62,
-        "evidence_confidence": 0.71,
-        "consistency_confidence": 0.65,
-        "final_confidence": 0.6525
-      }
-    },
-    {
-      "trace_type": "evidence_check",
-      "aspect": "value_price",
-      "summary": "reviews=1, valid_text_blocks=1, valid_images=0. questions=Does the product text explicitly support the experience claim related to 'value_price'?; Do the product images provide structural or visual evidence for the 'value_price' judgment?",
-      "suggestion_id": null,
-      "owner": "content_presentation",
-      "supporting_evidence": {
-        "review_ids": [
-          "backpack_010_review_0001"
-        ],
-        "product_text_block_ids": [
-          "backpack_010_model_description_c74c9858c2a6"
-        ],
-        "product_image_ids": []
-      },
-      "confidence_breakdown": {
-        "extract_confidence": 0.6,
-        "question_confidence": 0.62,
-        "evidence_confidence": 0.71,
-        "consistency_confidence": 0.65,
-        "final_confidence": 0.6525
-      }
-    },
-    {
-      "trace_type": "owner_judgement",
-      "aspect": "value_price",
-      "summary": "Positive feedback dominates for value_price, appearing 1 times.",
-      "suggestion_id": null,
-      "owner": "content_presentation",
-      "supporting_evidence": {
-        "review_ids": [
-          "backpack_010_review_0001"
-        ],
-        "product_text_block_ids": [
-          "backpack_010_model_description_c74c9858c2a6"
-        ],
-        "product_image_ids": []
-      },
-      "confidence_breakdown": {
-        "extract_confidence": 0.6,
-        "question_confidence": 0.62,
-        "evidence_confidence": 0.71,
-        "consistency_confidence": 0.65,
-        "final_confidence": 0.6525
-      }
     },
     {
       "trace_type": "observation",
@@ -1540,7 +709,7 @@
     {
       "trace_type": "evidence_check",
       "aspect": "overall_experience",
-      "summary": "reviews=1, valid_text_blocks=1, valid_images=0. questions=Does the product text explicitly support the experience claim related to 'overall_experience'?; Do the product images provide structural or visual evidence for the 'overall_experience' judgment?",
+      "summary": "reviews=1, valid_text_blocks=1, valid_images=0. questions=Does the product text explicitly support the experience claim related to 'overall_experience'?",
       "suggestion_id": null,
       "owner": "content_presentation",
       "supporting_evidence": {
@@ -1548,7 +717,7 @@
           "backpack_010_review_0090"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c74c9858c2a6"
+          "backpack_010_model_description_b1904b8659a6"
         ],
         "product_image_ids": []
       },
@@ -1571,7 +740,7 @@
           "backpack_010_review_0090"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c74c9858c2a6"
+          "backpack_010_model_description_b1904b8659a6"
         ],
         "product_image_ids": []
       },
@@ -1582,103 +751,6 @@
         "consistency_confidence": 0.65,
         "final_confidence": 0.6525
       }
-    },
-    {
-      "trace_type": "observation",
-      "aspect": "portability_size",
-      "summary": "review=backpack_010_review_0138, sentiment=negative, evidence_span=The quality is excellent. +5 Workmanship is excellent. +5 Delivery process is excellent +5 I did not get the product I wanted. -3 I did not see size (dimensions) mentioned on the site. -3 I am however a satisfied customer +4 I have not used it because it is smaller than the size (one above) that I have.",
-      "suggestion_id": null,
-      "owner": null,
-      "supporting_evidence": {
-        "review_ids": [
-          "backpack_010_review_0138"
-        ],
-        "product_text_block_ids": [],
-        "product_image_ids": []
-      },
-      "confidence_breakdown": null
-    },
-    {
-      "trace_type": "evidence_check",
-      "aspect": "portability_size",
-      "summary": "reviews=2, valid_text_blocks=1, valid_images=0. questions=Does the product text explicitly support the experience claim related to 'portability_size'?; Do the product images provide structural or visual evidence for the 'portability_size' judgment?",
-      "suggestion_id": null,
-      "owner": "evidence_gap",
-      "supporting_evidence": {
-        "review_ids": [
-          "backpack_010_review_0138",
-          "backpack_010_review_0153"
-        ],
-        "product_text_block_ids": [
-          "backpack_010_model_description_c74c9858c2a6"
-        ],
-        "product_image_ids": []
-      },
-      "confidence_breakdown": null
-    },
-    {
-      "trace_type": "observation",
-      "aspect": "usability",
-      "summary": "review=backpack_010_review_0138, sentiment=negative, evidence_span=The quality is excellent. +5 Workmanship is excellent. +5 Delivery process is excellent +5 I did not get the product I wanted. -3 I did not see size (dimensions) mentioned on the site. -3 I am however a satisfied customer +4 I have not used it because it is smaller than the size (one above) that I have.",
-      "suggestion_id": null,
-      "owner": null,
-      "supporting_evidence": {
-        "review_ids": [
-          "backpack_010_review_0138"
-        ],
-        "product_text_block_ids": [],
-        "product_image_ids": []
-      },
-      "confidence_breakdown": null
-    },
-    {
-      "trace_type": "evidence_check",
-      "aspect": "usability",
-      "summary": "reviews=1, valid_text_blocks=1, valid_images=0. questions=Does the product text explicitly support the experience claim related to 'usability'?; Do the product images provide structural or visual evidence for the 'usability' judgment?",
-      "suggestion_id": null,
-      "owner": "evidence_gap",
-      "supporting_evidence": {
-        "review_ids": [
-          "backpack_010_review_0138"
-        ],
-        "product_text_block_ids": [
-          "backpack_010_model_description_c74c9858c2a6"
-        ],
-        "product_image_ids": []
-      },
-      "confidence_breakdown": null
-    },
-    {
-      "trace_type": "observation",
-      "aspect": "durability_quality",
-      "summary": "review=backpack_010_review_0138, sentiment=negative, evidence_span=The quality is excellent. +5 Workmanship is excellent. +5 Delivery process is excellent +5 I did not get the product I wanted. -3 I did not see size (dimensions) mentioned on the site. -3 I am however a satisfied customer +4 I have not used it because it is smaller than the size (one above) that I have.",
-      "suggestion_id": null,
-      "owner": null,
-      "supporting_evidence": {
-        "review_ids": [
-          "backpack_010_review_0138"
-        ],
-        "product_text_block_ids": [],
-        "product_image_ids": []
-      },
-      "confidence_breakdown": null
-    },
-    {
-      "trace_type": "evidence_check",
-      "aspect": "durability_quality",
-      "summary": "reviews=1, valid_text_blocks=1, valid_images=0. questions=Does the product text explicitly support the experience claim related to 'durability_quality'?; Do the product images provide structural or visual evidence for the 'durability_quality' judgment?",
-      "suggestion_id": null,
-      "owner": "evidence_gap",
-      "supporting_evidence": {
-        "review_ids": [
-          "backpack_010_review_0138"
-        ],
-        "product_text_block_ids": [
-          "backpack_010_model_description_c74c9858c2a6"
-        ],
-        "product_image_ids": []
-      },
-      "confidence_breakdown": null
     },
     {
       "trace_type": "observation",
@@ -1698,16 +770,15 @@
     {
       "trace_type": "evidence_check",
       "aspect": "portability_size",
-      "summary": "reviews=2, valid_text_blocks=1, valid_images=0. questions=Does the product text explicitly support the experience claim related to 'portability_size'?; Do the product images provide structural or visual evidence for the 'portability_size' judgment?",
+      "summary": "reviews=1, valid_text_blocks=1, valid_images=0. questions=Does the product text explicitly support the experience claim related to 'portability_size'?",
       "suggestion_id": null,
       "owner": "evidence_gap",
       "supporting_evidence": {
         "review_ids": [
-          "backpack_010_review_0138",
           "backpack_010_review_0153"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c74c9858c2a6"
+          "backpack_010_model_description_b1904b8659a6"
         ],
         "product_image_ids": []
       },
@@ -1715,7 +786,7 @@
     },
     {
       "trace_type": "action_generation",
-      "aspect": "Current product-page evidence does not substantiate the review feedback about portability_size.",
+      "aspect": "Clear negative feedback exists for portability_size, appearing 1 times.",
       "summary": "Strengthen the product-page explanation and evidence around Missing portability_size substantiation.",
       "suggestion_id": "strengthen the product-page explanation and evidence around miss",
       "owner": "content_presentation",
@@ -1723,76 +794,8 @@
         "review_ids": [
           "backpack_010_review_0153"
         ],
-        "product_text_block_ids": [],
-        "product_image_ids": []
-      },
-      "confidence_breakdown": {
-        "extract_confidence": 0.68,
-        "question_confidence": 0.7,
-        "evidence_confidence": 0.7,
-        "consistency_confidence": 0.7,
-        "final_confidence": 0.68
-      }
-    },
-    {
-      "trace_type": "action_generation",
-      "aspect": "Clear negative feedback exists for portability_size, appearing 2 times.",
-      "summary": "Prioritize improvements to the design or presentation related to portability_size, and strengthen the corresponding explanation on the product page.",
-      "suggestion_id": "prioritize improvements to the design or presentation related to",
-      "owner": "content_presentation",
-      "supporting_evidence": {
-        "review_ids": [
-          "backpack_010_review_0138",
-          "backpack_010_review_0153"
-        ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c74c9858c2a6"
-        ],
-        "product_image_ids": []
-      },
-      "confidence_breakdown": {
-        "extract_confidence": 0.68,
-        "question_confidence": 0.62,
-        "evidence_confidence": 0.71,
-        "consistency_confidence": 0.75,
-        "final_confidence": 0.6925
-      }
-    },
-    {
-      "trace_type": "action_generation",
-      "aspect": "Clear negative feedback exists for usability, appearing 1 times.",
-      "summary": "Prioritize improvements to the design or presentation related to usability, and strengthen the corresponding explanation on the product page.",
-      "suggestion_id": "prioritize improvements to the design or presentation related to",
-      "owner": "content_presentation",
-      "supporting_evidence": {
-        "review_ids": [
-          "backpack_010_review_0138"
-        ],
-        "product_text_block_ids": [
-          "backpack_010_model_description_c74c9858c2a6"
-        ],
-        "product_image_ids": []
-      },
-      "confidence_breakdown": {
-        "extract_confidence": 0.6,
-        "question_confidence": 0.62,
-        "evidence_confidence": 0.71,
-        "consistency_confidence": 0.65,
-        "final_confidence": 0.6525
-      }
-    },
-    {
-      "trace_type": "action_generation",
-      "aspect": "Current product-page evidence does not substantiate the review feedback about durability_quality.",
-      "summary": "Add durability-validation notes and warranty scope for the rubber ear insert, and describe the actual material and test scope without claiming unsupported lifetime thresholds.",
-      "suggestion_id": "add durability-validation notes and warranty scope for the rubbe",
-      "owner": "content_presentation",
-      "supporting_evidence": {
-        "review_ids": [
-          "backpack_010_review_0138"
-        ],
-        "product_text_block_ids": [
-          "backpack_010_model_description_c74c9858c2a6"
+          "backpack_010_model_description_b1904b8659a6"
         ],
         "product_image_ids": []
       },
@@ -1812,10 +815,10 @@
       "owner": "content_presentation",
       "supporting_evidence": {
         "review_ids": [
-          "backpack_010_review_0001"
+          "backpack_010_review_0090"
         ],
         "product_text_block_ids": [
-          "backpack_010_model_description_c74c9858c2a6"
+          "backpack_010_model_description_b1904b8659a6"
         ],
         "product_image_ids": []
       },
@@ -1833,33 +836,21 @@
     "feedback_path": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/5_feedback/backpack/backpack_010_feedback_slots.json",
     "previous_analysis_mode": "heuristic",
     "applied": true,
-    "reviewed_slot_count": 2,
-    "pending_slot_count": 20,
+    "reviewed_slot_count": 1,
+    "pending_slot_count": 5,
     "accepted_issue_labels": [
       "Portability_Size"
     ],
     "rejected_issue_labels": [],
     "persistent_issue_labels": [
       "Missing portability_size substantiation",
-      "Missing usability substantiation",
       "Portability_Size",
-      "Usability",
-      "Missing portability_size substantiation",
-      "Portability_Size",
-      "overall_experience",
-      "Missing durability_quality substantiation",
-      "Durability_Quality"
+      "overall_experience"
     ],
     "persistent_issue_keys": [
-      "backpack_010_review_0138:missing_portability_size_substantiation:evidence_gap",
-      "backpack_010_review_0138:missing_usability_substantiation:evidence_gap",
-      "backpack_010_review_0138:portability_size:issue",
-      "backpack_010_review_0138:usability:issue",
       "backpack_010_review_0153:missing_portability_size_substantiation:evidence_gap",
       "backpack_010_review_0153:portability_size:issue",
-      "overall_experience:issue",
-      "rubber_insert_durability:evidence_gap",
-      "rubber_insert_durability:issue"
+      "overall_experience:issue"
     ],
     "resolved_issue_labels": [],
     "resolved_issue_keys": [],
@@ -1872,6 +863,6 @@
     "replay_path": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/5_replay/backpack/backpack_010_replay.json"
   },
   "warnings": [
-    "replay continuity applied: persistent=9, resolved=0, new=0, reviewed=2"
+    "replay continuity applied: persistent=3, resolved=0, new=0, reviewed=1"
   ]
 }

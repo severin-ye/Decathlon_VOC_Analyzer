@@ -1,25 +1,25 @@
 {
   "product_id": "sunglasses_010",
   "category_slug": "sunglasses",
-  "extraction_mode": "llm",
+  "extraction_mode": "heuristic",
   "preprocessed_reviews": [
     {
       "review_id": "sunglasses_010_review_0021",
       "product_id": "sunglasses_010",
-      "original_text": "The sunglasses are great! However, the rubber insert on them near the ear completely deteriorates in less than two years—literally falling apart. Sad…",
-      "cleaned_text": "The sunglasses are great! However, the rubber insert on them near the ear completely deteriorates in less than two years—literally falling apart. Sad…",
+      "original_text": "Maga a szemüveg jó! Viszont a rajta levő gumi berakás a fülnél teljesen tönkre megy kevesebb mint 2ev alatt. Konkrétan szétmállott. Szomorú…",
+      "cleaned_text": "Maga a szemüveg jó! Viszont a rajta levő gumi berakás a fülnél teljesen tönkre megy kevesebb mint 2ev alatt. Konkrétan szétmállott. Szomorú…",
       "rating": 1,
-      "language_hint": "en",
+      "language_hint": "latin",
       "is_informative": true,
       "skip_reason": null
     },
     {
       "review_id": "sunglasses_010_review_0064",
       "product_id": "sunglasses_010",
-      "original_text": "Excellent price and excellent tinting; comfortable to wear. One drawback: they slightly magnify vision, making the ground beneath appear closer than it actually is.",
-      "cleaned_text": "Excellent price and excellent tinting; comfortable to wear. One drawback: they slightly magnify vision, making the ground beneath appear closer than it actually is.",
+      "original_text": "Ottimo prezzo ed ottimo oscuramento, comodi. Un difetto, ingrandiscono leggermente la vista, quindi si vede il terreno sottostante attraverso la lente, più vicino di quanto non sia.",
+      "cleaned_text": "Ottimo prezzo ed ottimo oscuramento, comodi. Un difetto, ingrandiscono leggermente la vista, quindi si vede il terreno sottostante attraverso la lente, più vicino di quanto non sia.",
       "rating": 2,
-      "language_hint": "en",
+      "language_hint": "latin",
       "is_informative": true,
       "skip_reason": null
     }
@@ -89,73 +89,25 @@
       "aspect_id": "sunglasses_010_review_0021_aspect_01",
       "review_id": "sunglasses_010_review_0021",
       "product_id": "sunglasses_010",
-      "aspect": "rubber insert durability",
-      "sentiment": "negative",
-      "opinion": "poor",
-      "evidence_span": "the rubber insert on them near the ear completely deteriorates in less than two years—literally falling apart",
-      "usage_scene": "long-term wear",
-      "confidence": 0.95,
-      "extraction_mode": "llm"
-    },
-    {
-      "aspect_id": "sunglasses_010_review_0021_aspect_02",
-      "review_id": "sunglasses_010_review_0021",
-      "product_id": "sunglasses_010",
       "aspect": "overall_experience",
-      "sentiment": "mixed",
-      "opinion": "initially positive but ultimately disappointing due to premature rubber insert failure",
-      "evidence_span": "The sunglasses are great! However, the rubber insert on them near the ear completely deteriorates in less than two years—literally falling apart. Sad…",
-      "usage_scene": "",
-      "confidence": 0.85,
-      "extraction_mode": "llm"
+      "sentiment": "negative",
+      "opinion": "Maga a szemüveg jó! Viszont a rajta levő gumi berakás a fülnél teljesen tönkre megy kevesebb mint 2ev alatt. Konkrétan szétmállott. Szomorú…",
+      "evidence_span": "Maga a szemüveg jó! Viszont a rajta levő gumi berakás a fülnél teljesen tönkre megy kevesebb mint 2ev alatt. Konkrétan szétmállott. Szomorú…",
+      "usage_scene": null,
+      "confidence": 0.56,
+      "extraction_mode": "heuristic"
     },
     {
       "aspect_id": "sunglasses_010_review_0064_aspect_01",
       "review_id": "sunglasses_010_review_0064",
       "product_id": "sunglasses_010",
-      "aspect": "price",
-      "sentiment": "positive",
-      "opinion": "excellent",
-      "evidence_span": "Excellent price",
-      "usage_scene": "",
-      "confidence": 0.95,
-      "extraction_mode": "llm"
-    },
-    {
-      "aspect_id": "sunglasses_010_review_0064_aspect_02",
-      "review_id": "sunglasses_010_review_0064",
-      "product_id": "sunglasses_010",
-      "aspect": "lens tinting",
-      "sentiment": "positive",
-      "opinion": "excellent",
-      "evidence_span": "excellent tinting",
-      "usage_scene": "",
-      "confidence": 0.95,
-      "extraction_mode": "llm"
-    },
-    {
-      "aspect_id": "sunglasses_010_review_0064_aspect_03",
-      "review_id": "sunglasses_010_review_0064",
-      "product_id": "sunglasses_010",
-      "aspect": "comfort",
-      "sentiment": "positive",
-      "opinion": "comfortable",
-      "evidence_span": "comfortable to wear",
-      "usage_scene": "",
-      "confidence": 0.9,
-      "extraction_mode": "llm"
-    },
-    {
-      "aspect_id": "sunglasses_010_review_0064_aspect_04",
-      "review_id": "sunglasses_010_review_0064",
-      "product_id": "sunglasses_010",
-      "aspect": "optical accuracy",
+      "aspect": "overall_experience",
       "sentiment": "negative",
-      "opinion": "slight magnification causing perceptual distortion",
-      "evidence_span": "they slightly magnify vision, making the ground beneath appear closer than it actually is",
-      "usage_scene": "walking or ground navigation",
-      "confidence": 0.98,
-      "extraction_mode": "llm"
+      "opinion": "Ottimo prezzo ed ottimo oscuramento, comodi. Un difetto, ingrandiscono leggermente la vista, quindi si vede il terreno sottostante attraverso la lente, più vicino di quanto non sia.",
+      "evidence_span": "Ottimo prezzo ed ottimo oscuramento, comodi. Un difetto, ingrandiscono leggermente la vista, quindi si vede il terreno sottostante attraverso la lente, più vicino di quanto non sia.",
+      "usage_scene": null,
+      "confidence": 0.56,
+      "extraction_mode": "heuristic"
     }
   ],
   "skipped_review_ids": [],

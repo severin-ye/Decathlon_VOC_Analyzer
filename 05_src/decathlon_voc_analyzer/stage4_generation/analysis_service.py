@@ -35,6 +35,7 @@ from decathlon_voc_analyzer.schemas.analysis import (
 )
 from decathlon_voc_analyzer.schemas.review import ReviewAspect, ReviewExtractionRequest, ReviewExtractionResponse
 from decathlon_voc_analyzer.prompts import get_prompt_template, get_prompt_variant
+from decathlon_voc_analyzer.runtime_progress import get_workflow_progress
 from decathlon_voc_analyzer.stage1_dataset.dataset_service import DatasetService
 from decathlon_voc_analyzer.stage2_review_modeling.review_service import ReviewExtractionService
 from decathlon_voc_analyzer.stage3_retrieval.retrieval_service import RetrievalService
@@ -81,10 +82,13 @@ class ProductAnalysisService:
         return get_prompt_variant() == "main"
 
     def analyze(self, request: ProductAnalysisRequest) -> ProductAnalysisResponse:
+        progress = get_workflow_progress()
         package = self.dataset_service.load_product_package(
             product_id=request.product_id,
             category_slug=request.category_slug,
         )
+        progress.activate_module("analyze", detail=f"生成 {request.product_id} 的分析报告")
+        progress.activate_step("analyze", "extract", detail="抽取评论与方面")
         extraction = self.review_service.extract(
             ReviewExtractionRequest(
                 product_id=request.product_id,
@@ -94,13 +98,17 @@ class ProductAnalysisService:
                 persist_artifact=request.persist_artifact,
             )
         )
+        progress.complete_step("analyze", "extract")
 
+        progress.activate_step("analyze", "questions", detail="规划并生成检索问题")
         question_intents, questions, question_warnings, question_mode = self.question_service.generate_questions(
             aspects=extraction.aspects,
             questions_per_aspect=request.questions_per_aspect,
             use_llm=request.use_llm,
         )
+        progress.complete_step("analyze", "questions")
 
+        progress.activate_step("analyze", "quality", detail="评估检索质量并准备纠偏")
         retrievals = self.retrieval_service.retrieve_for_package(
             package=package,
             questions=questions,
@@ -108,6 +116,7 @@ class ProductAnalysisService:
             use_llm=request.use_llm,
         )
         retrieval_quality = self._assess_retrieval_quality(retrievals)
+        progress.complete_step("analyze", "quality")
         questions, retrievals, retrieval_quality, corrective_warnings = self._apply_corrective_retrievals(
             package=package,
             questions=questions,
@@ -136,16 +145,19 @@ class ProductAnalysisService:
 
         if llm_requested:
             try:
+                progress.activate_step("analyze", "report", detail="调用 LLM 生成报告并补全结构")
                 report = self._build_report_with_llm(package.product_id, package.category_slug, aggregates, retrievals)
             except Exception as exc:
                 analysis_mode = "heuristic"
                 warnings.append(f"report generation failed, fallback to heuristic ({exc})")
                 report = self._build_report_heuristic(package.product_id, package.category_slug, aggregates, retrievals)
         else:
+            progress.activate_step("analyze", "report", detail="使用启发式生成报告并补全结构")
             report = self._build_report_heuristic(package.product_id, package.category_slug, aggregates, retrievals)
 
         report = self.report_refinement_service.refine(report)
         report = self._normalize_report_structure(report, extraction.aspects)
+        progress.complete_step("analyze", "report")
         report = report.model_copy(
             update={
                 "answer": self._build_answer(report.strengths, report.weaknesses, report.controversies),
@@ -173,13 +185,19 @@ class ProductAnalysisService:
         if replay_warning is not None:
             warnings.append(replay_warning)
 
+        progress.activate_step("analyze", "attribution", detail="构建证据节点与 claim 归因")
         report = self._attach_claim_attribution(report, extraction.aspects, retrievals)
+        progress.complete_step("analyze", "attribution")
 
         trace = self._build_process_trace(extraction.aspects, questions, retrievals, report, replay_summary)
 
         artifact_bundle: AnalysisArtifactBundle | None = None
         if request.persist_artifact:
+            progress.activate_step("analyze", "persist", detail="写入分析 JSON 和侧边车")
             artifact_bundle = self._persist_report(package.product_id, package.category_slug, analysis_mode, extraction, question_intents, questions, retrievals, retrieval_quality, retrieval_runtime, aggregates, report, trace, warnings, replay_summary)
+            progress.complete_step("analyze", "persist", detail=artifact_bundle.analysis_path)
+
+        progress.complete_module("analyze")
 
         return ProductAnalysisResponse(
             schema_version="1.1.0",
