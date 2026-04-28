@@ -7,6 +7,7 @@ from decathlon_voc_analyzer.schemas.review import ReviewAspect, ReviewExtraction
 
 EvidenceRoute = Literal["text", "image"]
 AnalysisMode = Literal["heuristic", "llm"]
+QuestionIntentType = Literal["explicit_support", "visual_confirmation", "cross_modal_resolution", "spec_check", "visual_detail"]
 IssueOwner = Literal["product_issue", "content_presentation", "evidence_gap", "expectation_mismatch"]
 EvidenceLevel = Literal["review_only", "partial_product_support", "product_supported", "missing_product_evidence"]
 AnswerStatus = Literal["none", "partial", "supported", "contradicted", "unsupported"]
@@ -31,6 +32,18 @@ class RetrievalQuestion(BaseModel):
     rationale: str
     expected_evidence_routes: list[EvidenceRoute] = Field(default_factory=list)
     confidence: float = Field(ge=0.0, le=1.0)
+
+
+class QuestionIntent(BaseModel):
+    intent_id: str
+    source_review_id: str
+    source_aspect: str
+    source_aspect_id: str
+    intent_type: QuestionIntentType
+    rationale: str
+    expected_evidence_routes: list[EvidenceRoute] = Field(default_factory=list)
+    forbidden_concepts: list[str] = Field(default_factory=list)
+    specificity_bound: str | None = None
 
 
 class RetrievedEvidence(BaseModel):
@@ -276,6 +289,7 @@ class ProductAnalysisResponse(BaseModel):
     schema_version: str = "1.1.0"
     analysis_mode: AnalysisMode
     extraction: ReviewExtractionResponse
+    question_intents: list[QuestionIntent] = Field(default_factory=list)
     questions: list[RetrievalQuestion]
     retrievals: list[RetrievalRecord]
     retrieval_quality: list[RetrievalQualityMetrics] = Field(default_factory=list)

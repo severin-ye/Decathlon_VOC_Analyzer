@@ -1,4 +1,5 @@
 from collections import Counter, defaultdict
+from typing import Any
 import re
 
 import orjson
@@ -23,12 +24,16 @@ from decathlon_voc_analyzer.schemas.analysis import (
     ProductAnalysisReport,
     ProductAnalysisRequest,
     ProductAnalysisResponse,
+    QuestionIntent,
     ReplayContinuationSummary,
+    RetrievalQuestion,
+    RetrievalRecord,
+    RetrievedEvidence,
     RetrievalQualityMetrics,
     RetrievalRuntimeProfile,
     SupportingEvidence,
 )
-from decathlon_voc_analyzer.schemas.review import ReviewAspect, ReviewExtractionRequest
+from decathlon_voc_analyzer.schemas.review import ReviewAspect, ReviewExtractionRequest, ReviewExtractionResponse
 from decathlon_voc_analyzer.prompts import get_prompt_template, get_prompt_variant
 from decathlon_voc_analyzer.stage1_dataset.dataset_service import DatasetService
 from decathlon_voc_analyzer.stage2_review_modeling.review_service import ReviewExtractionService
@@ -90,7 +95,7 @@ class ProductAnalysisService:
             )
         )
 
-        questions, question_warnings, question_mode = self.question_service.generate_questions(
+        question_intents, questions, question_warnings, question_mode = self.question_service.generate_questions(
             aspects=extraction.aspects,
             questions_per_aspect=request.questions_per_aspect,
             use_llm=request.use_llm,
@@ -103,6 +108,14 @@ class ProductAnalysisService:
             use_llm=request.use_llm,
         )
         retrieval_quality = self._assess_retrieval_quality(retrievals)
+        questions, retrievals, retrieval_quality, corrective_warnings = self._apply_corrective_retrievals(
+            package=package,
+            questions=questions,
+            retrievals=retrievals,
+            retrieval_quality=retrieval_quality,
+            top_k_per_route=request.top_k_per_route,
+            use_llm=request.use_llm,
+        )
         retrieval_runtime = self._build_retrieval_runtime_profile()
         aggregates = self._aggregate_aspects(extraction.aspects)
         replay_payload = None
@@ -116,7 +129,7 @@ class ProductAnalysisService:
                 product_id=package.product_id,
                 category_slug=package.category_slug,
             )
-        warnings = list(extraction.warnings) + question_warnings
+        warnings = list(extraction.warnings) + question_warnings + corrective_warnings
 
         llm_requested = request.use_llm and bool(self.settings.qwen_plus_api_key)
         analysis_mode: AnalysisMode = "llm" if llm_requested and question_mode == "llm" else "heuristic"
@@ -166,12 +179,13 @@ class ProductAnalysisService:
 
         artifact_bundle: AnalysisArtifactBundle | None = None
         if request.persist_artifact:
-            artifact_bundle = self._persist_report(package.product_id, package.category_slug, analysis_mode, extraction, questions, retrievals, retrieval_quality, retrieval_runtime, aggregates, report, trace, warnings, replay_summary)
+            artifact_bundle = self._persist_report(package.product_id, package.category_slug, analysis_mode, extraction, question_intents, questions, retrievals, retrieval_quality, retrieval_runtime, aggregates, report, trace, warnings, replay_summary)
 
         return ProductAnalysisResponse(
             schema_version="1.1.0",
             analysis_mode=analysis_mode,
             extraction=extraction,
+            question_intents=question_intents,
             questions=questions,
             retrievals=retrievals,
             retrieval_quality=retrieval_quality,
@@ -189,7 +203,7 @@ class ProductAnalysisService:
         self,
         report: ProductAnalysisReport,
         aspects: list[ReviewAspect],
-        retrievals: list,
+        retrievals: list[RetrievalRecord],
     ) -> ProductAnalysisReport:
         hydrated_report = self._hydrate_report_supporting_evidence(report, aspects, retrievals)
         evidence_nodes = self._build_evidence_nodes(hydrated_report, aspects, retrievals)
@@ -214,7 +228,7 @@ class ProductAnalysisService:
         self,
         report: ProductAnalysisReport,
         aspects: list[ReviewAspect],
-        retrievals: list,
+        retrievals: list[RetrievalRecord],
     ) -> ProductAnalysisReport:
         strengths = [self._hydrate_insight_supporting_evidence(item, aspects, retrievals) for item in report.strengths]
         weaknesses = [self._hydrate_insight_supporting_evidence(item, aspects, retrievals) for item in report.weaknesses]
@@ -239,7 +253,7 @@ class ProductAnalysisService:
         self,
         item: InsightItem,
         aspects: list[ReviewAspect],
-        retrievals: list,
+        retrievals: list[RetrievalRecord],
     ) -> InsightItem:
         matched_aspect = self._match_report_item_aspect(item.label, item.summary, item.supporting_evidence.review_ids, aspects)
         if matched_aspect is None:
@@ -257,7 +271,7 @@ class ProductAnalysisService:
         self,
         item: EvidenceGapItem,
         aspects: list[ReviewAspect],
-        retrievals: list,
+        retrievals: list[RetrievalRecord],
     ) -> EvidenceGapItem:
         aspect_name = item.source_aspect
         if not aspect_name:
@@ -344,7 +358,7 @@ class ProductAnalysisService:
         self,
         report: ProductAnalysisReport,
         aspects: list[ReviewAspect],
-        retrievals: list,
+        retrievals: list[RetrievalRecord],
     ) -> list[EvidenceNode]:
         referenced_review_ids: set[str] = set()
         referenced_text_ids: set[str] = set()
@@ -432,7 +446,7 @@ class ProductAnalysisService:
     def _claim_attribution_from_item(
         self,
         claim_source: str,
-        item: object,
+        item: Any,
         node_map: dict[str, EvidenceNode],
         index: int,
     ) -> ClaimAttribution:
@@ -662,7 +676,7 @@ class ProductAnalysisService:
         product_id: str,
         category_slug: str | None,
         aggregates: list[AspectAggregate],
-        retrievals: list,
+        retrievals: list[RetrievalRecord],
     ) -> ProductAnalysisReport:
         payload = {
             "product_id": product_id,
@@ -677,7 +691,7 @@ class ProductAnalysisService:
         )
         return self._hydrate_report_from_llm(product_id, category_slug, aggregates, retrievals, parsed)
 
-    def _hydrate_report_from_llm(self, product_id: str, category_slug: str | None, aggregates: list[AspectAggregate], retrievals: list, payload: dict) -> ProductAnalysisReport:
+    def _hydrate_report_from_llm(self, product_id: str, category_slug: str | None, aggregates: list[AspectAggregate], retrievals: list[RetrievalRecord], payload: dict) -> ProductAnalysisReport:
         fallback = self._build_report_heuristic(product_id, category_slug, aggregates, retrievals)
         evidence_candidates = fallback.strengths + fallback.weaknesses + fallback.controversies
         strengths = self._hydrate_insights(payload.get("strengths"), fallback.strengths, evidence_candidates=evidence_candidates)
@@ -711,7 +725,7 @@ class ProductAnalysisService:
         product_id: str,
         category_slug: str | None,
         aggregates: list[AspectAggregate],
-        retrievals: list,
+        retrievals: list[RetrievalRecord],
     ) -> ProductAnalysisReport:
         strengths: list[InsightItem] = []
         weaknesses: list[InsightItem] = []
@@ -814,7 +828,7 @@ class ProductAnalysisService:
             suggestions=suggestions[:3],
         )
 
-    def _support_for_aspect(self, aspect: str, retrievals: list) -> SupportingEvidence:
+    def _support_for_aspect(self, aspect: str, retrievals: list[RetrievalRecord]) -> SupportingEvidence:
         matching = [record for record in retrievals if record.source_aspect == aspect]
         supporting_hits = [
             evidence
@@ -1471,7 +1485,7 @@ class ProductAnalysisService:
             )
         return hydrated or fallback_items
 
-    def _resolve_fallback_item(self, raw_label: str, raw_text: str, fallback_items: list) -> object | None:
+    def _resolve_fallback_item(self, raw_label: str, raw_text: str, fallback_items: list[object]) -> object | None:
         if not fallback_items:
             return None
         mentioned_review_ids = self._extract_review_ids(f"{raw_label} {raw_text}")
@@ -1709,7 +1723,7 @@ class ProductAnalysisService:
         )
         return updated_report, replay_summary
 
-    def _persist_report(self, product_id: str, category_slug: str | None, analysis_mode: AnalysisMode, extraction, questions, retrievals, retrieval_quality, retrieval_runtime: RetrievalRuntimeProfile, aggregates, report, trace, warnings: list[str], replay_summary: ReplayContinuationSummary | None) -> AnalysisArtifactBundle:
+    def _persist_report(self, product_id: str, category_slug: str | None, analysis_mode: AnalysisMode, extraction: ReviewExtractionResponse, question_intents: list[QuestionIntent], questions: list[RetrievalQuestion], retrievals: list[RetrievalRecord], retrieval_quality: list[RetrievalQualityMetrics], retrieval_runtime: RetrievalRuntimeProfile, aggregates: list[AspectAggregate], report: ProductAnalysisReport, trace: list[ProcessTraceItem], warnings: list[str], replay_summary: ReplayContinuationSummary | None) -> AnalysisArtifactBundle:
         target_dir = self.settings.reports_output_dir / (category_slug or "adhoc")
         target_dir.mkdir(parents=True, exist_ok=True)
         output_path = target_dir / f"{product_id}_analysis.json"
@@ -1730,6 +1744,7 @@ class ProductAnalysisService:
         payload = {
             "analysis_mode": analysis_mode,
             "extraction": extraction.model_dump(mode="json"),
+            "question_intents": [item.model_dump(mode="json") for item in question_intents],
             "questions": [item.model_dump(mode="json") for item in questions],
             "retrievals": [item.model_dump(mode="json") for item in retrievals],
             "retrieval_quality": [item.model_dump(mode="json") for item in retrieval_quality],
@@ -1747,8 +1762,8 @@ class ProductAnalysisService:
     def _build_process_trace(
         self,
         aspects: list[ReviewAspect],
-        questions: list,
-        retrievals: list,
+        questions: list[RetrievalQuestion],
+        retrievals: list[RetrievalRecord],
         report: ProductAnalysisReport,
         replay_summary: ReplayContinuationSummary | None,
     ) -> list[ProcessTraceItem]:
@@ -2184,7 +2199,142 @@ class ProductAnalysisService:
             summary=summary,
         )
 
-    def _assess_retrieval_quality(self, retrievals: list) -> list[RetrievalQualityMetrics]:
+    def _apply_corrective_retrievals(
+        self,
+        *,
+        package,
+        questions: list[RetrievalQuestion],
+        retrievals: list[RetrievalRecord],
+        retrieval_quality: list[RetrievalQualityMetrics],
+        top_k_per_route: int,
+        use_llm: bool,
+    ) -> tuple[list[RetrievalQuestion], list[RetrievalRecord], list[RetrievalQualityMetrics], list[str]]:
+        question_map = {question.question_id: question for question in questions}
+        retrieval_map = {retrieval.source_question_id: retrieval for retrieval in retrievals}
+        quality_map = {metric.retrieval_id: metric for metric in retrieval_quality}
+        updated_questions = list(questions)
+        updated_retrievals = list(retrievals)
+        updated_quality = list(retrieval_quality)
+        warnings: list[str] = []
+
+        for index, question in enumerate(questions):
+            retrieval = retrieval_map.get(question.question_id)
+            if retrieval is None:
+                continue
+            metric = quality_map.get(retrieval.retrieval_id)
+            if metric is None or metric.corrective_action == "keep_current":
+                continue
+            candidate_question, candidate_top_k = self._build_corrective_question(
+                question=question,
+                retrieval=retrieval,
+                metric=metric,
+                top_k_per_route=top_k_per_route,
+            )
+            if candidate_question == question and candidate_top_k == top_k_per_route:
+                continue
+            candidate_retrieval = self.retrieval_service._retrieve_for_question(
+                package=package,
+                question=candidate_question,
+                top_k_per_route=candidate_top_k,
+                use_llm=use_llm,
+            )
+            candidate_metric = self._assess_retrieval_quality([candidate_retrieval])[0]
+            if self._is_better_retrieval_metric(candidate_metric, metric):
+                updated_questions[index] = candidate_question
+                retrieval_index = updated_retrievals.index(retrieval)
+                quality_index = updated_quality.index(metric)
+                updated_retrievals[retrieval_index] = candidate_retrieval
+                updated_quality[quality_index] = candidate_metric
+                warnings.append(
+                    f"{question.question_id}: applied corrective retrieval ({metric.corrective_action}) "
+                    f"{metric.retrieval_quality_label}->{candidate_metric.retrieval_quality_label}"
+                )
+
+        return updated_questions, updated_retrievals, updated_quality, warnings
+
+    def _build_corrective_question(
+        self,
+        *,
+        question: RetrievalQuestion,
+        retrieval: RetrievalRecord,
+        metric: RetrievalQualityMetrics,
+        top_k_per_route: int,
+    ) -> tuple[RetrievalQuestion, int]:
+        updated_routes = list(question.expected_evidence_routes)
+        updated_question = question.question
+        updated_rationale = question.rationale
+        updated_top_k = top_k_per_route
+
+        if metric.corrective_action == "rewrite_query":
+            if self._uses_main_prompt_variant():
+                updated_question = (
+                    f"For '{retrieval.source_aspect}', what product-page text, specifications, or close-up images directly answer this question: "
+                    f"{question.question.rstrip('?')}?"
+                )
+                updated_rationale = (
+                    "Rewrite the query toward explicit on-page evidence that can realistically appear in product text or images."
+                )
+            else:
+                updated_question = (
+                    f"围绕“{retrieval.source_aspect}”，商品页中哪些文案、规格说明或局部特写能够直接回答这个问题："
+                    f"{question.question.rstrip('？?')}？"
+                )
+                updated_rationale = "将问题改写为更贴近商品页显式证据的检索请求。"
+            updated_routes = ["text", "image"]
+        elif metric.corrective_action == "expand_topk":
+            updated_top_k = min(5, top_k_per_route + 1)
+        elif metric.corrective_action == "add_multimodal_route":
+            updated_routes = ["text", "image"]
+            if self._uses_main_prompt_variant() and "both product text and images" not in updated_question.lower():
+                updated_question = f"{question.question.rstrip('?')} using both product text and images?"
+            elif not self._uses_main_prompt_variant() and "图文" not in updated_question:
+                updated_question = f"{question.question.rstrip('？?')}，并结合商品图文证据判断？"
+        elif metric.corrective_action == "filter_noise":
+            if self._uses_main_prompt_variant():
+                updated_question = (
+                    f"For '{retrieval.source_aspect}', what explicit product-page evidence directly supports or answers: "
+                    f"{question.question.rstrip('?')}? Prefer exact specs, labels, or close-up visuals."
+                )
+                updated_rationale = "Tighten the query toward explicit evidence and reduce noisy broad matches."
+            else:
+                updated_question = (
+                    f"围绕“{retrieval.source_aspect}”，商品页中哪些明确的规格、标签或局部特写能够直接支撑或回答："
+                    f"{question.question.rstrip('？?')}？"
+                )
+                updated_rationale = "收紧检索问题，优先匹配明确证据，减少噪声召回。"
+            updated_top_k = max(1, min(top_k_per_route, 2))
+
+        return (
+            question.model_copy(
+                update={
+                    "question": updated_question,
+                    "rationale": updated_rationale,
+                    "expected_evidence_routes": updated_routes,
+                }
+            ),
+            updated_top_k,
+        )
+
+    def _is_better_retrieval_metric(
+        self,
+        candidate: RetrievalQualityMetrics,
+        baseline: RetrievalQualityMetrics,
+    ) -> bool:
+        label_rank = {"bad": 0, "mixed": 1, "good": 2}
+
+        def metric_key(metric: RetrievalQualityMetrics) -> tuple[float, ...]:
+            return (
+                float(label_rank.get(metric.retrieval_quality_label, 0)),
+                float(metric.answer_coverage),
+                float(metric.route_coverage),
+                -float(metric.conflict_risk),
+                -float(metric.score_drift),
+                float(metric.top_k_count),
+            )
+
+        return metric_key(candidate) > metric_key(baseline)
+
+    def _assess_retrieval_quality(self, retrievals: list[RetrievalRecord]) -> list[RetrievalQualityMetrics]:
         metrics: list[RetrievalQualityMetrics] = []
         for retrieval in retrievals:
             evidence_count = len(retrieval.retrieved)
@@ -2348,7 +2498,7 @@ class ProductAnalysisService:
             "Retrieval quality is inconclusive; keep the current evidence set and inspect manually if needed.",
         )
 
-    def _extract_answer_value(self, question: str, answered_hits: list) -> tuple[str | None, str | None]:
+    def _extract_answer_value(self, question: str, answered_hits: list[RetrievedEvidence]) -> tuple[str | None, str | None]:
         if not answered_hits:
             return None, None
         question_text = (question or "").lower()

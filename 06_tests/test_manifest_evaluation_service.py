@@ -106,6 +106,32 @@ def test_manifest_evaluation_service_aggregates_run_metrics(tmp_path: Path) -> N
                         "confidence_breakdown": {"final_confidence": 0.65},
                     }
                 ],
+                "claim_attributions": [
+                    {
+                        "claim_id": "strength:value_price:0",
+                        "claim_source": "strength",
+                        "support_status": "supported",
+                        "support_type": "product_text",
+                        "support_ids": ["t1"],
+                        "route_sources": ["text"],
+                    },
+                    {
+                        "claim_id": "weakness:portability_size:0",
+                        "claim_source": "weakness",
+                        "support_status": "partial",
+                        "support_type": "image",
+                        "support_ids": ["img_rel"],
+                        "route_sources": ["image"],
+                    },
+                    {
+                        "claim_id": "suggestion:clarify_sizing:0",
+                        "claim_source": "suggestion",
+                        "support_status": "contradicted",
+                        "support_type": "review",
+                        "support_ids": ["r1"],
+                        "route_sources": [],
+                    },
+                ],
             },
             "replay_summary": {
                 "applied": True,
@@ -179,16 +205,29 @@ def test_manifest_evaluation_service_aggregates_run_metrics(tmp_path: Path) -> N
     assert run["retrieval_metrics"]["mrr"] == 0.75
     assert run["retrieval_metrics"]["ndcg_at_3"] == pytest.approx(0.8154648768)
     assert run["generation_metrics"]["citation_coverage_rate"] == 2 / 3
+    assert run["generation_metrics"]["claim_support_rate"] == 1 / 3
+    assert run["generation_metrics"]["claim_grounded_rate"] == 2 / 3
+    assert run["generation_metrics"]["citation_precision"] == 2 / 3
+    assert run["generation_metrics"]["citation_contradiction_rate"] == 1 / 3
+    assert run["generation_metrics"]["modality_hit_rate"] == 2 / 3
+    assert run["generation_metrics"]["route_contribution"] == {"text": 0.5, "image": 0.5, "mixed": 0.0}
     assert run["feedback_metrics"]["reviewed_slot_count"] == 1
     assert run["replay_metrics"]["persistent_issue_count"] == 1
     assert report["aggregate_metrics"]["avg_good_query_rate"] == 0.5
     assert report["aggregate_metrics"]["avg_bad_query_rate"] == 0.5
     assert report["aggregate_metrics"]["avg_recall_at_1"] == 0.5
     assert report["aggregate_metrics"]["avg_mrr"] == 0.75
+    assert report["aggregate_metrics"]["avg_claim_support_rate"] == 1 / 3
+    assert report["aggregate_metrics"]["avg_claim_grounded_rate"] == 2 / 3
+    assert report["aggregate_metrics"]["avg_citation_precision"] == 2 / 3
+    assert report["aggregate_metrics"]["avg_citation_contradiction_rate"] == 1 / 3
+    assert report["aggregate_metrics"]["avg_modality_hit_rate"] == 2 / 3
     assert report["retrieval_evaluator_summary"]["evaluator_query_count"] == 2
     assert report["retrieval_evaluator_summary"]["quality_label_counts"] == {"good": 1, "bad": 1}
     assert report["retrieval_evaluator_summary"]["failure_reason_counts"] == {"none": 1, "low_precision": 1}
     assert report["retrieval_evaluator_summary"]["corrective_action_counts"] == {"keep_current": 1, "filter_noise": 1}
+    assert report["claim_attribution_summary"]["support_status_counts"] == {"supported": 1, "partial": 1, "contradicted": 1}
+    assert report["claim_attribution_summary"]["route_contribution_counts"] == {"text": 1, "image": 1}
 
 
 def test_manifest_evaluation_service_marks_missing_sidecars(tmp_path: Path) -> None:

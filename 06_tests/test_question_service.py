@@ -267,3 +267,19 @@ def test_question_service_rewrites_seam_style_rubber_insert_question(monkeypatch
     assert "stitch" not in questions[0].question.lower()
     assert "surface texture" in questions[0].question.lower()
     assert questions[0].expected_evidence_routes == ["image"]
+
+
+def test_question_service_plans_question_intents_with_constraints() -> None:
+    service = QuestionGenerationService()
+    aspect = _build_aspect().model_copy(update={"aspect": "rubber insert durability"})
+
+    intents = service.plan_question_intents([aspect], questions_per_aspect=3)
+
+    assert [intent.intent_type for intent in intents] == [
+        "explicit_support",
+        "visual_confirmation",
+        "cross_modal_resolution",
+    ]
+    assert all(intent.expected_evidence_routes for intent in intents)
+    assert any("long-term wear" in intent.forbidden_concepts for intent in intents)
+    assert all(intent.specificity_bound for intent in intents)

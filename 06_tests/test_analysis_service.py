@@ -12,6 +12,7 @@ from decathlon_voc_analyzer.schemas.analysis import (
     ProductAnalysisRequest,
     ReplayContinuationSummary,
     RetrievedEvidence,
+    RetrievalQuestion,
     RetrievalRecord,
     SupportingEvidence,
 )
@@ -792,6 +793,84 @@ def test_product_analysis_service_marks_missing_expected_route_as_modality_miss(
     assert metric.retrieval_quality_label == "mixed"
     assert metric.failure_reason == "modality_miss"
     assert metric.corrective_action == "add_multimodal_route"
+
+
+def test_product_analysis_service_retries_corrective_retrieval_when_candidate_is_better(monkeypatch: pytest.MonkeyPatch) -> None:
+    service = ProductAnalysisService()
+    question = RetrievalQuestion(
+        question_id="q1",
+        source_review_id="review_1",
+        source_aspect="price",
+        source_aspect_id="a1",
+        question="What is the listed selling price?",
+        rationale="Need actual price value.",
+        expected_evidence_routes=["text"],
+        confidence=0.7,
+    )
+    baseline_retrieval = RetrievalRecord(
+        retrieval_id="r1",
+        product_id="demo_product",
+        query=question.question,
+        source_review_id="review_1",
+        source_aspect="price",
+        source_question_id="q1",
+        source_question=question.question,
+        source_evidence_span=question.rationale,
+        expected_evidence_routes=["text"],
+        retrieved=[
+            RetrievedEvidence(
+                product_id="demo_product",
+                route="text",
+                text_block_id="product_name",
+                source_section="product_name",
+                content_preview="MH580 Sports Polarized Sunglasses",
+                embedding_score=0.31,
+                rerank_score=0.07,
+            )
+        ],
+    )
+    baseline_metric = service._assess_retrieval_quality([baseline_retrieval])[0]
+
+    def fake_retry(*, package, question, top_k_per_route, use_llm):
+        assert question.question != "What is the listed selling price?"
+        return RetrievalRecord(
+            retrieval_id="r2",
+            product_id="demo_product",
+            query=question.question,
+            source_review_id="review_1",
+            source_aspect="price",
+            source_question_id="q1",
+            source_question=question.question,
+            source_evidence_span=question.rationale,
+            expected_evidence_routes=question.expected_evidence_routes,
+            retrieved=[
+                RetrievedEvidence(
+                    product_id="demo_product",
+                    route="text",
+                    text_block_id="sale_price",
+                    source_section="pricing",
+                    content_preview="Current selling price: $49.99.",
+                    embedding_score=0.62,
+                    rerank_score=0.94,
+                )
+            ],
+        )
+
+    monkeypatch.setattr(service.retrieval_service, "_retrieve_for_question", fake_retry)
+
+    updated_questions, updated_retrievals, updated_quality, warnings = service._apply_corrective_retrievals(
+        package=object(),
+        questions=[question],
+        retrievals=[baseline_retrieval],
+        retrieval_quality=[baseline_metric],
+        top_k_per_route=2,
+        use_llm=False,
+    )
+
+    assert updated_questions[0].question != question.question
+    assert updated_retrievals[0].retrieval_id == "r2"
+    assert updated_quality[0].retrieval_quality_label == "good"
+    assert warnings
 
 
 def test_product_analysis_service_marks_trace_with_valid_evidence_counts() -> None:

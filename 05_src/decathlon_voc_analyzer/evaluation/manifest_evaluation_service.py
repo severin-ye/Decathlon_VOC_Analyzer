@@ -40,6 +40,67 @@ def _counter_rate(counter: Counter[str], key: str, total: int) -> float:
     return float(counter.get(key, 0)) / float(total)
 
 
+def _build_claim_attribution_metrics(report: dict) -> dict[str, object]:
+    attributions = [
+        item
+        for item in (report.get("claim_attributions") or [])
+        if isinstance(item, dict) and str(item.get("claim_source") or "") != "evidence_gap"
+    ]
+    claim_total = len(attributions)
+    support_status_counter = Counter(str(item.get("support_status") or "unknown") for item in attributions)
+    support_type_counter = Counter(str(item.get("support_type") or "unknown") for item in attributions)
+
+    cited_claims = [item for item in attributions if item.get("support_ids")]
+    grounded_product_claims = [
+        item
+        for item in cited_claims
+        if str(item.get("support_status") or "") in {"supported", "partial"}
+        and str(item.get("support_type") or "") in {"product_text", "image", "mixed"}
+    ]
+    route_mode_counter: Counter[str] = Counter()
+    route_claim_count = 0
+    for item in attributions:
+        routes = {
+            str(route)
+            for route in (item.get("route_sources") or [])
+            if str(route) in {"text", "image"}
+        }
+        if not routes:
+            continue
+        route_claim_count += 1
+        if routes == {"text"}:
+            route_mode_counter["text"] += 1
+        elif routes == {"image"}:
+            route_mode_counter["image"] += 1
+        else:
+            route_mode_counter["mixed"] += 1
+
+    return {
+        "claim_count": claim_total,
+        "supported_claim_count": int(support_status_counter.get("supported", 0)),
+        "partial_claim_count": int(support_status_counter.get("partial", 0)),
+        "unsupported_claim_count": int(support_status_counter.get("unsupported", 0)),
+        "contradicted_claim_count": int(support_status_counter.get("contradicted", 0)),
+        "claim_support_rate": _counter_rate(support_status_counter, "supported", claim_total),
+        "claim_grounded_rate": (
+            float(support_status_counter.get("supported", 0) + support_status_counter.get("partial", 0)) / float(claim_total)
+            if claim_total > 0
+            else 0.0
+        ),
+        "citation_precision": (len(grounded_product_claims) / len(cited_claims)) if cited_claims else 0.0,
+        "citation_contradiction_rate": _counter_rate(support_status_counter, "contradicted", claim_total),
+        "modality_hit_rate": route_claim_count / claim_total if claim_total else 0.0,
+        "route_contribution": {
+            "text": _counter_rate(route_mode_counter, "text", route_claim_count),
+            "image": _counter_rate(route_mode_counter, "image", route_claim_count),
+            "mixed": _counter_rate(route_mode_counter, "mixed", route_claim_count),
+        },
+        "support_status_counts": dict(support_status_counter),
+        "support_type_counts": dict(support_type_counter),
+        "route_contribution_counts": dict(route_mode_counter),
+    }
+
+
 def _evidence_identifier(item: dict) -> str | None:
     for key in ("region_id", "text_block_id", "image_id", "evidence_id"):
         value = item.get(key)
@@ -285,6 +346,7 @@ class ManifestEvaluationService:
             float((item.get("confidence_breakdown") or {}).get("final_confidence", item.get("confidence", 0.0)))
             for item in insights
         ]
+        claim_metrics = _build_claim_attribution_metrics(report)
 
         feedback_slots = (bundle.feedback_payload or {}).get("slots") or []
         feedback_status_counter = Counter(str(item.get("status") or "pending_review") for item in feedback_slots)
@@ -355,6 +417,20 @@ class ManifestEvaluationService:
                 "controversy_count": len(report.get("controversies") or []),
                 "suggestion_count": len(report.get("suggestions") or []),
                 "citation_coverage_rate": len(supported_items) / len(insights) if insights else 0.0,
+                "claim_count": int(claim_metrics["claim_count"]),
+                "supported_claim_count": int(claim_metrics["supported_claim_count"]),
+                "partial_claim_count": int(claim_metrics["partial_claim_count"]),
+                "unsupported_claim_count": int(claim_metrics["unsupported_claim_count"]),
+                "contradicted_claim_count": int(claim_metrics["contradicted_claim_count"]),
+                "claim_support_rate": float(claim_metrics["claim_support_rate"]),
+                "claim_grounded_rate": float(claim_metrics["claim_grounded_rate"]),
+                "citation_precision": float(claim_metrics["citation_precision"]),
+                "citation_contradiction_rate": float(claim_metrics["citation_contradiction_rate"]),
+                "modality_hit_rate": float(claim_metrics["modality_hit_rate"]),
+                "route_contribution": dict(claim_metrics["route_contribution"]),
+                "support_status_counts": dict(claim_metrics["support_status_counts"]),
+                "support_type_counts": dict(claim_metrics["support_type_counts"]),
+                "route_contribution_counts": dict(claim_metrics["route_contribution_counts"]),
                 "avg_final_confidence": _safe_mean(final_confidences),
             },
             "feedback_metrics": {
@@ -388,6 +464,9 @@ class ManifestEvaluationService:
         quality_label_counter: Counter[str] = Counter()
         failure_reason_counter: Counter[str] = Counter()
         corrective_action_counter: Counter[str] = Counter()
+        support_status_counter: Counter[str] = Counter()
+        support_type_counter: Counter[str] = Counter()
+        route_contribution_counter: Counter[str] = Counter()
 
         for item in retrieval_means:
             quality_label_counter.update(
@@ -406,6 +485,25 @@ class ManifestEvaluationService:
                 {
                     str(key): int(value)
                     for key, value in (item.get("corrective_action_counts") or {}).items()
+                }
+            )
+        for item in generation_means:
+            support_status_counter.update(
+                {
+                    str(key): int(value)
+                    for key, value in (item.get("support_status_counts") or {}).items()
+                }
+            )
+            support_type_counter.update(
+                {
+                    str(key): int(value)
+                    for key, value in (item.get("support_type_counts") or {}).items()
+                }
+            )
+            route_contribution_counter.update(
+                {
+                    str(key): int(value)
+                    for key, value in (item.get("route_contribution_counts") or {}).items()
                 }
             )
 
@@ -485,6 +583,30 @@ class ManifestEvaluationService:
                 "avg_citation_coverage_rate": _safe_mean(
                     [float(item.get("citation_coverage_rate", 0.0)) for item in generation_means]
                 ),
+                "avg_claim_support_rate": _safe_mean(
+                    [float(item.get("claim_support_rate", 0.0)) for item in generation_means]
+                ),
+                "avg_claim_grounded_rate": _safe_mean(
+                    [float(item.get("claim_grounded_rate", 0.0)) for item in generation_means]
+                ),
+                "avg_citation_precision": _safe_mean(
+                    [float(item.get("citation_precision", 0.0)) for item in generation_means]
+                ),
+                "avg_citation_contradiction_rate": _safe_mean(
+                    [float(item.get("citation_contradiction_rate", 0.0)) for item in generation_means]
+                ),
+                "avg_modality_hit_rate": _safe_mean(
+                    [float(item.get("modality_hit_rate", 0.0)) for item in generation_means]
+                ),
+                "avg_text_route_contribution": _safe_mean(
+                    [float((item.get("route_contribution") or {}).get("text", 0.0)) for item in generation_means]
+                ),
+                "avg_image_route_contribution": _safe_mean(
+                    [float((item.get("route_contribution") or {}).get("image", 0.0)) for item in generation_means]
+                ),
+                "avg_mixed_route_contribution": _safe_mean(
+                    [float((item.get("route_contribution") or {}).get("mixed", 0.0)) for item in generation_means]
+                ),
                 "avg_final_confidence": _safe_mean(
                     [float(item.get("avg_final_confidence", 0.0)) for item in generation_means]
                 ),
@@ -494,6 +616,11 @@ class ManifestEvaluationService:
                 "quality_label_counts": dict(quality_label_counter),
                 "failure_reason_counts": dict(failure_reason_counter),
                 "corrective_action_counts": dict(corrective_action_counter),
+            },
+            "claim_attribution_summary": {
+                "support_status_counts": dict(support_status_counter),
+                "support_type_counts": dict(support_type_counter),
+                "route_contribution_counts": dict(route_contribution_counter),
             },
             "runs": runs,
         }
