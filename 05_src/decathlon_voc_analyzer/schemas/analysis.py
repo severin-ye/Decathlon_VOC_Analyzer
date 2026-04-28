@@ -17,6 +17,9 @@ ClaimSource = Literal["strength", "weakness", "controversy", "suggestion", "evid
 ClaimSupportStatus = Literal["supported", "partial", "unsupported", "contradicted"]
 ClaimSupportType = Literal["review", "product_text", "image", "mixed"]
 ClaimRevisionAction = Literal["keep", "downgrade", "remove", "flag"]
+RetrievalQualityLabel = Literal["good", "mixed", "bad"]
+RetrievalFailureReason = Literal["none", "no_evidence", "modality_miss", "low_recall", "low_precision", "evidence_conflict"]
+RetrievalCorrectiveAction = Literal["keep_current", "rewrite_query", "expand_topk", "add_multimodal_route", "filter_noise"]
 
 
 class RetrievalQuestion(BaseModel):
@@ -72,6 +75,10 @@ class RetrievalQualityMetrics(BaseModel):
     text_coverage: bool = False
     image_coverage: bool = False
     conflict_risk: float = Field(ge=0.0, le=1.0)
+    retrieval_quality_label: RetrievalQualityLabel = "mixed"
+    failure_reason: RetrievalFailureReason = "none"
+    corrective_action: RetrievalCorrectiveAction = "keep_current"
+    evaluator_explanation: str | None = None
 
 
 class RetrievalRuntimeProfile(BaseModel):

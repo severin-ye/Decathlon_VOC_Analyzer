@@ -34,6 +34,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--questions-per-aspect", type=int, default=2, help="每个 aspect 问题数")
     parser.add_argument("--skip-normalize", action="store_true", help="跳过标准化")
     parser.add_argument("--skip-index", action="store_true", help="跳过索引构建")
+    parser.add_argument("--export-html", action="store_true", help="验证通过后顺带导出单商品 HTML 页面")
+    parser.add_argument("--write-manifest", action="store_true", help="验证通过后顺带写出本次运行 manifest")
+    parser.add_argument("--manifest-path", default=None, help="可选，显式指定 manifest 输出路径")
     parser.add_argument("--allow-heuristic", action="store_true", help="允许回退到 heuristic；默认要求 llm")
     return parser.parse_args()
 
@@ -57,6 +60,9 @@ def _validate_summary(summary, allow_heuristic: bool) -> dict[str, object]:
         "analysis_mode": summary.analysis["analysis_mode"],
         "retrieval_runtime": retrieval_runtime,
         "artifact_path": summary.analysis["artifact_path"],
+        "artifact_bundle": summary.artifact_bundle,
+        "html_export_path": summary.html_export_path,
+        "manifest_path": summary.manifest_path,
         "index_result": summary.index_result,
     }
 
@@ -72,6 +78,11 @@ def _prepare_workflow_args(args: argparse.Namespace) -> argparse.Namespace:
     return argparse.Namespace(**payload)
 
 
+def _materialize_summary(run_workflow, workflow_args: argparse.Namespace, paths: dict[str, Path]):
+    summary = run_workflow.execute_workflow(workflow_args, paths)
+    return run_workflow.maybe_write_manifest(workflow_args, summary, paths)
+
+
 def main() -> None:
     run_workflow = _load_run_workflow_module()
     from decathlon_voc_analyzer.stage3_retrieval.index_backends import dispose_index_backend
@@ -82,7 +93,7 @@ def main() -> None:
         workflow_args = _prepare_workflow_args(args)
         config = run_workflow.build_cli_config(workflow_args)
         paths = run_workflow.configure_environment(config)
-        summary = run_workflow.execute_workflow(workflow_args, paths)
+        summary = _materialize_summary(run_workflow, workflow_args, paths)
         validation = _validate_summary(summary, allow_heuristic=args.allow_heuristic)
         payload = {
             "validation": validation,

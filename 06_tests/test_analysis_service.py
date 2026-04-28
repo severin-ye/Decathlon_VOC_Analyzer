@@ -69,6 +69,170 @@ def test_product_analysis_service_emits_evidence_nodes_and_claim_attributions() 
     assert all(support_id in node_ids for attribution in result.report.claim_attributions for support_id in attribution.support_ids)
 
 
+def test_product_analysis_service_applies_claim_revisions_to_report_items() -> None:
+    service = ProductAnalysisService()
+    report = ProductAnalysisReport(
+        product_id="p1",
+        answer="placeholder",
+        strengths=[
+            InsightItem(
+                label="comfort",
+                summary="Comfort is positively mentioned by a user review.",
+                confidence=0.8,
+                supporting_evidence=SupportingEvidence(review_ids=["review_1"]),
+            )
+        ],
+        weaknesses=[],
+        controversies=[],
+        suggestions=[
+            ImprovementSuggestion(
+                suggestion="Add quantified ergonomic validation claims.",
+                suggestion_type="perception",
+                reason=["No product-page ergonomic evidence was retrieved."],
+                confidence=0.8,
+                supporting_evidence=SupportingEvidence(review_ids=["review_1"]),
+            )
+        ],
+        supporting_product_evidence=SupportingEvidence(),
+        confidence=0.8,
+    )
+
+    revised = service._attach_claim_attribution(
+        report,
+        aspects=[
+            ReviewAspect(
+                aspect_id="a1",
+                review_id="review_1",
+                product_id="p1",
+                aspect="comfort",
+                sentiment="positive",
+                opinion="comfortable",
+                evidence_span="comfortable to wear",
+                usage_scene="",
+                confidence=0.9,
+                extraction_mode="llm",
+            )
+        ],
+        retrievals=[],
+    )
+
+    assert revised.strengths[0].summary.startswith("Current evidence only partially supports this claim:")
+    assert revised.suggestions[0].suggestion.startswith("Current evidence only partially supports this claim:")
+
+
+def test_product_analysis_service_accepts_strong_visual_support_below_previous_threshold() -> None:
+    service = ProductAnalysisService()
+
+    support = service._support_for_aspect(
+        "lens tinting",
+        [
+            RetrievalRecord(
+                retrieval_id="r1",
+                product_id="p1",
+                query="Do product images clearly show the lens tint when viewed straight-on and under neutral lighting, without glare or reflection obscuring the tint?",
+                source_review_id="review_1",
+                source_aspect="lens tinting",
+                source_question_id="q1",
+                source_question="Do product images clearly show the lens tint when viewed straight-on and under neutral lighting, without glare or reflection obscuring the tint?",
+                source_evidence_span="Visual confirmation of tint appearance is necessary.",
+                expected_evidence_routes=["image"],
+                retrieved=[
+                    RetrievedEvidence(
+                        product_id="p1",
+                        route="image",
+                        image_id="image_1",
+                        region_id="image_1_region_front",
+                        region_label="front_lens",
+                        image_path="images/img1.png",
+                        content_preview="Front-facing tinted lens view under neutral lighting.",
+                        embedding_score=0.3,
+                        rerank_score=0.85,
+                    )
+                ],
+            )
+        ],
+    )
+
+    assert support.product_image_ids == ["image_1"]
+
+
+def test_product_analysis_service_hydrates_report_support_before_claim_attribution() -> None:
+    service = ProductAnalysisService()
+    report = ProductAnalysisReport(
+        product_id="p1",
+        answer="placeholder",
+        strengths=[
+            InsightItem(
+                label="lens tinting perception",
+                summary="Positive feedback on lens tinting perception comes from user reviews, but no direct product-page text or reliable image evidence was retrieved.",
+                confidence=0.8,
+                supporting_evidence=SupportingEvidence(review_ids=["review_1"]),
+            )
+        ],
+        weaknesses=[],
+        controversies=[],
+        evidence_gaps=[],
+        suggestions=[],
+        supporting_product_evidence=SupportingEvidence(),
+        confidence=0.8,
+    )
+
+    updated = service._attach_claim_attribution(
+        report,
+        aspects=[
+            ReviewAspect(
+                aspect_id="a1",
+                review_id="review_1",
+                product_id="p1",
+                aspect="lens tinting",
+                sentiment="positive",
+                opinion="excellent tinting",
+                evidence_span="excellent tinting",
+                usage_scene="",
+                confidence=0.9,
+                extraction_mode="llm",
+            )
+        ],
+        retrievals=[
+            RetrievalRecord(
+                retrieval_id="r1",
+                product_id="p1",
+                query="Do product images clearly show the lens tint when viewed straight-on and under neutral lighting, without glare or reflection obscuring the tint?",
+                source_review_id="review_1",
+                source_aspect="lens tinting",
+                source_question_id="q1",
+                source_question="Do product images clearly show the lens tint when viewed straight-on and under neutral lighting, without glare or reflection obscuring the tint?",
+                source_evidence_span="Visual confirmation of tint appearance is necessary.",
+                expected_evidence_routes=["image"],
+                retrieved=[
+                    RetrievedEvidence(
+                        product_id="p1",
+                        route="image",
+                        image_id="image_1",
+                        region_id="image_1_region_front",
+                        region_label="front_lens",
+                        image_path="images/img1.png",
+                        content_preview="Front-facing tinted lens view under neutral lighting.",
+                        embedding_score=0.3,
+                        rerank_score=0.85,
+                    )
+                ],
+            )
+        ],
+    )
+
+    assert updated.strengths[0].supporting_evidence.product_image_ids == ["image_1"]
+    assert any(node.evidence_node_id == "image_1_region_front_visual" for node in updated.evidence_nodes)
+    lens_tinting_attribution = next(
+        attribution
+        for attribution in updated.claim_attributions
+        if attribution.claim_id == "strength:lens_tinting_issue:0"
+    )
+    assert lens_tinting_attribution.support_ids == ["review_1_chunk_00", "image_1_region_front_visual"]
+    assert lens_tinting_attribution.route_sources == ["image"]
+    assert lens_tinting_attribution.support_type == "mixed"
+
+
 def test_product_analysis_service_builds_improvement_suggestions() -> None:
     service = ProductAnalysisService()
 
@@ -418,6 +582,33 @@ def test_product_analysis_service_prefers_reason_alignment_for_suggestion_hydrat
     assert "comfort" in hydrated[0].suggestion.lower()
 
 
+def test_product_analysis_service_rebind_suggestions_downgrades_unsupported_claims() -> None:
+    service = ProductAnalysisService()
+    suggestions = [
+        ImprovementSuggestion(
+            suggestion="Validate lens quality against ANSI Z80.3 prism-deviation thresholds before publishing claims.",
+            suggestion_type="perception",
+            reason=["No product-page claims or test data regarding optical clarity were retrieved."],
+            confidence=0.85,
+            supporting_evidence=SupportingEvidence(review_ids=["review_1"]),
+        )
+    ]
+    candidate_items = [
+        EvidenceGapItem(
+            label="Missing optical distortion validation",
+            summary="No product-page evidence was retrieved for optical neutrality, distortion control, or magnification-related validation.",
+            confidence=0.9,
+            supporting_evidence=SupportingEvidence(review_ids=["review_1"]),
+        )
+    ]
+
+    rebound = service._rebind_suggestions(suggestions, candidate_items)
+
+    assert "ansi" not in rebound[0].suggestion.lower()
+    assert "optical validation" in rebound[0].suggestion.lower()
+    assert rebound[0].supporting_evidence.review_ids == ["review_1"]
+
+
 def test_product_analysis_service_tracks_mixed_ratio_in_aggregates() -> None:
     service = ProductAnalysisService()
 
@@ -522,6 +713,85 @@ def test_product_analysis_service_extracts_answer_value_for_supported_tint_quest
     assert tint_metric.answer_status == "partial"
     assert tint_metric.answer_value is not None
     assert tint_metric.answer_source == "image"
+
+
+def test_product_analysis_service_marks_retrieval_quality_as_low_precision_for_unanswered_hits() -> None:
+    service = ProductAnalysisService()
+
+    retrievals = [
+        RetrievalRecord(
+            retrieval_id="r1",
+            product_id="demo_product",
+            query="What is the listed selling price?",
+            source_review_id="review_1",
+            source_aspect="price",
+            source_question_id="q1",
+            source_question="What is the listed selling price?",
+            source_evidence_span="Need actual price value.",
+            expected_evidence_routes=["text"],
+            retrieved=[
+                RetrievedEvidence(
+                    product_id="demo_product",
+                    route="text",
+                    text_block_id="product_name",
+                    source_section="product_name",
+                    content_preview="MH580 Sports Polarized Sunglasses",
+                    embedding_score=0.31,
+                    rerank_score=0.07,
+                ),
+                RetrievedEvidence(
+                    product_id="demo_product",
+                    route="text",
+                    text_block_id="category",
+                    source_section="category",
+                    content_preview="All Sports > Running > Accessories > Sunglasses",
+                    embedding_score=0.32,
+                    rerank_score=0.06,
+                ),
+            ],
+        )
+    ]
+
+    metric = service._assess_retrieval_quality(retrievals)[0]
+
+    assert metric.retrieval_quality_label == "bad"
+    assert metric.failure_reason == "low_precision"
+    assert metric.corrective_action == "filter_noise"
+
+
+def test_product_analysis_service_marks_missing_expected_route_as_modality_miss() -> None:
+    service = ProductAnalysisService()
+
+    retrievals = [
+        RetrievalRecord(
+            retrieval_id="r1",
+            product_id="demo_product",
+            query="Does the page include a front-facing image showing lens tint?",
+            source_review_id="review_1",
+            source_aspect="lens tinting",
+            source_question_id="q1",
+            source_question="Does the page include a front-facing image showing lens tint?",
+            source_evidence_span="Need image evidence.",
+            expected_evidence_routes=["text", "image"],
+            retrieved=[
+                RetrievedEvidence(
+                    product_id="demo_product",
+                    route="text",
+                    text_block_id="model_description",
+                    source_section="model_description",
+                    content_preview="Category 4 lenses fully block intense sunlight and glare.",
+                    embedding_score=0.55,
+                    rerank_score=0.24,
+                )
+            ],
+        )
+    ]
+
+    metric = service._assess_retrieval_quality(retrievals)[0]
+
+    assert metric.retrieval_quality_label == "mixed"
+    assert metric.failure_reason == "modality_miss"
+    assert metric.corrective_action == "add_multimodal_route"
 
 
 def test_product_analysis_service_marks_trace_with_valid_evidence_counts() -> None:

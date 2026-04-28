@@ -63,6 +63,9 @@ def test_manifest_evaluation_service_aggregates_run_metrics(tmp_path: Path) -> N
                     "conflict_risk": 0.1,
                     "text_coverage": True,
                     "image_coverage": False,
+                    "retrieval_quality_label": "good",
+                    "failure_reason": "none",
+                    "corrective_action": "keep_current",
                 },
                 {
                     "retrieval_id": "t2",
@@ -72,6 +75,9 @@ def test_manifest_evaluation_service_aggregates_run_metrics(tmp_path: Path) -> N
                     "conflict_risk": 0.3,
                     "text_coverage": True,
                     "image_coverage": True,
+                    "retrieval_quality_label": "bad",
+                    "failure_reason": "low_precision",
+                    "corrective_action": "filter_noise",
                 },
             ],
             "report": {
@@ -162,6 +168,12 @@ def test_manifest_evaluation_service_aggregates_run_metrics(tmp_path: Path) -> N
     assert run["question_metrics"]["question_count"] == 2
     assert run["retrieval_metrics"]["avg_candidates_per_query"] == 2.0
     assert run["retrieval_metrics"]["judged_query_count"] == 2
+    assert run["retrieval_metrics"]["evaluator_query_count"] == 2
+    assert run["retrieval_metrics"]["quality_label_counts"] == {"good": 1, "bad": 1}
+    assert run["retrieval_metrics"]["failure_reason_counts"] == {"none": 1, "low_precision": 1}
+    assert run["retrieval_metrics"]["corrective_action_counts"] == {"keep_current": 1, "filter_noise": 1}
+    assert run["retrieval_metrics"]["good_query_rate"] == 0.5
+    assert run["retrieval_metrics"]["bad_query_rate"] == 0.5
     assert run["retrieval_metrics"]["recall_at_1"] == 0.5
     assert run["retrieval_metrics"]["recall_at_3"] == 1.0
     assert run["retrieval_metrics"]["mrr"] == 0.75
@@ -169,8 +181,14 @@ def test_manifest_evaluation_service_aggregates_run_metrics(tmp_path: Path) -> N
     assert run["generation_metrics"]["citation_coverage_rate"] == 2 / 3
     assert run["feedback_metrics"]["reviewed_slot_count"] == 1
     assert run["replay_metrics"]["persistent_issue_count"] == 1
+    assert report["aggregate_metrics"]["avg_good_query_rate"] == 0.5
+    assert report["aggregate_metrics"]["avg_bad_query_rate"] == 0.5
     assert report["aggregate_metrics"]["avg_recall_at_1"] == 0.5
     assert report["aggregate_metrics"]["avg_mrr"] == 0.75
+    assert report["retrieval_evaluator_summary"]["evaluator_query_count"] == 2
+    assert report["retrieval_evaluator_summary"]["quality_label_counts"] == {"good": 1, "bad": 1}
+    assert report["retrieval_evaluator_summary"]["failure_reason_counts"] == {"none": 1, "low_precision": 1}
+    assert report["retrieval_evaluator_summary"]["corrective_action_counts"] == {"keep_current": 1, "filter_noise": 1}
 
 
 def test_manifest_evaluation_service_marks_missing_sidecars(tmp_path: Path) -> None:
@@ -207,4 +225,5 @@ def test_manifest_evaluation_service_marks_missing_sidecars(tmp_path: Path) -> N
     assert "missing_feedback_sidecar" in run["warnings"]
     assert "missing_replay_sidecar" in run["warnings"]
     assert run["retrieval_metrics"]["judged_query_count"] == 0
+    assert run["retrieval_metrics"]["evaluator_query_count"] == 0
     assert run["retrieval_metrics"]["mrr"] == 0.0

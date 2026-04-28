@@ -191,14 +191,154 @@ class ProductAnalysisService:
         aspects: list[ReviewAspect],
         retrievals: list,
     ) -> ProductAnalysisReport:
-        evidence_nodes = self._build_evidence_nodes(report, aspects, retrievals)
-        claim_attributions = self._build_claim_attributions(report, evidence_nodes)
-        return report.model_copy(
+        hydrated_report = self._hydrate_report_supporting_evidence(report, aspects, retrievals)
+        evidence_nodes = self._build_evidence_nodes(hydrated_report, aspects, retrievals)
+        claim_attributions = self._build_claim_attributions(hydrated_report, evidence_nodes)
+        revised_report = self._apply_claim_attribution_revisions(hydrated_report, claim_attributions)
+        return hydrated_report.model_copy(
             update={
+                "answer": revised_report.answer,
+                "strengths": revised_report.strengths,
+                "weaknesses": revised_report.weaknesses,
+                "controversies": revised_report.controversies,
+                "evidence_gaps": revised_report.evidence_gaps,
+                "suggestions": revised_report.suggestions,
+                "supporting_review_evidence": revised_report.supporting_review_evidence,
+                "supporting_product_evidence": revised_report.supporting_product_evidence,
                 "evidence_nodes": evidence_nodes,
                 "claim_attributions": claim_attributions,
             }
         )
+
+    def _hydrate_report_supporting_evidence(
+        self,
+        report: ProductAnalysisReport,
+        aspects: list[ReviewAspect],
+        retrievals: list,
+    ) -> ProductAnalysisReport:
+        strengths = [self._hydrate_insight_supporting_evidence(item, aspects, retrievals) for item in report.strengths]
+        weaknesses = [self._hydrate_insight_supporting_evidence(item, aspects, retrievals) for item in report.weaknesses]
+        controversies = [self._hydrate_insight_supporting_evidence(item, aspects, retrievals) for item in report.controversies]
+        evidence_gaps = [self._hydrate_evidence_gap_supporting_evidence(item, aspects, retrievals) for item in report.evidence_gaps]
+        suggestions = self._rebind_suggestions(report.suggestions, strengths + weaknesses + evidence_gaps)
+        all_evidences = [item.supporting_evidence for item in strengths + weaknesses + controversies + evidence_gaps + suggestions]
+
+        return report.model_copy(
+            update={
+                "strengths": strengths,
+                "weaknesses": weaknesses,
+                "controversies": controversies,
+                "evidence_gaps": evidence_gaps,
+                "suggestions": suggestions,
+                "supporting_review_evidence": self._merge_review_evidence(all_evidences),
+                "supporting_product_evidence": self._merge_product_evidence(all_evidences),
+            }
+        )
+
+    def _hydrate_insight_supporting_evidence(
+        self,
+        item: InsightItem,
+        aspects: list[ReviewAspect],
+        retrievals: list,
+    ) -> InsightItem:
+        matched_aspect = self._match_report_item_aspect(item.label, item.summary, item.supporting_evidence.review_ids, aspects)
+        if matched_aspect is None:
+            return item
+        refreshed_evidence = self._support_for_aspect(matched_aspect.aspect, retrievals)
+        supporting_evidence = self._merge_supporting_evidence_pair(item.supporting_evidence, refreshed_evidence)
+        return item.model_copy(
+            update={
+                "supporting_evidence": supporting_evidence,
+                "evidence_level": self._infer_evidence_level(supporting_evidence),
+            }
+        )
+
+    def _hydrate_evidence_gap_supporting_evidence(
+        self,
+        item: EvidenceGapItem,
+        aspects: list[ReviewAspect],
+        retrievals: list,
+    ) -> EvidenceGapItem:
+        aspect_name = item.source_aspect
+        if not aspect_name:
+            matched_aspect = self._match_report_item_aspect(item.label, item.summary, item.supporting_evidence.review_ids, aspects)
+            aspect_name = matched_aspect.aspect if matched_aspect is not None else None
+        if not aspect_name:
+            return item
+        refreshed_evidence = self._support_for_aspect(aspect_name, retrievals)
+        supporting_evidence = self._merge_supporting_evidence_pair(item.supporting_evidence, refreshed_evidence)
+        return item.model_copy(
+            update={
+                "supporting_evidence": supporting_evidence,
+                "evidence_level": self._infer_evidence_level(supporting_evidence),
+            }
+        )
+
+    def _merge_supporting_evidence_pair(
+        self,
+        existing: SupportingEvidence,
+        refreshed: SupportingEvidence,
+    ) -> SupportingEvidence:
+        return SupportingEvidence(
+            review_ids=list(dict.fromkeys([*existing.review_ids, *refreshed.review_ids]))[:10],
+            product_text_block_ids=list(dict.fromkeys([*existing.product_text_block_ids, *refreshed.product_text_block_ids]))[:10],
+            product_image_ids=list(dict.fromkeys([*existing.product_image_ids, *refreshed.product_image_ids]))[:10],
+        )
+
+    def _apply_claim_attribution_revisions(
+        self,
+        report: ProductAnalysisReport,
+        claim_attributions: list[ClaimAttribution],
+    ) -> ProductAnalysisReport:
+        grouped: dict[str, list[ClaimAttribution]] = defaultdict(list)
+        for attribution in claim_attributions:
+            grouped[attribution.claim_source].append(attribution)
+
+        strengths = self._revise_insight_items(report.strengths, grouped.get("strength", []))
+        weaknesses = self._revise_insight_items(report.weaknesses, grouped.get("weakness", []))
+        controversies = self._revise_insight_items(report.controversies, grouped.get("controversy", []))
+        suggestions = self._revise_suggestion_items(report.suggestions, grouped.get("suggestion", []))
+        answer = self._build_answer(strengths, weaknesses, controversies)
+
+        return report.model_copy(
+            update={
+                "answer": answer,
+                "strengths": strengths,
+                "weaknesses": weaknesses,
+                "controversies": controversies,
+                "suggestions": suggestions,
+            }
+        )
+
+    def _revise_insight_items(
+        self,
+        items: list[InsightItem],
+        attributions: list[ClaimAttribution],
+    ) -> list[InsightItem]:
+        revised_items: list[InsightItem] = []
+        for item, attribution in zip(items, attributions, strict=False):
+            if attribution.revision_action == "downgrade" and attribution.revised_claim:
+                revised_items.append(item.model_copy(update={"summary": attribution.revised_claim}))
+                continue
+            revised_items.append(item)
+        if len(items) > len(revised_items):
+            revised_items.extend(items[len(revised_items):])
+        return revised_items
+
+    def _revise_suggestion_items(
+        self,
+        items: list[ImprovementSuggestion],
+        attributions: list[ClaimAttribution],
+    ) -> list[ImprovementSuggestion]:
+        revised_items: list[ImprovementSuggestion] = []
+        for item, attribution in zip(items, attributions, strict=False):
+            if attribution.revision_action == "downgrade" and attribution.revised_claim:
+                revised_items.append(item.model_copy(update={"suggestion": attribution.revised_claim}))
+                continue
+            revised_items.append(item)
+        if len(items) > len(revised_items):
+            revised_items.extend(items[len(revised_items):])
+        return revised_items
 
     def _build_evidence_nodes(
         self,
@@ -250,7 +390,7 @@ class ProductAnalysisService:
                     )
                     nodes_by_id[node_id] = self._merge_evidence_node(nodes_by_id.get(node_id), candidate)
                 if retrieved.image_id and retrieved.image_id in referenced_image_ids:
-                    node_id = self._product_image_node_id(retrieved.image_id)
+                    node_id = self._product_image_node_id(retrieved.image_id, retrieved.region_id)
                     candidate = EvidenceNode(
                         evidence_node_id=node_id,
                         source_type="product_image",
@@ -297,7 +437,7 @@ class ProductAnalysisService:
         index: int,
     ) -> ClaimAttribution:
         evidence = getattr(item, "supporting_evidence", SupportingEvidence())
-        support_ids = [support_id for support_id in self._support_node_ids(evidence) if support_id in node_map]
+        support_ids = self._support_node_ids(evidence, node_map)
         support_status = self._claim_support_status(claim_source, evidence)
         support_type = self._claim_support_type(evidence)
         if not support_ids and claim_source != "evidence_gap":
@@ -376,11 +516,23 @@ class ProductAnalysisService:
             prefix = "当前证据仅能部分支撑该结论：" if support_status == "partial" else "当前证据不足以支撑该结论："
         return f"{prefix} {claim_text}".strip()
 
-    def _support_node_ids(self, evidence: SupportingEvidence) -> list[str]:
+    def _support_node_ids(
+        self,
+        evidence: SupportingEvidence,
+        node_map: dict[str, EvidenceNode],
+    ) -> list[str]:
+        image_node_ids = list(
+            dict.fromkeys(
+                node_id
+                for image_id in evidence.product_image_ids
+                for node_id, node in node_map.items()
+                if node.source_type == "product_image" and node.source_id == image_id
+            )
+        )
         return [
-            *[self._review_node_id(review_id) for review_id in evidence.review_ids],
-            *[self._product_text_node_id(text_id) for text_id in evidence.product_text_block_ids],
-            *[self._product_image_node_id(image_id) for image_id in evidence.product_image_ids],
+            *[node_id for node_id in (self._review_node_id(review_id) for review_id in evidence.review_ids) if node_id in node_map],
+            *[node_id for node_id in (self._product_text_node_id(text_id) for text_id in evidence.product_text_block_ids) if node_id in node_map],
+            *image_node_ids,
         ]
 
     def _review_node_id(self, review_id: str) -> str:
@@ -389,8 +541,8 @@ class ProductAnalysisService:
     def _product_text_node_id(self, text_block_id: str) -> str:
         return f"{text_block_id}_chunk_00"
 
-    def _product_image_node_id(self, image_id: str) -> str:
-        return f"{image_id}_visual"
+    def _product_image_node_id(self, image_id: str, region_id: str | None = None) -> str:
+        return f"{region_id or image_id}_visual"
 
     def _merge_content_snippets(self, snippets: list[str]) -> str | None:
         unique_snippets = [snippet.strip() for snippet in snippets if snippet and snippet.strip()]
@@ -1144,10 +1296,33 @@ class ProductAnalysisService:
             updated = suggestion
             if matched is not None:
                 updated = suggestion.model_copy(update={"supporting_evidence": matched.supporting_evidence})
-                if self._suggestion_text_conflicts_with_fallback(suggestion.suggestion, reason_text, matched):
+                if self._suggestion_text_conflicts_with_fallback(suggestion.suggestion, reason_text, matched) or self._suggestion_requires_fallback_downgrade(suggestion, matched):
                     updated = updated.model_copy(update={"suggestion": self._default_suggestion_for_fallback(matched)})
             rebound.append(updated)
         return rebound
+
+    def _suggestion_requires_fallback_downgrade(
+        self,
+        suggestion: ImprovementSuggestion,
+        matched_fallback: InsightItem | EvidenceGapItem,
+    ) -> bool:
+        if isinstance(matched_fallback, EvidenceGapItem):
+            return True
+        evidence_level = getattr(matched_fallback, "evidence_level", self._infer_evidence_level(matched_fallback.supporting_evidence))
+        if evidence_level in {"review_only", "missing_product_evidence"}:
+            return True
+        if evidence_level == "partial_product_support":
+            suggestion_tokens = self._match_tokens(suggestion.suggestion)
+            matched_tokens = self._match_tokens(
+                " ".join(
+                    [
+                        str(getattr(matched_fallback, "label", "")),
+                        str(getattr(matched_fallback, "summary", "")),
+                    ]
+                )
+            )
+            return not bool(suggestion_tokens.intersection(matched_tokens))
+        return False
 
     def _ensure_gap_suggestions(
         self,
@@ -1458,7 +1633,7 @@ class ProductAnalysisService:
 
         asks_visual = any(term in question_text for term in ("visible", "images", "show", "shown", "worn", "tinted", "hue", "mirrored"))
         defect_like = any(term in question_text for term in ("deteriorat", "crack", "crumbl", "fall apart", "detachment", "magnification", "distortion", "diopter"))
-        threshold = 0.95 if defect_like else 0.9
+        threshold = 0.95 if defect_like else 0.85
         return asks_visual and rerank_score >= threshold
 
     def _apply_replay_context(
@@ -2030,6 +2205,10 @@ class ProductAnalysisService:
                         text_coverage=False,
                         image_coverage=False,
                         conflict_risk=0.0,
+                        retrieval_quality_label="bad",
+                        failure_reason="no_evidence",
+                        corrective_action="rewrite_query",
+                        evaluator_explanation="No evidence was retrieved for this question, so the query likely needs rewriting before another pass.",
                     )
                 )
                 continue
@@ -2061,6 +2240,15 @@ class ProductAnalysisService:
                 conflict_risk = min(1.0, max(route_means) - min(route_means)) if route_means else 0.0
             else:
                 conflict_risk = 0.0
+            retrieval_quality_label, failure_reason, corrective_action, evaluator_explanation = self._evaluate_retrieval_quality(
+                route_coverage=route_coverage,
+                answer_status=answer_status,
+                answer_coverage=answer_coverage,
+                score_drift=score_drift,
+                conflict_risk=conflict_risk,
+                expected_routes=expected_routes,
+                available_routes=available_routes,
+            )
             metrics.append(
                 RetrievalQualityMetrics(
                     retrieval_id=retrieval.retrieval_id,
@@ -2076,9 +2264,89 @@ class ProductAnalysisService:
                     text_coverage=text_coverage,
                     image_coverage=image_coverage,
                     conflict_risk=conflict_risk,
+                    retrieval_quality_label=retrieval_quality_label,
+                    failure_reason=failure_reason,
+                    corrective_action=corrective_action,
+                    evaluator_explanation=evaluator_explanation,
                 )
             )
         return metrics
+
+    def _evaluate_retrieval_quality(
+        self,
+        *,
+        route_coverage: float,
+        answer_status: str,
+        answer_coverage: float,
+        score_drift: float,
+        conflict_risk: float,
+        expected_routes: set[str],
+        available_routes: set[str],
+    ) -> tuple[str, str, str, str]:
+        missing_routes = sorted(expected_routes.difference(available_routes))
+
+        if conflict_risk >= 0.3:
+            return (
+                "mixed",
+                "evidence_conflict",
+                "filter_noise",
+                "Retrieved evidence disagrees across routes, so noisy hits should be filtered before reuse.",
+            )
+
+        if missing_routes:
+            route_text = ", ".join(missing_routes)
+            label = "mixed" if answer_status in {"partial", "supported"} else "bad"
+            return (
+                label,
+                "modality_miss",
+                "add_multimodal_route",
+                f"Expected route coverage is incomplete; add or recover the missing route(s): {route_text}.",
+            )
+
+        if answer_status == "supported" and route_coverage >= 1.0 and conflict_risk < 0.3:
+            return (
+                "good",
+                "none",
+                "keep_current",
+                "Retrieved evidence covers the expected routes and supports the question without notable conflict.",
+            )
+
+        if answer_status == "partial":
+            if score_drift >= 0.25:
+                return (
+                    "mixed",
+                    "low_precision",
+                    "filter_noise",
+                    "Some evidence supports the question, but large rerank drift suggests noisy candidates should be filtered.",
+                )
+            return (
+                "mixed",
+                "low_recall",
+                "expand_topk",
+                "Evidence is only partially supporting the question, so expanding top-k may recover missing support.",
+            )
+
+        if answer_status in {"none", "unsupported", "contradicted"}:
+            if score_drift >= 0.2:
+                return (
+                    "bad",
+                    "low_precision",
+                    "filter_noise",
+                    "Retrieved hits do not answer the question and rerank drift is high, indicating low precision.",
+                )
+            return (
+                "bad",
+                "low_recall",
+                "expand_topk",
+                "Retrieved evidence does not answer the question, so recall should be expanded before rewriting the claim.",
+            )
+
+        return (
+            "mixed",
+            "none",
+            "keep_current",
+            "Retrieval quality is inconclusive; keep the current evidence set and inspect manually if needed.",
+        )
 
     def _extract_answer_value(self, question: str, answered_hits: list) -> tuple[str | None, str | None]:
         if not answered_hits:

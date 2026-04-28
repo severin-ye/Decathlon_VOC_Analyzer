@@ -1,0 +1,114 @@
+{
+  "mode_label": "主项目原始数据集",
+  "dataset_root": "/home/severin/Codelib/Decathlon_VOC_Analyzer/01_data/01_raw_products/products",
+  "prompt_variant": "main",
+  "reports_output_dir": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/4_reports",
+  "category": "sunglasses",
+  "product_id": "sunglasses_010",
+  "max_reviews": 2,
+  "overview": {
+    "category_count": 3,
+    "total_products": 192,
+    "total_reviews": 33697
+  },
+  "normalization": {
+    "normalized_products": 1,
+    "report_path": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/4_reports/dataset_normalization_report.json"
+  },
+  "index_result": {
+    "backend": "qdrant",
+    "indexed_products": 1,
+    "index_path": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/3_indexes/qdrant_runs/sunglasses/sunglasses_010/run_20260428T053925_270388Z_pid248039"
+  },
+  "review_sampling": {
+    "profile_name": "problem_first",
+    "requested_reviews": 2,
+    "total_available_reviews": 200,
+    "selected_reviews": 2,
+    "fallback_order": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "allocations": [
+      {
+        "rating": 5,
+        "configured_ratio": 0.1,
+        "target_count": 0,
+        "available_count": 146,
+        "selected_count": 0,
+        "redistributed_in_count": 0,
+        "shortfall_count": 0
+      },
+      {
+        "rating": 4,
+        "configured_ratio": 0.15,
+        "target_count": 0,
+        "available_count": 41,
+        "selected_count": 0,
+        "redistributed_in_count": 0,
+        "shortfall_count": 0
+      },
+      {
+        "rating": 3,
+        "configured_ratio": 0.2,
+        "target_count": 0,
+        "available_count": 7,
+        "selected_count": 0,
+        "redistributed_in_count": 0,
+        "shortfall_count": 0
+      },
+      {
+        "rating": 2,
+        "configured_ratio": 0.25,
+        "target_count": 1,
+        "available_count": 1,
+        "selected_count": 1,
+        "redistributed_in_count": 0,
+        "shortfall_count": 0
+      },
+      {
+        "rating": 1,
+        "configured_ratio": 0.3,
+        "target_count": 1,
+        "available_count": 5,
+        "selected_count": 1,
+        "redistributed_in_count": 0,
+        "shortfall_count": 0
+      }
+    ]
+  },
+  "retrieval_runtime": {
+    "text_embedding_backend": "api",
+    "text_embedding_model": "text-embedding-v4",
+    "image_embedding_backend": "clip",
+    "image_embedding_model": "openai/clip-vit-base-patch32",
+    "reranker_backend": "api",
+    "reranker_model": "gte-rerank-v2",
+    "multimodal_reranker_backend": "qwen_vl",
+    "multimodal_reranker_model": "qwen-vl-max-latest",
+    "native_multimodal_enabled": true,
+    "summary": "Image evidence is configured to use native multimodal retrieval or reranking paths."
+  },
+  "analysis": {
+    "analysis_mode": "llm",
+    "artifact_path": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/4_reports/sunglasses/sunglasses_010_analysis.json",
+    "strengths": 3,
+    "weaknesses": 2,
+    "replay_applied": true,
+    "replay_persistent_issue_count": 6,
+    "replay_resolved_issue_count": 0,
+    "warnings": [
+      "replay continuity applied: persistent=6, resolved=0, new=1, reviewed=0"
+    ]
+  },
+  "artifact_bundle": {
+    "analysis_path": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/4_reports/sunglasses/sunglasses_010_analysis.json",
+    "feedback_path": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/5_feedback/sunglasses/sunglasses_010_feedback_slots.json",
+    "replay_path": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/5_replay/sunglasses/sunglasses_010_replay.json"
+  },
+  "html_export_path": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/6_html/sunglasses/sunglasses_010.html",
+  "manifest_path": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/7_manifests/sunglasses/sunglasses_010_run_manifest.json"
+}

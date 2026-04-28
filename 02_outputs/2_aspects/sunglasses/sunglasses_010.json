@@ -6,8 +6,8 @@
     {
       "review_id": "sunglasses_010_review_0021",
       "product_id": "sunglasses_010",
-      "original_text": "The sunglasses are great! However, the rubber insert on them near the ear completely deteriorates in less than two years. It literally fell apart. Sad...",
-      "cleaned_text": "The sunglasses are great! However, the rubber insert on them near the ear completely deteriorates in less than two years. It literally fell apart. Sad...",
+      "original_text": "The sunglasses are great! However, the rubber insert on them near the ear completely deteriorates in less than two years—literally falling apart. Sad…",
+      "cleaned_text": "The sunglasses are great! However, the rubber insert on them near the ear completely deteriorates in less than two years—literally falling apart. Sad…",
       "rating": 1,
       "language_hint": "en",
       "is_informative": true,
@@ -16,8 +16,8 @@
     {
       "review_id": "sunglasses_010_review_0064",
       "product_id": "sunglasses_010",
-      "original_text": "Excellent price and excellent tinting; comfortable to wear. One drawback: they slightly magnify vision, so the ground beneath appears closer than it actually is.",
-      "cleaned_text": "Excellent price and excellent tinting; comfortable to wear. One drawback: they slightly magnify vision, so the ground beneath appears closer than it actually is.",
+      "original_text": "Excellent price and excellent tinting; comfortable to wear. One drawback: they slightly magnify vision, making the ground beneath appear closer than it actually is.",
+      "cleaned_text": "Excellent price and excellent tinting; comfortable to wear. One drawback: they slightly magnify vision, making the ground beneath appear closer than it actually is.",
       "rating": 2,
       "language_hint": "en",
       "is_informative": true,
@@ -91,8 +91,8 @@
       "product_id": "sunglasses_010",
       "aspect": "rubber insert durability",
       "sentiment": "negative",
-      "opinion": "poor durability",
-      "evidence_span": "the rubber insert on them near the ear completely deteriorates in less than two years. It literally fell apart.",
+      "opinion": "poor",
+      "evidence_span": "the rubber insert on them near the ear completely deteriorates in less than two years—literally falling apart",
       "usage_scene": "long-term wear",
       "confidence": 0.95,
       "extraction_mode": "llm"
@@ -104,7 +104,7 @@
       "aspect": "overall_experience",
       "sentiment": "mixed",
       "opinion": "initially positive but ultimately disappointing due to premature rubber insert failure",
-      "evidence_span": "The sunglasses are great! However, the rubber insert on them near the ear completely deteriorates in less than two years. It literally fell apart. Sad...",
+      "evidence_span": "The sunglasses are great! However, the rubber insert on them near the ear completely deteriorates in less than two years—literally falling apart. Sad…",
       "usage_scene": "",
       "confidence": 0.85,
       "extraction_mode": "llm"
@@ -151,9 +151,9 @@
       "product_id": "sunglasses_010",
       "aspect": "optical accuracy",
       "sentiment": "negative",
-      "opinion": "slight magnification causing distorted depth perception",
-      "evidence_span": "they slightly magnify vision, so the ground beneath appears closer than it actually is",
-      "usage_scene": "walking or navigating terrain",
+      "opinion": "slight magnification causing perceptual distortion",
+      "evidence_span": "they slightly magnify vision, making the ground beneath appear closer than it actually is",
+      "usage_scene": "walking or ground navigation",
       "confidence": 0.98,
       "extraction_mode": "llm"
     }

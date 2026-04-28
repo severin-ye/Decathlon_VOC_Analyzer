@@ -34,6 +34,12 @@ def _supporting_evidence_count(item: dict) -> int:
     )
 
 
+def _counter_rate(counter: Counter[str], key: str, total: int) -> float:
+    if total <= 0:
+        return 0.0
+    return float(counter.get(key, 0)) / float(total)
+
+
 def _evidence_identifier(item: dict) -> str | None:
     for key in ("region_id", "text_block_id", "image_id", "evidence_id"):
         value = item.get(key)
@@ -248,6 +254,25 @@ class ManifestEvaluationService:
         evidence_coverage = [float(item.get("evidence_coverage", 0.0)) for item in retrieval_quality]
         score_drift = [float(item.get("score_drift", 0.0)) for item in retrieval_quality]
         conflict_risk = [float(item.get("conflict_risk", 0.0)) for item in retrieval_quality]
+        evaluator_items = [
+            item
+            for item in retrieval_quality
+            if isinstance(item, dict)
+            and any(
+                key in item
+                for key in ("retrieval_quality_label", "failure_reason", "corrective_action")
+            )
+        ]
+        evaluator_query_count = len(evaluator_items)
+        quality_label_counter = Counter(
+            str(item.get("retrieval_quality_label") or "unknown") for item in evaluator_items
+        )
+        failure_reason_counter = Counter(
+            str(item.get("failure_reason") or "unknown") for item in evaluator_items
+        )
+        corrective_action_counter = Counter(
+            str(item.get("corrective_action") or "unknown") for item in evaluator_items
+        )
         retrieval_labels = self._extract_retrieval_labels(bundle)
         formal_retrieval_metrics = self._build_formal_retrieval_metrics(retrievals, retrieval_labels)
 
@@ -303,12 +328,20 @@ class ManifestEvaluationService:
                 "retrieval_record_count": len(retrievals),
                 "judged_query_count": int(formal_retrieval_metrics["judged_query_count"]),
                 "label_coverage_rate": float(formal_retrieval_metrics["label_coverage_rate"]),
+                "evaluator_query_count": evaluator_query_count,
+                "evaluator_coverage_rate": evaluator_query_count / len(retrieval_quality) if retrieval_quality else 0.0,
                 "avg_candidates_per_query": _safe_mean([float(item) for item in retrieval_lengths]),
                 "avg_evidence_coverage": _safe_mean(evidence_coverage),
                 "avg_score_drift": _safe_mean(score_drift),
                 "avg_conflict_risk": _safe_mean(conflict_risk),
                 "text_coverage_rate": _safe_mean([1.0 if item.get("text_coverage") else 0.0 for item in retrieval_quality]),
                 "image_coverage_rate": _safe_mean([1.0 if item.get("image_coverage") else 0.0 for item in retrieval_quality]),
+                "quality_label_counts": dict(quality_label_counter),
+                "failure_reason_counts": dict(failure_reason_counter),
+                "corrective_action_counts": dict(corrective_action_counter),
+                "good_query_rate": _counter_rate(quality_label_counter, "good", evaluator_query_count),
+                "mixed_query_rate": _counter_rate(quality_label_counter, "mixed", evaluator_query_count),
+                "bad_query_rate": _counter_rate(quality_label_counter, "bad", evaluator_query_count),
                 "recall_at_1": float(formal_retrieval_metrics["recall_at_1"]),
                 "recall_at_3": float(formal_retrieval_metrics["recall_at_3"]),
                 "recall_at_5": float(formal_retrieval_metrics["recall_at_5"]),
@@ -351,6 +384,30 @@ class ManifestEvaluationService:
         retrieval_means = [run["retrieval_metrics"] for run in runs]
         generation_means = [run["generation_metrics"] for run in runs]
         retrieval_metric_weights = [float(item.get("judged_query_count", 0.0)) for item in retrieval_means]
+        evaluator_metric_weights = [float(item.get("evaluator_query_count", 0.0)) for item in retrieval_means]
+        quality_label_counter: Counter[str] = Counter()
+        failure_reason_counter: Counter[str] = Counter()
+        corrective_action_counter: Counter[str] = Counter()
+
+        for item in retrieval_means:
+            quality_label_counter.update(
+                {
+                    str(key): int(value)
+                    for key, value in (item.get("quality_label_counts") or {}).items()
+                }
+            )
+            failure_reason_counter.update(
+                {
+                    str(key): int(value)
+                    for key, value in (item.get("failure_reason_counts") or {}).items()
+                }
+            )
+            corrective_action_counter.update(
+                {
+                    str(key): int(value)
+                    for key, value in (item.get("corrective_action_counts") or {}).items()
+                }
+            )
 
         return {
             "manifest_root": str(manifest_root),
@@ -380,11 +437,26 @@ class ManifestEvaluationService:
                 "avg_label_coverage_rate": _safe_mean(
                     [float(item.get("label_coverage_rate", 0.0)) for item in retrieval_means]
                 ),
+                "avg_evaluator_coverage_rate": _safe_mean(
+                    [float(item.get("evaluator_coverage_rate", 0.0)) for item in retrieval_means]
+                ),
                 "avg_evidence_coverage": _safe_mean(
                     [float(item.get("avg_evidence_coverage", 0.0)) for item in retrieval_means]
                 ),
                 "avg_conflict_risk": _safe_mean(
                     [float(item.get("avg_conflict_risk", 0.0)) for item in retrieval_means]
+                ),
+                "avg_good_query_rate": _safe_weighted_mean(
+                    [float(item.get("good_query_rate", 0.0)) for item in retrieval_means],
+                    evaluator_metric_weights,
+                ),
+                "avg_mixed_query_rate": _safe_weighted_mean(
+                    [float(item.get("mixed_query_rate", 0.0)) for item in retrieval_means],
+                    evaluator_metric_weights,
+                ),
+                "avg_bad_query_rate": _safe_weighted_mean(
+                    [float(item.get("bad_query_rate", 0.0)) for item in retrieval_means],
+                    evaluator_metric_weights,
                 ),
                 "avg_recall_at_1": _safe_weighted_mean(
                     [float(item.get("recall_at_1", 0.0)) for item in retrieval_means],
@@ -416,6 +488,12 @@ class ManifestEvaluationService:
                 "avg_final_confidence": _safe_mean(
                     [float(item.get("avg_final_confidence", 0.0)) for item in generation_means]
                 ),
+            },
+            "retrieval_evaluator_summary": {
+                "evaluator_query_count": int(sum(evaluator_metric_weights)),
+                "quality_label_counts": dict(quality_label_counter),
+                "failure_reason_counts": dict(failure_reason_counter),
+                "corrective_action_counts": dict(corrective_action_counter),
             },
             "runs": runs,
         }

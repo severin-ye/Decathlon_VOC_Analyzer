@@ -1,26 +1,52 @@
 {
   "manifest_root": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/7_manifests",
-  "run_count": 1,
+  "run_count": 2,
   "analysis_mode_counts": {
-    "heuristic": 1
+    "heuristic": 1,
+    "llm": 1
   },
   "category_counts": {
-    "backpack": 1
+    "backpack": 1,
+    "sunglasses": 1
   },
   "sampling_profile_counts": {
-    "unknown": 1
+    "unknown": 1,
+    "problem_first": 1
   },
-  "native_multimodal_rate": 0.0,
+  "native_multimodal_rate": 0.5,
   "aggregate_metrics": {
-    "avg_aspects_per_informative_review": 1.5,
-    "avg_extract_confidence": 0.66,
-    "avg_question_confidence": 0.66,
+    "avg_aspects_per_informative_review": 2.25,
+    "avg_extract_confidence": 0.795,
+    "avg_question_confidence": 0.7675000000000001,
     "avg_questions_per_aspect": 2.0,
-    "avg_candidates_per_query": 1.0,
-    "avg_evidence_coverage": 0.5,
-    "avg_conflict_risk": 0.5,
+    "avg_candidates_per_query": 1.5833333333333333,
+    "avg_label_coverage_rate": 0.0,
+    "avg_evaluator_coverage_rate": 0.5,
+    "avg_evidence_coverage": 0.25,
+    "avg_conflict_risk": 0.0,
+    "avg_good_query_rate": 0.0,
+    "avg_mixed_query_rate": 0.0,
+    "avg_bad_query_rate": 1.0,
+    "avg_recall_at_1": 0.0,
+    "avg_recall_at_3": 0.0,
+    "avg_recall_at_5": 0.0,
+    "avg_mrr": 0.0,
+    "avg_ndcg_at_3": 0.0,
+    "avg_ndcg_at_5": 0.0,
     "avg_citation_coverage_rate": 1.0,
-    "avg_final_confidence": 0.7355
+    "avg_final_confidence": 0.7401641414141414
+  },
+  "retrieval_evaluator_summary": {
+    "evaluator_query_count": 12,
+    "quality_label_counts": {
+      "bad": 12
+    },
+    "failure_reason_counts": {
+      "low_precision": 12
+    },
+    "corrective_action_counts": {
+      "filter_noise": 12
+    }
   },
   "runs": [
     {
@@ -51,38 +77,139 @@
       },
       "retrieval_metrics": {
         "retrieval_record_count": 12,
+        "judged_query_count": 0,
+        "label_coverage_rate": 0.0,
+        "evaluator_query_count": 0,
+        "evaluator_coverage_rate": 0.0,
         "avg_candidates_per_query": 1.0,
         "avg_evidence_coverage": 0.5,
         "avg_score_drift": 0.0,
-        "avg_conflict_risk": 0.5,
+        "avg_conflict_risk": 0.0,
         "text_coverage_rate": 0.5,
-        "image_coverage_rate": 0.5
+        "image_coverage_rate": 0.5,
+        "quality_label_counts": {},
+        "failure_reason_counts": {},
+        "corrective_action_counts": {},
+        "good_query_rate": 0.0,
+        "mixed_query_rate": 0.0,
+        "bad_query_rate": 0.0,
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_3": 0.0,
+        "ndcg_at_5": 0.0
       },
       "generation_metrics": {
         "strength_count": 1,
-        "weakness_count": 3,
+        "weakness_count": 4,
         "controversy_count": 1,
-        "suggestion_count": 3,
+        "suggestion_count": 5,
         "citation_coverage_rate": 1.0,
-        "avg_final_confidence": 0.7355
+        "avg_final_confidence": 0.6647727272727273
       },
       "feedback_metrics": {
-        "slot_count": 19,
+        "slot_count": 22,
         "status_counts": {
-          "pending_review": 19
+          "accepted": 2,
+          "pending_review": 20
         },
         "item_type_counts": {
-          "insight": 4,
-          "suggestion": 3,
+          "insight": 5,
+          "suggestion": 5,
+          "retrieval_quality": 12
+        },
+        "reviewed_slot_count": 2
+      },
+      "replay_metrics": {
+        "applied": true,
+        "persistent_issue_count": 9,
+        "resolved_issue_count": 0,
+        "new_issue_count": 0
+      }
+    },
+    {
+      "manifest_path": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/7_manifests/sunglasses/sunglasses_010_run_manifest.json",
+      "category": "sunglasses",
+      "product_id": "sunglasses_010",
+      "analysis_mode": "llm",
+      "retrieval_backend": "qdrant",
+      "native_multimodal_enabled": true,
+      "prompt_variant": "main",
+      "review_sampling_profile": "problem_first",
+      "warnings": [
+        "replay continuity applied: persistent=6, resolved=0, new=1, reviewed=0"
+      ],
+      "extraction_metrics": {
+        "requested_reviews": 2,
+        "preprocessed_review_count": 2,
+        "informative_review_count": 2,
+        "aspect_count": 6,
+        "avg_aspects_per_informative_review": 3.0,
+        "avg_extract_confidence": 0.93,
+        "skipped_review_count": 0
+      },
+      "question_metrics": {
+        "question_count": 12,
+        "avg_question_confidence": 0.875,
+        "avg_questions_per_aspect": 2.0
+      },
+      "retrieval_metrics": {
+        "retrieval_record_count": 12,
+        "judged_query_count": 0,
+        "label_coverage_rate": 0.0,
+        "evaluator_query_count": 12,
+        "evaluator_coverage_rate": 1.0,
+        "avg_candidates_per_query": 2.1666666666666665,
+        "avg_evidence_coverage": 0.0,
+        "avg_score_drift": 0.3160326946886683,
+        "avg_conflict_risk": 0.0,
+        "text_coverage_rate": 0.75,
+        "image_coverage_rate": 0.3333333333333333,
+        "quality_label_counts": {
+          "bad": 12
+        },
+        "failure_reason_counts": {
+          "low_precision": 12
+        },
+        "corrective_action_counts": {
+          "filter_noise": 12
+        },
+        "good_query_rate": 0.0,
+        "mixed_query_rate": 0.0,
+        "bad_query_rate": 1.0,
+        "recall_at_1": 0.0,
+        "recall_at_3": 0.0,
+        "recall_at_5": 0.0,
+        "mrr": 0.0,
+        "ndcg_at_3": 0.0,
+        "ndcg_at_5": 0.0
+      },
+      "generation_metrics": {
+        "strength_count": 3,
+        "weakness_count": 2,
+        "controversy_count": 0,
+        "suggestion_count": 4,
+        "citation_coverage_rate": 1.0,
+        "avg_final_confidence": 0.8155555555555556
+      },
+      "feedback_metrics": {
+        "slot_count": 18,
+        "status_counts": {
+          "pending_review": 18
+        },
+        "item_type_counts": {
+          "insight": 2,
+          "suggestion": 4,
           "retrieval_quality": 12
         },
         "reviewed_slot_count": 0
       },
       "replay_metrics": {
         "applied": true,
-        "persistent_issue_count": 4,
+        "persistent_issue_count": 6,
         "resolved_issue_count": 0,
-        "new_issue_count": 0
+        "new_issue_count": 1
       }
     }
   ]
