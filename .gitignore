@@ -7,3 +7,7 @@ __pycache__/
 .env.*
 artifacts/normalized/
 artifacts/reports/
+
+# Runtime/generated outputs (see 04_scripts/clear_generated_outputs.py)
+02_outputs/*
+!02_outputs/README.md
