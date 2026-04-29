@@ -1,0 +1,298 @@
+{
+  "workflow": {
+    "started_at_epoch": 1777474819.3398552,
+    "started_at": "2026-04-30T00:00:19",
+    "note": "工作流已启动，正在按顺序执行各模块。Dashboard: /home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/6_html/_progress/backpack/backpack_001_live_progress.html",
+    "active_module_key": null,
+    "active_step_key": null,
+    "updated_at": "2026-04-30T00:00:19"
+  },
+  "modules": [
+    {
+      "key": "overview",
+      "status": "pending",
+      "detail": "",
+      "started_at_epoch": null,
+      "started_at": null,
+      "completed_at_epoch": null,
+      "completed_at": null,
+      "steps": [
+        {
+          "key": "scan",
+          "status": "pending",
+          "completed": 0.0,
+          "total": null,
+          "detail": "",
+          "started_at_epoch": null,
+          "started_at": null,
+          "completed_at_epoch": null,
+          "completed_at": null
+        },
+        {
+          "key": "summarize",
+          "status": "pending",
+          "completed": 0.0,
+          "total": null,
+          "detail": "",
+          "started_at_epoch": null,
+          "started_at": null,
+          "completed_at_epoch": null,
+          "completed_at": null
+        }
+      ]
+    },
+    {
+      "key": "normalize",
+      "status": "pending",
+      "detail": "",
+      "started_at_epoch": null,
+      "started_at": null,
+      "completed_at_epoch": null,
+      "completed_at": null,
+      "steps": [
+        {
+          "key": "select",
+          "status": "pending",
+          "completed": 0.0,
+          "total": null,
+          "detail": "",
+          "started_at_epoch": null,
+          "started_at": null,
+          "completed_at_epoch": null,
+          "completed_at": null
+        },
+        {
+          "key": "normalize_products",
+          "status": "pending",
+          "completed": 0.0,
+          "total": null,
+          "detail": "",
+          "started_at_epoch": null,
+          "started_at": null,
+          "completed_at_epoch": null,
+          "completed_at": null
+        },
+        {
+          "key": "persist",
+          "status": "pending",
+          "completed": 0.0,
+          "total": null,
+          "detail": "",
+          "started_at_epoch": null,
+          "started_at": null,
+          "completed_at_epoch": null,
+          "completed_at": null
+        }
+      ]
+    },
+    {
+      "key": "index",
+      "status": "pending",
+      "detail": "",
+      "started_at_epoch": null,
+      "started_at": null,
+      "completed_at_epoch": null,
+      "completed_at": null,
+      "steps": [
+        {
+          "key": "load_packages",
+          "status": "pending",
+          "completed": 0.0,
+          "total": null,
+          "detail": "",
+          "started_at_epoch": null,
+          "started_at": null,
+          "completed_at_epoch": null,
+          "completed_at": null
+        },
+        {
+          "key": "embed_text",
+          "status": "pending",
+          "completed": 0.0,
+          "total": null,
+          "detail": "",
+          "started_at_epoch": null,
+          "started_at": null,
+          "completed_at_epoch": null,
+          "completed_at": null
+        },
+        {
+          "key": "embed_image",
+          "status": "pending",
+          "completed": 0.0,
+          "total": null,
+          "detail": "",
+          "started_at_epoch": null,
+          "started_at": null,
+          "completed_at_epoch": null,
+          "completed_at": null
+        },
+        {
+          "key": "persist",
+          "status": "pending",
+          "completed": 0.0,
+          "total": null,
+          "detail": "",
+          "started_at_epoch": null,
+          "started_at": null,
+          "completed_at_epoch": null,
+          "completed_at": null
+        }
+      ]
+    },
+    {
+      "key": "analyze",
+      "status": "pending",
+      "detail": "",
+      "started_at_epoch": null,
+      "started_at": null,
+      "completed_at_epoch": null,
+      "completed_at": null,
+      "steps": [
+        {
+          "key": "extract",
+          "status": "pending",
+          "completed": 0.0,
+          "total": null,
+          "detail": "",
+          "started_at_epoch": null,
+          "started_at": null,
+          "completed_at_epoch": null,
+          "completed_at": null
+        },
+        {
+          "key": "questions",
+          "status": "pending",
+          "completed": 0.0,
+          "total": null,
+          "detail": "",
+          "started_at_epoch": null,
+          "started_at": null,
+          "completed_at_epoch": null,
+          "completed_at": null
+        },
+        {
+          "key": "retrieve",
+          "status": "pending",
+          "completed": 0.0,
+          "total": null,
+          "detail": "",
+          "started_at_epoch": null,
+          "started_at": null,
+          "completed_at_epoch": null,
+          "completed_at": null
+        },
+        {
+          "key": "quality",
+          "status": "pending",
+          "completed": 0.0,
+          "total": null,
+          "detail": "",
+          "started_at_epoch": null,
+          "started_at": null,
+          "completed_at_epoch": null,
+          "completed_at": null
+        },
+        {
+          "key": "report",
+          "status": "pending",
+          "completed": 0.0,
+          "total": null,
+          "detail": "",
+          "started_at_epoch": null,
+          "started_at": null,
+          "completed_at_epoch": null,
+          "completed_at": null
+        },
+        {
+          "key": "attribution",
+          "status": "pending",
+          "completed": 0.0,
+          "total": null,
+          "detail": "",
+          "started_at_epoch": null,
+          "started_at": null,
+          "completed_at_epoch": null,
+          "completed_at": null
+        },
+        {
+          "key": "persist",
+          "status": "pending",
+          "completed": 0.0,
+          "total": null,
+          "detail": "",
+          "started_at_epoch": null,
+          "started_at": null,
+          "completed_at_epoch": null,
+          "completed_at": null
+        }
+      ]
+    },
+    {
+      "key": "export_html",
+      "status": "pending",
+      "detail": "",
+      "started_at_epoch": null,
+      "started_at": null,
+      "completed_at_epoch": null,
+      "completed_at": null,
+      "steps": [
+        {
+          "key": "render",
+          "status": "pending",
+          "completed": 0.0,
+          "total": null,
+          "detail": "",
+          "started_at_epoch": null,
+          "started_at": null,
+          "completed_at_epoch": null,
+          "completed_at": null
+        },
+        {
+          "key": "write",
+          "status": "pending",
+          "completed": 0.0,
+          "total": null,
+          "detail": "",
+          "started_at_epoch": null,
+          "started_at": null,
+          "completed_at_epoch": null,
+          "completed_at": null
+        }
+      ]
+    },
+    {
+      "key": "write_manifest",
+      "status": "pending",
+      "detail": "",
+      "started_at_epoch": null,
+      "started_at": null,
+      "completed_at_epoch": null,
+      "completed_at": null,
+      "steps": [
+        {
+          "key": "serialize",
+          "status": "pending",
+          "completed": 0.0,
+          "total": null,
+          "detail": "",
+          "started_at_epoch": null,
+          "started_at": null,
+          "completed_at_epoch": null,
+          "completed_at": null
+        },
+        {
+          "key": "write",
+          "status": "pending",
+          "completed": 0.0,
+          "total": null,
+          "detail": "",
+          "started_at_epoch": null,
+          "started_at": null,
+          "completed_at_epoch": null,
+          "completed_at": null
+        }
+      ]
+    }
+  ]
+}

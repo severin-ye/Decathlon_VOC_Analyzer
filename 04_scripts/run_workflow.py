@@ -204,6 +204,10 @@ def _resolve_manifest_path(args: argparse.Namespace, paths: dict[str, Path]) -> 
     return paths["manifests_output_dir"] / args.category / f"{args.product_id}_run_manifest.json"
 
 
+def _resolve_progress_dashboard_path(args: argparse.Namespace, paths: dict[str, Path]) -> Path:
+    return paths["html_output_dir"] / "_progress" / args.category / f"{args.product_id}_live_progress.html"
+
+
 def execute_workflow(args: argparse.Namespace, paths: dict[str, Path], progress: WorkflowProgressReporter | None = None) -> WorkflowExecutionSummary:
     from decathlon_voc_analyzer.app.core.config import get_settings
     from decathlon_voc_analyzer.app.core.runtime_policy import validate_full_power_prerequisites
@@ -418,12 +422,20 @@ def main() -> None:
     args = parse_args()
     config = build_cli_config(args)
     paths = configure_environment(config)
-    progress = WorkflowProgressReporter(WORKFLOW_PROGRESS_PLAN, enabled=not args.quiet)
+    progress_dashboard_path = _resolve_progress_dashboard_path(args, paths)
+    progress = WorkflowProgressReporter(
+        WORKFLOW_PROGRESS_PLAN,
+        enabled=not args.quiet,
+        dashboard_path=progress_dashboard_path,
+        dashboard_title=f"{args.category}/{args.product_id} Workflow Progress",
+        terminal_mode="events",
+        restore_state=args.resume_from_aspects or args.resume_from_analysis_checkpoint,
+    )
     try:
         try:
             with progress:
                 with use_workflow_progress(progress):
-                    progress.note("工作流已启动，正在按顺序执行各模块。")
+                    progress.note(f"工作流已启动，正在按顺序执行各模块。Dashboard: {progress_dashboard_path}")
                     summary = execute_workflow(args, paths, progress=progress)
                     summary = maybe_write_manifest(args, summary, paths, progress=progress)
                     if args.output_format == "json":
@@ -431,6 +443,9 @@ def main() -> None:
                         sys.stdout.write("\n")
                         return
                     print(_render_text_summary(summary, quiet=args.quiet))
+        except KeyboardInterrupt as exc:
+            print("[中断] 工作流已被手动取消。", file=sys.stderr)
+            raise SystemExit(130) from exc
         except RuntimePolicyError as exc:
             print(exc.render(), file=sys.stderr)
             raise SystemExit(1) from exc
