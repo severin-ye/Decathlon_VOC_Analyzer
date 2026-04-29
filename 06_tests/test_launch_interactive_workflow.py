@@ -1,5 +1,6 @@
 import importlib.util
 from pathlib import Path
+from types import SimpleNamespace
 
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
@@ -62,3 +63,36 @@ def test_build_vscode_simple_browser_uri_targets_internal_browser() -> None:
     assert uri.startswith("command:simpleBrowser.show?")
     assert "127.0.0.1%3A8765" in uri
     assert "%5B%22http%3A%2F%2F127.0.0.1%3A8765%2F_launcher%2Fbackpack_interactive_batch.html%22%5D" in uri
+
+
+def test_prompt_for_qdrant_conflict_resolution_accepts_takeover_choice() -> None:
+    module = _load_module()
+    printed: list[str] = []
+
+    action = module._prompt_for_qdrant_conflict_resolution(
+        Path("/tmp/qdrant_store"),
+        [module.OccupyingProcess(pid=1234, user="severin", elapsed="00:10", command="python old_run.py")],
+        input_func=lambda _prompt: "1",
+        print_func=printed.append,
+    )
+
+    assert action == "terminate"
+    assert any("PID 1234" in line for line in printed)
+    assert any("关闭上述进程" in line for line in printed)
+
+
+def test_run_product_workflow_stops_when_user_cancels(monkeypatch) -> None:
+    module = _load_module()
+    subprocess_calls: list[list[str]] = []
+
+    monkeypatch.setattr(module, "_ensure_shared_qdrant_access", lambda: False)
+    monkeypatch.setattr(
+        module.subprocess,
+        "run",
+        lambda command, cwd, check: subprocess_calls.append(command) or SimpleNamespace(returncode=0),
+    )
+
+    exit_code = module.run_product_workflow(category="backpack", product_id="backpack_001", max_reviews=10)
+
+    assert exit_code == 130
+    assert subprocess_calls == []

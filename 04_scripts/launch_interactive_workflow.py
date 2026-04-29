@@ -1,11 +1,13 @@
 import json
 from dataclasses import dataclass
+import os
 from pathlib import Path
+import signal
 import shutil
 import socket
 import subprocess
 import sys
-from time import time
+from time import sleep, time
 from urllib.parse import quote
 
 
@@ -14,6 +16,7 @@ DEFAULT_DATASET_ROOT = ROOT_DIR / "01_data" / "01_raw_products" / "products"
 HTML_ROOT = ROOT_DIR / "02_outputs" / "6_html"
 LAUNCHER_DIR = HTML_ROOT / "_launcher"
 HTTP_PORT = 8765
+SHARED_QDRANT_PATH = ROOT_DIR / "02_outputs" / "3_indexes" / "qdrant_store"
 
 
 @dataclass
@@ -39,6 +42,14 @@ class BatchRunState:
     current_product_id: str | None = None
     current_product_dashboard_url: str | None = None
     note: str = "准备启动工作流"
+
+
+@dataclass
+class OccupyingProcess:
+    pid: int
+    user: str = "--"
+    elapsed: str = "--"
+    command: str = "--"
 
 
 def discover_categories(dataset_root: Path = DEFAULT_DATASET_ROOT) -> list[str]:
@@ -341,6 +352,8 @@ def run_interactive_batch() -> int:
 
 
 def run_product_workflow(category: str, product_id: str, max_reviews: int) -> int:
+    if not _ensure_shared_qdrant_access():
+        return 130
     command = [
         sys.executable,
         str(ROOT_DIR / "04_scripts" / "run_workflow.py"),
@@ -436,6 +449,123 @@ def _port_is_open(host: str, port: int) -> bool:
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
         sock.settimeout(0.2)
         return sock.connect_ex((host, port)) == 0
+
+
+def _find_shared_qdrant_occupants(qdrant_path: Path = SHARED_QDRANT_PATH) -> list[OccupyingProcess]:
+    lock_path = qdrant_path / ".lock"
+    target_path = lock_path if lock_path.exists() else qdrant_path
+    pid_texts: list[str] = []
+
+    lsof_path = shutil.which("lsof")
+    if lsof_path:
+        completed = subprocess.run(
+            [lsof_path, "-t", str(target_path)],
+            cwd=str(ROOT_DIR),
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        pid_texts = [line.strip() for line in completed.stdout.splitlines() if line.strip()]
+    elif shutil.which("fuser"):
+        completed = subprocess.run(
+            ["fuser", str(target_path)],
+            cwd=str(ROOT_DIR),
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        pid_texts = [token for token in completed.stdout.split() if token.isdigit()]
+
+    pids = sorted({int(pid_text) for pid_text in pid_texts if pid_text.isdigit() and int(pid_text) != os.getpid()})
+    return [_describe_process(pid) for pid in pids if _process_exists(pid)]
+
+
+def _describe_process(pid: int) -> OccupyingProcess:
+    completed = subprocess.run(
+        ["ps", "-p", str(pid), "-o", "pid=,user=,etime=,command="],
+        cwd=str(ROOT_DIR),
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    line = completed.stdout.strip()
+    if not line:
+        return OccupyingProcess(pid=pid)
+    parts = line.split(None, 3)
+    return OccupyingProcess(
+        pid=int(parts[0]) if len(parts) >= 1 and parts[0].isdigit() else pid,
+        user=parts[1] if len(parts) >= 2 else "--",
+        elapsed=parts[2] if len(parts) >= 3 else "--",
+        command=parts[3] if len(parts) >= 4 else "--",
+    )
+
+
+def _process_exists(pid: int) -> bool:
+    try:
+        os.kill(pid, 0)
+    except OSError:
+        return False
+    return True
+
+
+def _ensure_shared_qdrant_access(qdrant_path: Path = SHARED_QDRANT_PATH) -> bool:
+    occupants = _find_shared_qdrant_occupants(qdrant_path)
+    if not occupants:
+        return True
+    action = _prompt_for_qdrant_conflict_resolution(qdrant_path, occupants)
+    if action == "terminate":
+        _terminate_processes(occupants)
+        return True
+    if action == "continue":
+        return True
+    print("[取消] 已保留现有进程，当前启动器不再继续。")
+    return False
+
+
+def _prompt_for_qdrant_conflict_resolution(
+    qdrant_path: Path,
+    occupants: list[OccupyingProcess],
+    input_func=input,
+    print_func=print,
+) -> str:
+    print_func(f"[冲突] 共享 Qdrant 目录已被其他进程占用: {qdrant_path}")
+    for process in occupants:
+        print_func(f"  - PID {process.pid} | USER {process.user} | ELAPSED {process.elapsed}")
+        print_func(f"    {process.command}")
+    print_func("请选择后续操作：")
+    print_func("  1. 关闭上述进程，并由当前启动器接管")
+    print_func("  2. 继续当前启动（不关闭旧进程，可能仍会失败）")
+    print_func("  3. 取消当前启动")
+    while True:
+        choice = input_func("请输入编号 1 / 2 / 3: ").strip()
+        if choice == "1":
+            return "terminate"
+        if choice == "2":
+            return "continue"
+        if choice == "3":
+            return "cancel"
+        print_func("输入无效，请输入 1、2 或 3。")
+
+
+def _terminate_processes(processes: list[OccupyingProcess]) -> None:
+    for process in processes:
+        try:
+            os.kill(process.pid, signal.SIGTERM)
+        except OSError:
+            continue
+    deadline = time() + 3.0
+    remaining = {process.pid for process in processes}
+    while remaining and time() < deadline:
+        remaining = {pid for pid in remaining if _process_exists(pid)}
+        if remaining:
+            sleep(0.1)
+    for pid in sorted(remaining):
+        try:
+            os.kill(pid, signal.SIGKILL)
+        except OSError:
+            continue
+    if processes:
+        print("[接管] 已尝试结束占用共享 Qdrant 的现有进程，当前启动器继续执行。")
 
 
 def _build_vscode_simple_browser_uri(url: str) -> str:

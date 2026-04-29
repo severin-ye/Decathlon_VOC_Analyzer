@@ -74,7 +74,7 @@
       <div class="meta">
                 <div class="card"><div class="label">Category</div><div class="value">backpack</div><div class="sub">本次只处理一个品类</div></div>
                 <div class="card"><div class="label">Products</div><div class="value">1</div><div class="sub">已选商品数量</div></div>
-                <div class="card"><div class="label">Review Limit</div><div class="value">1</div><div class="sub">每个商品审核评论数</div></div>
+                <div class="card"><div class="label">Review Limit</div><div class="value">10</div><div class="sub">每个商品审核评论数</div></div>
         <div class="card"><div class="label">Current Product</div><div class="value">__CURRENT_PRODUCT__</div><div class="sub">__NOTE__</div></div>
       </div>
     </section>
@@ -91,7 +91,7 @@
     </section>
   </div>
   <script>
-        const payload = {"category": "backpack", "reviewLimit": 1, "status": "failed", "note": "backpack_001 执行失败", "startedAt": "2026-04-30T00:00:08", "completedAt": "2026-04-30T00:00:20", "currentProductId": "backpack_001", "currentProductDashboardUrl": "http://127.0.0.1:8765/_progress/backpack/backpack_001_live_progress.html", "products": [{"index": 1, "productId": "backpack_001", "status": "failed", "startedAt": "2026-04-30T00:00:14", "completedAt": "2026-04-30T00:00:20", "detail": "执行失败，请查看终端输出", "exitCode": 1}]};
+        const payload = {"category": "backpack", "reviewLimit": 10, "status": "failed", "note": "backpack_001 执行失败", "startedAt": "2026-04-30T00:11:06", "completedAt": "2026-04-30T00:11:12", "currentProductId": "backpack_001", "currentProductDashboardUrl": "http://127.0.0.1:8765/_progress/backpack/backpack_001_live_progress.html", "products": [{"index": 1, "productId": "backpack_001", "status": "failed", "startedAt": "2026-04-30T00:11:06", "completedAt": "2026-04-30T00:11:12", "detail": "执行失败，请查看终端输出", "exitCode": 1}]};
     const bannerClass = payload.status === 'completed' ? 'completed' : (payload.status === 'failed' ? 'failed' : 'running');
     const headline = payload.status === 'completed' ? '已完成所有流程' : (payload.status === 'failed' ? '流程执行失败' : '工作流运行中');
     const caption = payload.status === 'completed'
