@@ -7,31 +7,79 @@
       "slot_id": "issue_01",
       "item_type": "insight",
       "label": "Portability_Size",
-      "summary": "User feedback reports a negative issue around portability_size: Very small.",
+      "summary": "User feedback reports a negative issue around portability_size: The quality is excellent. +5 Workmanship is excellent. +5 Delivery process is excellent +5 I did not get the product I wanted. -3 I did not see size (dimensions) mentioned on the site. -3 I am however a satisfied customer +4 I have not used it because it is smaller than the size (one above) that I have..",
       "owner": "product_issue",
-      "status": "accepted",
+      "status": "pending_review",
       "confidence_breakdown": {
-        "extract_confidence": 0.6,
-        "question_confidence": 0.62,
-        "evidence_confidence": 0.71,
-        "consistency_confidence": 0.65,
-        "final_confidence": 0.6525
+        "extract_confidence": 0.68,
+        "question_confidence": 0.67,
+        "evidence_confidence": 0.89,
+        "consistency_confidence": 0.75,
+        "final_confidence": 0.7655000000000001
       },
-      "reviewer_note": "confirmed in manual review"
+      "reviewer_note": null
     },
     {
       "slot_id": "issue_02",
       "item_type": "insight",
-      "label": "overall_experience",
-      "summary": "Opinions on overall_experience are relatively mixed and somewhat controversial.",
-      "owner": "content_presentation",
+      "label": "Portability_Size",
+      "summary": "User feedback reports a negative issue around portability_size: Very small.",
+      "owner": "product_issue",
+      "status": "pending_review",
+      "confidence_breakdown": {
+        "extract_confidence": 0.68,
+        "question_confidence": 0.7,
+        "evidence_confidence": 0.7,
+        "consistency_confidence": 0.7,
+        "final_confidence": 0.68
+      },
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "issue_03",
+      "item_type": "insight",
+      "label": "Usability",
+      "summary": "User feedback reports a negative issue around usability: The quality is excellent. +5 Workmanship is excellent. +5 Delivery process is excellent +5 I did not get the product I wanted. -3 I did not see size (dimensions) mentioned on the site. -3 I am however a satisfied customer +4 I have not used it because it is smaller than the size (one above) that I have..",
+      "owner": "product_issue",
       "status": "pending_review",
       "confidence_breakdown": {
         "extract_confidence": 0.6,
-        "question_confidence": 0.62,
-        "evidence_confidence": 0.71,
+        "question_confidence": 0.67,
+        "evidence_confidence": 0.89,
         "consistency_confidence": 0.65,
-        "final_confidence": 0.6525
+        "final_confidence": 0.7255
+      },
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "issue_04",
+      "item_type": "insight",
+      "label": "Durability_Quality",
+      "summary": "User feedback reports a negative issue around durability_quality: The quality is excellent. +5 Workmanship is excellent. +5 Delivery process is excellent +5 I did not get the product I wanted. -3 I did not see size (dimensions) mentioned on the site. -3 I am however a satisfied customer +4 I have not used it because it is smaller than the size (one above) that I have..",
+      "owner": "product_issue",
+      "status": "pending_review",
+      "confidence_breakdown": {
+        "extract_confidence": 0.6,
+        "question_confidence": 0.67,
+        "evidence_confidence": 0.89,
+        "consistency_confidence": 0.65,
+        "final_confidence": 0.7255
+      },
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "issue_05",
+      "item_type": "insight",
+      "label": "overall_experience",
+      "summary": "Opinions on overall_experience are relatively mixed and somewhat controversial.",
+      "owner": "expectation_mismatch",
+      "status": "pending_review",
+      "confidence_breakdown": {
+        "extract_confidence": 0.6,
+        "question_confidence": 0.67,
+        "evidence_confidence": 0.89,
+        "consistency_confidence": 0.65,
+        "final_confidence": 0.7255
       },
       "reviewer_note": null
     },
@@ -39,20 +87,52 @@
       "slot_id": "suggestion_01",
       "item_type": "suggestion",
       "label": "Strengthen the product-page explanation and evidence around Missing portability_size substantiation.",
-      "summary": "Clear negative feedback exists for portability_size, appearing 1 times.",
-      "owner": "content_presentation",
+      "summary": "Clear negative feedback exists for portability_size, appearing 2 times.",
+      "owner": "product_issue",
       "status": "pending_review",
       "confidence_breakdown": {
-        "extract_confidence": 0.6,
-        "question_confidence": 0.62,
-        "evidence_confidence": 0.71,
-        "consistency_confidence": 0.65,
-        "final_confidence": 0.6525
+        "extract_confidence": 0.68,
+        "question_confidence": 0.67,
+        "evidence_confidence": 0.89,
+        "consistency_confidence": 0.75,
+        "final_confidence": 0.7655000000000001
       },
       "reviewer_note": null
     },
     {
       "slot_id": "suggestion_02",
+      "item_type": "suggestion",
+      "label": "Strengthen the product-page explanation and evidence around Missing usability substantiation.",
+      "summary": "Clear negative feedback exists for usability, appearing 1 times.",
+      "owner": "product_issue",
+      "status": "pending_review",
+      "confidence_breakdown": {
+        "extract_confidence": 0.6,
+        "question_confidence": 0.67,
+        "evidence_confidence": 0.89,
+        "consistency_confidence": 0.65,
+        "final_confidence": 0.7255
+      },
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "suggestion_03",
+      "item_type": "suggestion",
+      "label": "Add durability-validation notes and warranty scope for the rubber ear insert, and describe the actual material and test scope without claiming unsupported lifetime thresholds.",
+      "summary": "Current product-page evidence does not substantiate the review feedback about durability_quality.",
+      "owner": "content_presentation",
+      "status": "pending_review",
+      "confidence_breakdown": {
+        "extract_confidence": 0.6,
+        "question_confidence": 0.67,
+        "evidence_confidence": 0.89,
+        "consistency_confidence": 0.65,
+        "final_confidence": 0.7255
+      },
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "suggestion_04",
       "item_type": "suggestion",
       "label": "Add clearer usage-scenario guidance for overall_experience to reduce expectation mismatch.",
       "summary": "Opinions on overall_experience are relatively mixed and somewhat controversial.",
@@ -60,18 +140,18 @@
       "status": "pending_review",
       "confidence_breakdown": {
         "extract_confidence": 0.6,
-        "question_confidence": 0.62,
-        "evidence_confidence": 0.71,
+        "question_confidence": 0.67,
+        "evidence_confidence": 0.89,
         "consistency_confidence": 0.65,
-        "final_confidence": 0.6525
+        "final_confidence": 0.7255
       },
       "reviewer_note": null
     },
     {
       "slot_id": "retrieval_01",
       "item_type": "retrieval_quality",
-      "label": "overall_experience",
-      "summary": "coverage=1.00, drift=0.00, conflict=0.00",
+      "label": "value_price",
+      "summary": "coverage=0.00, drift=0.00, conflict=0.00",
       "owner": "product_issue",
       "status": "pending_review",
       "confidence_breakdown": null,
@@ -80,8 +160,108 @@
     {
       "slot_id": "retrieval_02",
       "item_type": "retrieval_quality",
+      "label": "value_price",
+      "summary": "coverage=0.00, drift=0.00, conflict=0.00",
+      "owner": "product_issue",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "retrieval_03",
+      "item_type": "retrieval_quality",
+      "label": "overall_experience",
+      "summary": "coverage=1.00, drift=0.00, conflict=0.00",
+      "owner": "product_issue",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "retrieval_04",
+      "item_type": "retrieval_quality",
+      "label": "overall_experience",
+      "summary": "coverage=0.00, drift=0.00, conflict=0.00",
+      "owner": "product_issue",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "retrieval_05",
+      "item_type": "retrieval_quality",
       "label": "portability_size",
       "summary": "coverage=1.00, drift=0.00, conflict=0.00",
+      "owner": "product_issue",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "retrieval_06",
+      "item_type": "retrieval_quality",
+      "label": "portability_size",
+      "summary": "coverage=0.00, drift=0.00, conflict=0.00",
+      "owner": "product_issue",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "retrieval_07",
+      "item_type": "retrieval_quality",
+      "label": "usability",
+      "summary": "coverage=1.00, drift=0.00, conflict=0.00",
+      "owner": "product_issue",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "retrieval_08",
+      "item_type": "retrieval_quality",
+      "label": "usability",
+      "summary": "coverage=0.00, drift=0.00, conflict=0.00",
+      "owner": "product_issue",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "retrieval_09",
+      "item_type": "retrieval_quality",
+      "label": "durability_quality",
+      "summary": "coverage=1.00, drift=0.00, conflict=0.00",
+      "owner": "product_issue",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "retrieval_10",
+      "item_type": "retrieval_quality",
+      "label": "durability_quality",
+      "summary": "coverage=0.00, drift=0.00, conflict=0.00",
+      "owner": "product_issue",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "retrieval_11",
+      "item_type": "retrieval_quality",
+      "label": "portability_size",
+      "summary": "coverage=1.00, drift=0.00, conflict=0.00",
+      "owner": "product_issue",
+      "status": "pending_review",
+      "confidence_breakdown": null,
+      "reviewer_note": null
+    },
+    {
+      "slot_id": "retrieval_12",
+      "item_type": "retrieval_quality",
+      "label": "portability_size",
+      "summary": "coverage=0.00, drift=0.00, conflict=0.00",
       "owner": "product_issue",
       "status": "pending_review",
       "confidence_breakdown": null,
@@ -89,6 +269,13 @@
     }
   ],
   "warnings": [
-    "replay continuity applied: persistent=3, resolved=0, new=0, reviewed=1"
+    "backpack_010_review_0001_aspect_01_q_01: applied corrective retrieval (expand_topk) bad->bad",
+    "backpack_010_review_0001_aspect_01_q_02: applied corrective retrieval (expand_topk) bad->bad",
+    "backpack_010_review_0090_aspect_01_q_02: applied corrective retrieval (expand_topk) bad->bad",
+    "backpack_010_review_0138_aspect_01_q_02: applied corrective retrieval (expand_topk) bad->bad",
+    "backpack_010_review_0138_aspect_02_q_02: applied corrective retrieval (expand_topk) bad->bad",
+    "backpack_010_review_0138_aspect_03_q_02: applied corrective retrieval (expand_topk) bad->bad",
+    "backpack_010_review_0153_aspect_01_q_02: applied corrective retrieval (expand_topk) bad->bad",
+    "replay continuity applied: persistent=9, resolved=0, new=0, reviewed=1"
   ]
 }

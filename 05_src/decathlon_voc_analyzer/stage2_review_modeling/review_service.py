@@ -5,6 +5,7 @@ import orjson
 from pydantic import BaseModel, Field
 
 from decathlon_voc_analyzer.app.core.config import get_settings
+from decathlon_voc_analyzer.app.core.runtime_policy import handle_llm_failure, resolve_llm_permission
 from decathlon_voc_analyzer.llm import QwenChatGateway
 from decathlon_voc_analyzer.schemas.review import (
     AspectSentiment,
@@ -17,6 +18,7 @@ from decathlon_voc_analyzer.schemas.review import (
     ReviewSamplingPlan,
 )
 from decathlon_voc_analyzer.prompts import get_prompt_template, get_prompt_variant
+from decathlon_voc_analyzer.runtime_progress import get_workflow_progress
 from decathlon_voc_analyzer.stage1_dataset.dataset_service import DatasetService
 from decathlon_voc_analyzer.stage2_review_modeling.deduplication_service import ReviewDeduplicationService
 from decathlon_voc_analyzer.stage2_review_modeling.review_sampling_service import ReviewSamplingService
@@ -123,16 +125,6 @@ class ReviewExtractionPayload(BaseModel):
     aspects: list[ReviewAspectCandidate] = Field(default_factory=list)
 
 
-class ReviewTranslationItem(BaseModel):
-    user_id: str | None = None
-    rating: int | None = None
-    content: str = ""
-
-
-class ReviewTranslationPayload(BaseModel):
-    reviews: list[ReviewTranslationItem] = Field(default_factory=list)
-
-
 class ReviewExtractionService:
     def __init__(self) -> None:
         self.settings = get_settings()
@@ -148,12 +140,18 @@ class ReviewExtractionService:
         aspects: list[ReviewAspect] = []
         skipped_review_ids: list[str] = []
         warnings: list[str] = []
-        llm_requested = request.use_llm and bool(self.settings.qwen_plus_api_key)
+        llm_requested, policy_warning = resolve_llm_permission("review_extraction", request.use_llm, self.settings)
+        if policy_warning is not None:
+            warnings.append(policy_warning)
         extraction_mode: ExtractionMode = "llm" if llm_requested else "heuristic"
 
-        for review in preprocessed_reviews:
+        progress = get_workflow_progress()
+        progress.start_count_step("analyze", "extract", total=len(preprocessed_reviews), detail=f"处理 {len(preprocessed_reviews)} 条评论")
+
+        for idx, review in enumerate(preprocessed_reviews):
             if not review.is_informative and not request.include_non_informative:
                 skipped_review_ids.append(review.review_id)
+                progress.advance_step("analyze", "extract", detail=f"{review.review_id} (已跳过)")
                 continue
 
             extracted_aspects: list[ReviewAspect]
@@ -162,15 +160,17 @@ class ReviewExtractionService:
                     extracted_aspects = self._extract_with_llm(review)
                 except Exception as exc:
                     extraction_mode = "heuristic"
-                    warnings.append(f"{review.review_id}: llm extraction failed, fallback to heuristic ({exc})")
+                    warnings.append(handle_llm_failure(f"review_extraction:{review.review_id}", exc, self.settings))
                     extracted_aspects = self._extract_with_heuristic(review)
             else:
                 extracted_aspects = self._extract_with_heuristic(review)
 
             if not extracted_aspects:
                 skipped_review_ids.append(review.review_id)
+                progress.advance_step("analyze", "extract", detail=f"{review.review_id} (无方面提取)")
                 continue
             aspects.extend(extracted_aspects)
+            progress.advance_step("analyze", "extract", detail=review.review_id)
 
         artifact_path: str | None = None
         aspects = self.deduplication_service.deduplicate(aspects)
@@ -185,6 +185,8 @@ class ReviewExtractionService:
                 skipped_review_ids=skipped_review_ids,
                 warnings=warnings,
             )
+
+        progress.complete_step("analyze", "extract", detail=f"提取了 {len(aspects)} 个方面")
 
         return ReviewExtractionResponse(
             product_id=product_id,
@@ -210,8 +212,6 @@ class ReviewExtractionService:
                 (review.product_id for review in reviews if review.product_id),
                 None,
             )
-            if self._should_project_reviews_to_english(request):
-                reviews = self._project_reviews_to_english(reviews)
             return reviews, product_id, request.category_slug, sampling_plan
 
         if not request.product_id:
@@ -220,6 +220,7 @@ class ReviewExtractionService:
         package = self.dataset_service.load_product_package(
             product_id=request.product_id,
             category_slug=request.category_slug,
+            use_llm=request.use_llm,
         )
         source_reviews = [
             ReviewInput(
@@ -235,55 +236,7 @@ class ReviewExtractionService:
             reviews=source_reviews,
             max_reviews=request.max_reviews,
         )
-        if self._should_project_reviews_to_english(request):
-            reviews = self._project_reviews_to_english(reviews)
         return reviews, package.product_id, package.category_slug, sampling_plan
-
-    def _should_project_reviews_to_english(self, request: ReviewExtractionRequest) -> bool:
-        return (
-            get_prompt_variant() == "main"
-            and bool(self.settings.qwen_plus_api_key)
-            and request.use_llm
-        )
-
-    def _project_reviews_to_english(self, reviews: list[ReviewInput], batch_size: int = 25) -> list[ReviewInput]:
-        translated_reviews: list[ReviewInput] = []
-        for start in range(0, len(reviews), batch_size):
-            batch = reviews[start:start + batch_size]
-            payload = {
-                "start_index": start,
-                "reviews": [
-                    {
-                        "user_id": review.review_id or review.product_id,
-                        "rating": review.rating,
-                        "content": review.review_text,
-                    }
-                    for review in batch
-                ],
-            }
-            try:
-                parsed = self.chat_gateway.invoke_json(
-                    prompt_template=get_prompt_template("review_translation_system"),
-                    variables={"payload": payload},
-                    schema=ReviewTranslationPayload,
-                    temperature=0,
-                )
-            except Exception:
-                return reviews
-            translated_batch = parsed.get("reviews") or []
-            if len(translated_batch) != len(batch):
-                return reviews
-            for source_review, translated_item in zip(batch, translated_batch, strict=True):
-                translated_reviews.append(
-                    ReviewInput(
-                        review_id=source_review.review_id,
-                        product_id=source_review.product_id,
-                        rating=source_review.rating,
-                        review_text=str(translated_item.get("content") or source_review.review_text),
-                        language_hint="en",
-                    )
-                )
-        return translated_reviews
 
     def _preprocess_review(self, review: ReviewInput) -> PreprocessedReview:
         original_text = review.review_text

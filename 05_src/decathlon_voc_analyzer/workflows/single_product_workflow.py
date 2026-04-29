@@ -56,6 +56,7 @@ def build_single_product_workflow():
                 categories=[state["category"]],
                 product_ids=[state["product_id"]],
                 persist_artifacts=True,
+                use_llm=state["use_llm"],
             )
         )
         progress.complete_step("normalize", "select")
@@ -74,6 +75,7 @@ def build_single_product_workflow():
                 categories=[state["category"]],
                 product_ids=[state["product_id"]],
                 persist_artifact=True,
+                use_llm=state["use_llm"],
             )
         )
         progress.complete_step("index", "load_packages")

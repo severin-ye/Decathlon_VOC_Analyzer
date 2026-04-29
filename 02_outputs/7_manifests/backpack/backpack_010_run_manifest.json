@@ -5,19 +5,26 @@
   "reports_output_dir": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/4_reports",
   "category": "backpack",
   "product_id": "backpack_010",
-  "max_reviews": 2,
+  "max_reviews": 25,
   "overview": {
     "category_count": 3,
     "total_products": 192,
     "total_reviews": 33697
   },
-  "normalization": null,
-  "index_result": null,
+  "normalization": {
+    "normalized_products": 1,
+    "report_path": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/4_reports/dataset_normalization_report.json"
+  },
+  "index_result": {
+    "backend": "local",
+    "indexed_products": 1,
+    "index_path": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/3_indexes/local_evidence_index.json"
+  },
   "review_sampling": {
     "profile_name": "problem_first",
-    "requested_reviews": 2,
+    "requested_reviews": 25,
     "total_available_reviews": 200,
-    "selected_reviews": 2,
+    "selected_reviews": 25,
     "fallback_order": [
       1,
       2,
@@ -29,47 +36,47 @@
       {
         "rating": 5,
         "configured_ratio": 0.1,
-        "target_count": 0,
+        "target_count": 2,
         "available_count": 168,
-        "selected_count": 0,
+        "selected_count": 2,
         "redistributed_in_count": 0,
         "shortfall_count": 0
       },
       {
         "rating": 4,
         "configured_ratio": 0.15,
-        "target_count": 0,
+        "target_count": 4,
         "available_count": 28,
-        "selected_count": 0,
-        "redistributed_in_count": 0,
+        "selected_count": 19,
+        "redistributed_in_count": 15,
         "shortfall_count": 0
       },
       {
         "rating": 3,
         "configured_ratio": 0.2,
-        "target_count": 0,
+        "target_count": 5,
         "available_count": 3,
-        "selected_count": 1,
-        "redistributed_in_count": 1,
-        "shortfall_count": 0
+        "selected_count": 3,
+        "redistributed_in_count": 0,
+        "shortfall_count": 2
       },
       {
         "rating": 2,
         "configured_ratio": 0.25,
-        "target_count": 1,
+        "target_count": 6,
         "available_count": 0,
         "selected_count": 0,
         "redistributed_in_count": 0,
-        "shortfall_count": 1
+        "shortfall_count": 6
       },
       {
         "rating": 1,
         "configured_ratio": 0.3,
-        "target_count": 1,
+        "target_count": 8,
         "available_count": 1,
         "selected_count": 1,
         "redistributed_in_count": 0,
-        "shortfall_count": 0
+        "shortfall_count": 7
       }
     ]
   },
@@ -88,13 +95,15 @@
   "analysis": {
     "analysis_mode": "heuristic",
     "artifact_path": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/4_reports/backpack/backpack_010_analysis.json",
-    "strengths": 1,
-    "weaknesses": 1,
+    "strengths": 3,
+    "weaknesses": 8,
     "replay_applied": true,
-    "replay_persistent_issue_count": 3,
-    "replay_resolved_issue_count": 0,
+    "replay_persistent_issue_count": 8,
+    "replay_resolved_issue_count": 1,
     "warnings": [
-      "replay continuity applied: persistent=3, resolved=0, new=0, reviewed=1"
+      "backpack_010_review_0001_aspect_01_q_01: applied corrective retrieval (expand_topk) bad->good",
+      "backpack_010_review_0067_aspect_05_q_01: applied corrective retrieval (expand_topk) bad->good",
+      "replay continuity applied: persistent=8, resolved=1, new=8, reviewed=2"
     ]
   },
   "artifact_bundle": {

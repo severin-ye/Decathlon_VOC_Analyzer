@@ -45,3 +45,19 @@ def test_index_service_search_returns_hits() -> None:
     assert any(hit.route == "text" for hit in hits)
     assert any(hit.route == "image" for hit in hits)
     assert all(hit.score is not None for hit in hits)
+
+
+def test_index_service_preserves_original_language_metadata() -> None:
+    service = IndexService()
+
+    snapshot = service.get_or_create_product_snapshot(
+        product_id="backpack_010",
+        category_slug="backpack",
+    )
+
+    title_hit = next(item for item in snapshot.evidence if item.text_block_id and item.doc_type == "title")
+
+    assert title_hit.language == "ko"
+    assert title_hit.content == "백패킹 오거나이저 여행 지갑 S"
+    assert title_hit.content_original == "백패킹 오거나이저 여행 지갑 S"
+    assert title_hit.content_normalized == "백패킹 오거나이저 여행 지갑 S"

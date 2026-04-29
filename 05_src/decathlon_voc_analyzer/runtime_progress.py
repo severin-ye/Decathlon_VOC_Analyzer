@@ -1,5 +1,11 @@
 from __future__ import annotations
 
+import os
+import select
+import sys
+import termios
+import threading
+import tty
 from contextlib import contextmanager
 from contextvars import ContextVar, Token
 from dataclasses import dataclass, field
@@ -21,6 +27,7 @@ class ProgressStepState:
     completed: float = 0.0
     total: float | None = None
     detail: str = ""
+    started_at: float | None = None
 
 
 @dataclass
@@ -80,10 +87,24 @@ class WorkflowProgressReporter:
         self._note = ""
         self._live: Live | None = None
         self._console = Console(stderr=True, force_terminal=True, color_system="standard", width=120)
+        self._stdin_fd: int | None = None
+        self._stdin_termios: list[int] | None = None
+        self._input_drain_stop = threading.Event()
+        self._input_drain_thread: threading.Thread | None = None
 
     def __enter__(self) -> "WorkflowProgressReporter":
         if self.enabled:
-            self._live = Live(self.render(), console=self._console, refresh_per_second=8, transient=False)
+            self._prepare_terminal()
+            self._configure_terminal_input()
+            self._live = Live(
+                self.render(),
+                console=self._console,
+                screen=True,
+                auto_refresh=True,
+                refresh_per_second=4,
+                transient=False,
+                vertical_overflow="crop",
+            )
             self._live.start()
         return self
 
@@ -92,6 +113,7 @@ class WorkflowProgressReporter:
             self.refresh()
             self._live.stop()
             self._live = None
+        self._restore_terminal_input()
 
     def activate_module(self, module_key: str, detail: str | None = None) -> None:
         module = self._module_lookup[module_key]
@@ -123,6 +145,7 @@ class WorkflowProgressReporter:
         step = self._step_lookup[f"{module_key}:{step_key}"]
         module.status = "in_progress"
         step.status = "in_progress"
+        step.started_at = monotonic()
         if detail:
             step.detail = detail
         self._active_module_key = module_key
@@ -158,6 +181,64 @@ class WorkflowProgressReporter:
         step.completed = 0.0
         self.activate_step(module_key, step_key, detail=detail)
 
+    def _prepare_terminal(self) -> None:
+        # Clear the primary buffer and scrollback before switching to the
+        # alternate screen so mouse-wheel scrolling doesn't reveal the shell
+        # prompt and the original command line underneath the progress UI.
+        terminal = self._console.file
+        terminal.write("\x1b[3J\x1b[2J\x1b[H")
+        terminal.flush()
+
+    def _configure_terminal_input(self) -> None:
+        if not sys.stdin.isatty():
+            return
+        try:
+            fd = sys.stdin.fileno()
+            settings = termios.tcgetattr(fd)
+        except (OSError, termios.error, ValueError):
+            return
+
+        self._stdin_fd = fd
+        self._stdin_termios = settings
+        updated = termios.tcgetattr(fd)
+        updated[3] &= ~termios.ECHO
+        termios.tcsetattr(fd, termios.TCSANOW, updated)
+        tty.setcbreak(fd)
+
+        self._input_drain_stop.clear()
+        self._input_drain_thread = threading.Thread(target=self._drain_terminal_input, name="workflow-progress-input", daemon=True)
+        self._input_drain_thread.start()
+
+    def _restore_terminal_input(self) -> None:
+        self._input_drain_stop.set()
+        if self._input_drain_thread is not None:
+            self._input_drain_thread.join(timeout=0.5)
+            self._input_drain_thread = None
+        if self._stdin_fd is None or self._stdin_termios is None:
+            return
+        try:
+            termios.tcsetattr(self._stdin_fd, termios.TCSADRAIN, self._stdin_termios)
+        except (OSError, termios.error):
+            pass
+        finally:
+            self._stdin_fd = None
+            self._stdin_termios = None
+
+    def _drain_terminal_input(self) -> None:
+        if self._stdin_fd is None:
+            return
+        while not self._input_drain_stop.is_set():
+            try:
+                ready, _, _ = select.select([self._stdin_fd], [], [], 0.1)
+            except (OSError, ValueError):
+                return
+            if not ready:
+                continue
+            try:
+                os.read(self._stdin_fd, 1024)
+            except OSError:
+                return
+
     def render(self):
         header = self._render_header()
         modules = self._render_modules_table()
@@ -183,6 +264,8 @@ class WorkflowProgressReporter:
         if active_step is not None:
             header.append("  ")
             header.append(f"Step: {active_step.label}", style="yellow")
+            header.append("  ")
+            header.append(f"Step Elapsed: {self._step_elapsed(active_step):5.1f}s", style="bold magenta")
         if self._note:
             header.append("\n")
             header.append(self._note, style="white")
@@ -260,7 +343,8 @@ class WorkflowProgressReporter:
     def _step_progress_text(self, module: ProgressModuleState, step: ProgressStepState) -> Text:
         fraction = self._step_fraction(step)
         label = step.label if step.total is not None else (step.detail or step.label)
-        return self._bar_text(label, fraction, self._step_style(module, step))
+        count_text = self._count_text(step)
+        return self._bar_text(label, fraction, self._step_style(module, step), meta=count_text)
 
     def _current_step_bar(self) -> Text:
         if self._active_module_key is None or self._active_step_key is None:
@@ -268,7 +352,33 @@ class WorkflowProgressReporter:
         step = self._step_lookup.get(f"{self._active_module_key}:{self._active_step_key}")
         if step is None:
             return Text("Current step: idle", style="dim")
-        return self._bar_text(f"Current {step.label}", self._step_fraction(step), "yellow")
+        return self._bar_text(
+            f"Current {step.label}",
+            self._step_fraction(step),
+            "yellow",
+            meta=self._step_meta_text(step),
+        )
+
+    def _count_text(self, step: ProgressStepState) -> str | None:
+        if step.total is None:
+            return None
+        completed = int(min(step.completed, step.total))
+        total = int(step.total)
+        return f"{completed}/{total}"
+
+    def _step_elapsed(self, step: ProgressStepState) -> float:
+        if step.started_at is None:
+            return 0.0
+        return max(0.0, monotonic() - step.started_at)
+
+    def _step_meta_text(self, step: ProgressStepState) -> str | None:
+        parts: list[str] = []
+        count_text = self._count_text(step)
+        if count_text is not None:
+            parts.append(count_text)
+        if step.status == "in_progress" and step.started_at is not None:
+            parts.append(f"{self._step_elapsed(step):.1f}s")
+        return " | ".join(parts) if parts else None
 
     def _overall_fraction(self) -> float:
         if not self.modules:
@@ -299,7 +409,7 @@ class WorkflowProgressReporter:
             return 1.0
         return min(1.0, max(0.0, step.completed / step.total))
 
-    def _bar_text(self, label: str, fraction: float, style: str) -> Text:
+    def _bar_text(self, label: str, fraction: float, style: str, meta: str | None = None) -> Text:
         width = 22
         filled = int(round(width * fraction))
         filled = max(0, min(width, filled))
@@ -308,6 +418,8 @@ class WorkflowProgressReporter:
         text.append(f"{label:<18} ", style=style)
         text.append(f"[{bar}] ", style=style)
         text.append(f"{fraction * 100:5.1f}%", style=style)
+        if meta:
+            text.append(f"  {meta}", style="dim")
         return text
 
 

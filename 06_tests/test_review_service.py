@@ -175,16 +175,55 @@ def test_review_service_uses_active_profile_from_config_file(tmp_path) -> None:
         assert selected_by_rating[1] == 2
 
 
-def test_review_service_normalizes_prompt_variant_alias_for_projection(monkeypatch) -> None:
+def test_review_service_samples_from_full_review_pool_before_rating_balancing() -> None:
+    service = ReviewExtractionService()
+    reviews = []
+    reviews.extend(_build_reviews(rating=5, count=25))
+    reviews.extend(_build_reviews(rating=1, count=10))
+
+    result = service.extract(
+        ReviewExtractionRequest(
+            product_id="demo_product",
+            use_llm=False,
+            max_reviews=10,
+            reviews=reviews,
+        )
+    )
+
+    assert result.sampling_plan is not None
+    allocation_by_rating = {item.rating: item.selected_count for item in result.sampling_plan.allocations}
+    assert allocation_by_rating[1] >= 1
+    selected_review_ids = {review.review_id for review in result.preprocessed_reviews}
+    assert any(review_id.startswith("r1_") for review_id in selected_review_ids)
+
+
+def test_review_service_preserves_original_multilingual_reviews(monkeypatch) -> None:
     monkeypatch.setenv("PROMPT_VARIANT", "en")
     service = ReviewExtractionService()
     service.settings.qwen_plus_api_key = "demo-key"
 
-    should_project = service._should_project_reviews_to_english(
-        ReviewExtractionRequest(product_id="demo_product", use_llm=True, reviews=[])
+    reviews, product_id, category_slug, sampling_plan = service._resolve_reviews(
+        ReviewExtractionRequest(
+            product_id="demo_product",
+            category_slug="backpack",
+            use_llm=True,
+            reviews=[
+                ReviewInput(
+                    review_id="r_ko",
+                    product_id="demo_product",
+                    rating=5,
+                    review_text="한글 리뷰 원문",
+                    language_hint="ko",
+                )
+            ],
+        )
     )
 
-    assert should_project is True
+    assert product_id == "demo_product"
+    assert category_slug == "backpack"
+    assert sampling_plan is None
+    assert reviews[0].review_text == "한글 리뷰 원문"
+    assert reviews[0].language_hint == "ko"
 
 
 def test_review_service_normalizes_mixed_overall_experience_from_contrastive_review() -> None:

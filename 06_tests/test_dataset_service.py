@@ -24,9 +24,18 @@ def test_normalize_single_product_without_persisting() -> None:
     assert result.stats.total_reviews >= 0
 
 
-def test_dataset_service_normalizes_prompt_variant_alias_for_projection(monkeypatch) -> None:
+def test_dataset_service_preserves_original_multilingual_product_fields(monkeypatch) -> None:
     monkeypatch.setenv("PROMPT_VARIANT", "en")
     service = DatasetService()
     service.settings.qwen_plus_api_key = "demo-key"
 
-    assert service._should_project_main_to_english() is True
+    package = service.load_product_package(
+        product_id="backpack_010",
+        category_slug="backpack",
+        use_llm=True,
+    )
+
+    assert package.product_name == "백패킹 오거나이저 여행 지갑 S"
+    assert package.primary_language == "ko"
+    assert any(block.language == "ko" for block in package.text_blocks)
+    assert any(block.content_original == block.content for block in package.text_blocks)

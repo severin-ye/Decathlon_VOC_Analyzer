@@ -17,6 +17,7 @@ class ImageEvidence(BaseModel):
     image_type: str = "product"
     image_path: str
     aux_text: str | None = None
+    language_hint: str | None = None
     width: int | None = None
     height: int | None = None
     regions: list[ImageRegion] = Field(default_factory=list)
@@ -28,6 +29,9 @@ class TextEvidence(BaseModel):
     text_type: Literal["title", "description", "category"]
     source_section: str
     content: str
+    language: str | None = None
+    content_original: str | None = None
+    content_normalized: str | None = None
 
 
 class ReviewRecord(BaseModel):
@@ -45,6 +49,7 @@ class ProductEvidencePackage(BaseModel):
     product_name: str | None = None
     category_text: str | None = None
     model_description: str | None = None
+    primary_language: str | None = None
     source_dir: str
     text_blocks: list[TextEvidence] = Field(default_factory=list)
     images: list[ImageEvidence] = Field(default_factory=list)
@@ -76,6 +81,7 @@ class DatasetNormalizeRequest(BaseModel):
     product_ids: list[str] | None = None
     max_products: int | None = Field(default=None, ge=1)
     persist_artifacts: bool = True
+    use_llm: bool = True
 
 
 class NormalizationStats(BaseModel):

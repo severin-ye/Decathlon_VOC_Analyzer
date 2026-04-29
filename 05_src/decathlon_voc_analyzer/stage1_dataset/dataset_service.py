@@ -4,12 +4,9 @@ import re
 from pathlib import Path
 
 import orjson
-from pydantic import BaseModel
 from PIL import Image
 
 from decathlon_voc_analyzer.app.core.config import get_settings
-from decathlon_voc_analyzer.llm import QwenChatGateway
-from decathlon_voc_analyzer.prompts import get_prompt_template, get_prompt_variant
 from decathlon_voc_analyzer.runtime_progress import get_workflow_progress
 from decathlon_voc_analyzer.schemas.dataset import (
     CategoryOverview,
@@ -26,16 +23,9 @@ from decathlon_voc_analyzer.schemas.dataset import (
 )
 
 
-class ProductProjectionPayload(BaseModel):
-    product_name: str = ""
-    model_description: str = ""
-    category: str = ""
-
-
 class DatasetService:
     def __init__(self) -> None:
         self.settings = get_settings()
-        self.chat_gateway = QwenChatGateway()
 
     def build_overview(self) -> DatasetOverview:
         categories: list[CategoryOverview] = []
@@ -115,7 +105,7 @@ class DatasetService:
 
         for directory in product_directories:
             stats.scanned_products += 1
-            package = self._normalize_product(directory)
+            package = self._normalize_product(directory, use_llm=request.use_llm)
             progress.advance_step("normalize", "normalize_products", detail=package.product_id)
             stats.normalized_products += 1
             stats.total_reviews += len(package.reviews)
@@ -149,9 +139,14 @@ class DatasetService:
             report_path=report_path,
         )
 
-    def load_product_package(self, product_id: str, category_slug: str | None = None) -> ProductEvidencePackage:
+    def load_product_package(
+        self,
+        product_id: str,
+        category_slug: str | None = None,
+        use_llm: bool = True,
+    ) -> ProductEvidencePackage:
         directory = self._find_product_directory(product_id=product_id, category_slug=category_slug)
-        return self._normalize_product(directory)
+        return self._normalize_product(directory, use_llm=use_llm)
 
     def _iter_category_dirs(self) -> list[Path]:
         if not self.settings.dataset_root.exists():
@@ -193,7 +188,7 @@ class DatasetService:
             return directory
         raise ValueError(f"Product not found: {product_id}")
 
-    def _normalize_product(self, directory: ProductDirectory) -> ProductEvidencePackage:
+    def _normalize_product(self, directory: ProductDirectory, use_llm: bool = True) -> ProductEvidencePackage:
         product_json_path = directory.product_dir / "product.json"
         reviews_json_path = directory.product_dir / "reviews.json"
         warnings: list[str] = []
@@ -214,13 +209,6 @@ class DatasetService:
         model_description = self._clean_text(product_payload.get("model_description"))
         category_text = self._clean_text(product_payload.get("category"))
 
-        if self._should_project_main_to_english():
-            product_name, model_description, category_text = self._project_product_fields_to_english(
-                product_name,
-                model_description,
-                category_text,
-            )
-
         text_blocks = self._build_text_blocks(
             product_id=directory.product_id,
             product_name=product_name,
@@ -229,6 +217,7 @@ class DatasetService:
         )
         images = self._build_images(directory, product_payload)
         reviews = self._build_reviews(directory.product_id, reviews_payload)
+        primary_language = self._resolve_primary_language(text_blocks, reviews)
 
         if not images:
             warnings.append("no images discovered")
@@ -239,41 +228,12 @@ class DatasetService:
             product_name=product_name,
             category_text=category_text,
             model_description=model_description,
+            primary_language=primary_language,
             source_dir=str(directory.product_dir),
             text_blocks=text_blocks,
             images=images,
             reviews=reviews,
             warnings=warnings,
-        )
-
-    def _should_project_main_to_english(self) -> bool:
-        return get_prompt_variant() == "main" and bool(self.settings.qwen_plus_api_key)
-
-    def _project_product_fields_to_english(
-        self,
-        product_name: str | None,
-        model_description: str | None,
-        category_text: str | None,
-    ) -> tuple[str | None, str | None, str | None]:
-        payload = {
-            "product_name": product_name,
-            "model_description": model_description,
-            "category": category_text,
-        }
-        try:
-            parsed = self.chat_gateway.invoke_json(
-                prompt_template=get_prompt_template("product_translation_system"),
-                variables={"payload": payload},
-                schema=ProductProjectionPayload,
-                temperature=0,
-            )
-        except Exception:
-            return product_name, model_description, category_text
-
-        return (
-            self._clean_text(parsed.get("product_name") or product_name),
-            self._clean_text(parsed.get("model_description") or model_description),
-            self._clean_text(parsed.get("category") or category_text),
         )
 
     def _build_text_blocks(
@@ -299,6 +259,9 @@ class DatasetService:
                     text_type=text_type,
                     source_section=source_section,
                     content=content,
+                    language=self._guess_language(content),
+                    content_original=content,
+                    content_normalized=content,
                 )
             )
         return blocks
@@ -325,6 +288,7 @@ class DatasetService:
                         product_id=directory.product_id,
                         variant=variant,
                         image_path=image_path,
+                        language_hint=self._guess_language(variant or ""),
                         width=width,
                         height=height,
                         regions=regions,
@@ -469,3 +433,23 @@ class DatasetService:
         if re.search(r"[а-яА-Я]", text):
             return "ru"
         return "latin"
+
+    def _resolve_primary_language(
+        self,
+        text_blocks: list[TextEvidence],
+        reviews: list[ReviewRecord],
+    ) -> str | None:
+        text_counts: dict[str, int] = {}
+        for item in text_blocks:
+            if item.language:
+                text_counts[item.language] = text_counts.get(item.language, 0) + 1
+        if text_counts:
+            return max(text_counts.items(), key=lambda entry: entry[1])[0]
+
+        counts: dict[str, int] = {}
+        for review in reviews:
+            if review.language_hint:
+                counts[review.language_hint] = counts.get(review.language_hint, 0) + 1
+        if not counts:
+            return None
+        return max(counts.items(), key=lambda entry: entry[1])[0]

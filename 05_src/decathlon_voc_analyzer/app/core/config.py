@@ -27,6 +27,7 @@ class Settings(BaseSettings):
     replay_output_dir: Path = ROOT_DIR / "02_outputs" / "5_replay"
     html_output_dir: Path = ROOT_DIR / "02_outputs" / "6_html"
     review_sampling_config_path: Path = ROOT_DIR / "03_configs" / "review_sampling_profiles.json"
+    runtime_execution_policy_path: Path = ROOT_DIR / "03_configs" / "runtime_execution_policy.json"
     review_sampling_profile: str | None = None
 
     llm_temperature: float = 0.3

@@ -1,31 +1,41 @@
 {
   "product_id": "backpack_010",
   "category_slug": "backpack",
-  "product_name": "Backpacking Organizer Travel Wallet S",
-  "category_text": "All Sports > Hiking > Gear > Bags > Bag Accessories",
-  "model_description": "This durable and practical travel wallet is the top choice for safely storing personal items. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels with peace of mind. [Warranty Period] 2 years",
+  "product_name": "백패킹 오거나이저 여행 지갑 S",
+  "category_text": "모든 스포츠 > 등산 > 용품 > 가방 > 가방 용품",
+  "model_description": "이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2",
+  "primary_language": "ko",
   "source_dir": "/home/severin/Codelib/Decathlon_VOC_Analyzer/01_data/01_raw_products/products/backpack/backpack_010",
   "text_blocks": [
     {
-      "text_block_id": "backpack_010_product_name_a8c4ef4f53c4",
+      "text_block_id": "backpack_010_product_name_b4b3d8117f94",
       "product_id": "backpack_010",
       "text_type": "title",
       "source_section": "product_name",
-      "content": "Backpacking Organizer Travel Wallet S"
+      "content": "백패킹 오거나이저 여행 지갑 S",
+      "language": "ko",
+      "content_original": "백패킹 오거나이저 여행 지갑 S",
+      "content_normalized": "백패킹 오거나이저 여행 지갑 S"
     },
     {
-      "text_block_id": "backpack_010_model_description_676b23089ef7",
+      "text_block_id": "backpack_010_model_description_c74c9858c2a6",
       "product_id": "backpack_010",
       "text_type": "description",
       "source_section": "model_description",
-      "content": "This durable and practical travel wallet is the top choice for safely storing personal items. It is suitable for both travel and daily use. It's a backpack that helps you enjoy your travels with peace of mind. [Warranty Period] 2 years"
+      "content": "이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2",
+      "language": "ko",
+      "content_original": "이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2",
+      "content_normalized": "이 튼튼하고 실용적인 트래블 지갑은 개인 소지품을 안전하게 보관할 수 있는 최고의 제품입니다. 여행 및 일상생활에서도 모두 사용이 가능합니다. 편안한 마음으로 여행을 즐길 수 있게 도와주는 백팩입니다. [보증 기간] 2"
     },
     {
-      "text_block_id": "backpack_010_category_df8dbdbf76c1",
+      "text_block_id": "backpack_010_category_d9b046ede934",
       "product_id": "backpack_010",
       "text_type": "category",
       "source_section": "category",
-      "content": "All Sports > Hiking > Gear > Bags > Bag Accessories"
+      "content": "모든 스포츠 > 등산 > 용품 > 가방 > 가방 용품",
+      "language": "ko",
+      "content_original": "모든 스포츠 > 등산 > 용품 > 가방 > 가방 용품",
+      "content_normalized": "모든 스포츠 > 등산 > 용품 > 가방 > 가방 용품"
     }
   ],
   "images": [
@@ -36,6 +46,7 @@
       "image_type": "product",
       "image_path": "images/8512010/img1.png",
       "aux_text": null,
+      "language_hint": "latin",
       "width": 1920,
       "height": 1920,
       "regions": [
@@ -98,6 +109,7 @@
       "image_type": "product",
       "image_path": "images/8512010/img2.png",
       "aux_text": null,
+      "language_hint": "latin",
       "width": 1920,
       "height": 1920,
       "regions": [
@@ -160,6 +172,7 @@
       "image_type": "product",
       "image_path": "images/8512010/img3.png",
       "aux_text": null,
+      "language_hint": "latin",
       "width": 1920,
       "height": 1920,
       "regions": [
@@ -222,6 +235,7 @@
       "image_type": "product",
       "image_path": "images/8512010/img4.png",
       "aux_text": null,
+      "language_hint": "latin",
       "width": 1920,
       "height": 1920,
       "regions": [
@@ -284,6 +298,7 @@
       "image_type": "product",
       "image_path": "images/8512010/img5.png",
       "aux_text": null,
+      "language_hint": "latin",
       "width": 1920,
       "height": 1920,
       "regions": [

@@ -204,10 +204,19 @@ def _resolve_manifest_path(args: argparse.Namespace, paths: dict[str, Path]) -> 
 
 def execute_workflow(args: argparse.Namespace, paths: dict[str, Path], progress: WorkflowProgressReporter | None = None) -> WorkflowExecutionSummary:
     from decathlon_voc_analyzer.app.core.config import get_settings
+    from decathlon_voc_analyzer.app.core.runtime_policy import validate_full_power_prerequisites
+
+    get_settings.cache_clear()
+    settings = get_settings()
+    validate_full_power_prerequisites(
+        use_llm=not args.no_llm,
+        retrieval_backend=str(os.environ.get("RETRIEVAL_BACKEND") or settings.retrieval_backend),
+        settings=settings,
+    )
+
     from decathlon_voc_analyzer.stage4_generation.html_export_service import HtmlExportService
     from decathlon_voc_analyzer.workflows.single_product_workflow import get_single_product_workflow
 
-    get_settings.cache_clear()
     workflow = get_single_product_workflow()
     if progress is not None:
         progress.note("工作流已启动，正在按顺序执行各模块。")
@@ -400,22 +409,27 @@ def _render_json_summary(summary: WorkflowExecutionSummary) -> bytes:
 
 def main() -> None:
     from decathlon_voc_analyzer.stage3_retrieval.index_backends import dispose_index_backend
+    from decathlon_voc_analyzer.app.core.runtime_policy import RuntimePolicyError
 
     args = parse_args()
     config = build_cli_config(args)
     paths = configure_environment(config)
     progress = WorkflowProgressReporter(WORKFLOW_PROGRESS_PLAN, enabled=not args.quiet)
     try:
-        with progress:
-            with use_workflow_progress(progress):
-                progress.note("工作流已启动，正在按顺序执行各模块。")
-                summary = execute_workflow(args, paths, progress=progress)
-                summary = maybe_write_manifest(args, summary, paths, progress=progress)
-                if args.output_format == "json":
-                    sys.stdout.buffer.write(_render_json_summary(summary))
-                    sys.stdout.write("\n")
-                    return
-                print(_render_text_summary(summary, quiet=args.quiet))
+        try:
+            with progress:
+                with use_workflow_progress(progress):
+                    progress.note("工作流已启动，正在按顺序执行各模块。")
+                    summary = execute_workflow(args, paths, progress=progress)
+                    summary = maybe_write_manifest(args, summary, paths, progress=progress)
+                    if args.output_format == "json":
+                        sys.stdout.buffer.write(_render_json_summary(summary))
+                        sys.stdout.write("\n")
+                        return
+                    print(_render_text_summary(summary, quiet=args.quiet))
+        except RuntimePolicyError as exc:
+            print(exc.render(), file=sys.stderr)
+            raise SystemExit(1) from exc
     finally:
         dispose_index_backend()
 

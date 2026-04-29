@@ -36,6 +36,7 @@ class IndexService:
             package = self.dataset_service.load_product_package(
                 product_id=directory.product_id,
                 category_slug=directory.category_slug,
+                use_llm=request.use_llm,
             )
             evidence = self._build_evidence_for_package(package)
             progress.advance_step("index", "load_packages", detail=package.product_id)
@@ -82,7 +83,12 @@ class IndexService:
             index_path=self.backend.index_location(),
         )
 
-    def get_or_create_product_snapshot(self, product_id: str, category_slug: str | None = None) -> ProductIndexSnapshot:
+    def get_or_create_product_snapshot(
+        self,
+        product_id: str,
+        category_slug: str | None = None,
+        use_llm: bool = True,
+    ) -> ProductIndexSnapshot:
         progress = get_workflow_progress()
         snapshots = self.backend.load_snapshots()
         for snapshot in snapshots:
@@ -91,7 +97,11 @@ class IndexService:
 
         progress.activate_module("index", detail=f"按需为 {product_id} 构建索引")
         progress.start_count_step("index", "load_packages", total=1, detail=f"加载 {product_id} 商品包")
-        package = self.dataset_service.load_product_package(product_id=product_id, category_slug=category_slug)
+        package = self.dataset_service.load_product_package(
+            product_id=product_id,
+            category_slug=category_slug,
+            use_llm=use_llm,
+        )
         progress.complete_step("index", "load_packages", detail=package.product_id)
         snapshot = ProductIndexSnapshot(
             product_id=package.product_id,
@@ -115,8 +125,9 @@ class IndexService:
         routes: list[str],
         top_k_per_route: int,
         category_slug: str | None = None,
+        use_llm: bool = True,
     ) -> list[IndexedEvidence]:
-        self.get_or_create_product_snapshot(product_id=product_id, category_slug=category_slug)
+        self.get_or_create_product_snapshot(product_id=product_id, category_slug=category_slug, use_llm=use_llm)
         return self.backend.search(
             product_id=product_id,
             category_slug=category_slug,
@@ -130,16 +141,21 @@ class IndexService:
         evidence: list[IndexedEvidence] = []
         progress.start_count_step("index", "embed_text", total=len(package.text_blocks), detail=f"{package.product_id} 文本向量")
         for text_block in package.text_blocks:
+            text_content = text_block.content_normalized or text_block.content_original or text_block.content
             evidence.append(
                 IndexedEvidence(
                     evidence_id=text_block.text_block_id,
                     product_id=package.product_id,
                     category_slug=package.category_slug,
                     route="text",
+                    doc_type=text_block.text_type,
                     text_block_id=text_block.text_block_id,
                     source_section=text_block.source_section,
-                    content=text_block.content,
-                    vector=self.embedding_service.embed_text(text_block.content),
+                    content=text_content,
+                    language=text_block.language,
+                    content_original=text_block.content_original or text_block.content,
+                    content_normalized=text_block.content_normalized or text_content,
+                    vector=self.embedding_service.embed_text(text_content),
                 )
             )
             progress.advance_step("index", "embed_text", detail=text_block.text_block_id)
@@ -151,6 +167,7 @@ class IndexService:
             proxy_text = " ".join(
                 part for part in [package.product_name, package.category_text, package.model_description, image.variant, image.image_path] if part
             )
+            image_language = image.language_hint or package.primary_language or self.dataset_service._guess_language(proxy_text)
             image_source_path = self.dataset_service.settings.dataset_root / package.category_slug / package.product_id / image.image_path
             evidence.append(
                 IndexedEvidence(
@@ -158,10 +175,14 @@ class IndexService:
                     product_id=package.product_id,
                     category_slug=package.category_slug,
                     route="image",
+                    doc_type="image",
                     image_id=image.image_id,
                     image_path=image.image_path,
                     variant=image.variant,
                     content=proxy_text,
+                    language=image_language,
+                    content_original=proxy_text,
+                    content_normalized=proxy_text,
                     vector=self.embedding_service.embed_image(image_path=image_source_path, text_hint=proxy_text),
                 )
             )
@@ -186,6 +207,7 @@ class IndexService:
                         product_id=package.product_id,
                         category_slug=package.category_slug,
                         route="image",
+                        doc_type="image_region",
                         image_id=image.image_id,
                         image_path=image.image_path,
                         variant=image.variant,
@@ -193,6 +215,9 @@ class IndexService:
                         region_label=region.region_label,
                         region_box=region.region_box,
                         content=region_text,
+                        language=image_language,
+                        content_original=region_text,
+                        content_normalized=region_text,
                         vector=self.embedding_service.embed_image(
                             image_path=image_source_path,
                             text_hint=region_text,

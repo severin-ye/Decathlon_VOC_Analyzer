@@ -1,8 +1,9 @@
 import hashlib
 import re
 
-from decathlon_voc_analyzer.llm import QwenChatGateway
 from decathlon_voc_analyzer.app.core.config import get_settings
+from decathlon_voc_analyzer.app.core.runtime_policy import handle_llm_failure, resolve_llm_permission
+from decathlon_voc_analyzer.llm import QwenChatGateway
 from decathlon_voc_analyzer.schemas.analysis import QuestionIntent, RetrievalQuestion
 from decathlon_voc_analyzer.schemas.review import ReviewAspect
 from decathlon_voc_analyzer.prompts import get_prompt_template, get_prompt_variant
@@ -25,7 +26,9 @@ class QuestionGenerationService:
         intents = self.plan_question_intents(aspects, questions_per_aspect)
         questions: list[RetrievalQuestion] = []
         warnings: list[str] = []
-        llm_requested = use_llm and bool(self.settings.qwen_plus_api_key)
+        llm_requested, policy_warning = resolve_llm_permission("question_generation", use_llm, self.settings)
+        if policy_warning is not None:
+            warnings.append(policy_warning)
         mode = "llm" if llm_requested else "heuristic"
 
         for aspect in aspects:
@@ -34,7 +37,7 @@ class QuestionGenerationService:
                     generated = self._generate_with_llm(aspect, questions_per_aspect)
                 except Exception as exc:
                     mode = "heuristic"
-                    warnings.append(f"{aspect.aspect_id}: question generation failed, fallback to heuristic ({exc})")
+                    warnings.append(handle_llm_failure(f"question_generation:{aspect.aspect_id}", exc, self.settings))
                     generated = self._generate_with_heuristic(aspect, questions_per_aspect)
             else:
                 generated = self._generate_with_heuristic(aspect, questions_per_aspect)

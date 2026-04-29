@@ -11,6 +11,7 @@ class IndexedEvidence(BaseModel):
     product_id: str
     category_slug: str
     route: IndexRoute
+    doc_type: str | None = None
     text_block_id: str | None = None
     image_id: str | None = None
     source_section: str | None = None
@@ -20,6 +21,9 @@ class IndexedEvidence(BaseModel):
     region_label: str | None = None
     region_box: list[int] | None = Field(default=None, min_length=4, max_length=4)
     content: str
+    language: str | None = None
+    content_original: str | None = None
+    content_normalized: str | None = None
     vector: list[float] = Field(default_factory=list)
     score: float | None = Field(default=None, ge=0.0, le=1.0)
 
@@ -38,6 +42,7 @@ class IndexBuildRequest(BaseModel):
     product_ids: list[str] | None = None
     max_products: int | None = Field(default=None, ge=1)
     persist_artifact: bool = True
+    use_llm: bool = True
 
 
 class IndexBuildStats(BaseModel):

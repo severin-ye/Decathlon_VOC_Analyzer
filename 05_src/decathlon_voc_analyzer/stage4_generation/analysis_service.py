@@ -6,6 +6,7 @@ import orjson
 from pydantic import BaseModel, Field
 
 from decathlon_voc_analyzer.app.core.config import get_settings
+from decathlon_voc_analyzer.app.core.runtime_policy import handle_llm_failure, resolve_llm_permission, require_full_power_request
 from decathlon_voc_analyzer.llm import QwenChatGateway
 from decathlon_voc_analyzer.schemas.analysis import (
     AnalysisArtifactBundle,
@@ -82,13 +83,14 @@ class ProductAnalysisService:
         return get_prompt_variant() == "main"
 
     def analyze(self, request: ProductAnalysisRequest) -> ProductAnalysisResponse:
+        require_full_power_request("analysis", request.use_llm, self.settings)
         progress = get_workflow_progress()
         package = self.dataset_service.load_product_package(
             product_id=request.product_id,
             category_slug=request.category_slug,
+            use_llm=request.use_llm,
         )
         progress.activate_module("analyze", detail=f"生成 {request.product_id} 的分析报告")
-        progress.activate_step("analyze", "extract", detail="抽取评论与方面")
         extraction = self.review_service.extract(
             ReviewExtractionRequest(
                 product_id=request.product_id,
@@ -98,7 +100,6 @@ class ProductAnalysisService:
                 persist_artifact=request.persist_artifact,
             )
         )
-        progress.complete_step("analyze", "extract")
 
         progress.activate_step("analyze", "questions", detail="规划并生成检索问题")
         question_intents, questions, question_warnings, question_mode = self.question_service.generate_questions(
@@ -108,13 +109,13 @@ class ProductAnalysisService:
         )
         progress.complete_step("analyze", "questions")
 
-        progress.activate_step("analyze", "quality", detail="评估检索质量并准备纠偏")
         retrievals = self.retrieval_service.retrieve_for_package(
             package=package,
             questions=questions,
             top_k_per_route=request.top_k_per_route,
             use_llm=request.use_llm,
         )
+        progress.activate_step("analyze", "quality", detail="评估检索质量并准备纠偏")
         retrieval_quality = self._assess_retrieval_quality(retrievals)
         progress.complete_step("analyze", "quality")
         questions, retrievals, retrieval_quality, corrective_warnings = self._apply_corrective_retrievals(
@@ -140,7 +141,9 @@ class ProductAnalysisService:
             )
         warnings = list(extraction.warnings) + question_warnings + corrective_warnings
 
-        llm_requested = request.use_llm and bool(self.settings.qwen_plus_api_key)
+        llm_requested, policy_warning = resolve_llm_permission("report_generation", request.use_llm, self.settings)
+        if policy_warning is not None:
+            warnings.append(policy_warning)
         analysis_mode: AnalysisMode = "llm" if llm_requested and question_mode == "llm" else "heuristic"
 
         if llm_requested:
@@ -149,7 +152,7 @@ class ProductAnalysisService:
                 report = self._build_report_with_llm(package.product_id, package.category_slug, aggregates, retrievals)
             except Exception as exc:
                 analysis_mode = "heuristic"
-                warnings.append(f"report generation failed, fallback to heuristic ({exc})")
+                warnings.append(handle_llm_failure("report_generation", exc, self.settings))
                 report = self._build_report_heuristic(package.product_id, package.category_slug, aggregates, retrievals)
         else:
             progress.activate_step("analyze", "report", detail="使用启发式生成报告并补全结构")
@@ -848,12 +851,20 @@ class ProductAnalysisService:
 
     def _support_for_aspect(self, aspect: str, retrievals: list[RetrievalRecord]) -> SupportingEvidence:
         matching = [record for record in retrievals if record.source_aspect == aspect]
-        supporting_hits = [
-            evidence
-            for record in matching
-            for evidence in record.retrieved
-            if self._evidence_answers_question(record.source_question, evidence)
-        ]
+        supporting_hits: list[RetrievedEvidence] = []
+        for record in matching:
+            accepted_hits = [
+                evidence
+                for evidence in record.retrieved
+                if self._evidence_answers_question(record.source_question, evidence)
+            ]
+            if not accepted_hits:
+                accepted_hits = [
+                    evidence
+                    for evidence in record.retrieved
+                    if self._is_route_compatible_fallback_evidence(evidence, record.expected_evidence_routes)
+                ]
+            supporting_hits.extend(accepted_hits)
         return SupportingEvidence(
             review_ids=list(dict.fromkeys(record.source_review_id for record in matching))[:3],
             product_text_block_ids=list(dict.fromkeys(
@@ -867,6 +878,29 @@ class ProductAnalysisService:
                 if evidence.image_id
             ))[:3],
         )
+
+    def _is_route_compatible_fallback_evidence(
+        self,
+        evidence: RetrievedEvidence,
+        expected_routes: list[str],
+    ) -> bool:
+        route = getattr(evidence, "route", None)
+        if expected_routes and route not in expected_routes:
+            return False
+        if route == "text":
+            return bool(
+                getattr(evidence, "text_block_id", None)
+                and any(
+                    (
+                        getattr(evidence, "content_preview", None),
+                        getattr(evidence, "content_original", None),
+                        getattr(evidence, "content_normalized", None),
+                    )
+                )
+            )
+        if route == "image":
+            return bool(getattr(evidence, "image_id", None))
+        return False
 
     def _build_answer(self, strengths: list[InsightItem], weaknesses: list[InsightItem], controversies: list[InsightItem]) -> str:
         strength_labels = [item.label for item in strengths[:3]]
@@ -1653,15 +1687,29 @@ class ProductAnalysisService:
 
     def _evidence_answers_question(self, question: str, evidence) -> bool:
         question_text = (question or "").lower()
-        preview = ((getattr(evidence, "content_preview", None) or "") + " " + (getattr(evidence, "source_section", None) or "")).lower()
+        preview = (
+            (getattr(evidence, "content_preview", None) or "")
+            + " "
+            + (getattr(evidence, "content_original", None) or "")
+            + " "
+            + (getattr(evidence, "content_normalized", None) or "")
+            + " "
+            + (getattr(evidence, "source_section", None) or "")
+        ).lower()
         rerank_score = float(getattr(evidence, "rerank_score", 0.0) or 0.0)
+        embedding_score = float(getattr(evidence, "embedding_score", 0.0) or 0.0)
+        confidence_score = max(rerank_score, embedding_score)
+        language = str(getattr(evidence, "language", None) or "").lower()
+        multilingual_text = language not in {"", "latin", "en", "english"} or bool(re.search(r"[ㄱ-ㅎ가-힣\u4e00-\u9fffΑ-Ωα-ωа-яА-Я]", preview))
 
         if getattr(evidence, "route", None) == "text":
+            if multilingual_text:
+                return bool(preview.strip())
             if any(term in question_text for term in ("price", "discount", "sale", "was/now")):
-                return bool(re.search(r"\b\d+(?:[\.,]\d+)?\b", preview)) and rerank_score >= 0.1
+                return bool(re.search(r"\b\d+(?:[\.,]\d+)?\b", preview)) and confidence_score >= 0.1
             if any(term in question_text for term in ("comfortable", "comfort")):
-                return any(term in preview for term in ("comfortable", "comfort", "ergonomic")) and rerank_score >= 0.1
-            return rerank_score >= 0.2
+                return any(term in preview for term in ("comfortable", "comfort", "ergonomic")) and confidence_score >= 0.1
+            return confidence_score >= 0.2
 
         asks_visual = any(term in question_text for term in ("visible", "images", "show", "shown", "worn", "tinted", "hue", "mirrored"))
         defect_like = any(term in question_text for term in ("deteriorat", "crack", "crumbl", "fall apart", "detachment", "magnification", "distortion", "diopter"))

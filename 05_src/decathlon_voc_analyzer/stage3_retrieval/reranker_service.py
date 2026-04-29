@@ -2,6 +2,7 @@ import base64
 from io import BytesIO
 import json
 from pathlib import Path
+from typing import Callable
 from urllib import request
 
 from openai import OpenAI
@@ -16,8 +17,17 @@ class RerankerService:
         self.settings = get_settings()
         self._client: OpenAI | None = None
 
-    def rerank(self, query: str, candidates: list[IndexedEvidence], use_llm: bool) -> list[IndexedEvidence]:
+    def rerank(
+        self,
+        query: str,
+        candidates: list[IndexedEvidence],
+        use_llm: bool,
+        progress_callback: Callable[[str], None] | None = None,
+    ) -> list[IndexedEvidence]:
         if not candidates:
+            if progress_callback is not None:
+                progress_callback("文本重排: 无候选")
+                progress_callback("图像重排: 无候选")
             return []
         text_candidates = [candidate for candidate in candidates if candidate.route == "text"]
         image_candidates = [candidate for candidate in candidates if candidate.route == "image"]
@@ -25,8 +35,16 @@ class RerankerService:
         reranked: list[IndexedEvidence] = []
         if text_candidates:
             reranked.extend(self._rerank_text_candidates(query, text_candidates, use_llm))
+            if progress_callback is not None:
+                progress_callback(f"文本重排: {len(text_candidates)} 条候选")
+        elif progress_callback is not None:
+            progress_callback("文本重排: 无候选")
         if image_candidates:
             reranked.extend(self._rerank_image_candidates(query, image_candidates, use_llm))
+            if progress_callback is not None:
+                progress_callback(f"图像重排: {len(image_candidates)} 条候选")
+        elif progress_callback is not None:
+            progress_callback("图像重排: 无候选")
         return sorted(reranked, key=lambda item: item.score or 0.0, reverse=True)
 
     def _rerank_text_candidates(self, query: str, candidates: list[IndexedEvidence], use_llm: bool) -> list[IndexedEvidence]:
@@ -55,7 +73,7 @@ class RerankerService:
             "model": self.settings.qwen_reranker_model,
             "input": {
                 "query": query,
-                "documents": [candidate.content for candidate in candidates],
+                "documents": [self._candidate_text(candidate) for candidate in candidates],
             },
             "parameters": {
                 "top_n": len(candidates),
@@ -108,7 +126,7 @@ class RerankerService:
             content.append(
                 {
                     "type": "text",
-                    "text": f"Candidate {index}: evidence_id={candidate.evidence_id}; text_hint={candidate.content}",
+                    "text": f"Candidate {index}: evidence_id={candidate.evidence_id}; text_hint={self._candidate_text(candidate)}",
                 }
             )
             image_url = self._candidate_image_data_url(candidate)
@@ -169,3 +187,6 @@ class RerankerService:
 
     def _normalize_score(self, score: float | int) -> float:
         return max(0.0, min(1.0, float(score)))
+
+    def _candidate_text(self, candidate: IndexedEvidence) -> str:
+        return candidate.content_normalized or candidate.content_original or candidate.content

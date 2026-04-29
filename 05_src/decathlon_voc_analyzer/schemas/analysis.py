@@ -49,6 +49,7 @@ class QuestionIntent(BaseModel):
 class RetrievedEvidence(BaseModel):
     product_id: str
     route: EvidenceRoute
+    doc_type: str | None = None
     text_block_id: str | None = None
     image_id: str | None = None
     region_id: str | None = None
@@ -57,6 +58,9 @@ class RetrievedEvidence(BaseModel):
     source_section: str | None = None
     image_path: str | None = None
     content_preview: str | None = None
+    language: str | None = None
+    content_original: str | None = None
+    content_normalized: str | None = None
     embedding_score: float = Field(ge=0.0, le=1.0)
     rerank_score: float | None = Field(default=None, ge=0.0, le=1.0)
 

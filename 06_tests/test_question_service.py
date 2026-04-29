@@ -1,4 +1,7 @@
+import pytest
+
 from decathlon_voc_analyzer.prompts import get_prompt_template
+from decathlon_voc_analyzer.app.core.runtime_policy import RuntimePolicyError
 from decathlon_voc_analyzer.schemas.review import ReviewAspect
 from decathlon_voc_analyzer.stage4_generation.question_service import QuestionGenerationService
 
@@ -217,6 +220,28 @@ def test_question_service_rewrites_memory_foam_style_comfort_question(monkeypatc
     assert "memory foam" not in questions[0].question.lower()
     assert "frame weight" in questions[0].question.lower()
     assert questions[0].expected_evidence_routes == ["text", "image"]
+
+
+def test_question_service_raises_when_policy_forbids_llm_fallback(tmp_path, monkeypatch) -> None:
+    service = QuestionGenerationService()
+    policy_path = tmp_path / "runtime_execution_policy.json"
+    policy_path.write_text(
+        '{"allow_degradation": false, "full_power": false}',
+        encoding="utf-8",
+    )
+    service.settings.runtime_execution_policy_path = policy_path
+    service.settings.qwen_plus_api_key = "demo-key"
+
+    def fake_invoke_json(*, prompt_template, variables):
+        raise RuntimeError("gateway unavailable")
+
+    monkeypatch.setattr(service.chat_gateway, "invoke_json", fake_invoke_json)
+
+    with pytest.raises(RuntimePolicyError) as exc_info:
+        service.generate_questions([_build_aspect()], questions_per_aspect=1, use_llm=True)
+
+    assert "question_generation" in str(exc_info.value)
+    assert "gateway unavailable" in str(exc_info.value)
 
 
 def test_question_service_rewrites_convex_geometry_optical_question(monkeypatch) -> None:
