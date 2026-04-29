@@ -2,6 +2,7 @@ import json
 from dataclasses import dataclass
 import os
 from pathlib import Path
+import re
 import signal
 import shutil
 import socket
@@ -17,6 +18,10 @@ HTML_ROOT = ROOT_DIR / "02_outputs" / "6_html"
 LAUNCHER_DIR = HTML_ROOT / "_launcher"
 HTTP_PORT = 8765
 SHARED_QDRANT_PATH = ROOT_DIR / "02_outputs" / "3_indexes" / "qdrant_store"
+
+RUN_MODE_NORMAL = "normal"
+RUN_MODE_RESUME_ASPECTS = "resume_aspects"
+RUN_MODE_RESUME_ANALYSIS_CHECKPOINT = "resume_analysis_checkpoint"
 
 
 @dataclass
@@ -50,6 +55,12 @@ class OccupyingProcess:
     user: str = "--"
     elapsed: str = "--"
     command: str = "--"
+
+
+@dataclass
+class ResumeCandidate:
+    dashboard_path: Path
+    payload: dict[str, object]
 
 
 def discover_categories(dataset_root: Path = DEFAULT_DATASET_ROOT) -> list[str]:
@@ -117,10 +128,11 @@ def ensure_http_server() -> str:
 def write_batch_dashboard(state: BatchRunState, dashboard_path: Path) -> None:
     dashboard_path.parent.mkdir(parents=True, exist_ok=True)
     dashboard_path.write_text(render_batch_dashboard_html(state), encoding="utf-8")
+    dashboard_path.with_suffix(".state.json").write_text(json.dumps(build_batch_dashboard_payload(state), ensure_ascii=False, indent=2), encoding="utf-8")
 
 
-def render_batch_dashboard_html(state: BatchRunState) -> str:
-    payload = {
+def build_batch_dashboard_payload(state: BatchRunState) -> dict[str, object]:
+    return {
         "category": state.category,
         "reviewLimit": state.review_limit,
         "status": state.status,
@@ -142,13 +154,16 @@ def render_batch_dashboard_html(state: BatchRunState) -> str:
             for product in state.products
         ],
     }
+
+
+def render_batch_dashboard_html(state: BatchRunState) -> str:
+    payload = build_batch_dashboard_payload(state)
     payload_json = json.dumps(payload, ensure_ascii=False)
     template = r"""<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta http-equiv="refresh" content="2" />
     <title>__TITLE__</title>
   <style>
         :root {
@@ -209,18 +224,18 @@ def render_batch_dashboard_html(state: BatchRunState) -> str:
 </head>
 <body>
   <div class="wrap">
-    <section class="banner __BANNER_CLASS__">
+        <section id="status-banner" class="banner running">
       <div class="eyebrow">Interactive Batch Runner</div>
-      <div class="headline">__HEADLINE__</div>
-      <div class="caption">__CAPTION__</div>
+            <div id="headline" class="headline">--</div>
+            <div id="caption" class="caption">--</div>
     </section>
     <section class="hero">
-            <h1>__CATEGORY__ 一键工作流</h1>
+                        <h1><span id="category-name">--</span> 一键工作流</h1>
       <div class="meta">
-                <div class="card"><div class="label">Category</div><div class="value">__CATEGORY__</div><div class="sub">本次只处理一个品类</div></div>
-                <div class="card"><div class="label">Products</div><div class="value">__PRODUCT_COUNT__</div><div class="sub">已选商品数量</div></div>
-                <div class="card"><div class="label">Review Limit</div><div class="value">__REVIEW_LIMIT__</div><div class="sub">每个商品审核评论数</div></div>
-        <div class="card"><div class="label">Current Product</div><div class="value">__CURRENT_PRODUCT__</div><div class="sub">__NOTE__</div></div>
+                                <div class="card"><div class="label">Category</div><div id="category-card" class="value">--</div><div class="sub">本次只处理一个品类</div></div>
+                                <div class="card"><div class="label">Products</div><div id="product-count" class="value">--</div><div class="sub">已选商品数量</div></div>
+                                <div class="card"><div class="label">Review Limit</div><div id="review-limit" class="value">--</div><div class="sub">每个商品审核评论数</div></div>
+                <div class="card"><div class="label">Current Product</div><div id="current-product" class="value">--</div><div id="current-note" class="sub">--</div></div>
       </div>
     </section>
     <section class="grid">
@@ -236,42 +251,77 @@ def render_batch_dashboard_html(state: BatchRunState) -> str:
     </section>
   </div>
   <script>
-        const payload = __PAYLOAD__;
-    const bannerClass = payload.status === 'completed' ? 'completed' : (payload.status === 'failed' ? 'failed' : 'running');
-    const headline = payload.status === 'completed' ? '已完成所有流程' : (payload.status === 'failed' ? '流程执行失败' : '工作流运行中');
-    const caption = payload.status === 'completed'
-      ? `本页面会停留在最终完成状态。开始于 ${payload.startedAt ?? '--'}，完成于 ${payload.completedAt ?? '--'}。`
-      : (payload.status === 'failed'
-        ? `执行在 ${payload.currentProductId ?? '--'} 处失败。可以根据下方状态和终端日志继续排查。`
-        : `页面已自动弹出，并会持续刷新当前商品的 live 进度页。开始于 ${payload.startedAt ?? '--'}。`);
-    const html = document.body.innerHTML
-      .replace('__BANNER_CLASS__', bannerClass)
-      .replace('__HEADLINE__', headline)
-      .replace('__CAPTION__', caption)
-      .replace('__CURRENT_PRODUCT__', payload.currentProductId ?? '--')
-      .replace('__NOTE__', payload.note ?? '--');
-    document.body.innerHTML = html;
+                const initialPayload = __PAYLOAD__;
+        const stateUrl = new URL(window.location.pathname.replace(/\.html$/, '.state.json'), window.location.origin).toString();
+        const productsEl = document.getElementById('products');
+        const viewer = document.getElementById('viewer');
+        let pollTimer = null;
 
-    const productsEl = document.getElementById('products');
-        for (const product of payload.products) {
-      const productEl = document.createElement('div');
-      productEl.className = 'product';
-      productEl.innerHTML = `
-        <div class="row"><strong>${product.index}. ${product.productId}</strong><span class="status ${product.status}">${product.status}</span></div>
-        <div class="detail">${product.detail || ''}</div>
-        <div class="detail">Start ${product.startedAt || '--'} · End ${product.completedAt || '--'}${product.exitCode === null ? '' : ` · Exit ${product.exitCode}`}</div>
-      `;
-      productsEl.appendChild(productEl);
+        const statusHeadline = payload => payload.status === 'completed' ? '已完成所有流程' : (payload.status === 'failed' ? '流程执行失败' : '工作流运行中');
+        const statusCaption = payload => payload.status === 'completed'
+            ? `本页面会停留在最终完成状态。开始于 ${payload.startedAt ?? '--'}，完成于 ${payload.completedAt ?? '--'}。`
+            : (payload.status === 'failed'
+                ? `执行在 ${payload.currentProductId ?? '--'} 处失败。可以根据下方状态和终端日志继续排查。`
+                : `页面已自动弹出，并会持续更新当前商品的 live 进度页。开始于 ${payload.startedAt ?? '--'}。`);
+
+        function render(payload) {
+            const bannerClass = payload.status === 'completed' ? 'completed' : (payload.status === 'failed' ? 'failed' : 'running');
+            const banner = document.getElementById('status-banner');
+            banner.className = `banner ${bannerClass}`;
+            document.getElementById('headline').textContent = statusHeadline(payload);
+            document.getElementById('caption').textContent = statusCaption(payload);
+            document.getElementById('category-name').textContent = payload.category ?? '--';
+            document.getElementById('category-card').textContent = payload.category ?? '--';
+            document.getElementById('product-count').textContent = String((payload.products || []).length);
+            document.getElementById('review-limit').textContent = String(payload.reviewLimit ?? '--');
+            document.getElementById('current-product').textContent = payload.currentProductId ?? '--';
+            document.getElementById('current-note').textContent = payload.note ?? '--';
+
+            productsEl.innerHTML = '';
+            for (const product of payload.products || []) {
+                const productEl = document.createElement('div');
+                productEl.className = 'product';
+                productEl.innerHTML = `
+                    <div class="row"><strong>${product.index}. ${product.productId}</strong><span class="status ${product.status}">${product.status}</span></div>
+                    <div class="detail">${product.detail || ''}</div>
+                    <div class="detail">Start ${product.startedAt || '--'} · End ${product.completedAt || '--'}${product.exitCode === null ? '' : ` · Exit ${product.exitCode}`}</div>
+                `;
+                productsEl.appendChild(productEl);
+            }
+
+            if (payload.currentProductDashboardUrl) {
+                const existingFrame = viewer.querySelector('iframe');
+                const currentSrc = existingFrame?.getAttribute('src');
+                if (currentSrc !== payload.currentProductDashboardUrl) {
+                    viewer.innerHTML = `
+                        <div class="viewer-note"><a class="viewer-link" href="${payload.currentProductDashboardUrl}" target="_blank" rel="noreferrer">在新标签中打开当前商品进度页</a></div>
+                        <iframe class="viewer-frame" src="${payload.currentProductDashboardUrl}" title="current-product-progress"></iframe>
+                    `;
+                }
+            } else {
+                viewer.innerHTML = '<div class="viewer-note">当前还没有商品进度页。</div>';
+            }
         }
 
-    const viewer = document.getElementById('viewer');
-        if (payload.currentProductDashboardUrl) {
-      viewer.innerHTML = `
-        <div class="viewer-note"><a class="viewer-link" href="${payload.currentProductDashboardUrl}" target="_blank" rel="noreferrer">在新标签中打开当前商品进度页</a></div>
-        <iframe class="viewer-frame" src="${payload.currentProductDashboardUrl}" title="current-product-progress"></iframe>
-      `;
-        } else {
-      viewer.innerHTML = '<div class="viewer-note">当前还没有商品进度页。</div>';
+        async function pollState() {
+            try {
+                const response = await fetch(`${stateUrl}?t=${Date.now()}`, { cache: 'no-store' });
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                const payload = await response.json();
+                render(payload);
+                if (payload.status === 'completed' || payload.status === 'failed') {
+                    return;
+                }
+            } catch (_error) {
+            }
+            pollTimer = window.setTimeout(pollState, 2000);
+        }
+
+        render(initialPayload);
+        if (initialPayload.status !== 'completed' && initialPayload.status !== 'failed') {
+            pollTimer = window.setTimeout(pollState, 2000);
         }
   </script>
 </body>
@@ -279,39 +329,51 @@ def render_batch_dashboard_html(state: BatchRunState) -> str:
     """
     return (
     template.replace("__TITLE__", f"{state.category} Interactive Workflow")
-    .replace("__CATEGORY__", state.category)
-    .replace("__PRODUCT_COUNT__", str(len(state.products)))
-    .replace("__REVIEW_LIMIT__", str(state.review_limit))
     .replace("__PAYLOAD__", payload_json)
-    .replace("__BANNER_CLASS__", _status_css_class(state.status))
-    .replace("__HEADLINE__", _status_headline(state.status))
-    .replace("__CAPTION__", _status_caption(state))
     )
 
 
 def run_interactive_batch() -> int:
-    categories = discover_categories()
-    category = prompt_category(categories)
-    products = discover_products(category)
-    selected_products = prompt_products(category, products)
-    review_limit = prompt_review_limit()
+    run_mode = prompt_run_mode()
+
+    if run_mode == RUN_MODE_NORMAL:
+        categories = discover_categories()
+        category = prompt_category(categories)
+        products = discover_products(category)
+        selected_products = prompt_products(category, products)
+        review_limit = prompt_review_limit()
+        state = _build_new_batch_state(category=category, selected_products=selected_products, review_limit=review_limit)
+    else:
+        resume_candidate = find_latest_resumable_batch()
+        if resume_candidate is None:
+            print("[未找到] 当前没有可继续的未完成批次。请先使用“正常跑”建立一次任务。")
+            return 130
+        if not prompt_continue_previous_batch(resume_candidate.payload, run_mode):
+            print("[取消] 未继续上一次未完成任务。")
+            return 130
+        state = restore_batch_state(resume_candidate.payload)
+        category = state.category
+        review_limit = state.review_limit
 
     base_url = ensure_http_server()
     dashboard_path = build_batch_dashboard_path(category)
     dashboard_url = f"{base_url}/_launcher/{dashboard_path.name}"
-    state = BatchRunState(
-        category=category,
-        review_limit=review_limit,
-        dashboard_url=dashboard_url,
-        products=[BatchProductState(index=index, product_id=product_id) for index, product_id in enumerate(selected_products, start=1)],
-        started_at_epoch=time(),
-        note="等待启动第一个商品",
-    )
+    state.dashboard_url = dashboard_url
+    if state.started_at_epoch is None:
+        state.started_at_epoch = time()
+    if run_mode == RUN_MODE_NORMAL:
+        state.note = "等待启动第一个商品"
+    else:
+        state.status = "running"
+        state.completed_at_epoch = None
+        state.note = "正在继续上一次未完成任务"
     write_batch_dashboard(state, dashboard_path)
     _open_browser(dashboard_url)
 
     try:
         for product_state in state.products:
+            if product_state.status == "completed":
+                continue
             product_state.status = "running"
             product_state.started_at_epoch = time()
             state.current_product_id = product_state.product_id
@@ -319,7 +381,7 @@ def run_interactive_batch() -> int:
             state.note = f"正在执行 {product_state.product_id}"
             write_batch_dashboard(state, dashboard_path)
 
-            exit_code = run_product_workflow(category=category, product_id=product_state.product_id, max_reviews=review_limit)
+            exit_code = run_product_workflow(category=category, product_id=product_state.product_id, max_reviews=review_limit, run_mode=run_mode)
 
             product_state.exit_code = exit_code
             product_state.completed_at_epoch = time()
@@ -351,7 +413,140 @@ def run_interactive_batch() -> int:
         raise
 
 
-def run_product_workflow(category: str, product_id: str, max_reviews: int) -> int:
+def _build_new_batch_state(category: str, selected_products: list[str], review_limit: int) -> BatchRunState:
+    return BatchRunState(
+        category=category,
+        review_limit=review_limit,
+        dashboard_url="",
+        products=[BatchProductState(index=index, product_id=product_id) for index, product_id in enumerate(selected_products, start=1)],
+        started_at_epoch=time(),
+        note="等待启动第一个商品",
+    )
+
+
+def restore_batch_state(payload: dict[str, object]) -> BatchRunState:
+    raw_products = payload.get("products")
+    products_payload = raw_products if isinstance(raw_products, list) else []
+    raw_review_limit = payload.get("reviewLimit")
+    review_limit = raw_review_limit if isinstance(raw_review_limit, int) else 0
+    products = [
+        BatchProductState(
+            index=int(product.get("index") or index),
+            product_id=str(product.get("productId") or ""),
+            status=str(product.get("status") or "pending"),
+            started_at_epoch=_parse_iso_epoch(product.get("startedAt")),
+            completed_at_epoch=_parse_iso_epoch(product.get("completedAt")),
+            detail=str(product.get("detail") or ""),
+            exit_code=product.get("exitCode") if isinstance(product.get("exitCode"), int) else None,
+        )
+        for index, product in enumerate(products_payload, start=1)
+        if isinstance(product, dict) and product.get("productId")
+    ]
+    return BatchRunState(
+        category=str(payload.get("category") or ""),
+        review_limit=review_limit,
+        dashboard_url="",
+        products=products,
+        started_at_epoch=_parse_iso_epoch(payload.get("startedAt")) or time(),
+        completed_at_epoch=_parse_iso_epoch(payload.get("completedAt")),
+        status=str(payload.get("status") or "running"),
+        current_product_id=str(payload.get("currentProductId")) if payload.get("currentProductId") else None,
+        current_product_dashboard_url=str(payload.get("currentProductDashboardUrl")) if payload.get("currentProductDashboardUrl") else None,
+        note=str(payload.get("note") or "正在继续上一次未完成任务"),
+    )
+
+
+def find_latest_resumable_batch(launcher_dir: Path = LAUNCHER_DIR) -> ResumeCandidate | None:
+    candidates: list[ResumeCandidate] = []
+    if launcher_dir.exists():
+        for state_path in sorted(launcher_dir.glob("*.state.json"), key=lambda path: path.stat().st_mtime_ns, reverse=True):
+            payload = _read_batch_payload_from_state(state_path)
+            if payload is not None and _is_resumable_payload(payload):
+                dashboard_path = state_path.with_suffix("").with_suffix(".html")
+                candidates.append(ResumeCandidate(dashboard_path=dashboard_path, payload=payload))
+        if candidates:
+            return candidates[0]
+        for html_path in sorted(launcher_dir.glob("*.html"), key=lambda path: path.stat().st_mtime_ns, reverse=True):
+            payload = _read_batch_payload_from_html(html_path)
+            if payload is not None and _is_resumable_payload(payload):
+                candidates.append(ResumeCandidate(dashboard_path=html_path, payload=payload))
+    return candidates[0] if candidates else None
+
+
+def prompt_continue_previous_batch(payload: dict[str, object], run_mode: str, input_func=input, print_func=print) -> bool:
+    raw_products = payload.get("products")
+    products_payload = raw_products if isinstance(raw_products, list) else []
+    unfinished = [
+        str(product.get("productId"))
+        for product in products_payload
+        if isinstance(product, dict) and product.get("productId") and str(product.get("status") or "pending") != "completed"
+    ]
+    mode_label = "从 aspects 续跑" if run_mode == RUN_MODE_RESUME_ASPECTS else "从 analysis checkpoint 续跑"
+    print_func(f"\n已选择运行模式: {mode_label}")
+    print_func("检测到最近一次未完成批次：")
+    print_func(f"  品类: {payload.get('category') or '--'}")
+    print_func(f"  评论数: {payload.get('reviewLimit') or '--'}")
+    print_func(f"  未完成商品: {', '.join(unfinished) if unfinished else '--'}")
+    while True:
+        raw = input_func("是否继续上一次未完成任务？输入 y 继续，输入 n 取消: ").strip().lower()
+        if raw in {"y", "yes"}:
+            return True
+        if raw in {"n", "no"}:
+            return False
+        print_func("输入无效，请输入 y 或 n。")
+
+
+def _read_batch_payload_from_state(state_path: Path) -> dict[str, object] | None:
+    try:
+        payload = json.loads(state_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    return payload if isinstance(payload, dict) else None
+
+
+def _read_batch_payload_from_html(html_path: Path) -> dict[str, object] | None:
+    try:
+        text = html_path.read_text(encoding="utf-8")
+    except OSError:
+        return None
+    patterns = [
+        r"const initialPayload = (\{.*?\});",
+        r"const payload = (\{.*?\});",
+    ]
+    for pattern in patterns:
+        match = re.search(pattern, text, re.DOTALL)
+        if not match:
+            continue
+        try:
+            payload = json.loads(match.group(1))
+        except json.JSONDecodeError:
+            continue
+        if isinstance(payload, dict):
+            return payload
+    return None
+
+
+def _is_resumable_payload(payload: dict[str, object] | None) -> bool:
+    if not payload or str(payload.get("status") or "") == "completed":
+        return False
+    products_payload = payload.get("products")
+    if not isinstance(products_payload, list):
+        return False
+    return any(isinstance(product, dict) and str(product.get("status") or "pending") != "completed" for product in products_payload)
+
+
+def _parse_iso_epoch(value: object) -> float | None:
+    if not isinstance(value, str) or not value:
+        return None
+    from datetime import datetime
+
+    try:
+        return datetime.fromisoformat(value).timestamp()
+    except ValueError:
+        return None
+
+
+def run_product_workflow(category: str, product_id: str, max_reviews: int, run_mode: str = RUN_MODE_NORMAL) -> int:
     if not _ensure_shared_qdrant_access():
         return 130
     command = [
@@ -368,6 +563,7 @@ def run_product_workflow(category: str, product_id: str, max_reviews: int) -> in
         "--export-html",
         "--write-manifest",
     ]
+    command.extend(_run_mode_args(run_mode))
     completed = subprocess.run(command, cwd=str(ROOT_DIR), check=False)
     return int(completed.returncode)
 
@@ -416,6 +612,30 @@ def prompt_review_limit() -> int:
         print("评论数必须大于 0。")
 
 
+def prompt_run_mode(input_func=input, print_func=print) -> str:
+    print_func("\n请选择运行模式：")
+    print_func("  1. 正常跑")
+    print_func("  2. 从 aspects 续跑")
+    print_func("  3. 从 analysis checkpoint 续跑")
+    while True:
+        raw = input_func("请输入模式编号，例如 1: ").strip()
+        if raw == "1":
+            return RUN_MODE_NORMAL
+        if raw == "2":
+            return RUN_MODE_RESUME_ASPECTS
+        if raw == "3":
+            return RUN_MODE_RESUME_ANALYSIS_CHECKPOINT
+        print_func("输入无效，请输入 1、2 或 3。")
+
+
+def _run_mode_args(run_mode: str) -> list[str]:
+    if run_mode == RUN_MODE_RESUME_ASPECTS:
+        return ["--skip-normalize", "--skip-index", "--resume-from-aspects"]
+    if run_mode == RUN_MODE_RESUME_ANALYSIS_CHECKPOINT:
+        return ["--skip-normalize", "--skip-index", "--resume-from-analysis-checkpoint"]
+    return []
+
+
 def _status_css_class(status: str) -> str:
     return "completed" if status == "completed" else ("failed" if status == "failed" else "running")
 
@@ -434,7 +654,7 @@ def _status_caption(state: BatchRunState) -> str:
         return f"本页面会停留在最终完成状态。开始于 {started_at or '--'}，完成于 {_format_iso(state.completed_at_epoch) or '--'}。"
     if state.status == "failed":
         return f"执行在 {state.current_product_id or '--'} 处中断或失败。总控页面仍会保留最后状态。"
-    return f"页面已自动弹出，并会持续刷新当前商品进度页。开始于 {started_at or '--'}。"
+    return f"页面已自动弹出，并会持续更新当前商品进度页。开始于 {started_at or '--'}。"
 
 
 def _format_iso(epoch_seconds: float | None) -> str | None:

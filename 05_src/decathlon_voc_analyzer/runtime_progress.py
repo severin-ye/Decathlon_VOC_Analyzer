@@ -70,6 +70,9 @@ class NoopWorkflowProgressReporter:
     def advance_step(self, *args, **kwargs) -> None:
         return None
 
+    def update_step(self, *args, **kwargs) -> None:
+        return None
+
     def complete_step(self, *args, **kwargs) -> None:
         return None
 
@@ -213,6 +216,20 @@ class WorkflowProgressReporter:
         self._emit_event("step_progress", module=module, step=step)
         self.refresh()
 
+    def update_step(self, module_key: str, step_key: str, detail: str | None = None) -> None:
+        module = self._module_lookup[module_key]
+        step = self._step_lookup[f"{module_key}:{step_key}"]
+        self._ensure_module_started(module)
+        self._ensure_step_started(step)
+        module.status = "in_progress"
+        step.status = "in_progress"
+        if detail:
+            step.detail = detail
+        self._active_module_key = module_key
+        self._active_step_key = step_key
+        self._emit_event("step_update", module=module, step=step)
+        self.refresh()
+
     def complete_step(self, module_key: str, step_key: str, detail: str | None = None) -> None:
         module = self._module_lookup[module_key]
         step = self._step_lookup[f"{module_key}:{step_key}"]
@@ -313,6 +330,7 @@ class WorkflowProgressReporter:
                 "active_step_key": self._active_step_key,
                 "updated_at": self._iso_from_epoch(time()),
             },
+            "dashboard": self._dashboard_payload(),
             "modules": [
                 {
                     "key": module.key,
@@ -422,7 +440,6 @@ class WorkflowProgressReporter:
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="refresh" content="2" />
     <title>__TITLE__</title>
     <style>
         :root {
@@ -547,19 +564,19 @@ class WorkflowProgressReporter:
 </head>
 <body>
     <div class="wrap">
-        <section class="status-banner {{workflowStatusClass}}">
+        <section id="status-banner" class="status-banner running">
             <div class="eyebrow">Workflow Status</div>
-            <div class="headline">{{workflowHeadline}}</div>
-            <div class="caption">{{workflowCaption}}</div>
+            <div id="workflow-headline" class="headline">--</div>
+            <div id="workflow-caption" class="caption">--</div>
         </section>
         <section class="hero">
             <h1>__TITLE__</h1>
-            <div class="note">{{note}}</div>
+            <div id="workflow-note" class="note">--</div>
             <div class="meta">
-                <div class="card"><div class="label">Overall</div><div class="value">{{overallPercent}}</div><div class="sub">ETA {{overallEta}} · Finish {{overallFinish}}</div></div>
-                <div class="card"><div class="label">Active Stage</div><div class="value">{{activeModule}}</div><div class="sub">ETA {{moduleEta}} · Finish {{moduleFinish}}</div></div>
-                <div class="card"><div class="label">Active Step</div><div class="value">{{activeStep}}</div><div class="sub">ETA {{stepEta}} · Finish {{stepFinish}}</div></div>
-                <div class="card"><div class="label">Elapsed</div><div class="value">{{elapsed}}</div><div class="sub">Auto refresh every 2s</div></div>
+                <div class="card"><div class="label">Overall</div><div id="overall-percent" class="value">--</div><div id="overall-meta" class="sub">--</div></div>
+                <div class="card"><div class="label">Active Stage</div><div id="active-module" class="value">--</div><div id="module-meta" class="sub">--</div></div>
+                <div class="card"><div class="label">Active Step</div><div id="active-step" class="value">--</div><div id="step-meta" class="sub">--</div></div>
+                <div class="card"><div class="label">Elapsed</div><div id="elapsed" class="value">--</div><div class="sub">Live update every 2s</div></div>
             </div>
         </section>
         <section class="grid">
@@ -577,50 +594,72 @@ class WorkflowProgressReporter:
         </section>
     </div>
     <script>
-        const payload = __PAYLOAD__;
-        const fill = (template, values) => template.replace(/\{\{(.*?)\}\}/g, (_, key) => values[key.trim()] ?? '--');
+        const initialPayload = __PAYLOAD__;
+        const stateUrl = new URL(window.location.pathname.replace(/\.html$/, '.state.json'), window.location.origin).toString();
         const fmtPercent = value => `${(value * 100).toFixed(1)}%`;
         const statusClass = status => status === 'in_progress' ? 'running' : status;
-        const rootValues = {
-            overallPercent: fmtPercent(payload.overallFraction),
-            overallEta: payload.overallEta ?? '--',
-            overallFinish: payload.overallFinish ?? '--',
-            activeModule: payload.activeModule ?? '--',
-            moduleEta: payload.activeModuleEta ?? '--',
-            moduleFinish: payload.activeModuleFinish ?? '--',
-            activeStep: payload.activeStep ?? '--',
-            stepEta: payload.activeStepEta ?? '--',
-            stepFinish: payload.activeStepFinish ?? '--',
-            elapsed: payload.elapsed,
-            note: payload.note || 'Workflow is running',
-            workflowStatusClass: payload.workflowStatus === 'completed' ? 'complete' : 'running',
-            workflowHeadline: payload.workflowHeadline,
-            workflowCaption: payload.workflowCaption,
-        };
-        document.body.innerHTML = fill(document.body.innerHTML, rootValues);
-
         const modulesEl = document.getElementById('modules');
-        for (const module of payload.modules) {
-            const moduleEl = document.createElement('div');
-            moduleEl.className = 'module';
-            const stepsHtml = module.steps.map(step => `
-                <div class="step ${step.isActive ? 'active' : ''}">
-                    <div class="row"><strong>${step.label}</strong><span class="status ${statusClass(step.status)}">${step.statusLabel}</span></div>
-                    <div class="bar"><div class="fill" style="width:${fmtPercent(step.fraction)}"></div></div>
-                    <div class="detail">${step.detail || ''}</div>
-                    <div class="detail">${step.meta || ''}</div>
-                </div>
-            `).join('');
-            moduleEl.innerHTML = `
-                <div class="row"><strong>${module.label}</strong><span class="status ${statusClass(module.status)}">${module.statusLabel}</span></div>
-                <div class="bar"><div class="fill" style="width:${fmtPercent(module.fraction)}"></div></div>
-                <div class="detail">${module.detail || ''}</div>
-                <div class="detail">${module.meta || ''}</div>
-                <div class="steps">${stepsHtml}</div>
-            `;
-            modulesEl.appendChild(moduleEl);
+        const rawEl = document.getElementById('raw');
+
+        function render(payload) {
+            const banner = document.getElementById('status-banner');
+            banner.className = `status-banner ${payload.workflowStatus === 'completed' ? 'complete' : 'running'}`;
+            document.getElementById('workflow-headline').textContent = payload.workflowHeadline ?? '--';
+            document.getElementById('workflow-caption').textContent = payload.workflowCaption ?? '--';
+            document.getElementById('workflow-note').textContent = payload.note || 'Workflow is running';
+            document.getElementById('overall-percent').textContent = fmtPercent(payload.overallFraction || 0);
+            document.getElementById('overall-meta').textContent = `ETA ${payload.overallEta ?? '--'} · Finish ${payload.overallFinish ?? '--'}`;
+            document.getElementById('active-module').textContent = payload.activeModule ?? '--';
+            document.getElementById('module-meta').textContent = `ETA ${payload.activeModuleEta ?? '--'} · Finish ${payload.activeModuleFinish ?? '--'}`;
+            document.getElementById('active-step').textContent = payload.activeStep ?? '--';
+            document.getElementById('step-meta').textContent = `ETA ${payload.activeStepEta ?? '--'} · Finish ${payload.activeStepFinish ?? '--'}`;
+            document.getElementById('elapsed').textContent = payload.elapsed ?? '--';
+
+            modulesEl.innerHTML = '';
+            for (const module of payload.modules || []) {
+                const moduleEl = document.createElement('div');
+                moduleEl.className = 'module';
+                const stepsHtml = (module.steps || []).map(step => `
+                    <div class="step ${step.isActive ? 'active' : ''}">
+                        <div class="row"><strong>${step.label}</strong><span class="status ${statusClass(step.status)}">${step.statusLabel}</span></div>
+                        <div class="bar"><div class="fill" style="width:${fmtPercent(step.fraction || 0)}"></div></div>
+                        <div class="detail">${step.detail || ''}</div>
+                        <div class="detail">${step.meta || ''}</div>
+                    </div>
+                `).join('');
+                moduleEl.innerHTML = `
+                    <div class="row"><strong>${module.label}</strong><span class="status ${statusClass(module.status)}">${module.statusLabel}</span></div>
+                    <div class="bar"><div class="fill" style="width:${fmtPercent(module.fraction || 0)}"></div></div>
+                    <div class="detail">${module.detail || ''}</div>
+                    <div class="detail">${module.meta || ''}</div>
+                    <div class="steps">${stepsHtml}</div>
+                `;
+                modulesEl.appendChild(moduleEl);
+            }
+            rawEl.textContent = JSON.stringify(payload, null, 2);
         }
-        document.getElementById('raw').textContent = JSON.stringify(payload, null, 2);
+
+        async function pollState() {
+            try {
+                const response = await fetch(`${stateUrl}?t=${Date.now()}`, { cache: 'no-store' });
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                const statePayload = await response.json();
+                const nextPayload = statePayload.dashboard ?? initialPayload;
+                render(nextPayload);
+                if (nextPayload.workflowStatus === 'completed') {
+                    return;
+                }
+            } catch (_error) {
+            }
+            window.setTimeout(pollState, 2000);
+        }
+
+        render(initialPayload);
+        if (initialPayload.workflowStatus !== 'completed') {
+            window.setTimeout(pollState, 2000);
+        }
     </script>
 </body>
 </html>
@@ -965,8 +1004,8 @@ class WorkflowProgressReporter:
                 return f"本页面会停留在最终完成状态。开始于 {started_at}，完成于 {finished_at}。"
             return "本页面会停留在最终完成状态。"
         if started_at is not None:
-            return f"页面会持续刷新直到完成。当前这次运行开始于 {started_at}。"
-        return "页面会持续刷新直到完成。"
+            return f"页面会持续更新直到完成。当前这次运行开始于 {started_at}。"
+        return "页面会持续更新直到完成。"
 
     def _module_fraction(self, module: ProgressModuleState) -> float:
         if module.status in {"done", "skipped"}:

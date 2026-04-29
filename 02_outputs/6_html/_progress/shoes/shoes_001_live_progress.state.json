@@ -1,0 +1,298 @@
+{
+  "workflow": {
+    "started_at_epoch": 1777476410.039204,
+    "started_at": "2026-04-30T00:26:50",
+    "note": "工作流已启动，正在按顺序执行各模块。",
+    "active_module_key": "analyze",
+    "active_step_key": "retrieve",
+    "updated_at": "2026-04-30T00:30:14"
+  },
+  "modules": [
+    {
+      "key": "overview",
+      "status": "done",
+      "detail": "统计类目、商品与评论总量",
+      "started_at_epoch": 1777476410.2899368,
+      "started_at": "2026-04-30T00:26:50",
+      "completed_at_epoch": 1777476410.3813388,
+      "completed_at": "2026-04-30T00:26:50",
+      "steps": [
+        {
+          "key": "scan",
+          "status": "done",
+          "completed": 1.0,
+          "total": null,
+          "detail": "扫描数据集目录",
+          "started_at_epoch": 1777476410.2907584,
+          "started_at": "2026-04-30T00:26:50",
+          "completed_at_epoch": 1777476410.3722353,
+          "completed_at": "2026-04-30T00:26:50"
+        },
+        {
+          "key": "summarize",
+          "status": "done",
+          "completed": 1.0,
+          "total": null,
+          "detail": "汇总概览信息",
+          "started_at_epoch": 1777476410.374184,
+          "started_at": "2026-04-30T00:26:50",
+          "completed_at_epoch": 1777476410.3790567,
+          "completed_at": "2026-04-30T00:26:50"
+        }
+      ]
+    },
+    {
+      "key": "normalize",
+      "status": "done",
+      "detail": "标准化 shoes_001 所在商品包",
+      "started_at_epoch": 1777476410.38393,
+      "started_at": "2026-04-30T00:26:50",
+      "completed_at_epoch": 1777476410.4283144,
+      "completed_at": "2026-04-30T00:26:50",
+      "steps": [
+        {
+          "key": "select",
+          "status": "done",
+          "completed": 1.0,
+          "total": 1.0,
+          "detail": "选中 1 个目标商品",
+          "started_at_epoch": 1777476410.3855608,
+          "started_at": "2026-04-30T00:26:50",
+          "completed_at_epoch": 1777476410.3891745,
+          "completed_at": "2026-04-30T00:26:50"
+        },
+        {
+          "key": "normalize_products",
+          "status": "done",
+          "completed": 1.0,
+          "total": 1.0,
+          "detail": "shoes_001",
+          "started_at_epoch": 1777476410.390315,
+          "started_at": "2026-04-30T00:26:50",
+          "completed_at_epoch": 1777476410.4244194,
+          "completed_at": "2026-04-30T00:26:50"
+        },
+        {
+          "key": "persist",
+          "status": "done",
+          "completed": 1.0,
+          "total": 1.0,
+          "detail": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/4_reports/dataset_normalization_report.json",
+          "started_at_epoch": 1777476410.4251828,
+          "started_at": "2026-04-30T00:26:50",
+          "completed_at_epoch": 1777476410.42595,
+          "completed_at": "2026-04-30T00:26:50"
+        }
+      ]
+    },
+    {
+      "key": "index",
+      "status": "done",
+      "detail": "为 shoes_001 构建证据索引",
+      "started_at_epoch": 1777476410.4318736,
+      "started_at": "2026-04-30T00:26:50",
+      "completed_at_epoch": 1777476485.4933555,
+      "completed_at": "2026-04-30T00:28:05",
+      "steps": [
+        {
+          "key": "load_packages",
+          "status": "done",
+          "completed": 1.0,
+          "total": 1.0,
+          "detail": "shoes_001",
+          "started_at_epoch": 1777476410.4329593,
+          "started_at": "2026-04-30T00:26:50",
+          "completed_at_epoch": 1777476481.2509701,
+          "completed_at": "2026-04-30T00:28:01"
+        },
+        {
+          "key": "embed_text",
+          "status": "done",
+          "completed": 3.0,
+          "total": 3.0,
+          "detail": "shoes_001_category_3dd456c7de6a",
+          "started_at_epoch": 1777476410.4358704,
+          "started_at": "2026-04-30T00:26:50",
+          "completed_at_epoch": 1777476413.5393744,
+          "completed_at": "2026-04-30T00:26:53"
+        },
+        {
+          "key": "embed_image",
+          "status": "done",
+          "completed": 138.0,
+          "total": 138.0,
+          "detail": "shoes_001_8670209_1516e8a43a0a_region_9096703dc64f",
+          "started_at_epoch": 1777476413.5421228,
+          "started_at": "2026-04-30T00:26:53",
+          "completed_at_epoch": 1777476481.2215507,
+          "completed_at": "2026-04-30T00:28:01"
+        },
+        {
+          "key": "persist",
+          "status": "done",
+          "completed": 1.0,
+          "total": 1.0,
+          "detail": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/3_indexes/qdrant_store",
+          "started_at_epoch": 1777476481.2517278,
+          "started_at": "2026-04-30T00:28:01",
+          "completed_at_epoch": 1777476485.4921582,
+          "completed_at": "2026-04-30T00:28:05"
+        }
+      ]
+    },
+    {
+      "key": "analyze",
+      "status": "in_progress",
+      "detail": "生成 shoes_001 的分析报告",
+      "started_at_epoch": 1777476485.4978292,
+      "started_at": "2026-04-30T00:28:05",
+      "completed_at_epoch": null,
+      "completed_at": null,
+      "steps": [
+        {
+          "key": "extract",
+          "status": "done",
+          "completed": 10.0,
+          "total": 10.0,
+          "detail": "提取了 14 个方面",
+          "started_at_epoch": 1777476485.4985077,
+          "started_at": "2026-04-30T00:28:05",
+          "completed_at_epoch": 1777476513.040552,
+          "completed_at": "2026-04-30T00:28:33"
+        },
+        {
+          "key": "questions",
+          "status": "done",
+          "completed": 14.0,
+          "total": 14.0,
+          "detail": "fit",
+          "started_at_epoch": 1777476513.041276,
+          "started_at": "2026-04-30T00:28:33",
+          "completed_at_epoch": 1777476611.6572127,
+          "completed_at": "2026-04-30T00:30:11"
+        },
+        {
+          "key": "retrieve",
+          "status": "in_progress",
+          "completed": 6.0,
+          "total": 112.0,
+          "detail": "[2/28] 文本重排: 无候选 · shoes_001_review_0001_aspect_01_q_02",
+          "started_at_epoch": 1777476611.6597192,
+          "started_at": "2026-04-30T00:30:11",
+          "completed_at_epoch": null,
+          "completed_at": null
+        },
+        {
+          "key": "quality",
+          "status": "pending",
+          "completed": 0.0,
+          "total": null,
+          "detail": "",
+          "started_at_epoch": null,
+          "started_at": null,
+          "completed_at_epoch": null,
+          "completed_at": null
+        },
+        {
+          "key": "report",
+          "status": "pending",
+          "completed": 0.0,
+          "total": null,
+          "detail": "",
+          "started_at_epoch": null,
+          "started_at": null,
+          "completed_at_epoch": null,
+          "completed_at": null
+        },
+        {
+          "key": "attribution",
+          "status": "pending",
+          "completed": 0.0,
+          "total": null,
+          "detail": "",
+          "started_at_epoch": null,
+          "started_at": null,
+          "completed_at_epoch": null,
+          "completed_at": null
+        },
+        {
+          "key": "persist",
+          "status": "pending",
+          "completed": 0.0,
+          "total": null,
+          "detail": "",
+          "started_at_epoch": null,
+          "started_at": null,
+          "completed_at_epoch": null,
+          "completed_at": null
+        }
+      ]
+    },
+    {
+      "key": "export_html",
+      "status": "pending",
+      "detail": "",
+      "started_at_epoch": null,
+      "started_at": null,
+      "completed_at_epoch": null,
+      "completed_at": null,
+      "steps": [
+        {
+          "key": "render",
+          "status": "pending",
+          "completed": 0.0,
+          "total": null,
+          "detail": "",
+          "started_at_epoch": null,
+          "started_at": null,
+          "completed_at_epoch": null,
+          "completed_at": null
+        },
+        {
+          "key": "write",
+          "status": "pending",
+          "completed": 0.0,
+          "total": null,
+          "detail": "",
+          "started_at_epoch": null,
+          "started_at": null,
+          "completed_at_epoch": null,
+          "completed_at": null
+        }
+      ]
+    },
+    {
+      "key": "write_manifest",
+      "status": "pending",
+      "detail": "",
+      "started_at_epoch": null,
+      "started_at": null,
+      "completed_at_epoch": null,
+      "completed_at": null,
+      "steps": [
+        {
+          "key": "serialize",
+          "status": "pending",
+          "completed": 0.0,
+          "total": null,
+          "detail": "",
+          "started_at_epoch": null,
+          "started_at": null,
+          "completed_at_epoch": null,
+          "completed_at": null
+        },
+        {
+          "key": "write",
+          "status": "pending",
+          "completed": 0.0,
+          "total": null,
+          "detail": "",
+          "started_at_epoch": null,
+          "started_at": null,
+          "completed_at_epoch": null,
+          "completed_at": null
+        }
+      ]
+    }
+  ]
+}

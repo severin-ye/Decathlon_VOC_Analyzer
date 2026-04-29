@@ -1,0 +1,3095 @@
+{
+  "product_id": "shoes_001",
+  "category_slug": "shoes",
+  "product_name": "남성 러닝화 조그플로우 500K.1",
+  "category_text": "모든 스포츠 > 러닝 > 남성 > 러닝화 > 로드러닝/조깅",
+  "model_description": "자유로운 움직임을 통해 일련의 행복감을 느끼게 해주는 러닝화로, 모델명이 플로우(FLOW)입니다. 조그플로우 시리즈는 활동의 자유로움과 편안함을 통해 행복하게 운동할 수 있습니다. 부상을 예방하고 편안한 착용감을 제공하는 최대 10km의 러닝 시 착용하기 적합한 러닝화입니다. [세계에서 가장 큰 연구 중 하나] 수년 동안 전 세계 연구원들이 수많은 러닝화 브랜드가 '쿠셔닝'을 강조해왔지만, 우리는 과학적으로 접근했습니다. 848명의 러너와 27,761개의 러닝 세션을 통해 데이터를 분석하여, 어떻게 하면 부상 위험을 줄이면서 편안함을 높일 수 있는지에 대해 연구했습니다. 이 모든 노력이 이 제품에 담겨 있습니다. [연구 목적] 쿠셔닝과 부상 사이의 연관성을 확인하기 위해 본 연구에서는 두 가지 쿠셔닝 조건 테스트를 수행했습니다. 유연한 신발(61N/mm) vs. 단단한 신발(95N/mm). 연구 결과, 유연한 신발을 신었을 때 부상당한 러너의 수가 25% 감소했습니다. 플로우 시리즈의 유연한 쿠셔닝은 이러한 연구의 부드러운 쿠셔닝의 선호도 지수를 바탕으로 제작되었습니다. [조그플로우 500.1 러닝화의 드롭] 발바닥 앞쪽과 뒤쪽의 높이차를 '드롭'이라고 합니다. 러닝화가 제공하는 10mm 드롭과 달리, 조그플로우 500.1에 4mm 드롭을 설정하기로 결정했습니다. 그 이유는 발 앞부분으로 지면을 차는 자연스러운 보폭을 할 수 있도록 하여 부상의 위험을 줄이기 위해서입니다. [관리 방법] 1. 가급적 신발에서 인솔을 빼내어 따로 세탁하는 것이 좋습니다. 2. 신발 전체를 온수로 비누(가정용)를 이용하여 유연한 솔, 물티슈 또는 초극세사천(비연마성)으로 세탁하세요. 3. 천을 이용해 신발 안쪽에 물기가 최대한 없어질 때까지 닦아 주세요. 4. 신발 건조 시, 라디에이터 등의 열원 근처에 두지 마세요. 신발은 실온에서 건조시키세요. [신발 무게] 무게: 275mm 사이즈 기준 305g [사이즈 선택 방법] 러닝용으로는 평상시 사이즈를 선택하시고, 일상용으로는 한 사이즈 작게 선택하시는 것이 좋습니다. [보증 기간] 2",
+  "primary_language": "ko",
+  "source_dir": "/home/severin/Codelib/Decathlon_VOC_Analyzer/01_data/01_raw_products/products/shoes/shoes_001",
+  "text_blocks": [
+    {
+      "text_block_id": "shoes_001_product_name_59697e734621",
+      "product_id": "shoes_001",
+      "text_type": "title",
+      "source_section": "product_name",
+      "content": "남성 러닝화 조그플로우 500K.1",
+      "language": "ko",
+      "content_original": "남성 러닝화 조그플로우 500K.1",
+      "content_normalized": "남성 러닝화 조그플로우 500K.1"
+    },
+    {
+      "text_block_id": "shoes_001_model_description_9e08e2ff5b1c",
+      "product_id": "shoes_001",
+      "text_type": "description",
+      "source_section": "model_description",
+      "content": "자유로운 움직임을 통해 일련의 행복감을 느끼게 해주는 러닝화로, 모델명이 플로우(FLOW)입니다. 조그플로우 시리즈는 활동의 자유로움과 편안함을 통해 행복하게 운동할 수 있습니다. 부상을 예방하고 편안한 착용감을 제공하는 최대 10km의 러닝 시 착용하기 적합한 러닝화입니다. [세계에서 가장 큰 연구 중 하나] 수년 동안 전 세계 연구원들이 수많은 러닝화 브랜드가 '쿠셔닝'을 강조해왔지만, 우리는 과학적으로 접근했습니다. 848명의 러너와 27,761개의 러닝 세션을 통해 데이터를 분석하여, 어떻게 하면 부상 위험을 줄이면서 편안함을 높일 수 있는지에 대해 연구했습니다. 이 모든 노력이 이 제품에 담겨 있습니다. [연구 목적] 쿠셔닝과 부상 사이의 연관성을 확인하기 위해 본 연구에서는 두 가지 쿠셔닝 조건 테스트를 수행했습니다. 유연한 신발(61N/mm) vs. 단단한 신발(95N/mm). 연구 결과, 유연한 신발을 신었을 때 부상당한 러너의 수가 25% 감소했습니다. 플로우 시리즈의 유연한 쿠셔닝은 이러한 연구의 부드러운 쿠셔닝의 선호도 지수를 바탕으로 제작되었습니다. [조그플로우 500.1 러닝화의 드롭] 발바닥 앞쪽과 뒤쪽의 높이차를 '드롭'이라고 합니다. 러닝화가 제공하는 10mm 드롭과 달리, 조그플로우 500.1에 4mm 드롭을 설정하기로 결정했습니다. 그 이유는 발 앞부분으로 지면을 차는 자연스러운 보폭을 할 수 있도록 하여 부상의 위험을 줄이기 위해서입니다. [관리 방법] 1. 가급적 신발에서 인솔을 빼내어 따로 세탁하는 것이 좋습니다. 2. 신발 전체를 온수로 비누(가정용)를 이용하여 유연한 솔, 물티슈 또는 초극세사천(비연마성)으로 세탁하세요. 3. 천을 이용해 신발 안쪽에 물기가 최대한 없어질 때까지 닦아 주세요. 4. 신발 건조 시, 라디에이터 등의 열원 근처에 두지 마세요. 신발은 실온에서 건조시키세요. [신발 무게] 무게: 275mm 사이즈 기준 305g [사이즈 선택 방법] 러닝용으로는 평상시 사이즈를 선택하시고, 일상용으로는 한 사이즈 작게 선택하시는 것이 좋습니다. [보증 기간] 2",
+      "language": "ko",
+      "content_original": "자유로운 움직임을 통해 일련의 행복감을 느끼게 해주는 러닝화로, 모델명이 플로우(FLOW)입니다. 조그플로우 시리즈는 활동의 자유로움과 편안함을 통해 행복하게 운동할 수 있습니다. 부상을 예방하고 편안한 착용감을 제공하는 최대 10km의 러닝 시 착용하기 적합한 러닝화입니다. [세계에서 가장 큰 연구 중 하나] 수년 동안 전 세계 연구원들이 수많은 러닝화 브랜드가 '쿠셔닝'을 강조해왔지만, 우리는 과학적으로 접근했습니다. 848명의 러너와 27,761개의 러닝 세션을 통해 데이터를 분석하여, 어떻게 하면 부상 위험을 줄이면서 편안함을 높일 수 있는지에 대해 연구했습니다. 이 모든 노력이 이 제품에 담겨 있습니다. [연구 목적] 쿠셔닝과 부상 사이의 연관성을 확인하기 위해 본 연구에서는 두 가지 쿠셔닝 조건 테스트를 수행했습니다. 유연한 신발(61N/mm) vs. 단단한 신발(95N/mm). 연구 결과, 유연한 신발을 신었을 때 부상당한 러너의 수가 25% 감소했습니다. 플로우 시리즈의 유연한 쿠셔닝은 이러한 연구의 부드러운 쿠셔닝의 선호도 지수를 바탕으로 제작되었습니다. [조그플로우 500.1 러닝화의 드롭] 발바닥 앞쪽과 뒤쪽의 높이차를 '드롭'이라고 합니다. 러닝화가 제공하는 10mm 드롭과 달리, 조그플로우 500.1에 4mm 드롭을 설정하기로 결정했습니다. 그 이유는 발 앞부분으로 지면을 차는 자연스러운 보폭을 할 수 있도록 하여 부상의 위험을 줄이기 위해서입니다. [관리 방법] 1. 가급적 신발에서 인솔을 빼내어 따로 세탁하는 것이 좋습니다. 2. 신발 전체를 온수로 비누(가정용)를 이용하여 유연한 솔, 물티슈 또는 초극세사천(비연마성)으로 세탁하세요. 3. 천을 이용해 신발 안쪽에 물기가 최대한 없어질 때까지 닦아 주세요. 4. 신발 건조 시, 라디에이터 등의 열원 근처에 두지 마세요. 신발은 실온에서 건조시키세요. [신발 무게] 무게: 275mm 사이즈 기준 305g [사이즈 선택 방법] 러닝용으로는 평상시 사이즈를 선택하시고, 일상용으로는 한 사이즈 작게 선택하시는 것이 좋습니다. [보증 기간] 2",
+      "content_normalized": "자유로운 움직임을 통해 일련의 행복감을 느끼게 해주는 러닝화로, 모델명이 플로우(FLOW)입니다. 조그플로우 시리즈는 활동의 자유로움과 편안함을 통해 행복하게 운동할 수 있습니다. 부상을 예방하고 편안한 착용감을 제공하는 최대 10km의 러닝 시 착용하기 적합한 러닝화입니다. [세계에서 가장 큰 연구 중 하나] 수년 동안 전 세계 연구원들이 수많은 러닝화 브랜드가 '쿠셔닝'을 강조해왔지만, 우리는 과학적으로 접근했습니다. 848명의 러너와 27,761개의 러닝 세션을 통해 데이터를 분석하여, 어떻게 하면 부상 위험을 줄이면서 편안함을 높일 수 있는지에 대해 연구했습니다. 이 모든 노력이 이 제품에 담겨 있습니다. [연구 목적] 쿠셔닝과 부상 사이의 연관성을 확인하기 위해 본 연구에서는 두 가지 쿠셔닝 조건 테스트를 수행했습니다. 유연한 신발(61N/mm) vs. 단단한 신발(95N/mm). 연구 결과, 유연한 신발을 신었을 때 부상당한 러너의 수가 25% 감소했습니다. 플로우 시리즈의 유연한 쿠셔닝은 이러한 연구의 부드러운 쿠셔닝의 선호도 지수를 바탕으로 제작되었습니다. [조그플로우 500.1 러닝화의 드롭] 발바닥 앞쪽과 뒤쪽의 높이차를 '드롭'이라고 합니다. 러닝화가 제공하는 10mm 드롭과 달리, 조그플로우 500.1에 4mm 드롭을 설정하기로 결정했습니다. 그 이유는 발 앞부분으로 지면을 차는 자연스러운 보폭을 할 수 있도록 하여 부상의 위험을 줄이기 위해서입니다. [관리 방법] 1. 가급적 신발에서 인솔을 빼내어 따로 세탁하는 것이 좋습니다. 2. 신발 전체를 온수로 비누(가정용)를 이용하여 유연한 솔, 물티슈 또는 초극세사천(비연마성)으로 세탁하세요. 3. 천을 이용해 신발 안쪽에 물기가 최대한 없어질 때까지 닦아 주세요. 4. 신발 건조 시, 라디에이터 등의 열원 근처에 두지 마세요. 신발은 실온에서 건조시키세요. [신발 무게] 무게: 275mm 사이즈 기준 305g [사이즈 선택 방법] 러닝용으로는 평상시 사이즈를 선택하시고, 일상용으로는 한 사이즈 작게 선택하시는 것이 좋습니다. [보증 기간] 2"
+    },
+    {
+      "text_block_id": "shoes_001_category_3dd456c7de6a",
+      "product_id": "shoes_001",
+      "text_type": "category",
+      "source_section": "category",
+      "content": "모든 스포츠 > 러닝 > 남성 > 러닝화 > 로드러닝/조깅",
+      "language": "ko",
+      "content_original": "모든 스포츠 > 러닝 > 남성 > 러닝화 > 로드러닝/조깅",
+      "content_normalized": "모든 스포츠 > 러닝 > 남성 > 러닝화 > 로드러닝/조깅"
+    }
+  ],
+  "images": [
+    {
+      "image_id": "shoes_001_8767749_b5de3a376b33",
+      "product_id": "shoes_001",
+      "variant": "8767749",
+      "image_type": "product",
+      "image_path": "images/8767749/img1.png",
+      "aux_text": null,
+      "language_hint": "latin",
+      "width": 1920,
+      "height": 1920,
+      "regions": [
+        {
+          "region_id": "shoes_001_8767749_b5de3a376b33_region_ff8ef8b1e71a",
+          "region_label": "center_focus",
+          "region_box": [
+            384,
+            384,
+            1536,
+            1536
+          ]
+        },
+        {
+          "region_id": "shoes_001_8767749_b5de3a376b33_region_09d620076e2d",
+          "region_label": "upper_focus",
+          "region_box": [
+            0,
+            0,
+            1920,
+            1152
+          ]
+        },
+        {
+          "region_id": "shoes_001_8767749_b5de3a376b33_region_f359b8ad2043",
+          "region_label": "lower_focus",
+          "region_box": [
+            0,
+            768,
+            1920,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8767749_b5de3a376b33_region_6cb77d6cf3d1",
+          "region_label": "left_focus",
+          "region_box": [
+            0,
+            0,
+            1152,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8767749_b5de3a376b33_region_9096703dc64f",
+          "region_label": "right_focus",
+          "region_box": [
+            768,
+            0,
+            1920,
+            1920
+          ]
+        }
+      ]
+    },
+    {
+      "image_id": "shoes_001_8767749_8a816cca683d",
+      "product_id": "shoes_001",
+      "variant": "8767749",
+      "image_type": "product",
+      "image_path": "images/8767749/img2.png",
+      "aux_text": null,
+      "language_hint": "latin",
+      "width": 1920,
+      "height": 1920,
+      "regions": [
+        {
+          "region_id": "shoes_001_8767749_8a816cca683d_region_ff8ef8b1e71a",
+          "region_label": "center_focus",
+          "region_box": [
+            384,
+            384,
+            1536,
+            1536
+          ]
+        },
+        {
+          "region_id": "shoes_001_8767749_8a816cca683d_region_09d620076e2d",
+          "region_label": "upper_focus",
+          "region_box": [
+            0,
+            0,
+            1920,
+            1152
+          ]
+        },
+        {
+          "region_id": "shoes_001_8767749_8a816cca683d_region_f359b8ad2043",
+          "region_label": "lower_focus",
+          "region_box": [
+            0,
+            768,
+            1920,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8767749_8a816cca683d_region_6cb77d6cf3d1",
+          "region_label": "left_focus",
+          "region_box": [
+            0,
+            0,
+            1152,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8767749_8a816cca683d_region_9096703dc64f",
+          "region_label": "right_focus",
+          "region_box": [
+            768,
+            0,
+            1920,
+            1920
+          ]
+        }
+      ]
+    },
+    {
+      "image_id": "shoes_001_8767749_94adba437a0d",
+      "product_id": "shoes_001",
+      "variant": "8767749",
+      "image_type": "product",
+      "image_path": "images/8767749/img3.png",
+      "aux_text": null,
+      "language_hint": "latin",
+      "width": 1920,
+      "height": 1920,
+      "regions": [
+        {
+          "region_id": "shoes_001_8767749_94adba437a0d_region_ff8ef8b1e71a",
+          "region_label": "center_focus",
+          "region_box": [
+            384,
+            384,
+            1536,
+            1536
+          ]
+        },
+        {
+          "region_id": "shoes_001_8767749_94adba437a0d_region_09d620076e2d",
+          "region_label": "upper_focus",
+          "region_box": [
+            0,
+            0,
+            1920,
+            1152
+          ]
+        },
+        {
+          "region_id": "shoes_001_8767749_94adba437a0d_region_f359b8ad2043",
+          "region_label": "lower_focus",
+          "region_box": [
+            0,
+            768,
+            1920,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8767749_94adba437a0d_region_6cb77d6cf3d1",
+          "region_label": "left_focus",
+          "region_box": [
+            0,
+            0,
+            1152,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8767749_94adba437a0d_region_9096703dc64f",
+          "region_label": "right_focus",
+          "region_box": [
+            768,
+            0,
+            1920,
+            1920
+          ]
+        }
+      ]
+    },
+    {
+      "image_id": "shoes_001_8767749_f23e97a9065c",
+      "product_id": "shoes_001",
+      "variant": "8767749",
+      "image_type": "product",
+      "image_path": "images/8767749/img4.png",
+      "aux_text": null,
+      "language_hint": "latin",
+      "width": 1920,
+      "height": 1920,
+      "regions": [
+        {
+          "region_id": "shoes_001_8767749_f23e97a9065c_region_ff8ef8b1e71a",
+          "region_label": "center_focus",
+          "region_box": [
+            384,
+            384,
+            1536,
+            1536
+          ]
+        },
+        {
+          "region_id": "shoes_001_8767749_f23e97a9065c_region_09d620076e2d",
+          "region_label": "upper_focus",
+          "region_box": [
+            0,
+            0,
+            1920,
+            1152
+          ]
+        },
+        {
+          "region_id": "shoes_001_8767749_f23e97a9065c_region_f359b8ad2043",
+          "region_label": "lower_focus",
+          "region_box": [
+            0,
+            768,
+            1920,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8767749_f23e97a9065c_region_6cb77d6cf3d1",
+          "region_label": "left_focus",
+          "region_box": [
+            0,
+            0,
+            1152,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8767749_f23e97a9065c_region_9096703dc64f",
+          "region_label": "right_focus",
+          "region_box": [
+            768,
+            0,
+            1920,
+            1920
+          ]
+        }
+      ]
+    },
+    {
+      "image_id": "shoes_001_8767749_3e44296b7081",
+      "product_id": "shoes_001",
+      "variant": "8767749",
+      "image_type": "product",
+      "image_path": "images/8767749/img5.png",
+      "aux_text": null,
+      "language_hint": "latin",
+      "width": 1920,
+      "height": 1920,
+      "regions": [
+        {
+          "region_id": "shoes_001_8767749_3e44296b7081_region_ff8ef8b1e71a",
+          "region_label": "center_focus",
+          "region_box": [
+            384,
+            384,
+            1536,
+            1536
+          ]
+        },
+        {
+          "region_id": "shoes_001_8767749_3e44296b7081_region_09d620076e2d",
+          "region_label": "upper_focus",
+          "region_box": [
+            0,
+            0,
+            1920,
+            1152
+          ]
+        },
+        {
+          "region_id": "shoes_001_8767749_3e44296b7081_region_f359b8ad2043",
+          "region_label": "lower_focus",
+          "region_box": [
+            0,
+            768,
+            1920,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8767749_3e44296b7081_region_6cb77d6cf3d1",
+          "region_label": "left_focus",
+          "region_box": [
+            0,
+            0,
+            1152,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8767749_3e44296b7081_region_9096703dc64f",
+          "region_label": "right_focus",
+          "region_box": [
+            768,
+            0,
+            1920,
+            1920
+          ]
+        }
+      ]
+    },
+    {
+      "image_id": "shoes_001_8767749_b21b754cf530",
+      "product_id": "shoes_001",
+      "variant": "8767749",
+      "image_type": "product",
+      "image_path": "images/8767749/img6.png",
+      "aux_text": null,
+      "language_hint": "latin",
+      "width": 1920,
+      "height": 1920,
+      "regions": [
+        {
+          "region_id": "shoes_001_8767749_b21b754cf530_region_ff8ef8b1e71a",
+          "region_label": "center_focus",
+          "region_box": [
+            384,
+            384,
+            1536,
+            1536
+          ]
+        },
+        {
+          "region_id": "shoes_001_8767749_b21b754cf530_region_09d620076e2d",
+          "region_label": "upper_focus",
+          "region_box": [
+            0,
+            0,
+            1920,
+            1152
+          ]
+        },
+        {
+          "region_id": "shoes_001_8767749_b21b754cf530_region_f359b8ad2043",
+          "region_label": "lower_focus",
+          "region_box": [
+            0,
+            768,
+            1920,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8767749_b21b754cf530_region_6cb77d6cf3d1",
+          "region_label": "left_focus",
+          "region_box": [
+            0,
+            0,
+            1152,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8767749_b21b754cf530_region_9096703dc64f",
+          "region_label": "right_focus",
+          "region_box": [
+            768,
+            0,
+            1920,
+            1920
+          ]
+        }
+      ]
+    },
+    {
+      "image_id": "shoes_001_8613295_22a58468831a",
+      "product_id": "shoes_001",
+      "variant": "8613295",
+      "image_type": "product",
+      "image_path": "images/8613295/img1.png",
+      "aux_text": null,
+      "language_hint": "latin",
+      "width": 1920,
+      "height": 1920,
+      "regions": [
+        {
+          "region_id": "shoes_001_8613295_22a58468831a_region_ff8ef8b1e71a",
+          "region_label": "center_focus",
+          "region_box": [
+            384,
+            384,
+            1536,
+            1536
+          ]
+        },
+        {
+          "region_id": "shoes_001_8613295_22a58468831a_region_09d620076e2d",
+          "region_label": "upper_focus",
+          "region_box": [
+            0,
+            0,
+            1920,
+            1152
+          ]
+        },
+        {
+          "region_id": "shoes_001_8613295_22a58468831a_region_f359b8ad2043",
+          "region_label": "lower_focus",
+          "region_box": [
+            0,
+            768,
+            1920,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8613295_22a58468831a_region_6cb77d6cf3d1",
+          "region_label": "left_focus",
+          "region_box": [
+            0,
+            0,
+            1152,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8613295_22a58468831a_region_9096703dc64f",
+          "region_label": "right_focus",
+          "region_box": [
+            768,
+            0,
+            1920,
+            1920
+          ]
+        }
+      ]
+    },
+    {
+      "image_id": "shoes_001_8613295_50888e93a304",
+      "product_id": "shoes_001",
+      "variant": "8613295",
+      "image_type": "product",
+      "image_path": "images/8613295/img2.png",
+      "aux_text": null,
+      "language_hint": "latin",
+      "width": 1920,
+      "height": 1920,
+      "regions": [
+        {
+          "region_id": "shoes_001_8613295_50888e93a304_region_ff8ef8b1e71a",
+          "region_label": "center_focus",
+          "region_box": [
+            384,
+            384,
+            1536,
+            1536
+          ]
+        },
+        {
+          "region_id": "shoes_001_8613295_50888e93a304_region_09d620076e2d",
+          "region_label": "upper_focus",
+          "region_box": [
+            0,
+            0,
+            1920,
+            1152
+          ]
+        },
+        {
+          "region_id": "shoes_001_8613295_50888e93a304_region_f359b8ad2043",
+          "region_label": "lower_focus",
+          "region_box": [
+            0,
+            768,
+            1920,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8613295_50888e93a304_region_6cb77d6cf3d1",
+          "region_label": "left_focus",
+          "region_box": [
+            0,
+            0,
+            1152,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8613295_50888e93a304_region_9096703dc64f",
+          "region_label": "right_focus",
+          "region_box": [
+            768,
+            0,
+            1920,
+            1920
+          ]
+        }
+      ]
+    },
+    {
+      "image_id": "shoes_001_8613295_b06135fcb842",
+      "product_id": "shoes_001",
+      "variant": "8613295",
+      "image_type": "product",
+      "image_path": "images/8613295/img3.png",
+      "aux_text": null,
+      "language_hint": "latin",
+      "width": 1920,
+      "height": 1920,
+      "regions": [
+        {
+          "region_id": "shoes_001_8613295_b06135fcb842_region_ff8ef8b1e71a",
+          "region_label": "center_focus",
+          "region_box": [
+            384,
+            384,
+            1536,
+            1536
+          ]
+        },
+        {
+          "region_id": "shoes_001_8613295_b06135fcb842_region_09d620076e2d",
+          "region_label": "upper_focus",
+          "region_box": [
+            0,
+            0,
+            1920,
+            1152
+          ]
+        },
+        {
+          "region_id": "shoes_001_8613295_b06135fcb842_region_f359b8ad2043",
+          "region_label": "lower_focus",
+          "region_box": [
+            0,
+            768,
+            1920,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8613295_b06135fcb842_region_6cb77d6cf3d1",
+          "region_label": "left_focus",
+          "region_box": [
+            0,
+            0,
+            1152,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8613295_b06135fcb842_region_9096703dc64f",
+          "region_label": "right_focus",
+          "region_box": [
+            768,
+            0,
+            1920,
+            1920
+          ]
+        }
+      ]
+    },
+    {
+      "image_id": "shoes_001_8613295_22d84ff85644",
+      "product_id": "shoes_001",
+      "variant": "8613295",
+      "image_type": "product",
+      "image_path": "images/8613295/img4.png",
+      "aux_text": null,
+      "language_hint": "latin",
+      "width": 1920,
+      "height": 1920,
+      "regions": [
+        {
+          "region_id": "shoes_001_8613295_22d84ff85644_region_ff8ef8b1e71a",
+          "region_label": "center_focus",
+          "region_box": [
+            384,
+            384,
+            1536,
+            1536
+          ]
+        },
+        {
+          "region_id": "shoes_001_8613295_22d84ff85644_region_09d620076e2d",
+          "region_label": "upper_focus",
+          "region_box": [
+            0,
+            0,
+            1920,
+            1152
+          ]
+        },
+        {
+          "region_id": "shoes_001_8613295_22d84ff85644_region_f359b8ad2043",
+          "region_label": "lower_focus",
+          "region_box": [
+            0,
+            768,
+            1920,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8613295_22d84ff85644_region_6cb77d6cf3d1",
+          "region_label": "left_focus",
+          "region_box": [
+            0,
+            0,
+            1152,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8613295_22d84ff85644_region_9096703dc64f",
+          "region_label": "right_focus",
+          "region_box": [
+            768,
+            0,
+            1920,
+            1920
+          ]
+        }
+      ]
+    },
+    {
+      "image_id": "shoes_001_8613295_eca8cdb0c028",
+      "product_id": "shoes_001",
+      "variant": "8613295",
+      "image_type": "product",
+      "image_path": "images/8613295/img5.png",
+      "aux_text": null,
+      "language_hint": "latin",
+      "width": 1920,
+      "height": 1920,
+      "regions": [
+        {
+          "region_id": "shoes_001_8613295_eca8cdb0c028_region_ff8ef8b1e71a",
+          "region_label": "center_focus",
+          "region_box": [
+            384,
+            384,
+            1536,
+            1536
+          ]
+        },
+        {
+          "region_id": "shoes_001_8613295_eca8cdb0c028_region_09d620076e2d",
+          "region_label": "upper_focus",
+          "region_box": [
+            0,
+            0,
+            1920,
+            1152
+          ]
+        },
+        {
+          "region_id": "shoes_001_8613295_eca8cdb0c028_region_f359b8ad2043",
+          "region_label": "lower_focus",
+          "region_box": [
+            0,
+            768,
+            1920,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8613295_eca8cdb0c028_region_6cb77d6cf3d1",
+          "region_label": "left_focus",
+          "region_box": [
+            0,
+            0,
+            1152,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8613295_eca8cdb0c028_region_9096703dc64f",
+          "region_label": "right_focus",
+          "region_box": [
+            768,
+            0,
+            1920,
+            1920
+          ]
+        }
+      ]
+    },
+    {
+      "image_id": "shoes_001_8613295_7c24a9d42e5a",
+      "product_id": "shoes_001",
+      "variant": "8613295",
+      "image_type": "product",
+      "image_path": "images/8613295/img6.png",
+      "aux_text": null,
+      "language_hint": "latin",
+      "width": 1920,
+      "height": 1920,
+      "regions": [
+        {
+          "region_id": "shoes_001_8613295_7c24a9d42e5a_region_ff8ef8b1e71a",
+          "region_label": "center_focus",
+          "region_box": [
+            384,
+            384,
+            1536,
+            1536
+          ]
+        },
+        {
+          "region_id": "shoes_001_8613295_7c24a9d42e5a_region_09d620076e2d",
+          "region_label": "upper_focus",
+          "region_box": [
+            0,
+            0,
+            1920,
+            1152
+          ]
+        },
+        {
+          "region_id": "shoes_001_8613295_7c24a9d42e5a_region_f359b8ad2043",
+          "region_label": "lower_focus",
+          "region_box": [
+            0,
+            768,
+            1920,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8613295_7c24a9d42e5a_region_6cb77d6cf3d1",
+          "region_label": "left_focus",
+          "region_box": [
+            0,
+            0,
+            1152,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8613295_7c24a9d42e5a_region_9096703dc64f",
+          "region_label": "right_focus",
+          "region_box": [
+            768,
+            0,
+            1920,
+            1920
+          ]
+        }
+      ]
+    },
+    {
+      "image_id": "shoes_001_8665325_2ce64f1ecc49",
+      "product_id": "shoes_001",
+      "variant": "8665325",
+      "image_type": "product",
+      "image_path": "images/8665325/img1.png",
+      "aux_text": null,
+      "language_hint": "latin",
+      "width": 1920,
+      "height": 1920,
+      "regions": [
+        {
+          "region_id": "shoes_001_8665325_2ce64f1ecc49_region_ff8ef8b1e71a",
+          "region_label": "center_focus",
+          "region_box": [
+            384,
+            384,
+            1536,
+            1536
+          ]
+        },
+        {
+          "region_id": "shoes_001_8665325_2ce64f1ecc49_region_09d620076e2d",
+          "region_label": "upper_focus",
+          "region_box": [
+            0,
+            0,
+            1920,
+            1152
+          ]
+        },
+        {
+          "region_id": "shoes_001_8665325_2ce64f1ecc49_region_f359b8ad2043",
+          "region_label": "lower_focus",
+          "region_box": [
+            0,
+            768,
+            1920,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8665325_2ce64f1ecc49_region_6cb77d6cf3d1",
+          "region_label": "left_focus",
+          "region_box": [
+            0,
+            0,
+            1152,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8665325_2ce64f1ecc49_region_9096703dc64f",
+          "region_label": "right_focus",
+          "region_box": [
+            768,
+            0,
+            1920,
+            1920
+          ]
+        }
+      ]
+    },
+    {
+      "image_id": "shoes_001_8665325_f6d92b50e419",
+      "product_id": "shoes_001",
+      "variant": "8665325",
+      "image_type": "product",
+      "image_path": "images/8665325/img2.png",
+      "aux_text": null,
+      "language_hint": "latin",
+      "width": 1920,
+      "height": 1920,
+      "regions": [
+        {
+          "region_id": "shoes_001_8665325_f6d92b50e419_region_ff8ef8b1e71a",
+          "region_label": "center_focus",
+          "region_box": [
+            384,
+            384,
+            1536,
+            1536
+          ]
+        },
+        {
+          "region_id": "shoes_001_8665325_f6d92b50e419_region_09d620076e2d",
+          "region_label": "upper_focus",
+          "region_box": [
+            0,
+            0,
+            1920,
+            1152
+          ]
+        },
+        {
+          "region_id": "shoes_001_8665325_f6d92b50e419_region_f359b8ad2043",
+          "region_label": "lower_focus",
+          "region_box": [
+            0,
+            768,
+            1920,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8665325_f6d92b50e419_region_6cb77d6cf3d1",
+          "region_label": "left_focus",
+          "region_box": [
+            0,
+            0,
+            1152,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8665325_f6d92b50e419_region_9096703dc64f",
+          "region_label": "right_focus",
+          "region_box": [
+            768,
+            0,
+            1920,
+            1920
+          ]
+        }
+      ]
+    },
+    {
+      "image_id": "shoes_001_8665325_3de70337f4f8",
+      "product_id": "shoes_001",
+      "variant": "8665325",
+      "image_type": "product",
+      "image_path": "images/8665325/img3.png",
+      "aux_text": null,
+      "language_hint": "latin",
+      "width": 1920,
+      "height": 1920,
+      "regions": [
+        {
+          "region_id": "shoes_001_8665325_3de70337f4f8_region_ff8ef8b1e71a",
+          "region_label": "center_focus",
+          "region_box": [
+            384,
+            384,
+            1536,
+            1536
+          ]
+        },
+        {
+          "region_id": "shoes_001_8665325_3de70337f4f8_region_09d620076e2d",
+          "region_label": "upper_focus",
+          "region_box": [
+            0,
+            0,
+            1920,
+            1152
+          ]
+        },
+        {
+          "region_id": "shoes_001_8665325_3de70337f4f8_region_f359b8ad2043",
+          "region_label": "lower_focus",
+          "region_box": [
+            0,
+            768,
+            1920,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8665325_3de70337f4f8_region_6cb77d6cf3d1",
+          "region_label": "left_focus",
+          "region_box": [
+            0,
+            0,
+            1152,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8665325_3de70337f4f8_region_9096703dc64f",
+          "region_label": "right_focus",
+          "region_box": [
+            768,
+            0,
+            1920,
+            1920
+          ]
+        }
+      ]
+    },
+    {
+      "image_id": "shoes_001_8665325_0f14a5915e1b",
+      "product_id": "shoes_001",
+      "variant": "8665325",
+      "image_type": "product",
+      "image_path": "images/8665325/img4.png",
+      "aux_text": null,
+      "language_hint": "latin",
+      "width": 1920,
+      "height": 1920,
+      "regions": [
+        {
+          "region_id": "shoes_001_8665325_0f14a5915e1b_region_ff8ef8b1e71a",
+          "region_label": "center_focus",
+          "region_box": [
+            384,
+            384,
+            1536,
+            1536
+          ]
+        },
+        {
+          "region_id": "shoes_001_8665325_0f14a5915e1b_region_09d620076e2d",
+          "region_label": "upper_focus",
+          "region_box": [
+            0,
+            0,
+            1920,
+            1152
+          ]
+        },
+        {
+          "region_id": "shoes_001_8665325_0f14a5915e1b_region_f359b8ad2043",
+          "region_label": "lower_focus",
+          "region_box": [
+            0,
+            768,
+            1920,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8665325_0f14a5915e1b_region_6cb77d6cf3d1",
+          "region_label": "left_focus",
+          "region_box": [
+            0,
+            0,
+            1152,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8665325_0f14a5915e1b_region_9096703dc64f",
+          "region_label": "right_focus",
+          "region_box": [
+            768,
+            0,
+            1920,
+            1920
+          ]
+        }
+      ]
+    },
+    {
+      "image_id": "shoes_001_8665325_3e506a68b970",
+      "product_id": "shoes_001",
+      "variant": "8665325",
+      "image_type": "product",
+      "image_path": "images/8665325/img5.png",
+      "aux_text": null,
+      "language_hint": "latin",
+      "width": 1920,
+      "height": 1920,
+      "regions": [
+        {
+          "region_id": "shoes_001_8665325_3e506a68b970_region_ff8ef8b1e71a",
+          "region_label": "center_focus",
+          "region_box": [
+            384,
+            384,
+            1536,
+            1536
+          ]
+        },
+        {
+          "region_id": "shoes_001_8665325_3e506a68b970_region_09d620076e2d",
+          "region_label": "upper_focus",
+          "region_box": [
+            0,
+            0,
+            1920,
+            1152
+          ]
+        },
+        {
+          "region_id": "shoes_001_8665325_3e506a68b970_region_f359b8ad2043",
+          "region_label": "lower_focus",
+          "region_box": [
+            0,
+            768,
+            1920,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8665325_3e506a68b970_region_6cb77d6cf3d1",
+          "region_label": "left_focus",
+          "region_box": [
+            0,
+            0,
+            1152,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8665325_3e506a68b970_region_9096703dc64f",
+          "region_label": "right_focus",
+          "region_box": [
+            768,
+            0,
+            1920,
+            1920
+          ]
+        }
+      ]
+    },
+    {
+      "image_id": "shoes_001_8665325_40cb5489292a",
+      "product_id": "shoes_001",
+      "variant": "8665325",
+      "image_type": "product",
+      "image_path": "images/8665325/img6.png",
+      "aux_text": null,
+      "language_hint": "latin",
+      "width": 1920,
+      "height": 1920,
+      "regions": [
+        {
+          "region_id": "shoes_001_8665325_40cb5489292a_region_ff8ef8b1e71a",
+          "region_label": "center_focus",
+          "region_box": [
+            384,
+            384,
+            1536,
+            1536
+          ]
+        },
+        {
+          "region_id": "shoes_001_8665325_40cb5489292a_region_09d620076e2d",
+          "region_label": "upper_focus",
+          "region_box": [
+            0,
+            0,
+            1920,
+            1152
+          ]
+        },
+        {
+          "region_id": "shoes_001_8665325_40cb5489292a_region_f359b8ad2043",
+          "region_label": "lower_focus",
+          "region_box": [
+            0,
+            768,
+            1920,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8665325_40cb5489292a_region_6cb77d6cf3d1",
+          "region_label": "left_focus",
+          "region_box": [
+            0,
+            0,
+            1152,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8665325_40cb5489292a_region_9096703dc64f",
+          "region_label": "right_focus",
+          "region_box": [
+            768,
+            0,
+            1920,
+            1920
+          ]
+        }
+      ]
+    },
+    {
+      "image_id": "shoes_001_8670209_01df6c0076f7",
+      "product_id": "shoes_001",
+      "variant": "8670209",
+      "image_type": "product",
+      "image_path": "images/8670209/img1.png",
+      "aux_text": null,
+      "language_hint": "latin",
+      "width": 1920,
+      "height": 1920,
+      "regions": [
+        {
+          "region_id": "shoes_001_8670209_01df6c0076f7_region_ff8ef8b1e71a",
+          "region_label": "center_focus",
+          "region_box": [
+            384,
+            384,
+            1536,
+            1536
+          ]
+        },
+        {
+          "region_id": "shoes_001_8670209_01df6c0076f7_region_09d620076e2d",
+          "region_label": "upper_focus",
+          "region_box": [
+            0,
+            0,
+            1920,
+            1152
+          ]
+        },
+        {
+          "region_id": "shoes_001_8670209_01df6c0076f7_region_f359b8ad2043",
+          "region_label": "lower_focus",
+          "region_box": [
+            0,
+            768,
+            1920,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8670209_01df6c0076f7_region_6cb77d6cf3d1",
+          "region_label": "left_focus",
+          "region_box": [
+            0,
+            0,
+            1152,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8670209_01df6c0076f7_region_9096703dc64f",
+          "region_label": "right_focus",
+          "region_box": [
+            768,
+            0,
+            1920,
+            1920
+          ]
+        }
+      ]
+    },
+    {
+      "image_id": "shoes_001_8670209_c21829d714be",
+      "product_id": "shoes_001",
+      "variant": "8670209",
+      "image_type": "product",
+      "image_path": "images/8670209/img3.png",
+      "aux_text": null,
+      "language_hint": "latin",
+      "width": 1920,
+      "height": 1920,
+      "regions": [
+        {
+          "region_id": "shoes_001_8670209_c21829d714be_region_ff8ef8b1e71a",
+          "region_label": "center_focus",
+          "region_box": [
+            384,
+            384,
+            1536,
+            1536
+          ]
+        },
+        {
+          "region_id": "shoes_001_8670209_c21829d714be_region_09d620076e2d",
+          "region_label": "upper_focus",
+          "region_box": [
+            0,
+            0,
+            1920,
+            1152
+          ]
+        },
+        {
+          "region_id": "shoes_001_8670209_c21829d714be_region_f359b8ad2043",
+          "region_label": "lower_focus",
+          "region_box": [
+            0,
+            768,
+            1920,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8670209_c21829d714be_region_6cb77d6cf3d1",
+          "region_label": "left_focus",
+          "region_box": [
+            0,
+            0,
+            1152,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8670209_c21829d714be_region_9096703dc64f",
+          "region_label": "right_focus",
+          "region_box": [
+            768,
+            0,
+            1920,
+            1920
+          ]
+        }
+      ]
+    },
+    {
+      "image_id": "shoes_001_8670209_c4d5d97dfb65",
+      "product_id": "shoes_001",
+      "variant": "8670209",
+      "image_type": "product",
+      "image_path": "images/8670209/img4.png",
+      "aux_text": null,
+      "language_hint": "latin",
+      "width": 1920,
+      "height": 1920,
+      "regions": [
+        {
+          "region_id": "shoes_001_8670209_c4d5d97dfb65_region_ff8ef8b1e71a",
+          "region_label": "center_focus",
+          "region_box": [
+            384,
+            384,
+            1536,
+            1536
+          ]
+        },
+        {
+          "region_id": "shoes_001_8670209_c4d5d97dfb65_region_09d620076e2d",
+          "region_label": "upper_focus",
+          "region_box": [
+            0,
+            0,
+            1920,
+            1152
+          ]
+        },
+        {
+          "region_id": "shoes_001_8670209_c4d5d97dfb65_region_f359b8ad2043",
+          "region_label": "lower_focus",
+          "region_box": [
+            0,
+            768,
+            1920,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8670209_c4d5d97dfb65_region_6cb77d6cf3d1",
+          "region_label": "left_focus",
+          "region_box": [
+            0,
+            0,
+            1152,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8670209_c4d5d97dfb65_region_9096703dc64f",
+          "region_label": "right_focus",
+          "region_box": [
+            768,
+            0,
+            1920,
+            1920
+          ]
+        }
+      ]
+    },
+    {
+      "image_id": "shoes_001_8670209_e3812683d78a",
+      "product_id": "shoes_001",
+      "variant": "8670209",
+      "image_type": "product",
+      "image_path": "images/8670209/img5.png",
+      "aux_text": null,
+      "language_hint": "latin",
+      "width": 1920,
+      "height": 1920,
+      "regions": [
+        {
+          "region_id": "shoes_001_8670209_e3812683d78a_region_ff8ef8b1e71a",
+          "region_label": "center_focus",
+          "region_box": [
+            384,
+            384,
+            1536,
+            1536
+          ]
+        },
+        {
+          "region_id": "shoes_001_8670209_e3812683d78a_region_09d620076e2d",
+          "region_label": "upper_focus",
+          "region_box": [
+            0,
+            0,
+            1920,
+            1152
+          ]
+        },
+        {
+          "region_id": "shoes_001_8670209_e3812683d78a_region_f359b8ad2043",
+          "region_label": "lower_focus",
+          "region_box": [
+            0,
+            768,
+            1920,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8670209_e3812683d78a_region_6cb77d6cf3d1",
+          "region_label": "left_focus",
+          "region_box": [
+            0,
+            0,
+            1152,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8670209_e3812683d78a_region_9096703dc64f",
+          "region_label": "right_focus",
+          "region_box": [
+            768,
+            0,
+            1920,
+            1920
+          ]
+        }
+      ]
+    },
+    {
+      "image_id": "shoes_001_8670209_1516e8a43a0a",
+      "product_id": "shoes_001",
+      "variant": "8670209",
+      "image_type": "product",
+      "image_path": "images/8670209/img6.png",
+      "aux_text": null,
+      "language_hint": "latin",
+      "width": 1920,
+      "height": 1920,
+      "regions": [
+        {
+          "region_id": "shoes_001_8670209_1516e8a43a0a_region_ff8ef8b1e71a",
+          "region_label": "center_focus",
+          "region_box": [
+            384,
+            384,
+            1536,
+            1536
+          ]
+        },
+        {
+          "region_id": "shoes_001_8670209_1516e8a43a0a_region_09d620076e2d",
+          "region_label": "upper_focus",
+          "region_box": [
+            0,
+            0,
+            1920,
+            1152
+          ]
+        },
+        {
+          "region_id": "shoes_001_8670209_1516e8a43a0a_region_f359b8ad2043",
+          "region_label": "lower_focus",
+          "region_box": [
+            0,
+            768,
+            1920,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8670209_1516e8a43a0a_region_6cb77d6cf3d1",
+          "region_label": "left_focus",
+          "region_box": [
+            0,
+            0,
+            1152,
+            1920
+          ]
+        },
+        {
+          "region_id": "shoes_001_8670209_1516e8a43a0a_region_9096703dc64f",
+          "region_label": "right_focus",
+          "region_box": [
+            768,
+            0,
+            1920,
+            1920
+          ]
+        }
+      ]
+    }
+  ],
+  "reviews": [
+    {
+      "review_id": "shoes_001_review_0001",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "2~3주 가벼운 러닝 때 착용하는데 편합니다. 적극 추천~~~!!!",
+      "language_hint": "ko",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0002",
+      "product_id": "shoes_001",
+      "rating": 4,
+      "review_text": "쿠셔닝은 중간정도이고, 바닥의 앞뒤꿈치의 중간부분이 먼저 닳는 편이다. 전체적으로 발을 잘 잡아주어 러닝시 흔들림이 없지만, 바닥은 약간 미끄러운 편이다.",
+      "language_hint": "ko",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0003",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "Serve its purpose",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0004",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0005",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "好，不错，物超所值",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0006",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0007",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0008",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0009",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0010",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0011",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0012",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0013",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0014",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "鞋子非常合脚",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0015",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0016",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0017",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0018",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0019",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "好穿耐看",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0020",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0021",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "晨跑用，舒适度高",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0022",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0023",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0024",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0025",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0026",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0027",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0028",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0029",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0030",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0031",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0032",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0033",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "非常舒适，性价比",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0034",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0035",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0036",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0037",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "非常好，有弹性，鞋两边设计的很巧妙，有包裹感和支撑感，白色也很好看百搭，散步慢跑都很合适",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0038",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "不错，价格实惠，鞋子轻盈舒适，透气好，用起来不心疼",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0039",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0040",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0041",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "非常好穿",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0042",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0043",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0044",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0045",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0046",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0047",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "穿起來舒適和腳,可惜鞋帶內裡有局部尼龍線頭,穿薄襪會磨腳背!",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0048",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0049",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0050",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0051",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0052",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0053",
+      "product_id": "shoes_001",
+      "rating": 4,
+      "review_text": "Looks good and reasonable price. Only problem is because it's \"slip on\" it's quite tight. Buy one size larger than normal",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0054",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0055",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "满意立冬的服务",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0056",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0057",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0058",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0059",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0060",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0061",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0062",
+      "product_id": "shoes_001",
+      "rating": 4,
+      "review_text": "Bought these comfortable walking shoes and from the first try and walk they were extremely comfortable, possibly only the tongue can be a minor inconvience, if you don't set it right, the shoe is breathable to and waterproof, especially with some of the weather that has been around lately",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0063",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0064",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "舒适合脚，好穿",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0065",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0066",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0067",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0068",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "服务非常到位！点赞，必须五星好评。",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0069",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0070",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0071",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0072",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0073",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0074",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0075",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0076",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0077",
+      "product_id": "shoes_001",
+      "rating": 1,
+      "review_text": "夹脚",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0078",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0079",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0080",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "不错，很软，穿了好几年",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0081",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "穿着舒服，后面又买了一双白色",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0082",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "scarpa leggera ed economica, la consiglio",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0083",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0084",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0085",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "很好很好，这款鞋穿着很舒服，已经买了好几双了，这次尾货价格太实惠了。",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0086",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "很好很好，很软的鞋底，穿着很舒服，已经买了好几双了",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0087",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0088",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0089",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0090",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0091",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0092",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0093",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0094",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "鞋子很不错，穿起来很舒服，适合运动，五星好评",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0095",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0096",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0097",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "热火朝天的感觉真的不错",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0098",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "Mam do dzisiaj. Ponad 3 lata użytkowania - głównie spacerowo. Nadają się spokojnie na krótkie dystanse biegowe. Dobra amortyzacja",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0099",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0100",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "很好很舒服",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0101",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "跑步到位",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0102",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0103",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0104",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0105",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "tabanı oldukça rahat bir yakkabı ve henüz herhangi bir yırtılma veya sökük oluşmadı",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0106",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "非常喜欢",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0107",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0108",
+      "product_id": "shoes_001",
+      "rating": 4,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0109",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0110",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0111",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "Légère souple,confort.",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0112",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0113",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0114",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0115",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0116",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "迪卡侬品质一如既往靠谱，面料舒服、做工扎实，性价比很高。小程序下单方便，发货快，尺码标准，上身效果很好，日常穿、运动穿都合适，会继续回购！",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0117",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0118",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "轻便",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0119",
+      "product_id": "shoes_001",
+      "rating": 4,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0120",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0121",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0122",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0123",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0124",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0125",
+      "product_id": "shoes_001",
+      "rating": 4,
+      "review_text": "专业跑鞋，减震，透气性好.。",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0126",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0127",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0128",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0129",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0130",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "趁着过春节，打折，给家人每人买了一双。迪卡农的鞋子一如既往地好穿",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0131",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "好",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0132",
+      "product_id": "shoes_001",
+      "rating": 3,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0133",
+      "product_id": "shoes_001",
+      "rating": 3,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0134",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "這雙買大一點好穿 趁999買第二雙",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0135",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "Excellent shoes for jogging",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0136",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0137",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "super",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0138",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0139",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0140",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0141",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0142",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0143",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "此鞋中部位置包裹感强，鞋底柔软，样式极为低调，适合大众。 迪卡侬品牌的商品主打实用性、耐用性、透气性，本事过硬，质量不用考虑，需要什么品类直接买，令消费者不需要多想与怀疑，购物轻松、简单。我是两年前尝试着买了双保暖鞋，这两年穿着舒适、暖和，所以今年去了好几趟线下门店详细了解，每一个商品、鞋服都摸了摸，仔细观察了，包括文字内容介绍，能看出此品牌商品材质没有问题 不错的、实实在在，就如老实人一样，相处起来很舒服，没有坑和雷。另外有的品别看样子普通不年轻时尚，但你穿上体验（或几天）后，你会感到穿着舒适，比低于此档次品牌的是值的，当然还有重要是对比同类品牌价钱不算贵，服务也是简洁利索，对一些商品研发守正创新，所以各方面综合性好，不极端不偏不倚 中庸 适合大众，所以我买了很多件。",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0144",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "很好",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0145",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0146",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "好的好好好",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0147",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "ürün çok rahat . sağlam ve uzun yürüyüşlerde konforlu.",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0148",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0149",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0150",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "黄新球服务态度很好，人很热情。",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0151",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0152",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "跑鞋不错，颜色丑了点",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0153",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "跑步专属，第二双了",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0154",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0155",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0156",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0157",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0158",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0159",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0160",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0161",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0162",
+      "product_id": "shoes_001",
+      "rating": 4,
+      "review_text": "穿起来挺舒服的",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0163",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0164",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "非常好",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0165",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "很舒适，非常缓震",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0166",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0167",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0168",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0169",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0170",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0171",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0172",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0173",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0174",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0175",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0176",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "很喜欢，推荐，适合跑步",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0177",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "新球姐姐服务太好了太好了",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0178",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "不错，质量很好",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0179",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "不错，质量很好",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0180",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "上脚很舒服，跑步散步都很棒",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0181",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "好啊",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0182",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0183",
+      "product_id": "shoes_001",
+      "rating": 1,
+      "review_text": "التصميم ضيق جدا من الامام و ضاغط علي الصوابع و مؤلم حتي اثناء المشي البسيط لا انصح باقتناءه",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0184",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "raport calitate-pret foarte excelent",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0185",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0186",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "穿着挺舒服的，鞋底有弹性，也不捂脚，日常经常穿",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0187",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0188",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "满分的一双鞋",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0189",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0190",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0191",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0192",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0193",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0194",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "特價買的超值跑鞋",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0195",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "Comode e leggere",
+      "language_hint": "latin",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0196",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "可以",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0197",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0198",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    },
+    {
+      "review_id": "shoes_001_review_0199",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "非常棒的鞋，同款买了三个色系",
+      "language_hint": "zh",
+      "is_empty": false
+    },
+    {
+      "review_id": "shoes_001_review_0200",
+      "product_id": "shoes_001",
+      "rating": 5,
+      "review_text": "",
+      "language_hint": null,
+      "is_empty": true
+    }
+  ],
+  "warnings": []
+}

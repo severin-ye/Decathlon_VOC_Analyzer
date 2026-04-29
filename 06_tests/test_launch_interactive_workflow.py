@@ -1,6 +1,8 @@
 import importlib.util
+import os
 from pathlib import Path
 from types import SimpleNamespace
+import json
 
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
@@ -65,6 +67,63 @@ def test_build_vscode_simple_browser_uri_targets_internal_browser() -> None:
     assert "%5B%22http%3A%2F%2F127.0.0.1%3A8765%2F_launcher%2Fbackpack_interactive_batch.html%22%5D" in uri
 
 
+def test_prompt_run_mode_returns_resume_checkpoint_choice() -> None:
+    module = _load_module()
+    printed: list[str] = []
+
+    result = module.prompt_run_mode(
+        input_func=lambda _prompt: "3",
+        print_func=printed.append,
+    )
+
+    assert result == module.RUN_MODE_RESUME_ANALYSIS_CHECKPOINT
+    assert any("从 analysis checkpoint 续跑" in line for line in printed)
+
+
+def test_run_mode_args_include_resume_flags() -> None:
+    module = _load_module()
+
+    assert module._run_mode_args(module.RUN_MODE_NORMAL) == []
+    assert module._run_mode_args(module.RUN_MODE_RESUME_ASPECTS) == ["--skip-normalize", "--skip-index", "--resume-from-aspects"]
+    assert module._run_mode_args(module.RUN_MODE_RESUME_ANALYSIS_CHECKPOINT) == ["--skip-normalize", "--skip-index", "--resume-from-analysis-checkpoint"]
+
+
+def test_find_latest_resumable_batch_prefers_recent_state_file(tmp_path: Path) -> None:
+    module = _load_module()
+    launcher_dir = tmp_path / "_launcher"
+    launcher_dir.mkdir()
+    older = launcher_dir / "bags_interactive_batch.state.json"
+    newer = launcher_dir / "shoes_interactive_batch.state.json"
+    older.write_text(json.dumps({"category": "bags", "status": "failed", "products": [{"productId": "bags_001", "status": "failed"}]}), encoding="utf-8")
+    newer.write_text(json.dumps({"category": "shoes", "status": "running", "reviewLimit": 10, "products": [{"productId": "shoes_001", "status": "running"}]}), encoding="utf-8")
+    os.utime(older, (1_700_000_000, 1_700_000_000))
+    os.utime(newer, (1_700_000_100, 1_700_000_100))
+
+    candidate = module.find_latest_resumable_batch(launcher_dir)
+
+    assert candidate is not None
+    assert candidate.payload["category"] == "shoes"
+
+
+def test_prompt_continue_previous_batch_accepts_yes() -> None:
+    module = _load_module()
+    printed: list[str] = []
+
+    result = module.prompt_continue_previous_batch(
+        {
+            "category": "shoes",
+            "reviewLimit": 10,
+            "products": [{"productId": "shoes_001", "status": "failed"}],
+        },
+        module.RUN_MODE_RESUME_ASPECTS,
+        input_func=lambda _prompt: "y",
+        print_func=printed.append,
+    )
+
+    assert result is True
+    assert any("未完成商品: shoes_001" in line for line in printed)
+
+
 def test_prompt_for_qdrant_conflict_resolution_accepts_takeover_choice() -> None:
     module = _load_module()
     printed: list[str] = []
@@ -96,3 +155,51 @@ def test_run_product_workflow_stops_when_user_cancels(monkeypatch) -> None:
 
     assert exit_code == 130
     assert subprocess_calls == []
+
+
+def test_run_product_workflow_passes_resume_aspects_flags(monkeypatch) -> None:
+    module = _load_module()
+    subprocess_calls: list[list[str]] = []
+
+    monkeypatch.setattr(module, "_ensure_shared_qdrant_access", lambda: True)
+    monkeypatch.setattr(
+        module.subprocess,
+        "run",
+        lambda command, cwd, check: subprocess_calls.append(command) or SimpleNamespace(returncode=0),
+    )
+
+    exit_code = module.run_product_workflow(
+        category="backpack",
+        product_id="backpack_001",
+        max_reviews=10,
+        run_mode=module.RUN_MODE_RESUME_ASPECTS,
+    )
+
+    assert exit_code == 0
+    assert subprocess_calls
+    assert "--resume-from-aspects" in subprocess_calls[0]
+    assert "--skip-normalize" in subprocess_calls[0]
+    assert "--skip-index" in subprocess_calls[0]
+
+
+def test_restore_batch_state_preserves_completed_products() -> None:
+    module = _load_module()
+
+    state = module.restore_batch_state(
+        {
+            "category": "shoes",
+            "reviewLimit": 10,
+            "status": "failed",
+            "startedAt": "2026-04-30T00:26:44",
+            "products": [
+                {"index": 1, "productId": "shoes_001", "status": "completed", "startedAt": "2026-04-30T00:26:44", "completedAt": "2026-04-30T00:30:44", "detail": "执行完成", "exitCode": 0},
+                {"index": 2, "productId": "shoes_002", "status": "failed", "startedAt": "2026-04-30T00:31:44", "completedAt": None, "detail": "执行失败", "exitCode": 1},
+            ],
+        }
+    )
+
+    assert state.category == "shoes"
+    assert state.review_limit == 10
+    assert len(state.products) == 2
+    assert state.products[0].status == "completed"
+    assert state.products[1].status == "failed"

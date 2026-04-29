@@ -57,7 +57,8 @@ def test_progress_reporter_writes_live_dashboard_html(tmp_path: Path) -> None:
     assert "dashboard smoke test" in payload
     assert "Active Stage" in payload
     assert "技术快照" in payload
-    assert "Auto refresh every 2s" in payload
+    assert "Live update every 2s" in payload
+    assert "http-equiv=\"refresh\"" not in payload
 
 
 def test_progress_reporter_dashboard_shows_completed_banner(tmp_path: Path) -> None:
@@ -98,6 +99,21 @@ def test_progress_reporter_persists_stage_timestamps(tmp_path: Path) -> None:
     assert payload["modules"][0]["started_at"] is not None
     assert payload["modules"][0]["steps"][0]["started_at"] is not None
     assert payload["modules"][0]["steps"][0]["completed_at"] is None
+
+
+def test_progress_reporter_update_step_changes_detail_without_advancing_count() -> None:
+    reporter = WorkflowProgressReporter(
+        [("analyze", "生成分析", [("retrieve", "检索证据")])],
+        enabled=False,
+    )
+
+    reporter.start_count_step("analyze", "retrieve", total=4, detail="准备检索")
+    reporter.update_step("analyze", "retrieve", detail="正在进行图像重排（5 条候选）")
+
+    step = reporter._step_lookup["analyze:retrieve"]
+
+    assert step.completed == 0.0
+    assert step.detail == "正在进行图像重排（5 条候选）"
 
 
 def test_progress_reporter_restores_elapsed_from_persisted_timestamps(tmp_path: Path) -> None:

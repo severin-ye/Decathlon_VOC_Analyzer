@@ -51,6 +51,40 @@ def test_reranker_service_returns_sorted_candidates(tmp_path) -> None:
     assert reranked[1].evidence_id == "b"
 
 
+def test_reranker_service_emits_in_progress_and_done_messages(monkeypatch, tmp_path) -> None:
+    service = RerankerService()
+    service.settings.indexes_output_dir = tmp_path
+    candidates = [
+        IndexedEvidence(
+            evidence_id="img_a",
+            product_id="p1",
+            category_slug="bags",
+            route="image",
+            image_id="img1",
+            image_path="images/img1.png",
+            content="front pocket image",
+            vector=[0.1, 0.2],
+            score=0.4,
+        ),
+    ]
+    statuses: list[str] = []
+    done_messages: list[str] = []
+
+    monkeypatch.setattr(service, "_rerank_image_candidates", lambda query, candidates, use_llm: candidates)
+
+    reranked = service.rerank(
+        query="front pocket",
+        candidates=candidates,
+        use_llm=False,
+        progress_callback=done_messages.append,
+        progress_status_callback=statuses.append,
+    )
+
+    assert reranked[0].evidence_id == "img_a"
+    assert statuses == ["正在检查文本候选", "正在检查图像候选", "正在进行图像重排（1 条候选）"]
+    assert done_messages == ["文本重排完成: 无候选", "图像重排完成: 1 条候选"]
+
+
 def test_reranker_service_uses_dedicated_api(monkeypatch, tmp_path) -> None:
     class DummyResponse:
         def __enter__(self):

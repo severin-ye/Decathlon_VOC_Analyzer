@@ -60,6 +60,15 @@ class RetrievalService:
     ) -> RetrievalRecord:
         progress = get_workflow_progress()
 
+        def update(detail: str) -> None:
+            if question_index is None or total_questions is None:
+                return
+            progress.update_step(
+                "analyze",
+                "retrieve",
+                detail=f"[{question_index}/{total_questions}] {detail} · {question.question_id}",
+            )
+
         def advance(detail: str) -> None:
             if question_index is None or total_questions is None:
                 return
@@ -70,6 +79,7 @@ class RetrievalService:
             )
 
         query = question.question
+        update("正在执行 search（若索引缺失会按需建索引）")
         indexed_hits = self.index_service.search(
             product_id=package.product_id,
             category_slug=package.category_slug,
@@ -83,7 +93,7 @@ class RetrievalService:
             expected_routes=question.expected_evidence_routes,
             top_k_per_route=top_k_per_route,
         )
-        advance(f"召回候选 {len(indexed_hits)} 条")
+        advance(f"search 完成，召回候选 {len(indexed_hits)} 条")
         embedding_scores = {
             hit.evidence_id: self._extract_score(hit)
             for hit in indexed_hits
@@ -93,7 +103,9 @@ class RetrievalService:
             candidates=indexed_hits,
             use_llm=use_llm,
             progress_callback=advance,
+            progress_status_callback=update,
         )
+        update("正在汇总最终证据")
         selected_hits = self._select_hits_with_route_coverage(
             reranked_hits=reranked_hits,
             expected_routes=question.expected_evidence_routes,
@@ -103,7 +115,7 @@ class RetrievalService:
             self._to_retrieved_evidence(hit, embedding_scores.get(hit.evidence_id, 0.0))
             for hit in selected_hits
         ]
-        advance(f"汇总证据 {len(retrieved)} 条")
+        advance(f"汇总完成，证据 {len(retrieved)} 条")
 
         return RetrievalRecord(
             retrieval_id=self._make_retrieval_id(question.source_review_id, question.source_aspect, query),

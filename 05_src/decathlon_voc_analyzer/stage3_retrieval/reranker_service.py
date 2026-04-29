@@ -27,28 +27,39 @@ class RerankerService:
         candidates: list[IndexedEvidence],
         use_llm: bool,
         progress_callback: Callable[[str], None] | None = None,
+        progress_status_callback: Callable[[str], None] | None = None,
     ) -> list[IndexedEvidence]:
         if not candidates:
+            if progress_status_callback is not None:
+                progress_status_callback("当前问题没有可重排候选")
             if progress_callback is not None:
-                progress_callback("文本重排: 无候选")
-                progress_callback("图像重排: 无候选")
+                progress_callback("文本重排完成: 无候选")
+                progress_callback("图像重排完成: 无候选")
             return []
         text_candidates = [candidate for candidate in candidates if candidate.route == "text"]
         image_candidates = [candidate for candidate in candidates if candidate.route == "image"]
 
         reranked: list[IndexedEvidence] = []
+        if progress_status_callback is not None:
+            progress_status_callback("正在检查文本候选")
         if text_candidates:
+            if progress_status_callback is not None:
+                progress_status_callback(f"正在进行文本重排（{len(text_candidates)} 条候选）")
             reranked.extend(self._rerank_text_candidates(query, text_candidates, use_llm))
             if progress_callback is not None:
-                progress_callback(f"文本重排: {len(text_candidates)} 条候选")
+                progress_callback(f"文本重排完成: {len(text_candidates)} 条候选")
         elif progress_callback is not None:
-            progress_callback("文本重排: 无候选")
+            progress_callback("文本重排完成: 无候选")
+        if progress_status_callback is not None:
+            progress_status_callback("正在检查图像候选")
         if image_candidates:
+            if progress_status_callback is not None:
+                progress_status_callback(f"正在进行图像重排（{len(image_candidates)} 条候选）")
             reranked.extend(self._rerank_image_candidates(query, image_candidates, use_llm))
             if progress_callback is not None:
-                progress_callback(f"图像重排: {len(image_candidates)} 条候选")
+                progress_callback(f"图像重排完成: {len(image_candidates)} 条候选")
         elif progress_callback is not None:
-            progress_callback("图像重排: 无候选")
+            progress_callback("图像重排完成: 无候选")
         return sorted(reranked, key=lambda item: item.score or 0.0, reverse=True)
 
     def _rerank_text_candidates(self, query: str, candidates: list[IndexedEvidence], use_llm: bool) -> list[IndexedEvidence]:
