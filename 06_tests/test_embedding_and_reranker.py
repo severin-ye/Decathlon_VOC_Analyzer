@@ -121,6 +121,85 @@ def test_embedding_service_uses_clip_for_image_route(monkeypatch, tmp_path) -> N
     assert query_vector == [1.0, 0.0]
 
 
+def test_embedding_service_caches_text_query_embeddings_and_invalidates_on_model_change(monkeypatch) -> None:
+    service = EmbeddingService()
+    service.settings.embedding_backend = "api"
+    service.settings.qwen_plus_api_key = "test-key"
+    service.settings.qwen_embedding_model = "embed-a"
+
+    calls: list[tuple[str, str]] = []
+
+    def fake_api_embedding(text: str) -> list[float]:
+        calls.append((service.settings.qwen_embedding_model, text))
+        return [1.0, 0.0]
+
+    monkeypatch.setattr(service, "_api_embedding", fake_api_embedding)
+
+    first = service.embed_query_for_route("travel wallet", "text")
+    second = service.embed_query_for_route("travel wallet", "text")
+
+    service.settings.qwen_embedding_model = "embed-b"
+    third = service.embed_query_for_route("travel wallet", "text")
+
+    assert first == [1.0, 0.0]
+    assert second == [1.0, 0.0]
+    assert third == [1.0, 0.0]
+    assert calls == [("embed-a", "travel wallet"), ("embed-b", "travel wallet")]
+
+
+def test_embedding_service_does_not_cache_failed_api_query_fallback(monkeypatch) -> None:
+    service = EmbeddingService()
+    service.settings.embedding_backend = "api"
+    service.settings.qwen_plus_api_key = "test-key"
+
+    calls = {"api": 0, "hash": 0}
+
+    def fake_api_embedding(_text: str) -> list[float]:
+        calls["api"] += 1
+        if calls["api"] == 1:
+            raise RuntimeError("temporary embedding failure")
+        return [0.8, 0.6]
+
+    def fake_hashed_embedding(_text: str) -> list[float]:
+        calls["hash"] += 1
+        return [0.0, 1.0]
+
+    monkeypatch.setattr(service, "_api_embedding", fake_api_embedding)
+    monkeypatch.setattr(service, "_hashed_embedding", fake_hashed_embedding)
+
+    first = service.embed_query_for_route("travel wallet", "text")
+    second = service.embed_query_for_route("travel wallet", "text")
+
+    assert first == [0.0, 1.0]
+    assert second == [0.8, 0.6]
+    assert calls == {"api": 2, "hash": 1}
+
+
+def test_embedding_service_caches_clip_query_embeddings_and_invalidates_on_model_change(monkeypatch) -> None:
+    service = EmbeddingService()
+    service.settings.image_embedding_backend = "clip"
+    service.settings.clip_vl_embedding_model = "clip-a"
+
+    calls: list[tuple[str, str]] = []
+
+    def fake_clip_embedding(text: str) -> list[float]:
+        calls.append((service.settings.clip_vl_embedding_model, text))
+        return [0.2, 0.9]
+
+    monkeypatch.setattr(service, "_clip_text_embedding", fake_clip_embedding)
+
+    first = service.embed_query_for_route("travel wallet", "image")
+    second = service.embed_query_for_route("travel wallet", "image")
+
+    service.settings.clip_vl_embedding_model = "clip-b"
+    third = service.embed_query_for_route("travel wallet", "image")
+
+    assert first == [0.2, 0.9]
+    assert second == [0.2, 0.9]
+    assert third == [0.2, 0.9]
+    assert calls == [("clip-a", "travel wallet"), ("clip-b", "travel wallet")]
+
+
 def test_reranker_service_uses_multimodal_backend_for_image_candidates(monkeypatch) -> None:
     service = RerankerService()
     service.settings.multimodal_reranker_backend = "qwen_vl"

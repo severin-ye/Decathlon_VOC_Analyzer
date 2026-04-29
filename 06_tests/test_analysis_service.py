@@ -4,14 +4,18 @@ import orjson
 import pytest
 
 from decathlon_voc_analyzer.schemas.analysis import (
+    AnalysisCheckpointPayload,
     AspectAggregate,
     EvidenceGapItem,
     ImprovementSuggestion,
     InsightItem,
     ProductAnalysisReport,
     ProductAnalysisRequest,
+    QuestionIntent,
     ReplayContinuationSummary,
     RetrievedEvidence,
+    RetrievalQualityMetrics,
+    RetrievalRuntimeProfile,
     RetrievalQuestion,
     RetrievalRecord,
     SupportingEvidence,
@@ -104,6 +108,240 @@ def test_product_analysis_service_can_reuse_persisted_extraction_artifact(monkey
     )
 
     assert resolved is extraction
+
+
+def test_analysis_checkpoint_roundtrip_requires_exact_signature(tmp_path) -> None:
+    service = ProductAnalysisService()
+    service.settings.reports_output_dir = tmp_path
+    extraction = ReviewExtractionResponse(
+        product_id="backpack_010",
+        category_slug="backpack",
+        extraction_mode="llm",
+        preprocessed_reviews=[],
+        aspects=[],
+        skipped_review_ids=[],
+        warnings=[],
+        artifact_path="/tmp/backpack_010.json",
+    )
+    request = ProductAnalysisRequest(
+        product_id="backpack_010",
+        category_slug="backpack",
+        max_reviews=25,
+        use_llm=True,
+        questions_per_aspect=2,
+        top_k_per_route=2,
+        reuse_analysis_checkpoint=True,
+    )
+    retrieval_runtime = RetrievalRuntimeProfile(
+        text_embedding_backend="api",
+        text_embedding_model="text-embedding-v4",
+        image_embedding_backend="clip",
+        image_embedding_model="openai/clip-vit-base-patch32",
+        reranker_backend="api",
+        reranker_model="gte-rerank-v2",
+        multimodal_reranker_backend="qwen_vl",
+        multimodal_reranker_model="qwen-vl-max-latest",
+        native_multimodal_enabled=True,
+        summary="demo",
+    )
+    question_intent = QuestionIntent(
+        intent_id="intent_1",
+        source_review_id="review_1",
+        source_aspect="value_price",
+        source_aspect_id="aspect_1",
+        intent_type="explicit_support",
+        rationale="demo",
+        expected_evidence_routes=["text"],
+    )
+    question = RetrievalQuestion(
+        question_id="q1",
+        source_review_id="review_1",
+        source_aspect="value_price",
+        source_aspect_id="aspect_1",
+        question="demo question",
+        rationale="demo",
+        expected_evidence_routes=["text"],
+        confidence=0.7,
+    )
+    retrieval = RetrievalRecord(
+        retrieval_id="r1",
+        product_id="backpack_010",
+        query="demo question",
+        source_review_id="review_1",
+        source_aspect="value_price",
+        source_question_id="q1",
+        source_question="demo question",
+        source_evidence_span="demo",
+        expected_evidence_routes=["text"],
+        retrieved=[],
+    )
+    metric = RetrievalQualityMetrics(
+        retrieval_id="r1",
+        source_aspect="value_price",
+        top_k_count=1,
+        route_coverage=1.0,
+        answer_coverage=1.0,
+        answer_status="supported",
+        evidence_coverage=1.0,
+        score_drift=0.0,
+        text_coverage=True,
+        image_coverage=False,
+        conflict_risk=0.0,
+        retrieval_quality_label="good",
+        failure_reason="none",
+        corrective_action="keep_current",
+    )
+
+    checkpoint_path = service._persist_analysis_checkpoint(
+        request=request,
+        extraction=extraction,
+        question_intents=[question_intent],
+        questions=[question],
+        question_mode="llm",
+        question_warnings=["qwarn"],
+        retrievals=[retrieval],
+        retrieval_quality=[metric],
+        corrective_warnings=["rwarn"],
+        retrieval_runtime=retrieval_runtime,
+    )
+
+    assert Path(checkpoint_path).exists()
+
+    loaded = service._load_analysis_checkpoint(request=request, extraction=extraction)
+
+    assert loaded.question_mode == "llm"
+    assert loaded.question_warnings == ["qwarn"]
+    assert loaded.corrective_warnings == ["rwarn"]
+    assert loaded.questions[0].question_id == "q1"
+    assert loaded.retrieval_quality[0].retrieval_id == "r1"
+
+
+def test_analysis_checkpoint_rejects_mismatched_request_signature(tmp_path) -> None:
+    service = ProductAnalysisService()
+    service.settings.reports_output_dir = tmp_path
+    extraction = ReviewExtractionResponse(
+        product_id="backpack_010",
+        category_slug="backpack",
+        extraction_mode="llm",
+        preprocessed_reviews=[],
+        aspects=[],
+        skipped_review_ids=[],
+        warnings=[],
+        artifact_path="/tmp/backpack_010.json",
+    )
+    base_request = ProductAnalysisRequest(
+        product_id="backpack_010",
+        category_slug="backpack",
+        max_reviews=25,
+        use_llm=True,
+        questions_per_aspect=2,
+        top_k_per_route=2,
+        reuse_analysis_checkpoint=True,
+    )
+    service._persist_analysis_checkpoint(
+        request=base_request,
+        extraction=extraction,
+        question_intents=[],
+        questions=[],
+        question_mode="llm",
+        question_warnings=[],
+        retrievals=[],
+        retrieval_quality=[],
+        corrective_warnings=[],
+        retrieval_runtime=RetrievalRuntimeProfile(
+            text_embedding_backend="api",
+            text_embedding_model="text-embedding-v4",
+            image_embedding_backend="clip",
+            image_embedding_model="openai/clip-vit-base-patch32",
+            reranker_backend="api",
+            reranker_model="gte-rerank-v2",
+            multimodal_reranker_backend="qwen_vl",
+            multimodal_reranker_model="qwen-vl-max-latest",
+            native_multimodal_enabled=True,
+            summary="demo",
+        ),
+    )
+
+    mismatched_request = base_request.model_copy(update={"top_k_per_route": 3})
+
+    with pytest.raises(ValueError, match="checkpoint 与当前运行参数或运行时配置不一致"):
+        service._load_analysis_checkpoint(request=mismatched_request, extraction=extraction)
+
+
+def test_resolve_question_retrieval_state_reuses_checkpoint_without_recomputing(monkeypatch) -> None:
+    service = ProductAnalysisService()
+    extraction = ReviewExtractionResponse(
+        product_id="backpack_010",
+        category_slug="backpack",
+        extraction_mode="llm",
+        preprocessed_reviews=[],
+        aspects=[],
+        skipped_review_ids=[],
+        warnings=[],
+        artifact_path="/tmp/backpack_010.json",
+    )
+    checkpoint = AnalysisCheckpointPayload(
+        product_id="backpack_010",
+        category_slug="backpack",
+        signature=service._build_analysis_checkpoint_signature(
+            request=ProductAnalysisRequest(
+                product_id="backpack_010",
+                category_slug="backpack",
+                max_reviews=25,
+                use_llm=True,
+                questions_per_aspect=2,
+                top_k_per_route=2,
+                reuse_analysis_checkpoint=True,
+            ),
+            extraction=extraction,
+        ),
+        question_mode="llm",
+        question_warnings=["qwarn"],
+        corrective_warnings=["rwarn"],
+        question_intents=[],
+        questions=[],
+        retrievals=[],
+        retrieval_quality=[],
+        retrieval_runtime=RetrievalRuntimeProfile(
+            text_embedding_backend="api",
+            text_embedding_model="text-embedding-v4",
+            image_embedding_backend="clip",
+            image_embedding_model="openai/clip-vit-base-patch32",
+            reranker_backend="api",
+            reranker_model="gte-rerank-v2",
+            multimodal_reranker_backend="qwen_vl",
+            multimodal_reranker_model="qwen-vl-max-latest",
+            native_multimodal_enabled=True,
+            summary="demo",
+        ),
+    )
+    request = ProductAnalysisRequest(
+        product_id="backpack_010",
+        category_slug="backpack",
+        max_reviews=25,
+        use_llm=True,
+        questions_per_aspect=2,
+        top_k_per_route=2,
+        reuse_analysis_checkpoint=True,
+    )
+
+    monkeypatch.setattr(service, "_load_analysis_checkpoint", lambda request, extraction: checkpoint)
+
+    def _fail(*args, **kwargs):
+        raise AssertionError("expensive recomputation should be skipped when checkpoint is reused")
+
+    monkeypatch.setattr(service.question_service, "generate_questions", _fail)
+    monkeypatch.setattr(service.retrieval_service, "retrieve_for_package", _fail)
+
+    resolved = service._resolve_question_retrieval_state(
+        request=request,
+        package=None,
+        extraction=extraction,
+    )
+
+    assert resolved[2] == ["qwarn"]
+    assert resolved[6] == ["rwarn"]
+    assert resolved[7].summary == "demo"
 
 
 def test_product_analysis_service_applies_claim_revisions_to_report_items() -> None:

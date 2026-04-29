@@ -39,3 +39,29 @@ def test_dataset_service_preserves_original_multilingual_product_fields(monkeypa
     assert package.primary_language == "ko"
     assert any(block.language == "ko" for block in package.text_blocks)
     assert any(block.content_original == block.content for block in package.text_blocks)
+
+
+def test_dataset_service_reuses_persisted_normalized_package(monkeypatch) -> None:
+    service = DatasetService()
+    service.normalize_dataset(
+        DatasetNormalizeRequest(
+            categories=["backpack"],
+            product_ids=["backpack_010"],
+            persist_artifacts=True,
+        )
+    )
+
+    def _fail_normalize(*args, **kwargs):
+        raise AssertionError("_normalize_product should not be called when normalized artifact exists")
+
+    monkeypatch.setattr(service, "_normalize_product", _fail_normalize)
+
+    package = service.load_product_package(
+        product_id="backpack_010",
+        category_slug="backpack",
+        use_llm=False,
+    )
+
+    assert package.product_id == "backpack_010"
+    assert package.category_slug == "backpack"
+    assert package.text_blocks

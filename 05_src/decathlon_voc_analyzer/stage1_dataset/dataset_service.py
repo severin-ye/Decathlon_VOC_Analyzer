@@ -145,8 +145,26 @@ class DatasetService:
         category_slug: str | None = None,
         use_llm: bool = True,
     ) -> ProductEvidencePackage:
+        persisted = self._load_persisted_package(product_id=product_id, category_slug=category_slug)
+        if persisted is not None:
+            return persisted
         directory = self._find_product_directory(product_id=product_id, category_slug=category_slug)
         return self._normalize_product(directory, use_llm=use_llm)
+
+    def _load_persisted_package(
+        self,
+        product_id: str,
+        category_slug: str | None,
+    ) -> ProductEvidencePackage | None:
+        if not category_slug:
+            return None
+        artifact_path = self.settings.normalized_output_dir / category_slug / f"{product_id}.json"
+        if not artifact_path.exists():
+            return None
+        payload = orjson.loads(artifact_path.read_bytes())
+        if not isinstance(payload, dict):
+            return None
+        return ProductEvidencePackage.model_validate(payload)
 
     def _iter_category_dirs(self) -> list[Path]:
         if not self.settings.dataset_root.exists():

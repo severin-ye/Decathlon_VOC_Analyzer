@@ -1,6 +1,6 @@
 import math
 import re
-from collections import Counter
+from collections import Counter, OrderedDict
 from functools import lru_cache
 from pathlib import Path
 
@@ -17,6 +17,7 @@ TOKEN_RE = re.compile(r"[\w\-\u4e00-\u9fff가-힣]+", re.UNICODE)
 
 class EmbeddingService:
     VECTOR_DIMENSION = 64
+    QUERY_EMBEDDING_CACHE_SIZE = 256
 
     def __init__(self) -> None:
         self.settings = get_settings()
@@ -25,6 +26,7 @@ class EmbeddingService:
         self._clip_model: CLIPModel | None = None
         self._clip_processor: CLIPProcessor | None = None
         self._clip_vector_size: int | None = None
+        self._query_embedding_cache: OrderedDict[tuple[str, ...], list[float]] = OrderedDict()
 
     def embed_text(self, text: str) -> list[float]:
         if self.settings.embedding_backend == "api" and self.settings.qwen_plus_api_key:
@@ -52,11 +54,16 @@ class EmbeddingService:
 
     def embed_query_for_route(self, text: str, route: str) -> list[float]:
         if route == "image" and self.settings.image_embedding_backend == "clip":
+            cache_key = ("image", "clip", self.settings.clip_vl_embedding_model, text)
+            cached = self._get_cached_query_embedding(cache_key)
+            if cached is not None:
+                return cached
             try:
-                return self._clip_text_embedding(text)
+                vector = self._clip_text_embedding(text)
+                return self._store_query_embedding(cache_key, vector)
             except Exception:
-                return self.embed_text(text)
-        return self.embed_text(text)
+                return self._embed_text_query(text=text, route=route, allow_cache=False)
+        return self._embed_text_query(text=text, route=route)
 
     def similarity(self, left: list[float], right: list[float]) -> float:
         if not left or not right:
@@ -101,6 +108,51 @@ class EmbeddingService:
         vector = list(response.data[0].embedding)
         self._vector_size = len(vector)
         return vector
+
+    def _embed_text_query(self, text: str, route: str, allow_cache: bool = True) -> list[float]:
+        cache_key = self._text_query_cache_key(text=text, route=route)
+        if allow_cache:
+            cached = self._get_cached_query_embedding(cache_key)
+            if cached is not None:
+                return cached
+
+        if self.settings.embedding_backend == "api" and self.settings.qwen_plus_api_key:
+            try:
+                vector = self._api_embedding(text)
+            except Exception:
+                return self._hashed_embedding(text)
+        else:
+            vector = self._hashed_embedding(text)
+
+        if not allow_cache:
+            return vector
+        return self._store_query_embedding(cache_key, vector)
+
+    def _text_query_cache_key(self, text: str, route: str) -> tuple[str, ...]:
+        if self.settings.embedding_backend == "api" and self.settings.qwen_plus_api_key:
+            return (
+                route,
+                "api",
+                self.settings.qwen_base_url,
+                self.settings.qwen_embedding_model,
+                text,
+            )
+        return (route, "hash", str(self.VECTOR_DIMENSION), text)
+
+    def _get_cached_query_embedding(self, cache_key: tuple[str, ...]) -> list[float] | None:
+        cached = self._query_embedding_cache.get(cache_key)
+        if cached is None:
+            return None
+        self._query_embedding_cache.move_to_end(cache_key)
+        return list(cached)
+
+    def _store_query_embedding(self, cache_key: tuple[str, ...], vector: list[float]) -> list[float]:
+        cached_vector = list(vector)
+        self._query_embedding_cache[cache_key] = cached_vector
+        self._query_embedding_cache.move_to_end(cache_key)
+        while len(self._query_embedding_cache) > self.QUERY_EMBEDDING_CACHE_SIZE:
+            self._query_embedding_cache.popitem(last=False)
+        return list(cached_vector)
 
     def _hashed_embedding(self, text: str) -> list[float]:
         tokens = [token.lower() for token in TOKEN_RE.findall(text.lower()) if len(token) > 1]

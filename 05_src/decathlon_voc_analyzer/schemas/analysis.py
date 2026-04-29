@@ -111,8 +111,41 @@ class RetrievalRuntimeProfile(BaseModel):
     summary: str
 
 
+class AnalysisCheckpointSignature(BaseModel):
+    prompt_variant: str
+    use_llm: bool
+    max_reviews: int | None = None
+    questions_per_aspect: int = Field(ge=1, le=5)
+    top_k_per_route: int = Field(ge=1, le=5)
+    extraction_digest: str
+    retrieval_backend: str
+    embedding_backend: str
+    image_embedding_backend: str
+    reranker_backend: str
+    multimodal_reranker_backend: str
+    qwen_plus_model: str
+    qwen_embedding_model: str
+    qwen_reranker_model: str
+    qwen_vl_reranker_model: str
+
+
+class AnalysisCheckpointPayload(BaseModel):
+    product_id: str
+    category_slug: str | None = None
+    signature: AnalysisCheckpointSignature
+    question_mode: Literal["llm", "heuristic"]
+    question_warnings: list[str] = Field(default_factory=list)
+    corrective_warnings: list[str] = Field(default_factory=list)
+    question_intents: list[QuestionIntent] = Field(default_factory=list)
+    questions: list[RetrievalQuestion] = Field(default_factory=list)
+    retrievals: list[RetrievalRecord] = Field(default_factory=list)
+    retrieval_quality: list[RetrievalQualityMetrics] = Field(default_factory=list)
+    retrieval_runtime: RetrievalRuntimeProfile
+
+
 class AnalysisArtifactBundle(BaseModel):
     analysis_path: str
+    checkpoint_path: str | None = None
     feedback_path: str | None = None
     replay_path: str | None = None
 
@@ -286,6 +319,7 @@ class ProductAnalysisRequest(BaseModel):
     persist_artifact: bool = False
     use_replay: bool = False
     reuse_extraction_artifact: bool = False
+    reuse_analysis_checkpoint: bool = False
     top_k_per_route: int = Field(default=2, ge=1, le=5)
     questions_per_aspect: int = Field(default=2, ge=1, le=5)
 

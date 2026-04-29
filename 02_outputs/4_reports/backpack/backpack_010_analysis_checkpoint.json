@@ -1,0 +1,275 @@
+{
+  "product_id": "backpack_010",
+  "category_slug": "backpack",
+  "signature": {
+    "prompt_variant": "main",
+    "use_llm": true,
+    "max_reviews": 2,
+    "questions_per_aspect": 1,
+    "top_k_per_route": 1,
+    "extraction_digest": "cc28c9ee832cc31c89dfd8ee435f508ac64a6c39",
+    "retrieval_backend": "qdrant",
+    "embedding_backend": "api",
+    "image_embedding_backend": "clip",
+    "reranker_backend": "api",
+    "multimodal_reranker_backend": "qwen_vl",
+    "qwen_plus_model": "qwen-plus",
+    "qwen_embedding_model": "text-embedding-v4",
+    "qwen_reranker_model": "gte-rerank-v2",
+    "qwen_vl_reranker_model": "qwen-vl-max-latest"
+  },
+  "question_mode": "llm",
+  "question_warnings": [],
+  "corrective_warnings": [],
+  "question_intents": [
+    {
+      "intent_id": "backpack_010_review_0090_aspect_01_intent_01",
+      "source_review_id": "backpack_010_review_0090",
+      "source_aspect": "size",
+      "source_aspect_id": "backpack_010_review_0090_aspect_01",
+      "intent_type": "explicit_support",
+      "rationale": "Check whether product-page text directly substantiates the review claim about 'size'.",
+      "expected_evidence_routes": [
+        "text"
+      ],
+      "forbidden_concepts": [],
+      "specificity_bound": "Only ask for evidence that can plausibly appear on a normal retail product page."
+    },
+    {
+      "intent_id": "backpack_010_review_0090_aspect_02_intent_01",
+      "source_review_id": "backpack_010_review_0090",
+      "source_aspect": "design",
+      "source_aspect_id": "backpack_010_review_0090_aspect_02",
+      "intent_type": "explicit_support",
+      "rationale": "Check whether product-page text directly substantiates the review claim about 'design'.",
+      "expected_evidence_routes": [
+        "text"
+      ],
+      "forbidden_concepts": [],
+      "specificity_bound": "Only ask for evidence that can plausibly appear on a normal retail product page."
+    },
+    {
+      "intent_id": "backpack_010_review_0153_aspect_01_intent_01",
+      "source_review_id": "backpack_010_review_0153",
+      "source_aspect": "size",
+      "source_aspect_id": "backpack_010_review_0153_aspect_01",
+      "intent_type": "explicit_support",
+      "rationale": "Check whether product-page text directly substantiates the review claim about 'size'.",
+      "expected_evidence_routes": [
+        "text"
+      ],
+      "forbidden_concepts": [],
+      "specificity_bound": "Only ask for evidence that can plausibly appear on a normal retail product page."
+    }
+  ],
+  "questions": [
+    {
+      "question_id": "backpack_010_review_0090_aspect_01_q_01",
+      "source_review_id": "backpack_010_review_0090",
+      "source_aspect": "size",
+      "source_aspect_id": "backpack_010_review_0090_aspect_01",
+      "question": "What are the product's listed dimensions (e.g., height, width, depth) in centimeters or inches?",
+      "rationale": "The reviewer claims the product is 'too large', so verifying the actual stated dimensions from the product specifications will allow objective assessment of whether the size aligns with that claim.",
+      "expected_evidence_routes": [
+        "text"
+      ],
+      "confidence": 0.95
+    },
+    {
+      "question_id": "backpack_010_review_0090_aspect_02_q_01",
+      "source_review_id": "backpack_010_review_0090",
+      "source_aspect": "design",
+      "source_aspect_id": "backpack_010_review_0090_aspect_02",
+      "question": "Does the product description or marketing copy explicitly use the word 'beautiful' or a direct synonym (e.g., 'elegant', 'stunning', 'gorgeous') to characterize the design?",
+      "rationale": "The review states 'beautiful' as a subjective opinion about design; the most direct textual evidence would be the presence of that or a closely equivalent term in official product copy.",
+      "expected_evidence_routes": [
+        "text"
+      ],
+      "confidence": 0.95
+    },
+    {
+      "question_id": "backpack_010_review_0153_aspect_01_q_01",
+      "source_review_id": "backpack_010_review_0153",
+      "source_aspect": "size",
+      "source_aspect_id": "backpack_010_review_0153_aspect_01",
+      "question": "What are the exact dimensions (e.g., length, width, height) or weight of the product as stated in the product specifications?",
+      "rationale": "The review claims the product is 'very small', which is a subjective size assessment; verifying the objective physical dimensions or weight from the product's official specs allows factual validation of whether it falls below typical or advertised size expectations.",
+      "expected_evidence_routes": [
+        "text"
+      ],
+      "confidence": 0.95
+    }
+  ],
+  "retrievals": [
+    {
+      "retrieval_id": "retrieval_2c1844a265dd",
+      "product_id": "backpack_010",
+      "query": "What are the product's listed dimensions (e.g., height, width, depth) in centimeters or inches?",
+      "source_review_id": "backpack_010_review_0090",
+      "source_aspect": "size",
+      "source_question_id": "backpack_010_review_0090_aspect_01_q_01",
+      "source_question": "What are the product's listed dimensions (e.g., height, width, depth) in centimeters or inches?",
+      "source_evidence_span": "The reviewer claims the product is 'too large', so verifying the actual stated dimensions from the product specifications will allow objective assessment of whether the size aligns with that claim.",
+      "expected_evidence_routes": [
+        "text"
+      ],
+      "retrieved": [
+        {
+          "product_id": "backpack_010",
+          "route": "text",
+          "doc_type": "title",
+          "text_block_id": "backpack_010_product_name_b4b3d8117f94",
+          "image_id": null,
+          "region_id": null,
+          "region_label": null,
+          "region_box": null,
+          "source_section": "product_name",
+          "image_path": null,
+          "content_preview": "백패킹 오거나이저 여행 지갑 S",
+          "language": "ko",
+          "content_original": "백패킹 오거나이저 여행 지갑 S",
+          "content_normalized": "백패킹 오거나이저 여행 지갑 S",
+          "embedding_score": 0.20970914767507903,
+          "rerank_score": 0.16518024571073353
+        }
+      ]
+    },
+    {
+      "retrieval_id": "retrieval_4257ebef19af",
+      "product_id": "backpack_010",
+      "query": "Does the product description or marketing copy explicitly use the word 'beautiful' or a direct synonym (e.g., 'elegant', 'stunning', 'gorgeous') to characterize the design?",
+      "source_review_id": "backpack_010_review_0090",
+      "source_aspect": "design",
+      "source_question_id": "backpack_010_review_0090_aspect_02_q_01",
+      "source_question": "Does the product description or marketing copy explicitly use the word 'beautiful' or a direct synonym (e.g., 'elegant', 'stunning', 'gorgeous') to characterize the design?",
+      "source_evidence_span": "The review states 'beautiful' as a subjective opinion about design; the most direct textual evidence would be the presence of that or a closely equivalent term in official product copy.",
+      "expected_evidence_routes": [
+        "text"
+      ],
+      "retrieved": [
+        {
+          "product_id": "backpack_010",
+          "route": "text",
+          "doc_type": "title",
+          "text_block_id": "backpack_010_product_name_b4b3d8117f94",
+          "image_id": null,
+          "region_id": null,
+          "region_label": null,
+          "region_box": null,
+          "source_section": "product_name",
+          "image_path": null,
+          "content_preview": "백패킹 오거나이저 여행 지갑 S",
+          "language": "ko",
+          "content_original": "백패킹 오거나이저 여행 지갑 S",
+          "content_normalized": "백패킹 오거나이저 여행 지갑 S",
+          "embedding_score": 0.2561324271977642,
+          "rerank_score": 0.15116795547028047
+        }
+      ]
+    },
+    {
+      "retrieval_id": "retrieval_038a080c21c1",
+      "product_id": "backpack_010",
+      "query": "What are the exact dimensions (e.g., length, width, height) or weight of the product as stated in the product specifications?",
+      "source_review_id": "backpack_010_review_0153",
+      "source_aspect": "size",
+      "source_question_id": "backpack_010_review_0153_aspect_01_q_01",
+      "source_question": "What are the exact dimensions (e.g., length, width, height) or weight of the product as stated in the product specifications?",
+      "source_evidence_span": "The review claims the product is 'very small', which is a subjective size assessment; verifying the objective physical dimensions or weight from the product's official specs allows factual validation of whether it falls below typical or advertised size expectations.",
+      "expected_evidence_routes": [
+        "text"
+      ],
+      "retrieved": [
+        {
+          "product_id": "backpack_010",
+          "route": "text",
+          "doc_type": "title",
+          "text_block_id": "backpack_010_product_name_b4b3d8117f94",
+          "image_id": null,
+          "region_id": null,
+          "region_label": null,
+          "region_box": null,
+          "source_section": "product_name",
+          "image_path": null,
+          "content_preview": "백패킹 오거나이저 여행 지갑 S",
+          "language": "ko",
+          "content_original": "백패킹 오거나이저 여행 지갑 S",
+          "content_normalized": "백패킹 오거나이저 여행 지갑 S",
+          "embedding_score": 0.1998617038323191,
+          "rerank_score": 0.1654599718506363
+        }
+      ]
+    }
+  ],
+  "retrieval_quality": [
+    {
+      "retrieval_id": "retrieval_2c1844a265dd",
+      "source_aspect": "size",
+      "top_k_count": 1,
+      "route_coverage": 1.0,
+      "answer_coverage": 1.0,
+      "answer_status": "supported",
+      "answer_value": "백패킹 오거나이저 여행 지갑 S",
+      "answer_source": "text",
+      "evidence_coverage": 1.0,
+      "score_drift": 0.0445289019643455,
+      "text_coverage": true,
+      "image_coverage": false,
+      "conflict_risk": 0.0,
+      "retrieval_quality_label": "good",
+      "failure_reason": "none",
+      "corrective_action": "keep_current",
+      "evaluator_explanation": "Retrieved evidence covers the expected routes and supports the question without notable conflict."
+    },
+    {
+      "retrieval_id": "retrieval_4257ebef19af",
+      "source_aspect": "design",
+      "top_k_count": 1,
+      "route_coverage": 1.0,
+      "answer_coverage": 1.0,
+      "answer_status": "supported",
+      "answer_value": "백패킹 오거나이저 여행 지갑 S",
+      "answer_source": "text",
+      "evidence_coverage": 1.0,
+      "score_drift": 0.10496447172748372,
+      "text_coverage": true,
+      "image_coverage": false,
+      "conflict_risk": 0.0,
+      "retrieval_quality_label": "good",
+      "failure_reason": "none",
+      "corrective_action": "keep_current",
+      "evaluator_explanation": "Retrieved evidence covers the expected routes and supports the question without notable conflict."
+    },
+    {
+      "retrieval_id": "retrieval_038a080c21c1",
+      "source_aspect": "size",
+      "top_k_count": 1,
+      "route_coverage": 1.0,
+      "answer_coverage": 1.0,
+      "answer_status": "supported",
+      "answer_value": "백패킹 오거나이저 여행 지갑 S",
+      "answer_source": "text",
+      "evidence_coverage": 1.0,
+      "score_drift": 0.03440173198168281,
+      "text_coverage": true,
+      "image_coverage": false,
+      "conflict_risk": 0.0,
+      "retrieval_quality_label": "good",
+      "failure_reason": "none",
+      "corrective_action": "keep_current",
+      "evaluator_explanation": "Retrieved evidence covers the expected routes and supports the question without notable conflict."
+    }
+  ],
+  "retrieval_runtime": {
+    "text_embedding_backend": "api",
+    "text_embedding_model": "text-embedding-v4",
+    "image_embedding_backend": "clip",
+    "image_embedding_model": "openai/clip-vit-base-patch32",
+    "reranker_backend": "api",
+    "reranker_model": "gte-rerank-v2",
+    "multimodal_reranker_backend": "qwen_vl",
+    "multimodal_reranker_model": "qwen-vl-max-latest",
+    "native_multimodal_enabled": true,
+    "summary": "Image evidence is configured to use native multimodal retrieval or reranking paths."
+  }
+}

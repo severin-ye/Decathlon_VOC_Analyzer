@@ -1,4 +1,6 @@
 from collections import Counter, defaultdict
+import hashlib
+from pathlib import Path
 from typing import Any
 import re
 
@@ -9,6 +11,8 @@ from decathlon_voc_analyzer.app.core.config import get_settings
 from decathlon_voc_analyzer.app.core.runtime_policy import handle_llm_failure, resolve_llm_permission, require_full_power_request
 from decathlon_voc_analyzer.llm import QwenChatGateway
 from decathlon_voc_analyzer.schemas.analysis import (
+    AnalysisCheckpointPayload,
+    AnalysisCheckpointSignature,
     AnalysisArtifactBundle,
     AnalysisMode,
     AspectRelationItem,
@@ -93,32 +97,11 @@ class ProductAnalysisService:
         progress.activate_module("analyze", detail=f"生成 {request.product_id} 的分析报告")
         extraction = self._resolve_extraction(request)
 
-        progress.activate_step("analyze", "questions", detail="规划并生成检索问题")
-        question_intents, questions, question_warnings, question_mode = self.question_service.generate_questions(
-            aspects=extraction.aspects,
-            questions_per_aspect=request.questions_per_aspect,
-            use_llm=request.use_llm,
-        )
-        progress.complete_step("analyze", "questions")
-
-        retrievals = self.retrieval_service.retrieve_for_package(
+        question_intents, questions, question_warnings, question_mode, retrievals, retrieval_quality, corrective_warnings, retrieval_runtime = self._resolve_question_retrieval_state(
+            request=request,
             package=package,
-            questions=questions,
-            top_k_per_route=request.top_k_per_route,
-            use_llm=request.use_llm,
+            extraction=extraction,
         )
-        progress.activate_step("analyze", "quality", detail="评估检索质量并准备纠偏")
-        retrieval_quality = self._assess_retrieval_quality(retrievals)
-        progress.complete_step("analyze", "quality")
-        questions, retrievals, retrieval_quality, corrective_warnings = self._apply_corrective_retrievals(
-            package=package,
-            questions=questions,
-            retrievals=retrievals,
-            retrieval_quality=retrieval_quality,
-            top_k_per_route=request.top_k_per_route,
-            use_llm=request.use_llm,
-        )
-        retrieval_runtime = self._build_retrieval_runtime_profile()
         aggregates = self._aggregate_aspects(extraction.aspects)
         replay_payload = None
         feedback_payload = None
@@ -227,6 +210,174 @@ class ProductAnalysisService:
                 persist_artifact=request.persist_artifact,
             )
         )
+
+    def _resolve_question_retrieval_state(
+        self,
+        request: ProductAnalysisRequest,
+        package,
+        extraction: ReviewExtractionResponse,
+    ) -> tuple[
+        list[QuestionIntent],
+        list[RetrievalQuestion],
+        list[str],
+        str,
+        list[RetrievalRecord],
+        list[RetrievalQualityMetrics],
+        list[str],
+        RetrievalRuntimeProfile,
+    ]:
+        progress = get_workflow_progress()
+        checkpoint = None
+        if request.reuse_analysis_checkpoint:
+            checkpoint = self._load_analysis_checkpoint(request=request, extraction=extraction)
+        if checkpoint is not None:
+            progress.activate_step("analyze", "questions", detail="复用已落盘问题规划结果")
+            progress.complete_step("analyze", "questions", detail=f"复用 {len(checkpoint.questions)} 个问题")
+            progress.activate_step("analyze", "retrieve", detail="复用已落盘检索结果")
+            progress.complete_step("analyze", "retrieve", detail=f"复用 {len(checkpoint.retrievals)} 组检索")
+            progress.activate_step("analyze", "quality", detail="复用已落盘检索质量评估")
+            progress.complete_step("analyze", "quality", detail=f"复用 {len(checkpoint.retrieval_quality)} 条质量记录")
+            return (
+                checkpoint.question_intents,
+                checkpoint.questions,
+                checkpoint.question_warnings,
+                checkpoint.question_mode,
+                checkpoint.retrievals,
+                checkpoint.retrieval_quality,
+                checkpoint.corrective_warnings,
+                checkpoint.retrieval_runtime,
+            )
+
+        progress.activate_step("analyze", "questions", detail="规划并生成检索问题")
+        question_intents, questions, question_warnings, question_mode = self.question_service.generate_questions(
+            aspects=extraction.aspects,
+            questions_per_aspect=request.questions_per_aspect,
+            use_llm=request.use_llm,
+        )
+        progress.complete_step("analyze", "questions")
+
+        retrievals = self.retrieval_service.retrieve_for_package(
+            package=package,
+            questions=questions,
+            top_k_per_route=request.top_k_per_route,
+            use_llm=request.use_llm,
+        )
+        progress.activate_step("analyze", "quality", detail="评估检索质量并准备纠偏")
+        retrieval_quality = self._assess_retrieval_quality(retrievals)
+        progress.complete_step("analyze", "quality")
+        questions, retrievals, retrieval_quality, corrective_warnings = self._apply_corrective_retrievals(
+            package=package,
+            questions=questions,
+            retrievals=retrievals,
+            retrieval_quality=retrieval_quality,
+            top_k_per_route=request.top_k_per_route,
+            use_llm=request.use_llm,
+        )
+        retrieval_runtime = self._build_retrieval_runtime_profile()
+        if request.persist_artifact:
+            self._persist_analysis_checkpoint(
+                request=request,
+                extraction=extraction,
+                question_intents=question_intents,
+                questions=questions,
+                question_mode=question_mode,
+                question_warnings=question_warnings,
+                retrievals=retrievals,
+                retrieval_quality=retrieval_quality,
+                corrective_warnings=corrective_warnings,
+                retrieval_runtime=retrieval_runtime,
+            )
+        return (
+            question_intents,
+            questions,
+            question_warnings,
+            question_mode,
+            retrievals,
+            retrieval_quality,
+            corrective_warnings,
+            retrieval_runtime,
+        )
+
+    def _analysis_checkpoint_path(self, product_id: str, category_slug: str | None) -> Path:
+        target_dir = self.settings.reports_output_dir / (category_slug or "adhoc")
+        return target_dir / f"{product_id}_analysis_checkpoint.json"
+
+    def _build_analysis_checkpoint_signature(
+        self,
+        request: ProductAnalysisRequest,
+        extraction: ReviewExtractionResponse,
+    ) -> AnalysisCheckpointSignature:
+        extraction_payload = extraction.model_dump(mode="json")
+        extraction_digest = hashlib.sha1(
+            orjson.dumps(extraction_payload, option=orjson.OPT_SORT_KEYS)
+        ).hexdigest()
+        return AnalysisCheckpointSignature(
+            prompt_variant=get_prompt_variant(),
+            use_llm=request.use_llm,
+            max_reviews=request.max_reviews,
+            questions_per_aspect=request.questions_per_aspect,
+            top_k_per_route=request.top_k_per_route,
+            extraction_digest=extraction_digest,
+            retrieval_backend=self.settings.retrieval_backend,
+            embedding_backend=self.settings.embedding_backend,
+            image_embedding_backend=self.settings.image_embedding_backend,
+            reranker_backend=self.settings.reranker_backend,
+            multimodal_reranker_backend=self.settings.multimodal_reranker_backend,
+            qwen_plus_model=self.settings.qwen_plus_model,
+            qwen_embedding_model=self.settings.qwen_embedding_model,
+            qwen_reranker_model=self.settings.qwen_reranker_model,
+            qwen_vl_reranker_model=self.settings.qwen_vl_reranker_model,
+        )
+
+    def _load_analysis_checkpoint(
+        self,
+        request: ProductAnalysisRequest,
+        extraction: ReviewExtractionResponse,
+    ) -> AnalysisCheckpointPayload:
+        checkpoint_path = self._analysis_checkpoint_path(request.product_id, request.category_slug)
+        if not checkpoint_path.exists():
+            raise FileNotFoundError(
+                f"未找到可复用的分析 checkpoint: {checkpoint_path}。请先完成一次 questions/retrieval 阶段，或不要使用 --resume-from-analysis-checkpoint。"
+            )
+        payload = orjson.loads(checkpoint_path.read_bytes())
+        checkpoint = AnalysisCheckpointPayload.model_validate(payload)
+        expected_signature = self._build_analysis_checkpoint_signature(request=request, extraction=extraction)
+        if checkpoint.signature != expected_signature:
+            raise ValueError(
+                "分析 checkpoint 与当前运行参数或运行时配置不一致，已拒绝复用。请确认 max_reviews、questions_per_aspect、top_k_per_route、LLM 开关、提示词变体和检索后端配置完全一致。"
+            )
+        return checkpoint
+
+    def _persist_analysis_checkpoint(
+        self,
+        request: ProductAnalysisRequest,
+        extraction: ReviewExtractionResponse,
+        question_intents: list[QuestionIntent],
+        questions: list[RetrievalQuestion],
+        question_mode: str,
+        question_warnings: list[str],
+        retrievals: list[RetrievalRecord],
+        retrieval_quality: list[RetrievalQualityMetrics],
+        corrective_warnings: list[str],
+        retrieval_runtime: RetrievalRuntimeProfile,
+    ) -> str:
+        checkpoint_path = self._analysis_checkpoint_path(request.product_id, request.category_slug)
+        checkpoint_path.parent.mkdir(parents=True, exist_ok=True)
+        payload = AnalysisCheckpointPayload(
+            product_id=request.product_id,
+            category_slug=request.category_slug,
+            signature=self._build_analysis_checkpoint_signature(request=request, extraction=extraction),
+            question_mode=question_mode,
+            question_warnings=question_warnings,
+            corrective_warnings=corrective_warnings,
+            question_intents=question_intents,
+            questions=questions,
+            retrievals=retrievals,
+            retrieval_quality=retrieval_quality,
+            retrieval_runtime=retrieval_runtime,
+        )
+        checkpoint_path.write_bytes(orjson.dumps(payload.model_dump(mode="json"), option=orjson.OPT_INDENT_2))
+        return str(checkpoint_path)
 
     def _attach_claim_attribution(
         self,
@@ -1801,6 +1952,7 @@ class ProductAnalysisService:
         target_dir = self.settings.reports_output_dir / (category_slug or "adhoc")
         target_dir.mkdir(parents=True, exist_ok=True)
         output_path = target_dir / f"{product_id}_analysis.json"
+        checkpoint_path = self._analysis_checkpoint_path(product_id=product_id, category_slug=category_slug)
         sidecar_paths = self.artifact_sidecar_service.persist_sidecars(
             product_id=product_id,
             category_slug=category_slug,
@@ -1812,6 +1964,7 @@ class ProductAnalysisService:
         )
         artifact_bundle = AnalysisArtifactBundle(
             analysis_path=str(output_path),
+            checkpoint_path=str(checkpoint_path) if checkpoint_path.exists() else None,
             feedback_path=sidecar_paths.get("feedback_path"),
             replay_path=sidecar_paths.get("replay_path"),
         )

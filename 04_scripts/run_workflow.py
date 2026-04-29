@@ -95,6 +95,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--skip-normalize", action="store_true", help="跳过标准化落盘阶段")
     parser.add_argument("--skip-index", action="store_true", help="跳过索引构建阶段")
     parser.add_argument("--resume-from-aspects", action="store_true", help="复用已有评论抽取产物，从 questions/retrieve/report 继续运行")
+    parser.add_argument("--resume-from-analysis-checkpoint", action="store_true", help="复用已有问题与检索 checkpoint，从 retrieval_quality/report 继续运行")
     parser.add_argument("--export-html", action="store_true", help="分析完成后顺带导出单商品 HTML 页面")
     parser.add_argument("--write-manifest", action="store_true", help="将本次运行摘要落盘为 manifest json")
     parser.add_argument("--manifest-path", default=None, help="可选，显式指定 manifest 输出路径")
@@ -232,6 +233,7 @@ def execute_workflow(args: argparse.Namespace, paths: dict[str, Path], progress:
             "skip_normalize": args.skip_normalize,
             "skip_index": args.skip_index,
             "reuse_extraction_artifact": args.resume_from_aspects,
+            "reuse_analysis_checkpoint": args.resume_from_analysis_checkpoint,
         },
         config={"configurable": {"thread_id": f"workflow:{_thread_scope_label(args, str(os.environ.get('PROMPT_VARIANT') or 'main'))}:{args.category}:{args.product_id}"}},
     )

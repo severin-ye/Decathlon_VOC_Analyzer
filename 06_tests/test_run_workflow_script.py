@@ -50,6 +50,27 @@ def test_parse_args_accepts_resume_from_aspects(monkeypatch) -> None:
     assert args.resume_from_aspects is True
 
 
+def test_parse_args_accepts_resume_from_analysis_checkpoint(monkeypatch) -> None:
+    module = _load_run_workflow_module()
+
+    monkeypatch.setattr(
+        module.sys,
+        "argv",
+        [
+            "run_workflow.py",
+            "--category",
+            "backpack",
+            "--product-id",
+            "backpack_010",
+            "--resume-from-analysis-checkpoint",
+        ],
+    )
+
+    args = module.parse_args()
+
+    assert args.resume_from_analysis_checkpoint is True
+
+
 def test_build_cli_config_for_cn_namespace() -> None:
     module = _load_run_workflow_module()
 
@@ -127,6 +148,7 @@ def test_thread_scope_label_uses_normalized_prompt_variant() -> None:
 
 def test_configure_environment_defaults_batch_runs_to_qdrant(tmp_path, monkeypatch) -> None:
     module = _load_run_workflow_module()
+    monkeypatch.setattr(module.os, "environ", dict(module.os.environ))
 
     config = module.WorkflowCliConfig(
         dataset_root=tmp_path / "dataset",
