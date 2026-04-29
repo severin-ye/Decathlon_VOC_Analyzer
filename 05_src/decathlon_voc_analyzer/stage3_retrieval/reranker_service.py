@@ -10,12 +10,15 @@ from PIL import Image
 
 from decathlon_voc_analyzer.app.core.config import get_settings
 from decathlon_voc_analyzer.schemas.index import IndexedEvidence
+from decathlon_voc_analyzer.schemas.retrieval_cache import RerankCacheSignature
+from decathlon_voc_analyzer.stage3_retrieval.retrieval_cache_service import RetrievalCacheService
 
 
 class RerankerService:
     def __init__(self) -> None:
         self.settings = get_settings()
         self._client: OpenAI | None = None
+        self.cache_service = RetrievalCacheService()
 
     def rerank(
         self,
@@ -50,23 +53,115 @@ class RerankerService:
     def _rerank_text_candidates(self, query: str, candidates: list[IndexedEvidence], use_llm: bool) -> list[IndexedEvidence]:
         if use_llm and self.settings.reranker_backend == "api" and self.settings.qwen_plus_api_key:
             try:
-                return self._rerank_with_api(query, candidates)
+                return self._rerank_with_cache(
+                    query=query,
+                    candidates=candidates,
+                    route="text",
+                    use_llm=use_llm,
+                    backend_kind="api",
+                    compute=lambda: self._rerank_with_api(query, candidates),
+                )
             except Exception:
-                return self._rerank_heuristic(candidates)
-        return self._rerank_heuristic(candidates)
+                return self._rerank_with_cache(
+                    query=query,
+                    candidates=candidates,
+                    route="text",
+                    use_llm=use_llm,
+                    backend_kind="heuristic",
+                    compute=lambda: self._rerank_heuristic(candidates),
+                )
+        return self._rerank_with_cache(
+            query=query,
+            candidates=candidates,
+            route="text",
+            use_llm=use_llm,
+            backend_kind="heuristic",
+            compute=lambda: self._rerank_heuristic(candidates),
+        )
 
     def _rerank_image_candidates(self, query: str, candidates: list[IndexedEvidence], use_llm: bool) -> list[IndexedEvidence]:
         if use_llm and self.settings.multimodal_reranker_backend in {"api", "qwen_vl"} and self.settings.qwen_plus_api_key:
             try:
-                return self._rerank_image_candidates_with_vl(query, candidates)
+                return self._rerank_with_cache(
+                    query=query,
+                    candidates=candidates,
+                    route="image",
+                    use_llm=use_llm,
+                    backend_kind="qwen_vl" if self.settings.multimodal_reranker_backend == "qwen_vl" else "api",
+                    compute=lambda: self._rerank_image_candidates_with_vl(query, candidates),
+                )
             except Exception:
                 pass
         if use_llm and self.settings.reranker_backend == "api" and self.settings.qwen_plus_api_key:
             try:
-                return self._rerank_with_api(query, candidates)
+                return self._rerank_with_cache(
+                    query=query,
+                    candidates=candidates,
+                    route="image",
+                    use_llm=use_llm,
+                    backend_kind="api",
+                    compute=lambda: self._rerank_with_api(query, candidates),
+                )
             except Exception:
-                return self._rerank_heuristic(candidates)
-        return self._rerank_heuristic(candidates)
+                return self._rerank_with_cache(
+                    query=query,
+                    candidates=candidates,
+                    route="image",
+                    use_llm=use_llm,
+                    backend_kind="heuristic",
+                    compute=lambda: self._rerank_heuristic(candidates),
+                )
+        return self._rerank_with_cache(
+            query=query,
+            candidates=candidates,
+            route="image",
+            use_llm=use_llm,
+            backend_kind="heuristic",
+            compute=lambda: self._rerank_heuristic(candidates),
+        )
+
+    def _rerank_with_cache(
+        self,
+        query: str,
+        candidates: list[IndexedEvidence],
+        route: str,
+        use_llm: bool,
+        backend_kind: str,
+        compute,
+    ) -> list[IndexedEvidence]:
+        signature = self._build_rerank_cache_signature(
+            query=query,
+            candidates=candidates,
+            route=route,
+            use_llm=use_llm,
+            backend_kind=backend_kind,
+        )
+        cached = self.cache_service.load_rerank(signature)
+        if cached is not None:
+            return cached
+        reranked = compute()
+        self.cache_service.save_rerank(signature, reranked)
+        return reranked
+
+    def _build_rerank_cache_signature(
+        self,
+        query: str,
+        candidates: list[IndexedEvidence],
+        route: str,
+        use_llm: bool,
+        backend_kind: str,
+    ) -> RerankCacheSignature:
+        return RerankCacheSignature(
+            route=route,
+            query=query,
+            use_llm=use_llm,
+            backend_kind=backend_kind,
+            candidate_count=len(candidates),
+            candidate_digest=self.cache_service.build_candidate_digest(candidates),
+            base_url=self.settings.qwen_base_url if backend_kind in {"api", "qwen_vl"} else None,
+            reranker_model=self.settings.qwen_reranker_model if backend_kind == "api" else None,
+            multimodal_reranker_model=self.settings.qwen_vl_reranker_model if backend_kind == "qwen_vl" else None,
+        )
 
     def _rerank_with_api(self, query: str, candidates: list[IndexedEvidence]) -> list[IndexedEvidence]:
         payload = {

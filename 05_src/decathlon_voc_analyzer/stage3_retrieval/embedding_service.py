@@ -10,6 +10,8 @@ import torch
 from transformers import CLIPModel, CLIPProcessor
 
 from decathlon_voc_analyzer.app.core.config import get_settings
+from decathlon_voc_analyzer.schemas.retrieval_cache import QueryEmbeddingCacheSignature
+from decathlon_voc_analyzer.stage3_retrieval.retrieval_cache_service import RetrievalCacheService
 
 
 TOKEN_RE = re.compile(r"[\w\-\u4e00-\u9fff가-힣]+", re.UNICODE)
@@ -26,7 +28,8 @@ class EmbeddingService:
         self._clip_model: CLIPModel | None = None
         self._clip_processor: CLIPProcessor | None = None
         self._clip_vector_size: int | None = None
-        self._query_embedding_cache: OrderedDict[tuple[str, ...], list[float]] = OrderedDict()
+        self._query_embedding_cache: OrderedDict[str, list[float]] = OrderedDict()
+        self.cache_service = RetrievalCacheService()
 
     def embed_text(self, text: str) -> list[float]:
         if self.settings.embedding_backend == "api" and self.settings.qwen_plus_api_key:
@@ -54,13 +57,18 @@ class EmbeddingService:
 
     def embed_query_for_route(self, text: str, route: str) -> list[float]:
         if route == "image" and self.settings.image_embedding_backend == "clip":
-            cache_key = ("image", "clip", self.settings.clip_vl_embedding_model, text)
-            cached = self._get_cached_query_embedding(cache_key)
+            signature = QueryEmbeddingCacheSignature(
+                route="image",
+                query=text,
+                backend_kind="clip",
+                model_name=self.settings.clip_vl_embedding_model,
+            )
+            cached = self._load_cached_query_embedding(signature)
             if cached is not None:
                 return cached
             try:
                 vector = self._clip_text_embedding(text)
-                return self._store_query_embedding(cache_key, vector)
+                return self._store_query_embedding(signature, vector)
             except Exception:
                 return self._embed_text_query(text=text, route=route, allow_cache=False)
         return self._embed_text_query(text=text, route=route)
@@ -110,9 +118,9 @@ class EmbeddingService:
         return vector
 
     def _embed_text_query(self, text: str, route: str, allow_cache: bool = True) -> list[float]:
-        cache_key = self._text_query_cache_key(text=text, route=route)
+        signature = self._text_query_cache_signature(text=text, route=route)
         if allow_cache:
-            cached = self._get_cached_query_embedding(cache_key)
+            cached = self._load_cached_query_embedding(signature)
             if cached is not None:
                 return cached
 
@@ -126,32 +134,43 @@ class EmbeddingService:
 
         if not allow_cache:
             return vector
-        return self._store_query_embedding(cache_key, vector)
+        return self._store_query_embedding(signature, vector)
 
-    def _text_query_cache_key(self, text: str, route: str) -> tuple[str, ...]:
+    def _text_query_cache_signature(self, text: str, route: str) -> QueryEmbeddingCacheSignature:
         if self.settings.embedding_backend == "api" and self.settings.qwen_plus_api_key:
-            return (
-                route,
-                "api",
-                self.settings.qwen_base_url,
-                self.settings.qwen_embedding_model,
-                text,
+            return QueryEmbeddingCacheSignature(
+                route=route,
+                query=text,
+                backend_kind="api",
+                model_name=self.settings.qwen_embedding_model,
+                base_url=self.settings.qwen_base_url,
             )
-        return (route, "hash", str(self.VECTOR_DIMENSION), text)
+        return QueryEmbeddingCacheSignature(
+            route=route,
+            query=text,
+            backend_kind="hash",
+            model_name=f"hash-{self.VECTOR_DIMENSION}",
+        )
 
-    def _get_cached_query_embedding(self, cache_key: tuple[str, ...]) -> list[float] | None:
+    def _load_cached_query_embedding(self, signature: QueryEmbeddingCacheSignature) -> list[float] | None:
+        cache_key = self.cache_service.signature_token(signature)
         cached = self._query_embedding_cache.get(cache_key)
         if cached is None:
-            return None
+            cached = self.cache_service.load_query_embedding(signature)
+            if cached is None:
+                return None
+            self._query_embedding_cache[cache_key] = list(cached)
         self._query_embedding_cache.move_to_end(cache_key)
-        return list(cached)
+        return list(self._query_embedding_cache[cache_key])
 
-    def _store_query_embedding(self, cache_key: tuple[str, ...], vector: list[float]) -> list[float]:
+    def _store_query_embedding(self, signature: QueryEmbeddingCacheSignature, vector: list[float]) -> list[float]:
+        cache_key = self.cache_service.signature_token(signature)
         cached_vector = list(vector)
         self._query_embedding_cache[cache_key] = cached_vector
         self._query_embedding_cache.move_to_end(cache_key)
         while len(self._query_embedding_cache) > self.QUERY_EMBEDDING_CACHE_SIZE:
             self._query_embedding_cache.popitem(last=False)
+        self.cache_service.save_query_embedding(signature, cached_vector)
         return list(cached_vector)
 
     def _hashed_embedding(self, text: str) -> list[float]:

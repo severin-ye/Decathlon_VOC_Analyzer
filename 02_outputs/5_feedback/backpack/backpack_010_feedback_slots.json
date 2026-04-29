@@ -32,8 +32,8 @@
     {
       "slot_id": "issue_03",
       "item_type": "insight",
-      "label": "Subjective size perception conflict",
-      "summary": "Two reviews contradict each other on size: one calls the product 'too large', another 'very small'. Neither provides objective reference points, suggesting misalignment between user expectations and communicated sizing cues.",
+      "label": "Size perception conflict",
+      "summary": "Two reviews contradict each other on size: one says 'too large', another says 'too small', suggesting inconsistent sizing expectations or lack of clear dimensional guidance.",
       "owner": "content_presentation",
       "status": "pending_review",
       "confidence_breakdown": null,
@@ -43,17 +43,7 @@
       "slot_id": "suggestion_01",
       "item_type": "suggestion",
       "label": "Strengthen the product-page explanation and evidence around Missing size substantiation.",
-      "summary": "No objective size data (e.g., dimensions, weight) was retrieved from product text, yet size is the most frequently criticized aspect (frequency=2) and fully negative (negative_ratio=1.0). Adding explicit, standardized size specifications would enable users to calibrate expectations and reduce contradictory size complaints.; The Korean product title contains no size or aesthetic descriptors, limiting its utility for cross-cultural or search-based validation.",
-      "owner": "content_presentation",
-      "status": "pending_review",
-      "confidence_breakdown": null,
-      "reviewer_note": null
-    },
-    {
-      "slot_id": "suggestion_02",
-      "item_type": "suggestion",
-      "label": "Strengthen the product-page explanation and evidence around Positive design perception.",
-      "summary": "A reviewer used 'beautiful' to describe design, but no matching aesthetic language (e.g., 'elegant', 'modern') was found in the retrieved product title. This suggests a gap between user-perceived qualities and marketing language, potentially weakening resonance.; Only the product title was retrieved — richer descriptive copy (e.g., bullet points, feature highlights) may contain relevant design language that was not accessed.",
+      "summary": "Size-related complaints dominate the VOC (2/2 size reviews are negative), yet no dimensional or weight specs were found in retrieved text — adding these would directly address the top pain point.; Both size reviews cite subjective judgments ('too large', 'too small') without objective reference points, implying customers lack anchor data to calibrate expectations.",
       "owner": "content_presentation",
       "status": "pending_review",
       "confidence_breakdown": null,
@@ -63,7 +53,7 @@
       "slot_id": "retrieval_01",
       "item_type": "retrieval_quality",
       "label": "size",
-      "summary": "coverage=1.00, drift=0.04, conflict=0.00",
+      "summary": "coverage=1.00, drift=0.07, conflict=0.00",
       "owner": "product_issue",
       "status": "pending_review",
       "confidence_breakdown": null,
@@ -73,7 +63,7 @@
       "slot_id": "retrieval_02",
       "item_type": "retrieval_quality",
       "label": "design",
-      "summary": "coverage=1.00, drift=0.10, conflict=0.00",
+      "summary": "coverage=1.00, drift=0.12, conflict=0.00",
       "owner": "product_issue",
       "status": "pending_review",
       "confidence_breakdown": null,
@@ -91,6 +81,6 @@
     }
   ],
   "warnings": [
-    "replay continuity applied: persistent=0, resolved=9, new=5, reviewed=0"
+    "replay continuity applied: persistent=4, resolved=1, new=1, reviewed=0"
   ]
 }

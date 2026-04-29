@@ -15,8 +15,9 @@ def test_embedding_service_returns_non_empty_vector() -> None:
     assert len(vector) == service.vector_size()
 
 
-def test_reranker_service_returns_sorted_candidates() -> None:
+def test_reranker_service_returns_sorted_candidates(tmp_path) -> None:
     service = RerankerService()
+    service.settings.indexes_output_dir = tmp_path
     candidates = [
         IndexedEvidence(
             evidence_id="a",
@@ -46,7 +47,7 @@ def test_reranker_service_returns_sorted_candidates() -> None:
     assert reranked[1].evidence_id == "b"
 
 
-def test_reranker_service_uses_dedicated_api(monkeypatch) -> None:
+def test_reranker_service_uses_dedicated_api(monkeypatch, tmp_path) -> None:
     class DummyResponse:
         def __enter__(self):
             return self
@@ -72,6 +73,7 @@ def test_reranker_service_uses_dedicated_api(monkeypatch) -> None:
     monkeypatch.setattr("decathlon_voc_analyzer.stage3_retrieval.reranker_service.request.urlopen", fake_urlopen)
 
     service = RerankerService()
+    service.settings.indexes_output_dir = tmp_path
     candidates = [
         IndexedEvidence(
             evidence_id="a",
@@ -107,6 +109,7 @@ def test_reranker_service_uses_dedicated_api(monkeypatch) -> None:
 def test_embedding_service_uses_clip_for_image_route(monkeypatch, tmp_path) -> None:
     service = EmbeddingService()
     service.settings.image_embedding_backend = "clip"
+    service.settings.indexes_output_dir = tmp_path
 
     monkeypatch.setattr(service, "_clip_image_embedding", lambda _path, crop_box=None: [0.0, 1.0])
     monkeypatch.setattr(service, "_clip_text_embedding", lambda _text: [1.0, 0.0])
@@ -121,11 +124,12 @@ def test_embedding_service_uses_clip_for_image_route(monkeypatch, tmp_path) -> N
     assert query_vector == [1.0, 0.0]
 
 
-def test_embedding_service_caches_text_query_embeddings_and_invalidates_on_model_change(monkeypatch) -> None:
+def test_embedding_service_caches_text_query_embeddings_and_invalidates_on_model_change(monkeypatch, tmp_path) -> None:
     service = EmbeddingService()
     service.settings.embedding_backend = "api"
     service.settings.qwen_plus_api_key = "test-key"
     service.settings.qwen_embedding_model = "embed-a"
+    service.settings.indexes_output_dir = tmp_path
 
     calls: list[tuple[str, str]] = []
 
@@ -147,10 +151,11 @@ def test_embedding_service_caches_text_query_embeddings_and_invalidates_on_model
     assert calls == [("embed-a", "travel wallet"), ("embed-b", "travel wallet")]
 
 
-def test_embedding_service_does_not_cache_failed_api_query_fallback(monkeypatch) -> None:
+def test_embedding_service_does_not_cache_failed_api_query_fallback(monkeypatch, tmp_path) -> None:
     service = EmbeddingService()
     service.settings.embedding_backend = "api"
     service.settings.qwen_plus_api_key = "test-key"
+    service.settings.indexes_output_dir = tmp_path
 
     calls = {"api": 0, "hash": 0}
 
@@ -175,10 +180,11 @@ def test_embedding_service_does_not_cache_failed_api_query_fallback(monkeypatch)
     assert calls == {"api": 2, "hash": 1}
 
 
-def test_embedding_service_caches_clip_query_embeddings_and_invalidates_on_model_change(monkeypatch) -> None:
+def test_embedding_service_caches_clip_query_embeddings_and_invalidates_on_model_change(monkeypatch, tmp_path) -> None:
     service = EmbeddingService()
     service.settings.image_embedding_backend = "clip"
     service.settings.clip_vl_embedding_model = "clip-a"
+    service.settings.indexes_output_dir = tmp_path
 
     calls: list[tuple[str, str]] = []
 
@@ -200,10 +206,161 @@ def test_embedding_service_caches_clip_query_embeddings_and_invalidates_on_model
     assert calls == [("clip-a", "travel wallet"), ("clip-b", "travel wallet")]
 
 
-def test_reranker_service_uses_multimodal_backend_for_image_candidates(monkeypatch) -> None:
+def test_embedding_service_reuses_persisted_query_embedding_across_instances(tmp_path, monkeypatch) -> None:
+    first = EmbeddingService()
+    first.settings.embedding_backend = "api"
+    first.settings.qwen_plus_api_key = "test-key"
+    first.settings.qwen_embedding_model = "embed-a"
+    first.settings.indexes_output_dir = tmp_path
+
+    monkeypatch.setattr(first, "_api_embedding", lambda _text: [0.6, 0.8])
+
+    persisted = first.embed_query_for_route("travel wallet", "text")
+
+    second = EmbeddingService()
+    second.settings.embedding_backend = "api"
+    second.settings.qwen_plus_api_key = "test-key"
+    second.settings.qwen_embedding_model = "embed-a"
+    second.settings.indexes_output_dir = tmp_path
+
+    def _fail(_text: str) -> list[float]:
+        raise AssertionError("persisted query embedding should be reused before recomputing")
+
+    monkeypatch.setattr(second, "_api_embedding", _fail)
+
+    reused = second.embed_query_for_route("travel wallet", "text")
+
+    assert persisted == [0.6, 0.8]
+    assert reused == [0.6, 0.8]
+
+
+def test_embedding_service_rejects_persisted_query_embedding_when_signature_changes(tmp_path, monkeypatch) -> None:
+    first = EmbeddingService()
+    first.settings.embedding_backend = "api"
+    first.settings.qwen_plus_api_key = "test-key"
+    first.settings.qwen_embedding_model = "embed-a"
+    first.settings.indexes_output_dir = tmp_path
+    monkeypatch.setattr(first, "_api_embedding", lambda _text: [0.6, 0.8])
+    first.embed_query_for_route("travel wallet", "text")
+
+    second = EmbeddingService()
+    second.settings.embedding_backend = "api"
+    second.settings.qwen_plus_api_key = "test-key"
+    second.settings.qwen_embedding_model = "embed-b"
+    second.settings.indexes_output_dir = tmp_path
+
+    calls = {"api": 0}
+
+    def _api_embedding(_text: str) -> list[float]:
+        calls["api"] += 1
+        return [1.0, 0.0]
+
+    monkeypatch.setattr(second, "_api_embedding", _api_embedding)
+
+    vector = second.embed_query_for_route("travel wallet", "text")
+
+    assert vector == [1.0, 0.0]
+    assert calls["api"] == 1
+
+
+def test_reranker_service_reuses_persisted_heuristic_rerank_across_instances(tmp_path, monkeypatch) -> None:
+    first = RerankerService()
+    first.settings.reranker_backend = "heuristic"
+    first.settings.indexes_output_dir = tmp_path
+    candidates = [
+        IndexedEvidence(
+            evidence_id="a",
+            product_id="p1",
+            category_slug="bags",
+            route="text",
+            text_block_id="t1",
+            content="passport wallet with card storage",
+            vector=[0.1, 0.2],
+            score=0.9,
+        ),
+        IndexedEvidence(
+            evidence_id="b",
+            product_id="p1",
+            category_slug="bags",
+            route="text",
+            text_block_id="t2",
+            content="running shoe cushioning",
+            vector=[0.1, 0.2],
+            score=0.2,
+        ),
+    ]
+
+    first_result = first.rerank(query="passport wallet", candidates=candidates, use_llm=False)
+
+    second = RerankerService()
+    second.settings.reranker_backend = "heuristic"
+    second.settings.indexes_output_dir = tmp_path
+
+    def _fail(_candidates: list[IndexedEvidence]) -> list[IndexedEvidence]:
+        raise AssertionError("persisted rerank should be reused before recomputing")
+
+    monkeypatch.setattr(second, "_rerank_heuristic", _fail)
+
+    reused = second.rerank(query="passport wallet", candidates=candidates, use_llm=False)
+
+    assert [item.evidence_id for item in first_result] == ["a", "b"]
+    assert [item.evidence_id for item in reused] == ["a", "b"]
+
+
+def test_reranker_service_invalidates_cache_when_candidate_signature_changes(tmp_path, monkeypatch) -> None:
+    first = RerankerService()
+    first.settings.reranker_backend = "heuristic"
+    first.settings.indexes_output_dir = tmp_path
+    original_candidates = [
+        IndexedEvidence(
+            evidence_id="a",
+            product_id="p1",
+            category_slug="bags",
+            route="text",
+            text_block_id="t1",
+            content="passport wallet with card storage",
+            vector=[0.1, 0.2],
+            score=0.9,
+        ),
+        IndexedEvidence(
+            evidence_id="b",
+            product_id="p1",
+            category_slug="bags",
+            route="text",
+            text_block_id="t2",
+            content="running shoe cushioning",
+            vector=[0.1, 0.2],
+            score=0.2,
+        ),
+    ]
+    first.rerank(query="passport wallet", candidates=original_candidates, use_llm=False)
+
+    second = RerankerService()
+    second.settings.reranker_backend = "heuristic"
+    second.settings.indexes_output_dir = tmp_path
+    changed_candidates = [
+        IndexedEvidence.model_validate({**original_candidates[0].model_dump(mode="json"), "score": 0.1}),
+        original_candidates[1],
+    ]
+    calls = {"heuristic": 0}
+
+    def _rerank_heuristic(candidates: list[IndexedEvidence]) -> list[IndexedEvidence]:
+        calls["heuristic"] += 1
+        return sorted(candidates, key=lambda item: item.score or 0.0, reverse=True)
+
+    monkeypatch.setattr(second, "_rerank_heuristic", _rerank_heuristic)
+
+    reranked = second.rerank(query="passport wallet", candidates=changed_candidates, use_llm=False)
+
+    assert calls["heuristic"] == 1
+    assert [item.evidence_id for item in reranked] == ["b", "a"]
+
+
+def test_reranker_service_uses_multimodal_backend_for_image_candidates(monkeypatch, tmp_path) -> None:
     service = RerankerService()
     service.settings.multimodal_reranker_backend = "qwen_vl"
     service.settings.qwen_plus_api_key = "test-key"
+    service.settings.indexes_output_dir = tmp_path
 
     candidates = [
         IndexedEvidence(

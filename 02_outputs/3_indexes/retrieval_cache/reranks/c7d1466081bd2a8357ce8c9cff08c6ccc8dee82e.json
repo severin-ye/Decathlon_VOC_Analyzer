@@ -1,0 +1,63 @@
+{
+  "signature": {
+    "route": "image",
+    "query": "passport wallet",
+    "use_llm": true,
+    "backend_kind": "qwen_vl",
+    "candidate_count": 2,
+    "candidate_digest": "7cc406a1eeec7193eabc1bc78ef1661ff8ef53af",
+    "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
+    "reranker_model": null,
+    "multimodal_reranker_model": "qwen-vl-max-latest"
+  },
+  "reranked": [
+    {
+      "evidence_id": "img_b",
+      "product_id": "backpack_010",
+      "category_slug": "backpack",
+      "route": "image",
+      "doc_type": null,
+      "text_block_id": null,
+      "image_id": "img_b",
+      "source_section": null,
+      "image_path": "images/8512010/img2.png",
+      "variant": null,
+      "region_id": null,
+      "region_label": null,
+      "region_box": null,
+      "content": "passport compartment close-up",
+      "language": null,
+      "content_original": null,
+      "content_normalized": null,
+      "vector": [
+        0.2,
+        0.1
+      ],
+      "score": 0.93
+    },
+    {
+      "evidence_id": "img_a",
+      "product_id": "backpack_010",
+      "category_slug": "backpack",
+      "route": "image",
+      "doc_type": null,
+      "text_block_id": null,
+      "image_id": "img_a",
+      "source_section": null,
+      "image_path": "images/8512010/img1.png",
+      "variant": null,
+      "region_id": null,
+      "region_label": null,
+      "region_box": null,
+      "content": "zippered travel wallet",
+      "language": null,
+      "content_original": null,
+      "content_normalized": null,
+      "vector": [
+        0.1,
+        0.2
+      ],
+      "score": 0.11
+    }
+  ]
+}

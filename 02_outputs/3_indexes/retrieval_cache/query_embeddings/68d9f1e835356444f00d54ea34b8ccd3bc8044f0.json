@@ -1,0 +1,13 @@
+{
+  "signature": {
+    "route": "image",
+    "query": "travel wallet",
+    "backend_kind": "clip",
+    "model_name": "clip-b",
+    "base_url": null
+  },
+  "vector": [
+    0.2,
+    0.9
+  ]
+}
