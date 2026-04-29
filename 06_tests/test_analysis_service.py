@@ -16,7 +16,7 @@ from decathlon_voc_analyzer.schemas.analysis import (
     RetrievalRecord,
     SupportingEvidence,
 )
-from decathlon_voc_analyzer.schemas.review import ReviewAspect
+from decathlon_voc_analyzer.schemas.review import ReviewAspect, ReviewExtractionResponse
 from decathlon_voc_analyzer.stage4_generation.analysis_service import ProductAnalysisService
 
 
@@ -68,6 +68,42 @@ def test_product_analysis_service_emits_evidence_nodes_and_claim_attributions() 
     assert all(attribution.claim_id for attribution in result.report.claim_attributions)
     assert all(attribution.support_status in {"supported", "partial", "unsupported"} for attribution in result.report.claim_attributions)
     assert all(support_id in node_ids for attribution in result.report.claim_attributions for support_id in attribution.support_ids)
+
+
+def test_product_analysis_service_can_reuse_persisted_extraction_artifact(monkeypatch) -> None:
+    service = ProductAnalysisService()
+    extraction = ReviewExtractionResponse(
+        product_id="backpack_010",
+        category_slug="backpack",
+        extraction_mode="llm",
+        preprocessed_reviews=[],
+        aspects=[],
+        skipped_review_ids=[],
+        warnings=[],
+        artifact_path="/tmp/backpack_010.json",
+    )
+
+    monkeypatch.setattr(
+        service.review_service,
+        "load_persisted_result",
+        lambda product_id, category_slug: extraction,
+    )
+
+    def _fail_extract(*args, **kwargs):
+        raise AssertionError("extract should not be called when reuse_extraction_artifact=True")
+
+    monkeypatch.setattr(service.review_service, "extract", _fail_extract)
+
+    resolved = service._resolve_extraction(
+        ProductAnalysisRequest(
+            product_id="backpack_010",
+            category_slug="backpack",
+            use_llm=True,
+            reuse_extraction_artifact=True,
+        )
+    )
+
+    assert resolved is extraction
 
 
 def test_product_analysis_service_applies_claim_revisions_to_report_items() -> None:

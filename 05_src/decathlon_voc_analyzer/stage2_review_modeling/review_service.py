@@ -1,5 +1,6 @@
 import hashlib
 import re
+from pathlib import Path
 
 import orjson
 from pydantic import BaseModel, Field
@@ -200,6 +201,18 @@ class ReviewExtractionService:
             artifact_path=artifact_path,
         )
 
+    def load_persisted_result(self, product_id: str, category_slug: str | None) -> ReviewExtractionResponse:
+        artifact_path = self._artifact_path(product_id=product_id, category_slug=category_slug)
+        if not artifact_path.exists():
+            raise FileNotFoundError(
+                f"未找到可复用的评论抽取产物: {artifact_path}。请先完成一次抽取，或不要使用 --resume-from-aspects。"
+            )
+        payload = orjson.loads(artifact_path.read_bytes())
+        if not isinstance(payload, dict):
+            raise ValueError(f"评论抽取产物格式无效: {artifact_path}")
+        payload["artifact_path"] = str(artifact_path)
+        return ReviewExtractionResponse.model_validate(payload)
+
     def _resolve_reviews(
         self, request: ReviewExtractionRequest
     ) -> tuple[list[ReviewInput], str | None, str | None, ReviewSamplingPlan | None]:
@@ -361,9 +374,8 @@ class ReviewExtractionService:
         warnings: list[str],
     ) -> str:
         slug = product_id or "adhoc_reviews"
-        target_dir = self.settings.aspects_output_dir / (category_slug or "adhoc")
-        target_dir.mkdir(parents=True, exist_ok=True)
-        output_path = target_dir / f"{slug}.json"
+        output_path = self._artifact_path(product_id=slug, category_slug=category_slug)
+        output_path.parent.mkdir(parents=True, exist_ok=True)
         payload = {
             "product_id": product_id,
             "category_slug": category_slug,
@@ -376,6 +388,9 @@ class ReviewExtractionService:
         }
         output_path.write_bytes(orjson.dumps(payload, option=orjson.OPT_INDENT_2))
         return str(output_path)
+
+    def _artifact_path(self, product_id: str, category_slug: str | None) -> Path:
+        return self.settings.aspects_output_dir / (category_slug or "adhoc") / f"{product_id}.json"
 
     def _clean_text(self, text: str | None) -> str:
         if not text:

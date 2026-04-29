@@ -91,15 +91,7 @@ class ProductAnalysisService:
             use_llm=request.use_llm,
         )
         progress.activate_module("analyze", detail=f"生成 {request.product_id} 的分析报告")
-        extraction = self.review_service.extract(
-            ReviewExtractionRequest(
-                product_id=request.product_id,
-                category_slug=request.category_slug,
-                max_reviews=request.max_reviews,
-                use_llm=request.use_llm,
-                persist_artifact=request.persist_artifact,
-            )
-        )
+        extraction = self._resolve_extraction(request)
 
         progress.activate_step("analyze", "questions", detail="规划并生成检索问题")
         question_intents, questions, question_warnings, question_mode = self.question_service.generate_questions(
@@ -218,6 +210,22 @@ class ProductAnalysisService:
             artifact_bundle=artifact_bundle,
             artifact_path=artifact_bundle.analysis_path if artifact_bundle is not None else None,
             warnings=warnings,
+        )
+
+    def _resolve_extraction(self, request: ProductAnalysisRequest) -> ReviewExtractionResponse:
+        if request.reuse_extraction_artifact:
+            return self.review_service.load_persisted_result(
+                product_id=request.product_id,
+                category_slug=request.category_slug,
+            )
+        return self.review_service.extract(
+            ReviewExtractionRequest(
+                product_id=request.product_id,
+                category_slug=request.category_slug,
+                max_reviews=request.max_reviews,
+                use_llm=request.use_llm,
+                persist_artifact=request.persist_artifact,
+            )
         )
 
     def _attach_claim_attribution(

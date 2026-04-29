@@ -29,6 +29,27 @@ def test_preprocess_review_flag_alias() -> None:
     ]
 
 
+def test_parse_args_accepts_resume_from_aspects(monkeypatch) -> None:
+    module = _load_run_workflow_module()
+
+    monkeypatch.setattr(
+        module.sys,
+        "argv",
+        [
+            "run_workflow.py",
+            "--category",
+            "backpack",
+            "--product-id",
+            "backpack_010",
+            "--resume-from-aspects",
+        ],
+    )
+
+    args = module.parse_args()
+
+    assert args.resume_from_aspects is True
+
+
 def test_build_cli_config_for_cn_namespace() -> None:
     module = _load_run_workflow_module()
 

@@ -22,6 +22,7 @@ class SingleProductWorkflowState(TypedDict):
     use_llm: bool
     skip_normalize: bool
     skip_index: bool
+    reuse_extraction_artifact: bool
     overview: NotRequired[DatasetOverview]
     normalization: NotRequired[DatasetNormalizationResult | None]
     index_result: NotRequired[IndexBuildResponse | None]
@@ -94,6 +95,7 @@ def build_single_product_workflow():
                 use_llm=state["use_llm"],
                 persist_artifact=True,
                 use_replay=True,
+                reuse_extraction_artifact=state.get("reuse_extraction_artifact", False),
                 top_k_per_route=state["top_k_per_route"],
                 questions_per_aspect=state["questions_per_aspect"],
             )

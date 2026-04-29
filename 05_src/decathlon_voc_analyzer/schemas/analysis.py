@@ -285,6 +285,7 @@ class ProductAnalysisRequest(BaseModel):
     use_llm: bool = True
     persist_artifact: bool = False
     use_replay: bool = False
+    reuse_extraction_artifact: bool = False
     top_k_per_route: int = Field(default=2, ge=1, le=5)
     questions_per_aspect: int = Field(default=2, ge=1, le=5)
 
