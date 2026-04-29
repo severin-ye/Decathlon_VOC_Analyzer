@@ -1,6 +1,10 @@
 import json
 from pathlib import Path
 
+import pytest
+
+from decathlon_voc_analyzer.app.core.config import get_settings
+from decathlon_voc_analyzer.app.core.runtime_policy import RuntimePolicyError
 from decathlon_voc_analyzer.schemas.index import IndexedEvidence
 from decathlon_voc_analyzer.stage3_retrieval.embedding_service import EmbeddingService
 from decathlon_voc_analyzer.stage3_retrieval.reranker_service import RerankerService
@@ -400,3 +404,56 @@ def test_reranker_service_uses_multimodal_backend_for_image_candidates(monkeypat
 
     assert reranked[0].evidence_id == "img_b"
     assert reranked[0].score == 0.93
+
+
+def test_embedding_service_raises_when_strict_policy_forbids_api_fallback(tmp_path, monkeypatch) -> None:
+    policy_path = tmp_path / "runtime_execution_policy.json"
+    policy_path.write_text('{"allow_degradation": false, "full_power": true}', encoding="utf-8")
+    monkeypatch.setenv("RUNTIME_EXECUTION_POLICY_PATH", str(policy_path))
+    get_settings.cache_clear()
+
+    service = EmbeddingService()
+    service.settings.embedding_backend = "api"
+    service.settings.qwen_plus_api_key = "test-key"
+    service.settings.indexes_output_dir = tmp_path
+
+    def _fail(_text: str) -> list[float]:
+        raise RuntimeError("embedding backend down")
+
+    monkeypatch.setattr(service, "_api_embedding", _fail)
+
+    with pytest.raises(RuntimePolicyError, match="query_embedding"):
+        service.embed_query_for_route("travel wallet", "text")
+
+
+def test_reranker_service_raises_when_strict_policy_forbids_api_fallback(tmp_path, monkeypatch) -> None:
+    policy_path = tmp_path / "runtime_execution_policy.json"
+    policy_path.write_text('{"allow_degradation": false, "full_power": true}', encoding="utf-8")
+    monkeypatch.setenv("RUNTIME_EXECUTION_POLICY_PATH", str(policy_path))
+    get_settings.cache_clear()
+
+    service = RerankerService()
+    service.settings.reranker_backend = "api"
+    service.settings.qwen_plus_api_key = "test-key"
+    service.settings.indexes_output_dir = tmp_path
+
+    candidates = [
+        IndexedEvidence(
+            evidence_id="a",
+            product_id="p1",
+            category_slug="bags",
+            route="text",
+            text_block_id="t1",
+            content="passport wallet with card storage",
+            vector=[0.1, 0.2],
+            score=0.9,
+        )
+    ]
+
+    def _fail_api(_query: str, _candidates: list[IndexedEvidence]) -> list[IndexedEvidence]:
+        raise RuntimeError("reranker backend down")
+
+    monkeypatch.setattr(service, "_rerank_with_api", _fail_api)
+
+    with pytest.raises(RuntimePolicyError, match="text_rerank"):
+        service.rerank(query="passport wallet", candidates=candidates, use_llm=True)

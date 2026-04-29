@@ -9,6 +9,7 @@ import tty
 from contextlib import contextmanager
 from contextvars import ContextVar, Token
 from dataclasses import dataclass, field
+from datetime import datetime, timedelta
 from time import monotonic
 from typing import Iterator
 
@@ -251,6 +252,8 @@ class WorkflowProgressReporter:
 
     def _render_header(self):
         elapsed = monotonic() - self.started_at
+        overall_fraction = self._overall_fraction()
+        overall_eta = self._estimate_remaining_seconds(overall_fraction, elapsed)
         active_module = self._module_lookup.get(self._active_module_key) if self._active_module_key else None
         active_step = None
         if active_module is not None and self._active_step_key is not None:
@@ -258,6 +261,11 @@ class WorkflowProgressReporter:
 
         header = Text()
         header.append(f"Elapsed {elapsed:6.1f}s", style="bold cyan")
+        if overall_eta is not None:
+            header.append("  ")
+            header.append(f"ETA {self._format_duration(overall_eta)}", style="bold green")
+            header.append("  ")
+            header.append(f"Finish ~{self._format_eta_clock(overall_eta)}", style="green")
         if active_module is not None:
             header.append("  ")
             header.append(f"Module: {active_module.label}", style="bold yellow")
@@ -266,6 +274,10 @@ class WorkflowProgressReporter:
             header.append(f"Step: {active_step.label}", style="yellow")
             header.append("  ")
             header.append(f"Step Elapsed: {self._step_elapsed(active_step):5.1f}s", style="bold magenta")
+            step_eta = self._estimate_remaining_seconds(self._step_fraction(active_step), self._step_elapsed(active_step))
+            if step_eta is not None:
+                header.append("  ")
+                header.append(f"Step ETA {self._format_duration(step_eta)}", style="magenta")
         if self._note:
             header.append("\n")
             header.append(self._note, style="white")
@@ -288,7 +300,10 @@ class WorkflowProgressReporter:
         bars = Table.grid(expand=True, padding=(0, 1))
         bars.add_column(ratio=1)
         bars.add_column(ratio=1)
-        bars.add_row(self._bar_text("Overall", self._overall_fraction(), "cyan"), self._current_step_bar())
+        bars.add_row(
+            self._bar_text("Overall", self._overall_fraction(), "cyan", meta=self._overall_meta_text()),
+            self._current_step_bar(),
+        )
         return bars
 
     def _module_label(self, module: ProgressModuleState) -> Text:
@@ -377,8 +392,19 @@ class WorkflowProgressReporter:
         if count_text is not None:
             parts.append(count_text)
         if step.status == "in_progress" and step.started_at is not None:
-            parts.append(f"{self._step_elapsed(step):.1f}s")
+            elapsed = self._step_elapsed(step)
+            parts.append(f"{elapsed:.1f}s")
+            eta = self._estimate_remaining_seconds(self._step_fraction(step), elapsed)
+            if eta is not None:
+                parts.append(f"ETA {self._format_duration(eta)}")
         return " | ".join(parts) if parts else None
+
+    def _overall_meta_text(self) -> str | None:
+        elapsed = monotonic() - self.started_at
+        eta = self._estimate_remaining_seconds(self._overall_fraction(), elapsed)
+        if eta is None:
+            return None
+        return f"ETA {self._format_duration(eta)} | ~{self._format_eta_clock(eta)}"
 
     def _overall_fraction(self) -> float:
         if not self.modules:
@@ -408,6 +434,26 @@ class WorkflowProgressReporter:
         if step.total <= 0:
             return 1.0
         return min(1.0, max(0.0, step.completed / step.total))
+
+    def _estimate_remaining_seconds(self, fraction: float, elapsed: float) -> float | None:
+        if fraction <= 0.0 or fraction >= 1.0:
+            return None
+        if elapsed <= 0.0:
+            return None
+        return max(0.0, elapsed * (1.0 - fraction) / fraction)
+
+    def _format_duration(self, seconds: float) -> str:
+        total_seconds = max(0, int(round(seconds)))
+        minutes, secs = divmod(total_seconds, 60)
+        hours, minutes = divmod(minutes, 60)
+        if hours:
+            return f"{hours}h {minutes}m"
+        if minutes:
+            return f"{minutes}m {secs}s"
+        return f"{secs}s"
+
+    def _format_eta_clock(self, seconds: float) -> str:
+        return (datetime.now() + timedelta(seconds=max(0.0, seconds))).strftime("%H:%M:%S")
 
     def _bar_text(self, label: str, fraction: float, style: str, meta: str | None = None) -> Text:
         width = 22

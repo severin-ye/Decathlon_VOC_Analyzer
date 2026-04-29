@@ -10,6 +10,7 @@ import torch
 from transformers import CLIPModel, CLIPProcessor
 
 from decathlon_voc_analyzer.app.core.config import get_settings
+from decathlon_voc_analyzer.app.core.runtime_policy import RuntimePolicyError, get_runtime_execution_policy, should_forbid_degradation
 from decathlon_voc_analyzer.schemas.retrieval_cache import QueryEmbeddingCacheSignature
 from decathlon_voc_analyzer.stage3_retrieval.retrieval_cache_service import RetrievalCacheService
 
@@ -35,7 +36,12 @@ class EmbeddingService:
         if self.settings.embedding_backend == "api" and self.settings.qwen_plus_api_key:
             try:
                 return self._api_embedding(text)
-            except Exception:
+            except Exception as exc:
+                self._raise_if_degradation_forbidden(
+                    component="text_embedding",
+                    exc=exc,
+                    action="检查 qwen embedding 服务状态、账户配额或网络后重试。",
+                )
                 return self._hashed_embedding(text)
         return self._hashed_embedding(text)
 
@@ -51,11 +57,16 @@ class EmbeddingService:
         if self.settings.image_embedding_backend == "clip":
             try:
                 return self._clip_image_embedding(image_path, crop_box=crop_box)
-            except Exception:
+            except Exception as exc:
+                self._raise_if_degradation_forbidden(
+                    component="image_embedding",
+                    exc=exc,
+                    action="检查 CLIP 模型加载、HF 访问或图像文件可读性后重试。",
+                )
                 return self.embed_image_proxy_text(text_hint or image_path.name)
         return self.embed_image_proxy_text(text_hint or image_path.name)
 
-    def embed_query_for_route(self, text: str, route: str) -> list[float]:
+    def embed_query_for_route(self, text: str, route: str, force_refresh: bool = False) -> list[float]:
         if route == "image" and self.settings.image_embedding_backend == "clip":
             signature = QueryEmbeddingCacheSignature(
                 route="image",
@@ -63,15 +74,20 @@ class EmbeddingService:
                 backend_kind="clip",
                 model_name=self.settings.clip_vl_embedding_model,
             )
-            cached = self._load_cached_query_embedding(signature)
+            cached = None if force_refresh else self._load_cached_query_embedding(signature)
             if cached is not None:
                 return cached
             try:
                 vector = self._clip_text_embedding(text)
                 return self._store_query_embedding(signature, vector)
-            except Exception:
+            except Exception as exc:
+                self._raise_if_degradation_forbidden(
+                    component="query_embedding",
+                    exc=exc,
+                    action="检查图像检索所需的 CLIP 文本编码链路后重试。",
+                )
                 return self._embed_text_query(text=text, route=route, allow_cache=False)
-        return self._embed_text_query(text=text, route=route)
+        return self._embed_text_query(text=text, route=route, allow_cache=not force_refresh)
 
     def similarity(self, left: list[float], right: list[float]) -> float:
         if not left or not right:
@@ -127,7 +143,12 @@ class EmbeddingService:
         if self.settings.embedding_backend == "api" and self.settings.qwen_plus_api_key:
             try:
                 vector = self._api_embedding(text)
-            except Exception:
+            except Exception as exc:
+                self._raise_if_degradation_forbidden(
+                    component="query_embedding",
+                    exc=exc,
+                    action="检查 qwen embedding 服务状态、账户配额或网络后重试。",
+                )
                 return self._hashed_embedding(text)
         else:
             vector = self._hashed_embedding(text)
@@ -172,6 +193,29 @@ class EmbeddingService:
             self._query_embedding_cache.popitem(last=False)
         self.cache_service.save_query_embedding(signature, cached_vector)
         return list(cached_vector)
+
+    def invalidate_query_embedding(self, text: str, route: str) -> None:
+        signature = self._text_query_cache_signature(text=text, route=route)
+        if route == "image" and self.settings.image_embedding_backend == "clip":
+            signature = QueryEmbeddingCacheSignature(
+                route="image",
+                query=text,
+                backend_kind="clip",
+                model_name=self.settings.clip_vl_embedding_model,
+            )
+        cache_key = self.cache_service.signature_token(signature)
+        self._query_embedding_cache.pop(cache_key, None)
+        self.cache_service.delete_query_embedding(signature)
+
+    def _raise_if_degradation_forbidden(self, component: str, exc: Exception, action: str) -> None:
+        policy = get_runtime_execution_policy(self.settings)
+        if not should_forbid_degradation(policy):
+            return
+        raise RuntimePolicyError(
+            component=component,
+            problem=f"向量链路调用失败，当前策略不允许静默回退。原始错误: {exc}",
+            action=action,
+        ) from exc
 
     def _hashed_embedding(self, text: str) -> list[float]:
         tokens = [token.lower() for token in TOKEN_RE.findall(text.lower()) if len(token) > 1]

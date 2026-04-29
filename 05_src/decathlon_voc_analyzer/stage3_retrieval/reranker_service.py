@@ -9,6 +9,7 @@ from openai import OpenAI
 from PIL import Image
 
 from decathlon_voc_analyzer.app.core.config import get_settings
+from decathlon_voc_analyzer.app.core.runtime_policy import RuntimePolicyError, get_runtime_execution_policy, should_forbid_degradation
 from decathlon_voc_analyzer.schemas.index import IndexedEvidence
 from decathlon_voc_analyzer.schemas.retrieval_cache import RerankCacheSignature
 from decathlon_voc_analyzer.stage3_retrieval.retrieval_cache_service import RetrievalCacheService
@@ -61,7 +62,12 @@ class RerankerService:
                     backend_kind="api",
                     compute=lambda: self._rerank_with_api(query, candidates),
                 )
-            except Exception:
+            except Exception as exc:
+                self._raise_if_degradation_forbidden(
+                    component="text_rerank",
+                    exc=exc,
+                    action="检查文本 reranker 服务状态、账户配额或网络后重试。",
+                )
                 return self._rerank_with_cache(
                     query=query,
                     candidates=candidates,
@@ -90,7 +96,12 @@ class RerankerService:
                     backend_kind="qwen_vl" if self.settings.multimodal_reranker_backend == "qwen_vl" else "api",
                     compute=lambda: self._rerank_image_candidates_with_vl(query, candidates),
                 )
-            except Exception:
+            except Exception as exc:
+                self._raise_if_degradation_forbidden(
+                    component="image_rerank",
+                    exc=exc,
+                    action="检查多模态 reranker 服务状态、账户配额或网络后重试。",
+                )
                 pass
         if use_llm and self.settings.reranker_backend == "api" and self.settings.qwen_plus_api_key:
             try:
@@ -102,7 +113,12 @@ class RerankerService:
                     backend_kind="api",
                     compute=lambda: self._rerank_with_api(query, candidates),
                 )
-            except Exception:
+            except Exception as exc:
+                self._raise_if_degradation_forbidden(
+                    component="image_rerank",
+                    exc=exc,
+                    action="检查文本 reranker 服务状态、账户配额或网络后重试。",
+                )
                 return self._rerank_with_cache(
                     query=query,
                     candidates=candidates,
@@ -142,6 +158,16 @@ class RerankerService:
         reranked = compute()
         self.cache_service.save_rerank(signature, reranked)
         return reranked
+
+    def _raise_if_degradation_forbidden(self, component: str, exc: Exception, action: str) -> None:
+        policy = get_runtime_execution_policy(self.settings)
+        if not should_forbid_degradation(policy):
+            return
+        raise RuntimePolicyError(
+            component=component,
+            problem=f"重排链路调用失败，当前策略不允许静默回退。原始错误: {exc}",
+            action=action,
+        ) from exc
 
     def _build_rerank_cache_signature(
         self,

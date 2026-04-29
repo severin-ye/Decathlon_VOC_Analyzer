@@ -34,6 +34,11 @@ class RetrievalCacheService:
         path.write_bytes(orjson.dumps(payload.model_dump(mode="json"), option=orjson.OPT_INDENT_2))
         return str(path)
 
+    def delete_query_embedding(self, signature: QueryEmbeddingCacheSignature) -> None:
+        path = self._query_embedding_path(signature)
+        if path.exists():
+            path.unlink()
+
     def load_rerank(self, signature: RerankCacheSignature) -> list[IndexedEvidence] | None:
         path = self._rerank_path(signature)
         if not path.exists():

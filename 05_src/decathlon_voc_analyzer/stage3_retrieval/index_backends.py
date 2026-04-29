@@ -9,6 +9,7 @@ from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, FieldCondition, Filter, MatchValue, PointStruct, VectorParams
 
 from decathlon_voc_analyzer.app.core.config import get_settings
+from decathlon_voc_analyzer.app.core.runtime_policy import RuntimePolicyError
 from decathlon_voc_analyzer.schemas.index import IndexedEvidence, ProductIndexSnapshot
 from decathlon_voc_analyzer.stage3_retrieval.embedding_service import EmbeddingService
 
@@ -83,6 +84,12 @@ class LocalIndexBackend(IndexBackend):
         ranked: dict[str, list[tuple[float, IndexedEvidence]]] = {"text": [], "image": []}
         for route in routes:
             query_vector = self.embedding_service.embed_query_for_route(query, route)
+            query_vector = self._refresh_query_vector_if_dimension_mismatch(
+                query=query,
+                route=route,
+                query_vector=query_vector,
+                expected_dimension=self._expected_dimension(snapshot, route),
+            )
             for evidence in snapshot.evidence:
                 if evidence.route != route:
                     continue
@@ -101,6 +108,34 @@ class LocalIndexBackend(IndexBackend):
 
     def index_location(self) -> str:
         return str(self.path)
+
+    def _expected_dimension(self, snapshot: ProductIndexSnapshot, route: str) -> int | None:
+        for evidence in snapshot.evidence:
+            if evidence.route == route and evidence.vector:
+                return len(evidence.vector)
+        return None
+
+    def _refresh_query_vector_if_dimension_mismatch(
+        self,
+        query: str,
+        route: str,
+        query_vector: list[float],
+        expected_dimension: int | None,
+    ) -> list[float]:
+        if expected_dimension is None or len(query_vector) == expected_dimension:
+            return query_vector
+        self.embedding_service.invalidate_query_embedding(text=query, route=route)
+        refreshed = self.embedding_service.embed_query_for_route(query, route, force_refresh=True)
+        if len(refreshed) == expected_dimension:
+            return refreshed
+        raise RuntimePolicyError(
+            component="query_embedding",
+            problem=(
+                f"查询向量维度与已建索引不一致: route={route}, "
+                f"query_dim={len(refreshed)}, index_dim={expected_dimension}。"
+            ),
+            action="清理不兼容的 retrieval_cache / 旧索引，或恢复与当前索引一致的 embedding 后端后重试。",
+        )
 
 
 class QdrantIndexBackend(IndexBackend):
@@ -155,12 +190,27 @@ class QdrantIndexBackend(IndexBackend):
         routes: list[str],
         top_k_per_route: int,
     ) -> list[IndexedEvidence]:
+        snapshots = self.load_snapshots()
+        snapshot = next(
+            (
+                item
+                for item in snapshots
+                if item.product_id == product_id and (category_slug is None or item.category_slug == category_slug)
+            ),
+            None,
+        )
         results: list[IndexedEvidence] = []
         for route in routes:
             collection_name = self._collection_name_for_route(route)
             if collection_name not in {item.name for item in self.client.get_collections().collections}:
                 continue
             query_vector = self.embedding_service.embed_query_for_route(query, route)
+            query_vector = self._refresh_query_vector_if_dimension_mismatch(
+                query=query,
+                route=route,
+                query_vector=query_vector,
+                expected_dimension=self._expected_dimension(snapshot, route) if snapshot is not None else None,
+            )
             conditions = [
                 FieldCondition(key="product_id", match=MatchValue(value=product_id)),
                 FieldCondition(key="route", match=MatchValue(value=route)),
@@ -203,6 +253,36 @@ class QdrantIndexBackend(IndexBackend):
 
     def _collection_name_for_route(self, route: str) -> str:
         return f"{self.collection_name}_{route}"
+
+    def _expected_dimension(self, snapshot: ProductIndexSnapshot | None, route: str) -> int | None:
+        if snapshot is None:
+            return None
+        for evidence in snapshot.evidence:
+            if evidence.route == route and evidence.vector:
+                return len(evidence.vector)
+        return None
+
+    def _refresh_query_vector_if_dimension_mismatch(
+        self,
+        query: str,
+        route: str,
+        query_vector: list[float],
+        expected_dimension: int | None,
+    ) -> list[float]:
+        if expected_dimension is None or len(query_vector) == expected_dimension:
+            return query_vector
+        self.embedding_service.invalidate_query_embedding(text=query, route=route)
+        refreshed = self.embedding_service.embed_query_for_route(query, route, force_refresh=True)
+        if len(refreshed) == expected_dimension:
+            return refreshed
+        raise RuntimePolicyError(
+            component="query_embedding",
+            problem=(
+                f"查询向量维度与已建索引不一致: route={route}, "
+                f"query_dim={len(refreshed)}, index_dim={expected_dimension}。"
+            ),
+            action="清理不兼容的 retrieval_cache / 旧索引，或恢复与当前索引一致的 embedding 后端后重试。",
+        )
 
 
 @lru_cache(maxsize=4)
