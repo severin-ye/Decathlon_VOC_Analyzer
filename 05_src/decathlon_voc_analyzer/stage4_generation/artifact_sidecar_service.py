@@ -95,10 +95,20 @@ class ArtifactSidecarService:
             for slot in existing_slots
             if isinstance(slot, dict)
         }
+        existing_by_slot_id = {
+            str(slot.get("slot_id")): slot
+            for slot in existing_slots
+            if isinstance(slot, dict) and slot.get("slot_id")
+        }
         merged: list[dict[str, object]] = []
         for slot in new_slots:
-            key = self._feedback_slot_key(slot)
-            previous = existing_by_key.get(key)
+            previous = None
+            slot_id = slot.get("slot_id")
+            if slot_id is not None:
+                previous = existing_by_slot_id.get(str(slot_id))
+            if previous is None:
+                key = self._feedback_slot_key(slot)
+                previous = existing_by_key.get(key)
             if previous is None:
                 merged.append(slot)
                 continue

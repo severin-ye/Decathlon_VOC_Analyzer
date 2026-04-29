@@ -1,0 +1,183 @@
+{
+  "product_id": "backpack_010",
+  "category_slug": "backpack",
+  "extraction_mode": "heuristic",
+  "preprocessed_reviews": [
+    {
+      "review_id": "backpack_010_review_0001",
+      "product_id": "backpack_010",
+      "original_text": "한곳에 넣을 수 있는 장점이 있네요. 가성비템입니다.",
+      "cleaned_text": "한곳에 넣을 수 있는 장점이 있네요. 가성비템입니다.",
+      "rating": 4,
+      "language_hint": "ko",
+      "is_informative": true,
+      "skip_reason": null
+    },
+    {
+      "review_id": "backpack_010_review_0090",
+      "product_id": "backpack_010",
+      "original_text": "Beau mais trop grand",
+      "cleaned_text": "Beau mais trop grand",
+      "rating": 3,
+      "language_hint": "latin",
+      "is_informative": true,
+      "skip_reason": null
+    },
+    {
+      "review_id": "backpack_010_review_0138",
+      "product_id": "backpack_010",
+      "original_text": "The quality is excellent. +5 Workmanship is excellent. +5 Delivery process is excellent +5 I did not get the product I wanted. -3 I did not see size (dimensions) mentioned on the site. -3 I am however a satisfied customer +4 I have not used it because it is smaller than the size (one above) that I have.",
+      "cleaned_text": "The quality is excellent. +5 Workmanship is excellent. +5 Delivery process is excellent +5 I did not get the product I wanted. -3 I did not see size (dimensions) mentioned on the site. -3 I am however a satisfied customer +4 I have not used it because it is smaller than the size (one above) that I have.",
+      "rating": 3,
+      "language_hint": "latin",
+      "is_informative": true,
+      "skip_reason": null
+    },
+    {
+      "review_id": "backpack_010_review_0153",
+      "product_id": "backpack_010",
+      "original_text": "Very small",
+      "cleaned_text": "Very small",
+      "rating": 1,
+      "language_hint": "latin",
+      "is_informative": true,
+      "skip_reason": null
+    }
+  ],
+  "sampling_plan": {
+    "profile_name": "problem_first",
+    "requested_reviews": 4,
+    "total_available_reviews": 200,
+    "selected_reviews": 4,
+    "fallback_order": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "allocations": [
+      {
+        "rating": 5,
+        "configured_ratio": 0.1,
+        "target_count": 0,
+        "available_count": 168,
+        "selected_count": 0,
+        "redistributed_in_count": 0,
+        "shortfall_count": 0
+      },
+      {
+        "rating": 4,
+        "configured_ratio": 0.15,
+        "target_count": 1,
+        "available_count": 28,
+        "selected_count": 1,
+        "redistributed_in_count": 0,
+        "shortfall_count": 0
+      },
+      {
+        "rating": 3,
+        "configured_ratio": 0.2,
+        "target_count": 1,
+        "available_count": 3,
+        "selected_count": 2,
+        "redistributed_in_count": 1,
+        "shortfall_count": 0
+      },
+      {
+        "rating": 2,
+        "configured_ratio": 0.25,
+        "target_count": 1,
+        "available_count": 0,
+        "selected_count": 0,
+        "redistributed_in_count": 0,
+        "shortfall_count": 1
+      },
+      {
+        "rating": 1,
+        "configured_ratio": 0.3,
+        "target_count": 1,
+        "available_count": 1,
+        "selected_count": 1,
+        "redistributed_in_count": 0,
+        "shortfall_count": 0
+      }
+    ]
+  },
+  "aspects": [
+    {
+      "aspect_id": "backpack_010_review_0001_aspect_01",
+      "review_id": "backpack_010_review_0001",
+      "product_id": "backpack_010",
+      "aspect": "value_price",
+      "sentiment": "positive",
+      "opinion": "한곳에 넣을 수 있는 장점이 있네요. 가성비템입니다.",
+      "evidence_span": "한곳에 넣을 수 있는 장점이 있네요. 가성비템입니다.",
+      "usage_scene": null,
+      "confidence": 0.68,
+      "extraction_mode": "heuristic"
+    },
+    {
+      "aspect_id": "backpack_010_review_0090_aspect_01",
+      "review_id": "backpack_010_review_0090",
+      "product_id": "backpack_010",
+      "aspect": "overall_experience",
+      "sentiment": "neutral",
+      "opinion": "Beau mais trop grand",
+      "evidence_span": "Beau mais trop grand",
+      "usage_scene": null,
+      "confidence": 0.56,
+      "extraction_mode": "heuristic"
+    },
+    {
+      "aspect_id": "backpack_010_review_0138_aspect_01",
+      "review_id": "backpack_010_review_0138",
+      "product_id": "backpack_010",
+      "aspect": "portability_size",
+      "sentiment": "negative",
+      "opinion": "The quality is excellent. +5 Workmanship is excellent. +5 Delivery process is excellent +5 I did not get the product I wanted. -3 I did not see size (dimensions) mentioned on the site. -3 I am however a satisfied customer +4 I have not used it because it is smaller than the size (one above) that I have.",
+      "evidence_span": "The quality is excellent. +5 Workmanship is excellent. +5 Delivery process is excellent +5 I did not get the product I wanted. -3 I did not see size (dimensions) mentioned on the site. -3 I am however a satisfied customer +4 I have not used it because it is smaller than the size (one above) that I have.",
+      "usage_scene": null,
+      "confidence": 0.68,
+      "extraction_mode": "heuristic"
+    },
+    {
+      "aspect_id": "backpack_010_review_0138_aspect_02",
+      "review_id": "backpack_010_review_0138",
+      "product_id": "backpack_010",
+      "aspect": "usability",
+      "sentiment": "negative",
+      "opinion": "The quality is excellent. +5 Workmanship is excellent. +5 Delivery process is excellent +5 I did not get the product I wanted. -3 I did not see size (dimensions) mentioned on the site. -3 I am however a satisfied customer +4 I have not used it because it is smaller than the size (one above) that I have.",
+      "evidence_span": "The quality is excellent. +5 Workmanship is excellent. +5 Delivery process is excellent +5 I did not get the product I wanted. -3 I did not see size (dimensions) mentioned on the site. -3 I am however a satisfied customer +4 I have not used it because it is smaller than the size (one above) that I have.",
+      "usage_scene": null,
+      "confidence": 0.68,
+      "extraction_mode": "heuristic"
+    },
+    {
+      "aspect_id": "backpack_010_review_0138_aspect_03",
+      "review_id": "backpack_010_review_0138",
+      "product_id": "backpack_010",
+      "aspect": "durability_quality",
+      "sentiment": "negative",
+      "opinion": "The quality is excellent. +5 Workmanship is excellent. +5 Delivery process is excellent +5 I did not get the product I wanted. -3 I did not see size (dimensions) mentioned on the site. -3 I am however a satisfied customer +4 I have not used it because it is smaller than the size (one above) that I have.",
+      "evidence_span": "The quality is excellent. +5 Workmanship is excellent. +5 Delivery process is excellent +5 I did not get the product I wanted. -3 I did not see size (dimensions) mentioned on the site. -3 I am however a satisfied customer +4 I have not used it because it is smaller than the size (one above) that I have.",
+      "usage_scene": null,
+      "confidence": 0.68,
+      "extraction_mode": "heuristic"
+    },
+    {
+      "aspect_id": "backpack_010_review_0153_aspect_01",
+      "review_id": "backpack_010_review_0153",
+      "product_id": "backpack_010",
+      "aspect": "portability_size",
+      "sentiment": "negative",
+      "opinion": "Very small",
+      "evidence_span": "Very small",
+      "usage_scene": null,
+      "confidence": 0.68,
+      "extraction_mode": "heuristic"
+    }
+  ],
+  "skipped_review_ids": [],
+  "warnings": []
+}

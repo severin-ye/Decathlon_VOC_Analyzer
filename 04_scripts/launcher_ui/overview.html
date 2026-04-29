@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>__TITLE__</title>
+    <link rel="stylesheet" href="/__ASSET_PREFIX__/launcher.css" />
+</head>
+<body data-session-state-url="__SESSION_STATE_URL__">
+    <div class="page-shell">
+        <section id="status-banner" class="status-banner running">
+            <div class="eyebrow">Launcher Overview</div>
+            <div id="status-headline" class="headline">--</div>
+            <div id="status-caption" class="caption">--</div>
+        </section>
+        <section class="hero">
+            <h1 id="page-title">--</h1>
+            <div id="page-note" class="hero-note">--</div>
+            <div class="hero-meta">
+                <div class="meta-card"><div class="meta-label">Selected Categories</div><div id="meta-category-count" class="meta-value">--</div><div class="meta-sub">只显示本次选中的品类</div></div>
+                <div class="meta-card"><div class="meta-label">Selected Products</div><div id="meta-product-count" class="meta-value">--</div><div class="meta-sub">跨品类的总商品数</div></div>
+                <div class="meta-card"><div class="meta-label">Run Mode</div><div id="meta-run-mode" class="meta-value">--</div><div class="meta-sub">当前运行或续跑模式</div></div>
+                <div class="meta-card"><div class="meta-label">Current Target</div><div id="meta-current-target" class="meta-value">--</div><div class="meta-sub">正在推进的品类 / 商品</div></div>
+            </div>
+        </section>
+        <section class="content-grid">
+            <section class="panel">
+                <h2>已选品类</h2>
+                <div id="category-collection" class="collection"></div>
+            </section>
+            <aside class="panel">
+                <h2>总览摘要</h2>
+                <div id="summary-body" class="collection"></div>
+            </aside>
+        </section>
+    </div>
+    <script src="/__ASSET_PREFIX__/common.js"></script>
+    <script src="/__ASSET_PREFIX__/overview.js"></script>
+</body>
+</html>

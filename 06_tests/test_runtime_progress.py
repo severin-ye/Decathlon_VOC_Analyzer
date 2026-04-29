@@ -61,6 +61,29 @@ def test_progress_reporter_writes_live_dashboard_html(tmp_path: Path) -> None:
     assert "http-equiv=\"refresh\"" not in payload
 
 
+def test_progress_reporter_writes_external_dashboard_assets(tmp_path: Path) -> None:
+    dashboard_path = tmp_path / "live_progress.html"
+    reporter = WorkflowProgressReporter(
+        [("analyze", "生成分析", [("extract", "抽取评论")])],
+        enabled=False,
+        dashboard_path=dashboard_path,
+        dashboard_title="demo-progress",
+    )
+
+    reporter.note("dashboard smoke test")
+    reporter.start_count_step("analyze", "extract", total=10, detail="测试步骤")
+    reporter.advance_step("analyze", "extract", amount=3)
+    reporter.refresh()
+
+    payload = dashboard_path.read_text(encoding="utf-8")
+
+    assert "<link rel=\"stylesheet\" href=\"./_assets/dashboard.css\" />" in payload
+    assert "<script src=\"./_assets/dashboard.js\"></script>" in payload
+    assert "<style>" not in payload
+    assert (tmp_path / "_assets" / "dashboard.css").exists()
+    assert (tmp_path / "_assets" / "dashboard.js").exists()
+
+
 def test_progress_reporter_dashboard_shows_completed_banner(tmp_path: Path) -> None:
     dashboard_path = tmp_path / "live_progress.html"
     reporter = WorkflowProgressReporter(
@@ -166,5 +189,7 @@ def test_progress_reporter_restores_elapsed_from_persisted_timestamps(tmp_path: 
 
     assert payload["workflowStartedAt"] is not None
     assert payload["elapsed"] != "0.0s"
+    assert payload["elapsedSeconds"] > 0
+    assert payload["overallEtaSeconds"] is not None
     assert payload["modules"][0]["startedAt"] is not None
     assert payload["modules"][0]["steps"][0]["startedAt"] is not None

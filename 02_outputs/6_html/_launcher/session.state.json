@@ -1,0 +1,37 @@
+{
+  "status": "running",
+  "runMode": "normal",
+  "runModeLabel": "正常跑",
+  "note": "正在执行 shoes / shoes_001",
+  "startedAt": "2026-04-30T01:30:13",
+  "completedAt": null,
+  "currentCategory": "shoes",
+  "currentProductId": "shoes_001",
+  "categories": [
+    {
+      "category": "shoes",
+      "status": "running",
+      "reviewLimit": 10,
+      "startedAt": "2026-04-30T01:30:13",
+      "completedAt": null,
+      "currentProductId": "shoes_001",
+      "detail": "正在执行 shoes_001",
+      "categoryPageUrl": "/_launcher/shoes_interactive_batch.html",
+      "products": [
+        {
+          "index": 1,
+          "productId": "shoes_001",
+          "status": "running",
+          "reviewLimit": 10,
+          "startedAt": "2026-04-30T01:30:13",
+          "completedAt": null,
+          "detail": "",
+          "exitCode": null,
+          "liveProgressUrl": "/_progress/shoes/shoes_001_live_progress.html",
+          "liveProgressStateUrl": "/_progress/shoes/shoes_001_live_progress.state.json",
+          "productPageUrl": "/_progress/shoes/shoes_001_live_progress.html"
+        }
+      ]
+    }
+  ]
+}

@@ -5,6 +5,7 @@ import json
 import os
 from pathlib import Path
 import select
+import shutil
 import sys
 import termios
 import threading
@@ -24,6 +25,7 @@ from rich.text import Text
 
 
 TerminalMode = Literal["events", "live"]
+RUNTIME_PROGRESS_UI_DIR = Path(__file__).resolve().parent / "runtime_progress_ui"
 
 
 @dataclass
@@ -309,8 +311,33 @@ class WorkflowProgressReporter:
         if self.dashboard_path is None:
             return
         self.dashboard_path.parent.mkdir(parents=True, exist_ok=True)
+        self._ensure_dashboard_assets()
         self._write_progress_state()
         self.dashboard_path.write_text(self._render_dashboard_html(), encoding="utf-8")
+
+    def _progress_asset_root(self) -> Path | None:
+        if self.dashboard_path is None:
+            return None
+        for parent in self.dashboard_path.parents:
+            if parent.name == "_progress":
+                return parent / "_assets"
+        return self.dashboard_path.parent / "_assets"
+
+    def _progress_asset_base(self) -> str:
+        asset_root = self._progress_asset_root()
+        if asset_root is None or self.dashboard_path is None:
+            return "./_assets"
+        relative_path = os.path.relpath(asset_root, start=self.dashboard_path.parent).replace(os.sep, "/")
+        return relative_path if relative_path.startswith(".") else f"./{relative_path}"
+
+    def _ensure_dashboard_assets(self) -> None:
+        asset_root = self._progress_asset_root()
+        if asset_root is None:
+            return
+        asset_root.mkdir(parents=True, exist_ok=True)
+        for asset_path in RUNTIME_PROGRESS_UI_DIR.iterdir():
+            if asset_path.is_file() and asset_path.suffix in {".css", ".js"}:
+                shutil.copy2(asset_path, asset_root / asset_path.name)
 
     def _progress_state_path(self) -> Path | None:
         if self.dashboard_path is None:
@@ -435,236 +462,13 @@ class WorkflowProgressReporter:
     def _render_dashboard_html(self) -> str:
         payload_json = json.dumps(self._dashboard_payload(), ensure_ascii=False)
         title = html.escape(self.dashboard_title)
-        template = r"""<!doctype html>
-<html lang="zh-CN">
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>__TITLE__</title>
-    <style>
-        :root {
-            --bg: #f5f5f7;
-            --panel: rgba(255,255,255,0.78);
-            --panel-strong: rgba(255,255,255,0.92);
-            --ink: #1d1d1f;
-            --muted: #6e6e73;
-            --line: rgba(60,60,67,0.12);
-            --blue: #0071e3;
-            --green: #248a3d;
-            --orange: #b26b00;
-            --shadow: 0 18px 48px rgba(0,0,0,0.08);
-        }
-        * { box-sizing: border-box; }
-        body {
-            margin: 0;
-            color: var(--ink);
-            background:
-                radial-gradient(circle at top left, rgba(0,113,227,0.10), transparent 28%),
-                radial-gradient(circle at top right, rgba(255,159,10,0.10), transparent 30%),
-                linear-gradient(180deg, #fbfbfd 0%, var(--bg) 100%);
-            font: 14px/1.5 -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', sans-serif;
-        }
-        .wrap { max-width: 1380px; margin: 0 auto; padding: 28px; }
-        .status-banner {
-            margin-bottom: 14px;
-            padding: 14px 18px;
-            border-radius: 18px;
-            border: 1px solid var(--line);
-            background: rgba(255,255,255,0.78);
-            backdrop-filter: blur(16px) saturate(135%);
-            box-shadow: var(--shadow);
-        }
-        .status-banner.complete {
-            border-color: rgba(36,138,61,0.24);
-            background: linear-gradient(180deg, rgba(36,138,61,0.10), rgba(255,255,255,0.92));
-        }
-        .status-banner.running {
-            border-color: rgba(0,113,227,0.18);
-            background: linear-gradient(180deg, rgba(0,113,227,0.08), rgba(255,255,255,0.92));
-        }
-        .status-banner .eyebrow {
-            color: var(--muted);
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-        }
-        .status-banner .headline {
-            margin-top: 4px;
-            font-size: 24px;
-            font-weight: 700;
-            letter-spacing: -0.03em;
-        }
-        .status-banner .caption {
-            margin-top: 6px;
-            color: var(--muted);
-            font-size: 13px;
-        }
-        .hero {
-            position: sticky;
-            top: 0;
-            z-index: 3;
-            padding: 20px 22px 18px;
-            border-radius: 28px;
-            border: 1px solid var(--line);
-            background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.72));
-            backdrop-filter: blur(18px) saturate(140%);
-            box-shadow: var(--shadow);
-        }
-        h1 { margin: 0 0 10px; font-size: 30px; font-weight: 700; letter-spacing: -0.03em; }
-        .note { color: var(--muted); margin-bottom: 14px; }
-        .meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; }
-        .card {
-            min-height: 104px;
-            padding: 14px 16px;
-            border-radius: 20px;
-            border: 1px solid var(--line);
-            background: var(--panel-strong);
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
-        }
-        .label { color: var(--muted); font-size: 12px; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase; }
-        .value { margin-top: 6px; font-size: 24px; font-weight: 700; letter-spacing: -0.03em; }
-        .sub { margin-top: 8px; color: var(--muted); font-size: 13px; }
-        .grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(360px, 0.8fr); gap: 18px; margin-top: 18px; align-items: start; }
-        .panel {
-            padding: 20px;
-            border-radius: 24px;
-            border: 1px solid var(--line);
-            background: var(--panel);
-            backdrop-filter: blur(14px) saturate(135%);
-            box-shadow: var(--shadow);
-        }
-        .panel h2 { margin: 0 0 14px; font-size: 20px; letter-spacing: -0.02em; }
-        .list { display: grid; gap: 14px; }
-        .module { border-radius: 18px; border: 1px solid var(--line); background: rgba(255,255,255,0.75); padding: 16px; }
-        .row { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; }
-        .debug-panel summary {
-            cursor: pointer;
-            list-style: none;
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--ink);
-        }
-        .debug-panel summary::-webkit-details-marker { display: none; }
-        .debug-panel .debug-note { margin: 8px 0 12px; color: var(--muted); font-size: 13px; }
-        .status { font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
-        .status.done { color: var(--green); }
-        .status.running { color: var(--blue); }
-        .status.pending { color: var(--muted); }
-        .status.skipped { color: var(--orange); }
-        .bar { width: 100%; height: 10px; background: rgba(60,60,67,0.08); border-radius: 999px; overflow: hidden; margin: 12px 0 8px; }
-        .fill { height: 100%; background: linear-gradient(90deg, #0a84ff 0%, #5ac8fa 100%); }
-        .detail { color: var(--muted); font-size: 13px; }
-        .steps { display: grid; gap: 10px; margin-top: 12px; }
-        .step { padding: 12px 14px; border-radius: 16px; background: rgba(250,250,252,0.95); border: 1px solid rgba(60,60,67,0.08); }
-        .step.active { background: linear-gradient(180deg, rgba(0,113,227,0.08), rgba(255,255,255,0.98)); border-color: rgba(0,113,227,0.18); }
-        pre { margin: 0; white-space: pre-wrap; word-break: break-word; font: 12px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; color: #2c2c2e; }
-        @media (max-width: 980px) { .grid { grid-template-columns: 1fr; } .hero { position: static; } }
-    </style>
-</head>
-<body>
-    <div class="wrap">
-        <section id="status-banner" class="status-banner running">
-            <div class="eyebrow">Workflow Status</div>
-            <div id="workflow-headline" class="headline">--</div>
-            <div id="workflow-caption" class="caption">--</div>
-        </section>
-        <section class="hero">
-            <h1>__TITLE__</h1>
-            <div id="workflow-note" class="note">--</div>
-            <div class="meta">
-                <div class="card"><div class="label">Overall</div><div id="overall-percent" class="value">--</div><div id="overall-meta" class="sub">--</div></div>
-                <div class="card"><div class="label">Active Stage</div><div id="active-module" class="value">--</div><div id="module-meta" class="sub">--</div></div>
-                <div class="card"><div class="label">Active Step</div><div id="active-step" class="value">--</div><div id="step-meta" class="sub">--</div></div>
-                <div class="card"><div class="label">Elapsed</div><div id="elapsed" class="value">--</div><div class="sub">Live update every 2s</div></div>
-            </div>
-        </section>
-        <section class="grid">
-            <div class="panel">
-                <h2>Workflow</h2>
-                <div class="list" id="modules"></div>
-            </div>
-            <div class="panel debug-panel">
-                <details>
-                    <summary>技术快照</summary>
-                    <div class="debug-note">这是给调试和排障看的原始状态，不是主要的人类阅读界面。</div>
-                    <pre id="raw"></pre>
-                </details>
-            </div>
-        </section>
-    </div>
-    <script>
-        const initialPayload = __PAYLOAD__;
-        const stateUrl = new URL(window.location.pathname.replace(/\.html$/, '.state.json'), window.location.origin).toString();
-        const fmtPercent = value => `${(value * 100).toFixed(1)}%`;
-        const statusClass = status => status === 'in_progress' ? 'running' : status;
-        const modulesEl = document.getElementById('modules');
-        const rawEl = document.getElementById('raw');
-
-        function render(payload) {
-            const banner = document.getElementById('status-banner');
-            banner.className = `status-banner ${payload.workflowStatus === 'completed' ? 'complete' : 'running'}`;
-            document.getElementById('workflow-headline').textContent = payload.workflowHeadline ?? '--';
-            document.getElementById('workflow-caption').textContent = payload.workflowCaption ?? '--';
-            document.getElementById('workflow-note').textContent = payload.note || 'Workflow is running';
-            document.getElementById('overall-percent').textContent = fmtPercent(payload.overallFraction || 0);
-            document.getElementById('overall-meta').textContent = `ETA ${payload.overallEta ?? '--'} · Finish ${payload.overallFinish ?? '--'}`;
-            document.getElementById('active-module').textContent = payload.activeModule ?? '--';
-            document.getElementById('module-meta').textContent = `ETA ${payload.activeModuleEta ?? '--'} · Finish ${payload.activeModuleFinish ?? '--'}`;
-            document.getElementById('active-step').textContent = payload.activeStep ?? '--';
-            document.getElementById('step-meta').textContent = `ETA ${payload.activeStepEta ?? '--'} · Finish ${payload.activeStepFinish ?? '--'}`;
-            document.getElementById('elapsed').textContent = payload.elapsed ?? '--';
-
-            modulesEl.innerHTML = '';
-            for (const module of payload.modules || []) {
-                const moduleEl = document.createElement('div');
-                moduleEl.className = 'module';
-                const stepsHtml = (module.steps || []).map(step => `
-                    <div class="step ${step.isActive ? 'active' : ''}">
-                        <div class="row"><strong>${step.label}</strong><span class="status ${statusClass(step.status)}">${step.statusLabel}</span></div>
-                        <div class="bar"><div class="fill" style="width:${fmtPercent(step.fraction || 0)}"></div></div>
-                        <div class="detail">${step.detail || ''}</div>
-                        <div class="detail">${step.meta || ''}</div>
-                    </div>
-                `).join('');
-                moduleEl.innerHTML = `
-                    <div class="row"><strong>${module.label}</strong><span class="status ${statusClass(module.status)}">${module.statusLabel}</span></div>
-                    <div class="bar"><div class="fill" style="width:${fmtPercent(module.fraction || 0)}"></div></div>
-                    <div class="detail">${module.detail || ''}</div>
-                    <div class="detail">${module.meta || ''}</div>
-                    <div class="steps">${stepsHtml}</div>
-                `;
-                modulesEl.appendChild(moduleEl);
-            }
-            rawEl.textContent = JSON.stringify(payload, null, 2);
-        }
-
-        async function pollState() {
-            try {
-                const response = await fetch(`${stateUrl}?t=${Date.now()}`, { cache: 'no-store' });
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}`);
-                }
-                const statePayload = await response.json();
-                const nextPayload = statePayload.dashboard ?? initialPayload;
-                render(nextPayload);
-                if (nextPayload.workflowStatus === 'completed') {
-                    return;
-                }
-            } catch (_error) {
-            }
-            window.setTimeout(pollState, 2000);
-        }
-
-        render(initialPayload);
-        if (initialPayload.workflowStatus !== 'completed') {
-            window.setTimeout(pollState, 2000);
-        }
-    </script>
-</body>
-</html>
-        """
-        return template.replace("__TITLE__", title).replace("__PAYLOAD__", payload_json)
+        template = (RUNTIME_PROGRESS_UI_DIR / "dashboard.html").read_text(encoding="utf-8")
+        return (
+            template
+            .replace("__TITLE__", title)
+            .replace("__PAYLOAD__", payload_json)
+            .replace("__ASSET_BASE__", self._progress_asset_base())
+        )
 
     def _dashboard_payload(self) -> dict[str, object]:
         elapsed = monotonic() - self.started_at
@@ -683,14 +487,18 @@ class WorkflowProgressReporter:
             "workflowHeadline": self._workflow_headline(workflow_status),
             "workflowCaption": self._workflow_caption(workflow_status, workflow_completed_at),
             "elapsed": f"{elapsed:.1f}s",
+            "elapsedSeconds": round(elapsed, 1),
             "overallFraction": self._overall_fraction(),
             "overallEta": self._format_duration(overall_eta_seconds) if overall_eta_seconds is not None else None,
+            "overallEtaSeconds": round(overall_eta_seconds, 1) if overall_eta_seconds is not None else None,
             "overallFinish": self._format_eta_clock(overall_eta_seconds) if overall_eta_seconds is not None else None,
             "activeModule": active_module.label if active_module is not None else None,
             "activeModuleEta": self._format_duration(active_module_eta) if active_module_eta is not None else None,
+            "activeModuleEtaSeconds": round(active_module_eta, 1) if active_module_eta is not None else None,
             "activeModuleFinish": self._format_eta_clock(active_module_eta) if active_module_eta is not None else None,
             "activeStep": active_step.label if active_step is not None else None,
             "activeStepEta": self._format_duration(active_step_eta) if active_step_eta is not None else None,
+            "activeStepEtaSeconds": round(active_step_eta, 1) if active_step_eta is not None else None,
             "activeStepFinish": self._format_eta_clock(active_step_eta) if active_step_eta is not None else None,
             "note": self._note,
             "modules": [

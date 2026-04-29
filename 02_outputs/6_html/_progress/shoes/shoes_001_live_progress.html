@@ -4,126 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>shoes/shoes_001 Workflow Progress</title>
-    <style>
-        :root {
-            --bg: #f5f5f7;
-            --panel: rgba(255,255,255,0.78);
-            --panel-strong: rgba(255,255,255,0.92);
-            --ink: #1d1d1f;
-            --muted: #6e6e73;
-            --line: rgba(60,60,67,0.12);
-            --blue: #0071e3;
-            --green: #248a3d;
-            --orange: #b26b00;
-            --shadow: 0 18px 48px rgba(0,0,0,0.08);
-        }
-        * { box-sizing: border-box; }
-        body {
-            margin: 0;
-            color: var(--ink);
-            background:
-                radial-gradient(circle at top left, rgba(0,113,227,0.10), transparent 28%),
-                radial-gradient(circle at top right, rgba(255,159,10,0.10), transparent 30%),
-                linear-gradient(180deg, #fbfbfd 0%, var(--bg) 100%);
-            font: 14px/1.5 -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', sans-serif;
-        }
-        .wrap { max-width: 1380px; margin: 0 auto; padding: 28px; }
-        .status-banner {
-            margin-bottom: 14px;
-            padding: 14px 18px;
-            border-radius: 18px;
-            border: 1px solid var(--line);
-            background: rgba(255,255,255,0.78);
-            backdrop-filter: blur(16px) saturate(135%);
-            box-shadow: var(--shadow);
-        }
-        .status-banner.complete {
-            border-color: rgba(36,138,61,0.24);
-            background: linear-gradient(180deg, rgba(36,138,61,0.10), rgba(255,255,255,0.92));
-        }
-        .status-banner.running {
-            border-color: rgba(0,113,227,0.18);
-            background: linear-gradient(180deg, rgba(0,113,227,0.08), rgba(255,255,255,0.92));
-        }
-        .status-banner .eyebrow {
-            color: var(--muted);
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.04em;
-        }
-        .status-banner .headline {
-            margin-top: 4px;
-            font-size: 24px;
-            font-weight: 700;
-            letter-spacing: -0.03em;
-        }
-        .status-banner .caption {
-            margin-top: 6px;
-            color: var(--muted);
-            font-size: 13px;
-        }
-        .hero {
-            position: sticky;
-            top: 0;
-            z-index: 3;
-            padding: 20px 22px 18px;
-            border-radius: 28px;
-            border: 1px solid var(--line);
-            background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.72));
-            backdrop-filter: blur(18px) saturate(140%);
-            box-shadow: var(--shadow);
-        }
-        h1 { margin: 0 0 10px; font-size: 30px; font-weight: 700; letter-spacing: -0.03em; }
-        .note { color: var(--muted); margin-bottom: 14px; }
-        .meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; }
-        .card {
-            min-height: 104px;
-            padding: 14px 16px;
-            border-radius: 20px;
-            border: 1px solid var(--line);
-            background: var(--panel-strong);
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
-        }
-        .label { color: var(--muted); font-size: 12px; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase; }
-        .value { margin-top: 6px; font-size: 24px; font-weight: 700; letter-spacing: -0.03em; }
-        .sub { margin-top: 8px; color: var(--muted); font-size: 13px; }
-        .grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(360px, 0.8fr); gap: 18px; margin-top: 18px; align-items: start; }
-        .panel {
-            padding: 20px;
-            border-radius: 24px;
-            border: 1px solid var(--line);
-            background: var(--panel);
-            backdrop-filter: blur(14px) saturate(135%);
-            box-shadow: var(--shadow);
-        }
-        .panel h2 { margin: 0 0 14px; font-size: 20px; letter-spacing: -0.02em; }
-        .list { display: grid; gap: 14px; }
-        .module { border-radius: 18px; border: 1px solid var(--line); background: rgba(255,255,255,0.75); padding: 16px; }
-        .row { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; }
-        .debug-panel summary {
-            cursor: pointer;
-            list-style: none;
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--ink);
-        }
-        .debug-panel summary::-webkit-details-marker { display: none; }
-        .debug-panel .debug-note { margin: 8px 0 12px; color: var(--muted); font-size: 13px; }
-        .status { font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
-        .status.done { color: var(--green); }
-        .status.running { color: var(--blue); }
-        .status.pending { color: var(--muted); }
-        .status.skipped { color: var(--orange); }
-        .bar { width: 100%; height: 10px; background: rgba(60,60,67,0.08); border-radius: 999px; overflow: hidden; margin: 12px 0 8px; }
-        .fill { height: 100%; background: linear-gradient(90deg, #0a84ff 0%, #5ac8fa 100%); }
-        .detail { color: var(--muted); font-size: 13px; }
-        .steps { display: grid; gap: 10px; margin-top: 12px; }
-        .step { padding: 12px 14px; border-radius: 16px; background: rgba(250,250,252,0.95); border: 1px solid rgba(60,60,67,0.08); }
-        .step.active { background: linear-gradient(180deg, rgba(0,113,227,0.08), rgba(255,255,255,0.98)); border-color: rgba(0,113,227,0.18); }
-        pre { margin: 0; white-space: pre-wrap; word-break: break-word; font: 12px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; color: #2c2c2e; }
-        @media (max-width: 980px) { .grid { grid-template-columns: 1fr; } .hero { position: static; } }
-    </style>
+    <link rel="stylesheet" href="../_assets/dashboard.css" />
 </head>
 <body>
     <div class="wrap">
@@ -156,74 +37,13 @@
             </div>
         </section>
     </div>
+    <script src="../_assets/dashboard.js"></script>
     <script>
-        const initialPayload = {"generatedAt": "2026-04-30T00:54:08", "workflowStartedAt": "2026-04-30T00:26:50", "workflowCompletedAt": "2026-04-30T00:53:38", "workflowStatus": "running", "workflowHeadline": "工作流运行中", "workflowCaption": "页面会持续更新直到完成。当前这次运行开始于 00:26:50。", "elapsed": "1637.4s", "overallFraction": 0.5488945578231292, "overallEta": "22m 26s", "overallFinish": "01:16:33", "activeModule": "生成分析", "activeModuleEta": "1h 2m", "activeModuleFinish": "01:56:50", "activeStep": null, "activeStepEta": null, "activeStepFinish": null, "note": "工作流已启动，正在按顺序执行各模块。", "modules": [{"key": "overview", "label": "数据集概览", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "统计类目、商品与评论总量", "startedAt": "2026-04-30T00:26:50", "completedAt": "2026-04-30T00:53:38", "meta": "Start 00:26:50 | End 00:53:38", "isActive": false, "steps": [{"key": "scan", "label": "扫描类目与商品", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "扫描数据集目录", "startedAt": "2026-04-30T00:26:50", "completedAt": "2026-04-30T00:53:38", "meta": "Start 00:26:50", "isActive": false}, {"key": "summarize", "label": "汇总概览", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "汇总概览信息", "startedAt": "2026-04-30T00:26:50", "completedAt": "2026-04-30T00:53:38", "meta": "Start 00:26:50", "isActive": false}]}, {"key": "normalize", "label": "标准化数据", "status": "skipped", "statusLabel": "skipped", "fraction": 1.0, "detail": "已跳过标准化阶段", "startedAt": "2026-04-30T00:26:50", "completedAt": "2026-04-30T00:53:38", "meta": "Start 00:26:50 | End 00:53:38", "isActive": false, "steps": [{"key": "select", "label": "选择目标商品", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "选中 1 个目标商品", "startedAt": "2026-04-30T00:26:50", "completedAt": "2026-04-30T00:26:50", "meta": "Start 00:26:50 | 1/1", "isActive": false}, {"key": "normalize_products", "label": "逐个标准化商品", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "shoes_001", "startedAt": "2026-04-30T00:26:50", "completedAt": "2026-04-30T00:26:50", "meta": "Start 00:26:50 | 1/1", "isActive": false}, {"key": "persist", "label": "落盘标准化产物", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/4_reports/dataset_normalization_report.json", "startedAt": "2026-04-30T00:26:50", "completedAt": "2026-04-30T00:26:50", "meta": "Start 00:26:50 | 1/1", "isActive": false}]}, {"key": "index", "label": "构建索引", "status": "skipped", "statusLabel": "skipped", "fraction": 1.0, "detail": "已跳过索引阶段", "startedAt": "2026-04-30T00:26:50", "completedAt": "2026-04-30T00:53:38", "meta": "Start 00:26:50 | End 00:53:38", "isActive": false, "steps": [{"key": "load_packages", "label": "加载商品包", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "shoes_001", "startedAt": "2026-04-30T00:26:50", "completedAt": "2026-04-30T00:28:01", "meta": "Start 00:26:50 | 1/1", "isActive": false}, {"key": "embed_text", "label": "生成文本向量", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "shoes_001_category_3dd456c7de6a", "startedAt": "2026-04-30T00:26:50", "completedAt": "2026-04-30T00:26:53", "meta": "Start 00:26:50 | 3/3", "isActive": false}, {"key": "embed_image", "label": "生成图像向量", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "shoes_001_8670209_1516e8a43a0a_region_9096703dc64f", "startedAt": "2026-04-30T00:26:53", "completedAt": "2026-04-30T00:28:01", "meta": "Start 00:26:53 | 138/138", "isActive": false}, {"key": "persist", "label": "保存索引快照", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/3_indexes/qdrant_store", "startedAt": "2026-04-30T00:28:01", "completedAt": "2026-04-30T00:28:05", "meta": "Start 00:28:01 | 1/1", "isActive": false}]}, {"key": "analyze", "label": "生成分析", "status": "in_progress", "statusLabel": "running", "fraction": 0.2933673469387755, "detail": "生成 shoes_001 的分析报告", "startedAt": "2026-04-30T00:28:05", "completedAt": null, "meta": "Start 00:28:05 | 1561.9s | ETA 1h 2m | ~01:56:50", "isActive": true, "steps": [{"key": "extract", "label": "抽取评论", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "提取了 15 个方面", "startedAt": "2026-04-30T00:28:05", "completedAt": "2026-04-30T00:54:08", "meta": "Start 00:28:05 | 10/10", "isActive": false}, {"key": "questions", "label": "规划和生成问题", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "fit", "startedAt": "2026-04-30T00:28:33", "completedAt": "2026-04-30T00:30:11", "meta": "Start 00:28:33 | 14/14", "isActive": false}, {"key": "retrieve", "label": "检索证据", "status": "in_progress", "statusLabel": "running", "fraction": 0.05357142857142857, "detail": "[2/28] 文本重排: 无候选 · shoes_001_review_0001_aspect_01_q_02", "startedAt": "2026-04-30T00:30:11", "completedAt": null, "meta": "Start 00:30:11 | 6/112 | 1435.8s | ETA 7h 2m | ~07:56:53", "isActive": false}, {"key": "quality", "label": "评估检索质量", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false}, {"key": "report", "label": "生成报告", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false}, {"key": "attribution", "label": "归因和修订", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false}, {"key": "persist", "label": "写入分析产物", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false}]}, {"key": "export_html", "label": "导出 HTML", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false, "steps": [{"key": "render", "label": "渲染 HTML", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false}, {"key": "write", "label": "写入 HTML 文件", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false}]}, {"key": "write_manifest", "label": "写入 Manifest", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false, "steps": [{"key": "serialize", "label": "序列化摘要", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false}, {"key": "write", "label": "写入 Manifest 文件", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false}]}]};
-        const stateUrl = new URL(window.location.pathname.replace(/\.html$/, '.state.json'), window.location.origin).toString();
-        const fmtPercent = value => `${(value * 100).toFixed(1)}%`;
-        const statusClass = status => status === 'in_progress' ? 'running' : status;
-        const modulesEl = document.getElementById('modules');
-        const rawEl = document.getElementById('raw');
-
-        function render(payload) {
-            const banner = document.getElementById('status-banner');
-            banner.className = `status-banner ${payload.workflowStatus === 'completed' ? 'complete' : 'running'}`;
-            document.getElementById('workflow-headline').textContent = payload.workflowHeadline ?? '--';
-            document.getElementById('workflow-caption').textContent = payload.workflowCaption ?? '--';
-            document.getElementById('workflow-note').textContent = payload.note || 'Workflow is running';
-            document.getElementById('overall-percent').textContent = fmtPercent(payload.overallFraction || 0);
-            document.getElementById('overall-meta').textContent = `ETA ${payload.overallEta ?? '--'} · Finish ${payload.overallFinish ?? '--'}`;
-            document.getElementById('active-module').textContent = payload.activeModule ?? '--';
-            document.getElementById('module-meta').textContent = `ETA ${payload.activeModuleEta ?? '--'} · Finish ${payload.activeModuleFinish ?? '--'}`;
-            document.getElementById('active-step').textContent = payload.activeStep ?? '--';
-            document.getElementById('step-meta').textContent = `ETA ${payload.activeStepEta ?? '--'} · Finish ${payload.activeStepFinish ?? '--'}`;
-            document.getElementById('elapsed').textContent = payload.elapsed ?? '--';
-
-            modulesEl.innerHTML = '';
-            for (const module of payload.modules || []) {
-                const moduleEl = document.createElement('div');
-                moduleEl.className = 'module';
-                const stepsHtml = (module.steps || []).map(step => `
-                    <div class="step ${step.isActive ? 'active' : ''}">
-                        <div class="row"><strong>${step.label}</strong><span class="status ${statusClass(step.status)}">${step.statusLabel}</span></div>
-                        <div class="bar"><div class="fill" style="width:${fmtPercent(step.fraction || 0)}"></div></div>
-                        <div class="detail">${step.detail || ''}</div>
-                        <div class="detail">${step.meta || ''}</div>
-                    </div>
-                `).join('');
-                moduleEl.innerHTML = `
-                    <div class="row"><strong>${module.label}</strong><span class="status ${statusClass(module.status)}">${module.statusLabel}</span></div>
-                    <div class="bar"><div class="fill" style="width:${fmtPercent(module.fraction || 0)}"></div></div>
-                    <div class="detail">${module.detail || ''}</div>
-                    <div class="detail">${module.meta || ''}</div>
-                    <div class="steps">${stepsHtml}</div>
-                `;
-                modulesEl.appendChild(moduleEl);
-            }
-            rawEl.textContent = JSON.stringify(payload, null, 2);
-        }
-
-        async function pollState() {
-            try {
-                const response = await fetch(`${stateUrl}?t=${Date.now()}`, { cache: 'no-store' });
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}`);
-                }
-                const statePayload = await response.json();
-                const nextPayload = statePayload.dashboard ?? initialPayload;
-                render(nextPayload);
-                if (nextPayload.workflowStatus === 'completed') {
-                    return;
-                }
-            } catch (_error) {
-            }
-            window.setTimeout(pollState, 2000);
-        }
-
-        render(initialPayload);
+        const initialPayload = {"generatedAt": "2026-04-30T01:31:32", "workflowStartedAt": "2026-04-30T01:30:17", "workflowCompletedAt": "2026-04-30T01:30:18", "workflowStatus": "running", "workflowHeadline": "工作流运行中", "workflowCaption": "页面会持续更新直到完成。当前这次运行开始于 01:30:17。", "elapsed": "73.9s", "elapsedSeconds": 73.9, "overallFraction": 0.393719806763285, "overallEta": "1m 54s", "overallEtaSeconds": 113.8, "overallFinish": "01:33:26", "activeModule": "构建索引", "activeModuleEta": "2m 9s", "activeModuleEtaSeconds": 128.7, "activeModuleFinish": "01:33:41", "activeStep": "生成图像向量", "activeStepEta": "1m 27s", "activeStepEtaSeconds": 86.9, "activeStepFinish": "01:32:59", "note": "工作流已启动，正在按顺序执行各模块。", "modules": [{"key": "overview", "label": "数据集概览", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "统计类目、商品与评论总量", "startedAt": "2026-04-30T01:30:18", "completedAt": "2026-04-30T01:30:18", "meta": "Start 01:30:18 | End 01:30:18", "isActive": false, "steps": [{"key": "scan", "label": "扫描类目与商品", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "扫描数据集目录", "startedAt": "2026-04-30T01:30:18", "completedAt": "2026-04-30T01:30:18", "meta": "Start 01:30:18", "isActive": false}, {"key": "summarize", "label": "汇总概览", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "汇总概览信息", "startedAt": "2026-04-30T01:30:18", "completedAt": "2026-04-30T01:30:18", "meta": "Start 01:30:18", "isActive": false}]}, {"key": "normalize", "label": "标准化数据", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "标准化 shoes_001 所在商品包", "startedAt": "2026-04-30T01:30:18", "completedAt": "2026-04-30T01:30:18", "meta": "Start 01:30:18 | End 01:30:18", "isActive": false, "steps": [{"key": "select", "label": "选择目标商品", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "选中 1 个目标商品", "startedAt": "2026-04-30T01:30:18", "completedAt": "2026-04-30T01:30:18", "meta": "Start 01:30:18 | 1/1", "isActive": false}, {"key": "normalize_products", "label": "逐个标准化商品", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "shoes_001", "startedAt": "2026-04-30T01:30:18", "completedAt": "2026-04-30T01:30:18", "meta": "Start 01:30:18 | 1/1", "isActive": false}, {"key": "persist", "label": "落盘标准化产物", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/4_reports/dataset_normalization_report.json", "startedAt": "2026-04-30T01:30:18", "completedAt": "2026-04-30T01:30:18", "meta": "Start 01:30:18 | 1/1", "isActive": false}]}, {"key": "index", "label": "构建索引", "status": "in_progress", "statusLabel": "running", "fraction": 0.36231884057971014, "detail": "为 shoes_001 构建证据索引", "startedAt": "2026-04-30T01:30:18", "completedAt": null, "meta": "Start 01:30:18 | 73.1s | ETA 2m 9s | ~01:33:41", "isActive": true, "steps": [{"key": "load_packages", "label": "加载商品包", "status": "in_progress", "statusLabel": "running", "fraction": 0.0, "detail": "准备加载 1 个商品包", "startedAt": "2026-04-30T01:30:18", "completedAt": null, "meta": "Start 01:30:18 | 0/1 | 73.1s", "isActive": false}, {"key": "embed_text", "label": "生成文本向量", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "shoes_001_category_3dd456c7de6a", "startedAt": "2026-04-30T01:30:18", "completedAt": "2026-04-30T01:30:20", "meta": "Start 01:30:18 | 3/3", "isActive": false}, {"key": "embed_image", "label": "生成图像向量", "status": "in_progress", "statusLabel": "running", "fraction": 0.4492753623188406, "detail": "shoes_001_8613295_eca8cdb0c028_region_ff8ef8b1e71a", "startedAt": "2026-04-30T01:30:20", "completedAt": null, "meta": "Start 01:30:20 | 62/138 | 70.9s | ETA 1m 27s | ~01:32:59", "isActive": true}, {"key": "persist", "label": "保存索引快照", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false}]}, {"key": "analyze", "label": "生成分析", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false, "steps": [{"key": "extract", "label": "抽取评论", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false}, {"key": "questions", "label": "规划和生成问题", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false}, {"key": "retrieve", "label": "检索证据", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false}, {"key": "quality", "label": "评估检索质量", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false}, {"key": "report", "label": "生成报告", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false}, {"key": "attribution", "label": "归因和修订", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false}, {"key": "persist", "label": "写入分析产物", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false}]}, {"key": "export_html", "label": "导出 HTML", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false, "steps": [{"key": "render", "label": "渲染 HTML", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false}, {"key": "write", "label": "写入 HTML 文件", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false}]}, {"key": "write_manifest", "label": "写入 Manifest", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false, "steps": [{"key": "serialize", "label": "序列化摘要", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false}, {"key": "write", "label": "写入 Manifest 文件", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false}]}]};
+        window.ProgressDashboard.renderProgressDashboard(initialPayload);
         if (initialPayload.workflowStatus !== 'completed') {
-            window.setTimeout(pollState, 2000);
+            window.setTimeout(() => window.ProgressDashboard.pollProgressState(initialPayload), 2000);
         }
     </script>
 </body>
 </html>
-        

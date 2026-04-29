@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>__TITLE__</title>
+    <link rel="stylesheet" href="__ASSET_BASE__/dashboard.css" />
+</head>
+<body>
+    <div class="wrap">
+        <section id="status-banner" class="status-banner running">
+            <div class="eyebrow">Workflow Status</div>
+            <div id="workflow-headline" class="headline">--</div>
+            <div id="workflow-caption" class="caption">--</div>
+        </section>
+        <section class="hero">
+            <h1>__TITLE__</h1>
+            <div id="workflow-note" class="note">--</div>
+            <div class="meta">
+                <div class="card"><div class="label">Overall</div><div id="overall-percent" class="value">--</div><div id="overall-meta" class="sub">--</div></div>
+                <div class="card"><div class="label">Active Stage</div><div id="active-module" class="value">--</div><div id="module-meta" class="sub">--</div></div>
+                <div class="card"><div class="label">Active Step</div><div id="active-step" class="value">--</div><div id="step-meta" class="sub">--</div></div>
+                <div class="card"><div class="label">Elapsed</div><div id="elapsed" class="value">--</div><div class="sub">Live update every 2s</div></div>
+            </div>
+        </section>
+        <section class="grid">
+            <div class="panel">
+                <h2>Workflow</h2>
+                <div class="list" id="modules"></div>
+            </div>
+            <div class="panel debug-panel">
+                <details>
+                    <summary>技术快照</summary>
+                    <div class="debug-note">这是给调试和排障看的原始状态，不是主要的人类阅读界面。</div>
+                    <pre id="raw"></pre>
+                </details>
+            </div>
+        </section>
+    </div>
+    <script src="__ASSET_BASE__/dashboard.js"></script>
+    <script>
+        const initialPayload = __PAYLOAD__;
+        window.ProgressDashboard.renderProgressDashboard(initialPayload);
+        if (initialPayload.workflowStatus !== 'completed') {
+            window.setTimeout(() => window.ProgressDashboard.pollProgressState(initialPayload), 2000);
+        }
+    </script>
+</body>
+</html>
