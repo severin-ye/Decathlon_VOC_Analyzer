@@ -3,7 +3,6 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="refresh" content="2" />
     <title>shoes/shoes_001 Workflow Progress</title>
     <style>
         :root {
@@ -128,19 +127,19 @@
 </head>
 <body>
     <div class="wrap">
-        <section class="status-banner {{workflowStatusClass}}">
+        <section id="status-banner" class="status-banner running">
             <div class="eyebrow">Workflow Status</div>
-            <div class="headline">{{workflowHeadline}}</div>
-            <div class="caption">{{workflowCaption}}</div>
+            <div id="workflow-headline" class="headline">--</div>
+            <div id="workflow-caption" class="caption">--</div>
         </section>
         <section class="hero">
             <h1>shoes/shoes_001 Workflow Progress</h1>
-            <div class="note">{{note}}</div>
+            <div id="workflow-note" class="note">--</div>
             <div class="meta">
-                <div class="card"><div class="label">Overall</div><div class="value">{{overallPercent}}</div><div class="sub">ETA {{overallEta}} · Finish {{overallFinish}}</div></div>
-                <div class="card"><div class="label">Active Stage</div><div class="value">{{activeModule}}</div><div class="sub">ETA {{moduleEta}} · Finish {{moduleFinish}}</div></div>
-                <div class="card"><div class="label">Active Step</div><div class="value">{{activeStep}}</div><div class="sub">ETA {{stepEta}} · Finish {{stepFinish}}</div></div>
-                <div class="card"><div class="label">Elapsed</div><div class="value">{{elapsed}}</div><div class="sub">Auto refresh every 2s</div></div>
+                <div class="card"><div class="label">Overall</div><div id="overall-percent" class="value">--</div><div id="overall-meta" class="sub">--</div></div>
+                <div class="card"><div class="label">Active Stage</div><div id="active-module" class="value">--</div><div id="module-meta" class="sub">--</div></div>
+                <div class="card"><div class="label">Active Step</div><div id="active-step" class="value">--</div><div id="step-meta" class="sub">--</div></div>
+                <div class="card"><div class="label">Elapsed</div><div id="elapsed" class="value">--</div><div class="sub">Live update every 2s</div></div>
             </div>
         </section>
         <section class="grid">
@@ -158,50 +157,72 @@
         </section>
     </div>
     <script>
-        const payload = {"generatedAt": "2026-04-30T00:30:14", "workflowStartedAt": "2026-04-30T00:26:50", "workflowCompletedAt": "2026-04-30T00:28:05", "workflowStatus": "running", "workflowHeadline": "工作流运行中", "workflowCaption": "页面会持续刷新直到完成。当前这次运行开始于 00:26:50。", "elapsed": "200.7s", "overallFraction": 0.5488945578231292, "overallEta": "2m 45s", "overallFinish": "00:32:59", "activeModule": "生成分析", "activeModuleEta": "5m 5s", "activeModuleFinish": "00:35:19", "activeStep": "检索证据", "activeStepEta": "50s", "activeStepFinish": "00:31:04", "note": "工作流已启动，正在按顺序执行各模块。", "modules": [{"key": "overview", "label": "数据集概览", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "统计类目、商品与评论总量", "startedAt": "2026-04-30T00:26:50", "completedAt": "2026-04-30T00:26:50", "meta": "Start 00:26:50 | End 00:26:50", "isActive": false, "steps": [{"key": "scan", "label": "扫描类目与商品", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "扫描数据集目录", "startedAt": "2026-04-30T00:26:50", "completedAt": "2026-04-30T00:26:50", "meta": "Start 00:26:50", "isActive": false}, {"key": "summarize", "label": "汇总概览", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "汇总概览信息", "startedAt": "2026-04-30T00:26:50", "completedAt": "2026-04-30T00:26:50", "meta": "Start 00:26:50", "isActive": false}]}, {"key": "normalize", "label": "标准化数据", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "标准化 shoes_001 所在商品包", "startedAt": "2026-04-30T00:26:50", "completedAt": "2026-04-30T00:26:50", "meta": "Start 00:26:50 | End 00:26:50", "isActive": false, "steps": [{"key": "select", "label": "选择目标商品", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "选中 1 个目标商品", "startedAt": "2026-04-30T00:26:50", "completedAt": "2026-04-30T00:26:50", "meta": "Start 00:26:50 | 1/1", "isActive": false}, {"key": "normalize_products", "label": "逐个标准化商品", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "shoes_001", "startedAt": "2026-04-30T00:26:50", "completedAt": "2026-04-30T00:26:50", "meta": "Start 00:26:50 | 1/1", "isActive": false}, {"key": "persist", "label": "落盘标准化产物", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/4_reports/dataset_normalization_report.json", "startedAt": "2026-04-30T00:26:50", "completedAt": "2026-04-30T00:26:50", "meta": "Start 00:26:50 | 1/1", "isActive": false}]}, {"key": "index", "label": "构建索引", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "为 shoes_001 构建证据索引", "startedAt": "2026-04-30T00:26:50", "completedAt": "2026-04-30T00:28:05", "meta": "Start 00:26:50 | End 00:28:05", "isActive": false, "steps": [{"key": "load_packages", "label": "加载商品包", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "shoes_001", "startedAt": "2026-04-30T00:26:50", "completedAt": "2026-04-30T00:28:01", "meta": "Start 00:26:50 | 1/1", "isActive": false}, {"key": "embed_text", "label": "生成文本向量", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "shoes_001_category_3dd456c7de6a", "startedAt": "2026-04-30T00:26:50", "completedAt": "2026-04-30T00:26:53", "meta": "Start 00:26:50 | 3/3", "isActive": false}, {"key": "embed_image", "label": "生成图像向量", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "shoes_001_8670209_1516e8a43a0a_region_9096703dc64f", "startedAt": "2026-04-30T00:26:53", "completedAt": "2026-04-30T00:28:01", "meta": "Start 00:26:53 | 138/138", "isActive": false}, {"key": "persist", "label": "保存索引快照", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/3_indexes/qdrant_store", "startedAt": "2026-04-30T00:28:01", "completedAt": "2026-04-30T00:28:05", "meta": "Start 00:28:01 | 1/1", "isActive": false}]}, {"key": "analyze", "label": "生成分析", "status": "in_progress", "statusLabel": "running", "fraction": 0.2933673469387755, "detail": "生成 shoes_001 的分析报告", "startedAt": "2026-04-30T00:28:05", "completedAt": null, "meta": "Start 00:28:05 | 126.4s | ETA 5m 5s | ~00:35:19", "isActive": true, "steps": [{"key": "extract", "label": "抽取评论", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "提取了 14 个方面", "startedAt": "2026-04-30T00:28:05", "completedAt": "2026-04-30T00:28:33", "meta": "Start 00:28:05 | 10/10", "isActive": false}, {"key": "questions", "label": "规划和生成问题", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "fit", "startedAt": "2026-04-30T00:28:33", "completedAt": "2026-04-30T00:30:11", "meta": "Start 00:28:33 | 14/14", "isActive": false}, {"key": "retrieve", "label": "检索证据", "status": "in_progress", "statusLabel": "running", "fraction": 0.05357142857142857, "detail": "[2/28] 文本重排: 无候选 · shoes_001_review_0001_aspect_01_q_02", "startedAt": "2026-04-30T00:30:11", "completedAt": null, "meta": "Start 00:30:11 | 6/112 | 2.8s | ETA 50s | ~00:31:04", "isActive": true}, {"key": "quality", "label": "评估检索质量", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false}, {"key": "report", "label": "生成报告", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false}, {"key": "attribution", "label": "归因和修订", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false}, {"key": "persist", "label": "写入分析产物", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false}]}, {"key": "export_html", "label": "导出 HTML", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false, "steps": [{"key": "render", "label": "渲染 HTML", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false}, {"key": "write", "label": "写入 HTML 文件", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false}]}, {"key": "write_manifest", "label": "写入 Manifest", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false, "steps": [{"key": "serialize", "label": "序列化摘要", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false}, {"key": "write", "label": "写入 Manifest 文件", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false}]}]};
-        const fill = (template, values) => template.replace(/\{\{(.*?)\}\}/g, (_, key) => values[key.trim()] ?? '--');
+        const initialPayload = {"generatedAt": "2026-04-30T00:54:08", "workflowStartedAt": "2026-04-30T00:26:50", "workflowCompletedAt": "2026-04-30T00:53:38", "workflowStatus": "running", "workflowHeadline": "工作流运行中", "workflowCaption": "页面会持续更新直到完成。当前这次运行开始于 00:26:50。", "elapsed": "1637.4s", "overallFraction": 0.5488945578231292, "overallEta": "22m 26s", "overallFinish": "01:16:33", "activeModule": "生成分析", "activeModuleEta": "1h 2m", "activeModuleFinish": "01:56:50", "activeStep": null, "activeStepEta": null, "activeStepFinish": null, "note": "工作流已启动，正在按顺序执行各模块。", "modules": [{"key": "overview", "label": "数据集概览", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "统计类目、商品与评论总量", "startedAt": "2026-04-30T00:26:50", "completedAt": "2026-04-30T00:53:38", "meta": "Start 00:26:50 | End 00:53:38", "isActive": false, "steps": [{"key": "scan", "label": "扫描类目与商品", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "扫描数据集目录", "startedAt": "2026-04-30T00:26:50", "completedAt": "2026-04-30T00:53:38", "meta": "Start 00:26:50", "isActive": false}, {"key": "summarize", "label": "汇总概览", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "汇总概览信息", "startedAt": "2026-04-30T00:26:50", "completedAt": "2026-04-30T00:53:38", "meta": "Start 00:26:50", "isActive": false}]}, {"key": "normalize", "label": "标准化数据", "status": "skipped", "statusLabel": "skipped", "fraction": 1.0, "detail": "已跳过标准化阶段", "startedAt": "2026-04-30T00:26:50", "completedAt": "2026-04-30T00:53:38", "meta": "Start 00:26:50 | End 00:53:38", "isActive": false, "steps": [{"key": "select", "label": "选择目标商品", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "选中 1 个目标商品", "startedAt": "2026-04-30T00:26:50", "completedAt": "2026-04-30T00:26:50", "meta": "Start 00:26:50 | 1/1", "isActive": false}, {"key": "normalize_products", "label": "逐个标准化商品", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "shoes_001", "startedAt": "2026-04-30T00:26:50", "completedAt": "2026-04-30T00:26:50", "meta": "Start 00:26:50 | 1/1", "isActive": false}, {"key": "persist", "label": "落盘标准化产物", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/4_reports/dataset_normalization_report.json", "startedAt": "2026-04-30T00:26:50", "completedAt": "2026-04-30T00:26:50", "meta": "Start 00:26:50 | 1/1", "isActive": false}]}, {"key": "index", "label": "构建索引", "status": "skipped", "statusLabel": "skipped", "fraction": 1.0, "detail": "已跳过索引阶段", "startedAt": "2026-04-30T00:26:50", "completedAt": "2026-04-30T00:53:38", "meta": "Start 00:26:50 | End 00:53:38", "isActive": false, "steps": [{"key": "load_packages", "label": "加载商品包", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "shoes_001", "startedAt": "2026-04-30T00:26:50", "completedAt": "2026-04-30T00:28:01", "meta": "Start 00:26:50 | 1/1", "isActive": false}, {"key": "embed_text", "label": "生成文本向量", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "shoes_001_category_3dd456c7de6a", "startedAt": "2026-04-30T00:26:50", "completedAt": "2026-04-30T00:26:53", "meta": "Start 00:26:50 | 3/3", "isActive": false}, {"key": "embed_image", "label": "生成图像向量", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "shoes_001_8670209_1516e8a43a0a_region_9096703dc64f", "startedAt": "2026-04-30T00:26:53", "completedAt": "2026-04-30T00:28:01", "meta": "Start 00:26:53 | 138/138", "isActive": false}, {"key": "persist", "label": "保存索引快照", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "/home/severin/Codelib/Decathlon_VOC_Analyzer/02_outputs/3_indexes/qdrant_store", "startedAt": "2026-04-30T00:28:01", "completedAt": "2026-04-30T00:28:05", "meta": "Start 00:28:01 | 1/1", "isActive": false}]}, {"key": "analyze", "label": "生成分析", "status": "in_progress", "statusLabel": "running", "fraction": 0.2933673469387755, "detail": "生成 shoes_001 的分析报告", "startedAt": "2026-04-30T00:28:05", "completedAt": null, "meta": "Start 00:28:05 | 1561.9s | ETA 1h 2m | ~01:56:50", "isActive": true, "steps": [{"key": "extract", "label": "抽取评论", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "提取了 15 个方面", "startedAt": "2026-04-30T00:28:05", "completedAt": "2026-04-30T00:54:08", "meta": "Start 00:28:05 | 10/10", "isActive": false}, {"key": "questions", "label": "规划和生成问题", "status": "done", "statusLabel": "done", "fraction": 1.0, "detail": "fit", "startedAt": "2026-04-30T00:28:33", "completedAt": "2026-04-30T00:30:11", "meta": "Start 00:28:33 | 14/14", "isActive": false}, {"key": "retrieve", "label": "检索证据", "status": "in_progress", "statusLabel": "running", "fraction": 0.05357142857142857, "detail": "[2/28] 文本重排: 无候选 · shoes_001_review_0001_aspect_01_q_02", "startedAt": "2026-04-30T00:30:11", "completedAt": null, "meta": "Start 00:30:11 | 6/112 | 1435.8s | ETA 7h 2m | ~07:56:53", "isActive": false}, {"key": "quality", "label": "评估检索质量", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false}, {"key": "report", "label": "生成报告", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false}, {"key": "attribution", "label": "归因和修订", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false}, {"key": "persist", "label": "写入分析产物", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false}]}, {"key": "export_html", "label": "导出 HTML", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false, "steps": [{"key": "render", "label": "渲染 HTML", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false}, {"key": "write", "label": "写入 HTML 文件", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false}]}, {"key": "write_manifest", "label": "写入 Manifest", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false, "steps": [{"key": "serialize", "label": "序列化摘要", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false}, {"key": "write", "label": "写入 Manifest 文件", "status": "pending", "statusLabel": "pending", "fraction": 0.0, "detail": "", "startedAt": null, "completedAt": null, "meta": null, "isActive": false}]}]};
+        const stateUrl = new URL(window.location.pathname.replace(/\.html$/, '.state.json'), window.location.origin).toString();
         const fmtPercent = value => `${(value * 100).toFixed(1)}%`;
         const statusClass = status => status === 'in_progress' ? 'running' : status;
-        const rootValues = {
-            overallPercent: fmtPercent(payload.overallFraction),
-            overallEta: payload.overallEta ?? '--',
-            overallFinish: payload.overallFinish ?? '--',
-            activeModule: payload.activeModule ?? '--',
-            moduleEta: payload.activeModuleEta ?? '--',
-            moduleFinish: payload.activeModuleFinish ?? '--',
-            activeStep: payload.activeStep ?? '--',
-            stepEta: payload.activeStepEta ?? '--',
-            stepFinish: payload.activeStepFinish ?? '--',
-            elapsed: payload.elapsed,
-            note: payload.note || 'Workflow is running',
-            workflowStatusClass: payload.workflowStatus === 'completed' ? 'complete' : 'running',
-            workflowHeadline: payload.workflowHeadline,
-            workflowCaption: payload.workflowCaption,
-        };
-        document.body.innerHTML = fill(document.body.innerHTML, rootValues);
-
         const modulesEl = document.getElementById('modules');
-        for (const module of payload.modules) {
-            const moduleEl = document.createElement('div');
-            moduleEl.className = 'module';
-            const stepsHtml = module.steps.map(step => `
-                <div class="step ${step.isActive ? 'active' : ''}">
-                    <div class="row"><strong>${step.label}</strong><span class="status ${statusClass(step.status)}">${step.statusLabel}</span></div>
-                    <div class="bar"><div class="fill" style="width:${fmtPercent(step.fraction)}"></div></div>
-                    <div class="detail">${step.detail || ''}</div>
-                    <div class="detail">${step.meta || ''}</div>
-                </div>
-            `).join('');
-            moduleEl.innerHTML = `
-                <div class="row"><strong>${module.label}</strong><span class="status ${statusClass(module.status)}">${module.statusLabel}</span></div>
-                <div class="bar"><div class="fill" style="width:${fmtPercent(module.fraction)}"></div></div>
-                <div class="detail">${module.detail || ''}</div>
-                <div class="detail">${module.meta || ''}</div>
-                <div class="steps">${stepsHtml}</div>
-            `;
-            modulesEl.appendChild(moduleEl);
+        const rawEl = document.getElementById('raw');
+
+        function render(payload) {
+            const banner = document.getElementById('status-banner');
+            banner.className = `status-banner ${payload.workflowStatus === 'completed' ? 'complete' : 'running'}`;
+            document.getElementById('workflow-headline').textContent = payload.workflowHeadline ?? '--';
+            document.getElementById('workflow-caption').textContent = payload.workflowCaption ?? '--';
+            document.getElementById('workflow-note').textContent = payload.note || 'Workflow is running';
+            document.getElementById('overall-percent').textContent = fmtPercent(payload.overallFraction || 0);
+            document.getElementById('overall-meta').textContent = `ETA ${payload.overallEta ?? '--'} · Finish ${payload.overallFinish ?? '--'}`;
+            document.getElementById('active-module').textContent = payload.activeModule ?? '--';
+            document.getElementById('module-meta').textContent = `ETA ${payload.activeModuleEta ?? '--'} · Finish ${payload.activeModuleFinish ?? '--'}`;
+            document.getElementById('active-step').textContent = payload.activeStep ?? '--';
+            document.getElementById('step-meta').textContent = `ETA ${payload.activeStepEta ?? '--'} · Finish ${payload.activeStepFinish ?? '--'}`;
+            document.getElementById('elapsed').textContent = payload.elapsed ?? '--';
+
+            modulesEl.innerHTML = '';
+            for (const module of payload.modules || []) {
+                const moduleEl = document.createElement('div');
+                moduleEl.className = 'module';
+                const stepsHtml = (module.steps || []).map(step => `
+                    <div class="step ${step.isActive ? 'active' : ''}">
+                        <div class="row"><strong>${step.label}</strong><span class="status ${statusClass(step.status)}">${step.statusLabel}</span></div>
+                        <div class="bar"><div class="fill" style="width:${fmtPercent(step.fraction || 0)}"></div></div>
+                        <div class="detail">${step.detail || ''}</div>
+                        <div class="detail">${step.meta || ''}</div>
+                    </div>
+                `).join('');
+                moduleEl.innerHTML = `
+                    <div class="row"><strong>${module.label}</strong><span class="status ${statusClass(module.status)}">${module.statusLabel}</span></div>
+                    <div class="bar"><div class="fill" style="width:${fmtPercent(module.fraction || 0)}"></div></div>
+                    <div class="detail">${module.detail || ''}</div>
+                    <div class="detail">${module.meta || ''}</div>
+                    <div class="steps">${stepsHtml}</div>
+                `;
+                modulesEl.appendChild(moduleEl);
+            }
+            rawEl.textContent = JSON.stringify(payload, null, 2);
         }
-        document.getElementById('raw').textContent = JSON.stringify(payload, null, 2);
+
+        async function pollState() {
+            try {
+                const response = await fetch(`${stateUrl}?t=${Date.now()}`, { cache: 'no-store' });
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                const statePayload = await response.json();
+                const nextPayload = statePayload.dashboard ?? initialPayload;
+                render(nextPayload);
+                if (nextPayload.workflowStatus === 'completed') {
+                    return;
+                }
+            } catch (_error) {
+            }
+            window.setTimeout(pollState, 2000);
+        }
+
+        render(initialPayload);
+        if (initialPayload.workflowStatus !== 'completed') {
+            window.setTimeout(pollState, 2000);
+        }
     </script>
 </body>
 </html>

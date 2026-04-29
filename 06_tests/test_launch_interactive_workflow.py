@@ -71,7 +71,19 @@ def test_prompt_run_mode_returns_resume_checkpoint_choice() -> None:
     module = _load_module()
     printed: list[str] = []
 
+    candidate = module.ResumeCandidate(
+        dashboard_path=Path("/tmp/shoes_interactive_batch.html"),
+        payload={
+            "category": "shoes",
+            "products": [{"productId": "shoes_001", "status": "failed"}],
+        },
+    )
+
+    module._resume_mode_has_aspects = lambda payload: True
+    module._resume_mode_has_analysis_checkpoint = lambda payload: True
+
     result = module.prompt_run_mode(
+        candidate,
         input_func=lambda _prompt: "3",
         print_func=printed.append,
     )
@@ -86,6 +98,31 @@ def test_run_mode_args_include_resume_flags() -> None:
     assert module._run_mode_args(module.RUN_MODE_NORMAL) == []
     assert module._run_mode_args(module.RUN_MODE_RESUME_ASPECTS) == ["--skip-normalize", "--skip-index", "--resume-from-aspects"]
     assert module._run_mode_args(module.RUN_MODE_RESUME_ANALYSIS_CHECKPOINT) == ["--skip-normalize", "--skip-index", "--resume-from-analysis-checkpoint"]
+
+
+def test_available_run_mode_options_hide_missing_analysis_checkpoint() -> None:
+    module = _load_module()
+    candidate = module.ResumeCandidate(
+        dashboard_path=Path("/tmp/shoes_interactive_batch.html"),
+        payload={"category": "shoes", "products": [{"productId": "shoes_001", "status": "failed"}]},
+    )
+
+    module._resume_mode_has_aspects = lambda payload: True
+    module._resume_mode_has_analysis_checkpoint = lambda payload: False
+
+    options = module.available_run_mode_options(candidate)
+
+    assert [option.code for option in options] == [module.RUN_MODE_NORMAL, module.RUN_MODE_RESUME_ASPECTS]
+
+
+def test_unavailable_resume_mode_messages_report_missing_checkpoint() -> None:
+    module = _load_module()
+    module._resume_mode_has_aspects = lambda payload: True
+    module._resume_mode_has_analysis_checkpoint = lambda payload: False
+
+    messages = module.unavailable_resume_mode_messages({"category": "shoes", "products": [{"productId": "shoes_001", "status": "failed"}]})
+
+    assert messages == ["“从 analysis checkpoint 续跑”不可用：缺少 analysis checkpoint。"]
 
 
 def test_find_latest_resumable_batch_prefers_recent_state_file(tmp_path: Path) -> None:

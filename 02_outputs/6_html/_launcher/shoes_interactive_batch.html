@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta http-equiv="refresh" content="2" />
     <title>shoes Interactive Workflow</title>
   <style>
         :root {
@@ -64,18 +63,18 @@
 </head>
 <body>
   <div class="wrap">
-    <section class="banner running">
+        <section id="status-banner" class="banner running">
       <div class="eyebrow">Interactive Batch Runner</div>
-      <div class="headline">工作流运行中</div>
-      <div class="caption">页面已自动弹出，并会持续刷新当前商品进度页。开始于 2026-04-30T00:26:44。</div>
+            <div id="headline" class="headline">--</div>
+            <div id="caption" class="caption">--</div>
     </section>
     <section class="hero">
-            <h1>shoes 一键工作流</h1>
+                        <h1><span id="category-name">--</span> 一键工作流</h1>
       <div class="meta">
-                <div class="card"><div class="label">Category</div><div class="value">shoes</div><div class="sub">本次只处理一个品类</div></div>
-                <div class="card"><div class="label">Products</div><div class="value">1</div><div class="sub">已选商品数量</div></div>
-                <div class="card"><div class="label">Review Limit</div><div class="value">10</div><div class="sub">每个商品审核评论数</div></div>
-        <div class="card"><div class="label">Current Product</div><div class="value">__CURRENT_PRODUCT__</div><div class="sub">__NOTE__</div></div>
+                                <div class="card"><div class="label">Category</div><div id="category-card" class="value">--</div><div class="sub">本次只处理一个品类</div></div>
+                                <div class="card"><div class="label">Products</div><div id="product-count" class="value">--</div><div class="sub">已选商品数量</div></div>
+                                <div class="card"><div class="label">Review Limit</div><div id="review-limit" class="value">--</div><div class="sub">每个商品审核评论数</div></div>
+                <div class="card"><div class="label">Current Product</div><div id="current-product" class="value">--</div><div id="current-note" class="sub">--</div></div>
       </div>
     </section>
     <section class="grid">
@@ -91,42 +90,77 @@
     </section>
   </div>
   <script>
-        const payload = {"category": "shoes", "reviewLimit": 10, "status": "running", "note": "正在执行 shoes_001", "startedAt": "2026-04-30T00:26:44", "completedAt": null, "currentProductId": "shoes_001", "currentProductDashboardUrl": "http://127.0.0.1:8765/_progress/shoes/shoes_001_live_progress.html", "products": [{"index": 1, "productId": "shoes_001", "status": "running", "startedAt": "2026-04-30T00:26:44", "completedAt": null, "detail": "", "exitCode": null}]};
-    const bannerClass = payload.status === 'completed' ? 'completed' : (payload.status === 'failed' ? 'failed' : 'running');
-    const headline = payload.status === 'completed' ? '已完成所有流程' : (payload.status === 'failed' ? '流程执行失败' : '工作流运行中');
-    const caption = payload.status === 'completed'
-      ? `本页面会停留在最终完成状态。开始于 ${payload.startedAt ?? '--'}，完成于 ${payload.completedAt ?? '--'}。`
-      : (payload.status === 'failed'
-        ? `执行在 ${payload.currentProductId ?? '--'} 处失败。可以根据下方状态和终端日志继续排查。`
-        : `页面已自动弹出，并会持续刷新当前商品的 live 进度页。开始于 ${payload.startedAt ?? '--'}。`);
-    const html = document.body.innerHTML
-      .replace('running', bannerClass)
-      .replace('工作流运行中', headline)
-      .replace('页面已自动弹出，并会持续刷新当前商品进度页。开始于 2026-04-30T00:26:44。', caption)
-      .replace('__CURRENT_PRODUCT__', payload.currentProductId ?? '--')
-      .replace('__NOTE__', payload.note ?? '--');
-    document.body.innerHTML = html;
+                const initialPayload = {"category": "shoes", "reviewLimit": 10, "status": "failed", "note": "shoes_001 执行失败", "startedAt": "2026-04-30T00:26:44", "completedAt": "2026-04-30T00:54:08", "currentProductId": "shoes_001", "currentProductDashboardUrl": "http://127.0.0.1:8765/_progress/shoes/shoes_001_live_progress.html", "products": [{"index": 1, "productId": "shoes_001", "status": "failed", "startedAt": "2026-04-30T00:53:34", "completedAt": "2026-04-30T00:54:08", "detail": "执行失败，请查看终端输出", "exitCode": 1}]};
+        const stateUrl = new URL(window.location.pathname.replace(/\.html$/, '.state.json'), window.location.origin).toString();
+        const productsEl = document.getElementById('products');
+        const viewer = document.getElementById('viewer');
+        let pollTimer = null;
 
-    const productsEl = document.getElementById('products');
-        for (const product of payload.products) {
-      const productEl = document.createElement('div');
-      productEl.className = 'product';
-      productEl.innerHTML = `
-        <div class="row"><strong>${product.index}. ${product.productId}</strong><span class="status ${product.status}">${product.status}</span></div>
-        <div class="detail">${product.detail || ''}</div>
-        <div class="detail">Start ${product.startedAt || '--'} · End ${product.completedAt || '--'}${product.exitCode === null ? '' : ` · Exit ${product.exitCode}`}</div>
-      `;
-      productsEl.appendChild(productEl);
+        const statusHeadline = payload => payload.status === 'completed' ? '已完成所有流程' : (payload.status === 'failed' ? '流程执行失败' : '工作流运行中');
+        const statusCaption = payload => payload.status === 'completed'
+            ? `本页面会停留在最终完成状态。开始于 ${payload.startedAt ?? '--'}，完成于 ${payload.completedAt ?? '--'}。`
+            : (payload.status === 'failed'
+                ? `执行在 ${payload.currentProductId ?? '--'} 处失败。可以根据下方状态和终端日志继续排查。`
+                : `页面已自动弹出，并会持续更新当前商品的 live 进度页。开始于 ${payload.startedAt ?? '--'}。`);
+
+        function render(payload) {
+            const bannerClass = payload.status === 'completed' ? 'completed' : (payload.status === 'failed' ? 'failed' : 'running');
+            const banner = document.getElementById('status-banner');
+            banner.className = `banner ${bannerClass}`;
+            document.getElementById('headline').textContent = statusHeadline(payload);
+            document.getElementById('caption').textContent = statusCaption(payload);
+            document.getElementById('category-name').textContent = payload.category ?? '--';
+            document.getElementById('category-card').textContent = payload.category ?? '--';
+            document.getElementById('product-count').textContent = String((payload.products || []).length);
+            document.getElementById('review-limit').textContent = String(payload.reviewLimit ?? '--');
+            document.getElementById('current-product').textContent = payload.currentProductId ?? '--';
+            document.getElementById('current-note').textContent = payload.note ?? '--';
+
+            productsEl.innerHTML = '';
+            for (const product of payload.products || []) {
+                const productEl = document.createElement('div');
+                productEl.className = 'product';
+                productEl.innerHTML = `
+                    <div class="row"><strong>${product.index}. ${product.productId}</strong><span class="status ${product.status}">${product.status}</span></div>
+                    <div class="detail">${product.detail || ''}</div>
+                    <div class="detail">Start ${product.startedAt || '--'} · End ${product.completedAt || '--'}${product.exitCode === null ? '' : ` · Exit ${product.exitCode}`}</div>
+                `;
+                productsEl.appendChild(productEl);
+            }
+
+            if (payload.currentProductDashboardUrl) {
+                const existingFrame = viewer.querySelector('iframe');
+                const currentSrc = existingFrame?.getAttribute('src');
+                if (currentSrc !== payload.currentProductDashboardUrl) {
+                    viewer.innerHTML = `
+                        <div class="viewer-note"><a class="viewer-link" href="${payload.currentProductDashboardUrl}" target="_blank" rel="noreferrer">在新标签中打开当前商品进度页</a></div>
+                        <iframe class="viewer-frame" src="${payload.currentProductDashboardUrl}" title="current-product-progress"></iframe>
+                    `;
+                }
+            } else {
+                viewer.innerHTML = '<div class="viewer-note">当前还没有商品进度页。</div>';
+            }
         }
 
-    const viewer = document.getElementById('viewer');
-        if (payload.currentProductDashboardUrl) {
-      viewer.innerHTML = `
-        <div class="viewer-note"><a class="viewer-link" href="${payload.currentProductDashboardUrl}" target="_blank" rel="noreferrer">在新标签中打开当前商品进度页</a></div>
-        <iframe class="viewer-frame" src="${payload.currentProductDashboardUrl}" title="current-product-progress"></iframe>
-      `;
-        } else {
-      viewer.innerHTML = '<div class="viewer-note">当前还没有商品进度页。</div>';
+        async function pollState() {
+            try {
+                const response = await fetch(`${stateUrl}?t=${Date.now()}`, { cache: 'no-store' });
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+                const payload = await response.json();
+                render(payload);
+                if (payload.status === 'completed' || payload.status === 'failed') {
+                    return;
+                }
+            } catch (_error) {
+            }
+            pollTimer = window.setTimeout(pollState, 2000);
+        }
+
+        render(initialPayload);
+        if (initialPayload.status !== 'completed' && initialPayload.status !== 'failed') {
+            pollTimer = window.setTimeout(pollState, 2000);
         }
   </script>
 </body>

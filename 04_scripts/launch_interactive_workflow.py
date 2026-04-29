@@ -63,6 +63,12 @@ class ResumeCandidate:
     payload: dict[str, object]
 
 
+@dataclass(frozen=True)
+class ResumeModeOption:
+    code: str
+    label: str
+
+
 def discover_categories(dataset_root: Path = DEFAULT_DATASET_ROOT) -> list[str]:
     if not dataset_root.exists():
         raise FileNotFoundError(f"Dataset root not found: {dataset_root}")
@@ -334,7 +340,8 @@ def render_batch_dashboard_html(state: BatchRunState) -> str:
 
 
 def run_interactive_batch() -> int:
-    run_mode = prompt_run_mode()
+    resume_candidate = find_latest_resumable_batch()
+    run_mode = prompt_run_mode(resume_candidate)
 
     if run_mode == RUN_MODE_NORMAL:
         categories = discover_categories()
@@ -344,7 +351,6 @@ def run_interactive_batch() -> int:
         review_limit = prompt_review_limit()
         state = _build_new_batch_state(category=category, selected_products=selected_products, review_limit=review_limit)
     else:
-        resume_candidate = find_latest_resumable_batch()
         if resume_candidate is None:
             print("[未找到] 当前没有可继续的未完成批次。请先使用“正常跑”建立一次任务。")
             return 130
@@ -612,20 +618,46 @@ def prompt_review_limit() -> int:
         print("评论数必须大于 0。")
 
 
-def prompt_run_mode(input_func=input, print_func=print) -> str:
+def prompt_run_mode(resume_candidate: ResumeCandidate | None = None, input_func=input, print_func=print) -> str:
+    options = available_run_mode_options(resume_candidate)
     print_func("\n请选择运行模式：")
-    print_func("  1. 正常跑")
-    print_func("  2. 从 aspects 续跑")
-    print_func("  3. 从 analysis checkpoint 续跑")
+    for index, option in enumerate(options, start=1):
+        print_func(f"  {index}. {option.label}")
+    if resume_candidate is not None:
+        unavailable = unavailable_resume_mode_messages(resume_candidate.payload)
+        for message in unavailable:
+            print_func(f"  - {message}")
     while True:
         raw = input_func("请输入模式编号，例如 1: ").strip()
-        if raw == "1":
-            return RUN_MODE_NORMAL
-        if raw == "2":
-            return RUN_MODE_RESUME_ASPECTS
-        if raw == "3":
-            return RUN_MODE_RESUME_ANALYSIS_CHECKPOINT
-        print_func("输入无效，请输入 1、2 或 3。")
+        try:
+            choice = int(raw)
+        except ValueError:
+            print_func(f"输入无效，请输入 1 到 {len(options)}。")
+            continue
+        if 1 <= choice <= len(options):
+            return options[choice - 1].code
+        print_func(f"输入无效，请输入 1 到 {len(options)}。")
+
+
+def available_run_mode_options(resume_candidate: ResumeCandidate | None) -> list[ResumeModeOption]:
+    options = [ResumeModeOption(code=RUN_MODE_NORMAL, label="正常跑")]
+    if resume_candidate is None:
+        return options
+    payload = resume_candidate.payload
+    if _resume_mode_has_aspects(payload):
+        options.append(ResumeModeOption(code=RUN_MODE_RESUME_ASPECTS, label="从 aspects 续跑"))
+    if _resume_mode_has_analysis_checkpoint(payload):
+        options.append(ResumeModeOption(code=RUN_MODE_RESUME_ANALYSIS_CHECKPOINT, label="从 analysis checkpoint 续跑"))
+    return options
+
+
+def unavailable_resume_mode_messages(payload: dict[str, object]) -> list[str]:
+    messages: list[str] = []
+    if not _resume_mode_has_aspects(payload):
+        messages.append("“从 aspects 续跑”不可用：缺少评论抽取产物。")
+    if not _resume_mode_has_analysis_checkpoint(payload):
+        messages.append("“从 analysis checkpoint 续跑”不可用：缺少 analysis checkpoint。")
+    return messages
 
 
 def _run_mode_args(run_mode: str) -> list[str]:
@@ -634,6 +666,41 @@ def _run_mode_args(run_mode: str) -> list[str]:
     if run_mode == RUN_MODE_RESUME_ANALYSIS_CHECKPOINT:
         return ["--skip-normalize", "--skip-index", "--resume-from-analysis-checkpoint"]
     return []
+
+
+def _unfinished_product_ids(payload: dict[str, object]) -> list[str]:
+    raw_products = payload.get("products")
+    products_payload = raw_products if isinstance(raw_products, list) else []
+    return [
+        str(product.get("productId"))
+        for product in products_payload
+        if isinstance(product, dict) and product.get("productId") and str(product.get("status") or "pending") != "completed"
+    ]
+
+
+def _payload_category(payload: dict[str, object]) -> str | None:
+    category = payload.get("category")
+    return str(category) if isinstance(category, str) and category else None
+
+
+def _resume_mode_has_aspects(payload: dict[str, object]) -> bool:
+    category = _payload_category(payload)
+    if not category:
+        return False
+    unfinished = _unfinished_product_ids(payload)
+    if not unfinished:
+        return False
+    return all((ROOT_DIR / "02_outputs" / "2_aspects" / category / f"{product_id}.json").exists() for product_id in unfinished)
+
+
+def _resume_mode_has_analysis_checkpoint(payload: dict[str, object]) -> bool:
+    category = _payload_category(payload)
+    if not category:
+        return False
+    unfinished = _unfinished_product_ids(payload)
+    if not unfinished:
+        return False
+    return all((ROOT_DIR / "02_outputs" / "4_reports" / category / f"{product_id}_analysis_checkpoint.json").exists() for product_id in unfinished)
 
 
 def _status_css_class(status: str) -> str:
