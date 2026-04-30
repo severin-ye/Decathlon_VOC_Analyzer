@@ -46,7 +46,7 @@ def test_runtime_policy_warns_when_degradation_is_allowed(tmp_path) -> None:
     assert "已降级为 heuristic" in warning
 
 
-def test_runtime_policy_blocks_full_power_without_key(tmp_path) -> None:
+def test_runtime_policy_blocks_full_power_when_api_backends_are_configured(tmp_path) -> None:
     policy_path = tmp_path / "runtime_execution_policy.json"
     policy_path.write_text(
         json.dumps({"allow_degradation": False, "full_power": True}),
@@ -55,7 +55,7 @@ def test_runtime_policy_blocks_full_power_without_key(tmp_path) -> None:
 
     settings = get_settings()
     settings.runtime_execution_policy_path = policy_path
-    settings.qwen_plus_api_key = None
+    settings.qwen_plus_api_key = "dummy-key"
     settings.embedding_backend = "api"
     settings.reranker_backend = "api"
     settings.multimodal_reranker_backend = "qwen_vl"
@@ -69,5 +69,33 @@ def test_runtime_policy_blocks_full_power_without_key(tmp_path) -> None:
 
     message = str(exc_info.value)
     assert "workflow_preflight" in message
-    assert "QWEN_PLUS_API_KEY" in message
+    assert "embedding_backend=api" in message
+    assert "reranker_backend=api" in message
+    assert "multimodal_reranker_backend=qwen_vl" in message
+    assert "严格模式期望 local_qwen3" in message
+    assert "严格模式期望 local_qwen3_vl" in message
     assert "补齐上述依赖后重新运行" in message
+
+
+def test_runtime_policy_allows_local_qwen3_backends_without_key(tmp_path) -> None:
+    policy_path = tmp_path / "runtime_execution_policy.json"
+    policy_path.write_text(
+        json.dumps({"allow_degradation": False, "full_power": True}),
+        encoding="utf-8",
+    )
+
+    settings = get_settings()
+    settings.runtime_execution_policy_path = policy_path
+    settings.qwen_plus_api_key = None
+    settings.embedding_backend = "local_qwen3"
+    settings.reranker_backend = "local_qwen3"
+    settings.multimodal_reranker_backend = "local_qwen3_vl"
+
+    policy = validate_full_power_prerequisites(
+        use_llm=True,
+        retrieval_backend="qdrant",
+        settings=settings,
+    )
+
+    assert policy.allow_degradation is False
+    assert policy.full_power is True

@@ -2,6 +2,8 @@ import json
 from time import monotonic, time
 from pathlib import Path
 
+import pytest
+
 from decathlon_voc_analyzer.runtime_progress import WorkflowProgressReporter
 
 
@@ -148,6 +150,7 @@ def test_progress_reporter_restores_elapsed_from_persisted_timestamps(tmp_path: 
             {
                 "workflow": {
                     "started_at_epoch": previous_start,
+                    "elapsed_seconds": 18.0,
                     "note": "resume",
                     "active_module_key": "analyze",
                     "active_step_key": "extract",
@@ -159,6 +162,7 @@ def test_progress_reporter_restores_elapsed_from_persisted_timestamps(tmp_path: 
                         "detail": "生成分析",
                         "started_at_epoch": previous_start,
                         "completed_at_epoch": None,
+                        "elapsed_seconds": 18.0,
                         "steps": [
                             {
                                 "key": "extract",
@@ -168,6 +172,7 @@ def test_progress_reporter_restores_elapsed_from_persisted_timestamps(tmp_path: 
                                 "detail": "恢复中",
                                 "started_at_epoch": previous_start,
                                 "completed_at_epoch": None,
+                                "elapsed_seconds": 18.0,
                             }
                         ],
                     }
@@ -188,8 +193,7 @@ def test_progress_reporter_restores_elapsed_from_persisted_timestamps(tmp_path: 
     payload = reporter._dashboard_payload()
 
     assert payload["workflowStartedAt"] is not None
-    assert payload["elapsed"] != "0.0s"
-    assert payload["elapsedSeconds"] > 0
+    assert payload["elapsedSeconds"] == pytest.approx(18.0, abs=0.5)
     assert payload["overallEtaSeconds"] is not None
     assert payload["modules"][0]["startedAt"] is not None
     assert payload["modules"][0]["steps"][0]["startedAt"] is not None

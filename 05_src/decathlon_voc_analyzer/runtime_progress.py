@@ -39,6 +39,7 @@ class ProgressStepState:
     started_at: float | None = None
     started_at_epoch: float | None = None
     completed_at_epoch: float | None = None
+    elapsed_seconds: float = 0.0
 
 
 @dataclass
@@ -51,6 +52,7 @@ class ProgressModuleState:
     started_at: float | None = None
     started_at_epoch: float | None = None
     completed_at_epoch: float | None = None
+    elapsed_seconds: float = 0.0
 
 
 class NoopWorkflowProgressReporter:
@@ -170,6 +172,7 @@ class WorkflowProgressReporter:
     def complete_module(self, module_key: str, detail: str | None = None) -> None:
         module = self._module_lookup[module_key]
         self._ensure_module_started(module)
+        module.elapsed_seconds = self._module_elapsed(module)
         module.status = "done"
         if module.completed_at_epoch is None:
             module.completed_at_epoch = time()
@@ -183,6 +186,7 @@ class WorkflowProgressReporter:
     def skip_module(self, module_key: str, detail: str | None = None) -> None:
         module = self._module_lookup[module_key]
         self._ensure_module_started(module)
+        module.elapsed_seconds = self._module_elapsed(module)
         module.status = "skipped"
         if module.completed_at_epoch is None:
             module.completed_at_epoch = time()
@@ -237,6 +241,7 @@ class WorkflowProgressReporter:
         step = self._step_lookup[f"{module_key}:{step_key}"]
         self._ensure_module_started(module)
         self._ensure_step_started(step)
+        step.elapsed_seconds = self._step_elapsed(step)
         if step.total is not None:
             step.completed = step.total
         else:
@@ -259,6 +264,7 @@ class WorkflowProgressReporter:
         step = self._step_lookup[f"{module_key}:{step_key}"]
         step.total = float(max(total, 0))
         step.completed = 0.0
+        step.elapsed_seconds = 0.0
         self.activate_step(module_key, step_key, detail=detail)
 
     def render(self):
@@ -301,7 +307,7 @@ class WorkflowProgressReporter:
                 parts.append(f"detail={step.detail}")
         if detail:
             parts.append(f"detail={detail}")
-        overall_eta = self._estimate_remaining_seconds(self._overall_fraction(), monotonic() - self.started_at)
+        overall_eta = self._estimate_remaining_seconds(self._overall_fraction(), self._workflow_elapsed())
         if overall_eta is not None:
             parts.append(f"overall_eta={self._format_duration(overall_eta)}")
             parts.append(f"overall_finish={self._format_eta_clock(overall_eta)}")
@@ -348,14 +354,18 @@ class WorkflowProgressReporter:
         state_path = self._progress_state_path()
         if state_path is None:
             return
+        snapshot_time = time()
         payload = {
             "workflow": {
                 "started_at_epoch": self.started_at_epoch,
                 "started_at": self._iso_from_epoch(self.started_at_epoch),
+                "elapsed_seconds": self._workflow_elapsed(),
+                "updated_at_epoch": snapshot_time,
+                "updated_at": self._iso_from_epoch(snapshot_time),
                 "note": self._note,
                 "active_module_key": self._active_module_key,
                 "active_step_key": self._active_step_key,
-                "updated_at": self._iso_from_epoch(time()),
+                "updated_at": self._iso_from_epoch(snapshot_time),
             },
             "dashboard": self._dashboard_payload(),
             "modules": [
@@ -367,6 +377,7 @@ class WorkflowProgressReporter:
                     "started_at": self._iso_from_epoch(module.started_at_epoch),
                     "completed_at_epoch": module.completed_at_epoch,
                     "completed_at": self._iso_from_epoch(module.completed_at_epoch),
+                    "elapsed_seconds": self._module_elapsed(module),
                     "steps": [
                         {
                             "key": step.key,
@@ -378,6 +389,7 @@ class WorkflowProgressReporter:
                             "started_at": self._iso_from_epoch(step.started_at_epoch),
                             "completed_at_epoch": step.completed_at_epoch,
                             "completed_at": self._iso_from_epoch(step.completed_at_epoch),
+                            "elapsed_seconds": self._step_elapsed(step),
                         }
                         for step in module.steps
                     ],
@@ -400,7 +412,16 @@ class WorkflowProgressReporter:
         started_at_epoch = self._as_float(workflow.get("started_at_epoch"))
         if started_at_epoch is not None:
             self.started_at_epoch = started_at_epoch
-            self.started_at = self._monotonic_from_epoch(started_at_epoch)
+        workflow_elapsed_seconds = self._as_float(workflow.get("elapsed_seconds"))
+        workflow_updated_at_epoch = self._as_float(workflow.get("updated_at_epoch"))
+        if workflow_updated_at_epoch is None:
+            workflow_updated_at = workflow.get("updated_at")
+            if isinstance(workflow_updated_at, str):
+                workflow_updated_at_epoch = self._epoch_from_iso(workflow_updated_at)
+        if workflow_elapsed_seconds is not None:
+            self.started_at = monotonic() - max(0.0, workflow_elapsed_seconds)
+        elif started_at_epoch is not None and workflow_updated_at_epoch is not None:
+            self.started_at = monotonic() - max(0.0, workflow_updated_at_epoch - started_at_epoch)
         note = workflow.get("note")
         if isinstance(note, str):
             self._note = note
@@ -429,8 +450,15 @@ class WorkflowProgressReporter:
                 module.detail = detail
             module.started_at_epoch = self._as_float(module_payload.get("started_at_epoch"))
             module.completed_at_epoch = self._as_float(module_payload.get("completed_at_epoch"))
-            if module.started_at_epoch is not None:
-                module.started_at = self._monotonic_from_epoch(module.started_at_epoch)
+            module.elapsed_seconds = max(0.0, self._as_float(module_payload.get("elapsed_seconds")) or 0.0)
+            if module.elapsed_seconds <= 0.0 and module.started_at_epoch is not None:
+                module_end_epoch = module.completed_at_epoch if module.completed_at_epoch is not None else workflow_updated_at_epoch
+                if module_end_epoch is not None:
+                    module.elapsed_seconds = max(0.0, module_end_epoch - module.started_at_epoch)
+            if module.status == "in_progress":
+                module.started_at = monotonic()
+            else:
+                module.started_at = None
 
             step_payloads = module_payload.get("steps")
             if not isinstance(step_payloads, list):
@@ -456,8 +484,15 @@ class WorkflowProgressReporter:
                 step.total = total
                 step.started_at_epoch = self._as_float(step_payload.get("started_at_epoch"))
                 step.completed_at_epoch = self._as_float(step_payload.get("completed_at_epoch"))
-                if step.started_at_epoch is not None:
-                    step.started_at = self._monotonic_from_epoch(step.started_at_epoch)
+                step.elapsed_seconds = max(0.0, self._as_float(step_payload.get("elapsed_seconds")) or 0.0)
+                if step.elapsed_seconds <= 0.0 and step.started_at_epoch is not None:
+                    step_end_epoch = step.completed_at_epoch if step.completed_at_epoch is not None else workflow_updated_at_epoch
+                    if step_end_epoch is not None:
+                        step.elapsed_seconds = max(0.0, step_end_epoch - step.started_at_epoch)
+                if step.status == "in_progress":
+                    step.started_at = monotonic()
+                else:
+                    step.started_at = None
 
     def _render_dashboard_html(self) -> str:
         payload_json = json.dumps(self._dashboard_payload(), ensure_ascii=False)
@@ -471,7 +506,7 @@ class WorkflowProgressReporter:
         )
 
     def _dashboard_payload(self) -> dict[str, object]:
-        elapsed = monotonic() - self.started_at
+        elapsed = self._workflow_elapsed()
         overall_eta_seconds = self._estimate_remaining_seconds(self._overall_fraction(), elapsed)
         active_module = self._module_lookup.get(self._active_module_key) if self._active_module_key else None
         active_step = self._step_lookup.get(f"{active_module.key}:{self._active_step_key}") if active_module is not None and self._active_step_key is not None else None
@@ -591,7 +626,7 @@ class WorkflowProgressReporter:
                 return
 
     def _render_header(self):
-        elapsed = monotonic() - self.started_at
+        elapsed = self._workflow_elapsed()
         overall_fraction = self._overall_fraction()
         overall_eta = self._estimate_remaining_seconds(overall_fraction, elapsed)
         active_module = self._module_lookup.get(self._active_module_key) if self._active_module_key else None
@@ -713,14 +748,19 @@ class WorkflowProgressReporter:
         return f"{int(min(step.completed, step.total))}/{int(step.total)}"
 
     def _step_elapsed(self, step: ProgressStepState) -> float:
-        if step.started_at is None:
-            return 0.0
-        return max(0.0, monotonic() - step.started_at)
+        elapsed = max(0.0, step.elapsed_seconds)
+        if step.status == "in_progress" and step.started_at is not None:
+            elapsed += max(0.0, monotonic() - step.started_at)
+        return elapsed
 
     def _module_elapsed(self, module: ProgressModuleState) -> float:
-        if module.started_at is None:
-            return 0.0
-        return max(0.0, monotonic() - module.started_at)
+        elapsed = max(0.0, module.elapsed_seconds)
+        if module.status == "in_progress" and module.started_at is not None:
+            elapsed += max(0.0, monotonic() - module.started_at)
+        return elapsed
+
+    def _workflow_elapsed(self) -> float:
+        return sum(self._module_elapsed(module) for module in self.modules)
 
     def _step_eta_seconds(self, step: ProgressStepState | None) -> float | None:
         if step is None:
@@ -862,6 +902,12 @@ class WorkflowProgressReporter:
         if epoch_seconds is None:
             return None
         return datetime.fromtimestamp(epoch_seconds).isoformat(timespec="seconds")
+
+    def _epoch_from_iso(self, iso_timestamp: str) -> float | None:
+        try:
+            return datetime.fromisoformat(iso_timestamp).timestamp()
+        except ValueError:
+            return None
 
     def _monotonic_from_epoch(self, epoch_seconds: float) -> float:
         elapsed = max(0.0, time() - epoch_seconds)

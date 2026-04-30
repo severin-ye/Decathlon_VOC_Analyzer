@@ -106,17 +106,15 @@ def validate_full_power_prerequisites(*, use_llm: bool, retrieval_backend: str, 
         return policy
 
     issues: list[str] = []
-    if not settings.qwen_plus_api_key:
-        issues.append("缺少 QWEN_PLUS_API_KEY / qwen-plus_api")
     if retrieval_backend != "qdrant":
         issues.append("retrieval_backend 不是 qdrant")
-    if settings.embedding_backend != "api":
-        issues.append(f"embedding_backend={settings.embedding_backend}，期望 api")
-    if settings.reranker_backend != "api":
-        issues.append(f"reranker_backend={settings.reranker_backend}，期望 api")
-    if settings.multimodal_reranker_backend not in {"qwen_vl", "api"}:
+    if settings.embedding_backend != "local_qwen3":
+        issues.append(f"embedding_backend={settings.embedding_backend}，严格模式期望 local_qwen3")
+    if settings.reranker_backend != "local_qwen3":
+        issues.append(f"reranker_backend={settings.reranker_backend}，严格模式期望 local_qwen3")
+    if settings.multimodal_reranker_backend != "local_qwen3_vl":
         issues.append(
-            f"multimodal_reranker_backend={settings.multimodal_reranker_backend}，期望 qwen_vl 或 api"
+            f"multimodal_reranker_backend={settings.multimodal_reranker_backend}，严格模式期望 local_qwen3_vl"
         )
 
     if issues:

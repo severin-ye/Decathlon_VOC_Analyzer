@@ -1,19 +1,28 @@
 import hashlib
 import re
 
+import orjson
+
 from decathlon_voc_analyzer.app.core.config import get_settings
 from decathlon_voc_analyzer.app.core.runtime_policy import handle_llm_failure, resolve_llm_permission
 from decathlon_voc_analyzer.llm import QwenChatGateway
 from decathlon_voc_analyzer.schemas.analysis import QuestionIntent, RetrievalQuestion
+from decathlon_voc_analyzer.schemas.question_cache import (
+    QuestionGenerationCachePayload,
+    QuestionGenerationCacheSignature,
+)
 from decathlon_voc_analyzer.schemas.review import ReviewAspect
-from decathlon_voc_analyzer.prompts import get_prompt_template, get_prompt_variant
+from decathlon_voc_analyzer.prompts import get_prompt, get_prompt_template, get_prompt_variant
+from decathlon_voc_analyzer.prompts.registry import USER_PROMPT_TEMPLATES
 from decathlon_voc_analyzer.runtime_progress import get_workflow_progress
+from decathlon_voc_analyzer.stage4_generation.question_cache_service import QuestionGenerationCacheService
 
 
 class QuestionGenerationService:
     def __init__(self) -> None:
         self.settings = get_settings()
         self.chat_gateway = QwenChatGateway()
+        self.cache_service = QuestionGenerationCacheService()
 
     def generate_questions(
         self,
@@ -23,6 +32,17 @@ class QuestionGenerationService:
     ) -> tuple[list[QuestionIntent], list[RetrievalQuestion], list[str], str]:
         progress = get_workflow_progress()
         progress.start_count_step("analyze", "questions", total=len(aspects), detail=f"规划 {len(aspects)} 个方面的问题")
+        cache_signature = self._build_cache_signature(aspects=aspects, questions_per_aspect=questions_per_aspect, use_llm=use_llm)
+        cached_payload = self.cache_service.load(cache_signature)
+        if cached_payload is not None:
+            progress.complete_step("analyze", "questions", detail=f"复用缓存 {len(cached_payload.questions)} 个问题")
+            return (
+                cached_payload.question_intents,
+                cached_payload.questions,
+                cached_payload.question_warnings,
+                cached_payload.question_mode,
+            )
+
         intents = self.plan_question_intents(aspects, questions_per_aspect)
         questions: list[RetrievalQuestion] = []
         warnings: list[str] = []
@@ -45,7 +65,43 @@ class QuestionGenerationService:
             progress.advance_step("analyze", "questions", detail=aspect.aspect)
 
         progress.complete_step("analyze", "questions")
+        self.cache_service.save(
+            cache_signature,
+            QuestionGenerationCachePayload(
+                signature=cache_signature,
+                question_mode=mode,
+                question_warnings=warnings,
+                question_intents=intents,
+                questions=questions,
+            ),
+        )
         return intents, questions, warnings, mode
+
+    def _build_cache_signature(
+        self,
+        aspects: list[ReviewAspect],
+        questions_per_aspect: int,
+        use_llm: bool,
+    ) -> QuestionGenerationCacheSignature:
+        resolved_variant = get_prompt_variant()
+        prompt_digest = hashlib.sha1(
+            (get_prompt("question_generation_system", resolved_variant) + "\n" + USER_PROMPT_TEMPLATES[resolved_variant]["question_generation_system"]).encode("utf-8")
+        ).hexdigest()
+        aspects_payload = [aspect.model_dump(mode="json") for aspect in aspects]
+        aspects_digest = hashlib.sha1(
+            orjson.dumps(aspects_payload, option=orjson.OPT_SORT_KEYS)
+        ).hexdigest()
+        return QuestionGenerationCacheSignature(
+            prompt_variant=resolved_variant,
+            question_prompt_digest=prompt_digest,
+            use_llm=use_llm,
+            questions_per_aspect=questions_per_aspect,
+            aspect_count=len(aspects),
+            aspects_digest=aspects_digest,
+            qwen_plus_api_enabled=bool(self.settings.qwen_plus_api_key),
+            qwen_plus_model=self.settings.qwen_plus_model,
+            qwen_base_url=self.settings.qwen_base_url,
+        )
 
     def plan_question_intents(
         self,

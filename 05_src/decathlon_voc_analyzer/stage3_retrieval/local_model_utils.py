@@ -54,9 +54,9 @@ class LocalEmbeddingModel:
         self.model = AutoModel.from_pretrained(
             self.model_name,
             trust_remote_code=True,
-            device_map=self.device,
             torch_dtype=torch.float32,
         )
+        self.model.to(self.device)
         self.model.eval()
         logger.info(f"Qwen3-Embedding model loaded on {self.device}")
 
@@ -124,9 +124,9 @@ class LocalRerankerModel:
         self.model = AutoModel.from_pretrained(
             self.model_name,
             trust_remote_code=True,
-            device_map=self.device,
             torch_dtype=torch.float32,
         )
+        self.model.to(self.device)
         self.model.eval()
         logger.info(f"Qwen3-Reranker model loaded on {self.device}")
 
@@ -215,9 +215,9 @@ class LocalMultimodalRerankerModel:
         self.model = Qwen2_5_VLForConditionalGeneration.from_pretrained(
             self.model_name,
             torch_dtype=torch.float32,
-            device_map=self.device,
             trust_remote_code=True,
         )
+        self.model.to(self.device)
         self.model.eval()
         logger.info(f"Qwen3-VL model loaded on {self.device}")
 

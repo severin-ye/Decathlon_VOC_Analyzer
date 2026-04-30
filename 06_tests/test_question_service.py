@@ -308,3 +308,35 @@ def test_question_service_plans_question_intents_with_constraints() -> None:
     assert all(intent.expected_evidence_routes for intent in intents)
     assert any("long-term wear" in intent.forbidden_concepts for intent in intents)
     assert all(intent.specificity_bound for intent in intents)
+
+
+def test_question_service_uses_persistent_cache_on_second_run(tmp_path) -> None:
+    service = QuestionGenerationService()
+    service.settings.reports_output_dir = tmp_path
+    aspect = _build_aspect()
+
+    first_intents, first_questions, first_warnings, first_mode = service.generate_questions(
+        [aspect],
+        questions_per_aspect=1,
+        use_llm=False,
+    )
+
+    assert first_mode == "heuristic"
+    assert first_questions[0].question_id == "a1_q_01"
+
+    def _fail_generate_with_heuristic(*args, **kwargs):
+        raise AssertionError("heuristic generation should not be called when the persistent cache is hit")
+
+    service._generate_with_heuristic = _fail_generate_with_heuristic  # type: ignore[method-assign]
+
+    second_intents, second_questions, second_warnings, second_mode = service.generate_questions(
+        [aspect],
+        questions_per_aspect=1,
+        use_llm=False,
+    )
+
+    assert second_mode == first_mode
+    assert second_warnings == first_warnings
+    assert second_intents == first_intents
+    assert second_questions == first_questions
+    assert (tmp_path / "question_cache").exists()
