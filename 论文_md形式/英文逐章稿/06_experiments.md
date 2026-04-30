@@ -1,47 +1,35 @@
 # 6 Results and Analysis
 
-## 6.1 End-to-End Workflow
+## 6.1 Workflow Completeness
 
-The current system forms an end-to-end workflow from raw product folders to structured VOC reports. `run_workflow.py` connects dataset overview, normalization, indexing, and analysis. `validate_multimodal_runtime.py` verifies whether the multimodal runtime is enabled. `export_html_report.py` exports reviewable reports, and `evaluate_manifests.py` computes metrics from run manifests.
+The first validation result is that the current implementation completes the full analysis chain from raw product information to attributed structured reports. It performs product evidence normalization, review aspect modeling, question planning, multimodal recall, candidate reranking, aspect aggregation, report generation, and evidence attribution. Each stage emits consistent structured objects, so a single run can be decomposed into auditable analytical units.
 
-This shows that the implementation is not a set of isolated scripts. It is a schema- and artifact-centered analysis framework. Even in offline `--no-llm` mode, the system emits the same classes of aspects, questions, retrievals, and report objects.
+This demonstrates that the method is not only conceptual. Review-side objects, product-side evidence, and report-side claims are connected through explicit data flow. Even when external model calls are disabled for validation, the system preserves the same object boundaries, separating workflow correctness from model capability.
 
-## 6.2 Test Results
+## 6.2 Structured Auditability
 
-The current test suite collects 166 tests and all pass. The tests cover dataset normalization, review extraction, question generation, index backends, embedding, reranking, retrieval, analysis, HTML export, manifest evaluation, runtime policies, progress tracking, workflow scripts, and multimodal runtime validation.
+A complete analysis contains not only a final narrative report but also review aspects, question intents, retrieval questions, retrieved evidence, retrieval quality, runtime configuration, aspect aggregation, process trace, and report attribution. These objects allow analysts to inspect the source of a conclusion instead of accepting a single opaque summary.
 
-| Validation target | Result | Interpretation |
-| --- | --- | --- |
-| Automated tests | 166/166 passed | Current implementation and assertions are aligned |
-| API layer | Passed | Dataset, index, reviews, and analysis routes are tested |
-| Retrieval layer | Passed | Local indexes, backend abstraction, embeddings, rerankers, and retrieval logic are tested |
-| Generation layer | Passed | Question generation, report generation, attribution, HTML, and replay logic are tested |
-| Workflow scripts | Passed | Workflow and runtime validation scripts are tested |
+This structure directly supports error localization. If a suggestion lacks support, one can inspect whether the review was extracted correctly, whether the question was too broad, whether text or image retrieval found valid evidence, whether reranking prioritized key evidence, and whether report refinement correctly identified evidence gaps.
 
-## 6.3 Structured Artifacts
+## 6.3 Role of Question Planning
 
-The system output is not a single natural-language summary. A complete analysis contains extraction results, question intents, questions, retrievals, retrieval quality, retrieval runtime, aggregates, report, trace, replay summary, and artifact bundle. Each retrieval record keeps source question, source aspect, expected evidence routes, and retrieved evidence identifiers.
+Question planning is the key structure connecting reviews and product evidence. Raw reviews often contain emotion, context, and implicit assumptions; direct retrieval can scatter evidence candidates. Aspect-level questions convert these expressions into clearer evidence needs, such as whether product copy explicitly supports an experience, whether images show the relevant structure, or whether cross-modal evidence explains a negative review.
 
-This structure makes reports auditable and errors localizable. If a suggestion is unreliable, one can inspect whether the issue came from sampling, extraction, question planning, retrieval, reranking, or report refinement.
+Because every retrieval keeps its source aspect, source question, and expected evidence routes, the system can be analyzed at query level. Human labels can also be attached directly to questions, text blocks, images, or regions, making question-driven retrieval a natural unit for future evaluation.
 
-## 6.4 Role of Question Planning
+## 6.4 Complementarity of Multimodal Evidence
 
-Question planning is the main bridge in the method. Raw review text often contains emotion, background, and implicit assumptions. Question planning converts review aspects into verifiable evidence needs, such as whether product copy explicitly supports a claim or whether product images provide visual evidence.
+Text and image evidence serve different functions in product VOC analysis. Text evidence is suited for explicit specifications, usage claims, categories, and descriptions. Image evidence is suited for structure, appearance, color, local details, and presentation quality. The route-aware design allows the report to state whether a review claim is supported by text, by images, by both, or by neither.
 
-Each retrieval record keeps `source_aspect_id`, `source_question_id`, and `expected_evidence_routes`, making retrieval analysis query-level and route-aware.
+This design also prevents image evidence from being textified too early. For appearance and structure-related issues, image candidates can be reranked by a vision-language model that directly inspects the whole image or crop. Although the current regions are rule-based, they demonstrate the feasibility of introducing local visual evidence into VOC analysis.
 
-## 6.5 Multimodal Evidence Routes
+## 6.5 Extensibility of Evaluation
 
-The system treats product text and images as different evidence routes. Text evidence is useful for names, categories, descriptions, specifications, and warranty-like claims. Image evidence is useful for structure, appearance, color, and local visual details. The image route includes whole images and default local regions.
+The evaluator already supports both retrieval quality and report-grounding quality. With human relevance labels, it can compute Recall@K, MRR, and NDCG. Without labels, it still reports claim support rate, citation precision, contradiction rate, and modality contribution. This allows the system to move naturally from system validation to formal benchmark evaluation.
 
-The separation between coarse recall and reranking balances coverage and precision. For image candidates, multimodal reranking can directly inspect the original image or cropped region, reducing reliance on proxy text.
+The evaluation interface shares identifiers with intermediate objects. Annotators can label questions, text blocks, images, regions, or report claims without redefining the data structure. This lowers the cost of expanding to multi-category evaluation.
 
-## 6.6 Evaluation Interfaces
+## 6.6 Boundary of Current Results
 
-The manifest evaluator supports both labeled and unlabeled settings. With gold retrieval labels, it computes Recall@K, MRR, and NDCG. Without labels, it still reports structured runtime statistics and claim attribution metrics such as claim support rate, claim grounded rate, citation precision, citation contradiction rate, and route contribution.
-
-This design prepares the system for future benchmark experiments. Once multi-category human labels are added, the same manifest framework can compare raw review retrieval, aspect retrieval, question-driven retrieval, embedding backends, and reranking backends.
-
-## 6.7 Boundary of Current Results
-
-The current results demonstrate workflow completeness, artifact auditability, and a stable test baseline. They should not be interpreted as a full benchmark result. The paper does not yet report statistically significant comparisons over a frozen multi-category labeled dataset.
+The current results establish workflow completeness, artifact auditability, and a stable test baseline. They should not be interpreted as final performance claims. The paper does not yet report statistically significant comparisons over a frozen multi-category dataset, nor systematic ablations over retrieval strategies, rerankers, or visual region policies.

@@ -1,61 +1,63 @@
 # 4 方法
 
-## 4.1 总体架构
+## 4.1 总体框架
 
-Decathlon VOC Analyzer 采用分阶段的证据驱动架构。系统主链路包括：数据集与商品证据标准化、评论建模与抽样、问题规划、多模态索引与召回、重排与缓存、报告生成与证据归因、工作流编排和评估。各阶段之间通过 Pydantic schema 传递对象，而不是传递无结构文本。
+本文提出的 Decathlon VOC Analyzer 将商品 VOC 分析形式化为一个证据驱动的多阶段推理过程。系统首先把商品页面中的文本、图像和评论组织为统一证据空间；随后在评论侧抽取方面级用户反馈；再通过问题规划将主观反馈转化为可执行的证据查询；最后在商品文本与商品图像之间执行多模态检索、重排和证据约束生成。与一步式大模型摘要不同，该框架将“用户表达了什么”“商品证据能否支持”“最终报告如何归因”拆分为可观察的中间环节。
 
-单商品工作流由 LangGraph 编排为四个节点：`overview`、`normalize`、`index` 和 `analyze`。`overview` 统计数据集规模与缺失文件；`normalize` 将目标商品转化为标准化证据包；`index` 为商品文本、图片和区域建立索引；`analyze` 执行评论抽取、问题生成、检索、重排、聚合、报告生成和产物落盘。该流程保证系统既可以通过 API 交互调用，也可以通过批处理脚本复现实验。
+本文将该框架抽象为四个逻辑层。第一层是商品证据层，负责构建商品文本、图片和局部视觉区域的结构化表示。第二层是 VOC 需求层，负责将评论转化为方面、观点、情感和场景。第三层是证据对齐层，负责把方面改写为具有明确模态路线的问题，并在商品证据空间中检索和重排候选。第四层是报告归因层，负责生成结构化洞察，并将报告主张映射回评论证据与商品证据。
 
-## 4.2 商品证据标准化
+[图1占位符：证据驱动多模态 VOC 分析总体框架图]
 
-数据标准化模块以 `ProductEvidencePackage` 为核心对象。系统从每个商品目录读取 `product.json`、`reviews.json` 和 `images/`，将商品标题、描述和类目转化为 `TextEvidence`，将图片转化为 `ImageEvidence`，将评论转化为 `ReviewRecord`。每个证据对象都具有稳定 ID、来源字段和语言提示。
+AI 绘图提示词：请绘制一张适合学术论文方法章节的系统框架图，风格简洁、扁平、现代，白色背景，蓝灰色主色调，少量橙色用于强调关键创新。图中从左到右展示四个主要逻辑层：第一层“Product Evidence Layer”，包含 product text、product images、image regions、reviews 四类输入对象；第二层“VOC Demand Modeling Layer”，包含 review filtering、rating-aware sampling、aspect extraction、aspect objects；第三层“Question-Guided Multimodal Retrieval Layer”，包含 question intent planning、text route retrieval、image route retrieval、reranking、language-balanced candidate pool；第四层“Evidence-Constrained Reporting Layer”，包含 aspect aggregation、structured report、claim attribution、evidence gaps、feedback/replay。请用箭头表示数据流，用虚线框表示可复用 artifacts 和 caches。图中不要出现具体文件路径、代码类名或品牌 Logo，强调“review aspects become evidence-seeking questions”和“claims are grounded back to product and review evidence”。图的整体比例适合论文单栏或双栏宽图，文字清晰，适合黑白打印也能辨认。
 
-为了为局部视觉证据预留空间，系统对有效图片生成五类默认区域：`center_focus`、`upper_focus`、`lower_focus`、`left_focus` 和 `right_focus`。这些区域由相对比例转换为像素框，并被建模为 `ImageRegion`。当前区域并不等价于语义检测结果，但它使系统能够在没有人工标注框的情况下初步支持区域裁剪、局部 embedding 和图像重排。
+*图1. Decathlon VOC Analyzer 的总体框架。系统以商品证据包和评论方面为中间表示，通过问题规划连接主观 VOC 信号与多模态商品证据，并在报告阶段进行 claim 级归因。*
 
-标准化过程还会输出数据质量信息，包括商品数量、评论数量、图片数量、缺失 `product.json` 或 `reviews.json` 的商品，以及空评论数量。标准化产物写入 `02_outputs/1_normalized/`，后续所有模块优先复用该产物。
+## 4.2 商品证据表示
 
-## 4.3 评论建模与抽样
+商品页面通常同时包含标题、描述、类目、规格、图片和用户评论。如果这些信息在系统入口处被简单拼接为长文本，后续模型虽然能够生成摘要，却很难追踪某一结论的来源。为此，本文首先构建商品级证据包，将商品文本、商品图片、图片局部区域和评论记录表示为具有稳定标识的证据对象。
 
-评论建模模块将原始评论转化为 `ReviewAspect`。每个方面对象包含 `aspect`、`sentiment`、`opinion`、`evidence_span`、`usage_scene`、`confidence` 和 `extraction_mode`。系统首先清洗评论文本，过滤空评论、过短评论和低信息短评，例如 `ok`、`good`、`great` 等。
+文本证据保留其来源字段，例如标题、描述或类目。图像证据不仅保留整图，还构造若干规则化局部区域，以便后续模型能够在没有人工标注框的情况下初步访问局部视觉信息。评论证据则保留评分、语言提示和原文片段，为后续抽样与方面抽取提供输入。该表示的目的不是在数据层完成全部语义理解，而是为后续检索、归因和评估建立统一对象边界。
 
-当设置 `max_reviews` 时，系统启用星级抽样。默认 profile 为 `problem_first`，其目标比例为 1 星 30%、2 星 25%、3 星 20%、4 星 15%、5 星 10%。如果某个星级样本不足，系统按配置的 fallback 顺序补位，并将目标数量、可用数量、实际选择数量、短缺数量和补位数量写入 `ReviewSamplingPlan`。
+## 4.3 评论方面建模
 
-方面抽取支持 LLM 和 heuristic 两条路径。LLM 路径使用 Qwen 网关和结构化输出 schema；heuristic 路径使用关键词、评分和负向提示词识别容量、便携性、可用性、耐用性、价值价格、材料硬度等方面。抽取后，系统按评论 ID、方面、情感和证据片段去重，并将结果写入 `02_outputs/2_aspects/`。
+评论侧的核心任务是将自然语言反馈转化为方面级 VOC 单元。每个方面单元包含被评价的属性、情感倾向、观点描述、原文证据片段、使用场景和置信度。与整句级摘要相比，方面级表示能够同时支持统计聚合和证据检索：系统既可以计算某一属性的正负反馈分布，也可以围绕该属性生成后续证据查询。
 
-## 4.4 问题规划
+为了避免有限评论预算被高星短评占据，本文在评论抽取前引入星级感知抽样。默认策略更重视低星评论，从而优先捕获产品改进中更有价值的问题反馈。同时，为保证系统在不同运行条件下可复现，方面抽取同时支持结构化 LLM 路径和启发式路径。前者提供更强语义理解能力，后者保证在外部模型不可用时仍可完成端到端验证。
 
-问题规划模块是本文方法的关键桥接层。系统不直接用评论方面或评论原句检索商品证据，而是先为每个 `ReviewAspect` 规划若干 `QuestionIntent`，再生成 `RetrievalQuestion`。默认意图包括：`explicit_support`、`visual_confirmation`、`cross_modal_resolution`、`spec_check` 和 `visual_detail`。
+## 4.4 从方面到问题的规划机制
 
-每个问题都包含来源评论、来源方面、自然语言问题、生成理由、期望证据路线和置信度。`expected_evidence_routes` 明确指定检索应使用 `text`、`image` 或二者结合。该字段使后续召回具备 route-aware 能力，也使报告归因能够区分文本支持、图像支持和混合支持。
+本文的关键设计是引入“方面到问题”的中间规划层。评论方面往往仍然是主观表达，例如“容量小”“佩戴舒适”“设计吸引儿童”。若直接用这些短语或原始评论检索商品证据，查询通常过宽，且难以判断应检索文本还是图像。因此，系统为每个方面构造若干具有明确检索意图的问题。
 
-问题生成同样支持 LLM 和 heuristic 两条路径。LLM 路径将方面、观点、证据片段、使用场景、情感、意图类型、禁止概念和具体性边界输入提示词；heuristic 路径使用固定模板生成可检索问题。问题缓存签名绑定 prompt variant、prompt digest、方面 digest、问题数量、模型和 API 配置，避免提示词变化后误用旧问题。
+这些问题覆盖三类证据需求：文本支持、视觉确认和跨模态解释。文本支持问题关注商品文案或规格是否直接支持评论观点；视觉确认问题关注商品图片是否呈现相关结构或外观；跨模态解释问题则尝试判断某一反馈更接近真实产品问题、页面呈现不足还是用户预期偏差。通过这种方式，评论中的主观体验被转化为可以由商品证据回答的检索任务。
 
-## 4.5 多模态索引与召回
+[图2占位符：从评论方面到多模态证据查询的转换机制图]
 
-索引模块将商品证据转化为 `IndexedEvidence`。文本证据 route 为 `text`，图像整图和区域 route 为 `image`。文本 embedding 可使用 `text-embedding-v4` API 或本地 Qwen3 embedding；图像 embedding 默认使用 `openai/clip-vit-base-patch32`。当外部能力不可用且运行策略允许降级时，系统可退回 hash embedding 或代理文本 embedding。
+AI 绘图提示词：请绘制一张论文机制图，展示“review aspect -> question intents -> route-aware retrieval -> evidence bundle”的转换过程。左侧放一个用户评论气泡，例如 “too small for travel documents”，下方抽取出 aspect object，包含 aspect、sentiment、opinion、evidence span、usage scene 五个字段。中间展示三个问题意图卡片：explicit text support、visual confirmation、cross-modal resolution，每张卡片生成一个自然语言 question。右侧分成两条检索路线：text route 指向 product title、description、specification snippets；image route 指向 whole product image、center crop、detail crop。两条路线进入 reranker，再合并为 evidence bundle。请使用流程箭头和编号 1 到 5 展示步骤，突出“question planning”是核心桥梁。视觉风格应像顶会论文中的方法示意图，不要使用真实商品照片，可用抽象背包/眼镜线稿图标，颜色使用蓝色表示文本证据、绿色表示图像证据、橙色表示问题规划。
 
-索引后端通过 `IndexBackend` 抽象统一管理。`LocalIndexBackend` 将索引快照写入本地 JSON 文件，并在搜索时计算 query 向量与 evidence 向量的相似度；`QdrantIndexBackend` 为文本和图像分别创建 collection，并用 `product_id`、`category_slug` 和 `route` 过滤候选。
+*图2. 评论方面到证据查询的规划机制。方面对象并不直接进入检索，而是先被分解为具有不同证据意图的问题，再分别触发文本路线、图像路线或图文联合路线。*
 
-召回过程针对每个问题执行。系统首先按 route 进行 embedding 粗召回，并使用过采样保留较宽候选集合；随后按语言和 route 构建均衡候选池，避免单一语言或单一路线垄断候选；最后交给 reranker 精排，并通过 route coverage 规则选择最终证据。
+## 4.5 多模态召回与重排
 
-## 4.6 重排、缓存与运行策略
+证据对齐层采用两阶段检索。第一阶段使用向量表示进行粗召回，以较低成本从商品文本和商品图像中获得候选证据。第二阶段使用重排模型对候选集合进行精排，以提高最终证据的相关性。文本证据和图像证据在召回阶段被分路线管理，但在重排和报告阶段被统一到同一商品证据空间中。
 
-重排模块将文本候选和图像候选分开处理。文本候选支持本地 Qwen3 reranker、DashScope `gte-rerank-v2` API 和启发式排序；图像候选支持本地 Qwen3-VL、多模态 Qwen-VL API、文本 reranker 退路和启发式排序。
+文本路线主要用于验证商品名称、类目、描述、规格和显式承诺。图像路线主要用于验证结构、外观、颜色、局部细节和页面呈现方式。对于图像候选，系统既可以对整图建模，也可以对规则化区域进行裁剪和编码。虽然这些区域尚不等价于语义 grounding，但它们为局部视觉证据进入 VOC 分析提供了低成本接口。
 
-在多模态图像重排中，系统会读取商品图片，若候选为区域证据则按 `region_box` 裁剪，然后压缩为 JPEG data URL 输入 Qwen-VL，并要求模型返回严格 JSON 评分。这使图像候选的最终排序能够基于真实视觉内容，而不是只依赖图片路径或代理文本。
+为避免某一路线或某一种语言的候选过度占据结果，召回后还会构建语言与路线均衡的候选池。最终证据选择不仅考虑相关性分数，也考虑是否覆盖问题所声明的证据路线。因此，一个跨模态问题应尽量同时获得文本证据和图像证据，而不是被单一路线候选完全替代。
 
-系统将 query embedding 和 rerank 结果写入磁盘缓存。缓存签名绑定 route、query、backend、model、base URL 和候选 digest，因此相同配置可以复用结果，不同模型或候选集不会串写。运行策略由 `RuntimeExecutionPolicy` 控制：开发时可允许降级，正式实验时可禁止静默降级，满血模式下还会检查 Qdrant、本地 embedding、本地 reranker 和本地多模态 reranker 等前置条件。
+## 4.6 证据约束报告与 claim 归因
 
-## 4.7 报告生成、归因与回放
+报告生成阶段不把召回结果作为普通上下文直接交给模型总结，而是先对方面信号和检索证据进行聚合。聚合对象记录每个方面的出现频次、情感分布、代表评论、证据片段和检索覆盖情况。随后系统生成结构化报告，报告字段包括优势、缺点、争议点、适用场景、证据缺口和改进建议。
 
-报告生成模块首先对方面进行聚合，形成每个 aspect 的情感分布、代表评论、证据片段和平均置信度。随后系统基于方面聚合和检索结果生成结构化报告，字段包括 strengths、weaknesses、controversies、evidence gaps、applicable scenes 和 suggestions。LLM 可用时进入结构化生成路径；不可用时使用 heuristic 路径构造同 schema 报告。
+为了降低生成式报告的不可审查性，本文进一步引入 claim 级归因。报告中的主要主张会被映射到评论证据、商品文本证据、商品图像证据或二者的组合，并标记为支持、部分支持、未支持或冲突。若某一评论观点在当前商品证据中无法得到充分验证，系统倾向于输出证据缺口，而不是把该观点包装成确定结论。
 
-报告生成后，`ReportRefinementService` 会对洞察和建议去重，依据支持证据类型重新校准 owner 与 evidence level，并修正“声称有图像支持但实际未检索到图像证据”等不一致表述。随后系统构建 `claim_attributions`，将报告主张映射到评论、商品文本、商品图片或区域证据，并标记 supported、partial、unsupported 或 contradicted。
+[图3占位符：证据归因与评估闭环图]
 
-系统还支持 feedback/replay 侧边车。若存在上一轮反馈或回放产物，新分析可以读取这些上下文，将持续存在的问题、已修正问题和回放摘要并入报告与 trace。最终产物包括 analysis JSON、feedback sidecar、replay sidecar、HTML 报告和 run manifest。
+AI 绘图提示词：请绘制一张论文风格的闭环图，主题是“evidence attribution and evaluation loop”。左侧为 retrieved evidence nodes，分为 review evidence、product text evidence、product image evidence 三组节点；中间为 structured report claims，包含 strength claim、weakness claim、suggestion claim、evidence gap claim；从证据节点到 claim 节点画有向连线，连线标签包括 supported、partial、unsupported、contradicted。右侧为 evaluation module，包含 retrieval metrics（Recall@K, MRR, NDCG）和 attribution metrics（claim support rate, citation precision, modality contribution）。底部画 feedback/replay loop，从 evaluation 和 human review 回到 question planning 与 report refinement。视觉风格应清晰、学术、无代码感，使用节点-边图结构，蓝色表示证据，紫色表示报告主张，红色表示 unsupported/evidence gap，绿色表示 supported，灰色虚线表示 replay loop。
 
-## 4.8 Schema 与可解释性
+*图3. 证据归因与评估闭环。报告主张被映射到评论、商品文本和商品图像证据；评估模块同时衡量检索质量和生成主张的证据支撑质量。*
 
-本文系统的可解释性来自结构化中间表示。`schemas/` 目录定义了数据、评论、索引、分析、问题缓存和检索缓存对象。最终 `ProductAnalysisResponse` 同时包含 extraction、question intents、questions、retrievals、retrieval quality、retrieval runtime、aggregates、report、trace、replay summary、artifact bundle 和 warnings。
+## 4.7 可复现性与可解释性设计
 
-这种设计使错误定位可以分解到具体阶段。如果最终建议不合理，可以检查评论抽样是否偏置、方面抽取是否错误、问题是否过宽、召回是否缺证据、reranker 是否误排，或报告后处理是否校准不足。与黑盒摘要相比，这种对象化链路更适合人工审查、消融实验和后续模型迭代。
+本文方法的可复现性来自两个层面。第一，所有关键中间结果均被表示为结构化对象，包括商品证据、评论方面、问题、检索记录、报告主张和评估指标。第二，系统在运行过程中保留可复用的中间产物和缓存，使研究者可以固定前序阶段，只替换问题生成、检索或重排策略进行消融。
+
+这种设计也提升了错误分析能力。当最终报告出现不可靠建议时，分析者可以沿链路回溯到评论抽样、方面抽取、问题规划、候选召回、重排排序、报告生成或归因校准中的具体阶段。相比黑盒式摘要，本文框架更适合用于人工审查、模型替换、检索消融和后续多品类评测。

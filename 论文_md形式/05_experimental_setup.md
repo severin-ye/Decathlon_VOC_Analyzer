@@ -1,66 +1,29 @@
 # 5 实验设置
 
-## 5.1 实验目标
+## 5.1 实验目的
 
-本文实验定位为系统验证，而非完整 benchmark。实验目标包括四点：验证端到端工作流是否可运行；验证各阶段产物是否结构化且可审查；验证真实模型链路与降级链路是否能够通过运行策略区分；验证评估模块是否能够在有标注和无标注条件下输出可用指标。
+本文的实验目标是验证所提出的系统框架是否能够稳定地完成证据驱动 VOC 分析，而不是报告一个已经冻结的大规模 benchmark。具体而言，实验关注四个问题：第一，系统是否能够从原始商品数据生成完整的结构化分析报告；第二，中间结果是否足以支持人工审查和错误定位；第三，真实模型链路与降级链路是否能够被明确区分；第四，当前评估接口是否能够承接后续人工标注数据。
 
-## 5.2 运行环境与软件栈
+这种实验定位与本文的系统方法性质一致。本文并不把当前样例集合视为公开标准数据集，也不声称当前结果可以外推到全部商品类别。相反，本文强调建立一套可复现的实验协议，使后续研究能够在同一框架下扩充数据、标注证据并比较不同检索策略。
 
-项目基于 Python 3.11+，当前验证环境为 Python 3.12。核心依赖包括 FastAPI、Pydantic、Pydantic Settings、LangChain、LangGraph、OpenAI SDK、Qdrant Client、Transformers、Torch、Pillow、orjson 和 pytest。
+## 5.2 实现环境
 
-API 入口由 FastAPI 提供，批处理入口由 `04_scripts/run_workflow.py` 提供，单商品工作流由 LangGraph 编排。LLM 调用通过 OpenAI 兼容 Qwen 网关完成；检索层支持本地 JSON 索引和 Qdrant 索引；图像 embedding 默认使用 CLIP；图像候选重排默认可使用 Qwen-VL。
+系统实现基于 Python 生态，采用 Web API 与批处理工作流两种入口。结构化对象由强类型 schema 约束，多阶段流程由状态图组织，模型调用通过兼容式语言模型网关完成。检索层支持本地索引和向量数据库两类后端，图像证据可通过视觉-语言表征模型编码，候选证据可通过文本或多模态重排模型重新排序。
 
-## 5.3 数据与产物
+为了区分正式实验与开发验证，系统提供运行策略控制。当完整模型链路可用时，系统使用真实 embedding、图像编码和重排模型；当外部能力不可用且策略允许时，系统退回启发式路径以保证流程可运行。该设计避免了将“模型能力不足”和“流程设计失败”混淆在一起。
 
-原始商品数据位于 `01_data/01_raw_products/products/`，人工审核用中文数据可导出到 `01_data/02_audit_zh_products/products/`。系统产物按阶段写入 `02_outputs/`：标准化证据包写入 `1_normalized/`，评论方面写入 `2_aspects/`，索引与缓存写入 `3_indexes/`，分析报告写入 `4_reports/`，feedback 和 replay 写入 `5_feedback/` 与 `5_replay/`，HTML 报告写入 `6_html/`，运行 manifest 写入 `7_manifests/`。
+## 5.3 数据与验证单元
 
-本文不把当前数据样例描述为冻结公开 benchmark。当前数据用于验证系统链路、schema 产物和评估接口；后续若要比较不同检索策略，需要补充多品类人工标注集。
+实验数据来自商品页面抓取结果，包含商品文本、商品图片和用户评论。系统首先将这些原始信息转化为统一证据包，再围绕单个商品执行完整分析。当前阶段的验证单元是单商品运行实例，而非跨商品汇总指标。每次运行都会产生方面、问题、检索、报告和评估相关的结构化记录，从而形成可审查样本。
 
-## 5.4 工作流协议
+后续若要进行严格定量比较，需要在此基础上构建人工标注集。标注对象至少应包括问题级相关证据、报告 claim 的证据支撑状态、图像证据是否真正可见以及建议是否合理。本文当前实验设置已经为这些标注提供了对象边界和评估入口。
 
-标准单商品协议如下：
+## 5.4 评价指标
 
-1. 扫描数据集并生成概览。
-2. 标准化目标商品证据包。
-3. 为目标商品构建文本和图像索引。
-4. 抽样并抽取评论方面。
-5. 将方面规划为检索问题。
-6. 对文本和图像 route 执行粗召回。
-7. 对候选证据进行文本或多模态重排。
-8. 聚合方面统计并生成报告。
-9. 构建 claim attribution、trace、feedback/replay 和 manifest。
-10. 可选导出 HTML 报告。
+本文将评价指标分为两类。第一类是检索指标。当存在问题级相关证据标注时，系统可计算 Recall@1、Recall@3、Recall@5、MRR、NDCG@3 和 NDCG@5。这些指标是信息检索评估中的常用排序与召回指标 [13]，适合评估问题规划和多模态检索是否找到了正确商品证据。
 
-核心命令如下：
+第二类是生成证据支撑指标。对于结构化报告，系统统计主张是否被评论、商品文本或商品图像支持，包括 claim support rate、claim grounded rate、citation precision、citation contradiction rate 和不同模态路线的贡献比例。该类指标用于回答“报告是否被证据支持”，与传统只评价文本流畅度的摘要指标不同。
 
-```bash
-.venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010 --output-format json --export-html --write-manifest
-```
+## 5.5 工程验证协议
 
-离线验证可关闭 LLM：
-
-```bash
-.venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010 --no-llm --output-format json
-```
-
-真实多模态运行态验证可使用：
-
-```bash
-.venv/bin/python 04_scripts/validate_multimodal_runtime.py --category backpack --product-id backpack_010
-```
-
-## 5.5 评估指标
-
-当 manifest 或 analysis artifact 包含 `retrieval_relevance` 标注时，评估模块计算 Recall@1、Recall@3、Recall@5、MRR、NDCG@3 和 NDCG@5。这些指标是信息检索评估中的常用排序与召回指标 [13]。相关证据可以是 `region_id`、`text_block_id`、`image_id` 或 `evidence_id`。
-
-在没有人工 gold labels 时，系统仍统计运行质量指标，包括 informative review 数、aspect 数、question 数、平均置信度、retrieval evidence 数量、evidence coverage、score drift、conflict risk、claim support rate、claim grounded rate、citation precision、citation contradiction rate，以及 text、image、mixed 的 route contribution。
-
-## 5.6 自动化测试
-
-自动化测试覆盖 API、数据集服务、评论服务、问题生成、索引后端、embedding 与 reranker、检索服务、分析服务、HTML 导出、manifest 评估、运行策略、运行进度、工作流脚本和多模态验证脚本。当前代码基线下执行：
-
-```bash
-.venv/bin/python -m pytest
-```
-
-结果为 166 项测试全部通过。该结果说明当前源码、提示词注册、schema、工作流脚本和评估服务在工程层面保持一致。
+由于本文关注系统可复现性，自动化测试也是实验协议的一部分。测试覆盖数据标准化、评论建模、问题生成、索引后端、embedding 与重排、检索服务、报告生成、HTML 导出、manifest 评估、运行策略和工作流入口。当前实现包含 166 项自动化测试且全部通过。这一结果说明系统的主要接口、结构化中间表示和工作流断言在当前实现中保持一致。

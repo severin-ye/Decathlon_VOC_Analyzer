@@ -6,6 +6,12 @@ Kyungpook National University
 Daegu, Republic of Korea
 6severin9@gmail.com
 
+Dokeun Lee
+Department of Physics
+Kyungpook National University
+Daegu, Republic of Korea
+nsa08008@naver.com
+
 Seowan Jung
 School of Computer Science and Engineering
 Kyungpook National University
@@ -23,9 +29,3 @@ School of Computer Science and Engineering
 Kyungpook National University
 Daegu, Republic of Korea
 prajna0426@naver.com
-
-Dokeun Lee
-Department of Physics
-Kyungpook National University
-Daegu, Republic of Korea
-nsa08008@naver.com
