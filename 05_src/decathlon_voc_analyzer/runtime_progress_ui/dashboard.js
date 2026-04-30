@@ -1,12 +1,13 @@
 const progressStateUrl = new URL(window.location.pathname.replace(/\.html$/, '.state.json'), window.location.origin).toString();
 const fmtPercent = value => `${(value * 100).toFixed(1)}%`;
-const statusClass = status => status === 'in_progress' ? 'running' : status;
+const statusClass = status => status === 'in_progress' ? 'running' : status === 'failed' ? 'broken' : status;
 const modulesEl = document.getElementById('modules');
 const rawEl = document.getElementById('raw');
 
 function renderProgressDashboard(payload) {
     const banner = document.getElementById('status-banner');
-    banner.className = `status-banner ${payload.workflowStatus === 'completed' ? 'complete' : 'running'}`;
+    const bannerClass = payload.workflowStatus === 'completed' ? 'complete' : payload.workflowStatus === 'failed' ? 'failed' : 'running';
+    banner.className = `status-banner ${bannerClass}`;
     document.getElementById('workflow-headline').textContent = payload.workflowHeadline ?? '--';
     document.getElementById('workflow-caption').textContent = payload.workflowCaption ?? '--';
     document.getElementById('workflow-note').textContent = payload.note || 'Workflow is running';
@@ -51,7 +52,7 @@ async function pollProgressState(initialPayload) {
         const statePayload = await response.json();
         const nextPayload = statePayload.dashboard ?? initialPayload;
         renderProgressDashboard(nextPayload);
-        if (nextPayload.workflowStatus === 'completed') {
+        if (nextPayload.workflowStatus === 'completed' || nextPayload.workflowStatus === 'failed') {
             return;
         }
     } catch (_error) {

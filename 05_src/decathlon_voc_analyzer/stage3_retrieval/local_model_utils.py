@@ -17,12 +17,34 @@ import torch
 from PIL import Image
 from transformers import (
     AutoModel,
+    AutoModelForCausalLM,
     AutoProcessor,
     AutoTokenizer,
-    Qwen2_5_VLForConditionalGeneration,
+    Qwen3VLForConditionalGeneration,
 )
 
 logger = logging.getLogger(__name__)
+
+
+def resolve_device(device: str) -> str:
+    """将 'auto' 设备字符串转换为实际设备字符串
+    
+    Args:
+        device: 设备选择（"cuda"、"xpu"、"cpu" 或 "auto"）
+        
+    Returns:
+        实际设备字符串（"xpu"、"cuda"、"cpu" 中的一个）
+    """
+    if device == "auto":
+        # 优先级：XPU (Intel GPU) > CUDA > CPU
+        try:
+            import intel_extension_for_pytorch as ipex
+            if ipex.xpu.is_available():
+                return "xpu"
+        except (ImportError, AttributeError):
+            pass
+        return "cuda" if torch.cuda.is_available() else "cpu"
+    return device
 
 
 class LocalEmbeddingModel:
@@ -36,14 +58,9 @@ class LocalEmbeddingModel:
             device: 设备选择（"cuda"、"cpu" 或 "auto"）
         """
         self.model_name = model_name
-        self.device = self._resolve_device(device)
+        self.device = resolve_device(device)
         self.model = None
         self.tokenizer = None
-
-    def _resolve_device(self, device: str) -> str:
-        if device == "auto":
-            return "cuda" if torch.cuda.is_available() else "cpu"
-        return device
 
     def load(self) -> None:
         """加载模型和分词器"""
@@ -106,22 +123,20 @@ class LocalRerankerModel:
             device: 设备选择（"cuda"、"cpu" 或 "auto"）
         """
         self.model_name = model_name
-        self.device = self._resolve_device(device)
+        self.device = resolve_device(device)
         self.model = None
         self.tokenizer = None
-
-    def _resolve_device(self, device: str) -> str:
-        if device == "auto":
-            return "cuda" if torch.cuda.is_available() else "cpu"
-        return device
+        self._instruction = "Given a web search query, retrieve relevant passages that answer the query"
 
     def load(self) -> None:
         """加载模型和分词器"""
         if self.model is not None:
             return
         logger.info(f"Loading Qwen3-Reranker from {self.model_name} on {self.device}")
-        self.tokenizer = AutoTokenizer.from_pretrained(self.model_name, trust_remote_code=True)
-        self.model = AutoModel.from_pretrained(
+        self.tokenizer = AutoTokenizer.from_pretrained(self.model_name, padding_side="left", trust_remote_code=True)
+        if self.tokenizer.pad_token is None:
+            self.tokenizer.pad_token = self.tokenizer.eos_token
+        self.model = AutoModelForCausalLM.from_pretrained(
             self.model_name,
             trust_remote_code=True,
             torch_dtype=torch.float32,
@@ -129,6 +144,17 @@ class LocalRerankerModel:
         self.model.to(self.device)
         self.model.eval()
         logger.info(f"Qwen3-Reranker model loaded on {self.device}")
+
+    def _format_prompt(self, query: str, document: str) -> str:
+        prefix = (
+            '<|im_start|>system\n'
+            'Judge whether the Document meets the requirements based on the Query and the Instruct provided. '
+            'Note that the answer can only be "yes" or "no".<|im_end|>\n'
+            '<|im_start|>user\n'
+        )
+        suffix = '<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n'
+        body = f"<Instruct>: {self._instruction}\n\n<Query>: {query}\n\n<Document>: {document}"
+        return f"{prefix}{body}{suffix}"
 
     def rerank(
         self,
@@ -152,27 +178,26 @@ class LocalRerankerModel:
         if top_n is None:
             top_n = len(documents)
 
-        # 构造对重排模型格式：query, document pairs
-        # Qwen3-Reranker 使用特殊的输入格式
-        pairs = []
-        for doc in documents:
-            # 格式化为 "query: Q\npassage: D"
-            pair = f"query: {query}\npassage: {doc}"
-            pairs.append(pair)
+        pairs = [self._format_prompt(query, doc) for doc in documents]
+        token_true_id = self.tokenizer("yes", add_special_tokens=False).input_ids[0]
+        token_false_id = self.tokenizer("no", add_special_tokens=False).input_ids[0]
 
         inputs = self.tokenizer(
             pairs,
             return_tensors="pt",
             padding=True,
             truncation=True,
-            max_length=512,
+            max_length=8192,
+            add_special_tokens=False,
         ).to(self.device)
 
         with torch.no_grad():
             outputs = self.model(**inputs)
-            # Reranker 输出的分数通常在 logits 的特定位置
-            # 取 [CLS] 对应的logit并通过 sigmoid 映射到 [0, 1]
-            scores = torch.sigmoid(outputs.logits[:, 0]).detach().cpu().numpy()
+            batch_scores = outputs.logits[:, -1, :]
+            true_vector = batch_scores[:, token_true_id]
+            false_vector = batch_scores[:, token_false_id]
+            pair_scores = torch.stack([false_vector, true_vector], dim=1)
+            scores = torch.nn.functional.log_softmax(pair_scores, dim=1)[:, 1].exp().detach().cpu().numpy()
 
         # 创建排序结果
         results = [
@@ -195,14 +220,9 @@ class LocalMultimodalRerankerModel:
             device: 设备选择（"cuda"、"cpu" 或 "auto"）
         """
         self.model_name = model_name
-        self.device = self._resolve_device(device)
+        self.device = resolve_device(device)
         self.model = None
         self.processor = None
-
-    def _resolve_device(self, device: str) -> str:
-        if device == "auto":
-            return "cuda" if torch.cuda.is_available() else "cpu"
-        return device
 
     def load(self) -> None:
         """加载模型和处理器"""
@@ -212,7 +232,7 @@ class LocalMultimodalRerankerModel:
         # 注意: 这里假设 Qwen3-VL-2B 与 Qwen2.5-VL 兼容
         # 如果需要调整，根据官方文档修改
         self.processor = AutoProcessor.from_pretrained(self.model_name, trust_remote_code=True)
-        self.model = Qwen2_5_VLForConditionalGeneration.from_pretrained(
+        self.model = Qwen3VLForConditionalGeneration.from_pretrained(
             self.model_name,
             torch_dtype=torch.float32,
             trust_remote_code=True,
@@ -274,7 +294,7 @@ class LocalMultimodalRerankerModel:
                     outputs = self.model.generate(
                         **inputs,
                         max_new_tokens=50,
-                        temperature=0.0,
+                        do_sample=False,
                     )
 
                 response_text = self.processor.decode(outputs[0], skip_special_tokens=True)

@@ -1,10 +1,12 @@
 import json
 from pathlib import Path
+from types import SimpleNamespace
 
 import pytest
 
 from decathlon_voc_analyzer.app.core.config import get_settings
 from decathlon_voc_analyzer.app.core.runtime_policy import RuntimePolicyError
+from decathlon_voc_analyzer.schemas.retrieval_cache import RerankCacheSignature
 from decathlon_voc_analyzer.schemas.index import IndexedEvidence
 from decathlon_voc_analyzer.stage3_retrieval.embedding_service import EmbeddingService
 from decathlon_voc_analyzer.stage3_retrieval.reranker_service import RerankerService
@@ -142,6 +144,80 @@ def test_reranker_service_uses_dedicated_api(monkeypatch, tmp_path) -> None:
     assert reranked[0].evidence_id == "b"
     assert reranked[0].score == 0.91
     assert reranked[1].evidence_id == "a"
+
+
+def test_local_reranker_uses_causal_lm_logits(monkeypatch) -> None:
+    from decathlon_voc_analyzer.stage3_retrieval.local_model_utils import LocalRerankerModel
+
+    class FakeBatch(dict):
+        def to(self, device):
+            return self
+
+    class FakeTokenizer:
+        pad_token = None
+        eos_token = "</s>"
+
+        def __init__(self) -> None:
+            self.padding_side = "left"
+
+        def __call__(self, value, **kwargs):
+            import torch
+
+            if isinstance(value, str):
+                return SimpleNamespace(input_ids=[1 if value == "yes" else 0])
+            batch_size = len(value)
+            return FakeBatch(
+                input_ids=torch.zeros((batch_size, 4), dtype=torch.long),
+                attention_mask=torch.ones((batch_size, 4), dtype=torch.long),
+            )
+
+    class FakeOutputs:
+        def __init__(self):
+            import torch
+
+            self.logits = torch.tensor(
+                [
+                    [[0.0, 0.1], [0.0, 2.0], [0.0, 2.0], [0.0, 2.0]],
+                    [[0.0, 0.1], [0.0, 0.2], [0.0, 0.2], [0.0, 0.2]],
+                ],
+                dtype=torch.float32,
+            )
+
+    class FakeModel:
+        def __call__(self, **kwargs):
+            return FakeOutputs()
+
+    reranker = LocalRerankerModel()
+    reranker.model = FakeModel()
+    reranker.tokenizer = FakeTokenizer()
+    reranker.device = "cpu"
+
+    results = reranker.rerank(query="passport wallet", documents=["doc a", "doc b"])
+
+    assert results[0]["index"] == 0
+    assert results[0]["relevance_score"] > results[1]["relevance_score"]
+
+
+def test_rerank_cache_signature_accepts_local_backends() -> None:
+    text_signature = RerankCacheSignature(
+        route="text",
+        query="passport wallet",
+        use_llm=True,
+        backend_kind="local_qwen3",
+        candidate_count=2,
+        candidate_digest="digest-a",
+    )
+    image_signature = RerankCacheSignature(
+        route="image",
+        query="front pocket",
+        use_llm=True,
+        backend_kind="local_qwen3_vl",
+        candidate_count=1,
+        candidate_digest="digest-b",
+    )
+
+    assert text_signature.backend_kind == "local_qwen3"
+    assert image_signature.backend_kind == "local_qwen3_vl"
 
 
 def test_embedding_service_uses_clip_for_image_route(monkeypatch, tmp_path) -> None:

@@ -105,6 +105,24 @@ def test_progress_reporter_dashboard_shows_completed_banner(tmp_path: Path) -> N
     assert "本页面会停留在最终完成状态" in payload
 
 
+def test_progress_reporter_dashboard_shows_failed_banner(tmp_path: Path) -> None:
+    dashboard_path = tmp_path / "live_progress.html"
+    reporter = WorkflowProgressReporter(
+        [("analyze", "生成分析", [("extract", "抽取评论")])],
+        enabled=False,
+        dashboard_path=dashboard_path,
+    )
+
+    reporter.start_count_step("analyze", "extract", total=1, detail="失败测试")
+    reporter.fail_workflow(detail="执行失败")
+    reporter.refresh()
+
+    payload = dashboard_path.read_text(encoding="utf-8")
+
+    assert "工作流错误" in payload
+    assert "工作流已进入错误状态" in payload
+
+
 def test_progress_reporter_persists_stage_timestamps(tmp_path: Path) -> None:
     dashboard_path = tmp_path / "live_progress.html"
     reporter = WorkflowProgressReporter(

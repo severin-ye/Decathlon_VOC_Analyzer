@@ -423,26 +423,38 @@ def main() -> None:
     config = build_cli_config(args)
     paths = configure_environment(config)
     progress_dashboard_path = _resolve_progress_dashboard_path(args, paths)
+    
+    # 新运行时清除旧的进度状态，以便仪表盘重置为"运行中"而非显示旧的"错误"状态
+    restore_state = args.resume_from_aspects or args.resume_from_analysis_checkpoint
+    if not restore_state:
+        old_state_path = progress_dashboard_path.with_suffix(".state.json")
+        if old_state_path.exists():
+            old_state_path.unlink()
+    
     progress = WorkflowProgressReporter(
         WORKFLOW_PROGRESS_PLAN,
         enabled=not args.quiet,
         dashboard_path=progress_dashboard_path,
         dashboard_title=f"{args.category}/{args.product_id} Workflow Progress",
         terminal_mode="events",
-        restore_state=args.resume_from_aspects or args.resume_from_analysis_checkpoint,
+        restore_state=restore_state,
     )
     try:
         try:
             with progress:
                 with use_workflow_progress(progress):
-                    progress.note(f"工作流已启动，正在按顺序执行各模块。Dashboard: {progress_dashboard_path}")
-                    summary = execute_workflow(args, paths, progress=progress)
-                    summary = maybe_write_manifest(args, summary, paths, progress=progress)
-                    if args.output_format == "json":
-                        sys.stdout.buffer.write(_render_json_summary(summary))
-                        sys.stdout.write("\n")
-                        return
-                    print(_render_text_summary(summary, quiet=args.quiet))
+                    try:
+                        progress.note(f"工作流已启动，正在按顺序执行各模块。Dashboard: {progress_dashboard_path}")
+                        summary = execute_workflow(args, paths, progress=progress)
+                        summary = maybe_write_manifest(args, summary, paths, progress=progress)
+                        if args.output_format == "json":
+                            sys.stdout.buffer.write(_render_json_summary(summary))
+                            sys.stdout.write("\n")
+                            return
+                        print(_render_text_summary(summary, quiet=args.quiet))
+                    except Exception as exc:
+                        progress.fail_workflow(detail=f"未捕获异常: {exc}")
+                        raise
         except KeyboardInterrupt as exc:
             print("[中断] 工作流已被手动取消。", file=sys.stderr)
             raise SystemExit(130) from exc

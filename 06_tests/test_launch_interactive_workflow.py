@@ -123,7 +123,34 @@ def test_prompt_run_mode_returns_resume_checkpoint_choice() -> None:
     )
 
     assert result == module.RUN_MODE_RESUME_ANALYSIS_CHECKPOINT
-    assert any("从 analysis checkpoint 续跑" in line for line in printed)
+    assert any("正常跑" in line for line in printed)
+
+
+def test_prompt_run_mode_defaults_to_resume_when_enter_is_pressed() -> None:
+    module = _load_module()
+
+    candidate = module.ResumeCandidate(
+        dashboard_path=Path("/tmp/index.html"),
+        payload={
+            "categories": [
+                {
+                    "category": "shoes",
+                    "products": [{"productId": "shoes_001", "status": "failed"}],
+                }
+            ],
+        },
+    )
+
+    module._resume_mode_has_aspects = lambda payload: True
+    module._resume_mode_has_analysis_checkpoint = lambda payload: False
+
+    result = module.prompt_run_mode(
+        candidate,
+        input_func=lambda _prompt: "",
+        print_func=lambda *_args, **_kwargs: None,
+    )
+
+    assert result == module.RUN_MODE_RESUME_ASPECTS
 
 
 def test_run_mode_args_include_resume_flags() -> None:
@@ -147,6 +174,25 @@ def test_available_run_mode_options_hide_missing_analysis_checkpoint() -> None:
     options = module.available_run_mode_options(candidate)
 
     assert [option.code for option in options] == [module.RUN_MODE_NORMAL, module.RUN_MODE_RESUME_ASPECTS]
+
+
+def test_available_run_mode_options_prioritize_resume_modes() -> None:
+    module = _load_module()
+    candidate = module.ResumeCandidate(
+        dashboard_path=Path("/tmp/index.html"),
+        payload={"categories": [{"category": "shoes", "products": [{"productId": "shoes_001", "status": "failed"}]}]},
+    )
+
+    module._resume_mode_has_aspects = lambda payload: True
+    module._resume_mode_has_analysis_checkpoint = lambda payload: True
+
+    options = module.available_run_mode_options(candidate)
+
+    assert [option.code for option in options] == [
+        module.RUN_MODE_NORMAL,
+        module.RUN_MODE_RESUME_ASPECTS,
+        module.RUN_MODE_RESUME_ANALYSIS_CHECKPOINT,
+    ]
 
 
 def test_unavailable_resume_mode_messages_report_missing_checkpoint() -> None:

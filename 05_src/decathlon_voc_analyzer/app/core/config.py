@@ -47,7 +47,7 @@ class Settings(BaseSettings):
     local_embedding_model_name: str = "Qwen/Qwen3-Embedding-0.6B"
     local_reranker_model_name: str = "Qwen/Qwen3-Reranker-0.6B"
     local_multimodal_reranker_model_name: str = "Qwen/Qwen3-VL-2B-Instruct"
-    local_model_device: str = "auto"  # "auto" | "cuda" | "cpu"
+    local_model_device: str = "auto"  # "auto" | "cuda" | "xpu" | "cpu"
     # 后端选择配置
     embedding_backend: str = "api"  # "api" | "local_qwen3"
     image_embedding_backend: str = "clip"  # "clip" | "local_qwen3_vl"

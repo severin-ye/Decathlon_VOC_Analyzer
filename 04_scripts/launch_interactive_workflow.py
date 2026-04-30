@@ -164,7 +164,7 @@ def ensure_http_server() -> str:
         cwd=str(ROOT_DIR),
     )
     return f"http://localhost:{HTTP_PORT}"
-
+2
 
 def ensure_launcher_assets() -> None:
     LAUNCHER_ASSET_DIR.mkdir(parents=True, exist_ok=True)
@@ -603,6 +603,7 @@ def _selected_product_total(state: LauncherRunState) -> int:
 
 def prompt_run_mode(resume_candidate: ResumeCandidate | None = None, input_func=input, print_func=print) -> str:
     options = available_run_mode_options(resume_candidate)
+    default_option = _default_run_mode_option(options)
     print_func("\n请选择运行模式：")
     for index, option in enumerate(options, start=1):
         print_func(f"  {index}. {option.label}")
@@ -611,7 +612,10 @@ def prompt_run_mode(resume_candidate: ResumeCandidate | None = None, input_func=
         for message in unavailable:
             print_func(f"  - {message}")
     while True:
-        raw = input_func("请输入模式编号，例如 1: ").strip()
+        default_label = default_option.label if default_option is not None else "正常跑"
+        raw = input_func(f"请输入模式编号，例如 1（直接回车默认 {default_label}）: ").strip()
+        if raw == "":
+            return default_option.code if default_option is not None else RUN_MODE_NORMAL
         try:
             choice = int(raw)
         except ValueError:
@@ -623,15 +627,22 @@ def prompt_run_mode(resume_candidate: ResumeCandidate | None = None, input_func=
 
 
 def available_run_mode_options(resume_candidate: ResumeCandidate | None) -> list[ResumeModeOption]:
-    options = [ResumeModeOption(code=RUN_MODE_NORMAL, label="正常跑")]
-    if resume_candidate is None:
-        return options
-    payload = resume_candidate.payload
-    if _resume_mode_has_aspects(payload):
-        options.append(ResumeModeOption(code=RUN_MODE_RESUME_ASPECTS, label="从 aspects 续跑"))
-    if _resume_mode_has_analysis_checkpoint(payload):
-        options.append(ResumeModeOption(code=RUN_MODE_RESUME_ANALYSIS_CHECKPOINT, label="从 analysis checkpoint 续跑"))
+    options: list[ResumeModeOption] = []
+    options.append(ResumeModeOption(code=RUN_MODE_NORMAL, label="正常跑"))
+    if resume_candidate is not None:
+        payload = resume_candidate.payload
+        if _resume_mode_has_aspects(payload):
+            options.append(ResumeModeOption(code=RUN_MODE_RESUME_ASPECTS, label="从 aspects 续跑"))
+        if _resume_mode_has_analysis_checkpoint(payload):
+            options.append(ResumeModeOption(code=RUN_MODE_RESUME_ANALYSIS_CHECKPOINT, label="从 analysis checkpoint 续跑"))
     return options
+
+
+def _default_run_mode_option(options: list[ResumeModeOption]) -> ResumeModeOption | None:
+    for option in options:
+        if option.code != RUN_MODE_NORMAL:
+            return option
+    return options[0] if options else None
 
 
 def unavailable_resume_mode_messages(payload: dict[str, object]) -> list[str]:
@@ -853,23 +864,8 @@ def _build_vscode_simple_browser_uri(url: str) -> str:
 
 
 def _open_browser(url: str) -> None:
-    code_cli = shutil.which("code")
-    if code_cli:
-        command_uri = _build_vscode_simple_browser_uri(url)
-        try:
-            subprocess.run(
-                [code_cli, "-r", command_uri],
-                cwd=str(ROOT_DIR),
-                check=False,
-                stdout=subprocess.DEVNULL,
-                stderr=subprocess.DEVNULL,
-            )
-            print(f"[页面] 已在 VS Code 内部打开总控页面: {url}")
-            return
-        except Exception:
-            pass
     try:
-        print(f"[页面] 总控页面已准备好，请在 VS Code 内部打开: {url}")
+        print(f"[页面] 总控页面已准备好，请手动打开: {url}")
     except Exception:
         pass
 

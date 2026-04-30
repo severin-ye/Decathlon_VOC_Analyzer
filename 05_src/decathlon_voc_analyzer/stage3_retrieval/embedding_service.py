@@ -13,7 +13,7 @@ from decathlon_voc_analyzer.app.core.config import get_settings
 from decathlon_voc_analyzer.app.core.runtime_policy import RuntimePolicyError, get_runtime_execution_policy, should_forbid_degradation
 from decathlon_voc_analyzer.schemas.retrieval_cache import QueryEmbeddingCacheSignature
 from decathlon_voc_analyzer.stage3_retrieval.retrieval_cache_service import RetrievalCacheService
-from decathlon_voc_analyzer.stage3_retrieval.local_model_utils import get_embedding_model
+from decathlon_voc_analyzer.stage3_retrieval.local_model_utils import get_embedding_model, resolve_device
 
 
 TOKEN_RE = re.compile(r"[\w\-\u4e00-\u9fff가-힣]+", re.UNICODE)
@@ -122,6 +122,13 @@ class EmbeddingService:
             return self._clip_vector_size
         if self._vector_size is not None:
             return self._vector_size
+        if self.settings.embedding_backend == "local_qwen3":
+            try:
+                self._vector_size = len(self._local_qwen3_embedding("dimension probe"))
+                return self._vector_size
+            except Exception:
+                self._vector_size = self.VECTOR_DIMENSION
+                return self._vector_size
         if self.settings.embedding_backend == "api" and self.settings.qwen_plus_api_key:
             try:
                 self._vector_size = len(self._api_embedding("dimension probe"))
@@ -149,7 +156,7 @@ class EmbeddingService:
     def _local_qwen3_embedding(self, text: str) -> list[float]:
         """使用本地 Qwen3-Embedding-0.6B 模型获取嵌入向量"""
         model = get_embedding_model(self.settings.local_embedding_model_name)
-        model.device = self.settings.local_model_device
+        model.device = resolve_device(self.settings.local_model_device)
         vector = model.embed_single(text)
         self._vector_size = len(vector)
         return vector

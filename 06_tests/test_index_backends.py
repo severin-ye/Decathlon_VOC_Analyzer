@@ -119,3 +119,20 @@ def test_local_backend_raises_when_refreshed_query_dimension_still_mismatches(tm
 
     with pytest.raises(RuntimePolicyError, match="查询向量维度与已建索引不一致"):
         backend.search(product_id="p1", category_slug="bags", query="passport wallet", routes=["text"], top_k_per_route=1)
+
+
+def test_vector_size_for_route_uses_local_qwen3_dimension(monkeypatch) -> None:
+    embedding_service = EmbeddingService()
+    embedding_service.settings.embedding_backend = "local_qwen3"
+    embedding_service.settings.image_embedding_backend = "clip"
+
+    calls = {"count": 0}
+
+    def _local_qwen3_embedding(_text: str) -> list[float]:
+        calls["count"] += 1
+        return [0.0] * 1024
+
+    monkeypatch.setattr(embedding_service, "_local_qwen3_embedding", _local_qwen3_embedding)
+
+    assert embedding_service.vector_size_for_route("text") == 1024
+    assert calls["count"] == 1

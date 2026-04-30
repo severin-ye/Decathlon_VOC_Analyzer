@@ -183,6 +183,21 @@ class WorkflowProgressReporter:
         self._active_step_key = None
         self.refresh()
 
+    def fail_workflow(self, detail: str | None = None) -> None:
+        for module in self.modules:
+            if module.status in {"done", "skipped"}:
+                continue
+            self._ensure_module_started(module)
+            module.elapsed_seconds = self._module_elapsed(module)
+            module.status = "failed"
+            if module.completed_at_epoch is None:
+                module.completed_at_epoch = time()
+            if detail:
+                module.detail = detail
+        self._active_module_key = None
+        self._active_step_key = None
+        self.refresh()
+
     def skip_module(self, module_key: str, detail: str | None = None) -> None:
         module = self._module_lookup[module_key]
         self._ensure_module_started(module)
@@ -720,10 +735,10 @@ class WorkflowProgressReporter:
         return "white"
 
     def _module_status_label(self, module: ProgressModuleState) -> str:
-        return {"done": "done", "in_progress": "running", "skipped": "skipped"}.get(module.status, "pending")
+        return {"done": "done", "in_progress": "running", "skipped": "skipped", "failed": "broken"}.get(module.status, "pending")
 
     def _step_status_label(self, step: ProgressStepState) -> str:
-        return {"done": "done", "in_progress": "running", "skipped": "skipped"}.get(step.status, "pending")
+        return {"done": "done", "in_progress": "running", "skipped": "skipped", "failed": "broken"}.get(step.status, "pending")
 
     def _module_progress_text(self, module: ProgressModuleState) -> Text:
         return self._bar_text(module.label, self._module_fraction(module), self._module_style(module), meta=self._module_meta_text(module))
@@ -825,6 +840,8 @@ class WorkflowProgressReporter:
         return min(1.0, sum(self._module_fraction(module) for module in self.modules) / float(len(self.modules)))
 
     def _workflow_status(self) -> str:
+        if self.modules and any(module.status == "failed" for module in self.modules):
+            return "failed"
         if self.modules and all(module.status in {"done", "skipped"} for module in self.modules):
             return "completed"
         return "running"
@@ -842,6 +859,8 @@ class WorkflowProgressReporter:
     def _workflow_headline(self, workflow_status: str) -> str:
         if workflow_status == "completed":
             return "已完成所有流程"
+        if workflow_status == "failed":
+            return "工作流错误"
         return "工作流运行中"
 
     def _workflow_caption(self, workflow_status: str, completed_at_epoch: float | None) -> str:
@@ -851,6 +870,8 @@ class WorkflowProgressReporter:
             if started_at is not None and finished_at is not None:
                 return f"本页面会停留在最终完成状态。开始于 {started_at}，完成于 {finished_at}。"
             return "本页面会停留在最终完成状态。"
+        if workflow_status == "failed":
+            return "工作流已进入错误状态。请查看对应模块的错误详情。"
         if started_at is not None:
             return f"页面会持续更新直到完成。当前这次运行开始于 {started_at}。"
         return "页面会持续更新直到完成。"

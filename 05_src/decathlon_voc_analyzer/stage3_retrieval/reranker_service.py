@@ -16,6 +16,7 @@ from decathlon_voc_analyzer.stage3_retrieval.retrieval_cache_service import Retr
 from decathlon_voc_analyzer.stage3_retrieval.local_model_utils import (
     get_reranker_model,
     get_multimodal_reranker_model,
+    resolve_device,
 )
 
 
@@ -299,7 +300,7 @@ class RerankerService:
     def _rerank_text_candidates_with_local(self, query: str, candidates: list[IndexedEvidence]) -> list[IndexedEvidence]:
         """使用本地 Qwen3-Reranker-0.6B 模型进行文本重排"""
         model = get_reranker_model(self.settings.local_reranker_model_name)
-        model.device = self.settings.local_model_device
+        model.device = resolve_device(self.settings.local_model_device)
         
         documents = [self._candidate_text(candidate) for candidate in candidates]
         results = model.rerank(query=query, documents=documents, top_n=len(candidates))
@@ -327,7 +328,7 @@ class RerankerService:
     ) -> list[IndexedEvidence]:
         """使用本地 Qwen3-VL-2B 模型进行多模态图像重排"""
         model = get_multimodal_reranker_model(self.settings.local_multimodal_reranker_model_name)
-        model.device = self.settings.local_model_device
+        model.device = resolve_device(self.settings.local_model_device)
         
         candidate_data = []
         for index, candidate in enumerate(candidates):

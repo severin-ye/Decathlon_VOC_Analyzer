@@ -145,7 +145,7 @@ function launcherStatusHeadline(status) {
         return '已完成所有流程';
     }
     if (status === 'failed') {
-        return '流程执行失败';
+        return '工作流错误';
     }
     return '工作流运行中';
 }

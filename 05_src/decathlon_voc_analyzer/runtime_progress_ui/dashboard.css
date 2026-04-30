@@ -45,6 +45,11 @@ body {
     background: linear-gradient(180deg, rgba(0,113,227,0.08), rgba(255,255,255,0.92));
 }
 
+.status-banner.failed {
+    border-color: rgba(255,59,48,0.24);
+    background: linear-gradient(180deg, rgba(255,59,48,0.10), rgba(255,255,255,0.92));
+}
+
 .status-banner .eyebrow {
     color: var(--muted);
     font-size: 12px;
@@ -130,6 +135,7 @@ h1 { margin: 0 0 10px; font-size: 30px; font-weight: 700; letter-spacing: -0.03e
 .status.running { color: var(--blue); }
 .status.pending { color: var(--muted); }
 .status.skipped { color: var(--orange); }
+.status.broken { color: #ff3b30; }
 
 .bar { width: 100%; height: 10px; background: rgba(60,60,67,0.08); border-radius: 999px; overflow: hidden; margin: 12px 0 8px; }
 .fill { height: 100%; background: linear-gradient(90deg, #0a84ff 0%, #5ac8fa 100%); }

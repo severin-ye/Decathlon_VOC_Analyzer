@@ -6,7 +6,7 @@ from decathlon_voc_analyzer.schemas.index import IndexedEvidence
 
 
 QueryEmbeddingBackendKind = Literal["api", "clip", "hash"]
-RerankBackendKind = Literal["api", "heuristic", "qwen_vl"]
+RerankBackendKind = Literal["api", "heuristic", "qwen_vl", "local_qwen3", "local_qwen3_vl"]
 
 
 class QueryEmbeddingCacheSignature(BaseModel):
