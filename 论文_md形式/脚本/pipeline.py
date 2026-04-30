@@ -51,8 +51,25 @@ def compile_tex_to_pdf(tex_path: Path, output_dir: Path) -> Path:
     run_command(cmd, cwd=output_dir)
 
     if tex_uses_bibtex(tex_path):
-        bibtex = require_command("bibtex")
-        run_command([bibtex, tex_path.stem], cwd=output_dir)
+        # BibTeX 只在 aux 中出现 \bibdata/\bibstyle 时才有意义。
+        # 在某些环境下（例如编辑器自动触发 pdflatex 覆盖 aux/log），aux 可能会变成空文件，
+        # 这会导致 bibtex 以非 0 退出码失败，但此时仍可继续生成（无参考文献的）PDF。
+        aux_path = output_dir / f"{tex_path.stem}.aux"
+        aux_text = aux_path.read_text(encoding="utf-8") if aux_path.exists() else ""
+        if "\\bibdata{" in aux_text and "\\bibstyle{" in aux_text:
+            bibtex = require_command("bibtex")
+            try:
+                run_command([bibtex, tex_path.stem], cwd=output_dir)
+            except subprocess.CalledProcessError as exc:
+                print(
+                    f"注意：BibTeX 执行失败（将继续生成 PDF，不影响图片/正文导出）：{exc}",
+                    file=sys.stderr,
+                )
+        else:
+            print(
+                "注意：未在 .aux 中检测到 BibTeX 元信息（\\bibdata/\\bibstyle），跳过 bibtex。",
+                file=sys.stderr,
+            )
 
     run_command(cmd, cwd=output_dir)
     run_command(cmd, cwd=output_dir)

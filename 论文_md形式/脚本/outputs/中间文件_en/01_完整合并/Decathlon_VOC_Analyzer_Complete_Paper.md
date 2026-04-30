@@ -12,6 +12,12 @@ Kyungpook National University
 Daegu, Republic of Korea
 nsa08008@naver.com
 
+Wushuang Liu
+Department of Child Studies
+Kyungpook National University
+Daegu, Republic of Korea
+824309203q@gmail.com
+
 Seowan Jung
 School of Computer Science and Engineering
 Kyungpook National University

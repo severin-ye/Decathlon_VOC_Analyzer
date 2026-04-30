@@ -41,10 +41,11 @@
 \title{\textbf{Decathlon VOC Analyzer: An Evidence-Driven Multimodal VOC Analysis System for Aligning Product Images, Product Text, and User Reviews}}
 
 \author{{\small
-\begin{tabular}{@{}cccc@{}}
-\multicolumn{4}{c}{\parbox[t]{0.6200\textwidth}{\centering \textbf{Severin Ye} \\ \textit{School of Computer Science and Engineering} \\ \textit{Kyungpook National University} \\ Daegu, Republic of Korea \\ {\ttfamily\small 6severin9\allowbreak@gmail.\allowbreak{}com}}} \\
-\multicolumn{4}{c}{} \\
-\parbox[t]{0.2200\textwidth}{\centering \textbf{Dokeun Lee} \\ \textit{Department of Physics} \\ \textit{Kyungpook National University} \\ Daegu, Republic of Korea \\ {\ttfamily\small nsa08008\allowbreak@naver.\allowbreak{}com}} & \parbox[t]{0.2200\textwidth}{\centering \textbf{Seowan Jung} \\ \textit{School of Computer Science and Engineering} \\ \textit{Kyungpook National University} \\ Daegu, Republic of Korea \\ {\ttfamily\small swan041014\allowbreak@gmail.\allowbreak{}com}} & \parbox[t]{0.2200\textwidth}{\centering \textbf{HyunJun Jung} \\ \textit{School of Computer Science and Engineering} \\ \textit{Kyungpook National University} \\ Daegu, Republic of Korea \\ {\ttfamily\small beanbeansummon\allowbreak@naver.\allowbreak{}com}} & \parbox[t]{0.2200\textwidth}{\centering \textbf{Hye Jeon} \\ \textit{School of Computer Science and Engineering} \\ \textit{Kyungpook National University} \\ Daegu, Republic of Korea \\ {\ttfamily\small prajna0426\allowbreak@naver.\allowbreak{}com}} \\
+\begin{tabular}{@{}ccc@{}}
+\multicolumn{3}{c}{\parbox[t]{0.6600\textwidth}{\centering \textbf{Severin Ye}\textsuperscript{1} \\ \textit{School of Computer Science and Engineering} \\ \textit{Kyungpook National University} \\ Daegu, Republic of Korea \\ {\ttfamily\small 6severin9\allowbreak@gmail.\allowbreak{}com}}} \\
+\multicolumn{3}{c}{} \\[0.9em]
+\parbox[t]{0.3067\textwidth}{\centering \textbf{Dokeun Lee}\textsuperscript{2} \\ \textit{Department of Physics} \\ \textit{Kyungpook National University} \\ Daegu, Republic of Korea \\ {\ttfamily\small nsa08008\allowbreak@naver.\allowbreak{}com}} & \parbox[t]{0.3067\textwidth}{\centering \textbf{Wushuang Liu}\textsuperscript{2} \\ \textit{Department of Child Studies} \\ \textit{Kyungpook National University} \\ Daegu, Republic of Korea \\ {\ttfamily\small 824309203q\allowbreak@gmail.\allowbreak{}com}} & \parbox[t]{0.3067\textwidth}{\centering \textbf{Seowan Jung}\textsuperscript{2} \\ \textit{School of Computer Science and Engineering} \\ \textit{Kyungpook National University} \\ Daegu, Republic of Korea \\ {\ttfamily\small swan041014\allowbreak@gmail.\allowbreak{}com}} \\[0.9em]
+\multicolumn{3}{c}{\makebox[0.9200\textwidth][c]{\parbox[t]{0.3067\textwidth}{\centering \textbf{HyunJun Jung}\textsuperscript{2} \\ \textit{School of Computer Science and Engineering} \\ \textit{Kyungpook National University} \\ Daegu, Republic of Korea \\ {\ttfamily\small beanbeansummon\allowbreak@naver.\allowbreak{}com}}\hspace{2\tabcolsep}\parbox[t]{0.3067\textwidth}{\centering \textbf{Hye Jeon}\textsuperscript{2} \\ \textit{School of Computer Science and Engineering} \\ \textit{Kyungpook National University} \\ Daegu, Republic of Korea \\ {\ttfamily\small prajna0426\allowbreak@naver.\allowbreak{}com}}}} \\
 \end{tabular}
 }}
 
@@ -152,11 +153,11 @@ Decathlon VOC Analyzer formulates product VOC analysis as an evidence-driven mul
 
 The framework contains four logical layers. The product evidence layer constructs structured representations of product text, images, and local visual regions. The VOC demand layer converts reviews into aspects, opinions, sentiments, and usage scenes. The evidence alignment layer rewrites aspects into route-aware questions and retrieves evidence from the product evidence space. The report attribution layer generates structured insights and maps report claims back to review and product evidence.
 
-{[}Figure 1 placeholder: overall framework of evidence-driven multimodal VOC analysis{]}
-
-AI drawing prompt: Create a clean academic system architecture diagram with a white background, blue-gray color palette, and small orange highlights for the core innovation. Show four left-to-right logical layers: Product Evidence Layer with product text, product images, image regions, and reviews; VOC Demand Modeling Layer with review filtering, rating-aware sampling, aspect extraction, and aspect objects; Question-Guided Multimodal Retrieval Layer with question intent planning, text route retrieval, image route retrieval, reranking, and language-balanced candidate pool; Evidence-Constrained Reporting Layer with aspect aggregation, structured report, claim attribution, evidence gaps, and feedback/replay. Use arrows for data flow and dashed boxes for reusable artifacts and caches. Do not include file paths, code class names, or brand logos. Emphasize that review aspects become evidence-seeking questions and report claims are grounded back to product and review evidence. The diagram should be suitable for a conference paper, readable in grayscale, and usable as a one-column or two-column figure.
-
-\emph{Figure 1. Overall framework of Decathlon VOC Analyzer. The system uses review aspects and product evidence packages as intermediate representations, connects subjective VOC signals with multimodal product evidence through question planning, and performs claim-level attribution during reporting.}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.92\textwidth]{/home/severin/Codelib/Decathlon\_VOC\_Analyzer/论文\_md形式/图片/图1.png}
+\caption{Overall framework of Decathlon VOC Analyzer. The system uses review aspects and product evidence packages as intermediate representations, connects subjective VOC signals with multimodal product evidence through question planning, and performs claim-level attribution during reporting.}
+\end{figure}
 
 \subsection{Product Evidence Representation}
 
@@ -176,11 +177,11 @@ The key design is the intermediate planning layer between aspects and retrieval.
 
 The questions cover text support, visual confirmation, and cross-modal resolution. Text-support questions ask whether product copy or specifications directly support a claim. Visual-confirmation questions ask whether product images show relevant structures or appearances. Cross-modal questions ask whether text and images together explain a review as a real product issue, insufficient presentation, or expectation mismatch.
 
-{[}Figure 2 placeholder: transformation from review aspects to multimodal evidence queries{]}
-
-AI drawing prompt: Create an academic mechanism diagram showing ``review aspect -\textgreater{} question intents -\textgreater{} route-aware retrieval -\textgreater{} evidence bundle.'' On the left, draw a customer review bubble such as ``too small for travel documents,'' and below it an aspect object card with fields aspect, sentiment, opinion, evidence span, and usage scene. In the middle, show three question intent cards: explicit text support, visual confirmation, and cross-modal resolution, each producing one natural-language retrieval question. On the right, split retrieval into two routes: text route pointing to product title, description, and specification snippets; image route pointing to whole product image, center crop, and detail crop. Both routes feed into a reranker and merge into an evidence bundle. Use numbered arrows from 1 to 5. Use blue for text evidence, green for image evidence, and orange for question planning. Avoid real product photos; use abstract backpack or glasses line icons.
-
-\emph{Figure 2. Aspect-to-question planning. Aspect objects are not directly used as retrieval queries; they are decomposed into intent-specific questions that trigger text, image, or cross-modal evidence routes.}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.92\textwidth]{/home/severin/Codelib/Decathlon\_VOC\_Analyzer/论文\_md形式/图片/图2.png}
+\caption{Aspect-to-question planning. Aspect objects are not directly used as retrieval queries; they are decomposed into intent-specific questions that trigger text, image, or cross-modal evidence routes.}
+\end{figure}
 
 \subsection{Multimodal Recall and Reranking}
 
@@ -194,11 +195,11 @@ The generation stage does not pass retrieved evidence to the model as ordinary c
 
 To make the report auditable, the system performs claim-level attribution. Major claims are mapped to review evidence, product text evidence, product image evidence, or their combinations, and are labeled as supported, partially supported, unsupported, or contradicted. If a review claim cannot be verified by current product evidence, the system prefers to expose an evidence gap instead of presenting the claim as confirmed.
 
-{[}Figure 3 placeholder: evidence attribution and evaluation loop{]}
-
-AI drawing prompt: Create a paper-style loop diagram titled ``evidence attribution and evaluation loop.'' On the left, show retrieved evidence nodes grouped into review evidence, product text evidence, and product image evidence. In the center, show structured report claim nodes: strength claim, weakness claim, suggestion claim, and evidence gap claim. Draw directed edges from evidence nodes to claims with labels supported, partial, unsupported, and contradicted. On the right, show an evaluation module with retrieval metrics (Recall@K, MRR, NDCG) and attribution metrics (claim support rate, citation precision, modality contribution). At the bottom, draw a feedback/replay loop from evaluation and human review back to question planning and report refinement. Use blue for evidence, purple for claims, red for unsupported/evidence gaps, green for supported edges, and gray dashed arrows for replay.
-
-\emph{Figure 3. Evidence attribution and evaluation loop. Report claims are mapped to review, product text, and product image evidence, while evaluation measures both retrieval quality and claim grounding quality.}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.92\textwidth]{/home/severin/Codelib/Decathlon\_VOC\_Analyzer/论文\_md形式/图片/图3.png}
+\caption{Evidence attribution and evaluation loop. Report claims are mapped to review, product text, and product image evidence, while evaluation measures both retrieval quality and claim grounding quality.}
+\end{figure}
 
 \subsection{Reproducibility and Explainability}
 

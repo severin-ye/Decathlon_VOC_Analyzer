@@ -307,7 +307,7 @@ def parse_metadata(lines: list[str]) -> tuple[str, str, str, str, list[AuthorBlo
     return title, author, affiliation, email, author_blocks, meta_end
 
 
-def build_author_block_latex(block: AuthorBlock) -> str:
+def build_author_block_latex(block: AuthorBlock, *, name_superscript: str | None = None) -> str:
     raw_lines = [x.strip() for x in block.lines if x.strip()]
     if not raw_lines:
         return ""
@@ -320,7 +320,10 @@ def build_author_block_latex(block: AuthorBlock) -> str:
         # - 第 1 行：姓名（加粗）
         # - 第 2/3 行：院系/学校（斜体）
         if idx == 0:
-            formatted.append(rf"\textbf{{{escaped}}}")
+            if name_superscript:
+                formatted.append(rf"\textbf{{{escaped}}}\textsuperscript{{{name_superscript}}}")
+            else:
+                formatted.append(rf"\textbf{{{escaped}}}")
             continue
         if idx in {1, 2}:
             formatted.append(rf"\textit{{{escaped}}}")
@@ -351,35 +354,69 @@ def build_author_tabular_latex(author_blocks: list[AuthorBlock], max_cols: int =
     if len(blocks) == 1:
         cols = 1
     else:
-        cols = min(max_cols, max(1, len(blocks) - 1))
+        remaining = max(1, len(blocks) - 1)
+        cols = min(max_cols, remaining)
+        # 让作者排版更均衡：避免出现 (max_cols + 1) 导致最后一行只剩 1 个作者。
+        # 例如 5 位剩余作者：4+1 -> 3+2（符合当前论文标题页需求）
+        if cols > 1 and remaining % cols == 1:
+            cols -= 1
 
     # 第一行保留给第一作者，其他作者从第二行开始排，满足当前论文署名布局需求。
-    first_row_width = min(0.62, 0.88)
-    col_width = 0.88 / cols
+    total_width = 0.92
+    first_row_width = min(0.66, total_width)
+    col_width = total_width / cols
     first_row_width_latex = f"{first_row_width:.4f}\\textwidth"
     col_width_latex = f"{col_width:.4f}\\textwidth"
+    total_width_latex = f"{total_width:.4f}\\textwidth"
 
     rows: list[str] = []
 
     if len(blocks) == 1:
-        first_cell = build_author_block_latex(blocks[0])
+        first_cell = build_author_block_latex(blocks[0], name_superscript="1")
         rows.append(rf"\multicolumn{{1}}{{c}}{{\parbox[t]{{{first_row_width_latex}}}{{\centering {first_cell}}}}} \\")
     else:
-        first_cell = build_author_block_latex(blocks[0])
+        first_cell = build_author_block_latex(blocks[0], name_superscript="1")
         rows.append(rf"\multicolumn{{{cols}}}{{c}}{{\parbox[t]{{{first_row_width_latex}}}{{\centering {first_cell}}}}} \\")
-        rows.append(rf"\multicolumn{{{cols}}}{{c}}{{}} \\")
+        rows.append(rf"\multicolumn{{{cols}}}{{c}}{{}} \\[0.9em]")
 
     remaining_blocks = blocks[1:] if len(blocks) > 1 else []
     for start in range(0, len(remaining_blocks), cols):
         chunk = remaining_blocks[start : start + cols]
-        cells: list[str] = []
-        for block in chunk:
-            cell_body = build_author_block_latex(block)
-            cells.append(rf"\parbox[t]{{{col_width_latex}}}{{\centering {cell_body}}}")
-        # 不足列数的行补空 cell，保持表格对齐
-        while len(cells) < cols:
-            cells.append(rf"\parbox[t]{{{col_width_latex}}}{{}}")
-        rows.append(" & ".join(cells) + r" \\")
+        has_more = (start + cols) < len(remaining_blocks)
+
+        # 第三行两位作者：严格“轴对称”（以页面中线为对称轴）。
+        # 做法：把两位作者组成一个等宽的二列块，并把这个二列块整体水平居中。
+        # 两列之间的水平间距用 \hspace{2\tabcolsep}，确保与第二行相邻列间距一致。
+        if cols == 3 and len(chunk) == 2:
+            left = build_author_block_latex(chunk[0], name_superscript="2")
+            right = build_author_block_latex(chunk[1], name_superscript="2")
+            left_box = rf"\parbox[t]{{{col_width_latex}}}{{\centering {left}}}"
+            right_box = rf"\parbox[t]{{{col_width_latex}}}{{\centering {right}}}"
+            pair = rf"{left_box}\hspace{{2\tabcolsep}}{right_box}"
+            row = rf"\multicolumn{{3}}{{c}}{{\makebox[{total_width_latex}][c]{{{pair}}}}}"
+            row += r" \\[0.9em]" if has_more else r" \\"
+            rows.append(row)
+            continue
+
+        # 通用布局：每行最多 cols 个作者；当 cols==3 且只有 1 人时放中间。
+        empty_cell = rf"\parbox[t]{{{col_width_latex}}}{{}}"
+        cells: list[str] = [empty_cell for _ in range(cols)]
+
+        if cols == 3 and len(chunk) == 1:
+            positions = [1]
+        else:
+            positions = list(range(len(chunk)))
+
+        for pos, block in zip(positions, chunk, strict=False):
+            cell_body = build_author_block_latex(block, name_superscript="2")
+            cells[pos] = rf"\parbox[t]{{{col_width_latex}}}{{\centering {cell_body}}}"
+
+        row = " & ".join(cells)
+        if has_more:
+            row += r" \\[0.9em]"
+        else:
+            row += r" \\"
+        rows.append(row)
 
     col_spec = "@{}" + "c" * cols + "@{}"
     # 用 \small 让四列在页面上更协调，避免拥挤
