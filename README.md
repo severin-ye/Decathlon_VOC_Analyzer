@@ -1,41 +1,69 @@
 # Decathlon VOC Analyzer
 
-本仓库实现一个证据驱动的多模态商品 VOC 分析系统。当前阶段先落 MVP 工程基座：
+Decathlon VOC Analyzer 是一个证据驱动的多模态商品 VOC 分析系统。系统以用户评论为需求入口，将评论抽取为方面级 VOC 信号，再围绕每个方面生成证据查询，从商品文案、商品图片和图片局部区域中召回可核验证据，最后生成带证据归因、证据缺口和改进建议的商品分析报告。
 
-- 后端 Web API
-- 数据集扫描与质量概览
-- 商品与评论标准化输出
-- 为后续评论 Aspect 抽取、多模态检索、证据聚合与生成保留稳定 schema
+当前项目已经形成端到端闭环：数据标准化、评论抽样与方面抽取、多模态索引、两阶段召回、文本/图像重排、报告生成、claim 级证据归因、回放侧边车、HTML 导出和 manifest 评估。
 
-## 当前能力
+## 核心能力
 
-- 扫描 01_data/01_raw_products/products 下的商品目录
-- 检查 product.json、reviews.json 和图片目录的一致性
-- 生成标准化商品证据包
-- 输出数据质量摘要报告
-- 提供 FastAPI 接口查询与触发标准化
+- 扫描 `01_data/01_raw_products/products/` 下的商品数据集，并输出数据质量概览。
+- 将 `product.json`、`reviews.json` 和 `images/` 标准化为 `ProductEvidencePackage`。
+- 对评论进行低信息过滤、星级抽样、方面级结构化抽取和去重。
+- 将商品文案、商品整图和默认局部区域构建为可检索证据索引。
+- 支持本地 JSON 索引和 Qdrant 索引后端。
+- 支持文本 embedding、CLIP 图像 embedding、文本 reranker 和 Qwen-VL 多模态 reranker。
+- 将评论方面规划为可执行的文本、图像或图文联合检索问题。
+- 基于召回证据生成 strengths、weaknesses、controversies、evidence gaps 和 suggestions。
+- 对报告主张构建 claim attribution，追踪到评论、商品文本和商品图片证据。
+- 通过 feedback/replay sidecar 支持后续分析回放。
+- 通过 manifest 评估 Recall@K、MRR、NDCG、claim support rate、citation precision 等指标。
 
-## 目录结构
+## 架构概览
 
 ```text
 01_data/
-  01_raw_products/
-    products/
-  02_audit_zh_products/
-    products/
+  01_raw_products/products/          # 原始商品、评论和图片
+  02_audit_zh_products/products/     # 人工审核用中文导出数据
 02_outputs/
-03_docs/
-04_scripts/
+  1_normalized/                      # 标准化商品证据包
+  2_aspects/                         # 评论方面抽取结果
+  3_indexes/                         # 本地索引、Qdrant store、检索缓存
+  4_reports/                         # 分析报告 JSON
+  5_feedback/                        # 人工反馈侧边车
+  5_replay/                          # 回放侧边车
+  6_html/                            # HTML 报告
+  7_manifests/                       # 运行 manifest
+03_configs/                          # 抽样 profile、运行策略等配置
+04_scripts/                          # 批处理、评估、导出和验证脚本
 05_src/decathlon_voc_analyzer/
-  app/
-  prompts/
-  schemas/
-  stage1_dataset/
-  stage2_review_modeling/
-  stage3_retrieval/
-  stage4_generation/
-06_tests/
+  app/                               # FastAPI、配置、运行策略
+  evaluation/                        # manifest 评估服务
+  llm/                               # Qwen/OpenAI 兼容调用网关
+  prompts/                           # 业务提示词
+  schemas/                           # 全链路 Pydantic schema
+  stage1_dataset/                    # 数据集扫描与商品证据标准化
+  stage2_review_modeling/            # 评论抽样、清洗、方面抽取
+  stage3_retrieval/                  # embedding、索引、召回、重排、缓存
+  stage4_generation/                 # 问题规划、报告生成、归因、回放
+  workflows/                         # LangGraph 单产品工作流
+06_tests/                            # 测试目录
+0_docs/                              # 设计文档、技术文档、论文子模块文档
+论文_md形式/                         # 论文草稿与导出脚本
 ```
+
+## 模块说明
+
+`stage1_dataset` 负责把商品原始目录转化为结构化证据包。系统会为文本块、图片、图片区域和评论生成稳定 ID，并保留来源、语言、宽高、区域框等字段。
+
+`stage2_review_modeling` 负责评论侧 VOC 建模。它支持 `problem_first`、`balanced`、`praise_first` 三类抽样 profile，并可在 LLM 抽取和启发式抽取之间切换。
+
+`stage3_retrieval` 负责商品侧证据索引与召回。它将文本证据和图像证据分 route 建模，先通过 embedding 粗召回，再通过 reranker 精排，并把 query embedding 与 rerank 结果写入签名化缓存。
+
+`stage4_generation` 负责把评论方面转成检索问题，聚合方面统计和召回证据，生成结构化 VOC 报告，并对报告主张做证据归因和回放修正。
+
+`workflows` 使用 LangGraph 将 `overview -> normalize -> index -> analyze` 编排为单产品端到端工作流。
+
+`evaluation` 读取运行 manifest 和分析产物，计算检索指标、claim attribution 指标和回放相关统计。
 
 ## 安装
 
@@ -45,13 +73,25 @@ source .venv/bin/activate
 pip install -e .[dev]
 ```
 
-## 运行
+如果需要 OpenVINO 相关依赖：
+
+```bash
+pip install -e .[openvino]
+```
+
+如果需要 GPU 相关可选依赖：
+
+```bash
+pip install -e .[gpu]
+```
+
+## 启动 API
 
 ```bash
 uvicorn decathlon_voc_analyzer.app.api.main:app --reload
 ```
 
-启动后访问：
+常用接口：
 
 - `/health`
 - `/api/v1/dataset/overview`
@@ -61,191 +101,49 @@ uvicorn decathlon_voc_analyzer.app.api.main:app --reload
 - `/api/v1/reviews/extract`
 - `/api/v1/analysis/product`
 
-`/api/v1/reviews/extract` 支持两种模式：
+`/api/v1/reviews/extract` 支持两种输入方式：传入 `product_id` 和可选 `category_slug`，或直接传入临时 `reviews` 数组。
 
-- 传入 `product_id` 和可选 `category_slug`，直接从 01_data/01_raw_products/products 中读取商品评论并做结构化抽取
-- 直接传入 `reviews` 数组，做临时评论抽取实验
+`/api/v1/analysis/product` 会串联评论抽取、问题生成、图文召回、重排、方面聚合、报告生成和证据归因。
 
-建议开发期先设置 `use_llm=false` 跑通链路，再切换到真实模型抽取。
+## 批处理运行
 
-`/api/v1/analysis/product` 会串起：
-
-- 读取商品评论
-- 做 Aspect 结构化抽取
-- 先从每个 aspect 生成 k 个待澄清问题
-- 再围绕这些问题在同商品的图文证据中执行双路召回
-- 聚合方面统计
-- 生成综合意见与改进建议
-
-这一版默认已接入 LLM 分析与原生多模态检索链路；如果外部能力不可用，系统仍保留可回退的本地启发式闭环。
-
-索引层现在已独立成一个可持久化模块：
-
-- `/api/v1/index/build` 用于为商品图文证据构建本地索引
-- `/api/v1/index/overview` 用于查看当前索引覆盖范围
-
-API 配置层当前默认后端仍是本地持久化向量索引；批处理入口 `04_scripts/run_workflow.py` 已默认切到 Qdrant，并可通过 `--retrieval-backend local` 显式回退。
-
-当前检索层已经拆成两层：
-
-- EmbeddingService：负责文本向量化与原生图像 VL 向量化
-- IndexBackend：负责索引存储与检索；API 默认是 local，批跑默认是 qdrant
-
-当前召回链路已经升级为“两阶段检索”：
-
-- 第一阶段：embedding 粗召回
-- 第二阶段：reranker 精排
-
-默认策略为：
-
-- 运行态优先使用真实 text embedding API、原生 CLIP 图像 embedding 与多模态 VL reranker
-- 测试态固定使用 hash embedding 与 heuristic reranker，保证可重复和离线可测
-
-批处理入口默认还会把 Qdrant 路径切到独立 run 目录，避免多个真实运行共享同一个本地 store 时出现文件锁冲突；如需复用固定目录，可显式传入 `--qdrant-scope shared` 或 `--qdrant-path <dir>`。
-
-当前默认 embedding 模型为 `text-embedding-v4`，通过 DashScope OpenAI 兼容接口调用。
-当前默认图像 embedding 模型为 `openai/clip-vit-base-patch32`，用于原生视觉向量化。
-当前默认 reranker 模型为 `gte-rerank-v2`，通过 DashScope 原生 rerank 接口调用。
-当前默认多模态 reranker 模型为 `qwen-vl-max-latest`，用于图像候选的图文联合重排。
-当前所有业务提示词已统一收口到 `05_src/decathlon_voc_analyzer/prompts/` 目录管理。
-
-stage3 检索层还会把 query embeddings 和 rerank 结果写入 `02_outputs/3_indexes/retrieval_cache/` 的磁盘缓存，缓存签名绑定 backend、model、base_url 和候选集 digest，因此不同运行配置不会互相污染。
-
-如果评测输入里存在 gold labels，`ManifestEvaluationService` 还可以读取 `manifest.evaluation_labels.retrieval_relevance` 或 `analysis.retrieval_labels`，并计算 `Recall@1/3/5`、`MRR`、`NDCG@3/5` 等指标。
-
-评论抽样现在也支持配置文件控制，默认配置文件位于 `03_configs/review_sampling_profiles.json`。
-
-当前配置文件内置 3 个 profile：`problem_first`、`balanced`、`praise_first`。
-
-- `problem_first`：优先低星问题评论
-- `balanced`：尽量均衡覆盖 1-5 星评论
-- `praise_first`：优先高星优势评论
-
-通过修改 `active_profile` 就可以一键切换当前默认 profile。当前默认 profile 为 `problem_first`，默认星级配额为：
-
-- 5 星：10%
-- 4 星：15%
-- 3 星：20%
-- 2 星：25%
-- 1 星：30%
-
-当 `max_reviews` 被设置为具体数量时，系统会先按该配额构建评论抽样池，再进入评论抽取；若低星评论不足，会按 `fallback_order: [1, 2, 3, 4, 5]` 逐级补位。
-
-如果需要为人工审核导出单产品中文数据集，可运行：
-
-```bash
-.venv/bin/python 04_scripts/export_single_product_chinese_dataset.py --category backpack --product-id backpack_010
-```
-
-默认输出到 `01_data/02_audit_zh_products/products/<category>/<product_id>/`，目录结构与原始数据集保持一致，包含：
-
-- `product.json`
-- `reviews.json`
-- `images/`
-
-当前 `02_outputs/` 目录按流水线顺序编号：
-
-- `1_normalized/`
-- `CN/1_normalized/`
-- `2_aspects/`
-- `CN/2_aspects/`
-- `3_indexes/`
-- `CN/3_indexes/`
-- `4_reports/`
-- `CN/4_reports/`
-
-如果希望一条命令直接跑完整工作流，可运行：
+执行默认单产品工作流：
 
 ```bash
 .venv/bin/python 04_scripts/run_workflow.py
 ```
 
-默认会针对 `backpack/backpack_010` 执行：
-
-- 标准化
-- 索引构建
-- 完整分析
-
-如果要直接分析中文测试数据集，可运行：
-
-```bash
-.venv/bin/python 04_scripts/run_workflow.py --cn
-```
-
-如果只想本地验证流程、不调用外部模型，可加：
-
-```bash
-.venv/bin/python 04_scripts/run_workflow.py --cn --no-llm
-```
-
-也可以显式指定商品：
+指定商品：
 
 ```bash
 .venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010
 ```
 
-如果只想分析前 N 条评论，也可以使用简写参数：
+分析中文审核数据集：
+
+```bash
+.venv/bin/python 04_scripts/run_workflow.py --cn
+```
+
+离线验证流程，不调用外部 LLM：
+
+```bash
+.venv/bin/python 04_scripts/run_workflow.py --cn --no-llm
+```
+
+只分析前 N 条评论可使用 `--max-reviews` 或简写参数：
 
 ```bash
 .venv/bin/python 04_scripts/run_workflow.py --cn --R_5
 ```
 
-其中 `--R_5` 表示只分析前 5 条评论，等价于：
-
-```bash
-.venv/bin/python 04_scripts/run_workflow.py --cn --max-reviews 5
-```
-
-如果希望批处理稳定消费运行结果，推荐直接使用 JSON 输出：
+输出 JSON 摘要：
 
 ```bash
 .venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010 --R_5 --no-llm --output-format json
 ```
 
-该模式会返回统一摘要，包含：
-
-- `review_sampling.profile_name`
-- `review_sampling.allocations`
-- `retrieval_runtime.native_multimodal_enabled`
-- `retrieval_runtime.image_embedding_backend`
-- `retrieval_runtime.multimodal_reranker_backend`
-- `analysis.artifact_path`
-- `analysis.replay_applied`
-- `analysis.replay_persistent_issue_count`
-- `artifact_bundle.analysis_path`
-- `artifact_bundle.feedback_path`
-- `artifact_bundle.replay_path`
-
-评论抽取响应与 `02_outputs/2_aspects/<category>/<product_id>.json` 中还会额外包含 `sampling_plan`；而 `run_workflow.py --output-format json` 现在会把同一份抽样计划直接抬到顶层 `review_sampling`。其中会写明：
-
-- 每个星级的目标数量 `target_count`
-- 每个星级的可用数量 `available_count`
-- 每个星级的实际抽取数量 `selected_count`
-- 因缺口被补入的数量 `redistributed_in_count`
-- 未满足目标的数量 `shortfall_count`
-
-如果要对真实商品执行一条端到端的多模态运行态回归，可直接运行：
-
-```bash
-.venv/bin/python 04_scripts/validate_multimodal_runtime.py --category backpack --product-id backpack_010
-```
-
-该脚本会直接执行完整工作流，并断言：
-
-- `analysis_mode=llm`
-- `retrieval_runtime.native_multimodal_enabled=true`
-- `retrieval_runtime.image_embedding_backend=clip`
-- `retrieval_runtime.multimodal_reranker_backend=qwen_vl`
-
-默认也会使用独立 Qdrant 目录；如果你只想查看结果而不强制要求 LLM，可额外传入 `--allow-heuristic`。
-
-若沿用批处理默认配置，`run_workflow.py` 会默认设置 `retrieval_backend=qdrant`，并在存在历史 replay sidecar 时自动把上一轮回放摘要接回当前分析；如需关闭 Qdrant，可显式传入：
-
-```bash
-.venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010 --output-format json --retrieval-backend local
-```
-
-如果希望一条命令同时导出 HTML，并把本次运行摘要落盘为 manifest，可运行：
+同时导出 HTML 和 manifest：
 
 ```bash
 .venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010 --R_5 --no-llm --output-format json --export-html --write-manifest
@@ -256,27 +154,128 @@ stage3 检索层还会把 query embeddings 和 rerank 结果写入 `02_outputs/3
 - `02_outputs/6_html/<category>/<product_id>.html`
 - `02_outputs/7_manifests/<category>/<product_id>_run_manifest.json`
 
-如需自定义 manifest 路径，可显式指定：
+## 检索后端
+
+API 默认使用本地持久化索引，批处理入口默认可切换到 Qdrant。常用参数：
 
 ```bash
-.venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010 --output-format json --manifest-path 02_outputs/custom/backpack_010_manifest.json
+.venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010 --retrieval-backend local
 ```
 
-如果要切换后端，可在 `.env` 中设置：
+```bash
+.venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010 --retrieval-backend qdrant
+```
 
-- `retrieval_backend=local`
-- `retrieval_backend=qdrant`
+批处理运行可以通过 `--qdrant-scope shared` 或 `--qdrant-path <dir>` 控制 Qdrant store 的复用方式。
 
-如需显式控制检索质量组件，也可设置：
+## 模型与运行策略
 
-- `embedding_backend=api` 或 `embedding_backend=hash`
-- `reranker_backend=api` 或 `reranker_backend=heuristic`
+默认配置位于 `05_src/decathlon_voc_analyzer/app/core/config.py`，运行时读取根目录 `.env`。
 
-## 配置
+主要模型配置：
 
-默认读取仓库根目录的 `.env`。为了兼容现有文件，配置层同时支持两组变量名：
+- `qwen_plus_model=qwen-plus`
+- `qwen_embedding_model=text-embedding-v4`
+- `qwen_reranker_model=gte-rerank-v2`
+- `qwen_vl_reranker_model=qwen-vl-max-latest`
+- `clip_vl_embedding_model=openai/clip-vit-base-patch32`
+- `local_embedding_model_name=Qwen/Qwen3-Embedding-0.6B`
+- `local_reranker_model_name=Qwen/Qwen3-Reranker-0.6B`
+- `local_multimodal_reranker_model_name=Qwen/Qwen3-VL-2B-Instruct`
 
-- 现有格式：`qwen-plus_api`、`DeepSeek-V3_api`、`openai-gpt5_api`
-- 规范格式：`QWEN_PLUS_API_KEY`、`DEEPSEEK_V3_API_KEY`、`OPENAI_GPT5_API_KEY`
+主要后端配置：
 
-后续阶段会继续补齐评论结构化、检索、聚合与生成链路。
+- `embedding_backend=api` 或 `embedding_backend=local_qwen3`
+- `image_embedding_backend=clip`
+- `retrieval_backend=local` 或 `retrieval_backend=qdrant`
+- `reranker_backend=api` 或 `reranker_backend=local_qwen3`
+- `multimodal_reranker_backend=qwen_vl` 或 `multimodal_reranker_backend=local_qwen3_vl`
+
+如果外部模型不可用，系统在允许降级时会回退到 hash embedding 或 heuristic reranker。严格运行策略由 `03_configs/runtime_execution_policy.json` 控制：
+
+- `allow_degradation=true`：允许模型失败后降级，适合开发验证。
+- `allow_degradation=false`：禁止静默降级，适合正式实验。
+- `full_power=true`：要求完整模型链路，且请求不能关闭 LLM。
+
+API Key 兼容两组变量名：
+
+- `qwen-plus_api` 或 `QWEN_PLUS_API_KEY`
+- `DeepSeek-V3_api` 或 `DEEPSEEK_V3_API_KEY`
+- `openai-gpt5_api` 或 `OPENAI_GPT5_API_KEY`
+
+## 评论抽样
+
+评论抽样配置位于 `03_configs/review_sampling_profiles.json`。当前内置 profile：
+
+- `problem_first`：优先低星问题评论。
+- `balanced`：尽量均衡覆盖 1 至 5 星评论。
+- `praise_first`：优先高星优势评论。
+
+默认 profile 为 `problem_first`，默认星级配额为：
+
+- 5 星：10%
+- 4 星：15%
+- 3 星：20%
+- 2 星：25%
+- 1 星：30%
+
+当 `max_reviews` 被设置时，系统会按配额构建抽样池；如果低星评论不足，会按 `fallback_order` 逐级补位。抽样结果会写入 `sampling_plan`，并在 JSON 输出中提升为 `review_sampling` 摘要。
+
+## 评估
+
+如果运行时写入 manifest，可使用：
+
+```bash
+.venv/bin/python 04_scripts/evaluate_manifests.py 02_outputs/7_manifests
+```
+
+当 manifest 或 analysis artifact 中存在 `retrieval_relevance` gold labels 时，评估服务会计算：
+
+- `Recall@1/3/5`
+- `MRR`
+- `NDCG@3/5`
+
+即使没有 gold labels，评估服务也会统计：
+
+- informative review 数量
+- aspect 数量和平均置信度
+- question 数量和平均置信度
+- retrieval evidence 数量
+- evidence coverage、score drift、conflict risk
+- claim support rate、claim grounded rate、citation precision
+- text、image、mixed route contribution
+
+## 常用脚本
+
+导出单产品中文审核数据：
+
+```bash
+.venv/bin/python 04_scripts/export_single_product_chinese_dataset.py --category backpack --product-id backpack_010
+```
+
+真实多模态运行态回归：
+
+```bash
+.venv/bin/python 04_scripts/validate_multimodal_runtime.py --category backpack --product-id backpack_010
+```
+
+导出已有分析报告为 HTML：
+
+```bash
+.venv/bin/python 04_scripts/export_html_report.py --category backpack --product-id backpack_010
+```
+
+清理生成产物：
+
+```bash
+.venv/bin/python 04_scripts/clear_generated_outputs.py
+```
+
+## 文档入口
+
+- `0_docs/01_设计文档/`：早期设计、路线和参考资料。
+- `0_docs/02_技术文档/`：教程、推理、本地模型和技术说明。
+- `0_docs/03_论文子模块文档/`：基于当前源码整理的论文写作模块文档。
+- `论文_md形式/`：论文草稿、参考文献和导出脚本。
+
+论文子模块文档是当前最适合继续写论文的方法章节和系统章节的入口。

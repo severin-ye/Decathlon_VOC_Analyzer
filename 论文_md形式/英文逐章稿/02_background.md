@@ -1,31 +1,31 @@
-# 2 Background and Problem Formulation
+# 2 Background and Problem Definition
 
-## 2.1 Task Background
+## 2.1 Evidence Needs in Product VOC Analysis
 
-Product-oriented voice-of-customer analysis is not equivalent to generic review summarization. In practice, analysts are interested in a stable set of outputs, such as product strengths, weaknesses, user concerns, applicable scenes, controversies, and improvement suggestions that can be traced back to both product evidence and review evidence. Such outputs require the system to reason over two complementary information sources: subjective user comments and objective product-side evidence, including product descriptions, specifications, and images.
+Product VOC analysis is not equivalent to generic review summarization. A useful product report should contain stable analytical objects such as strengths, weaknesses, controversies, applicable scenes, evidence gaps, and improvement suggestions. Each insight should ideally trace back to both customer review evidence and product-page evidence.
 
-If a system only processes review text, it may correctly identify subjective claims such as “the backpack is too small” or “the sunglasses look stylish,” yet it cannot determine whether these claims are supported or contradicted by product-side evidence. If a system only performs retrieval over product text and images, it becomes difficult to transform noisy, colloquial, and often mixed-purpose review statements into stable analytical units. The challenge is therefore not simply clustering text or answering multimodal questions, but constructing an explicit alignment mechanism between review-derived judgments and product-derived evidence.
+If a system only analyzes reviews, it answers what customers say but not whether the product page explains or supports those claims. If a system only retrieves product-page evidence, it lacks the anchor of actual customer concerns. Therefore, the key challenge is connecting subjective review needs with objective product evidence.
 
-## 2.2 Problem Formulation
+## 2.2 Input and Output
 
-Given a product package $P$ that contains structured product metadata, product text blocks, product images, and a set of reviews, the goal is to generate a structured analysis report $R$:
-
-$$
-R = f(P_{text}, P_{image}, C_{reviews})
-$$
-
-In our setting, however, $f$ is not a one-step generation function. Instead, it is implemented as a staged analysis pipeline:
+Given a product package $P$ containing product text $P_{text}$, product images $P_{image}$, and reviews $C_{reviews}$, the system outputs a structured report $R$:
 
 $$
-C_{reviews} \rightarrow A_{aspects} \rightarrow Q_{questions} \rightarrow E_{retrieval} \rightarrow G_{aggregates} \rightarrow R
+R = F(P_{text}, P_{image}, C_{reviews})
 $$
 
-where $A_{aspects}$ denotes aspect-level review objects, $Q_{questions}$ denotes the evidence-seeking questions derived from those aspects, $E_{retrieval}$ denotes the multimodal evidence retrieved from the product package, and $G_{aggregates}$ denotes the aggregated evidence over aspects, sentiments, and scenes.
+In this paper, $F$ is not a one-step generation function. It is a staged workflow:
+
+$$
+C_{reviews} \rightarrow A_{aspects} \rightarrow I_{intents} \rightarrow Q_{questions} \rightarrow E_{retrieval} \rightarrow G_{aggregates} \rightarrow R_{attributed}
+$$
+
+where $A_{aspects}$ denotes review aspects, $I_{intents}$ denotes question intents, $Q_{questions}$ denotes executable retrieval questions, $E_{retrieval}$ denotes retrieved product evidence, $G_{aggregates}$ denotes aspect-level aggregation, and $R_{attributed}$ denotes the final attributed report.
 
 ## 2.3 Design Constraints
 
-The proposed framework is built on four design constraints. First, product-side evidence should preserve original modalities as much as possible, instead of converting all visual information into pure text at ingestion time. Second, review inputs should be transformed into structured objects early in the pipeline so that subsequent statistics, retrieval, and recommendation steps can operate over stable fields. Third, retrieval queries should not directly reuse raw review sentences, but should instead be rewritten as evidence-seeking questions. Fourth, intermediate and final outputs should be materialized as structured artifacts to support reproducibility, manual auditing, and error analysis.
+The system follows five constraints. Product evidence must be object-based and traceable. Reviews must be structured into aspects before retrieval. Retrieval queries should be questionized instead of using raw review text. Text and image evidence should be managed as separate routes. Final report claims should be traceable to review IDs, text block IDs, image IDs, or region IDs; unsupported claims should be represented as evidence gaps.
 
-## 2.4 Difference from Pure QA Systems
+## 2.4 Difference from Generic RAG QA
 
-Although the system uses multimodal retrieval, vector indexing, structured outputs, and large language models, its objective is not open-ended question answering. The target output is a set of structured product insights, including strengths, weaknesses, controversies, applicable scenes, and suggestions. Moreover, retrieval is driven not by external user queries, but by latent questions derived from review aspects. Finally, the system emphasizes traceability throughout the workflow, as reflected in normalized packages, aspect artifacts, retrieval records, replay summaries, and final report manifests.
+Generic RAG systems usually answer a user question. In this task, the query source is a set of review aspects, and the output is a product VOC profile rather than a single answer. The system must manage multiple aspects, questions, evidence routes, report fields, and trace objects, making it closer to an evidence orchestration system than a standard QA pipeline.

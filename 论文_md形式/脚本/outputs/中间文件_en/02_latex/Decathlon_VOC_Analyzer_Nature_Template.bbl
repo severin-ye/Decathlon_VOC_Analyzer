@@ -1,4 +1,4 @@
-\begin{thebibliography}{6}
+\begin{thebibliography}{13}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -38,6 +38,53 @@ Alec Radford, Jong~Wook Kim, Chris Hallacy, Aditya Ramesh, Gabriel Goh,
   Learning}, pages 8748--8763. PMLR, 2021.
 \newblock URL \url{https://proceedings.mlr.press/v139/radford21a.html}.
 
+\bibitem[{NVIDIA Developer
+  Blog}(2024{\natexlab{a}})]{nvidia2024multimodalRagIntro}
+{NVIDIA Developer Blog}.
+\newblock An easy introduction to multimodal retrieval-augmented generation,
+  2024{\natexlab{a}}.
+\newblock URL
+  \url{https://developer.nvidia.com/blog/an-easy-introduction-to-multimodal-retrieval-augmented-generation/}.
+
+\bibitem[{NVIDIA Developer
+  Blog}(2024{\natexlab{b}})]{nvidia2024aiReadyKnowledgeSystems}
+{NVIDIA Developer Blog}.
+\newblock Build ai-ready knowledge systems using essential multimodal rag
+  capabilities, 2024{\natexlab{b}}.
+\newblock URL
+  \url{https://developer.nvidia.com/blog/build-ai-ready-knowledge-systems-using-5-essential-multimodal-rag-capabilities/}.
+
+\bibitem[Faysse et~al.(2024)Faysse, Sibille, Wu, Omrani, Viaud, Hudelot, and
+  Colombo]{faysse2024colpali}
+Manuel Faysse, Hugues Sibille, Tony Wu, Bilel Omrani, Gautier Viaud, Celine
+  Hudelot, and Pierre Colombo.
+\newblock {ColPali}: Efficient document retrieval with vision language models,
+  2024.
+\newblock URL \url{https://arxiv.org/abs/2407.01449}.
+
+\bibitem[Pontiki et~al.(2014)Pontiki, Galanis, Pavlopoulos, Papageorgiou,
+  Androutsopoulos, and Manandhar]{pontiki2014semevalAspect}
+Maria Pontiki, Dimitris Galanis, John Pavlopoulos, Harris Papageorgiou, Ion
+  Androutsopoulos, and Suresh Manandhar.
+\newblock {SemEval-2014} task 4: Aspect based sentiment analysis.
+\newblock In \emph{Proceedings of the 8th International Workshop on Semantic
+  Evaluation}, pages 27--35, 2014.
+\newblock \doi{10.3115/v1/S14-2004}.
+\newblock URL \url{https://aclanthology.org/S14-2004/}.
+
+\bibitem[{Qdrant}(2024{\natexlab{a}})]{qdrant2024pdfRetrievalAtScale}
+{Qdrant}.
+\newblock Pdf retrieval at scale: Search engineering with multi-stage
+  retrieval, 2024{\natexlab{a}}.
+\newblock URL
+  \url{https://qdrant.tech/documentation/tutorials-search-engineering/pdf-retrieval-at-scale/}.
+
+\bibitem[{Qdrant}(2024{\natexlab{b}})]{qdrant2024multiVectorCourse}
+{Qdrant}.
+\newblock Multi-vector search and multi-stage retrieval course,
+  2024{\natexlab{b}}.
+\newblock URL \url{https://qdrant.tech/blog/multi-vector-search-course/}.
+
 \bibitem[Liu et~al.(2024)Liu, Li, Wang, Xiong, Shi, Wang, Li, and
   Hang]{liu2024structuredOutputBenchmark}
 Yu~Liu, Duantengchuan Li, Kaili Wang, Zhuoran Xiong, Fobo Shi, Jian Wang, Bing
@@ -65,5 +112,12 @@ Shunyu Yao, Jeffrey Zhao, Dian Yu, Nan Du, Izhak Shafran, Karthik Narasimhan,
   and Yuan Cao.
 \newblock {ReAct}: Synergizing reasoning and acting in language models, 2023.
 \newblock URL \url{https://arxiv.org/abs/2210.03629}.
+
+\bibitem[Manning et~al.(2008)Manning, Raghavan, and
+  Sch{"u}tze]{manning2008introductionIr}
+Christopher~D. Manning, Prabhakar Raghavan, and Hinrich Sch{"u}tze.
+\newblock \emph{Introduction to Information Retrieval}.
+\newblock Cambridge University Press, 2008.
+\newblock URL \url{https://nlp.stanford.edu/IR-book/}.
 
 \end{thebibliography}

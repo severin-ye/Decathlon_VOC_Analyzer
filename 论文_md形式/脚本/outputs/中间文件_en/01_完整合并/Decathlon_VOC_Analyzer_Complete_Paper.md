@@ -32,165 +32,277 @@ nsa08008@naver.com
 
 # Abstract
 
-Voice-of-customer analysis is a core task in e-commerce intelligence, yet review-only analysis often yields broad sentiment summaries without showing whether those conclusions are supported by product evidence. Conversely, directly feeding product text, product images, and reviews into a large language model can generate fluent summaries, but the resulting conclusions are frequently weak in evidential grounding and difficult to audit. To address this problem, we present Decathlon VOC Analyzer, an evidence-driven multimodal VOC analysis framework for product understanding. The framework constructs a normalized product-centered evidence package, performs aspect-level review modeling, converts subjective review opinions into evidence-seeking questions, retrieves supporting signals from both product text and product images, and finally produces structured product insights and improvement suggestions with explicit supporting evidence.
+E-commerce voice-of-customer (VOC) analysis requires understanding subjective customer feedback and grounding it in objective product-page evidence. Text-only review analysis can identify sentiment and aspects, but it cannot determine whether a user claim is supported by product copy, specifications, images, or visual details. Conversely, directly asking a large language model to summarize all reviews and product information often produces fluent but weakly auditable conclusions. This paper presents Decathlon VOC Analyzer, an evidence-driven multimodal VOC analysis system for aligning customer reviews with product text and image evidence.
 
-The present version focuses on method design and system organization rather than incorporating unfinished experimental sections into the main paper. More specifically, it explains how product-side multimodal evidence is normalized into a reusable evidence package, how review aspects are rewritten into evidence-seeking queries, and how dual-route retrieval and evidence-constrained generation are combined into a traceable analysis pipeline. In that sense, the paper should be read as a first system-paper skeleton rather than a benchmark-complete experimental article.
+The system normalizes raw product folders into traceable evidence packages, including product text, product images, default image regions, and review records. It performs review filtering, rating-aware sampling, aspect-level structured extraction, and deduplication. Each extracted aspect is then converted into evidence-seeking questions with explicit text, image, or cross-modal retrieval routes. The retrieval layer performs two-stage recall and reranking over product text and image evidence. The generation layer produces structured reports containing strengths, weaknesses, controversies, evidence gaps, improvement suggestions, and claim-level evidence attribution. The implementation also includes FastAPI endpoints, a LangGraph single-product workflow, runtime policies, retrieval caches, feedback/replay sidecars, HTML export, and manifest-based evaluation.
 
-The main contributions of this work are threefold: it proposes a question-driven multimodal VOC analysis framework, implements a reproducible research prototype with unified Chinese-English export support, and establishes a stable paper structure into which formal experiments, human evaluation, and error analysis can be added in the next stage.
+The main contributions are threefold. First, we propose a product VOC framework based on review aspect modeling, question planning, multimodal evidence retrieval, and evidence-constrained generation. Second, we implement an artifact-first research system in which reviews, questions, evidence, reports, and evaluation records are represented by structured schemas. Third, we provide a system validation protocol: the current codebase passes 166 automated tests and supports Recall@K, MRR, NDCG, claim support rate, and citation precision. The paper is positioned as a system-methodology paper rather than a completed large-scale benchmark study.
 
-Keywords: multimodal RAG; voice-of-customer analysis; aspect extraction; evidence-constrained generation; product review analysis
+Keywords: multimodal RAG; voice of customer; aspect-level review modeling; evidence-constrained generation; product review analysis; evidence attribution
 
 # 1 Introduction
 
-User-review analysis has long been a central task in e-commerce intelligence, yet existing approaches usually fall into one of two paradigms. The first focuses on sentiment classification or aspect-based sentiment analysis, which is effective for summarizing positive or negative attitudes in review text but weak at determining whether those opinions are supported by the product itself. The second directly feeds product text, product images, and reviews into a large language model to generate product summaries or recommendations. While such systems can quickly produce readable outputs, they often lack explicit evidence grounding, making it difficult to explain whether a conclusion comes from user reviews, product descriptions, or product imagery. For real-world product analysis tasks that require stable outputs such as strengths, weaknesses, applicable scenes, controversies, and improvement suggestions, both paradigms remain insufficient.
+Customer review analysis is a core task in e-commerce intelligence. Traditional approaches usually focus on sentiment classification, topic modeling, or aspect-based sentiment analysis. They can summarize what users like or dislike, but they rarely answer whether a claim is supported, contradicted, or left unresolved by the product page itself. For product operations, knowing that users complain about size or comfort is not sufficient; analysts also need to know whether the product copy states the relevant specifications and whether product images expose the corresponding structure.
 
-This paper studies the following question: how can subjective user opinions be explicitly aligned with objective product evidence in a multimodal product setting, so that the resulting VOC analysis is traceable, verifiable, and auditable? Our key observation is that the product side naturally forms a multimodal evidence space, whereas the review side is better treated as a structured textual source. The main challenge is therefore not simply generating a summary, but building an analysis chain that converts user opinions into evidence-seeking tasks. Based on this view, Decathlon VOC Analyzer does not rely on one-shot black-box summarization. Instead, it decomposes the workflow into normalization, aspect extraction, question generation, dual-route retrieval, aggregation, report generation, and replay-based continuation.
+Large language models make review summarization easier, but one-shot summarization introduces a different risk. If reviews, product text, and image descriptions are simply concatenated and passed to a model, the resulting report may be fluent while remaining difficult to audit. Users cannot reliably determine which claims came from reviews, which came from product text, and which were inferred from images. Error localization also becomes difficult.
 
-Unlike benchmark-oriented papers that prioritize final task scores, the current version of this work is positioned as a system-paper draft. The goal is not to report benchmark results before the evaluation protocol is complete, but to clearly formulate a product-oriented multimodal VOC method and instantiate it as a stable workflow with explicit intermediate artifacts. In other words, this paper first answers how such a system should be built, while leaving the question of comparative performance for a later experimental version.
+This paper studies how to explicitly align subjective customer feedback with verifiable product text and image evidence. We propose Decathlon VOC Analyzer, a staged system that constructs product-centered evidence packages, extracts review aspects, plans evidence-seeking questions, retrieves product text and image evidence, reranks candidates, and generates structured VOC reports with claim-level attribution.
 
-The contributions of this paper are threefold. First, we propose a product-oriented analysis framework that explicitly decouples review understanding from multimodal evidence retrieval through a structured “review modeling -> question generation -> retrieval” chain. Second, we implement a reproducible research prototype with unified APIs, workflow scripts, export pipelines, and intermediate artifacts. Third, we establish a stable bilingual paper structure with a normalized citation pipeline, so that formal experiments can be added later without rewriting the core problem formulation or method section.
+The contributions are as follows. First, we propose an evidence-driven multimodal RAG framework for product VOC analysis, adding a question-planning layer between review aspects and product evidence. Second, we implement an artifact-first prototype in which evidence packages, review aspects, retrieval questions, retrieval records, reports, feedback, replay files, and manifests are all structured and persistent. Third, we provide reproducible system interfaces and evaluation hooks for both retrieval metrics and generated-claim grounding metrics.
 
-The remainder of this paper is organized as follows. Section 2 introduces the task background and problem formulation. Section 3 reviews related work. Section 4 presents the proposed method. Section 5 discusses the implications, applicability, and future directions of the framework. Section 6 concludes the paper, and Section 7 summarizes the current limitations.
+The rest of the paper is organized as follows. Section 2 defines the task and design constraints. Section 3 reviews related work. Section 4 describes the methodology. Section 5 presents the experimental setup. Section 6 reports system validation results. Section 7 discusses implications. Sections 8 and 9 conclude and describe limitations.
 
-# 2 Background and Problem Formulation
+# 2 Background and Problem Definition
 
-## 2.1 Task Background
+## 2.1 Evidence Needs in Product VOC Analysis
 
-Product-oriented voice-of-customer analysis is not equivalent to generic review summarization. In practice, analysts are interested in a stable set of outputs, such as product strengths, weaknesses, user concerns, applicable scenes, controversies, and improvement suggestions that can be traced back to both product evidence and review evidence. Such outputs require the system to reason over two complementary information sources: subjective user comments and objective product-side evidence, including product descriptions, specifications, and images.
+Product VOC analysis is not equivalent to generic review summarization. A useful product report should contain stable analytical objects such as strengths, weaknesses, controversies, applicable scenes, evidence gaps, and improvement suggestions. Each insight should ideally trace back to both customer review evidence and product-page evidence.
 
-If a system only processes review text, it may correctly identify subjective claims such as “the backpack is too small” or “the sunglasses look stylish,” yet it cannot determine whether these claims are supported or contradicted by product-side evidence. If a system only performs retrieval over product text and images, it becomes difficult to transform noisy, colloquial, and often mixed-purpose review statements into stable analytical units. The challenge is therefore not simply clustering text or answering multimodal questions, but constructing an explicit alignment mechanism between review-derived judgments and product-derived evidence.
+If a system only analyzes reviews, it answers what customers say but not whether the product page explains or supports those claims. If a system only retrieves product-page evidence, it lacks the anchor of actual customer concerns. Therefore, the key challenge is connecting subjective review needs with objective product evidence.
 
-## 2.2 Problem Formulation
+## 2.2 Input and Output
 
-Given a product package $P$ that contains structured product metadata, product text blocks, product images, and a set of reviews, the goal is to generate a structured analysis report $R$:
-
-$$
-R = f(P_{text}, P_{image}, C_{reviews})
-$$
-
-In our setting, however, $f$ is not a one-step generation function. Instead, it is implemented as a staged analysis pipeline:
+Given a product package $P$ containing product text $P_{text}$, product images $P_{image}$, and reviews $C_{reviews}$, the system outputs a structured report $R$:
 
 $$
-C_{reviews} \rightarrow A_{aspects} \rightarrow Q_{questions} \rightarrow E_{retrieval} \rightarrow G_{aggregates} \rightarrow R
+R = F(P_{text}, P_{image}, C_{reviews})
 $$
 
-where $A_{aspects}$ denotes aspect-level review objects, $Q_{questions}$ denotes the evidence-seeking questions derived from those aspects, $E_{retrieval}$ denotes the multimodal evidence retrieved from the product package, and $G_{aggregates}$ denotes the aggregated evidence over aspects, sentiments, and scenes.
+In this paper, $F$ is not a one-step generation function. It is a staged workflow:
+
+$$
+C_{reviews} \rightarrow A_{aspects} \rightarrow I_{intents} \rightarrow Q_{questions} \rightarrow E_{retrieval} \rightarrow G_{aggregates} \rightarrow R_{attributed}
+$$
+
+where $A_{aspects}$ denotes review aspects, $I_{intents}$ denotes question intents, $Q_{questions}$ denotes executable retrieval questions, $E_{retrieval}$ denotes retrieved product evidence, $G_{aggregates}$ denotes aspect-level aggregation, and $R_{attributed}$ denotes the final attributed report.
 
 ## 2.3 Design Constraints
 
-The proposed framework is built on four design constraints. First, product-side evidence should preserve original modalities as much as possible, instead of converting all visual information into pure text at ingestion time. Second, review inputs should be transformed into structured objects early in the pipeline so that subsequent statistics, retrieval, and recommendation steps can operate over stable fields. Third, retrieval queries should not directly reuse raw review sentences, but should instead be rewritten as evidence-seeking questions. Fourth, intermediate and final outputs should be materialized as structured artifacts to support reproducibility, manual auditing, and error analysis.
+The system follows five constraints. Product evidence must be object-based and traceable. Reviews must be structured into aspects before retrieval. Retrieval queries should be questionized instead of using raw review text. Text and image evidence should be managed as separate routes. Final report claims should be traceable to review IDs, text block IDs, image IDs, or region IDs; unsupported claims should be represented as evidence gaps.
 
-## 2.4 Difference from Pure QA Systems
+## 2.4 Difference from Generic RAG QA
 
-Although the system uses multimodal retrieval, vector indexing, structured outputs, and large language models, its objective is not open-ended question answering. The target output is a set of structured product insights, including strengths, weaknesses, controversies, applicable scenes, and suggestions. Moreover, retrieval is driven not by external user queries, but by latent questions derived from review aspects. Finally, the system emphasizes traceability throughout the workflow, as reflected in normalized packages, aspect artifacts, retrieval records, replay summaries, and final report manifests.
+Generic RAG systems usually answer a user question. In this task, the query source is a set of review aspects, and the output is a product VOC profile rather than a single answer. The system must manage multiple aspects, questions, evidence routes, report fields, and trace objects, making it closer to an evidence orchestration system than a standard QA pipeline.
 
 # 3 Related Work
 
-## 3.1 Review Analysis and Aspect Modeling
+## 3.1 Retrieval-Augmented Generation and Evidence Constraints
 
-Traditional review-analysis research has focused on sentiment classification, aspect-based sentiment analysis, and topic clustering. These approaches are useful for answering whether users are generally positive or negative and which aspects are frequently discussed, but they are less suited to explicitly aligning review conclusions with product-side evidence. For product VOC analysis, aspect modeling remains essential because it converts free-form review text into stable objects such as aspects, sentiments, opinions, evidence spans, and usage scenes. However, without an explicit evidence-retrieval stage, such systems remain at the level of “what users said,” rather than “what product evidence supports or explains those claims.”
+Retrieval-augmented generation separates external evidence retrieval from parametric generation, improving traceability in knowledge-intensive tasks [1]. Retrieval-grounded revision further shows that external evidence can constrain and revise model outputs [2]. These ideas motivate our treatment of product VOC reporting as evidence-constrained generation rather than free-form summarization.
 
-## 3.2 Multimodal RAG and Cross-Modal Retrieval
+## 3.2 Multimodal Retrieval and Visual Evidence
 
-Classical work on retrieval-augmented generation shows that separating parametric generation from external evidence retrieval is an effective way to improve traceability in knowledge-intensive tasks [1]. Follow-up work on retrieval-grounded revision further suggests that retrieved evidence can be used not only to answer questions but also to constrain and revise generated claims [2]. On the visual side, CLIP-style vision-language pretraining demonstrates that a shared image-text embedding space can support large-scale cross-modal retrieval, which motivates our treatment of product images as first-class evidence objects [3]. These studies jointly support our decision to model the product side as a dual-route text-image retrieval space.
+CLIP demonstrates that images and text can be embedded into a shared semantic space for cross-modal retrieval [3]. Engineering discussions of multimodal RAG also emphasize that real-world knowledge systems contain text, images, tables, and structured fields, requiring representation, retrieval, and fusion across modalities [7,8]. Visual document retrieval methods such as ColPali further argue for preserving original visual evidence and using finer-grained visual matching [9]. Our system does not implement ColPali-style late interaction, but it preserves product images as first-class evidence and creates default image regions for future region-level retrieval.
 
-Nevertheless, most existing multimodal RAG systems are designed for document QA, knowledge QA, or general assistants, where the query is an externally posed question. In contrast, our retrieval queries are derived from structured review aspects and are therefore part of the internal analysis chain rather than user-facing search requests.
+## 3.3 Review Analysis and Aspect Modeling
 
-## 3.3 Two-Stage Retrieval and Vector-Store Engineering
+Aspect-based sentiment analysis decomposes reviews into attributes, opinions, and sentiment polarity [10]. In product VOC analysis, this remains a necessary first step because reviews often mix multiple experiences, scenes, and emotions. In our system, however, aspects are not the final output. They become the starting point for evidence-seeking question generation.
 
-From a methodological perspective, RAG and its follow-up work commonly adopt a coarse-to-fine pattern in which candidate retrieval is separated from higher-precision evidence selection or revision [1,2]. This layered view does not depend on one specific vector store or one specific reranker. Instead, it highlights the importance of maintaining a clean object boundary between retrieval and final generation. Our system follows this principle by decoupling embedding services, index backends, reranking, and evidence aggregation, so that the chain “question generation -> dual-route retrieval -> reranking -> evidence aggregation” remains modular and extensible.
+## 3.4 Multi-Stage Retrieval and Reranking
 
-## 3.4 Structured Outputs and Workflow Orchestration
+Practical retrieval systems often separate coarse recall from expensive reranking. Qdrant engineering materials emphasize that vector stores should manage candidates and similarity search, while rerankers and downstream logic make higher-precision decisions [11,12]. Our system follows this separation by decoupling embedding services, index backends, candidate pooling, reranking, and final report attribution.
 
-Recent work on structured outputs shows that schema-bound tasks remain brittle when they rely on fully unconstrained text generation, especially with respect to field consistency, type correctness, and parseability [4,5]. At the same time, reasoning-and-acting approaches suggest that multi-step stateful workflows are often better suited than one-shot prompting for coordinating tool calls, external retrieval, and intermediate object management [6]. This perspective aligns closely with our system design, because review extraction, question generation, evidence aggregation, and report generation all need outputs that are parseable, persistent, and reusable by downstream stages.
+## 3.5 Structured Output and Workflow Orchestration
 
-## 3.5 Difference from Existing Approaches
+LLMs can be brittle in structured-output tasks, especially when outputs must satisfy stable field and type constraints [4,5]. ReAct-style reasoning and acting also suggests that multi-step stateful workflows are preferable to one-shot prompting for complex tool-mediated tasks [6]. Our system uses structured schemas for review extraction, question generation, report generation, caching, and evaluation, and uses LangGraph to orchestrate the single-product workflow.
 
-This work does not propose a new universal multimodal retrieval algorithm, nor does it aim to replace all intermediate stages with a single model. Instead, it contributes a task-specific system design for product VOC analysis: preserving multimodal product evidence, converting user reviews into structured aspects, rewriting those aspects into evidence-seeking questions, and using evidence-constrained generation to produce auditable product insights. In this sense, the paper is less about maximizing one benchmark score and more about designing a coherent, reproducible, and extensible analysis pipeline.
+## 3.6 Positioning
 
-# 4 Method
+This paper does not propose a new general-purpose embedding model or reranker. Its contribution is a system-level framework for product VOC analysis that combines review aspects, question planning, multimodal retrieval, structured reporting, and claim-level attribution into a reproducible evidence workflow.
 
-## 4.1 System Architecture
+# 4 Methodology
 
-The proposed system is organized into six layers: data, retrieval, review modeling, aggregation, generation-and-suggestion, and explainability-and-evaluation. The key principle is to separate review understanding from evidence retrieval rather than directly matching raw review sentences against product evidence. In other words, the system first identifies what a review is claiming, then rewrites that claim into one or more evidence-seeking questions, and finally retrieves supporting or clarifying evidence from product text and product images.
+## 4.1 Overall Architecture
 
-At the workflow level, single-product analysis is implemented as a four-stage chain: dataset overview, normalization, index construction, and analysis. The overview stage gathers minimal sample statistics; normalization converts raw product folders into unified evidence packages; index construction builds retrievable text and image representations; and the analysis stage performs review extraction, question generation, dual-route retrieval, aggregation, and report generation. This staged design ensures both stable execution order and artifact-level debuggability.
+Decathlon VOC Analyzer is a staged evidence-driven system. The main stages are dataset and product evidence normalization, review modeling and sampling, question planning, multimodal indexing and retrieval, reranking and caching, report generation and evidence attribution, workflow orchestration, and evaluation. Stages communicate through Pydantic schemas rather than unstructured text.
 
-## 4.2 Product Evidence Modeling and Normalization
+The single-product workflow is orchestrated by LangGraph with four nodes: `overview`, `normalize`, `index`, and `analyze`. These nodes scan the dataset, normalize the target product, build evidence indexes, and perform review extraction, question generation, retrieval, reranking, aggregation, report generation, and artifact persistence.
 
-The system organizes product evidence around product_id. A normalized evidence package includes product metadata, text blocks, image objects, and reviews. Text blocks typically come from product title, category, and model description fields, while images preserve identifiers such as image_id, variant, and image_path. Unlike pipelines that immediately collapse images into textual descriptions, our system keeps images as a dedicated evidence route and only uses proxy text as an auxiliary hint during image vectorization.
+## 4.2 Product Evidence Normalization
 
-Text evidence is represented via text embeddings, and image evidence via native image embeddings. In the current validated runtime, the system uses text-embedding-v4 for text embeddings, openai/clip-vit-base-patch32 for image embeddings, gte-rerank-v2 for text reranking, and qwen-vl-max-latest for multimodal reranking. When external model services are unavailable, the pipeline can fall back to heuristic or local settings without breaking the end-to-end workflow.
+The core data object is `ProductEvidencePackage`. Product names, descriptions, and categories become `TextEvidence`; product images become `ImageEvidence`; reviews become `ReviewRecord`. Each evidence object has stable identifiers, source fields, and language hints.
 
-## 4.3 Review Modeling: From Natural Language to Aspect Objects
+To reserve space for local visual evidence, each valid image is assigned five default regions: `center_focus`, `upper_focus`, `lower_focus`, `left_focus`, and `right_focus`. These fixed regions are not semantic detections, but they enable region cropping, local image embedding, and multimodal reranking without requiring annotated boxes.
 
-The review-modeling layer does not directly produce final conclusions. Instead, it transforms reviews into structured and reusable objects. Each aspect object contains at least an aspect label, sentiment, opinion, evidence span, usage scene, and confidence score. This representation allows the system to compute aspect frequency, sentiment ratios, scene distributions, and evidence-backed suggestions in a stable way.
+## 4.3 Review Modeling and Sampling
 
-The implementation supports two extraction paths. The first is an LLM path that uses structured prompts and typed outputs. The second is a heuristic path used as a reproducible fallback when external model calls are unavailable. To reduce review-selection bias toward only high-rating comments, the system also supports star-ratio-based sampling profiles, including problem_first, balanced, and praise_first. The goal is not to propose a novel sampling algorithm, but to make the review input controllable and to expose the sampling plan itself as a structured artifact.
+The review modeling stage converts raw reviews into `ReviewAspect` objects containing aspect, sentiment, opinion, evidence span, usage scene, confidence, and extraction mode. The system removes empty, overly short, and low-signal reviews.
 
-## 4.4 Question Generation as Evidence-Seeking Reformulation
+When `max_reviews` is set, the system applies rating-aware sampling. The default `problem_first` profile allocates 30% to one-star reviews, 25% to two-star reviews, 20% to three-star reviews, 15% to four-star reviews, and 10% to five-star reviews. Shortfalls are redistributed by a configured fallback order, and the resulting sampling plan is saved as an artifact.
 
-Question generation is the main design choice that distinguishes this framework from direct review retrieval. Raw review sentences are often colloquial, compressed, and semantically overloaded. Using them directly as retrieval queries introduces noise. The system therefore rewrites each aspect into one or more clarification questions, such as whether a product description explicitly supports the claimed experience, whether product images contain structural evidence for the judgment, or whether a complaint is more consistent with an actual defect or a user expectation mismatch.
+Aspect extraction supports both LLM and heuristic paths. The LLM path uses the Qwen gateway and structured schemas. The heuristic path uses keywords, ratings, and sentiment hints to support offline testing. Extracted aspects are deduplicated and persisted.
 
-Each generated question contains at least source_review_id, source_aspect, question text, rationale, and expected_evidence_routes. This step converts subjective review statements into evidence-seeking tasks, thereby creating the key interface between review understanding and multimodal retrieval.
+## 4.4 Question Planning
 
-## 4.5 Dual-Route Retrieval and Reranking
+Question planning is the bridge between subjective reviews and product evidence. For each `ReviewAspect`, the system plans question intents such as `explicit_support`, `visual_confirmation`, `cross_modal_resolution`, `spec_check`, and `visual_detail`. Each generated `RetrievalQuestion` records the source review, source aspect, question text, rationale, expected evidence routes, and confidence.
 
-For each question, the system retrieves candidates from both the text route and the image route. The text route targets product title, model description, and other textual segments, whereas the image route targets product images and their variants. Candidates are unified at the product level and then reranked to form the final evidence bundle.
+The `expected_evidence_routes` field explicitly specifies whether retrieval should use text, image, or both. This makes retrieval route-aware and enables downstream attribution to distinguish product-text support, image support, and mixed support.
 
-The implementation decouples embedding services from index backends. Embedding services are responsible for text and image vectorization, while index backends manage persistence and search. This allows the upper-layer logic to remain unchanged regardless of whether the backend is a local persistent index or a Qdrant-backed store. The retrieval design is explicitly two-stage: embedding-based candidate retrieval preserves coverage, and reranking reduces noise over a smaller candidate set.
+## 4.5 Multimodal Indexing and Retrieval
 
-## 4.6 Aggregation, Reporting, and Replay
+The indexing layer converts product evidence into `IndexedEvidence`. Text evidence uses route `text`; whole images and image regions use route `image`. Text embeddings can be produced by `text-embedding-v4` or local Qwen3 embedding. Image embeddings default to CLIP. If allowed by runtime policy, the system can fall back to hash embeddings or proxy-text embeddings.
 
-Retrieved evidence is not directly passed to a summarization model. Instead, the system first aggregates evidence into aspect-level aggregates containing frequency, sentiment ratios, representative reviews, and scene distributions. Based on these aggregates, the system generates strengths, weaknesses, controversies, applicable scenes, supporting evidence, and suggestions. If LLM generation is available, a structured LLM path is used; otherwise, the system falls back to a heuristic report-construction path. Both paths share the same output schema.
+The `IndexBackend` abstraction supports both local JSON indexes and Qdrant. Retrieval first performs route-aware embedding recall with oversampling, then builds a language-balanced candidate pool, and finally passes candidates to the reranking layer.
 
-The system also supports a replay-sidecar mechanism. A new run can load replay data from a previous run, merge unresolved issues and resolved items into the current report and trace, and thereby support longitudinal analysis over iterative refinements or human-review cycles.
+## 4.6 Reranking, Caching, and Runtime Policy
 
-## 4.7 Artifact-First Explainability
+Text and image candidates are reranked separately. Text candidates support local Qwen3 reranking, DashScope `gte-rerank-v2`, and heuristic ranking. Image candidates support local Qwen3-VL, Qwen-VL API reranking, text-reranker fallback, and heuristic ranking.
 
-The system is explicitly designed to expose intermediate states as artifacts rather than hiding them in memory. Normalization outputs, aspect outputs, indexes, final reports, feedback files, replay files, HTML pages, and manifests are all persisted. Analysis artifacts further expose extraction objects, questions, retrieval records, retrieval-quality summaries, runtime profiles, aggregates, report items, traces, and warnings. This artifact-first design makes explainability concrete and inspectable rather than merely conceptual.
+For multimodal image reranking, the system loads product images, crops region candidates when needed, compresses them as JPEG data URLs, and asks Qwen-VL to return strict JSON relevance scores. Query embeddings and rerank outputs are cached with signatures that bind route, query, backend, model, base URL, and candidate digest. Runtime policy controls whether degradation is allowed or forbidden.
+
+## 4.7 Report Generation, Attribution, and Replay
+
+The generation layer aggregates aspects and retrieved evidence, then produces structured reports containing strengths, weaknesses, controversies, evidence gaps, applicable scenes, and suggestions. If the LLM path is unavailable, a heuristic path generates the same schema.
+
+After generation, the report refinement service deduplicates insights, calibrates evidence level, and rewrites unsupported overclaims. The system then builds `claim_attributions`, mapping report claims to review, product text, image, or region evidence and assigning support statuses. Feedback and replay sidecars allow later runs to reuse prior corrections and persistent issue summaries.
+
+## 4.8 Schema-Based Explainability
+
+Explainability is implemented through structured intermediate objects. The final `ProductAnalysisResponse` includes extraction results, question intents, questions, retrievals, retrieval quality, retrieval runtime, aggregates, report, trace, replay summary, artifact bundle, and warnings. This makes errors localizable to sampling, extraction, question planning, retrieval, reranking, report generation, or refinement.
+
+# 5 Experimental Setup
+
+## 5.1 Goals
+
+The experiments in this paper are system validation experiments rather than a full benchmark. We validate whether the end-to-end workflow runs, whether intermediate artifacts are structured and auditable, whether runtime policies distinguish full model paths from degraded paths, and whether the evaluation module can produce useful metrics with or without gold labels.
+
+## 5.2 Environment and Stack
+
+The project targets Python 3.11+ and is validated in a Python 3.12 environment. Core dependencies include FastAPI, Pydantic, Pydantic Settings, LangChain, LangGraph, OpenAI SDK, Qdrant Client, Transformers, Torch, Pillow, orjson, and pytest. The API is exposed through FastAPI, and batch execution is provided by `04_scripts/run_workflow.py`.
+
+## 5.3 Data and Artifacts
+
+Raw product data is stored in `01_data/01_raw_products/products/`. Chinese audit data can be exported to `01_data/02_audit_zh_products/products/`. Outputs are organized by stage under `02_outputs/`, including normalized packages, aspect extraction results, indexes and retrieval caches, reports, feedback, replay, HTML reports, and run manifests.
+
+The current data should not be interpreted as a frozen public benchmark. It is used to validate the workflow, schemas, artifacts, and evaluation interfaces. Larger multi-category annotated sets are required for formal retrieval comparisons.
+
+## 5.4 Workflow Protocol
+
+The standard protocol scans the dataset, normalizes the target product, builds text and image indexes, samples and extracts review aspects, plans retrieval questions, performs route-aware recall and reranking, aggregates aspects, generates the report, builds claim attribution and traces, and optionally exports HTML and manifest artifacts.
+
+The main command is:
+
+```bash
+.venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010 --output-format json --export-html --write-manifest
+```
+
+Offline validation can disable external LLM calls:
+
+```bash
+.venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010 --no-llm --output-format json
+```
+
+## 5.5 Evaluation Metrics
+
+When `retrieval_relevance` labels are available in the manifest or analysis artifact, the evaluator computes Recall@1, Recall@3, Recall@5, MRR, NDCG@3, and NDCG@5, which are standard information retrieval metrics [13]. Without gold labels, the system still reports review, aspect, question, retrieval, evidence coverage, conflict risk, claim support, citation precision, and route contribution statistics.
+
+## 5.6 Automated Tests
+
+The automated test suite covers APIs, dataset services, review services, question generation, index backends, embedding and reranking, retrieval, analysis, HTML export, manifest evaluation, runtime policies, progress tracking, workflow scripts, and multimodal runtime validation. Running:
+
+```bash
+.venv/bin/python -m pytest
+```
+
+collects and passes 166 tests in the current codebase.
+
+# 6 Results and Analysis
+
+## 6.1 End-to-End Workflow
+
+The current system forms an end-to-end workflow from raw product folders to structured VOC reports. `run_workflow.py` connects dataset overview, normalization, indexing, and analysis. `validate_multimodal_runtime.py` verifies whether the multimodal runtime is enabled. `export_html_report.py` exports reviewable reports, and `evaluate_manifests.py` computes metrics from run manifests.
+
+This shows that the implementation is not a set of isolated scripts. It is a schema- and artifact-centered analysis framework. Even in offline `--no-llm` mode, the system emits the same classes of aspects, questions, retrievals, and report objects.
+
+## 6.2 Test Results
+
+The current test suite collects 166 tests and all pass. The tests cover dataset normalization, review extraction, question generation, index backends, embedding, reranking, retrieval, analysis, HTML export, manifest evaluation, runtime policies, progress tracking, workflow scripts, and multimodal runtime validation.
+
+| Validation target | Result | Interpretation |
+| --- | --- | --- |
+| Automated tests | 166/166 passed | Current implementation and assertions are aligned |
+| API layer | Passed | Dataset, index, reviews, and analysis routes are tested |
+| Retrieval layer | Passed | Local indexes, backend abstraction, embeddings, rerankers, and retrieval logic are tested |
+| Generation layer | Passed | Question generation, report generation, attribution, HTML, and replay logic are tested |
+| Workflow scripts | Passed | Workflow and runtime validation scripts are tested |
+
+## 6.3 Structured Artifacts
+
+The system output is not a single natural-language summary. A complete analysis contains extraction results, question intents, questions, retrievals, retrieval quality, retrieval runtime, aggregates, report, trace, replay summary, and artifact bundle. Each retrieval record keeps source question, source aspect, expected evidence routes, and retrieved evidence identifiers.
+
+This structure makes reports auditable and errors localizable. If a suggestion is unreliable, one can inspect whether the issue came from sampling, extraction, question planning, retrieval, reranking, or report refinement.
+
+## 6.4 Role of Question Planning
+
+Question planning is the main bridge in the method. Raw review text often contains emotion, background, and implicit assumptions. Question planning converts review aspects into verifiable evidence needs, such as whether product copy explicitly supports a claim or whether product images provide visual evidence.
+
+Each retrieval record keeps `source_aspect_id`, `source_question_id`, and `expected_evidence_routes`, making retrieval analysis query-level and route-aware.
+
+## 6.5 Multimodal Evidence Routes
+
+The system treats product text and images as different evidence routes. Text evidence is useful for names, categories, descriptions, specifications, and warranty-like claims. Image evidence is useful for structure, appearance, color, and local visual details. The image route includes whole images and default local regions.
+
+The separation between coarse recall and reranking balances coverage and precision. For image candidates, multimodal reranking can directly inspect the original image or cropped region, reducing reliance on proxy text.
+
+## 6.6 Evaluation Interfaces
+
+The manifest evaluator supports both labeled and unlabeled settings. With gold retrieval labels, it computes Recall@K, MRR, and NDCG. Without labels, it still reports structured runtime statistics and claim attribution metrics such as claim support rate, claim grounded rate, citation precision, citation contradiction rate, and route contribution.
+
+This design prepares the system for future benchmark experiments. Once multi-category human labels are added, the same manifest framework can compare raw review retrieval, aspect retrieval, question-driven retrieval, embedding backends, and reranking backends.
+
+## 6.7 Boundary of Current Results
+
+The current results demonstrate workflow completeness, artifact auditability, and a stable test baseline. They should not be interpreted as a full benchmark result. The paper does not yet report statistically significant comparisons over a frozen multi-category labeled dataset.
 
 # 7 Discussion
 
-## 7.1 Why This Design Fits Product VOC Analysis
+## 7.1 Why Question-Driven Retrieval Fits Product VOC
 
-The main value of the proposed framework does not lie in any isolated module, but in integrating product text, product images, review structures, and final reports into a single evidence loop. This design is particularly suitable for product VOC analysis because product information is inherently multimodal, while reviews are noisy and colloquial. If conclusions are generated directly from reviews, factual grounding becomes weak. If retrieval is only performed over product evidence, user concerns become weakly anchored. The aspect-to-question interface provides a principled bridge between these two information spaces.
+The difficulty in product VOC analysis is not only summarizing reviews, but also explaining whether review claims are supported by product evidence. Question-driven retrieval adds an intermediate semantic layer: review aspects describe customer concerns, while retrieval questions describe evidence needs that product text or images can answer.
 
-## 7.2 Engineering Lessons from the Current Prototype
+This is suitable for e-commerce because product pages are naturally multimodal and reviews are naturally subjective and noisy. Directly concatenating all information into a model sacrifices controllability, whereas question planning turns feedback into retrievable, evaluable, and attributable units.
 
-Three implementation lessons emerge from the current stage. First, the conceptual layers of the method should map cleanly to the implementation layers, reducing friction between design, code, and paper writing. Second, artifacts are more valuable than logs for research-oriented systems. Persisted normalization outputs, aspect outputs, retrieval records, reports, replay files, and manifests make it possible to revisit intermediate reasoning states after the run has finished. Third, real execution paths and fallback paths should coexist. The combination of LLM and heuristic modes, as well as local and Qdrant backends, allows the system to remain reproducible even when external services are unavailable.
+## 7.2 Value of Artifact-First Engineering
 
-## 7.3 Comparison with One-Shot LLM Summarization
+The system is artifact-first. Normalized evidence packages, aspect extraction results, question caches, retrieval caches, reports, feedback, replay files, HTML exports, and manifests have fixed structures and output locations. Researchers can inspect any stage instead of only reading the final report.
 
-One-shot summarization over all product and review inputs can quickly produce natural-language conclusions, but it suffers from three major limitations. First, it is difficult to determine whether a conclusion originates from review text or product evidence. Second, it is difficult to diagnose and repair local failures. Third, it is difficult to accumulate reusable intermediate artifacts for later training, auditing, or evaluation. In contrast, the staged design adopted here sacrifices some simplicity in exchange for clearer objects, greater controllability, and better explainability.
+This also lowers future experiment cost. Standardized product packages can be reused across question generation experiments; aspect and question artifacts can be reused across reranker comparisons; HTML and manifests can support human review.
 
-## 7.4 Implications for Future Research
+## 7.3 Comparison with One-Step LLM Summarization
 
-One of the key implications of this study is that multimodal product analysis may be better approached from the perspective of evidence-seeking task reformulation rather than direct multimodal generation. Once review-derived needs are expressed as retrieval questions, a broad range of future extensions becomes natural: finer-grained visual evidence retrieval, stronger user-segment modeling, retrieval-specific evaluation metrics, replay optimization from human feedback, and semi-automatic audit workflows built around HTML review interfaces.
+One-step LLM summarization is simple, but it cannot reliably answer where a conclusion came from, whether product text supports it, or whether images support it. Our staged design increases implementation complexity but provides interpretability, reproducibility, and evaluability.
 
-## 7.5 Implications for Paper Development
+For a research-oriented system, this tradeoff is necessary. Product VOC reports must support evidence inspection if they are to be used in operational or product decisions.
 
-At the present stage, the most important scholarly task is not to overclaim benchmark-scale results, but to articulate the system design, experimental protocol, and method boundaries in a rigorous way. This provides a stable narrative foundation on top of which larger-scale experiments, stronger visual retrieval, and human evaluation can later be layered without rewriting the central research problem.
+## 7.4 Implications for Future Work
+
+The current implementation suggests that better evidence organization and query planning may be more important than simply using larger generators. Future work can add semantic detection or segmentation for image regions, build multi-category labeled benchmarks, compare retrieval strategies, and integrate feedback/replay with human review interfaces.
+
+## 7.5 Paper-Level Significance
+
+The current paper version provides the main body of a system-methodology paper. It defines the problem, architecture, implementation, evaluation interface, and limitations. Larger quantitative experiments can be added without rewriting the methodological core.
 
 # 8 Conclusion
 
-This paper presents a system-oriented draft of Decathlon VOC Analyzer, an evidence-driven multimodal VOC analysis framework for product understanding. The main claim of this work is that product-oriented VOC analysis should not be reduced to one-shot large-model summarization, but is better formulated as a structured pipeline that combines review modeling, question generation, multimodal retrieval, aggregation, and evidence-constrained reporting.
+This paper presents Decathlon VOC Analyzer, an evidence-driven multimodal VOC analysis system for aligning product text and image evidence with customer reviews. The system normalizes raw product data into traceable evidence packages, extracts aspect-level VOC objects from reviews, plans evidence-seeking questions, retrieves and reranks product text and image evidence, and generates structured reports with claim-level attribution.
 
-The emphasis of the current version is not to present formal experimental results, but to provide a coherent system-method narrative together with a stable bilingual paper structure, a BibTeX-based citation pipeline, and an export chain that can accommodate future evaluation sections without restructuring the core manuscript.
+The central conclusion is that product VOC analysis should not be reduced to one-step review summarization. It is better organized as a multi-stage workflow: review aspect modeling, evidence question planning, product text-image retrieval, and evidence-constrained generation. The current implementation provides APIs, batch workflows, structured artifacts, retrieval caches, feedback/replay, HTML export, manifest evaluation, and automated tests. The current codebase passes 166 tests.
 
-Future work will focus on completing the formal experimental design, introducing standard retrieval metrics, adding stricter human evaluation, and advancing from object-level visual retrieval toward finer-grained evidence alignment.
+Future work will add multi-category human-labeled benchmarks, compare retrieval and reranking strategies, improve visual grounding, and close the feedback/replay loop with human review.
 
 # 9 Limitations
 
-This work must clearly distinguish between what has already been validated and what remains to be established through formal evaluation. First, the present study relies primarily on representative artifacts, script-level validation, and automated tests rather than a frozen large-scale benchmark with human annotations. Therefore, the current results should not be interpreted as statistically representative across all product categories.
+First, the current results are system validation results rather than a complete benchmark. The system supports manifest evaluation and automated testing, but it does not yet include a frozen multi-category human-labeled dataset.
 
-Second, retrieval evaluation is still not fully closed. The current system can already report Recall@1/3/5, MRR, and NDCG@3/5 in the manifest evaluator when gold labels are available, but the repository still lacks a frozen multi-category benchmark and a systematic offline comparison between direct review retrieval and question-driven retrieval.
+Second, retrieval strategies still require systematic ablation. The implementation supports text routes, image routes, question-driven retrieval, reranking, and caching, but direct comparisons among raw-review retrieval, aspect retrieval, question-driven retrieval, embedding backends, and reranker backends remain future work.
 
-Third, visual evidence granularity remains relatively coarse. The main pipeline now supports region-level image evidence v1 through fixed crops used in indexing, retrieval, and reranking, but this is still a rule-based approximation rather than detector- or segmentation-driven visual grounding. As a result, product properties that depend strongly on highly localized structures may not yet be fully explainable.
+Third, visual evidence granularity is limited. The system supports whole images and fixed-ratio crops, but these regions are not produced by semantic detection, segmentation, or grounding models.
 
-Fourth, there remains a small gap between multilingual prompt evolution and validation baselines. The only failing automated test in the current environment is caused by a localization mismatch in prompt-template assertions, which suggests that multilingual engineering support and validation assets still need further synchronization.
+Fourth, LLM outputs still depend on prompts and schema constraints. Structured output, refinement, and heuristic fallbacks reduce but do not eliminate misunderstanding, omission, or overgeneralization.
 
-Fifth, the paper metadata and references remain provisional. A formal submission version would require additional related-work coverage, a more standardized reference style, and finalized author and affiliation information.
+Fifth, the feedback loop is still mostly an engineering interface. Feedback and replay sidecars exist, but their quality impact has not yet been quantified through large-scale human review.
+
+Sixth, a submission-ready paper will require a broader related-work section, formal figures, detailed annotation protocols, and statistical analysis.
 
 # 10 Acknowledgments
 
@@ -198,61 +310,79 @@ This draft is prepared from the current design documents, implementation artifac
 
 # Appendix
 
-## A. Main Directories and Their Roles
+## A. Key Directories
 
-| Directory | Role |
+| Directory | Responsibility |
 | --- | --- |
-| 01_data | Raw product data and Chinese audit data |
-| 02_outputs | Normalization outputs, aspect outputs, indexes, reports, feedback, replay, HTML, and manifests |
-| 03_docs | Design documents, technical notes, and citation materials |
-| 04_scripts | Workflow execution, export, and multimodal-runtime validation |
-| 05_src | Core source code |
-| 06_tests | API, service, and workflow tests |
+| `01_data/` | Raw product data and Chinese audit data |
+| `02_outputs/` | Normalized packages, aspects, indexes, reports, feedback, replay, HTML, and manifests |
+| `03_configs/` | Review sampling profiles and runtime policy configuration |
+| `04_scripts/` | Workflow, evaluation, export, validation, and cleanup scripts |
+| `05_src/` | Core source code |
+| `06_tests/` | API, service, script, and workflow tests |
+| `0_docs/03_论文子模块文档/` | Thesis module documents based on current source code |
+| `论文_md形式/` | Paper chapters, references, and export scripts |
 
-## B. Current API Endpoints
+## B. API Endpoints
 
-The current system exposes at least the following API routes:
+The main API endpoints are:
 
-- /health
-- /api/v1/dataset/overview
-- /api/v1/dataset/normalize
-- /api/v1/index/overview
-- /api/v1/index/build
-- /api/v1/reviews/extract
-- /api/v1/analysis/product
+- `/health`
+- `/api/v1/dataset/overview`
+- `/api/v1/dataset/normalize`
+- `/api/v1/index/overview`
+- `/api/v1/index/build`
+- `/api/v1/reviews/extract`
+- `/api/v1/analysis/product`
 
-## C. Reproducibility Commands
+## C. Reproduction Commands
 
-The main workflow can be executed with:
-
-```bash
-.venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010
-```
-
-The multimodal runtime can be validated with:
+End-to-end run:
 
 ```bash
-.venv/bin/python 04_scripts/validate_multimodal_runtime.py --category backpack --product-id backpack_010
+.venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010 --output-format json --export-html --write-manifest
 ```
 
-The English paper export pipeline can be executed with:
+Offline run:
+
+```bash
+.venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010 --no-llm --output-format json
+```
+
+Manifest evaluation:
+
+```bash
+.venv/bin/python 04_scripts/evaluate_manifests.py 02_outputs/7_manifests
+```
+
+Test suite:
+
+```bash
+.venv/bin/python -m pytest
+```
+
+English PDF export:
 
 ```bash
 .venv/bin/python 论文_md形式/脚本/pipeline.py --en
 ```
 
-## D. Current Scope of This Draft
+## D. Structured Artifacts
 
-This draft is suitable for:
+| Artifact | Default location | Purpose |
+| --- | --- | --- |
+| Normalized product package | `02_outputs/1_normalized/` | Input to indexing and analysis |
+| Review aspect result | `02_outputs/2_aspects/` | Input to question planning and aggregation |
+| Indexes and retrieval cache | `02_outputs/3_indexes/` | Retrieval and reranking reuse |
+| Analysis report | `02_outputs/4_reports/` | Final structured VOC output |
+| Feedback sidecar | `02_outputs/5_feedback/` | Human feedback entry point |
+| Replay sidecar | `02_outputs/5_replay/` | Replay in later runs |
+| HTML report | `02_outputs/6_html/` | Human review interface |
+| Run manifest | `02_outputs/7_manifests/` | Evaluation and reproducibility entry point |
 
-- system-design reporting
-- intermediate paper drafts
-- project review and defense materials
+## E. Scope
 
-It is not yet suitable for:
-
-- a final benchmark-oriented submission requiring large-scale quantitative evaluation
-- a camera-ready version with complete figures, human annotations, and fully standardized references
+This draft is suitable for system design explanation, methodology drafting, project defense, and future experiment planning. It is not yet a complete benchmark paper because multi-category frozen labels, formal ablations, and large-scale human evaluation are still missing.
 
 # References
 

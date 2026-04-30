@@ -16,6 +16,8 @@ SECTION_FILES = [
     "02_background.md",
     "03_related_work.md",
     "04_methodology.md",
+    "05_experimental_setup.md",
+    "06_experiments.md",
     "07_discussion.md",
     "08_conclusion.md",
     "09_limitations.md",

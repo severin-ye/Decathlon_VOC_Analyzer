@@ -2,71 +2,65 @@
 
 ## 5.1 实验目标
 
-鉴于本研究当前仍处于系统原型验证阶段，本文实验不以大规模统计显著性对照为首要目标，而是围绕以下三个问题组织：
-
-1. 所提出的分析框架是否已经形成从原始商品数据到最终报告的端到端闭环。
-2. 评论抽取、问题生成、双路检索与证据约束报告是否已经被统一组织为稳定工作流，而不是若干松散脚本。
-3. 当前产物、脚本与测试体系是否足以支撑人工审查、错误定位和后续扩展研究。
-
-因此，本文报告的是系统型验证实验，其重点在于流程完整性、结构化程度、可审查性与复现性，而不是最终 benchmark 分数。
+本文实验定位为系统验证，而非完整 benchmark。实验目标包括四点：验证端到端工作流是否可运行；验证各阶段产物是否结构化且可审查；验证真实模型链路与降级链路是否能够通过运行策略区分；验证评估模块是否能够在有标注和无标注条件下输出可用指标。
 
 ## 5.2 运行环境与软件栈
 
-实验环境基于 Python 3.12 虚拟环境，核心依赖由 pyproject.toml 管理。系统主要组件包括 FastAPI、Pydantic、LangChain、LangGraph、OpenAI 兼容接口、Qdrant Client、Transformers、Torch 与 Pillow。分析服务通过 API 和脚本双入口暴露：前者用于交互式调用，后者用于端到端批处理与可重复实验。
+项目基于 Python 3.11+，当前验证环境为 Python 3.12。核心依赖包括 FastAPI、Pydantic、Pydantic Settings、LangChain、LangGraph、OpenAI SDK、Qdrant Client、Transformers、Torch、Pillow、orjson 和 pytest。
 
-当前验证环境下，检索运行时的主要组合为：文本 embedding 模型 text-embedding-v4、图像 embedding 模型 openai/clip-vit-base-patch32、文本 reranker 模型 gte-rerank-v2，以及多模态图文重排模型 qwen-vl-max-latest。在外部能力不可用或开发阶段更强调稳定复现时，系统可退回 heuristic 路径与本地索引后端。
+API 入口由 FastAPI 提供，批处理入口由 `04_scripts/run_workflow.py` 提供，单商品工作流由 LangGraph 编排。LLM 调用通过 OpenAI 兼容 Qwen 网关完成；检索层支持本地 JSON 索引和 Qdrant 索引；图像 embedding 默认使用 CLIP；图像候选重排默认可使用 Qwen-VL。
 
-检索层的 stage 3 还会把 query embeddings 和 rerank 结果落到 `02_outputs/3_indexes/retrieval_cache` 的磁盘缓存中；缓存签名绑定 backend、model、base_url 和候选集 digest，因此重复运行可以复用结果，但不同配置不会串写。若评测输入提供了 gold labels，ManifestEvaluationService 还能进一步从 `manifest.evaluation_labels.retrieval_relevance` 或 `analysis.retrieval_labels` 计算 `Recall@1/3/5`、`MRR` 和 `NDCG@3/5`。
+## 5.3 数据与产物
 
-## 5.3 数据与样例范围
+原始商品数据位于 `01_data/01_raw_products/products/`，人工审核用中文数据可导出到 `01_data/02_audit_zh_products/products/`。系统产物按阶段写入 `02_outputs/`：标准化证据包写入 `1_normalized/`，评论方面写入 `2_aspects/`，索引与缓存写入 `3_indexes/`，分析报告写入 `4_reports/`，feedback 和 replay 写入 `5_feedback/` 与 `5_replay/`，HTML 报告写入 `6_html/`，运行 manifest 写入 `7_manifests/`。
 
-实验数据由两部分构成：原始商品数据位于 01_data/01_raw_products/products，中文审查数据位于 01_data/02_audit_zh_products/products。与标准离线 benchmark 不同，本文当前阶段使用的是“代表性样例 + 结构化 artifact + 自动化验证”的实验资产组合，而非冻结的大规模公开评测集。
+本文不把当前数据样例描述为冻结公开 benchmark。当前数据用于验证系统链路、schema 产物和评估接口；后续若要比较不同检索策略，需要补充多品类人工标注集。
 
-现有 artifact 表明，系统已至少在两个代表性商品上完成最终分析：backpack_010 与 sunglasses_001。其中，标准化统计报告显示，backpack_010 样例包含 1 个已标准化商品、200 条评论和 5 张图片，product.json 与 reviews.json 完整存在。sunglasses_001 的分析结果则展示了基于 3 条评论抽取 9 个 aspect，并结合文本与图像证据生成最终报告的过程。本文将这两个样例分别用作“负向且证据稀疏”的分析案例和“多方面正向且跨场景”的分析案例。
+## 5.4 工作流协议
 
-<a id="tab:validation-assets"></a>
+标准单商品协议如下：
 
-| 验证对象 | 数据规模/状态 | 主要用途 |
-| --- | --- | --- |
-| backpack_010 | 1 个商品，200 条评论，5 张图片 | 验证标准化、负向样例抽取与稀疏证据下的分析输出 |
-| sunglasses_001 | 3 条评论，9 个 aspect，图文双路检索 | 验证 LLM 抽取、多方面聚合与跨场景报告生成 |
-| 中文审查链路 | 支持独立输出命名空间与中文 prompt 变体 | 验证中文数据集与人工审查准备 |
+1. 扫描数据集并生成概览。
+2. 标准化目标商品证据包。
+3. 为目标商品构建文本和图像索引。
+4. 抽样并抽取评论方面。
+5. 将方面规划为检索问题。
+6. 对文本和图像 route 执行粗召回。
+7. 对候选证据进行文本或多模态重排。
+8. 聚合方面统计并生成报告。
+9. 构建 claim attribution、trace、feedback/replay 和 manifest。
+10. 可选导出 HTML 报告。
 
-*Table 1. 本文采用的代表性验证资产。*
+核心命令如下：
 
-## 5.4 工作流设置
+```bash
+.venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010 --output-format json --export-html --write-manifest
+```
 
-单商品工作流按以下顺序执行：
+离线验证可关闭 LLM：
 
-1. 数据集概览
-2. 商品标准化
-3. 图文证据建索引
-4. 评论抽取与问题生成
-5. 图文双路召回与精排
-6. 聚合分析与报告生成
-7. 可选的 HTML 导出与 manifest 落盘
+```bash
+.venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010 --no-llm --output-format json
+```
 
-批处理脚本支持多项关键参数，包括类别、商品 ID、评论上限、top-k per route、问题数、是否跳过标准化、是否跳过索引、是否启用 HTML 导出、是否写入 manifest，以及是否显式切换 Qdrant 或 local 后端。系统还支持 `--cn`、`--R_n` 等便捷参数，以便在中文审查链路或受限评论设置下快速复现实验。
+真实多模态运行态验证可使用：
 
-## 5.5 验证维度
+```bash
+.venv/bin/python 04_scripts/validate_multimodal_runtime.py --category backpack --product-id backpack_010
+```
 
-本文从四个维度验证系统。第一，流程完整性：考察标准化、索引、分析与导出是否能够在统一入口下被稳定串起。第二，结构化程度：考察评论抽取、问题、检索记录和报告对象是否具有稳定 schema。第三，运行时一致性：通过多模态验证脚本检查系统是否进入原生图文链路。第四，可审查性：检查中间产物与最终产物是否足以支持人工阅读和错误定位。
+## 5.5 评估指标
 
-## 5.6 当前可验证事实汇总
+当 manifest 或 analysis artifact 包含 `retrieval_relevance` 标注时，评估模块计算 Recall@1、Recall@3、Recall@5、MRR、NDCG@3 和 NDCG@5。这些指标是信息检索评估中的常用排序与召回指标 [13]。相关证据可以是 `region_id`、`text_block_id`、`image_id` 或 `evidence_id`。
 
-除代表性样例外，本文还将脚本与测试视为实验协议的一部分。表 2 总结了当前用于验证端到端流程的关键脚本与自动化测试结果。
+在没有人工 gold labels 时，系统仍统计运行质量指标，包括 informative review 数、aspect 数、question 数、平均置信度、retrieval evidence 数量、evidence coverage、score drift、conflict risk、claim support rate、claim grounded rate、citation precision、citation contradiction rate，以及 text、image、mixed 的 route contribution。
 
-<a id="tab:protocol-and-tests"></a>
+## 5.6 自动化测试
 
-| 验证手段 | 当前状态 | 验证目的 |
-| --- | --- |
-| run_workflow.py | 可执行单商品端到端工作流 | 验证标准化、索引、分析与导出主链 |
-| validate_multimodal_runtime.py | 可检查 LLM/CLIP/Qwen-VL 运行时配置 | 验证原生多模态链路是否启用 |
-| pipeline.py | 可生成完整稿、LaTeX 与 PDF | 验证论文导出链路可复现 |
-| 自动化测试套件 | 13 个测试模块，共 157 项测试；157 项通过，0 项失败 | 验证数据集、评论、问题、索引、分析与工作流稳定性 |
+自动化测试覆盖 API、数据集服务、评论服务、问题生成、索引后端、embedding 与 reranker、检索服务、分析服务、HTML 导出、manifest 评估、运行策略、运行进度、工作流脚本和多模态验证脚本。当前代码基线下执行：
 
-*Table 2. 实验协议中的脚本级与测试级验证手段。*
+```bash
+.venv/bin/python -m pytest
+```
 
-当前测试基线已经完全同步：157 项测试全部通过。这说明工作流、提示词模板和验证断言在当前代码状态下已经对齐。
-
-基于以上设置，第 6 节的结果解读将聚焦于系统是否已经能够稳定地产生结构化、可追溯且可审查的分析结果，而不会将当前阶段的验证资产误表述为完整 benchmark 结论。
+结果为 166 项测试全部通过。该结果说明当前源码、提示词注册、schema、工作流脚本和评估服务在工程层面保持一致。

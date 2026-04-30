@@ -1,21 +1,27 @@
 # 7 Discussion
 
-## 7.1 Why This Design Fits Product VOC Analysis
+## 7.1 Why Question-Driven Retrieval Fits Product VOC
 
-The main value of the proposed framework does not lie in any isolated module, but in integrating product text, product images, review structures, and final reports into a single evidence loop. This design is particularly suitable for product VOC analysis because product information is inherently multimodal, while reviews are noisy and colloquial. If conclusions are generated directly from reviews, factual grounding becomes weak. If retrieval is only performed over product evidence, user concerns become weakly anchored. The aspect-to-question interface provides a principled bridge between these two information spaces.
+The difficulty in product VOC analysis is not only summarizing reviews, but also explaining whether review claims are supported by product evidence. Question-driven retrieval adds an intermediate semantic layer: review aspects describe customer concerns, while retrieval questions describe evidence needs that product text or images can answer.
 
-## 7.2 Engineering Lessons from the Current Prototype
+This is suitable for e-commerce because product pages are naturally multimodal and reviews are naturally subjective and noisy. Directly concatenating all information into a model sacrifices controllability, whereas question planning turns feedback into retrievable, evaluable, and attributable units.
 
-Three implementation lessons emerge from the current stage. First, the conceptual layers of the method should map cleanly to the implementation layers, reducing friction between design, code, and paper writing. Second, artifacts are more valuable than logs for research-oriented systems. Persisted normalization outputs, aspect outputs, retrieval records, reports, replay files, and manifests make it possible to revisit intermediate reasoning states after the run has finished. Third, real execution paths and fallback paths should coexist. The combination of LLM and heuristic modes, as well as local and Qdrant backends, allows the system to remain reproducible even when external services are unavailable.
+## 7.2 Value of Artifact-First Engineering
 
-## 7.3 Comparison with One-Shot LLM Summarization
+The system is artifact-first. Normalized evidence packages, aspect extraction results, question caches, retrieval caches, reports, feedback, replay files, HTML exports, and manifests have fixed structures and output locations. Researchers can inspect any stage instead of only reading the final report.
 
-One-shot summarization over all product and review inputs can quickly produce natural-language conclusions, but it suffers from three major limitations. First, it is difficult to determine whether a conclusion originates from review text or product evidence. Second, it is difficult to diagnose and repair local failures. Third, it is difficult to accumulate reusable intermediate artifacts for later training, auditing, or evaluation. In contrast, the staged design adopted here sacrifices some simplicity in exchange for clearer objects, greater controllability, and better explainability.
+This also lowers future experiment cost. Standardized product packages can be reused across question generation experiments; aspect and question artifacts can be reused across reranker comparisons; HTML and manifests can support human review.
 
-## 7.4 Implications for Future Research
+## 7.3 Comparison with One-Step LLM Summarization
 
-One of the key implications of this study is that multimodal product analysis may be better approached from the perspective of evidence-seeking task reformulation rather than direct multimodal generation. Once review-derived needs are expressed as retrieval questions, a broad range of future extensions becomes natural: finer-grained visual evidence retrieval, stronger user-segment modeling, retrieval-specific evaluation metrics, replay optimization from human feedback, and semi-automatic audit workflows built around HTML review interfaces.
+One-step LLM summarization is simple, but it cannot reliably answer where a conclusion came from, whether product text supports it, or whether images support it. Our staged design increases implementation complexity but provides interpretability, reproducibility, and evaluability.
 
-## 7.5 Implications for Paper Development
+For a research-oriented system, this tradeoff is necessary. Product VOC reports must support evidence inspection if they are to be used in operational or product decisions.
 
-At the present stage, the most important scholarly task is not to overclaim benchmark-scale results, but to articulate the system design, experimental protocol, and method boundaries in a rigorous way. This provides a stable narrative foundation on top of which larger-scale experiments, stronger visual retrieval, and human evaluation can later be layered without rewriting the central research problem.
+## 7.4 Implications for Future Work
+
+The current implementation suggests that better evidence organization and query planning may be more important than simply using larger generators. Future work can add semantic detection or segmentation for image regions, build multi-category labeled benchmarks, compare retrieval strategies, and integrate feedback/replay with human review interfaces.
+
+## 7.5 Paper-Level Significance
+
+The current paper version provides the main body of a system-methodology paper. It defines the problem, architecture, implementation, evaluation interface, and limitations. Larger quantitative experiments can be added without rewriting the methodological core.

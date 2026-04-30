@@ -1,23 +1,25 @@
 # 3 Related Work
 
-## 3.1 Review Analysis and Aspect Modeling
+## 3.1 Retrieval-Augmented Generation and Evidence Constraints
 
-Traditional review-analysis research has focused on sentiment classification, aspect-based sentiment analysis, and topic clustering. These approaches are useful for answering whether users are generally positive or negative and which aspects are frequently discussed, but they are less suited to explicitly aligning review conclusions with product-side evidence. For product VOC analysis, aspect modeling remains essential because it converts free-form review text into stable objects such as aspects, sentiments, opinions, evidence spans, and usage scenes. However, without an explicit evidence-retrieval stage, such systems remain at the level of “what users said,” rather than “what product evidence supports or explains those claims.”
+Retrieval-augmented generation separates external evidence retrieval from parametric generation, improving traceability in knowledge-intensive tasks [1]. Retrieval-grounded revision further shows that external evidence can constrain and revise model outputs [2]. These ideas motivate our treatment of product VOC reporting as evidence-constrained generation rather than free-form summarization.
 
-## 3.2 Multimodal RAG and Cross-Modal Retrieval
+## 3.2 Multimodal Retrieval and Visual Evidence
 
-Classical work on retrieval-augmented generation shows that separating parametric generation from external evidence retrieval is an effective way to improve traceability in knowledge-intensive tasks [1]. Follow-up work on retrieval-grounded revision further suggests that retrieved evidence can be used not only to answer questions but also to constrain and revise generated claims [2]. On the visual side, CLIP-style vision-language pretraining demonstrates that a shared image-text embedding space can support large-scale cross-modal retrieval, which motivates our treatment of product images as first-class evidence objects [3]. These studies jointly support our decision to model the product side as a dual-route text-image retrieval space.
+CLIP demonstrates that images and text can be embedded into a shared semantic space for cross-modal retrieval [3]. Engineering discussions of multimodal RAG also emphasize that real-world knowledge systems contain text, images, tables, and structured fields, requiring representation, retrieval, and fusion across modalities [7,8]. Visual document retrieval methods such as ColPali further argue for preserving original visual evidence and using finer-grained visual matching [9]. Our system does not implement ColPali-style late interaction, but it preserves product images as first-class evidence and creates default image regions for future region-level retrieval.
 
-Nevertheless, most existing multimodal RAG systems are designed for document QA, knowledge QA, or general assistants, where the query is an externally posed question. In contrast, our retrieval queries are derived from structured review aspects and are therefore part of the internal analysis chain rather than user-facing search requests.
+## 3.3 Review Analysis and Aspect Modeling
 
-## 3.3 Two-Stage Retrieval and Vector-Store Engineering
+Aspect-based sentiment analysis decomposes reviews into attributes, opinions, and sentiment polarity [10]. In product VOC analysis, this remains a necessary first step because reviews often mix multiple experiences, scenes, and emotions. In our system, however, aspects are not the final output. They become the starting point for evidence-seeking question generation.
 
-From a methodological perspective, RAG and its follow-up work commonly adopt a coarse-to-fine pattern in which candidate retrieval is separated from higher-precision evidence selection or revision [1,2]. This layered view does not depend on one specific vector store or one specific reranker. Instead, it highlights the importance of maintaining a clean object boundary between retrieval and final generation. Our system follows this principle by decoupling embedding services, index backends, reranking, and evidence aggregation, so that the chain “question generation -> dual-route retrieval -> reranking -> evidence aggregation” remains modular and extensible.
+## 3.4 Multi-Stage Retrieval and Reranking
 
-## 3.4 Structured Outputs and Workflow Orchestration
+Practical retrieval systems often separate coarse recall from expensive reranking. Qdrant engineering materials emphasize that vector stores should manage candidates and similarity search, while rerankers and downstream logic make higher-precision decisions [11,12]. Our system follows this separation by decoupling embedding services, index backends, candidate pooling, reranking, and final report attribution.
 
-Recent work on structured outputs shows that schema-bound tasks remain brittle when they rely on fully unconstrained text generation, especially with respect to field consistency, type correctness, and parseability [4,5]. At the same time, reasoning-and-acting approaches suggest that multi-step stateful workflows are often better suited than one-shot prompting for coordinating tool calls, external retrieval, and intermediate object management [6]. This perspective aligns closely with our system design, because review extraction, question generation, evidence aggregation, and report generation all need outputs that are parseable, persistent, and reusable by downstream stages.
+## 3.5 Structured Output and Workflow Orchestration
 
-## 3.5 Difference from Existing Approaches
+LLMs can be brittle in structured-output tasks, especially when outputs must satisfy stable field and type constraints [4,5]. ReAct-style reasoning and acting also suggests that multi-step stateful workflows are preferable to one-shot prompting for complex tool-mediated tasks [6]. Our system uses structured schemas for review extraction, question generation, report generation, caching, and evaluation, and uses LangGraph to orchestrate the single-product workflow.
 
-This work does not propose a new universal multimodal retrieval algorithm, nor does it aim to replace all intermediate stages with a single model. Instead, it contributes a task-specific system design for product VOC analysis: preserving multimodal product evidence, converting user reviews into structured aspects, rewriting those aspects into evidence-seeking questions, and using evidence-constrained generation to produce auditable product insights. In this sense, the paper is less about maximizing one benchmark score and more about designing a coherent, reproducible, and extensible analysis pipeline.
+## 3.6 Positioning
+
+This paper does not propose a new general-purpose embedding model or reranker. Its contribution is a system-level framework for product VOC analysis that combines review aspects, question planning, multimodal retrieval, structured reporting, and claim-level attribution into a reproducible evidence workflow.

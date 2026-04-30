@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Debian) (preloaded format=xelatex 2026.1.24)  26 APR 2026 21:06
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Debian) (preloaded format=xelatex 2026.1.24)  30 APR 2026 15:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -919,29 +919,99 @@ LaTeX Font Info:    Font shape `TU/NotoSansMono(0)/m/n' will be
  [1
 
 ]
+Underfull \hbox (badness 1067) in paragraph at lines 66--67
+[]\TU/DejaVuSerif(0)/m/n/10 Keywords: multimodal RAG; voice of customer; aspect
+-level review modeling; evidence-
+ []
+
 LaTeX Font Info:    Font shape `TU/DejaVuSerif(0)/m/n' will be
 (Font)              scaled to size 11.95729pt on input line 72.
 LaTeX Font Info:    Font shape `TU/DejaVuSerif(0)/b/n' will be
 (Font)              scaled to size 11.95729pt on input line 72.
- [2]
 LaTeX Font Info:    Font shape `TU/DejaVuSerif(0)/b/n' will be
 (Font)              scaled to size 9.96442pt on input line 87.
- [3] [4]
-[5] [6] [7] [8] [9] [10]
-LaTeX Font Info:    Font shape `TU/DroidSansFallback(0)/m/n' will be
-(Font)              scaled to size 8.81866pt on input line 294.
-
-Overfull \hbox (79.6642pt too wide) in paragraph at lines 302--302
-[]\TU/NotoSansMono(0)/m/n/10.95 .venv/bin/python 04_scripts/validate_multimodal
-_runtime.py --category backpack --product-id backpack_010[] 
+[2] [3] [4]
+Underfull \hbox (badness 1019) in paragraph at lines 171--172
+\TU/DejaVuSerif(0)/m/n/10.95 Question planning is the bridge between subjective
+ reviews and product evidence. For each
  []
 
 
+Underfull \hbox (badness 1189) in paragraph at lines 171--172
+\TU/NotoSansMono(0)/m/n/10.95 cross_modal_resolution\TU/DejaVuSerif(0)/m/n/10.9
+5 , \TU/NotoSansMono(0)/m/n/10.95 spec_check\TU/DejaVuSerif(0)/m/n/10.95 , and 
+\TU/NotoSansMono(0)/m/n/10.95 visual_detail\TU/DejaVuSerif(0)/m/n/10.95 . Each 
+generated \TU/NotoSansMono(0)/m/n/10.95 RetrievalQuestion
+ []
+
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 195--196
+\TU/DejaVuSerif(0)/m/n/10.95 Explainability is implemented through structured i
+ntermediate objects. The final
+ []
+
+[6]
+LaTeX Font Info:    Font shape `TU/DroidSansFallback(0)/m/n' will be
+(Font)              scaled to size 8.81866pt on input line 221.
+
+Overfull \hbox (275.13069pt too wide) in paragraph at lines 223--223
+[]\TU/NotoSansMono(0)/m/n/10.95 .venv/bin/python 04_scripts/run_workflow.py --c
+ategory backpack --product-id backpack_010 --output-format json --export-html -
+-write-manifest[] 
+ []
+
+[7]
+Overfull \hbox (158.90738pt too wide) in paragraph at lines 229--229
+[]\TU/NotoSansMono(0)/m/n/10.95 .venv/bin/python 04_scripts/run_workflow.py --c
+ategory backpack --product-id backpack_010 --no-llm --output-format json[] 
+ []
+
+
+Underfull \hbox (badness 3428) in paragraph at lines 251--252
+\TU/DejaVuSerif(0)/m/n/10.95 The current system forms an end-to-end workflow fr
+om raw product folders to structured
+ []
+
+
+Underfull \hbox (badness 1194) in paragraph at lines 251--252
+\TU/DejaVuSerif(0)/m/n/10.95 VOC reports. \TU/NotoSansMono(0)/m/n/10.95 run_wor
+kflow.py \TU/DejaVuSerif(0)/m/n/10.95 connects dataset overview, normalization,
+ indexing, and anal-
+ []
+
+
+Underfull \hbox (badness 2818) in paragraph at lines 251--252
+\TU/DejaVuSerif(0)/m/n/10.95 ysis. \TU/NotoSansMono(0)/m/n/10.95 validate_multi
+modal_runtime.py \TU/DejaVuSerif(0)/m/n/10.95 verifies whether the multimodal r
+untime is enabled.
+ []
+
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 292--293
+[]\TU/DejaVuSerif(0)/m/n/10.95 Each retrieval record keeps \TU/NotoSansMono(0)/
+m/n/10.95 source_aspect_id\TU/DejaVuSerif(0)/m/n/10.95 , \TU/NotoSansMono(0)/m/
+n/10.95 source_question_id\TU/DejaVuSerif(0)/m/n/10.95 , and
+ []
+
+[9] [10] [11] [12]
+Overfull \hbox (275.13069pt too wide) in paragraph at lines 429--429
+[]\TU/NotoSansMono(0)/m/n/10.95 .venv/bin/python 04_scripts/run_workflow.py --c
+ategory backpack --product-id backpack_010 --output-format json --export-html -
+-write-manifest[] 
+ []
+
+
+Overfull \hbox (158.90738pt too wide) in paragraph at lines 435--435
+[]\TU/NotoSansMono(0)/m/n/10.95 .venv/bin/python 04_scripts/run_workflow.py --c
+ategory backpack --product-id backpack_010 --no-llm --output-format json[] 
+ []
+
+[13]
 (/home/severin/Codelib/Decathlon_VOC_Analyzer/论文_md形式/脚本/outputs/中间文件_en/02_lat
 ex/Decathlon_VOC_Analyzer_Nature_Template.bbl
 LaTeX Font Info:    Font shape `TU/DejaVuSerif(0)/m/it' will be
 (Font)              scaled to size 9.09251pt on input line 13.
- [11]) [12]
+ [14]) [15]
 (/home/severin/Codelib/Decathlon_VOC_Analyzer/论文_md形式/脚本/outputs/中间文件_en/02_lat
 ex/Decathlon_VOC_Analyzer_Nature_Template.aux)
  ***********
@@ -950,16 +1020,16 @@ L3 programming layer <2022/08/05>
  ***********
 Package rerunfilecheck Info: File `Decathlon_VOC_Analyzer_Nature_Template.out' 
 has not changed.
-(rerunfilecheck)             Checksum: 19123C569EA9AB9176F478E3F305C4F6;7019.
+(rerunfilecheck)             Checksum: 0ED870F27087D9BE945DC8E4891EAAB2;9293.
  ) 
 Here is how much of TeX's memory you used:
- 15005 strings out of 476443
- 309914 string characters out of 5793962
- 1937627 words of memory out of 5000000
- 36688 multiletter control sequences out of 15000+600000
+ 15030 strings out of 476443
+ 310665 string characters out of 5793962
+ 1940627 words of memory out of 5000000
+ 36713 multiletter control sequences out of 15000+600000
  568418 words of font info for 128 fonts, out of 8000000 for 9000
  264 hyphenation exceptions out of 8191
  79i,14n,131p,1124b,654s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on /home/severin/Codelib/Decathlon_VOC_Analyzer/论文_md形式/脚本/outpu
-ts/中间文件_en/02_latex/Decathlon_VOC_Analyzer_Nature_Template.pdf (12 pages).
+ts/中间文件_en/02_latex/Decathlon_VOC_Analyzer_Nature_Template.pdf (15 pages).

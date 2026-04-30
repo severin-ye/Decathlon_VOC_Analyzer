@@ -1,52 +1,47 @@
 # 6 Results and Analysis
 
-## 6.1 Script-Level and Test-Level Results
+## 6.1 End-to-End Workflow
 
-For a system paper, the first result is not merely the final report text but the reproducibility of the full workflow. From this perspective, the primary finding is that normalization, indexing, analysis, and paper export already form an executable chain. The run_workflow.py script supports end-to-end product analysis, validate_multimodal_runtime.py checks whether the intended multimodal runtime is active, and pipeline.py produces merged drafts, LaTeX sources, and PDF outputs. This indicates that the system has progressed beyond loosely connected experiments toward a reproducible workflow.
+The current system forms an end-to-end workflow from raw product folders to structured VOC reports. `run_workflow.py` connects dataset overview, normalization, indexing, and analysis. `validate_multimodal_runtime.py` verifies whether the multimodal runtime is enabled. `export_html_report.py` exports reviewable reports, and `evaluate_manifests.py` computes metrics from run manifests.
 
-Automated testing reinforces this claim. In the current environment, the full test suite executes 157 tests, and all of them pass. This indicates that the workflow core, prompt templates, and validation assertions are synchronized in the present code state, so the system can be regarded as operationally stable.
+This shows that the implementation is not a set of isolated scripts. It is a schema- and artifact-centered analysis framework. Even in offline `--no-llm` mode, the system emits the same classes of aspects, questions, retrievals, and report objects.
 
-<a id="tab:engineering-results"></a>
+## 6.2 Test Results
 
-| Dimension | Result | Interpretation |
+The current test suite collects 166 tests and all pass. The tests cover dataset normalization, review extraction, question generation, index backends, embedding, reranking, retrieval, analysis, HTML export, manifest evaluation, runtime policies, progress tracking, workflow scripts, and multimodal runtime validation.
+
+| Validation target | Result | Interpretation |
 | --- | --- | --- |
-| End-to-end workflow | Successful | Normalization, indexing, analysis, and export can be executed from unified entry points |
-| Multimodal runtime validation | Successful | Runtime profiles expose CLIP image embeddings and Qwen-VL reranking |
-| Paper export chain | Successful | Both Chinese and English drafts can be merged and exported into PDF |
-| Automated tests | 157/157 passed | The current validation baseline is fully synchronized |
+| Automated tests | 166/166 passed | Current implementation and assertions are aligned |
+| API layer | Passed | Dataset, index, reviews, and analysis routes are tested |
+| Retrieval layer | Passed | Local indexes, backend abstraction, embeddings, rerankers, and retrieval logic are tested |
+| Generation layer | Passed | Question generation, report generation, attribution, HTML, and replay logic are tested |
+| Workflow scripts | Passed | Workflow and runtime validation scripts are tested |
 
-*Table 3. Script-level and test-level validation results.*
+## 6.3 Structured Artifacts
 
-## 6.2 Structured Nature of the Output Artifacts
+The system output is not a single natural-language summary. A complete analysis contains extraction results, question intents, questions, retrievals, retrieval quality, retrieval runtime, aggregates, report, trace, replay summary, and artifact bundle. Each retrieval record keeps source question, source aspect, expected evidence routes, and retrieved evidence identifiers.
 
-At the retrieval-infrastructure level, repeated runs can also reuse disk-cached query embeddings and rerank outputs when the backend, model, base_url, and candidate set remain unchanged. This does not alter the analytical schema, but it makes repeated validation of the same configuration cheaper and more reproducible. When gold labels are provided, the manifest evaluator can further report Recall@1/3/5, MRR, and NDCG@3/5, which gives the structured artifacts a more explicit evaluation layer.
+This structure makes reports auditable and errors localizable. If a suggestion is unreliable, one can inspect whether the issue came from sampling, extraction, question planning, retrieval, reranking, or report refinement.
 
-The second major result lies in the artifacts themselves. Both representative product outputs demonstrate that the system no longer produces only free-form summaries but complete structured records. For backpack_010, the artifact contains extraction objects, generated questions, retrievals, retrieval-quality measurements, runtime metadata, aspect aggregates, and a final report. Even under the heuristic analysis mode, the system preserves source_review_id, source_aspect, text_block_id, and image_id fields that make the full path auditable.
+## 6.4 Role of Question Planning
 
-The sunglasses_001 artifact shows a richer configuration under the LLM path. Three reviews are transformed into nine aspect objects, which are then aligned with both textual and visual evidence. Such output design provides two direct benefits: it makes the final report inherently auditable, and it supports fine-grained error localization because mistakes can be mapped to sampling, extraction, question generation, retrieval, aggregation, or reporting stages.
+Question planning is the main bridge in the method. Raw review text often contains emotion, background, and implicit assumptions. Question planning converts review aspects into verifiable evidence needs, such as whether product copy explicitly supports a claim or whether product images provide visual evidence.
 
-## 6.3 Case Study I: Sparse Negative Feedback in backpack_010
+Each retrieval record keeps `source_aspect_id`, `source_question_id`, and `expected_evidence_routes`, making retrieval analysis query-level and route-aware.
 
-The backpack_010 sample illustrates a sparse but clearly negative analysis setting. The normalization report shows 200 reviews and 5 images for this product. Under the representative run, the problem_first sampling strategy selects a single 1-star review, from which the system extracts the negative aspect portability_size. A clarification question is then generated for that aspect, textual evidence is retrieved from the model-description block, and the aggregate stage identifies portability_size as the dominant issue in the final report.
+## 6.5 Multimodal Evidence Routes
 
-The significance of this case is not its scale, but its structure. Even with limited evidence coverage, the system maintains a complete analytical chain: the negative review is explicitly sampled, the aspect is structurally extracted, the question is independently generated, supporting evidence is retrieved, and the final weaknesses and suggestions preserve supporting_evidence and confidence_breakdown fields. This demonstrates that the framework can operate not only in information-rich scenarios but also in sparse, negative, and evidence-limited settings.
+The system treats product text and images as different evidence routes. Text evidence is useful for names, categories, descriptions, specifications, and warranty-like claims. Image evidence is useful for structure, appearance, color, and local visual details. The image route includes whole images and default local regions.
 
-## 6.4 Case Study II: Multi-Aspect Positive Analysis in sunglasses_001
+The separation between coarse recall and reranking balances coverage and precision. For image candidates, multimodal reranking can directly inspect the original image or cropped region, reducing reliance on proxy text.
 
-The sunglasses_001 sample represents a different scenario: a small number of reviews, but broad positive coverage across multiple aspects and usage scenes. From 3 reviews, the system extracts 9 positive aspects, including value_for_money, durability, child_appeal, temperature suitability, comfort, price, design, overall_experience, and versatility. It then generates evidence-seeking questions for these aspects and retrieves both text-side and image-side evidence where appropriate.
+## 6.6 Evaluation Interfaces
 
-The final report identifies applicable scenes including family use with children, children’s daily wear, mild-weather wear, warm-weather or high-activity use, and sports/travel. Importantly, the artifact does not simply return an “all positive” summary. It also identifies comfort evidence gap and design trend specificity as weak-evidence zones, and generates targeted suggestions accordingly. This indicates that the method does not equate positive sentiment with sufficient evidence, but instead continues to test whether each positive claim is actually grounded in product-side evidence.
+The manifest evaluator supports both labeled and unlabeled settings. With gold retrieval labels, it computes Recall@K, MRR, and NDCG. Without labels, it still reports structured runtime statistics and claim attribution metrics such as claim support rate, claim grounded rate, citation precision, citation contradiction rate, and route contribution.
 
-## 6.5 Support for the Core Design Claim
+This design prepares the system for future benchmark experiments. Once multi-category human labels are added, the same manifest framework can compare raw review retrieval, aspect retrieval, question-driven retrieval, embedding backends, and reranking backends.
 
-Taken together, the two case studies support the main methodological claim of this paper: question-driven retrieval is more suitable than direct review retrieval for product VOC analysis. Raw review sentences are often too colloquial and noisy to serve as effective retrieval queries. Question reformulation makes the query closer to an evidence-seeking task, which improves the interpretability of retrieval and the usability of the resulting candidates.
+## 6.7 Boundary of Current Results
 
-This intermediate question layer is also crucial for error diagnosis. Because each retrieval record retains source_question_id and source_aspect, it becomes possible to ask whether a poor final result originates from unreasonable questions, weak retrieval, insufficient evidence, or downstream report construction. This property is likely to be essential for future work involving human feedback, region-level retrieval, and retrieval-specific metrics.
-
-## 6.6 Current Boundaries of the Results
-
-Despite these encouraging findings, the present results should still be interpreted as system-validation outcomes rather than final benchmark claims. First, the framework can now report Recall@1/3/5, MRR, and NDCG@3/5 when gold labels are available, but the repository still lacks a frozen multi-category benchmark, so the overall marginal benefit of dual-route retrieval and reranking has not yet been quantified rigorously. Second, the representative artifacts demonstrate capability across different types of scenarios, but they do not constitute a statistically representative evaluation set. Third, image retrieval has now entered a region-level v1 stage, yet the current regions are still fixed crops rather than fine-grained semantic grounding, which continues to limit analysis of highly localized visual properties.
-
-## 6.7 Summary
-
-At the present stage, the most important findings are threefold. First, product VOC analysis can indeed be organized as an evidence-driven multi-stage process rather than a black-box summarization task. Second, the aspect-to-question layer functions as the key structural bridge that decouples review understanding from multimodal retrieval. Third, the combination of scripts, artifacts, and tests indicates that the prototype has reached a level of maturity sufficient for a system-paper narrative, even though further work is still required before it can be framed as a large-scale benchmark study.
+The current results demonstrate workflow completeness, artifact auditability, and a stable test baseline. They should not be interpreted as a full benchmark result. The paper does not yet report statistically significant comparisons over a frozen multi-category labeled dataset.

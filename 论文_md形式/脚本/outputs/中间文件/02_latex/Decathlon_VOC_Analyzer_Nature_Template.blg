@@ -3,44 +3,44 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: Decathlon_VOC_Analyzer_Nature_Template.aux
 The style file: unsrtnat.bst
 Database file #1: ref.bib
-You've used 6 entries,
+You've used 13 entries,
             2481 wiz_defined-function locations,
-            599 strings with 6808 characters,
-and the built_in function-call counts, 4049 in all, are:
-= -- 307
-> -- 318
-< -- 5
-+ -- 112
-- -- 100
-* -- 358
-:= -- 647
-add.period$ -- 27
-call.type$ -- 6
-change.case$ -- 12
-chr.to.int$ -- 6
-cite$ -- 6
-duplicate$ -- 169
-empty$ -- 290
-format.name$ -- 106
-if$ -- 862
-int.to.chr$ -- 1
-int.to.str$ -- 7
-missing$ -- 5
-newline$ -- 46
-num.names$ -- 18
-pop$ -- 57
+            637 strings with 8510 characters,
+and the built_in function-call counts, 6436 in all, are:
+= -- 493
+> -- 451
+< -- 10
++ -- 168
+- -- 140
+* -- 523
+:= -- 1027
+add.period$ -- 51
+call.type$ -- 13
+change.case$ -- 25
+chr.to.int$ -- 11
+cite$ -- 13
+duplicate$ -- 287
+empty$ -- 518
+format.name$ -- 153
+if$ -- 1375
+int.to.chr$ -- 3
+int.to.str$ -- 14
+missing$ -- 8
+newline$ -- 84
+num.names$ -- 39
+pop$ -- 138
 preamble$ -- 1
-purify$ -- 6
+purify$ -- 13
 quote$ -- 0
-skip$ -- 132
+skip$ -- 214
 stack$ -- 0
-substring$ -- 206
-swap$ -- 65
-text.length$ -- 5
+substring$ -- 244
+swap$ -- 91
+text.length$ -- 6
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 42
+type$ -- 88
 warning$ -- 0
-while$ -- 25
+while$ -- 42
 width$ -- 0
-write$ -- 102
+write$ -- 193

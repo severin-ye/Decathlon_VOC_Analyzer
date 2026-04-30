@@ -1,57 +1,75 @@
 # Appendix
 
-## A. Main Directories and Their Roles
+## A. Key Directories
 
-| Directory | Role |
+| Directory | Responsibility |
 | --- | --- |
-| 01_data | Raw product data and Chinese audit data |
-| 02_outputs | Normalization outputs, aspect outputs, indexes, reports, feedback, replay, HTML, and manifests |
-| 03_docs | Design documents, technical notes, and citation materials |
-| 04_scripts | Workflow execution, export, and multimodal-runtime validation |
-| 05_src | Core source code |
-| 06_tests | API, service, and workflow tests |
+| `01_data/` | Raw product data and Chinese audit data |
+| `02_outputs/` | Normalized packages, aspects, indexes, reports, feedback, replay, HTML, and manifests |
+| `03_configs/` | Review sampling profiles and runtime policy configuration |
+| `04_scripts/` | Workflow, evaluation, export, validation, and cleanup scripts |
+| `05_src/` | Core source code |
+| `06_tests/` | API, service, script, and workflow tests |
+| `0_docs/03_论文子模块文档/` | Thesis module documents based on current source code |
+| `论文_md形式/` | Paper chapters, references, and export scripts |
 
-## B. Current API Endpoints
+## B. API Endpoints
 
-The current system exposes at least the following API routes:
+The main API endpoints are:
 
-- /health
-- /api/v1/dataset/overview
-- /api/v1/dataset/normalize
-- /api/v1/index/overview
-- /api/v1/index/build
-- /api/v1/reviews/extract
-- /api/v1/analysis/product
+- `/health`
+- `/api/v1/dataset/overview`
+- `/api/v1/dataset/normalize`
+- `/api/v1/index/overview`
+- `/api/v1/index/build`
+- `/api/v1/reviews/extract`
+- `/api/v1/analysis/product`
 
-## C. Reproducibility Commands
+## C. Reproduction Commands
 
-The main workflow can be executed with:
-
-```bash
-.venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010
-```
-
-The multimodal runtime can be validated with:
+End-to-end run:
 
 ```bash
-.venv/bin/python 04_scripts/validate_multimodal_runtime.py --category backpack --product-id backpack_010
+.venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010 --output-format json --export-html --write-manifest
 ```
 
-The English paper export pipeline can be executed with:
+Offline run:
+
+```bash
+.venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010 --no-llm --output-format json
+```
+
+Manifest evaluation:
+
+```bash
+.venv/bin/python 04_scripts/evaluate_manifests.py 02_outputs/7_manifests
+```
+
+Test suite:
+
+```bash
+.venv/bin/python -m pytest
+```
+
+English PDF export:
 
 ```bash
 .venv/bin/python 论文_md形式/脚本/pipeline.py --en
 ```
 
-## D. Current Scope of This Draft
+## D. Structured Artifacts
 
-This draft is suitable for:
+| Artifact | Default location | Purpose |
+| --- | --- | --- |
+| Normalized product package | `02_outputs/1_normalized/` | Input to indexing and analysis |
+| Review aspect result | `02_outputs/2_aspects/` | Input to question planning and aggregation |
+| Indexes and retrieval cache | `02_outputs/3_indexes/` | Retrieval and reranking reuse |
+| Analysis report | `02_outputs/4_reports/` | Final structured VOC output |
+| Feedback sidecar | `02_outputs/5_feedback/` | Human feedback entry point |
+| Replay sidecar | `02_outputs/5_replay/` | Replay in later runs |
+| HTML report | `02_outputs/6_html/` | Human review interface |
+| Run manifest | `02_outputs/7_manifests/` | Evaluation and reproducibility entry point |
 
-- system-design reporting
-- intermediate paper drafts
-- project review and defense materials
+## E. Scope
 
-It is not yet suitable for:
-
-- a final benchmark-oriented submission requiring large-scale quantitative evaluation
-- a camera-ready version with complete figures, human annotations, and fully standardized references
+This draft is suitable for system design explanation, methodology drafting, project defense, and future experiment planning. It is not yet a complete benchmark paper because multi-category frozen labels, formal ablations, and large-scale human evaluation are still missing.

@@ -1,45 +1,61 @@
 # 4 方法
 
-## 4.1 系统总体架构
+## 4.1 总体架构
 
-本文系统围绕单商品分析建立六层结构：数据层、召回层、评论建模层、聚合层、生成与建议层，以及可解释性与评估层。该结构的核心思想是将“评论理解”和“证据检索”拆分为两个相邻但职责清晰的阶段，而不是直接使用评论原句与商品证据做表层匹配。换言之，系统首先识别评论中的体验维度与判断对象，再将其转写为待验证问题，最后在商品图文证据空间中进行查询与聚合。
+Decathlon VOC Analyzer 采用分阶段的证据驱动架构。系统主链路包括：数据集与商品证据标准化、评论建模与抽样、问题规划、多模态索引与召回、重排与缓存、报告生成与证据归因、工作流编排和评估。各阶段之间通过 Pydantic schema 传递对象，而不是传递无结构文本。
 
-在工作流层面，单商品分析被组织为四个固定节点：数据概览、标准化、索引构建和综合分析。数据概览用于扫描当前数据样例并建立最小统计信息；标准化阶段将商品原始目录转为统一证据包；索引构建阶段为文本块和图片建立检索索引；综合分析阶段则在索引之上完成评论抽取、问题生成、双路召回、聚合与报告生成。这样的设计使系统既具有稳定的流程顺序，也能够在每个节点输出独立 artifact，从而支持局部调试、错误定位和人工审查。
+单商品工作流由 LangGraph 编排为四个节点：`overview`、`normalize`、`index` 和 `analyze`。`overview` 统计数据集规模与缺失文件；`normalize` 将目标商品转化为标准化证据包；`index` 为商品文本、图片和区域建立索引；`analyze` 执行评论抽取、问题生成、检索、重排、聚合、报告生成和产物落盘。该流程保证系统既可以通过 API 交互调用，也可以通过批处理脚本复现实验。
 
-## 4.2 商品证据建模与标准化
+## 4.2 商品证据标准化
 
-系统以 product_id 为中心组织商品证据包。标准化后的对象至少包含商品基础信息、商品文本块、图片列表和评论集合。文本块通常来自标题、品类、模型描述等字段，图片对象则保留 image_id、variant 和 image_path 等标识信息。与将图片预先压缩成长文本描述的流程不同，本文在索引阶段保留图片作为独立 evidence route，仅在图像向量化时引入 proxy text 作为辅助提示，以兼顾原始模态保留与当前原型系统的实现复杂度。
+数据标准化模块以 `ProductEvidencePackage` 为核心对象。系统从每个商品目录读取 `product.json`、`reviews.json` 和 `images/`，将商品标题、描述和类目转化为 `TextEvidence`，将图片转化为 `ImageEvidence`，将评论转化为 `ReviewRecord`。每个证据对象都具有稳定 ID、来源字段和语言提示。
 
-在索引阶段，文本证据通过文本 embedding 建立向量表示，图像证据则通过原生图像 embedding 建立向量表示。当前验证环境下，文本 embedding 使用 text-embedding-v4，图像 embedding 使用 openai/clip-vit-base-patch32，文本 reranker 使用 gte-rerank-v2，多模态图文重排使用 qwen-vl-max-latest。若外部能力不可用，系统能够退回启发式路径或本地后端，保证端到端流程仍然可执行。
+为了为局部视觉证据预留空间，系统对有效图片生成五类默认区域：`center_focus`、`upper_focus`、`lower_focus`、`left_focus` 和 `right_focus`。这些区域由相对比例转换为像素框，并被建模为 `ImageRegion`。当前区域并不等价于语义检测结果，但它使系统能够在没有人工标注框的情况下初步支持区域裁剪、局部 embedding 和图像重排。
 
-为降低重复运行成本，stage 3 检索还会把 query embeddings 与 rerank 结果落到磁盘缓存中；缓存签名绑定后端、模型、base_url 与候选集 digest，因此相同配置可以复用结果，而不同配置不会串写。
+标准化过程还会输出数据质量信息，包括商品数量、评论数量、图片数量、缺失 `product.json` 或 `reviews.json` 的商品，以及空评论数量。标准化产物写入 `02_outputs/1_normalized/`，后续所有模块优先复用该产物。
 
-## 4.3 评论建模：从自然语言到 Aspect 对象
+## 4.3 评论建模与抽样
 
-评论建模层的任务并非直接生成最终结论，而是将评论转化为可统计、可检索、可聚合的结构化对象。本文采用的 Aspect 对象至少包含 aspect、sentiment、opinion、evidence span、usage scene 和 confidence 等字段。这样的设计使系统能够围绕具体体验维度执行频次统计、正负比例分析、场景归纳和建议生成；若仅保留整条评论文本，这些后续步骤将明显变得脆弱。
+评论建模模块将原始评论转化为 `ReviewAspect`。每个方面对象包含 `aspect`、`sentiment`、`opinion`、`evidence_span`、`usage_scene`、`confidence` 和 `extraction_mode`。系统首先清洗评论文本，过滤空评论、过短评论和低信息短评，例如 `ok`、`good`、`great` 等。
 
-在实现层面，评论抽取服务支持两条路径。第一条是 LLM 路径，使用统一提示词与结构化输出协议生成 Aspect 对象；第二条是 heuristic 路径，用于外部模型不可用时的可复现回退。为了避免评论样本过度偏向高星评价，系统同时引入了基于星级配额的抽样机制，支持 problem_first、balanced 和 praise_first 三种 profile。该设计的目的不在于提出新的抽样算法，而在于使评论输入更加可控，并使抽样计划本身成为可解释 artifact 的一部分。
+当设置 `max_reviews` 时，系统启用星级抽样。默认 profile 为 `problem_first`，其目标比例为 1 星 30%、2 星 25%、3 星 20%、4 星 15%、5 星 10%。如果某个星级样本不足，系统按配置的 fallback 顺序补位，并将目标数量、可用数量、实际选择数量、短缺数量和补位数量写入 `ReviewSamplingPlan`。
 
-## 4.4 问题生成：把主观评论改写为检索任务
+方面抽取支持 LLM 和 heuristic 两条路径。LLM 路径使用 Qwen 网关和结构化输出 schema；heuristic 路径使用关键词、评分和负向提示词识别容量、便携性、可用性、耐用性、价值价格、材料硬度等方面。抽取后，系统按评论 ID、方面、情感和证据片段去重，并将结果写入 `02_outputs/2_aspects/`。
 
-问题生成是本文方法区别于评论直召回的重要步骤。评论原句往往高度口语化，同时混合情绪、背景、结论和使用场景，若直接作为检索 query，通常会产生噪声较高的候选。因此，系统先将每个 Aspect 转写为一组待澄清问题，例如某一体验是否得到商品文案明确支持、商品图片中是否出现对应结构，或者某一负面评价更接近真实缺陷还是预期偏差。
+## 4.4 问题规划
 
-在当前原型中，问题生成服务允许为每个 Aspect 生成多个问题。问题对象至少包含 source_review_id、source_aspect、question、rationale 和 expected_evidence_routes。该步骤本质上是将“主观评论”转换为“证据搜索任务”，也是后续检索质量评估、误差诊断和改进建议解释性的关键接口。
+问题规划模块是本文方法的关键桥接层。系统不直接用评论方面或评论原句检索商品证据，而是先为每个 `ReviewAspect` 规划若干 `QuestionIntent`，再生成 `RetrievalQuestion`。默认意图包括：`explicit_support`、`visual_confirmation`、`cross_modal_resolution`、`spec_check` 和 `visual_detail`。
 
-## 4.5 双路召回与精排
+每个问题都包含来源评论、来源方面、自然语言问题、生成理由、期望证据路线和置信度。`expected_evidence_routes` 明确指定检索应使用 `text`、`image` 或二者结合。该字段使后续召回具备 route-aware 能力，也使报告归因能够区分文本支持、图像支持和混合支持。
 
-检索层对每个问题同时执行文本路和图像路召回。文本路面向商品标题、模型描述和其他文本块；图像路面向产品主图、细节图和变体图。两路候选在 product_id 维度被统一到同一商品证据空间中，并结合 reranker 得分形成最终 evidence bundle。实现上，embedding 服务与索引后端相互解耦：前者负责文本与图像向量化，后者负责索引保存、加载和搜索。这样一来，上层分析逻辑无需感知底层存储是本地持久化索引还是 Qdrant。
+问题生成同样支持 LLM 和 heuristic 两条路径。LLM 路径将方面、观点、证据片段、使用场景、情感、意图类型、禁止概念和具体性边界输入提示词；heuristic 路径使用固定模板生成可检索问题。问题缓存签名绑定 prompt variant、prompt digest、方面 digest、问题数量、模型和 API 配置，避免提示词变化后误用旧问题。
 
-两阶段检索在这里至关重要。embedding 粗召回有助于保持候选覆盖，但会引入噪声；reranker 精排则使用更高成本的模型对小规模候选进行重排，以压缩误召回。虽然当前验证仍主要基于整图级对象，尚未进入区域级视觉检索阶段，但该接口设计已经为后续从 page-level 走向 region-level 的扩展保留了空间。
+## 4.5 多模态索引与召回
 
-当评测侧提供 gold labels 时，ManifestEvaluationService 还能进一步输出 Recall@1/3/5、MRR 与 NDCG@3/5，用于补充系统验证结果。
+索引模块将商品证据转化为 `IndexedEvidence`。文本证据 route 为 `text`，图像整图和区域 route 为 `image`。文本 embedding 可使用 `text-embedding-v4` API 或本地 Qwen3 embedding；图像 embedding 默认使用 `openai/clip-vit-base-patch32`。当外部能力不可用且运行策略允许降级时，系统可退回 hash embedding 或代理文本 embedding。
 
-## 4.6 聚合、报告与 replay 机制
+索引后端通过 `IndexBackend` 抽象统一管理。`LocalIndexBackend` 将索引快照写入本地 JSON 文件，并在搜索时计算 query 向量与 evidence 向量的相似度；`QdrantIndexBackend` 为文本和图像分别创建 collection，并用 `product_id`、`category_slug` 和 `route` 过滤候选。
 
-召回结果不会被原样交给大模型直接总结，而是先被聚合为 AspectAggregate 对象，统计每个 aspect 的出现频次、正负比例、代表评论和场景分布。随后，系统基于这些聚合对象生成 strengths、weaknesses、controversies、applicable scenes、supporting evidence 与 suggestions。若 LLM 可用，报告生成进入结构化 LLM 路径；若不可用，则退回启发式报告构造。两条路径在输出协议上保持一致，因此下游 artifact 与 API 不需要区分具体模式。
+召回过程针对每个问题执行。系统首先按 route 进行 embedding 粗召回，并使用过采样保留较宽候选集合；随后按语言和 route 构建均衡候选池，避免单一语言或单一路线垄断候选；最后交给 reranker 精排，并通过 route coverage 规则选择最终证据。
 
-本文还引入 replay sidecar 机制，用于在新的分析轮次中读取上一轮的 replay payload，并将持续存在的问题、已解决的问题及回放摘要并入当前报告、trace 与 manifest。该机制使系统不仅能够给出单次分析结论，也能够支持多轮实验或人工审查后的连续性跟踪，从而增强过程可复现性和问题闭环能力。
+## 4.6 重排、缓存与运行策略
 
-## 4.7 产物优先的可解释性设计
+重排模块将文本候选和图像候选分开处理。文本候选支持本地 Qwen3 reranker、DashScope `gte-rerank-v2` API 和启发式排序；图像候选支持本地 Qwen3-VL、多模态 Qwen-VL API、文本 reranker 退路和启发式排序。
 
-本文系统并不将所有中间状态隐藏在内存中，而是将其按阶段写入标准化产物目录。标准化结果、Aspect 结果、索引、最终报告、feedback、replay、HTML 页面和 manifest 均具有固定位置；分析报告内部还保留 extraction、questions、retrievals、retrieval quality、retrieval runtime、aggregates、report、trace 和 warnings 等结构对象。这种“artifact-first”的设计使系统可解释性不再停留于概念层，而是落实为可直接审查的 JSON、Markdown 和 HTML 文件。
+在多模态图像重排中，系统会读取商品图片，若候选为区域证据则按 `region_box` 裁剪，然后压缩为 JPEG data URL 输入 Qwen-VL，并要求模型返回严格 JSON 评分。这使图像候选的最终排序能够基于真实视觉内容，而不是只依赖图片路径或代理文本。
+
+系统将 query embedding 和 rerank 结果写入磁盘缓存。缓存签名绑定 route、query、backend、model、base URL 和候选 digest，因此相同配置可以复用结果，不同模型或候选集不会串写。运行策略由 `RuntimeExecutionPolicy` 控制：开发时可允许降级，正式实验时可禁止静默降级，满血模式下还会检查 Qdrant、本地 embedding、本地 reranker 和本地多模态 reranker 等前置条件。
+
+## 4.7 报告生成、归因与回放
+
+报告生成模块首先对方面进行聚合，形成每个 aspect 的情感分布、代表评论、证据片段和平均置信度。随后系统基于方面聚合和检索结果生成结构化报告，字段包括 strengths、weaknesses、controversies、evidence gaps、applicable scenes 和 suggestions。LLM 可用时进入结构化生成路径；不可用时使用 heuristic 路径构造同 schema 报告。
+
+报告生成后，`ReportRefinementService` 会对洞察和建议去重，依据支持证据类型重新校准 owner 与 evidence level，并修正“声称有图像支持但实际未检索到图像证据”等不一致表述。随后系统构建 `claim_attributions`，将报告主张映射到评论、商品文本、商品图片或区域证据，并标记 supported、partial、unsupported 或 contradicted。
+
+系统还支持 feedback/replay 侧边车。若存在上一轮反馈或回放产物，新分析可以读取这些上下文，将持续存在的问题、已修正问题和回放摘要并入报告与 trace。最终产物包括 analysis JSON、feedback sidecar、replay sidecar、HTML 报告和 run manifest。
+
+## 4.8 Schema 与可解释性
+
+本文系统的可解释性来自结构化中间表示。`schemas/` 目录定义了数据、评论、索引、分析、问题缓存和检索缓存对象。最终 `ProductAnalysisResponse` 同时包含 extraction、question intents、questions、retrievals、retrieval quality、retrieval runtime、aggregates、report、trace、replay summary、artifact bundle 和 warnings。
+
+这种设计使错误定位可以分解到具体阶段。如果最终建议不合理，可以检查评论抽样是否偏置、方面抽取是否错误、问题是否过宽、召回是否缺证据、reranker 是否误排，或报告后处理是否校准不足。与黑盒摘要相比，这种对象化链路更适合人工审查、消融实验和后续模型迭代。

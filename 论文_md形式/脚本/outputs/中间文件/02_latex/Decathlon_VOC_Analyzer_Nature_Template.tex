@@ -57,182 +57,395 @@
 % Abstract
 % =========================
 \begin{abstract}
-用户之声分析是电商智能运营中的基础任务，但单纯依赖评论文本往往只能得到宽泛的情感归纳，难以解释结论是否得到商品文案或商品图像的支持。另一方面，直接将商品图文与评论整体交给大语言模型生成总结，虽然能够快速产出自然语言结论，却常常缺乏稳定的证据链和可审查性。针对这一问题，本文提出 Decathlon VOC Analyzer，一种面向商品分析场景的证据驱动多模态 VOC 分析框架。该框架以商品为中心构建标准化证据包，在评论侧执行 Aspect 级结构化建模，并通过``Aspect 到问题''的中间层将主观评论改写为可检索的证据搜索任务，再对商品文本与商品图像执行双路召回与精排，最终生成带有支持证据和改进建议的结构化分析结果。
+电商商品的用户之声（Voice of Customer, VOC）分析需要同时理解用户评论中的主观体验和商品页面中的客观证据。仅依赖评论文本的情感或方面分析，难以判断用户观点是否被商品文案、规格或图像支持；直接把评论和商品图文整体交给大语言模型生成总结，又容易产生缺乏证据链的黑盒结论。针对这一问题，本文提出 Decathlon VOC Analyzer，一个面向商品图文证据与用户评论对齐的证据驱动多模态 VOC 分析系统。
 
-本文当前版本聚焦于方法设计与系统组织本身，而不在正文中纳入尚未完成的正式实验部分。文章重点说明三件事：其一，如何以商品为中心组织可追溯的图文证据包；其二，如何将评论中的 Aspect 转写为证据检索任务；其三，如何通过图文双路召回、聚合与证据约束生成把评论理解与商品本体证据显式对齐。由此，本文更接近一篇系统方法论文的第一版骨架，而不是一篇已经完成大规模评测的实验论文。
+系统将原始商品目录标准化为包含商品文本、商品图片、图片局部区域和评论记录的证据包；在评论侧执行低信息过滤、星级抽样、方面级结构化抽取和去重；再将每个评论方面规划为具有明确检索意图和模态路线的问题；随后在商品文本和商品图像索引中执行两阶段召回与重排；最终生成包含优势、缺点、争议、证据缺口、改进建议和 claim 级证据归因的结构化报告。系统同时提供 FastAPI 接口、LangGraph 单产品工作流、运行策略、检索缓存、feedback/replay 侧边车、HTML 导出和 manifest 评估模块。
 
-本文的主要贡献在于：提出面向商品 VOC 的问题驱动多模态分析框架；实现一个可复现、可持续扩展的研究原型与中英文统一导出链路；并将后续实验、人工评测与误差分析所需的论文结构预先固定下来，为下一阶段补充正式结果提供稳定基线。
+本文的主要贡献包括：第一，提出一种``评论方面建模---问题规划---多模态证据检索---证据约束生成''的商品 VOC 分析框架；第二，实现一套以结构化 schema 和 artifact 为中心的可复现系统，使评论、问题、证据、报告和评估指标均可追踪；第三，给出面向系统验证的实验协议，当前代码基线下 166 项自动化测试全部通过，并支持 Recall@K、MRR、NDCG、claim support rate 和 citation precision 等指标。本文定位为系统方法论文，重点论证系统架构、实现机制和可复现实验接口，而不声称已经完成覆盖多品类的大规模人工标注 benchmark。
 
-关键词：多模态 RAG；用户之声分析；Aspect 抽取；证据约束生成；商品评论分析
+关键词：多模态 RAG；用户之声分析；方面级评论建模；证据约束生成；商品评论分析；证据归因
 \end{abstract}
 
 % =========================
 % Introduction
 % =========================
 \section{引言}
-用户评论分析长期是电商智能分析的重要基础任务，但现有方法通常在两类范式之间摇摆。一类方法聚焦于情感分类或 Aspect-Based Sentiment Analysis，能够归纳评论中的正负倾向和若干属性极性，却难以判断这些结论是否获得商品本体证据的支持。另一类方法将商品文案、商品图像与评论整体输入大语言模型，直接生成商品总结或推荐意见。这类方法能够快速产出可读文本，但往往缺少明确的证据来源，使系统难以回答某一结论究竟来自评论、规格还是图片，也不利于人工审查和误差定位。对于需要稳定输出商品优点、缺点、适用场景、争议点和改进建议的实际分析任务而言，这两种范式都存在明显不足。
+用户评论分析是电商智能运营中的基础任务。传统方法通常围绕情感分类、主题聚类或方面级情感分析展开，能够概括用户对商品属性的正负态度，却较少回答一个更关键的问题：这些评论观点是否能够被商品本体证据解释、支持或反驳。对于商品运营和产品改进而言，单纯知道``用户抱怨容量小''并不足够，分析者还需要知道商品页面是否明确描述了尺寸、图片是否展示了空间结构、该问题是商品缺陷还是用户预期偏差。
 
-本文研究的核心问题是：如何在电商商品场景中，将评论中的主观体验与商品图文中的客观证据显式对齐，并进一步生成可追溯、可验证且可审查的 VOC 洞察结果。我们认为，商品侧天然构成多模态证据空间，而评论侧更适合先进入结构化文本建模；真正困难的部分不在于让模型生成一段总结，而在于建立一条可以把评论需求转写为证据检索任务的分析链。因此，本文提出的 Decathlon VOC Analyzer 并不采用一步式黑盒总结，而是将系统拆解为标准化、Aspect 抽取、问题生成、图文双路召回、聚合统计、报告生成与 replay 复用等多个阶段，并在各阶段之间维持统一的结构化协议。
+大语言模型为商品评论总结提供了新的可能，但一步式总结同样存在明显风险。如果系统直接将商品文案、图片描述和评论整体输入模型，模型可能生成流畅但难以审查的结论。使用者很难判断某条建议来自哪些评论、哪些商品文本或哪张图片，也难以定位错误发生在评论理解、检索、证据解释还是最终生成阶段。因此，商品 VOC 分析不应被简化为黑盒摘要任务，而应被建模为一条从评论需求到商品证据、再到结构化报告的可追踪链路。
 
-与侧重最终分类分数的传统实验论文不同，本文当前版本定位为系统型论文草稿。研究目标不是在尚未完成评测之前提前报告 benchmark 结果，而是先把一种面向商品 VOC 的方法论阐述清楚，并将其落实为稳定工作流与清晰的中间产物体系。换言之，本文首先回答``系统应如何构造''，而将``系统在多大规模上优于哪些基线''的问题留给后续正式实验部分。
+本文研究的问题是：如何在电商商品场景中，将用户评论中的主观体验显式对齐到商品文案和商品图像中的可核验证据，并生成可审查、可复现、可评估的 VOC 洞察。为此，本文提出 Decathlon VOC Analyzer。系统首先以商品为中心构建标准化证据包，保留商品文本、商品图片、图片局部区域和评论记录；随后将评论抽取为方面级对象；再通过问题规划层把每个方面转化为文本、图像或图文联合检索任务；最后通过多模态召回、重排、证据聚合和 claim 级归因生成结构化报告。
 
-本文的主要贡献可以概括为三点。第一，提出一种``评论结构化建模 + 问题驱动检索 + 证据约束生成''的商品 VOC 分析框架，将评论理解与多模态证据检索明确解耦。第二，实现一个可复现的研究原型，统一组织 API、工作流脚本、导出脚本与中间产物。第三，为后续正式实验保留一个中英文一致、引用链路规范、章节结构稳定的系统论文骨架。
+本文的贡献可以概括为三点。
 
-本文其余部分组织如下：第 2 节介绍任务背景与问题定义；第 3 节回顾相关工作；第 4 节说明系统方法；第 5 节讨论该框架的意义、适用边界与扩展方向；第 6 节总结全文；第 7 节说明当前局限。
+第一，本文提出一种面向商品 VOC 的证据驱动多模态 RAG 框架。不同于直接用评论原句检索商品证据，本文在评论方面和商品证据之间加入问题规划层，使主观表达被转化为可执行的证据查询。
+
+第二，本文实现一套 artifact-first 的系统原型。系统中的商品证据、评论方面、检索问题、召回记录、报告洞察、claim attribution、feedback、replay 和 manifest 均以结构化 schema 表示并可落盘复用。
+
+第三，本文给出可复现实验接口和评估设计。当前实现包含 API、批处理脚本、HTML 导出、manifest 评估和自动化测试；评估模块支持检索指标与生成证据支撑指标，从而同时衡量``是否找到了证据''和``生成结论是否被证据支持''。
+
+本文其余部分组织如下：第 2 节给出背景和问题定义；第 3 节讨论相关工作；第 4 节详细介绍系统方法；第 5 节说明实验设置与实现环境；第 6 节报告系统验证结果；第 7 节讨论方法意义；第 8 节总结全文；第 9 节说明局限性。
 
 % =========================
 % 背景与问题定义
 % =========================
 \section{背景与问题定义}
-\subsection{任务背景}
+\subsection{商品 VOC 分析的证据需求}
 
-面向商品的 VOC 分析并不等价于通用评论摘要。真实业务中，分析者通常关心一组稳定且可消费的输出，例如商品优点、缺点、用户关注点、适用场景、争议点，以及能够回指到商品证据和评论证据的改进建议。这样的输出天然要求系统同时处理两类信息源：一类是评论中显式表达的体验、偏好与不满；另一类是商品图像、规格与文案中可被检索和引用的客观证据。
+面向商品的 VOC 分析与通用评论摘要不同。商品分析通常需要输出稳定的洞察对象，包括商品优势、主要缺点、争议点、适用场景、证据缺口和改进建议。每个洞察都应尽可能回指到两类证据：一类是用户评论中的原始表达，另一类是商品页面中的文本、图片或局部视觉结构。
 
-如果系统仅处理评论文本，它可以得到``背包太小''``镜片容易滑落''这类主观判断，但无法回答这些判断是否能够从商品文案、尺寸描述或商品图片中获得支持或冲突证据。如果系统仅围绕商品图文做问答检索，则又难以将口语化、冗长且经常混杂情绪与背景叙事的评论稳定地转写为分析对象。因此，本任务的关键不是简单做文本聚类，也不是把多模态输入直接交给一个问答模型，而是建立一条能够显式对齐主观评论和客观商品证据的分析链路。
+如果系统只处理评论，它只能回答``用户怎么说''；如果系统只处理商品页面，它又无法知道``用户真正关心什么''。因此，商品 VOC 分析的关键在于把评论侧的主观需求和商品侧的客观证据连接起来。本文将这一连接建模为方面驱动的证据检索问题，而不是直接生成总结。
 
-\subsection{问题定义}
+\subsection{输入与输出}
 
-给定一个商品的原始数据包 \(P\)，其中包含商品基础信息、商品文本块、商品图片和评论集合，系统目标是输出一个结构化分析结果 \(R\)。其中，评论集合中的每条评论需要被拆解为多个方面级对象，商品图文证据需要支持后续检索，最终报告需要同时满足以下约束：
-
-\[
-R = f(P_{text}, P_{image}, C_{reviews})
-\]
-
-但这里的 \(f\) 不是单步生成函数，而是一条分阶段流程：
+给定一个商品数据包 \(P\)，其包含商品文本 \(P_{text}\)、商品图像 \(P_{image}\) 和评论集合 \(C_{reviews}\)。系统目标是输出结构化报告 \(R\)，其中包括报告主张、支持证据、证据缺口和改进建议。该过程可表示为：
 
 \[
-C_{reviews} \rightarrow A_{aspects} \rightarrow Q_{questions} \rightarrow E_{retrieval} \rightarrow G_{aggregates} \rightarrow R
+R = F(P_{text}, P_{image}, C_{reviews})
 \]
 
-其中，\(A_{aspects}\) 表示方面级评论对象，\(Q_{questions}\) 表示由 Aspect 生成的待澄清问题，\(E_{retrieval}\) 表示从商品图文中召回的证据，\(G_{aggregates}\) 表示聚合后的商品体验统计。
+但本文中的 \(F\) 不是单步生成函数，而是一条分阶段链路：
+
+\[
+C_{reviews} \rightarrow A_{aspects} \rightarrow I_{intents} \rightarrow Q_{questions} \rightarrow E_{retrieval} \rightarrow G_{aggregates} \rightarrow R_{attributed}
+\]
+
+其中，\(A_{aspects}\) 表示评论方面对象，\(I_{intents}\) 表示问题意图，\(Q_{questions}\) 表示可执行检索问题，\(E_{retrieval}\) 表示商品图文证据，\(G_{aggregates}\) 表示方面聚合统计，\(R_{attributed}\) 表示带证据归因的最终报告。
 
 \subsection{设计约束}
 
-本文方法建立在四项系统约束之上。
+本文系统建立在五项约束之上。
 
-第一，商品侧证据应尽量保留原始模态，而不是在系统入口处将所有图像信息预先压缩为纯文本摘要。第二，评论侧应尽快进入结构化建模，使后续统计、检索与建议生成可以围绕稳定字段展开。第三，检索的查询对象不直接使用评论原句，而是先转写为待验证问题。第四，系统必须保留可导出的中间结果和最终结果，以支持复现、人工审核与误差分析。
+第一，商品证据必须对象化。商品标题、描述、类目、图片、图片区域和评论不能只作为拼接文本输入模型，而应拥有稳定 ID 和来源字段。
 
-\subsection{与纯问答系统的区别}
+第二，评论侧必须先结构化。系统需要把评论拆解为 aspect、sentiment、opinion、evidence span、usage scene 和 confidence，才能支持后续统计与检索。
 
-本项目虽然使用了多模态检索、向量索引、结构化输出与 LLM，但其目标不是回答一个开放问题，而是形成一套商品画像。因此，它与通用 RAG 问答系统至少存在三点差异。
+第三，检索查询必须问题化。评论原句往往口语化且噪声高，直接检索容易产生宽泛候选；问题规划能够将其转化为可核验的证据需求。
 
-第一，输出对象不是单条答案，而是成组洞察，包括 strengths、weaknesses、controversies、applicable scenes 和 suggestions。第二，检索锚点来自评论方面对象生成的问题，而不是用户即时提出的自然语言查询。第三，系统更加重视过程产物的可追溯性，这一点体现在标准化证据包、检索记录、confidence breakdown、replay sidecar 和 manifest 等工程对象上。
+第四，文本证据与图像证据应分 route 管理。商品文案和商品图片支持不同类型的判断，系统需要保留 route 信息用于召回、重排和归因。
+
+第五，最终报告必须可追踪。报告中的主张应能映射到评论 ID、文本块 ID、图片 ID 或区域 ID；证据不足时应输出 evidence gap，而不是强行确认结论。
+
+\subsection{与通用 RAG 问答的差异}
+
+通用 RAG 系统通常以用户提出的问题为查询入口，目标是生成单个答案。本文任务的查询入口来自评论方面，目标不是单一回答，而是商品 VOC 画像。系统需要同时处理多个方面、多个问题、多个证据路线和多个报告字段，并保留完整过程 trace。因此，本文更接近一个面向商品分析的证据编排系统，而不是一个普通问答系统。
 
 % =========================
 % 相关工作
 % =========================
 \section{相关工作}
-\subsection{评论分析与 Aspect 建模}
+\subsection{检索增强生成与证据约束}
 
-传统评论分析研究多聚焦于情感分类、方面级情感分析和主题聚类。这些方法适合回答``评论总体偏正向还是负向''以及``用户集中讨论了哪些属性''，但通常难以把评论结论与商品本体证据显式对齐。对于电商商品分析而言，Aspect 建模仍然重要，因为它能把冗长评论转化为 aspect、sentiment、opinion、evidence span 与 usage scene 等稳定对象；但如果缺少后续证据检索，系统仍会停留在``评论怎么说''的层面，而无法回答``商品证据是否支持或解释这些评价''。
+检索增强生成（Retrieval-Augmented Generation, RAG）将外部检索与参数化生成分离，使生成模型能够基于显式证据回答知识密集问题 \citep{lewis2020retrievalAugmentedGeneration}。后续研究进一步表明，检索不仅可以作为生成前的上下文补充，也可以用于生成后的校正与修订，例如 RARR 通过外部搜索和修订降低模型输出中的不实陈述 \citep{gao2023rarr}。这些工作为本文提供了基本方法论：商品 VOC 报告不应完全依赖模型内部知识，而应围绕可检索商品证据生成。
 
-\subsection{多模态 RAG 与跨模态检索}
+本文与通用 RAG 的不同在于，检索查询不是用户即时问题，而是由评论方面规划得到的证据问题；检索对象也不是百科段落，而是商品文本、商品图片和图片区域。最终目标不是单条答案，而是带 claim 级证据归因的结构化商品分析报告。
 
-检索增强生成的经典工作表明，将参数化生成与外部证据检索显式分离，是提升可追溯性与知识密集任务表现的一条有效路径 \citep{lewis2020retrievalAugmentedGeneration}。进一步的检索校正研究也说明，外部证据不仅可用于回答问题，还可用于约束和修订模型生成内容 \citep{gao2023rarr}。在视觉侧，CLIP 式图文对齐模型证明了统一语义空间能够支持大规模图文检索，这为将商品图片视为一等证据对象提供了直接技术基础 \citep{radford2021clip}。这些研究共同支撑了本文``商品侧保留图文双路检索''的设计判断。
+\subsection{多模态检索与视觉证据}
 
-不过，现有多模态 RAG 工作更多面向文档问答、知识问答或开放领域助手，查询通常来自用户问题，而不是来自评论中抽象出的需求与抱怨。相比之下，本项目把多模态检索放入商品 VOC 分析链路中，检索目标不是回答任何开放问题，而是为商品优缺点、争议点与建议生成补充支持或澄清证据。
+CLIP 证明了图像和文本可以通过自然语言监督映射到共享语义空间，从而支持跨模态检索 \citep{radford2021clip}。这一思想为商品图片作为一等证据对象提供了基础。多模态 RAG 的工程实践也强调，真实业务数据通常由文本、图像、表格和结构化字段共同构成，系统需要同时处理模态表示、跨模态检索和上下文融合 \citep{nvidia2024multimodalRagIntro,nvidia2024aiReadyKnowledgeSystems}。
 
-\subsection{两阶段检索与向量库工程}
+视觉文档检索和原始模态召回研究进一步指出，图像不应过早被压缩为纯文本。ColPali 等方法将文档页面作为视觉对象进行检索，并通过多向量表示和 late interaction 提升细粒度匹配能力 \citep{faysse2024colpali}。本文没有直接实现 ColPali 式多向量检索，但吸收了保留原始视觉证据和向区域级证据扩展的思想，在商品图片层面同时建模整图和默认局部区域。
 
-从方法论上看，RAG 及其后续工作普遍采用由候选召回到高精度筛选的粗到细范式 \citep{lewis2020retrievalAugmentedGeneration,gao2023rarr}。这一思想并不要求系统必须绑定某一种向量库或某一个 reranker，而强调检索阶段与最终生成阶段之间需要存在清晰的对象边界。本文延续这一层次化设计，将 embedding 服务、索引后端、重排序与证据聚合显式解耦，使``问题生成 -\textgreater{} 图文双路召回 -\textgreater{} 精排 -\textgreater{} 证据聚合''成为可替换、可扩展的中间链路，而不是被压缩进一次性提示词中。
+\subsection{评论分析与方面建模}
+
+方面级情感分析通常将评论拆解为属性、观点和情感极性，适合发现用户集中关注的商品特征 \citep{pontiki2014semevalAspect}。对于商品 VOC 分析而言，方面建模仍是必要入口，因为评论经常包含多种体验、场景和情绪。如果系统不先进行方面级建模，后续检索和报告生成就只能依赖冗长评论原文。
+
+本文与传统方面级情感分析的差异在于，方面不是最终结果，而是证据检索的起点。每个方面都会被转化为一个或多个带检索路线的问题，并进一步连接商品文本和商品图像证据。
+
+\subsection{两阶段检索、向量库与重排}
+
+实际检索系统常采用粗召回和精排分离的多阶段架构。粗召回负责覆盖候选，精排负责在小候选集上使用更高成本模型提高排序质量。Qdrant 的多阶段检索实践和 multi-vector search 课程均强调，在复杂检索任务中，向量库应作为候选管理基础设施，而不应替代后续 reranker 和业务判断 \citep{qdrant2024pdfRetrievalAtScale,qdrant2024multiVectorCourse}。
+
+本文采用这一思想，将 embedding、索引后端、候选池构建和 reranker 解耦。文本候选和图像候选分别处理，最终在报告层统一归因。
 
 \subsection{结构化输出与工作流编排}
 
-近期关于结构化输出的研究指出，面向 schema 的任务若仍依赖完全自由生成，往往会在字段一致性、类型约束与可解析性上暴露明显脆弱性 \citep{liu2024structuredOutputBenchmark,geng2023grammarConstrainedDecoding}。与此同时，显式的 reasoning-and-acting 路线进一步表明，多步状态化工作流通常比单轮提示更适合组织工具调用、外部检索与中间对象管理 \citep{yao2023react}。这与本文的系统设计高度一致，因为评论抽取、问题生成、证据聚合与报告生成都要求输出可解析、可落盘并可供后续阶段继续消费。
+LLM 在结构化输出任务中可能出现字段缺失、类型错误和格式漂移，因此需要 schema 约束、JSON mode 或语法约束等机制提高稳定性 \citep{liu2024structuredOutputBenchmark,geng2023grammarConstrainedDecoding}。ReAct 等工作则强调推理和行动之间的显式交替，说明复杂任务更适合拆为多步过程而非单轮提示 \citep{yao2023react}。
 
-\subsection{本项目与现有工作的差异}
+本文系统沿用这一方向：评论抽取、问题生成、报告生成均以结构化 schema 为边界；端到端流程则由 LangGraph 状态机组织为概览、标准化、索引和分析等节点。
 
-综合来看，当前项目并不试图提出一种新的通用多模态检索算法，也不试图用单一模型端到端取代全部中间层。它的定位更接近一个面向商品 VOC 任务的系统化整合方案：保留多模态证据，利用 Aspect 级评论建模把主观体验转成可验证对象，再以问题驱动检索和证据约束生成把评论总结、图文支持和改进建议串成一个统一闭环。正是在这个意义上，本文更关注``系统层设计是否合理、是否可复现、是否支持人审与误差分析''，而非仅仅关注某个单点模型分数。
+\subsection{本文定位}
+
+本文不提出新的通用 embedding 模型或 reranker 算法，而是提出一个面向商品 VOC 的系统化整合框架。其核心创新在于把评论方面、问题规划、多模态证据检索、结构化报告和 claim 级归因组织为一个可复现闭环，使商品分析从黑盒总结转向可审查的证据工作流。
 
 % =========================
 % 方法
 % =========================
 \section{方法}
-\subsection{系统总体架构}
+\subsection{总体架构}
 
-本文系统围绕单商品分析建立六层结构：数据层、召回层、评论建模层、聚合层、生成与建议层，以及可解释性与评估层。该结构的核心思想是将``评论理解''和``证据检索''拆分为两个相邻但职责清晰的阶段，而不是直接使用评论原句与商品证据做表层匹配。换言之，系统首先识别评论中的体验维度与判断对象，再将其转写为待验证问题，最后在商品图文证据空间中进行查询与聚合。
+Decathlon VOC Analyzer 采用分阶段的证据驱动架构。系统主链路包括：数据集与商品证据标准化、评论建模与抽样、问题规划、多模态索引与召回、重排与缓存、报告生成与证据归因、工作流编排和评估。各阶段之间通过 Pydantic schema 传递对象，而不是传递无结构文本。
 
-在工作流层面，单商品分析被组织为四个固定节点：数据概览、标准化、索引构建和综合分析。数据概览用于扫描当前数据样例并建立最小统计信息；标准化阶段将商品原始目录转为统一证据包；索引构建阶段为文本块和图片建立检索索引；综合分析阶段则在索引之上完成评论抽取、问题生成、双路召回、聚合与报告生成。这样的设计使系统既具有稳定的流程顺序，也能够在每个节点输出独立 artifact，从而支持局部调试、错误定位和人工审查。
+单商品工作流由 LangGraph 编排为四个节点：\texttt{overview}、\texttt{normalize}、\texttt{index} 和 \texttt{analyze}。\texttt{overview} 统计数据集规模与缺失文件；\texttt{normalize} 将目标商品转化为标准化证据包；\texttt{index} 为商品文本、图片和区域建立索引；\texttt{analyze} 执行评论抽取、问题生成、检索、重排、聚合、报告生成和产物落盘。该流程保证系统既可以通过 API 交互调用，也可以通过批处理脚本复现实验。
 
-\subsection{商品证据建模与标准化}
+\subsection{商品证据标准化}
 
-系统以 product\_id 为中心组织商品证据包。标准化后的对象至少包含商品基础信息、商品文本块、图片列表和评论集合。文本块通常来自标题、品类、模型描述等字段，图片对象则保留 image\_id、variant 和 image\_path 等标识信息。与将图片预先压缩成长文本描述的流程不同，本文在索引阶段保留图片作为独立 evidence route，仅在图像向量化时引入 proxy text 作为辅助提示，以兼顾原始模态保留与当前原型系统的实现复杂度。
+数据标准化模块以 \texttt{ProductEvidencePackage} 为核心对象。系统从每个商品目录读取 \texttt{product.json}、\texttt{reviews.json} 和 \texttt{images/}，将商品标题、描述和类目转化为 \texttt{TextEvidence}，将图片转化为 \texttt{ImageEvidence}，将评论转化为 \texttt{ReviewRecord}。每个证据对象都具有稳定 ID、来源字段和语言提示。
 
-在索引阶段，文本证据通过文本 embedding 建立向量表示，图像证据则通过原生图像 embedding 建立向量表示。当前验证环境下，文本 embedding 使用 text-embedding-v4，图像 embedding 使用 openai/clip-vit-base-patch32，文本 reranker 使用 gte-rerank-v2，多模态图文重排使用 qwen-vl-max-latest。若外部能力不可用，系统能够退回启发式路径或本地后端，保证端到端流程仍然可执行。
+为了为局部视觉证据预留空间，系统对有效图片生成五类默认区域：\texttt{center\_focus}、\texttt{upper\_focus}、\texttt{lower\_focus}、\texttt{left\_focus} 和 \texttt{right\_focus}。这些区域由相对比例转换为像素框，并被建模为 \texttt{ImageRegion}。当前区域并不等价于语义检测结果，但它使系统能够在没有人工标注框的情况下初步支持区域裁剪、局部 embedding 和图像重排。
 
-\subsection{评论建模：从自然语言到 Aspect 对象}
+标准化过程还会输出数据质量信息，包括商品数量、评论数量、图片数量、缺失 \texttt{product.json} 或 \texttt{reviews.json} 的商品，以及空评论数量。标准化产物写入 \texttt{02\_outputs/1\_normalized/}，后续所有模块优先复用该产物。
 
-评论建模层的任务并非直接生成最终结论，而是将评论转化为可统计、可检索、可聚合的结构化对象。本文采用的 Aspect 对象至少包含 aspect、sentiment、opinion、evidence span、usage scene 和 confidence 等字段。这样的设计使系统能够围绕具体体验维度执行频次统计、正负比例分析、场景归纳和建议生成；若仅保留整条评论文本，这些后续步骤将明显变得脆弱。
+\subsection{评论建模与抽样}
 
-在实现层面，评论抽取服务支持两条路径。第一条是 LLM 路径，使用统一提示词与结构化输出协议生成 Aspect 对象；第二条是 heuristic 路径，用于外部模型不可用时的可复现回退。为了避免评论样本过度偏向高星评价，系统同时引入了基于星级配额的抽样机制，支持 problem\_first、balanced 和 praise\_first 三种 profile。该设计的目的不在于提出新的抽样算法，而在于使评论输入更加可控，并使抽样计划本身成为可解释 artifact 的一部分。
+评论建模模块将原始评论转化为 \texttt{ReviewAspect}。每个方面对象包含 \texttt{aspect}、\texttt{sentiment}、\texttt{opinion}、\texttt{evidence\_span}、\texttt{usage\_scene}、\texttt{confidence} 和 \texttt{extraction\_mode}。系统首先清洗评论文本，过滤空评论、过短评论和低信息短评，例如 \texttt{ok}、\texttt{good}、\texttt{great} 等。
 
-\subsection{问题生成：把主观评论改写为检索任务}
+当设置 \texttt{max\_reviews} 时，系统启用星级抽样。默认 profile 为 \texttt{problem\_first}，其目标比例为 1 星 30\%、2 星 25\%、3 星 20\%、4 星 15\%、5 星 10\%。如果某个星级样本不足，系统按配置的 fallback 顺序补位，并将目标数量、可用数量、实际选择数量、短缺数量和补位数量写入 \texttt{ReviewSamplingPlan}。
 
-问题生成是本文方法区别于评论直召回的重要步骤。评论原句往往高度口语化，同时混合情绪、背景、结论和使用场景，若直接作为检索 query，通常会产生噪声较高的候选。因此，系统先将每个 Aspect 转写为一组待澄清问题，例如某一体验是否得到商品文案明确支持、商品图片中是否出现对应结构，或者某一负面评价更接近真实缺陷还是预期偏差。
+方面抽取支持 LLM 和 heuristic 两条路径。LLM 路径使用 Qwen 网关和结构化输出 schema；heuristic 路径使用关键词、评分和负向提示词识别容量、便携性、可用性、耐用性、价值价格、材料硬度等方面。抽取后，系统按评论 ID、方面、情感和证据片段去重，并将结果写入 \texttt{02\_outputs/2\_aspects/}。
 
-在当前原型中，问题生成服务允许为每个 Aspect 生成多个问题。问题对象至少包含 source\_review\_id、source\_aspect、question、rationale 和 expected\_evidence\_routes。该步骤本质上是将``主观评论''转换为``证据搜索任务''，也是后续检索质量评估、误差诊断和改进建议解释性的关键接口。
+\subsection{问题规划}
 
-\subsection{双路召回与精排}
+问题规划模块是本文方法的关键桥接层。系统不直接用评论方面或评论原句检索商品证据，而是先为每个 \texttt{ReviewAspect} 规划若干 \texttt{QuestionIntent}，再生成 \texttt{RetrievalQuestion}。默认意图包括：\texttt{explicit\_support}、\texttt{visual\_confirmation}、\texttt{cross\_modal\_resolution}、\texttt{spec\_check} 和 \texttt{visual\_detail}。
 
-检索层对每个问题同时执行文本路和图像路召回。文本路面向商品标题、模型描述和其他文本块；图像路面向产品主图、细节图和变体图。两路候选在 product\_id 维度被统一到同一商品证据空间中，并结合 reranker 得分形成最终 evidence bundle。实现上，embedding 服务与索引后端相互解耦：前者负责文本与图像向量化，后者负责索引保存、加载和搜索。这样一来，上层分析逻辑无需感知底层存储是本地持久化索引还是 Qdrant。
+每个问题都包含来源评论、来源方面、自然语言问题、生成理由、期望证据路线和置信度。\texttt{expected\_evidence\_routes} 明确指定检索应使用 \texttt{text}、\texttt{image} 或二者结合。该字段使后续召回具备 route-aware 能力，也使报告归因能够区分文本支持、图像支持和混合支持。
 
-两阶段检索在这里至关重要。embedding 粗召回有助于保持候选覆盖，但会引入噪声；reranker 精排则使用更高成本的模型对小规模候选进行重排，以压缩误召回。虽然当前验证仍主要基于整图级对象，尚未进入区域级视觉检索阶段，但该接口设计已经为后续从 page-level 走向 region-level 的扩展保留了空间。
+问题生成同样支持 LLM 和 heuristic 两条路径。LLM 路径将方面、观点、证据片段、使用场景、情感、意图类型、禁止概念和具体性边界输入提示词；heuristic 路径使用固定模板生成可检索问题。问题缓存签名绑定 prompt variant、prompt digest、方面 digest、问题数量、模型和 API 配置，避免提示词变化后误用旧问题。
 
-\subsection{聚合、报告与 replay 机制}
+\subsection{多模态索引与召回}
 
-召回结果不会被原样交给大模型直接总结，而是先被聚合为 AspectAggregate 对象，统计每个 aspect 的出现频次、正负比例、代表评论和场景分布。随后，系统基于这些聚合对象生成 strengths、weaknesses、controversies、applicable scenes、supporting evidence 与 suggestions。若 LLM 可用，报告生成进入结构化 LLM 路径；若不可用，则退回启发式报告构造。两条路径在输出协议上保持一致，因此下游 artifact 与 API 不需要区分具体模式。
+索引模块将商品证据转化为 \texttt{IndexedEvidence}。文本证据 route 为 \texttt{text}，图像整图和区域 route 为 \texttt{image}。文本 embedding 可使用 \texttt{text-embedding-v4} API 或本地 Qwen3 embedding；图像 embedding 默认使用 \texttt{openai/clip-vit-base-patch32}。当外部能力不可用且运行策略允许降级时，系统可退回 hash embedding 或代理文本 embedding。
 
-本文还引入 replay sidecar 机制，用于在新的分析轮次中读取上一轮的 replay payload，并将持续存在的问题、已解决的问题及回放摘要并入当前报告、trace 与 manifest。该机制使系统不仅能够给出单次分析结论，也能够支持多轮实验或人工审查后的连续性跟踪，从而增强过程可复现性和问题闭环能力。
+索引后端通过 \texttt{IndexBackend} 抽象统一管理。\texttt{LocalIndexBackend} 将索引快照写入本地 JSON 文件，并在搜索时计算 query 向量与 evidence 向量的相似度；\texttt{QdrantIndexBackend} 为文本和图像分别创建 collection，并用 \texttt{product\_id}、\texttt{category\_slug} 和 \texttt{route} 过滤候选。
 
-\subsection{产物优先的可解释性设计}
+召回过程针对每个问题执行。系统首先按 route 进行 embedding 粗召回，并使用过采样保留较宽候选集合；随后按语言和 route 构建均衡候选池，避免单一语言或单一路线垄断候选；最后交给 reranker 精排，并通过 route coverage 规则选择最终证据。
 
-本文系统并不将所有中间状态隐藏在内存中，而是将其按阶段写入标准化产物目录。标准化结果、Aspect 结果、索引、最终报告、feedback、replay、HTML 页面和 manifest 均具有固定位置；分析报告内部还保留 extraction、questions、retrievals、retrieval quality、retrieval runtime、aggregates、report、trace 和 warnings 等结构对象。这种``artifact-first''的设计使系统可解释性不再停留于概念层，而是落实为可直接审查的 JSON、Markdown 和 HTML 文件。
+\subsection{重排、缓存与运行策略}
+
+重排模块将文本候选和图像候选分开处理。文本候选支持本地 Qwen3 reranker、DashScope \texttt{gte-rerank-v2} API 和启发式排序；图像候选支持本地 Qwen3-VL、多模态 Qwen-VL API、文本 reranker 退路和启发式排序。
+
+在多模态图像重排中，系统会读取商品图片，若候选为区域证据则按 \texttt{region\_box} 裁剪，然后压缩为 JPEG data URL 输入 Qwen-VL，并要求模型返回严格 JSON 评分。这使图像候选的最终排序能够基于真实视觉内容，而不是只依赖图片路径或代理文本。
+
+系统将 query embedding 和 rerank 结果写入磁盘缓存。缓存签名绑定 route、query、backend、model、base URL 和候选 digest，因此相同配置可以复用结果，不同模型或候选集不会串写。运行策略由 \texttt{RuntimeExecutionPolicy} 控制：开发时可允许降级，正式实验时可禁止静默降级，满血模式下还会检查 Qdrant、本地 embedding、本地 reranker 和本地多模态 reranker 等前置条件。
+
+\subsection{报告生成、归因与回放}
+
+报告生成模块首先对方面进行聚合，形成每个 aspect 的情感分布、代表评论、证据片段和平均置信度。随后系统基于方面聚合和检索结果生成结构化报告，字段包括 strengths、weaknesses、controversies、evidence gaps、applicable scenes 和 suggestions。LLM 可用时进入结构化生成路径；不可用时使用 heuristic 路径构造同 schema 报告。
+
+报告生成后，\texttt{ReportRefinementService} 会对洞察和建议去重，依据支持证据类型重新校准 owner 与 evidence level，并修正``声称有图像支持但实际未检索到图像证据''等不一致表述。随后系统构建 \texttt{claim\_attributions}，将报告主张映射到评论、商品文本、商品图片或区域证据，并标记 supported、partial、unsupported 或 contradicted。
+
+系统还支持 feedback/replay 侧边车。若存在上一轮反馈或回放产物，新分析可以读取这些上下文，将持续存在的问题、已修正问题和回放摘要并入报告与 trace。最终产物包括 analysis JSON、feedback sidecar、replay sidecar、HTML 报告和 run manifest。
+
+\subsection{Schema 与可解释性}
+
+本文系统的可解释性来自结构化中间表示。\texttt{schemas/} 目录定义了数据、评论、索引、分析、问题缓存和检索缓存对象。最终 \texttt{ProductAnalysisResponse} 同时包含 extraction、question intents、questions、retrievals、retrieval quality、retrieval runtime、aggregates、report、trace、replay summary、artifact bundle 和 warnings。
+
+这种设计使错误定位可以分解到具体阶段。如果最终建议不合理，可以检查评论抽样是否偏置、方面抽取是否错误、问题是否过宽、召回是否缺证据、reranker 是否误排，或报告后处理是否校准不足。与黑盒摘要相比，这种对象化链路更适合人工审查、消融实验和后续模型迭代。
+
+% =========================
+% 实验设置
+% =========================
+\section{实验设置}
+\subsection{实验目标}
+
+本文实验定位为系统验证，而非完整 benchmark。实验目标包括四点：验证端到端工作流是否可运行；验证各阶段产物是否结构化且可审查；验证真实模型链路与降级链路是否能够通过运行策略区分；验证评估模块是否能够在有标注和无标注条件下输出可用指标。
+
+\subsection{运行环境与软件栈}
+
+项目基于 Python 3.11+，当前验证环境为 Python 3.12。核心依赖包括 FastAPI、Pydantic、Pydantic Settings、LangChain、LangGraph、OpenAI SDK、Qdrant Client、Transformers、Torch、Pillow、orjson 和 pytest。
+
+API 入口由 FastAPI 提供，批处理入口由 \texttt{04\_scripts/run\_workflow.py} 提供，单商品工作流由 LangGraph 编排。LLM 调用通过 OpenAI 兼容 Qwen 网关完成；检索层支持本地 JSON 索引和 Qdrant 索引；图像 embedding 默认使用 CLIP；图像候选重排默认可使用 Qwen-VL。
+
+\subsection{数据与产物}
+
+原始商品数据位于 \texttt{01\_data/01\_raw\_products/products/}，人工审核用中文数据可导出到 \texttt{01\_data/02\_audit\_zh\_products/products/}。系统产物按阶段写入 \texttt{02\_outputs/}：标准化证据包写入 \texttt{1\_normalized/}，评论方面写入 \texttt{2\_aspects/}，索引与缓存写入 \texttt{3\_indexes/}，分析报告写入 \texttt{4\_reports/}，feedback 和 replay 写入 \texttt{5\_feedback/} 与 \texttt{5\_replay/}，HTML 报告写入 \texttt{6\_html/}，运行 manifest 写入 \texttt{7\_manifests/}。
+
+本文不把当前数据样例描述为冻结公开 benchmark。当前数据用于验证系统链路、schema 产物和评估接口；后续若要比较不同检索策略，需要补充多品类人工标注集。
+
+\subsection{工作流协议}
+
+标准单商品协议如下：
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  扫描数据集并生成概览。
+\item
+  标准化目标商品证据包。
+\item
+  为目标商品构建文本和图像索引。
+\item
+  抽样并抽取评论方面。
+\item
+  将方面规划为检索问题。
+\item
+  对文本和图像 route 执行粗召回。
+\item
+  对候选证据进行文本或多模态重排。
+\item
+  聚合方面统计并生成报告。
+\item
+  构建 claim attribution、trace、feedback/replay 和 manifest。
+\item
+  可选导出 HTML 报告。
+\end{enumerate}
+
+核心命令如下：
+
+\begin{verbatim}
+.venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010 --output-format json --export-html --write-manifest
+\end{verbatim}
+
+离线验证可关闭 LLM：
+
+\begin{verbatim}
+.venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010 --no-llm --output-format json
+\end{verbatim}
+
+真实多模态运行态验证可使用：
+
+\begin{verbatim}
+.venv/bin/python 04_scripts/validate_multimodal_runtime.py --category backpack --product-id backpack_010
+\end{verbatim}
+
+\subsection{评估指标}
+
+当 manifest 或 analysis artifact 包含 \texttt{retrieval\_relevance} 标注时，评估模块计算 Recall@1、Recall@3、Recall@5、MRR、NDCG@3 和 NDCG@5。这些指标是信息检索评估中的常用排序与召回指标 \citep{manning2008introductionIr}。相关证据可以是 \texttt{region\_id}、\texttt{text\_block\_id}、\texttt{image\_id} 或 \texttt{evidence\_id}。
+
+在没有人工 gold labels 时，系统仍统计运行质量指标，包括 informative review 数、aspect 数、question 数、平均置信度、retrieval evidence 数量、evidence coverage、score drift、conflict risk、claim support rate、claim grounded rate、citation precision、citation contradiction rate，以及 text、image、mixed 的 route contribution。
+
+\subsection{自动化测试}
+
+自动化测试覆盖 API、数据集服务、评论服务、问题生成、索引后端、embedding 与 reranker、检索服务、分析服务、HTML 导出、manifest 评估、运行策略、运行进度、工作流脚本和多模态验证脚本。当前代码基线下执行：
+
+\begin{verbatim}
+.venv/bin/python -m pytest
+\end{verbatim}
+
+结果为 166 项测试全部通过。该结果说明当前源码、提示词注册、schema、工作流脚本和评估服务在工程层面保持一致。
+
+% =========================
+% 结果与分析
+% =========================
+\section{结果与分析}
+\subsection{端到端闭环结果}
+
+当前系统已经形成从原始商品目录到结构化 VOC 报告的端到端闭环。\texttt{run\_workflow.py} 能够将数据概览、标准化、索引构建和分析串联为单商品流程；\texttt{validate\_multimodal\_runtime.py} 能够检查运行时是否启用真实多模态链路；\texttt{export\_html\_report.py} 能够将分析产物导出为可审查页面；\texttt{evaluate\_manifests.py} 能够读取 run manifest 并计算评估指标。
+
+这表明系统已经不再是若干独立脚本，而是一个以服务层、schema 和 artifact 为共同边界的分析框架。即使在 \texttt{-\/-no-llm} 离线模式下，系统仍能输出同构的方面、问题、检索和报告对象，从而支持调试和回归测试。
+
+\subsection{测试结果}
+
+在当前代码基线下，完整测试套件共收集 166 项测试，全部通过。测试覆盖范围包括数据集扫描与标准化、评论抽取、问题生成、索引后端、embedding 和 reranker、检索服务、分析服务、HTML 导出、manifest 评估、运行策略、运行进度、工作流脚本和多模态运行态验证。
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
+\caption{当前代码基线下的系统验证结果。}\tabularnewline
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+验证对象
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+结果
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+说明
+\end{minipage} \\
+\midrule\noalign{}
+\endfirsthead
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+验证对象
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+结果
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+说明
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+自动化测试 & 166/166 通过 & 当前实现与测试断言一致 \\
+API 层 & 通过 & dataset、index、reviews、analysis 路由可测 \\
+检索层 & 通过 & 本地索引、Qdrant 抽象、embedding、reranker 和召回逻辑可测 \\
+生成层 & 通过 & 问题生成、报告生成、归因、HTML 和 replay 相关逻辑可测 \\
+工作流脚本 & 通过 & run workflow、interactive workflow 和 runtime validation 可测 \\
+\end{longtable}
+
+\subsection{结构化产物分析}
+
+系统输出不是单段自然语言，而是一组可追踪对象。一次完整分析通常包含 extraction、question intents、questions、retrievals、retrieval quality、retrieval runtime、aggregates、report、trace、replay summary 和 artifact bundle。每个 retrieval 记录保留来源问题、来源方面、期望 evidence routes 和召回证据；每个召回证据保留文本块 ID、图片 ID、区域 ID、来源 section、语言、embedding score 和 rerank score。
+
+这种结构带来两个结果。第一，报告可审查。strengths、weaknesses、controversies 和 suggestions 可以追踪到评论证据和商品证据。第二，错误可定位。若某条建议不可靠，开发者可以检查是评论抽取错误、问题规划过宽、检索候选缺失、reranker 排序错误，还是报告后处理校准不足。
+
+\subsection{问题规划层的作用}
+
+本文方法的核心主张是问题规划优于直接用评论原句检索。评论原句通常包含情绪表达、背景叙事和隐含假设，直接检索容易把商品证据空间拉宽。问题规划层将评论方面拆成多个可核验意图，例如商品文案是否直接支持、商品图片是否提供视觉证据、图文证据是否共同说明真实问题或预期偏差。
+
+该机制使检索记录天然带有解释性。每个 retrieval 都可以回到 \texttt{source\_aspect\_id} 和 \texttt{source\_question\_id}，并且 \texttt{expected\_evidence\_routes} 指明该问题为什么需要文本证据、图像证据或二者结合。因此，问题规划不仅提升召回可控性，也为后续评估提供了 query-level 单元。
+
+\subsection{多模态证据路线分析}
+
+系统将文本证据和图像证据作为不同 route 处理。文本证据适合验证商品名称、类目、描述、规格或保修相关主张；图像证据适合验证结构、外观、颜色、局部细节和展示方式。图像 route 同时包含整图和默认局部区域，使系统能够在不依赖人工标注框的情况下进行初步区域级证据检索。
+
+粗召回和重排的分离使系统能够兼顾覆盖和精度。Embedding 阶段负责扩大候选，reranker 阶段负责在候选中选择更相关证据。对于图像候选，多模态 reranker 可以直接观察原图或区域裁剪，从而减少仅靠代理文本判断图像相关性的风险。
+
+\subsection{评估接口结果}
+
+\texttt{ManifestEvaluationService} 已经支持两类评估。若运行产物包含人工检索标签，系统能够计算 Recall@K、MRR 和 NDCG；若没有人工标签，系统仍能计算结构化运行统计和 claim attribution 指标。后者包括 claim support rate、claim grounded rate、citation precision、citation contradiction rate 和 route contribution。
+
+这一设计使当前系统具备从系统验证过渡到正式 benchmark 的接口。未来只需补充覆盖多品类、多问题和多证据类型的人工标签，即可在现有 manifest 评估框架中比较评论直召回、问题驱动召回、不同 embedding 后端和不同 reranker 后端。
+
+\subsection{当前结果边界}
+
+当前结果证明系统主链可运行、产物可审查、测试基线稳定，但仍不能等同于完整 benchmark 结论。本文尚未报告多品类冻结测试集上的统计显著性结果，也尚未系统比较不同检索策略的边际收益。因此，本节结果应被理解为系统方法验证，而不是最终性能评测。
 
 % =========================
 % 讨论
 % =========================
 \section{讨论}
-\subsection{为什么当前路线适合商品 VOC 场景}
+\subsection{为什么问题驱动检索适合商品 VOC}
 
-本文方法的价值并不在于某个单独模块，而在于将商品图文、评论结构和最终报告纳入同一证据闭环。对于商品 VOC 场景，这一路线具有天然适配性。商品信息本身就是多模态的，而评论又高度口语化且经常混杂主观表达、使用场景和总结性判断。若直接从评论生成最终结论，系统往往缺乏真实性约束；若仅围绕商品图文做检索，则又缺少用户真实关注点的锚定。本文采用 Aspect 作为评论抽象层，再用问题生成将其转写为检索任务，恰好在二者之间建立了可解释接口。
+商品 VOC 分析的难点不只是总结评论，而是解释评论中的体验是否能被商品证据支持。问题驱动检索在评论和商品之间增加了一个中间语义层：评论方面描述用户关注点，检索问题描述需要商品证据回答的判断。这使系统既不会脱离用户真实反馈，也不会让生成模型绕过商品证据直接给出结论。
 
-\subsection{当前实现最值得保留的工程经验}
+这一设计尤其适合电商场景。商品页面天然包含多模态证据，评论又天然包含主观性和噪声。将二者直接拼接给模型会牺牲可控性，而将评论方面转写为证据问题，则可以把主观反馈拆解为可检索、可评估、可归因的操作单元。
 
-从当前阶段的实现可以提炼出三条工程经验。第一，方法层与实现层应保持同构关系，即数据层、评论建模层、检索层和生成层在代码结构中有清晰映射，这会显著降低系统论文写作和后续扩展的摩擦。第二，产物优先而非日志优先。标准化结果、Aspect 结果、索引、报告、feedback、replay 与 manifest 的固定落盘，使研究过程具备天然的可回溯性。第三，真实能力与回退能力并存。LLM 与 heuristic、local 与 qdrant 的双路径设计，使系统既能走真实链路，也能在测试和调试环境中保持稳定复现。
+\subsection{Artifact-first 的工程价值}
 
-\subsection{与纯大模型总结路线的对比}
+本文系统强调 artifact-first。标准化证据包、方面抽取结果、问题缓存、检索缓存、分析报告、feedback、replay、HTML 和 manifest 都有固定结构和输出路径。这种设计的价值在于，研究者可以复查任一阶段，而不是只能阅读最终报告。
 
-若将商品图文和评论整体拼接后直接交由模型输出总结，短期内确实可以更快得到``看起来合理''的文本。然而，这一路线至少存在三类问题：其一，难以区分结论究竟来自评论还是商品证据；其二，难以对错误做局部定位和修复；其三，难以积累可复用的中间对象，用于后续训练和人工审核。相比之下，本文采用分阶段设计，虽然增加了实现复杂度，却换来了对象清晰、链路可控和结果可解释的优势。这种取舍更符合研究导向系统的长期价值。
+Artifact-first 也降低了论文实验成本。后续若要比较不同问题生成策略，可以复用标准化产物；若要比较不同 reranker，可以复用评论方面和问题；若要做人审，可以直接基于 HTML 和 manifest 组织标注。
+
+\subsection{与一步式大模型总结的对比}
+
+一步式大模型总结实现简单，但通常难以回答三个问题：某个结论来自哪条评论，是否被商品文本支持，是否被商品图片支持。本文方法通过结构化 schema 和 claim attribution 将这三个问题显式化。系统复杂度确实更高，但换来了可解释性、可复现性和可评估性。
+
+对于研究型系统而言，这种取舍是必要的。商品 VOC 报告不仅要``看起来合理''，还要能够被运营人员、产品人员或研究人员追问证据来源。若无法追踪证据，报告很难进入实际决策流程。
 
 \subsection{对后续研究的启示}
 
-本文当前阶段给出的一个重要启示是，电商多模态分析未必应直接从``多模态生成''切入，更值得优先研究的是``评论需求如何转写为证据检索任务''。在这一框架下，许多后续能力都能自然接入，例如更强的区域级图像证据召回、更细粒度的人群分层分析、更严格的检索评测指标、人工反馈驱动的 replay 优化，以及与 HTML 审查界面联动的半自动校订流程。
+当前实现说明，商品多模态分析的核心不一定是更大的生成模型，而是更好的证据组织和查询规划。后续研究可以沿四个方向扩展：第一，引入检测或分割模型，将固定 crop 区域升级为语义区域；第二，构建多品类人工标注集，系统评估 Recall@K、MRR 和 NDCG；第三，比较评论直召回、方面召回和问题驱动召回；第四，将 feedback/replay 与人工审查界面结合，形成持续修正机制。
 
-\subsection{论文层面的意义}
+\subsection{论文写作层面的意义}
 
-从论文写作角度看，当前阶段更重要的是先把问题定义、系统路线和方法边界阐述清楚，而不是在正式实验尚未完成时提前堆叠结果段落。这样做的价值在于，后续无论补充更大规模样本、引入更强视觉检索，还是加入人工评测，都可以在这一系统论文骨架上直接扩展，而无需重新改写研究问题与方法主线。
+本文当前版本已经可以作为系统方法论文的主体。它明确了问题定义、系统架构、模块实现、评估接口和局限性。后续若补充更大规模实验，可直接在现有章节中加入定量对照，而不需要重写方法主线。
 
 % =========================
 % 结论
 % =========================
 \section{结论}
-本文提出并整理了 Decathlon VOC Analyzer 的系统型论文初稿。本文研究的核心主张是：面向商品场景的多模态 VOC 分析，不应被简化为一步式大模型总结，而更适合采用``评论结构化建模 + 问题驱动检索 + 证据约束生成''的分层方案。在该框架下，标准化、Aspect 抽取、问题生成、双路召回、聚合与报告生成被组织为统一闭环，从而使最终结果具备更强的可解释性、可调试性与可复现性。
+本文提出 Decathlon VOC Analyzer，一个面向商品图文证据与用户评论对齐的证据驱动多模态 VOC 分析系统。系统将原始商品数据标准化为可追踪证据包，将用户评论抽取为方面级 VOC 对象，再通过问题规划、多模态召回、重排、报告生成和 claim 级归因生成结构化商品分析结果。
 
-当前版本的重点不在于报告正式实验结果，而在于给出一条自洽的系统方法主线，并把后续实验所需的章节结构、引用链路与中英文导出流程预先固定下来。后续工作将集中在完成正式实验设计、补充标准检索指标、引入更严格的人类评测，以及推进更细粒度的视觉证据对齐。
+本文的核心结论是：商品 VOC 分析不应被简化为一步式评论摘要，而应被组织为``评论方面建模---证据问题规划---商品图文检索---证据约束生成''的多阶段流程。当前实现已经提供 API、批处理工作流、结构化产物、检索缓存、feedback/replay、HTML 导出、manifest 评估和自动化测试。测试结果显示当前代码基线下 166 项测试全部通过，说明系统主链和关键模块在工程层面保持一致。
+
+未来工作将重点补充多品类人工标注 benchmark，系统比较不同检索和重排策略，引入更细粒度视觉 grounding，并将人工反馈与 replay 机制进一步闭环。
 
 % =========================
 % 局限性
 % =========================
 \section{局限性}
-本文需要明确区分``已经被验证的系统事实''和``尚未完成的正式评测''。第一项局限在于实验规模。本文目前主要依赖代表性样例、脚本验证和自动化测试，而尚未形成覆盖大规模商品集合的冻结 benchmark 与人工标注评测，因此不能据此对全部商品类别的统计表现做外推。
+第一，本文当前结果仍属于系统验证，而非完整 benchmark。虽然系统已经支持 manifest 评估和自动化测试，但尚未构建覆盖多品类、多商品和多证据类型的冻结人工标注集。因此，本文不能声称系统在总体性能上优于所有基线。
 
-第二项局限在于检索评估仍未闭合。当前系统已经在 manifest evaluator 中支持在有标注条件下输出 Recall@1/3/5、MRR、NDCG@3/5，但仓库里仍缺少覆盖多品类的冻结标注集，也缺少对``评论直召回''和``问题驱动召回''的统一离线对照。现阶段结果更能说明该路线在系统层面是合理且可运行的，而不是已经充分量化了各检索策略的总体收益。
+第二，检索策略尚未完成系统消融。当前实现已经具备文本 route、图像 route、问题驱动检索、reranker 和缓存机制，但仍需要在统一数据集上比较评论直召回、方面直召回、问题驱动召回、不同 embedding 后端和不同 reranker 后端。
 
-第三项局限在于视觉证据粒度仍然偏粗。当前主链已经支持区域级图像证据 v1，并使用固定 crop 区域参与索引、召回与 rerank；但它仍属于规则化局部区域，而不是检测或分割驱动的细粒度视觉 grounding。对于鞋底、镜片、缝线、背负系统等强局部结构依赖的商品属性分析，这仍会限制系统解释细节问题的能力。
+第三，视觉证据粒度仍有限。当前系统支持整图和固定比例区域 crop，但这些区域不是由语义检测、分割或 grounding 模型产生。对于鞋底结构、缝线、镜片光学细节等强局部属性，固定区域可能不足以提供精确解释。
 
-第四项局限在于系统验证与论文基线之间仍存在少量未同步之处。当前自动化测试中唯一失败的断言来自提示词语言切换后的测试基线不一致，这提示我们在推进多语言支持和论文写作链路的同时，还需要进一步清理和统一工程验证标准。
+第四，LLM 输出仍依赖提示词与 schema 约束。尽管系统提供结构化输出、后处理校准和 heuristic 兜底，但在复杂评论或跨语言场景下，方面抽取和报告生成仍可能出现误解、遗漏或过度概括。
 
-第五项局限在于论文元信息与参考文献仍需进一步打磨。若面向正式投稿，仍需补充更系统的相关工作综述、统一引文格式，并完善标题页中的作者、单位和邮箱信息。
+第五，反馈闭环仍处于工程接口阶段。feedback/replay sidecar 已经存在，但尚未完成大规模人工审查流程，也未量化 replay 对后续报告质量的提升。
+
+第六，参考文献和实验报告仍需面向正式投稿进一步扩展。本文当前更强调系统方法和实现事实，后续投稿版本应补充更系统的相关工作比较、正式图表、人工标注协议和统计显著性分析。
 
 % =========================
 % 致谢
@@ -244,7 +457,7 @@ C_{reviews} \rightarrow A_{aspects} \rightarrow Q_{questions} \rightarrow E_{ret
 % 附录
 % =========================
 \section{附录}
-\subsection{A. 关键目录与对应职责}
+\subsection{A. 关键目录与职责}
 
 \begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}
@@ -259,81 +472,106 @@ C_{reviews} \rightarrow A_{aspects} \rightarrow Q_{questions} \rightarrow E_{ret
 \endhead
 \bottomrule\noalign{}
 \endlastfoot
-01\_data & 原始商品数据与中文审查数据 \\
-02\_outputs & 标准化结果、Aspect 结果、索引、报告、feedback、replay、HTML 与 manifest \\
-03\_docs & 设计文档、技术文档与引用材料 \\
-04\_scripts & 运行工作流、导出结果、验证多模态运行时 \\
-05\_src & 核心源码实现 \\
-06\_tests & API、服务与工作流测试 \\
+\texttt{01\_data/} & 原始商品数据与中文审核数据 \\
+\texttt{02\_outputs/} & 标准化结果、方面结果、索引、报告、feedback、replay、HTML 与 manifest \\
+\texttt{03\_configs/} & 评论抽样 profile 与运行策略配置 \\
+\texttt{04\_scripts/} & 工作流、评估、导出、验证和清理脚本 \\
+\texttt{05\_src/} & 核心源码实现 \\
+\texttt{06\_tests/} & API、服务、脚本和工作流测试 \\
+\texttt{0\_docs/03\_论文子模块文档/} & 基于当前源码整理的论文模块文档 \\
+\texttt{论文\_md形式/} & 论文分章稿、参考文献和导出脚本 \\
 \end{longtable}
 
-\subsection{B. 当前 API 入口}
+\subsection{B. API 入口}
 
-系统当前至少包含以下 API 路由：
+系统当前包含以下主要 API：
 
 \begin{itemize}
 \tightlist
 \item
-  /health
+  \texttt{/health}
 \item
-  /api/v1/dataset/overview
+  \texttt{/api/v1/dataset/overview}
 \item
-  /api/v1/dataset/normalize
+  \texttt{/api/v1/dataset/normalize}
 \item
-  /api/v1/index/overview
+  \texttt{/api/v1/index/overview}
 \item
-  /api/v1/index/build
+  \texttt{/api/v1/index/build}
 \item
-  /api/v1/reviews/extract
+  \texttt{/api/v1/reviews/extract}
 \item
-  /api/v1/analysis/product
+  \texttt{/api/v1/analysis/product}
 \end{itemize}
 
-这些接口分别覆盖数据集概览、标准化、索引构建、评论结构化抽取和单商品综合分析。
+这些接口覆盖数据集概览、商品标准化、索引构建、评论结构化抽取和单商品综合分析。
 
-\subsection{C. 复现主链示例}
+\subsection{C. 复现命令}
 
-端到端主链可以通过以下命令触发：
+端到端运行：
 
 \begin{verbatim}
-.venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010
+.venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010 --output-format json --export-html --write-manifest
 \end{verbatim}
 
-如需验证真实多模态运行态，可使用：
+离线运行：
+
+\begin{verbatim}
+.venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010 --no-llm --output-format json
+\end{verbatim}
+
+验证多模态运行态：
 
 \begin{verbatim}
 .venv/bin/python 04_scripts/validate_multimodal_runtime.py --category backpack --product-id backpack_010
 \end{verbatim}
 
-如需在本目录合并完整论文稿，可使用：
+评估 manifest：
+
+\begin{verbatim}
+.venv/bin/python 04_scripts/evaluate_manifests.py 02_outputs/7_manifests
+\end{verbatim}
+
+运行测试：
+
+\begin{verbatim}
+.venv/bin/python -m pytest
+\end{verbatim}
+
+合并论文：
 
 \begin{verbatim}
 .venv/bin/python 论文_md形式/脚本/build_complete_paper.py
 \end{verbatim}
 
-\subsection{D. 当前论文稿适用边界}
+导出 PDF：
 
-本稿适用于：
+\begin{verbatim}
+.venv/bin/python 论文_md形式/脚本/pipeline.py
+\end{verbatim}
 
-\begin{itemize}
-\tightlist
-\item
-  系统设计说明
-\item
-  阶段性论文初稿
-\item
-  项目答辩或中期汇报底稿
-\end{itemize}
+\subsection{D. 主要结构化产物}
 
-本稿暂不适用于：
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+产物 & 默认位置 & 用途 \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+标准化商品证据包 & \texttt{02\_outputs/1\_normalized/} & 后续索引和分析输入 \\
+评论方面结果 & \texttt{02\_outputs/2\_aspects/} & 问题规划和聚合输入 \\
+索引与检索缓存 & \texttt{02\_outputs/3\_indexes/} & 召回和重排复用 \\
+分析报告 & \texttt{02\_outputs/4\_reports/} & 最终结构化 VOC 结果 \\
+feedback sidecar & \texttt{02\_outputs/5\_feedback/} & 人工反馈入口 \\
+replay sidecar & \texttt{02\_outputs/5\_replay/} & 后续分析回放 \\
+HTML 报告 & \texttt{02\_outputs/6\_html/} & 人工审查界面 \\
+run manifest & \texttt{02\_outputs/7\_manifests/} & 评估与复现实验入口 \\
+\end{longtable}
 
-\begin{itemize}
-\tightlist
-\item
-  需要大规模 benchmark 统计显著性的正式实验论文终稿
-\item
-  需要完整图表、全量人工标注与严格引文规范的投稿版本
-\end{itemize}
+\subsection{E. 当前论文稿适用边界}
+
+本稿适用于系统设计说明、方法章节草稿、项目答辩和后续实验规划。不适用于直接作为完整 benchmark 论文终稿，因为仍缺少多品类冻结标注集、正式消融实验和大规模人工评测。
 
 % =========================
 % References

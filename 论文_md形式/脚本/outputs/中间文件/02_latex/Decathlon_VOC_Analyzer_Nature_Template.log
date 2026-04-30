@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Debian) (preloaded format=xelatex 2026.1.24)  26 APR 2026 21:06
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Debian) (preloaded format=xelatex 2026.1.24)  30 APR 2026 15:51
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -932,25 +932,71 @@ LaTeX Font Info:    Font shape `TU/ARPLUMingCN(0)/m/n' will be
 
 ]
 LaTeX Font Info:    Font shape `TU/DejaVuSerif(0)/b/n' will be
-(Font)              scaled to size 9.96442pt on input line 87.
+(Font)              scaled to size 9.96442pt on input line 93.
 LaTeX Font Info:    Font shape `TU/ARPLUMingCN(0)/b/n' will be
-(Font)              scaled to size 10.69904pt on input line 87.
+(Font)              scaled to size 10.69904pt on input line 93.
  [2] [3] [4]
-[5] [6] [7] [8]
-LaTeX Font Info:    Font shape `TU/DroidSansFallback(0)/m/n' will be
-(Font)              scaled to size 8.81866pt on input line 298.
+[5] [6]
+Underfull \hbox (badness 2173) in paragraph at lines 251--252
+\TU/ARPLUMingCN(0)/m/n/10.95 原 始 商 品 数 据 位 于 \TU/NotoSansMono(0)/m/n/10.95 01_d
+ata/01_raw_products/products/\TU/ARPLUMingCN(0)/m/n/10.95 ，|  人 工 审 核 用 中 文 数 据
+ 可 导 出 到
+ []
 
-Overfull \hbox (79.6642pt too wide) in paragraph at lines 306--306
+[7]
+LaTeX Font Info:    Font shape `TU/DroidSansFallback(0)/m/n' will be
+(Font)              scaled to size 8.81866pt on input line 286.
+
+Overfull \hbox (275.13069pt too wide) in paragraph at lines 288--288
+[]\TU/NotoSansMono(0)/m/n/10.95 .venv/bin/python 04_scripts/run_workflow.py --c
+ategory backpack --product-id backpack_010 --output-format json --export-html -
+-write-manifest[] 
+ []
+
+
+Overfull \hbox (158.90738pt too wide) in paragraph at lines 294--294
+[]\TU/NotoSansMono(0)/m/n/10.95 .venv/bin/python 04_scripts/run_workflow.py --c
+ategory backpack --product-id backpack_010 --no-llm --output-format json[] 
+ []
+
+
+Overfull \hbox (79.6642pt too wide) in paragraph at lines 300--300
 []\TU/NotoSansMono(0)/m/n/10.95 .venv/bin/python 04_scripts/validate_multimodal
 _runtime.py --category backpack --product-id backpack_010[] 
  []
 
+[8] [9]
+Underfull \hbox (badness 1708) in paragraph at lines 376--377
+[]\TU/ARPLUMingCN(0)/m/n/10.95 该 机 制 使 检 索 记 录 天 然 带 有 解 释 性。|  每 个 \TU/DejaVuS
+erif(0)/m/n/10.95 retrieval \TU/ARPLUMingCN(0)/m/n/10.95 都 可 以 回 到 \TU/NotoSans
+Mono(0)/m/n/10.95 source_aspect_id \TU/ARPLUMingCN(0)/m/n/10.95 和
+ []
 
+[10] [11] [12]
+Overfull \hbox (275.13069pt too wide) in paragraph at lines 515--515
+[]\TU/NotoSansMono(0)/m/n/10.95 .venv/bin/python 04_scripts/run_workflow.py --c
+ategory backpack --product-id backpack_010 --output-format json --export-html -
+-write-manifest[] 
+ []
+
+
+Overfull \hbox (158.90738pt too wide) in paragraph at lines 521--521
+[]\TU/NotoSansMono(0)/m/n/10.95 .venv/bin/python 04_scripts/run_workflow.py --c
+ategory backpack --product-id backpack_010 --no-llm --output-format json[] 
+ []
+
+
+Overfull \hbox (79.6642pt too wide) in paragraph at lines 527--527
+[]\TU/NotoSansMono(0)/m/n/10.95 .venv/bin/python 04_scripts/validate_multimodal
+_runtime.py --category backpack --product-id backpack_010[] 
+ []
+
+[13]
 (/home/severin/Codelib/Decathlon_VOC_Analyzer/论文_md形式/脚本/outputs/中间文件/02_latex/
 Decathlon_VOC_Analyzer_Nature_Template.bbl
 LaTeX Font Info:    Font shape `TU/DejaVuSerif(0)/m/it' will be
 (Font)              scaled to size 9.09251pt on input line 13.
- [9]) [10]
+ [14]) [15]
 (/home/severin/Codelib/Decathlon_VOC_Analyzer/论文_md形式/脚本/outputs/中间文件/02_latex/
 Decathlon_VOC_Analyzer_Nature_Template.aux)
  ***********
@@ -959,16 +1005,16 @@ L3 programming layer <2022/08/05>
  ***********
 Package rerunfilecheck Info: File `Decathlon_VOC_Analyzer_Nature_Template.out' 
 has not changed.
-(rerunfilecheck)             Checksum: 0760E07C13847CFA5EC5B2C2C8B8BE1A;4140.
+(rerunfilecheck)             Checksum: 09DC57CBB48ECD88B5975DE861C316E2;5795.
  ) 
 Here is how much of TeX's memory you used:
- 15177 strings out of 476443
- 320995 string characters out of 5793962
- 1955627 words of memory out of 5000000
- 36854 multiletter control sequences out of 15000+600000
+ 15240 strings out of 476443
+ 324232 string characters out of 5793962
+ 1956627 words of memory out of 5000000
+ 36917 multiletter control sequences out of 15000+600000
  568458 words of font info for 133 fonts, out of 8000000 for 9000
  264 hyphenation exceptions out of 8191
- 79i,14n,131p,1121b,654s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 79i,14n,131p,1121b,858s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on /home/severin/Codelib/Decathlon_VOC_Analyzer/论文_md形式/脚本/outpu
-ts/中间文件/02_latex/Decathlon_VOC_Analyzer_Nature_Template.pdf (10 pages).
+ts/中间文件/02_latex/Decathlon_VOC_Analyzer_Nature_Template.pdf (15 pages).

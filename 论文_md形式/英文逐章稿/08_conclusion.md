@@ -1,7 +1,7 @@
 # 8 Conclusion
 
-This paper presents a system-oriented draft of Decathlon VOC Analyzer, an evidence-driven multimodal VOC analysis framework for product understanding. The main claim of this work is that product-oriented VOC analysis should not be reduced to one-shot large-model summarization, but is better formulated as a structured pipeline that combines review modeling, question generation, multimodal retrieval, aggregation, and evidence-constrained reporting.
+This paper presents Decathlon VOC Analyzer, an evidence-driven multimodal VOC analysis system for aligning product text and image evidence with customer reviews. The system normalizes raw product data into traceable evidence packages, extracts aspect-level VOC objects from reviews, plans evidence-seeking questions, retrieves and reranks product text and image evidence, and generates structured reports with claim-level attribution.
 
-The emphasis of the current version is not to present formal experimental results, but to provide a coherent system-method narrative together with a stable bilingual paper structure, a BibTeX-based citation pipeline, and an export chain that can accommodate future evaluation sections without restructuring the core manuscript.
+The central conclusion is that product VOC analysis should not be reduced to one-step review summarization. It is better organized as a multi-stage workflow: review aspect modeling, evidence question planning, product text-image retrieval, and evidence-constrained generation. The current implementation provides APIs, batch workflows, structured artifacts, retrieval caches, feedback/replay, HTML export, manifest evaluation, and automated tests. The current codebase passes 166 tests.
 
-Future work will focus on completing the formal experimental design, introducing standard retrieval metrics, adding stricter human evaluation, and advancing from object-level visual retrieval toward finer-grained evidence alignment.
+Future work will add multi-category human-labeled benchmarks, compare retrieval and reranking strategies, improve visual grounding, and close the feedback/replay loop with human review.

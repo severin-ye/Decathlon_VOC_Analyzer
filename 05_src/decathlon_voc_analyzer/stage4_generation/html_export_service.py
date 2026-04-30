@@ -117,46 +117,7 @@ class HtmlExportService:
   <meta charset=\"utf-8\" />
   <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />
   <title>{html.escape(str(product_name))} {labels['page_title_suffix']}</title>
-  <style>
-    :root {{
-      --bg: #f4f5f7;
-      --card: rgba(255,255,255,0.82);
-      --ink: #17202a;
-      --muted: #5f6b7a;
-      --line: rgba(23,32,42,0.08);
-      --accent: #0f766e;
-      --warm: #b45309;
-      --danger: #b91c1c;
-      --shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
-      --radius: 24px;
-    }}
-    * {{ box-sizing: border-box; }}
-    body {{ margin: 0; font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: var(--ink); background: radial-gradient(circle at top left, #ffffff 0, #eef2f7 38%, #e6ebf1 100%); }}
-    .page {{ max-width: 1240px; margin: 0 auto; padding: 36px 20px 72px; }}
-    .hero {{ background: linear-gradient(135deg, rgba(255,255,255,0.92), rgba(240,247,246,0.88)); border: 1px solid var(--line); border-radius: 32px; padding: 36px; box-shadow: var(--shadow); }}
-    .eyebrow {{ color: var(--accent); text-transform: uppercase; letter-spacing: .14em; font-size: 12px; font-weight: 700; }}
-    h1 {{ margin: 8px 0 8px; font-size: clamp(32px, 4vw, 54px); line-height: 1.02; }}
-    .sub {{ color: var(--muted); font-size: 15px; max-width: 820px; }}
-    .grid {{ display: grid; gap: 18px; grid-template-columns: repeat(12, 1fr); margin-top: 22px; }}
-    .card {{ background: var(--card); backdrop-filter: blur(14px); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); }}
-    .span-12 {{ grid-column: span 12; }}
-    .span-8 {{ grid-column: span 8; }}
-    .span-6 {{ grid-column: span 6; }}
-    .span-4 {{ grid-column: span 4; }}
-    .section-title {{ margin: 0 0 14px; font-size: 18px; }}
-    .item {{ padding: 14px 0; border-top: 1px solid var(--line); }}
-    .item:first-child {{ border-top: 0; padding-top: 0; }}
-    .item h3 {{ margin: 0 0 6px; font-size: 16px; }}
-    .meta {{ color: var(--muted); font-size: 13px; }}
-    .evidence-strip {{ display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }}
-    .evidence-chip {{ display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 999px; background: rgba(15,118,110,.08); color: var(--ink); font-size: 12px; border: 1px solid var(--line); }}
-    .gallery {{ display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); }}
-    .gallery a {{ display: block; padding: 12px; border: 1px solid var(--line); border-radius: 18px; text-decoration: none; color: var(--ink); background: #fff; }}
-    details {{ border-top: 1px solid var(--line); padding: 12px 0; }}
-    details:first-child {{ border-top: 0; }}
-    summary {{ cursor: pointer; font-weight: 600; }}
-    @media (max-width: 900px) {{ .span-8, .span-6, .span-4 {{ grid-column: span 12; }} .hero {{ padding: 24px; }} }}
-  </style>
+  {self._render_styles()}
 </head>
 <body>
   <main class=\"page\">
@@ -179,8 +140,83 @@ class HtmlExportService:
       <article class=\"card span-12\"><h2 class=\"section-title\">{labels['process_drawer']}</h2>{self._render_trace(trace, labels)}</article>
     </section>
   </main>
+  {self._render_enhancement_script()}
 </body>
 </html>"""
+
+    def _render_styles(self) -> str:
+        return """<style>
+    :root {
+      --bg: #f5f5f7;
+      --panel: rgba(255,255,255,0.78);
+      --ink: #1d1d1f;
+      --muted: #6e6e73;
+      --line: rgba(60,60,67,0.12);
+      --blue: #0071e3;
+      --shadow: 0 18px 48px rgba(0,0,0,0.08);
+      --soft-shadow: 0 8px 22px rgba(0,0,0,0.055);
+      --radius: 24px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; color: var(--ink); background: radial-gradient(circle at top left, rgba(0,113,227,0.11), transparent 30%), radial-gradient(circle at top right, rgba(255,159,10,0.11), transparent 31%), linear-gradient(180deg, #fbfbfd 0%, var(--bg) 100%); font: 14px/1.5 -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', 'Segoe UI', sans-serif; }
+    .page { max-width: 1380px; margin: 0 auto; padding: 28px; }
+    .hero { position: relative; overflow: hidden; border: 1px solid var(--line); border-radius: 32px; padding: 32px; background: linear-gradient(180deg, rgba(255,255,255,0.88), rgba(255,255,255,0.70)); backdrop-filter: blur(18px) saturate(140%); box-shadow: var(--shadow); }
+    .hero::after { content: ""; position: absolute; inset: auto -70px -110px auto; width: 320px; height: 320px; border-radius: 999px; background: radial-gradient(circle, rgba(0,113,227,0.13), transparent 68%); pointer-events: none; }
+    .eyebrow { color: var(--muted); text-transform: uppercase; letter-spacing: .05em; font-size: 12px; font-weight: 700; }
+    h1 { max-width: 920px; margin: 8px 0 12px; font-size: clamp(34px, 4.8vw, 64px); line-height: .98; letter-spacing: -.055em; }
+    .sub { position: relative; max-width: 920px; margin: 10px 0 0; color: var(--muted); font-size: 15px; }
+    .hero .sub:nth-of-type(1) { color: var(--blue); font-weight: 650; }
+    .hero .sub:nth-of-type(2) { max-width: 980px; color: #2c2c2e; font-size: 18px; line-height: 1.55; letter-spacing: -.01em; }
+    .hero .sub:nth-of-type(3) { max-width: 980px; max-height: 142px; overflow: auto; margin-top: 18px; padding: 16px 18px; border: 1px solid var(--line); border-radius: 20px; background: rgba(255,255,255,0.68); box-shadow: inset 0 1px 0 rgba(255,255,255,0.72); }
+    .grid { display: grid; gap: 18px; grid-template-columns: repeat(12, minmax(0, 1fr)); margin-top: 18px; align-items: start; }
+    .card { min-width: 0; padding: 20px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); backdrop-filter: blur(14px) saturate(135%); box-shadow: var(--shadow); }
+    .span-12 { grid-column: span 12; }
+    .span-8 { grid-column: span 8; }
+    .span-6 { grid-column: span 6; }
+    .span-4 { grid-column: span 4; }
+    .span-4.card { position: sticky; top: 18px; }
+    .section-title { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 0 0 16px; font-size: 21px; letter-spacing: -.025em; }
+    .section-title::after { content: attr(data-count); color: var(--muted); font-size: 12px; font-weight: 650; letter-spacing: .02em; text-transform: uppercase; }
+    .item { margin-top: 12px; padding: 16px; border: 1px solid rgba(60,60,67,0.10); border-radius: 18px; background: rgba(255,255,255,0.76); box-shadow: var(--soft-shadow); }
+    .item:first-of-type { margin-top: 0; }
+    .item h3 { margin: 0 0 8px; font-size: 17px; line-height: 1.25; letter-spacing: -.015em; }
+    .item p { margin: 0 0 10px; color: #2c2c2e; line-height: 1.58; }
+    .meta { color: var(--muted); font-size: 12px; line-height: 1.45; }
+    .evidence-strip { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 12px; }
+    .evidence-chip { display: inline-flex; max-width: 100%; align-items: center; gap: 6px; padding: 6px 10px; border-radius: 999px; background: rgba(0,113,227,.08); color: #1d1d1f; font-size: 12px; border: 1px solid rgba(0,113,227,.14); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .evidence-chip[data-kind="review"] { background: rgba(36,138,61,.10); border-color: rgba(36,138,61,.18); }
+    .evidence-chip[data-kind="text"] { background: rgba(125,87,193,.10); border-color: rgba(125,87,193,.18); }
+    .evidence-chip[data-kind="image"] { background: rgba(178,107,0,.10); border-color: rgba(178,107,0,.18); }
+    .gallery { display: grid; gap: 12px; grid-template-columns: 1fr; }
+    .gallery a { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 12px; align-items: center; min-height: 118px; padding: 10px; border: 1px solid var(--line); border-radius: 18px; text-decoration: none; color: var(--ink); background: rgba(255,255,255,0.84); box-shadow: var(--soft-shadow); transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease; }
+    .gallery a:hover { transform: translateY(-2px); border-color: rgba(0,113,227,.25); box-shadow: 0 14px 28px rgba(0,0,0,.08); }
+    .gallery img { width: 96px; height: 96px; object-fit: cover; border-radius: 14px; background: #f2f2f4; }
+    .gallery strong { display: block; font-size: 15px; }
+    details { margin-top: 10px; border: 1px solid rgba(60,60,67,0.10); border-radius: 16px; padding: 12px 14px; background: rgba(255,255,255,0.72); }
+    details:first-of-type { margin-top: 0; }
+    details[open] { background: rgba(255,255,255,0.90); }
+    summary { cursor: pointer; font-weight: 650; color: var(--ink); }
+    summary::marker { color: var(--blue); }
+    @media (max-width: 1100px) { .span-8, .span-6, .span-4 { grid-column: span 12; } .span-4.card { position: static; } .gallery { grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); } }
+    @media (max-width: 640px) { .page { padding: 16px; } .hero { padding: 22px; border-radius: 24px; } .card { padding: 16px; } .gallery a { grid-template-columns: 84px minmax(0, 1fr); } .gallery img { width: 84px; height: 84px; } }
+  </style>"""
+
+    def _render_enhancement_script(self) -> str:
+        return """<script>
+    document.querySelectorAll('.section-title').forEach((title) => {
+      const card = title.closest('.card');
+      const count = card ? card.querySelectorAll(':scope > .item, :scope > details').length : 0;
+      if (count) title.dataset.count = `${count} items`;
+    });
+
+    document.querySelectorAll('.evidence-chip').forEach((chip) => {
+      const text = chip.textContent.trim();
+      const kind = text.split(':', 1)[0];
+      if (['review', 'text', 'image', '图像', '文本'].includes(kind)) chip.dataset.kind = kind === '图像' ? 'image' : kind === '文本' ? 'text' : kind;
+      chip.title = text;
+    });
+  </script>"""
 
     def _claim_attributions_for_source(self, report: dict, claim_source: str) -> list[dict]:
         return [
@@ -377,7 +413,8 @@ class HtmlExportService:
         for item in images:
             image_path = str(item.get("image_path") or "")
             href = str((root / image_path).resolve()) if root is not None and image_path else image_path
+            image_alt = image_path or str(item.get("variant") or "image")
             cards.append(
-                f"<a href='{html.escape(href)}'><strong>{html.escape(str(item.get('variant') or 'image'))}</strong><div class='meta'>{html.escape(image_path)}</div></a>"
+                f"<a href='{html.escape(href)}'><img src='{html.escape(href)}' alt='{html.escape(image_alt)}' loading='lazy' /><span><strong>{html.escape(str(item.get('variant') or 'image'))}</strong><div class='meta'>{html.escape(image_path)}</div></span></a>"
             )
         return f"<div class='gallery'>{''.join(cards)}</div>"
