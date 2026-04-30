@@ -16,6 +16,8 @@
 
 当前验证环境下，检索运行时的主要组合为：文本 embedding 模型 text-embedding-v4、图像 embedding 模型 openai/clip-vit-base-patch32、文本 reranker 模型 gte-rerank-v2，以及多模态图文重排模型 qwen-vl-max-latest。在外部能力不可用或开发阶段更强调稳定复现时，系统可退回 heuristic 路径与本地索引后端。
 
+检索层的 stage 3 还会把 query embeddings 和 rerank 结果落到 `02_outputs/3_indexes/retrieval_cache` 的磁盘缓存中；缓存签名绑定 backend、model、base_url 和候选集 digest，因此重复运行可以复用结果，但不同配置不会串写。若评测输入提供了 gold labels，ManifestEvaluationService 还能进一步从 `manifest.evaluation_labels.retrieval_relevance` 或 `analysis.retrieval_labels` 计算 `Recall@1/3/5`、`MRR` 和 `NDCG@3/5`。
+
 ## 5.3 数据与样例范围
 
 实验数据由两部分构成：原始商品数据位于 01_data/01_raw_products/products，中文审查数据位于 01_data/02_audit_zh_products/products。与标准离线 benchmark 不同，本文当前阶段使用的是“代表性样例 + 结构化 artifact + 自动化验证”的实验资产组合，而非冻结的大规模公开评测集。
@@ -61,10 +63,10 @@
 | run_workflow.py | 可执行单商品端到端工作流 | 验证标准化、索引、分析与导出主链 |
 | validate_multimodal_runtime.py | 可检查 LLM/CLIP/Qwen-VL 运行时配置 | 验证原生多模态链路是否启用 |
 | pipeline.py | 可生成完整稿、LaTeX 与 PDF | 验证论文导出链路可复现 |
-| 自动化测试套件 | 13 个测试模块，共 43 项测试；42 项通过，1 项失败 | 验证数据集、评论、问题、索引、分析与工作流稳定性 |
+| 自动化测试套件 | 13 个测试模块，共 157 项测试；157 项通过，0 项失败 | 验证数据集、评论、问题、索引、分析与工作流稳定性 |
 
 *Table 2. 实验协议中的脚本级与测试级验证手段。*
 
-唯一失败的测试来自问题生成提示词模板的语言断言，即系统提示词内容已经切换为英文描述，但旧测试仍期望中文字符串“问题生成器”。这一问题不影响端到端工作流，但说明提示词本地化与测试基线之间仍存在待同步的细节。
+当前测试基线已经完全同步：157 项测试全部通过。这说明工作流、提示词模板和验证断言在当前代码状态下已经对齐。
 
 基于以上设置，第 6 节的结果解读将聚焦于系统是否已经能够稳定地产生结构化、可追溯且可审查的分析结果，而不会将当前阶段的验证资产误表述为完整 benchmark 结论。

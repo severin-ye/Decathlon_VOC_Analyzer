@@ -4,7 +4,7 @@
 
 For a system paper, the first result is not merely the final report text but the reproducibility of the full workflow. From this perspective, the primary finding is that normalization, indexing, analysis, and paper export already form an executable chain. The run_workflow.py script supports end-to-end product analysis, validate_multimodal_runtime.py checks whether the intended multimodal runtime is active, and pipeline.py produces merged drafts, LaTeX sources, and PDF outputs. This indicates that the system has progressed beyond loosely connected experiments toward a reproducible workflow.
 
-Automated testing reinforces this claim. In the current environment, the full test suite executes 43 tests, 42 of which pass. The only failing test is a prompt-language assertion mismatch rather than a failure in the business logic or the workflow core. Thus, at the current stage, the system can be regarded as operationally stable, with remaining issues concentrated in localized prompt-validation synchronization.
+Automated testing reinforces this claim. In the current environment, the full test suite executes 157 tests, and all of them pass. This indicates that the workflow core, prompt templates, and validation assertions are synchronized in the present code state, so the system can be regarded as operationally stable.
 
 <a id="tab:engineering-results"></a>
 
@@ -13,11 +13,13 @@ Automated testing reinforces this claim. In the current environment, the full te
 | End-to-end workflow | Successful | Normalization, indexing, analysis, and export can be executed from unified entry points |
 | Multimodal runtime validation | Successful | Runtime profiles expose CLIP image embeddings and Qwen-VL reranking |
 | Paper export chain | Successful | Both Chinese and English drafts can be merged and exported into PDF |
-| Automated tests | 42/43 passed | The only failure is a localization-related prompt assertion |
+| Automated tests | 157/157 passed | The current validation baseline is fully synchronized |
 
 *Table 3. Script-level and test-level validation results.*
 
 ## 6.2 Structured Nature of the Output Artifacts
+
+At the retrieval-infrastructure level, repeated runs can also reuse disk-cached query embeddings and rerank outputs when the backend, model, base_url, and candidate set remain unchanged. This does not alter the analytical schema, but it makes repeated validation of the same configuration cheaper and more reproducible. When gold labels are provided, the manifest evaluator can further report Recall@1/3/5, MRR, and NDCG@3/5, which gives the structured artifacts a more explicit evaluation layer.
 
 The second major result lies in the artifacts themselves. Both representative product outputs demonstrate that the system no longer produces only free-form summaries but complete structured records. For backpack_010, the artifact contains extraction objects, generated questions, retrievals, retrieval-quality measurements, runtime metadata, aspect aggregates, and a final report. Even under the heuristic analysis mode, the system preserves source_review_id, source_aspect, text_block_id, and image_id fields that make the full path auditable.
 

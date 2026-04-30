@@ -6,6 +6,6 @@ Second, retrieval evaluation is still not fully closed. The current system can a
 
 Third, visual evidence granularity remains relatively coarse. The main pipeline now supports region-level image evidence v1 through fixed crops used in indexing, retrieval, and reranking, but this is still a rule-based approximation rather than detector- or segmentation-driven visual grounding. As a result, product properties that depend strongly on highly localized structures may not yet be fully explainable.
 
-Fourth, there remains a small gap between multilingual prompt evolution and validation baselines. The only failing automated test in the current environment is caused by a localization mismatch in prompt-template assertions, which suggests that multilingual engineering support and validation assets still need further synchronization.
+Fourth, prompt and validation baselines still require periodic upkeep as the system evolves. The current automated test suite passes, but future multilingual or prompt-template updates may still require corresponding assertion refreshes to keep documentation and validation aligned.
 
 Fifth, the paper metadata and references remain provisional. A formal submission version would require additional related-work coverage, a more standardized reference style, and finalized author and affiliation information.

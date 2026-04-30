@@ -39,12 +39,21 @@ class Settings(BaseSettings):
     qwen_reranker_model: str = "gte-rerank-v2"
     qwen_vl_embedding_model: str = "qwen2.5-vl-embedding"
     qwen_vl_reranker_model: str = "qwen-vl-max-latest"
+    text_reranker_timeout_seconds: float = 600.0
+    multimodal_reranker_timeout_seconds: float = 600.0
+    multimodal_reranker_max_retries: int = 0
     clip_vl_embedding_model: str = "openai/clip-vit-base-patch32"
-    embedding_backend: str = "api"
-    image_embedding_backend: str = "clip"
+    # 本地小参数模型配置（Qwen3 系列）
+    local_embedding_model_name: str = "Qwen/Qwen3-Embedding-0.6B"
+    local_reranker_model_name: str = "Qwen/Qwen3-Reranker-0.6B"
+    local_multimodal_reranker_model_name: str = "Qwen/Qwen3-VL-2B-Instruct"
+    local_model_device: str = "auto"  # "auto" | "cuda" | "cpu"
+    # 后端选择配置
+    embedding_backend: str = "api"  # "api" | "local_qwen3"
+    image_embedding_backend: str = "clip"  # "clip" | "local_qwen3_vl"
     retrieval_backend: str = "local"
-    reranker_backend: str = "api"
-    multimodal_reranker_backend: str = "qwen_vl"
+    reranker_backend: str = "api"  # "api" | "local_qwen3"
+    multimodal_reranker_backend: str = "qwen_vl"  # "qwen_vl" | "local_qwen3_vl"
     qdrant_collection_name: str = "product_evidence"
     qdrant_path: Path = ROOT_DIR / "02_outputs" / "3_indexes" / "qdrant_store"
 

@@ -12,6 +12,8 @@
 
 在索引阶段，文本证据通过文本 embedding 建立向量表示，图像证据则通过原生图像 embedding 建立向量表示。当前验证环境下，文本 embedding 使用 text-embedding-v4，图像 embedding 使用 openai/clip-vit-base-patch32，文本 reranker 使用 gte-rerank-v2，多模态图文重排使用 qwen-vl-max-latest。若外部能力不可用，系统能够退回启发式路径或本地后端，保证端到端流程仍然可执行。
 
+为降低重复运行成本，stage 3 检索还会把 query embeddings 与 rerank 结果落到磁盘缓存中；缓存签名绑定后端、模型、base_url 与候选集 digest，因此相同配置可以复用结果，而不同配置不会串写。
+
 ## 4.3 评论建模：从自然语言到 Aspect 对象
 
 评论建模层的任务并非直接生成最终结论，而是将评论转化为可统计、可检索、可聚合的结构化对象。本文采用的 Aspect 对象至少包含 aspect、sentiment、opinion、evidence span、usage scene 和 confidence 等字段。这样的设计使系统能够围绕具体体验维度执行频次统计、正负比例分析、场景归纳和建议生成；若仅保留整条评论文本，这些后续步骤将明显变得脆弱。
@@ -29,6 +31,8 @@
 检索层对每个问题同时执行文本路和图像路召回。文本路面向商品标题、模型描述和其他文本块；图像路面向产品主图、细节图和变体图。两路候选在 product_id 维度被统一到同一商品证据空间中，并结合 reranker 得分形成最终 evidence bundle。实现上，embedding 服务与索引后端相互解耦：前者负责文本与图像向量化，后者负责索引保存、加载和搜索。这样一来，上层分析逻辑无需感知底层存储是本地持久化索引还是 Qdrant。
 
 两阶段检索在这里至关重要。embedding 粗召回有助于保持候选覆盖，但会引入噪声；reranker 精排则使用更高成本的模型对小规模候选进行重排，以压缩误召回。虽然当前验证仍主要基于整图级对象，尚未进入区域级视觉检索阶段，但该接口设计已经为后续从 page-level 走向 region-level 的扩展保留了空间。
+
+当评测侧提供 gold labels 时，ManifestEvaluationService 还能进一步输出 Recall@1/3/5、MRR 与 NDCG@3/5，用于补充系统验证结果。
 
 ## 4.6 聚合、报告与 replay 机制
 

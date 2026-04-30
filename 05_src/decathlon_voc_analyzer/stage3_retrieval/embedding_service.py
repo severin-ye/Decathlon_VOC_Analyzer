@@ -13,6 +13,7 @@ from decathlon_voc_analyzer.app.core.config import get_settings
 from decathlon_voc_analyzer.app.core.runtime_policy import RuntimePolicyError, get_runtime_execution_policy, should_forbid_degradation
 from decathlon_voc_analyzer.schemas.retrieval_cache import QueryEmbeddingCacheSignature
 from decathlon_voc_analyzer.stage3_retrieval.retrieval_cache_service import RetrievalCacheService
+from decathlon_voc_analyzer.stage3_retrieval.local_model_utils import get_embedding_model
 
 
 TOKEN_RE = re.compile(r"[\w\-\u4e00-\u9fff가-힣]+", re.UNICODE)
@@ -33,6 +34,18 @@ class EmbeddingService:
         self.cache_service = RetrievalCacheService()
 
     def embed_text(self, text: str) -> list[float]:
+        # 优先尝试本地推理
+        if self.settings.embedding_backend == "local_qwen3":
+            try:
+                return self._local_qwen3_embedding(text)
+            except Exception as exc:
+                self._raise_if_degradation_forbidden(
+                    component="text_embedding",
+                    exc=exc,
+                    action="检查本地 Qwen3-Embedding 模型加载或推理后重试。",
+                )
+                return self._hashed_embedding(text)
+        # 其次尝试 API 推理
         if self.settings.embedding_backend == "api" and self.settings.qwen_plus_api_key:
             try:
                 return self._api_embedding(text)
@@ -133,6 +146,14 @@ class EmbeddingService:
         self._vector_size = len(vector)
         return vector
 
+    def _local_qwen3_embedding(self, text: str) -> list[float]:
+        """使用本地 Qwen3-Embedding-0.6B 模型获取嵌入向量"""
+        model = get_embedding_model(self.settings.local_embedding_model_name)
+        model.device = self.settings.local_model_device
+        vector = model.embed_single(text)
+        self._vector_size = len(vector)
+        return vector
+
     def _embed_text_query(self, text: str, route: str, allow_cache: bool = True) -> list[float]:
         signature = self._text_query_cache_signature(text=text, route=route)
         if allow_cache:
@@ -140,7 +161,19 @@ class EmbeddingService:
             if cached is not None:
                 return cached
 
-        if self.settings.embedding_backend == "api" and self.settings.qwen_plus_api_key:
+        # 优先尝试本地推理
+        if self.settings.embedding_backend == "local_qwen3":
+            try:
+                vector = self._local_qwen3_embedding(text)
+            except Exception as exc:
+                self._raise_if_degradation_forbidden(
+                    component="query_embedding",
+                    exc=exc,
+                    action="检查本地 Qwen3-Embedding 模型加载或推理后重试。",
+                )
+                return self._hashed_embedding(text)
+        # 其次尝试 API 推理
+        elif self.settings.embedding_backend == "api" and self.settings.qwen_plus_api_key:
             try:
                 vector = self._api_embedding(text)
             except Exception as exc:

@@ -14,6 +14,8 @@ Text evidence is represented via text embeddings, and image evidence via native 
 
 ## 4.3 Review Modeling: From Natural Language to Aspect Objects
 
+To reduce repeated execution cost, stage 3 retrieval also stores query embeddings and rerank outputs in a disk cache. The cache signature is tied to the backend, model, base_url, and candidate-set digest, so identical configurations can reuse results while different configurations remain isolated.
+
 The review-modeling layer does not directly produce final conclusions. Instead, it transforms reviews into structured and reusable objects. Each aspect object contains at least an aspect label, sentiment, opinion, evidence span, usage scene, and confidence score. This representation allows the system to compute aspect frequency, sentiment ratios, scene distributions, and evidence-backed suggestions in a stable way.
 
 The implementation supports two extraction paths. The first is an LLM path that uses structured prompts and typed outputs. The second is a heuristic path used as a reproducible fallback when external model calls are unavailable. To reduce review-selection bias toward only high-rating comments, the system also supports star-ratio-based sampling profiles, including problem_first, balanced, and praise_first. The goal is not to propose a novel sampling algorithm, but to make the review input controllable and to expose the sampling plan itself as a structured artifact.
@@ -31,6 +33,8 @@ For each question, the system retrieves candidates from both the text route and 
 The implementation decouples embedding services from index backends. Embedding services are responsible for text and image vectorization, while index backends manage persistence and search. This allows the upper-layer logic to remain unchanged regardless of whether the backend is a local persistent index or a Qdrant-backed store. The retrieval design is explicitly two-stage: embedding-based candidate retrieval preserves coverage, and reranking reduces noise over a smaller candidate set.
 
 ## 4.6 Aggregation, Reporting, and Replay
+
+When gold labels are available on the evaluation side, ManifestEvaluationService can additionally report Recall@1/3/5, MRR, and NDCG@3/5 as complementary validation metrics.
 
 Retrieved evidence is not directly passed to a summarization model. Instead, the system first aggregates evidence into aspect-level aggregates containing frequency, sentiment ratios, representative reviews, and scene distributions. Based on these aggregates, the system generates strengths, weaknesses, controversies, applicable scenes, supporting evidence, and suggestions. If LLM generation is available, a structured LLM path is used; otherwise, the system falls back to a heuristic report-construction path. Both paths share the same output schema.
 

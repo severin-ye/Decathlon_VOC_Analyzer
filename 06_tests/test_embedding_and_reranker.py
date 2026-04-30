@@ -440,6 +440,61 @@ def test_reranker_service_uses_multimodal_backend_for_image_candidates(monkeypat
     assert reranked[0].score == 0.93
 
 
+def test_reranker_service_multimodal_call_uses_timeout_and_no_retry(monkeypatch, tmp_path) -> None:
+    class DummyCompletions:
+        def __init__(self, captured: dict[str, object]) -> None:
+            self._captured = captured
+
+        def create(self, **kwargs):
+            self._captured["create_kwargs"] = kwargs
+            message = type("Message", (), {"content": '{"results":[{"index":0,"relevance_score":0.7}]}'})
+            choice = type("Choice", (), {"message": message})
+            return type("Response", (), {"choices": [choice]})
+
+    class DummyChat:
+        def __init__(self, captured: dict[str, object]) -> None:
+            self.completions = DummyCompletions(captured)
+
+    class DummyClient:
+        def __init__(self, captured: dict[str, object]) -> None:
+            self._captured = captured
+            self.chat = DummyChat(captured)
+
+        def with_options(self, **kwargs):
+            self._captured["with_options"] = kwargs
+            return self
+
+    service = RerankerService()
+    service.settings.multimodal_reranker_backend = "qwen_vl"
+    service.settings.qwen_plus_api_key = "test-key"
+    service.settings.multimodal_reranker_timeout_seconds = 12.5
+    service.settings.multimodal_reranker_max_retries = 0
+    service.settings.indexes_output_dir = tmp_path
+
+    captured: dict[str, object] = {}
+    monkeypatch.setattr(service, "_get_openai_client", lambda: DummyClient(captured))
+    monkeypatch.setattr(service, "_candidate_image_data_url", lambda _candidate: "data:image/png;base64,ZmFrZQ==")
+
+    candidates = [
+        IndexedEvidence(
+            evidence_id="img_a",
+            product_id="backpack_010",
+            category_slug="backpack",
+            route="image",
+            image_id="img_a",
+            image_path="images/8512010/img1.png",
+            content="zippered travel wallet",
+            vector=[0.1, 0.2],
+            score=0.2,
+        ),
+    ]
+
+    reranked = service.rerank(query="passport wallet", candidates=candidates, use_llm=True)
+
+    assert reranked[0].evidence_id == "img_a"
+    assert captured["with_options"] == {"timeout": 12.5, "max_retries": 0}
+
+
 def test_embedding_service_raises_when_strict_policy_forbids_api_fallback(tmp_path, monkeypatch) -> None:
     policy_path = tmp_path / "runtime_execution_policy.json"
     policy_path.write_text('{"allow_degradation": false, "full_power": true}', encoding="utf-8")

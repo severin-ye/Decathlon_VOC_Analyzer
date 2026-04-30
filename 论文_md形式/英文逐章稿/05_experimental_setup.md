@@ -14,6 +14,8 @@ In the currently validated runtime, the main retrieval configuration uses text-e
 
 ## 5.3 Validation Assets
 
+At the retrieval layer, stage 3 also persists query embeddings and rerank outputs into a disk cache under 02_outputs/3_indexes/retrieval_cache. The cache signature is tied to backend, model, base_url, and candidate-set digest so repeated runs remain reproducible without cross-configuration contamination. When gold labels are available, ManifestEvaluationService can further compute Recall@1/3/5, MRR, and NDCG@3/5 from manifest.evaluation_labels.retrieval_relevance or analysis.retrieval_labels.
+
 The experimental assets consist of representative product samples rather than a frozen large-scale benchmark. The raw product data are stored under 01_data/01_raw_products/products, while the Chinese audit dataset is stored under 01_data/02_audit_zh_products/products.
 
 The current artifact set includes at least two representative products with final analysis outputs: backpack_010 and sunglasses_001. The normalization report for backpack_010 shows 1 normalized product, 200 reviews, and 5 images. The sunglasses_001 artifact, in contrast, illustrates a richer aspect structure: 3 reviews are transformed into 9 extracted aspects and linked to both text and image evidence during analysis. In this paper, we use backpack_010 as a sparse negative-feedback case and sunglasses_001 as a multi-aspect positive-feedback case.
@@ -57,8 +59,8 @@ In addition to representative artifacts, this paper treats workflow scripts and 
 | run_workflow.py | Executable end-to-end product workflow | Validate normalization, indexing, analysis, and export pipeline |
 | validate_multimodal_runtime.py | Runtime assertions for multimodal path | Validate whether CLIP and Qwen-VL routes are exposed in runtime profiles |
 | pipeline.py | Complete paper-export chain | Validate reproducible generation of merged drafts, LaTeX, and PDF |
-| Automated test suite | 13 test modules, 43 tests; 42 passed, 1 failed | Validate dataset, review, question, index, analysis, and workflow stability |
+| Automated test suite | 13 test modules, 157 tests; 157 passed, 0 failed | Validate dataset, review, question, index, analysis, and workflow stability |
 
 *Table 2. Script-level and test-level validation instruments used in this paper.*
 
-The only failing test concerns a prompt-template language assertion: the system prompt is now written in English, whereas the historical test still expects the Chinese string “问题生成器”. This mismatch does not break the end-to-end workflow, but it indicates that localization and validation baselines have not yet been fully synchronized.
+The current test baseline is fully synchronized: all 157 collected tests pass. This indicates that the workflow, prompt templates, and validation assertions are aligned in the present code state.
