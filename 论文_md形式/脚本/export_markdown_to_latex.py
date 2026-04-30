@@ -10,6 +10,8 @@ import sys
 from dataclasses import dataclass
 from pathlib import Path
 
+from paper_export_filters import filter_markdown_for_pdf_export
+
 
 DEFAULT_INPUT = "Decathlon_VOC_Analyzer_Complete_Paper.md"
 DEFAULT_OUTPUT = "outputs/中间文件/02_latex/Decathlon_VOC_Analyzer_Nature_Template.tex"
@@ -790,6 +792,7 @@ def main() -> int:
         return 1
 
     markdown_text = input_path.read_text(encoding="utf-8")
+    markdown_text = filter_markdown_for_pdf_export(markdown_text, figure_dir=(paper_dir / "图片"))
     reference_text = reference_path.read_text(encoding="utf-8") if reference_path is not None else ""
     citation_key_map = load_citation_key_map(citation_map_path) if citation_map_path is not None else {}
     lines = markdown_text.splitlines()

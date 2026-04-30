@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Debian) (preloaded format=xelatex 2026.1.24)  30 APR 2026 16:30
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Debian) (preloaded format=xelatex 2026.1.24)  30 APR 2026 16:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -936,15 +936,22 @@ LaTeX Font Info:    Font shape `TU/DejaVuSerif(0)/b/n' will be
 LaTeX Font Info:    Font shape `TU/ARPLUMingCN(0)/b/n' will be
 (Font)              scaled to size 10.69904pt on input line 93.
  [2] [3] [4]
-LaTeX Font Info:    Font shape `TU/DejaVuSerif(0)/m/it' will be
-(Font)              scaled to size 9.09251pt on input line 185.
-LaTeX Font Info:    Font shape `TU/ARPLUMingCN(0)/m/it' will be
-(Font)              scaled to size 9.76286pt on input line 185.
+File: /home/severin/Codelib/Decathlon_VOC_Analyzer/论文_md形式/图片/图1.png Graphic fi
+le (type bmp)
+</home/severin/Codelib/Decathlon_VOC_Analyzer/论文_md形式/图片/图1.png>
 
-[5] [6] [7] [8] [9] [10]
+[5]
+File: /home/severin/Codelib/Decathlon_VOC_Analyzer/论文_md形式/图片/图2.png Graphic fi
+le (type bmp)
+</home/severin/Codelib/Decathlon_VOC_Analyzer/论文_md形式/图片/图2.png>
+ [6]
+File: /home/severin/Codelib/Decathlon_VOC_Analyzer/论文_md形式/图片/图3.png Graphic fi
+le (type bmp)
+</home/severin/Codelib/Decathlon_VOC_Analyzer/论文_md形式/图片/图3.png>
+ [7] [8] [9] [10] [11]
 LaTeX Font Info:    Font shape `TU/DroidSansFallback(0)/m/n' will be
 (Font)              scaled to size 8.81866pt on input line 394.
- [11]
+ [12]
 Overfull \hbox (275.13069pt too wide) in paragraph at lines 428--428
 []\TU/NotoSansMono(0)/m/n/10.95 .venv/bin/python 04_scripts/run_workflow.py --c
 ategory backpack --product-id backpack_010 --output-format json --export-html -
@@ -963,9 +970,12 @@ Overfull \hbox (79.6642pt too wide) in paragraph at lines 440--440
 _runtime.py --category backpack --product-id backpack_010[] 
  []
 
-[12]
+[13]
 (/home/severin/Codelib/Decathlon_VOC_Analyzer/论文_md形式/脚本/outputs/中间文件/02_latex/
-Decathlon_VOC_Analyzer_Nature_Template.bbl [13] [14]) [15]
+Decathlon_VOC_Analyzer_Nature_Template.bbl
+LaTeX Font Info:    Font shape `TU/DejaVuSerif(0)/m/it' will be
+(Font)              scaled to size 9.09251pt on input line 13.
+ [14]) [15]
 (/home/severin/Codelib/Decathlon_VOC_Analyzer/论文_md形式/脚本/outputs/中间文件/02_latex/
 Decathlon_VOC_Analyzer_Nature_Template.aux)
  ***********
@@ -977,11 +987,11 @@ has not changed.
 (rerunfilecheck)             Checksum: 94A9CC0DB8CCCD12C3DCF53293A77F2D;5552.
  ) 
 Here is how much of TeX's memory you used:
- 15299 strings out of 476443
- 328329 string characters out of 5793962
+ 15271 strings out of 476443
+ 325966 string characters out of 5793962
  1956627 words of memory out of 5000000
- 36973 multiletter control sequences out of 15000+600000
- 568466 words of font info for 134 fonts, out of 8000000 for 9000
+ 36943 multiletter control sequences out of 15000+600000
+ 568458 words of font info for 133 fonts, out of 8000000 for 9000
  264 hyphenation exceptions out of 8191
  79i,14n,131p,1121b,654s stack positions out of 10000i,1000n,20000p,200000b,200000s
 

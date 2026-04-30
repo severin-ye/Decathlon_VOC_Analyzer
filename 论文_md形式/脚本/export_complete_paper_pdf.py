@@ -11,6 +11,8 @@ from pathlib import Path
 
 from weasyprint import CSS, HTML
 
+from paper_export_filters import filter_markdown_for_pdf_export
+
 
 DEFAULT_INPUT = "脚本/outputs/中间文件/01_完整合并/Decathlon_VOC_Analyzer_Complete_Paper.md"
 DEFAULT_OUTPUT = "outputs/Decathlon_VOC_Analyzer.pdf"
@@ -147,9 +149,16 @@ def require_command(name: str) -> str:
 
 def run_pandoc(input_path: Path, output_html: Path, resource_base: Path) -> None:
     pandoc = require_command("pandoc")
+    markdown_text = input_path.read_text(encoding="utf-8")
+    figure_dir = (resource_base / "图片").resolve()
+    filtered_text = filter_markdown_for_pdf_export(markdown_text, figure_dir=figure_dir)
+
+    output_html.parent.mkdir(parents=True, exist_ok=True)
+    filtered_markdown = output_html.parent / "paper.filtered.md"
+    filtered_markdown.write_text(filtered_text, encoding="utf-8")
     cmd = [
         pandoc,
-        str(input_path),
+        str(filtered_markdown),
         "--from",
         "markdown+raw_html",
         "--to",
