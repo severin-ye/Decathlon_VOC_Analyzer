@@ -25,6 +25,8 @@ class RetrievalService:
         questions: list[RetrievalQuestion],
         top_k_per_route: int = 2,
         use_llm: bool = True,
+        ablation_no_image_route: bool = False,
+        ablation_no_reranking: bool = False,
     ) -> list[RetrievalRecord]:
         progress = get_workflow_progress()
         total_questions = len(questions)
@@ -44,6 +46,8 @@ class RetrievalService:
                     use_llm=use_llm,
                     question_index=index,
                     total_questions=total_questions,
+                    ablation_no_image_route=ablation_no_image_route,
+                    ablation_no_reranking=ablation_no_reranking,
                 )
             )
         progress.complete_step("analyze", "retrieve")
@@ -57,6 +61,8 @@ class RetrievalService:
         use_llm: bool,
         question_index: int | None = None,
         total_questions: int | None = None,
+        ablation_no_image_route: bool = False,
+        ablation_no_reranking: bool = False,
     ) -> RetrievalRecord:
         progress = get_workflow_progress()
 
@@ -79,18 +85,22 @@ class RetrievalService:
             )
 
         query = question.question
+        effective_routes = [
+            r for r in question.expected_evidence_routes
+            if not (ablation_no_image_route and r == "image")
+        ] or (["text"] if ablation_no_image_route else question.expected_evidence_routes)
         update("正在执行 search（若索引缺失会按需建索引）")
         indexed_hits = self.index_service.search(
             product_id=package.product_id,
             category_slug=package.category_slug,
             query=query,
-            routes=question.expected_evidence_routes,
+            routes=effective_routes,
             top_k_per_route=max(top_k_per_route * 6, 6),
             use_llm=use_llm,
         )
         indexed_hits = self._build_language_balanced_candidate_pool(
             indexed_hits=indexed_hits,
-            expected_routes=question.expected_evidence_routes,
+            expected_routes=effective_routes,
             top_k_per_route=top_k_per_route,
         )
         advance(f"search 完成，召回候选 {len(indexed_hits)} 条")
@@ -98,17 +108,21 @@ class RetrievalService:
             hit.evidence_id: self._extract_score(hit)
             for hit in indexed_hits
         }
-        reranked_hits = self.reranker_service.rerank(
-            query=query,
-            candidates=indexed_hits,
-            use_llm=use_llm,
-            progress_callback=advance,
-            progress_status_callback=update,
-        )
+        if ablation_no_reranking:
+            reranked_hits = indexed_hits
+            advance("已跳过 rerank，使用 embedding 排序")
+        else:
+            reranked_hits = self.reranker_service.rerank(
+                query=query,
+                candidates=indexed_hits,
+                use_llm=use_llm,
+                progress_callback=advance,
+                progress_status_callback=update,
+            )
         update("正在汇总最终证据")
         selected_hits = self._select_hits_with_route_coverage(
             reranked_hits=reranked_hits,
-            expected_routes=question.expected_evidence_routes,
+            expected_routes=effective_routes,
             top_k_per_route=top_k_per_route,
         )
         retrieved = [

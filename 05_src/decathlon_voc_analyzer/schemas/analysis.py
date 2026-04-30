@@ -311,6 +311,14 @@ class ProductAnalysisReport(BaseModel):
     suggestions: list[ImprovementSuggestion] = Field(default_factory=list)
 
 
+class ExperimentConfig(BaseModel):
+    ablation_no_question_planning: bool = False
+    ablation_no_image_route: bool = False
+    ablation_no_reranking: bool = False
+    ablation_no_claim_attribution: bool = False
+    control_method: Literal["none", "lewis2020", "jarvis", "vericite"] = "none"
+
+
 class ProductAnalysisRequest(BaseModel):
     product_id: str
     category_slug: str | None = None
@@ -322,6 +330,7 @@ class ProductAnalysisRequest(BaseModel):
     reuse_analysis_checkpoint: bool = False
     top_k_per_route: int = Field(default=2, ge=1, le=5)
     questions_per_aspect: int = Field(default=2, ge=1, le=5)
+    experiment_config: ExperimentConfig = Field(default_factory=ExperimentConfig)
 
 
 class ProductAnalysisResponse(BaseModel):

@@ -102,6 +102,20 @@ class ProductAnalysisService:
             package=package,
             extraction=extraction,
         )
+        # Control-method dispatch: replace retrievals/report with baseline output
+        control = request.experiment_config.control_method
+        if control != "none":
+            from decathlon_voc_analyzer.workflows.control_experiments import run_control_experiment
+            report, retrievals, retrieval_quality = run_control_experiment(
+                control=control,
+                request=request,
+                package=package,
+                extraction=extraction,
+                questions=questions,
+                retrievals=retrievals,
+                retrieval_quality=retrieval_quality,
+            )
+            analysis_mode = control
         aggregates = self._aggregate_aspects(extraction.aspects)
         replay_payload = None
         feedback_payload = None
@@ -163,9 +177,14 @@ class ProductAnalysisService:
         if replay_warning is not None:
             warnings.append(replay_warning)
 
-        progress.activate_step("analyze", "attribution", detail="构建证据节点与 claim 归因")
-        report = self._attach_claim_attribution(report, extraction.aspects, retrievals)
-        progress.complete_step("analyze", "attribution")
+        if request.experiment_config.ablation_no_claim_attribution:
+            progress.activate_step("analyze", "attribution", detail="跳过 claim 归因（消融实验）")
+            report = report.model_copy(update={"claim_attributions": []})
+            progress.complete_step("analyze", "attribution")
+        else:
+            progress.activate_step("analyze", "attribution", detail="构建证据节点与 claim 归因")
+            report = self._attach_claim_attribution(report, extraction.aspects, retrievals)
+            progress.complete_step("analyze", "attribution")
 
         trace = self._build_process_trace(extraction.aspects, questions, retrievals, report, replay_summary)
 
@@ -253,6 +272,7 @@ class ProductAnalysisService:
             aspects=extraction.aspects,
             questions_per_aspect=request.questions_per_aspect,
             use_llm=request.use_llm,
+            ablation_no_question_planning=request.experiment_config.ablation_no_question_planning,
         )
         progress.complete_step("analyze", "questions")
 
@@ -261,6 +281,8 @@ class ProductAnalysisService:
             questions=questions,
             top_k_per_route=request.top_k_per_route,
             use_llm=request.use_llm,
+            ablation_no_image_route=request.experiment_config.ablation_no_image_route,
+            ablation_no_reranking=request.experiment_config.ablation_no_reranking,
         )
         progress.activate_step("analyze", "quality", detail="评估检索质量并准备纠偏")
         retrieval_quality = self._assess_retrieval_quality(retrievals)

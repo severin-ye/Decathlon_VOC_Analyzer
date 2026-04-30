@@ -29,6 +29,7 @@ class QuestionGenerationService:
         aspects: list[ReviewAspect],
         questions_per_aspect: int = 2,
         use_llm: bool = True,
+        ablation_no_question_planning: bool = False,
     ) -> tuple[list[QuestionIntent], list[RetrievalQuestion], list[str], str]:
         progress = get_workflow_progress()
         progress.start_count_step("analyze", "questions", total=len(aspects), detail=f"规划 {len(aspects)} 个方面的问题")
@@ -46,6 +47,37 @@ class QuestionGenerationService:
         intents = self.plan_question_intents(aspects, questions_per_aspect)
         questions: list[RetrievalQuestion] = []
         warnings: list[str] = []
+
+        if ablation_no_question_planning:
+            mode = "ablation_no_qp"
+            for aspect in aspects:
+                q_text = f"{aspect.aspect}: {aspect.opinion}"
+                questions.append(
+                    RetrievalQuestion(
+                        question_id=f"{aspect.aspect_id}_q_direct",
+                        source_review_id=aspect.review_id,
+                        source_aspect=aspect.aspect,
+                        source_aspect_id=aspect.aspect_id,
+                        question=q_text,
+                        rationale=aspect.evidence_span or q_text,
+                        expected_evidence_routes=["text"],
+                        confidence=0.5,
+                    )
+                )
+                progress.advance_step("analyze", "questions", detail=aspect.aspect)
+            progress.complete_step("analyze", "questions")
+            self.cache_service.save(
+                cache_signature,
+                QuestionGenerationCachePayload(
+                    signature=cache_signature,
+                    question_mode=mode,
+                    question_warnings=warnings,
+                    question_intents=intents,
+                    questions=questions,
+                ),
+            )
+            return intents, questions, warnings, mode
+
         llm_requested, policy_warning = resolve_llm_permission("question_generation", use_llm, self.settings)
         if policy_warning is not None:
             warnings.append(policy_warning)
