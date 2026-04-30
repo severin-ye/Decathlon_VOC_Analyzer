@@ -10,8 +10,8 @@ import psutil
 from datetime import datetime
 
 # 添加 src 路径
-ROOT_DIR = Path(__file__).resolve().parent
-SRC_DIR = ROOT_DIR / "05_src"
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+SRC_DIR = PROJECT_ROOT / "05_src"
 if str(SRC_DIR) not in sys.path:
     sys.path.insert(0, str(SRC_DIR))
 

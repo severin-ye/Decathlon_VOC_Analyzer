@@ -133,13 +133,13 @@ OPENVINO_DEVICE=GPU
 ### Step 1: 下载模型
 ```bash
 # 这会自动从 HuggingFace 下载模型（首次需网络）
-python demo_local_inference.py
+python 04_scripts/local_inference/demo_local_inference.py
 ```
 
 ### Step 2: 查看配置
 ```bash
 # 验证当前配置
-cat demo_local_inference.py | grep "embedding_backend"
+grep "embedding_backend" 04_scripts/local_inference/demo_local_inference.py
 ```
 
 ### Step 3: 运行工作流
@@ -274,7 +274,7 @@ A: 是的！✅
 ## 📚 进一步了解
 
 - 集成详情: [IMPLEMENTATION_SUMMARY.md](IMPLEMENTATION_SUMMARY.md)
-- 演示脚本: `python demo_local_inference.py`
+- 演示脚本: `python 04_scripts/local_inference/demo_local_inference.py`
 - 测试文件: `06_tests/test_embedding_and_reranker.py`
 - 源代码: `05_src/decathlon_voc_analyzer/stage3_retrieval/`
 
@@ -285,7 +285,7 @@ A: 是的！✅
 在生产环境部署前：
 
 - [ ] 依赖已安装 (`pip install -e .`)
-- [ ] 模型已下载 (`python demo_local_inference.py`)
+- [ ] 模型已下载 (`python 04_scripts/local_inference/demo_local_inference.py`)
 - [ ] 测试全部通过 (`pytest 06_tests/ -q`)
 - [ ] 环境变量已配置 (`export embedding_backend=local_qwen3` 等)
 - [ ] 硬件满足要求 (显存/内存充足)

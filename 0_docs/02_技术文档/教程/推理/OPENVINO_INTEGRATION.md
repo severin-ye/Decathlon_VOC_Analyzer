@@ -16,8 +16,8 @@
   - `get_openvino_device()` - 自动设备检测
 
 #### 2. 测试脚本
-- **`test_openvino_integrated.py`** - 集成方案测试
-- **`test_openvino_vs_pytorch.py`** - 性能对比测试（PyTorch vs OpenVINO）
+- **`04_scripts/local_inference/test_openvino_integrated.py`** - 集成方案测试
+- **`04_scripts/local_inference/test_openvino_vs_pytorch.py`** - 性能对比测试（PyTorch vs OpenVINO）
 
 ---
 
@@ -138,12 +138,12 @@ sudo apt-get install libigdmd_gpu
 ```bash
 cd /home/severin/Codelib/Decathlon_VOC_Analyzer
 source .venv/bin/activate
-python test_openvino_integrated.py
+python 04_scripts/local_inference/test_openvino_integrated.py
 ```
 
 性能对比测试：
 ```bash
-python test_openvino_vs_pytorch.py
+python 04_scripts/local_inference/test_openvino_vs_pytorch.py
 ```
 
 ---

@@ -272,7 +272,7 @@ reranked = reranker_service.rerank(query, candidates, use_llm=True)
 
 ```bash
 cd /home/severin/Codelib/Decathlon_VOC_Analyzer
-python demo_local_inference.py
+python 04_scripts/local_inference/demo_local_inference.py
 ```
 
 ---
@@ -355,7 +355,7 @@ EOF
 
 ### 新建文件
 - ✅ `05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py` (本地推理工具库)
-- ✅ `demo_local_inference.py` (演示脚本)
+- ✅ `04_scripts/local_inference/demo_local_inference.py` (演示脚本)
 
 ### 修改文件
 - ✅ `05_src/decathlon_voc_analyzer/app/core/config.py` (新增 4 个配置参数)

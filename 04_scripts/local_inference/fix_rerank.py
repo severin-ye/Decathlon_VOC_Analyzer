@@ -1,7 +1,8 @@
 import sys
 from pathlib import Path
 
-file_path = Path("05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_integrated.py")
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+file_path = PROJECT_ROOT / "05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_integrated.py"
 content = file_path.read_text()
 
 old_code = '''    def rerank(self, query: str, candidates: List[str]) -> List[dict]:

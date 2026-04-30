@@ -12,7 +12,8 @@ import sys
 from pathlib import Path
 
 # 配置路径
-sys.path.insert(0, str(Path(__file__).parent / "05_src"))
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+sys.path.insert(0, str(PROJECT_ROOT / "05_src"))
 
 from decathlon_voc_analyzer.app.core.config import Settings
 from decathlon_voc_analyzer.stage3_retrieval.embedding_service import EmbeddingService
