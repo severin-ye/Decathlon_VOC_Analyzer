@@ -41,6 +41,10 @@ gpu = [
     "flash-attn>=2.5.0,<3.0.0",  # FlashAttention-2 加速
     "bitsandbytes>=0.44.0,<1.0.0",  # 模型量化支持
 ]
+openvino = [
+    "openvino>=2025.4.0",
+    "optimum-intel[openvino]>=1.22.0",
+]
 
 [tool.setuptools]
 package-dir = {"" = "05_src"}

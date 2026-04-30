@@ -42,6 +42,9 @@ class Settings(BaseSettings):
     text_reranker_timeout_seconds: float = 600.0
     multimodal_reranker_timeout_seconds: float = 600.0
     multimodal_reranker_max_retries: int = 0
+    multimodal_reranker_max_tokens: int = 80
+    multimodal_reranker_image_max_side: int = 512
+    multimodal_reranker_image_jpeg_quality: int = 60
     clip_vl_embedding_model: str = "openai/clip-vit-base-patch32"
     # 本地小参数模型配置（Qwen3 系列）
     local_embedding_model_name: str = "Qwen/Qwen3-Embedding-0.6B"

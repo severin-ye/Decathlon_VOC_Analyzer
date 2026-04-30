@@ -57,8 +57,17 @@ python -c "from decathlon_voc_analyzer.stage3_retrieval.local_model_utils import
 
 | 选项 | 说明 |
 |------|------|
-| `qwen_vl` | 使用 qwen-vl-max API（默认，需 API KEY） |
-| `local_qwen3_vl` | 使用本地 Qwen3-VL-2B |
+| `qwen_vl` | 使用阿里 Qwen-VL API（默认，需 API KEY，速度优先推荐） |
+| `local_qwen3_vl` | 使用本地 Qwen3-VL-2B（适合高性能本地机器） |
+
+### 云端 Qwen-VL 加速参数
+
+| 配置项 | 默认值 | 说明 |
+|------|------:|------|
+| `qwen_vl_reranker_model` | `qwen-vl-max-latest` | 阿里 Qwen-VL 模型名；可替换为账号可用的更新/更快模型 |
+| `multimodal_reranker_max_tokens` | `160` | 图像重排只需要 JSON 分数，建议保持较小 |
+| `multimodal_reranker_image_max_side` | `768` | 上传前把图片最长边压缩到该尺寸 |
+| `multimodal_reranker_image_jpeg_quality` | `70` | 上传前转 JPEG 的质量，降低可明显减少延迟 |
 
 ### 设备选择 (`local_model_device`)
 
@@ -83,7 +92,11 @@ multimodal_reranker_backend=local_qwen3_vl
 ```bash
 embedding_backend=local_qwen3        # 本地快速嵌入
 reranker_backend=api                 # API 精准重排
-multimodal_reranker_backend=api      # API 多模态
+multimodal_reranker_backend=qwen_vl  # API 多模态
+qwen_vl_reranker_model=qwen-vl-max-latest
+multimodal_reranker_max_tokens=80
+multimodal_reranker_image_max_side=512
+multimodal_reranker_image_jpeg_quality=60
 ```
 
 ### 🎯 精准方案（需 API KEY）
@@ -91,6 +104,7 @@ multimodal_reranker_backend=api      # API 多模态
 embedding_backend=api
 reranker_backend=api
 multimodal_reranker_backend=qwen_vl
+qwen_vl_reranker_model=qwen-vl-max-latest
 ```
 
 ### 💻 仅本地方案（完全离线）
@@ -100,6 +114,17 @@ reranker_backend=local_qwen3
 multimodal_reranker_backend=local_qwen3_vl
 # 需要提前下载所有模型文件
 ```
+
+### 🧪 高性能本地机器方案
+```bash
+embedding_backend=local_qwen3
+reranker_backend=local_qwen3
+multimodal_reranker_backend=local_qwen3_vl
+local_model_device=auto
+OPENVINO_DEVICE=GPU
+```
+
+当前文本 Qwen3-Embedding 和 Qwen3-Reranker 已支持 OpenVINO GPU；Qwen3-VL 本地多模态仍走 PyTorch 路径，适合显存/内存充足的机器。若阿里后续提供账号可用的更新 VL 模型，可只改 `qwen_vl_reranker_model` 切换云端模型。
 
 ---
 

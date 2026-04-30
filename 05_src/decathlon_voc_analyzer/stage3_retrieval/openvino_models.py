@@ -11,7 +11,10 @@ from huggingface_hub import snapshot_download
 from transformers import AutoModel, AutoProcessor, AutoTokenizer
 
 try:
-    from openvino.runtime import Core, get_version
+    try:
+        from openvino.runtime import Core, get_version
+    except ImportError:
+        from openvino import Core, get_version
     OPENVINO_AVAILABLE = True
     OV_VERSION = get_version()
 except ImportError:
@@ -292,7 +295,6 @@ def get_openvino_device() -> str:
         return "CPU"
     
     try:
-        from openvino.runtime import Core
         core = Core()
         available_devices = core.available_devices
         

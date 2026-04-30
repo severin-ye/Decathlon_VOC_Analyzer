@@ -10,14 +10,29 @@ Requires-Dist: pydantic<3.0.0,>=2.8.0
 Requires-Dist: pydantic-settings<3.0.0,>=2.4.0
 Requires-Dist: python-dotenv<2.0.0,>=1.0.1
 Requires-Dist: orjson<4.0.0,>=3.10.0
-Requires-Dist: langchain<0.4.0,>=0.3.0
-Requires-Dist: langchain-core<0.4.0,>=0.3.0
+Requires-Dist: rich<14.0.0,>=13.7.0
+Requires-Dist: langchain<2.0.0,>=1.0.0
+Requires-Dist: langchain-core<2.0.0,>=1.0.0
+Requires-Dist: langchain-openai<1.0.0,>=0.3.0
+Requires-Dist: langgraph<2.0.0,>=1.0.0
 Requires-Dist: openai<2.0.0,>=1.40.0
+Requires-Dist: pillow<12.0.0,>=11.0.0
+Requires-Dist: torchvision<0.27.0,>=0.26.0
 Requires-Dist: qdrant-client<2.0.0,>=1.11.0
+Requires-Dist: safetensors<1.0.0,>=0.6.0
+Requires-Dist: torch<3.0.0,>=2.8.0
+Requires-Dist: transformers<5.0.0,>=4.51.0
+Requires-Dist: numpy<2.0.0,>=1.24.0
 Provides-Extra: dev
 Requires-Dist: pytest<9.0.0,>=8.3.0; extra == "dev"
 Requires-Dist: httpx<1.0.0,>=0.27.0; extra == "dev"
 Requires-Dist: ruff<1.0.0,>=0.6.0; extra == "dev"
+Provides-Extra: gpu
+Requires-Dist: flash-attn<3.0.0,>=2.5.0; extra == "gpu"
+Requires-Dist: bitsandbytes<1.0.0,>=0.44.0; extra == "gpu"
+Provides-Extra: openvino
+Requires-Dist: openvino>=2025.4.0; extra == "openvino"
+Requires-Dist: optimum-intel[openvino]>=1.22.0; extra == "openvino"
 
 # Decathlon VOC Analyzer
 
@@ -30,7 +45,7 @@ Requires-Dist: ruff<1.0.0,>=0.6.0; extra == "dev"
 
 ## 当前能力
 
-- 扫描 Dataset/products 下的商品目录
+- 扫描 01_data/01_raw_products/products 下的商品目录
 - 检查 product.json、reviews.json 和图片目录的一致性
 - 生成标准化商品证据包
 - 输出数据质量摘要报告
@@ -39,14 +54,23 @@ Requires-Dist: ruff<1.0.0,>=0.6.0; extra == "dev"
 ## 目录结构
 
 ```text
-src/decathlon_voc_analyzer/
-  api/
-  core/
-  models/
-  services/
-artifacts/
-Dataset/
-设计文档/
+01_data/
+  01_raw_products/
+    products/
+  02_audit_zh_products/
+    products/
+02_outputs/
+03_docs/
+04_scripts/
+05_src/decathlon_voc_analyzer/
+  app/
+  prompts/
+  schemas/
+  stage1_dataset/
+  stage2_review_modeling/
+  stage3_retrieval/
+  stage4_generation/
+06_tests/
 ```
 
 ## 安装
@@ -60,7 +84,7 @@ pip install -e .[dev]
 ## 运行
 
 ```bash
-uvicorn decathlon_voc_analyzer.api.main:app --reload
+uvicorn decathlon_voc_analyzer.app.api.main:app --reload
 ```
 
 启动后访问：
@@ -68,6 +92,221 @@ uvicorn decathlon_voc_analyzer.api.main:app --reload
 - `/health`
 - `/api/v1/dataset/overview`
 - `/api/v1/dataset/normalize`
+- `/api/v1/index/overview`
+- `/api/v1/index/build`
+- `/api/v1/reviews/extract`
+- `/api/v1/analysis/product`
+
+`/api/v1/reviews/extract` 支持两种模式：
+
+- 传入 `product_id` 和可选 `category_slug`，直接从 01_data/01_raw_products/products 中读取商品评论并做结构化抽取
+- 直接传入 `reviews` 数组，做临时评论抽取实验
+
+建议开发期先设置 `use_llm=false` 跑通链路，再切换到真实模型抽取。
+
+`/api/v1/analysis/product` 会串起：
+
+- 读取商品评论
+- 做 Aspect 结构化抽取
+- 先从每个 aspect 生成 k 个待澄清问题
+- 再围绕这些问题在同商品的图文证据中执行双路召回
+- 聚合方面统计
+- 生成综合意见与改进建议
+
+这一版默认已接入 LLM 分析与原生多模态检索链路；如果外部能力不可用，系统仍保留可回退的本地启发式闭环。
+
+索引层现在已独立成一个可持久化模块：
+
+- `/api/v1/index/build` 用于为商品图文证据构建本地索引
+- `/api/v1/index/overview` 用于查看当前索引覆盖范围
+
+API 配置层当前默认后端仍是本地持久化向量索引；批处理入口 `04_scripts/run_workflow.py` 已默认切到 Qdrant，并可通过 `--retrieval-backend local` 显式回退。
+
+当前检索层已经拆成两层：
+
+- EmbeddingService：负责文本向量化与原生图像 VL 向量化
+- IndexBackend：负责索引存储与检索；API 默认是 local，批跑默认是 qdrant
+
+当前召回链路已经升级为“两阶段检索”：
+
+- 第一阶段：embedding 粗召回
+- 第二阶段：reranker 精排
+
+默认策略为：
+
+- 运行态优先使用真实 text embedding API、原生 CLIP 图像 embedding 与多模态 VL reranker
+- 测试态固定使用 hash embedding 与 heuristic reranker，保证可重复和离线可测
+
+批处理入口默认还会把 Qdrant 路径切到独立 run 目录，避免多个真实运行共享同一个本地 store 时出现文件锁冲突；如需复用固定目录，可显式传入 `--qdrant-scope shared` 或 `--qdrant-path <dir>`。
+
+当前默认 embedding 模型为 `text-embedding-v4`，通过 DashScope OpenAI 兼容接口调用。
+当前默认图像 embedding 模型为 `openai/clip-vit-base-patch32`，用于原生视觉向量化。
+当前默认 reranker 模型为 `gte-rerank-v2`，通过 DashScope 原生 rerank 接口调用。
+当前默认多模态 reranker 模型为 `qwen-vl-max-latest`，用于图像候选的图文联合重排。
+当前所有业务提示词已统一收口到 `05_src/decathlon_voc_analyzer/prompts/` 目录管理。
+
+stage3 检索层还会把 query embeddings 和 rerank 结果写入 `02_outputs/3_indexes/retrieval_cache/` 的磁盘缓存，缓存签名绑定 backend、model、base_url 和候选集 digest，因此不同运行配置不会互相污染。
+
+如果评测输入里存在 gold labels，`ManifestEvaluationService` 还可以读取 `manifest.evaluation_labels.retrieval_relevance` 或 `analysis.retrieval_labels`，并计算 `Recall@1/3/5`、`MRR`、`NDCG@3/5` 等指标。
+
+评论抽样现在也支持配置文件控制，默认配置文件位于 `03_configs/review_sampling_profiles.json`。
+
+当前配置文件内置 3 个 profile：`problem_first`、`balanced`、`praise_first`。
+
+- `problem_first`：优先低星问题评论
+- `balanced`：尽量均衡覆盖 1-5 星评论
+- `praise_first`：优先高星优势评论
+
+通过修改 `active_profile` 就可以一键切换当前默认 profile。当前默认 profile 为 `problem_first`，默认星级配额为：
+
+- 5 星：10%
+- 4 星：15%
+- 3 星：20%
+- 2 星：25%
+- 1 星：30%
+
+当 `max_reviews` 被设置为具体数量时，系统会先按该配额构建评论抽样池，再进入评论抽取；若低星评论不足，会按 `fallback_order: [1, 2, 3, 4, 5]` 逐级补位。
+
+如果需要为人工审核导出单产品中文数据集，可运行：
+
+```bash
+.venv/bin/python 04_scripts/export_single_product_chinese_dataset.py --category backpack --product-id backpack_010
+```
+
+默认输出到 `01_data/02_audit_zh_products/products/<category>/<product_id>/`，目录结构与原始数据集保持一致，包含：
+
+- `product.json`
+- `reviews.json`
+- `images/`
+
+当前 `02_outputs/` 目录按流水线顺序编号：
+
+- `1_normalized/`
+- `CN/1_normalized/`
+- `2_aspects/`
+- `CN/2_aspects/`
+- `3_indexes/`
+- `CN/3_indexes/`
+- `4_reports/`
+- `CN/4_reports/`
+
+如果希望一条命令直接跑完整工作流，可运行：
+
+```bash
+.venv/bin/python 04_scripts/run_workflow.py
+```
+
+默认会针对 `backpack/backpack_010` 执行：
+
+- 标准化
+- 索引构建
+- 完整分析
+
+如果要直接分析中文测试数据集，可运行：
+
+```bash
+.venv/bin/python 04_scripts/run_workflow.py --cn
+```
+
+如果只想本地验证流程、不调用外部模型，可加：
+
+```bash
+.venv/bin/python 04_scripts/run_workflow.py --cn --no-llm
+```
+
+也可以显式指定商品：
+
+```bash
+.venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010
+```
+
+如果只想分析前 N 条评论，也可以使用简写参数：
+
+```bash
+.venv/bin/python 04_scripts/run_workflow.py --cn --R_5
+```
+
+其中 `--R_5` 表示只分析前 5 条评论，等价于：
+
+```bash
+.venv/bin/python 04_scripts/run_workflow.py --cn --max-reviews 5
+```
+
+如果希望批处理稳定消费运行结果，推荐直接使用 JSON 输出：
+
+```bash
+.venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010 --R_5 --no-llm --output-format json
+```
+
+该模式会返回统一摘要，包含：
+
+- `review_sampling.profile_name`
+- `review_sampling.allocations`
+- `retrieval_runtime.native_multimodal_enabled`
+- `retrieval_runtime.image_embedding_backend`
+- `retrieval_runtime.multimodal_reranker_backend`
+- `analysis.artifact_path`
+- `analysis.replay_applied`
+- `analysis.replay_persistent_issue_count`
+- `artifact_bundle.analysis_path`
+- `artifact_bundle.feedback_path`
+- `artifact_bundle.replay_path`
+
+评论抽取响应与 `02_outputs/2_aspects/<category>/<product_id>.json` 中还会额外包含 `sampling_plan`；而 `run_workflow.py --output-format json` 现在会把同一份抽样计划直接抬到顶层 `review_sampling`。其中会写明：
+
+- 每个星级的目标数量 `target_count`
+- 每个星级的可用数量 `available_count`
+- 每个星级的实际抽取数量 `selected_count`
+- 因缺口被补入的数量 `redistributed_in_count`
+- 未满足目标的数量 `shortfall_count`
+
+如果要对真实商品执行一条端到端的多模态运行态回归，可直接运行：
+
+```bash
+.venv/bin/python 04_scripts/validate_multimodal_runtime.py --category backpack --product-id backpack_010
+```
+
+该脚本会直接执行完整工作流，并断言：
+
+- `analysis_mode=llm`
+- `retrieval_runtime.native_multimodal_enabled=true`
+- `retrieval_runtime.image_embedding_backend=clip`
+- `retrieval_runtime.multimodal_reranker_backend=qwen_vl`
+
+默认也会使用独立 Qdrant 目录；如果你只想查看结果而不强制要求 LLM，可额外传入 `--allow-heuristic`。
+
+若沿用批处理默认配置，`run_workflow.py` 会默认设置 `retrieval_backend=qdrant`，并在存在历史 replay sidecar 时自动把上一轮回放摘要接回当前分析；如需关闭 Qdrant，可显式传入：
+
+```bash
+.venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010 --output-format json --retrieval-backend local
+```
+
+如果希望一条命令同时导出 HTML，并把本次运行摘要落盘为 manifest，可运行：
+
+```bash
+.venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010 --R_5 --no-llm --output-format json --export-html --write-manifest
+```
+
+默认会额外生成：
+
+- `02_outputs/6_html/<category>/<product_id>.html`
+- `02_outputs/7_manifests/<category>/<product_id>_run_manifest.json`
+
+如需自定义 manifest 路径，可显式指定：
+
+```bash
+.venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010 --output-format json --manifest-path 02_outputs/custom/backpack_010_manifest.json
+```
+
+如果要切换后端，可在 `.env` 中设置：
+
+- `retrieval_backend=local`
+- `retrieval_backend=qdrant`
+
+如需显式控制检索质量组件，也可设置：
+
+- `embedding_backend=api` 或 `embedding_backend=hash`
+- `reranker_backend=api` 或 `reranker_backend=heuristic`
 
 ## 配置
 

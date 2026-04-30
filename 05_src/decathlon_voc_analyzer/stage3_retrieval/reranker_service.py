@@ -393,7 +393,7 @@ class RerankerService:
         response = client.chat.completions.create(
             model=self.settings.qwen_vl_reranker_model,
             temperature=0,
-            max_tokens=400,
+            max_tokens=self.settings.multimodal_reranker_max_tokens,
             response_format={"type": "json_object"},
             messages=[{"role": "user", "content": content}],
         )
@@ -420,19 +420,29 @@ class RerankerService:
         image_path = Path(self.settings.dataset_root) / candidate.category_slug / candidate.product_id / candidate.image_path
         if not image_path.exists():
             return None
-        if candidate.region_box is not None:
-            try:
-                with Image.open(image_path) as image:
-                    cropped = image.convert("RGB").crop(tuple(candidate.region_box))
-                    buffer = BytesIO()
-                    cropped.save(buffer, format="PNG")
-                encoded = base64.b64encode(buffer.getvalue()).decode("ascii")
-                return f"data:image/png;base64,{encoded}"
-            except Exception:
-                return None
-        mime = "image/png" if image_path.suffix.lower() == ".png" else "image/jpeg"
-        encoded = base64.b64encode(image_path.read_bytes()).decode("ascii")
-        return f"data:{mime};base64,{encoded}"
+        try:
+            with Image.open(image_path) as image:
+                image = image.convert("RGB")
+                if candidate.region_box is not None:
+                    image = image.crop(tuple(candidate.region_box))
+                image.thumbnail(
+                    (
+                        self.settings.multimodal_reranker_image_max_side,
+                        self.settings.multimodal_reranker_image_max_side,
+                    ),
+                    Image.Resampling.LANCZOS,
+                )
+                buffer = BytesIO()
+                image.save(
+                    buffer,
+                    format="JPEG",
+                    quality=self.settings.multimodal_reranker_image_jpeg_quality,
+                    optimize=True,
+                )
+            encoded = base64.b64encode(buffer.getvalue()).decode("ascii")
+            return f"data:image/jpeg;base64,{encoded}"
+        except Exception:
+            return None
 
     def _get_openai_client(self) -> OpenAI:
         if self._client is None:
