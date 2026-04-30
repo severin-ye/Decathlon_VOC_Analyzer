@@ -1,4 +1,4 @@
 {
   "allow_degradation": false,
-  "full_power": true
+  "full_power": false
 }

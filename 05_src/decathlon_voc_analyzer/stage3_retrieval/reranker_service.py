@@ -393,11 +393,18 @@ class RerankerService:
         response = client.chat.completions.create(
             model=self.settings.qwen_vl_reranker_model,
             temperature=0,
-            max_tokens=self.settings.multimodal_reranker_max_tokens,
+            max_tokens=max(
+                self.settings.multimodal_reranker_max_tokens,
+                80 + 64 * len(candidates),
+            ),
             response_format={"type": "json_object"},
             messages=[{"role": "user", "content": content}],
         )
-        payload = json.loads(response.choices[0].message.content or "{}")
+        raw_content = response.choices[0].message.content or "{}"
+        try:
+            payload = json.loads(raw_content)
+        except json.JSONDecodeError as exc:
+            raise ValueError(f"Qwen-VL reranker returned invalid JSON: {raw_content[:1000]}") from exc
         rerank_scores = {
             candidates[int(item.get("index", -1))].evidence_id: self._normalize_score(item.get("relevance_score", 0.0))
             for item in payload.get("results", [])

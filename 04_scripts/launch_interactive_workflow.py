@@ -1,4 +1,5 @@
 import json
+import argparse
 from dataclasses import dataclass
 import os
 from pathlib import Path
@@ -164,7 +165,6 @@ def ensure_http_server() -> str:
         cwd=str(ROOT_DIR),
     )
     return f"http://localhost:{HTTP_PORT}"
-2
 
 def ensure_launcher_assets() -> None:
     LAUNCHER_ASSET_DIR.mkdir(parents=True, exist_ok=True)
@@ -257,9 +257,9 @@ def build_batch_dashboard_payload(state: LauncherRunState) -> dict[str, object]:
     }
 
 
-def run_interactive_batch() -> int:
+def run_interactive_batch(run_mode_override: str | None = None, continue_previous: bool = False) -> int:
     resume_candidate = find_latest_resumable_batch()
-    run_mode = prompt_run_mode(resume_candidate)
+    run_mode = run_mode_override or prompt_run_mode(resume_candidate)
 
     if run_mode == RUN_MODE_NORMAL:
         categories = discover_categories()
@@ -275,7 +275,9 @@ def run_interactive_batch() -> int:
         if resume_candidate is None:
             print("[未找到] 当前没有可继续的未完成批次。请先使用“正常跑”建立一次任务。")
             return 130
-        if not prompt_continue_previous_batch(resume_candidate.payload, run_mode):
+        if continue_previous:
+            print("[自动] 继续上一次未完成任务。")
+        elif not prompt_continue_previous_batch(resume_candidate.payload, run_mode):
             print("[取消] 未继续上一次未完成任务。")
             return 130
         state = restore_batch_state(resume_candidate.payload)
@@ -626,6 +628,30 @@ def prompt_run_mode(resume_candidate: ResumeCandidate | None = None, input_func=
         print_func(f"输入无效，请输入 1 到 {len(options)}。")
 
 
+def parse_run_mode_override(value: str | None, resume_candidate: ResumeCandidate | None) -> str | None:
+    if value is None:
+        return None
+    normalized = value.strip().lower().replace("_", "-")
+    aliases = {
+        "1": RUN_MODE_NORMAL,
+        "normal": RUN_MODE_NORMAL,
+        "2": RUN_MODE_RESUME_ASPECTS,
+        "resume-aspects": RUN_MODE_RESUME_ASPECTS,
+        "aspects": RUN_MODE_RESUME_ASPECTS,
+        "3": RUN_MODE_RESUME_ANALYSIS_CHECKPOINT,
+        "resume-analysis-checkpoint": RUN_MODE_RESUME_ANALYSIS_CHECKPOINT,
+        "analysis-checkpoint": RUN_MODE_RESUME_ANALYSIS_CHECKPOINT,
+    }
+    run_mode = aliases.get(normalized)
+    if run_mode is None:
+        raise ValueError("--mode 只支持 1/2/3、normal、resume-aspects、resume-analysis-checkpoint")
+    available = {option.code for option in available_run_mode_options(resume_candidate)}
+    if run_mode not in available:
+        labels = ", ".join(option.label for option in available_run_mode_options(resume_candidate)) or "无"
+        raise ValueError(f"当前不可用的运行模式: {value}。可用模式: {labels}")
+    return run_mode
+
+
 def available_run_mode_options(resume_candidate: ResumeCandidate | None) -> list[ResumeModeOption]:
     options: list[ResumeModeOption] = []
     options.append(ResumeModeOption(code=RUN_MODE_NORMAL, label="正常跑"))
@@ -871,8 +897,25 @@ def _open_browser(url: str) -> None:
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description="Launch interactive VOC workflow.")
+    parser.add_argument(
+        "--mode",
+        help="非交互选择运行模式：1/normal，2/resume-aspects，3/resume-analysis-checkpoint。",
+    )
+    parser.add_argument(
+        "--yes",
+        "-y",
+        action="store_true",
+        help="非交互续跑时自动回答 y，继续上一次未完成任务。",
+    )
+    args = parser.parse_args()
     try:
-        exit_code = run_interactive_batch()
+        resume_candidate = find_latest_resumable_batch()
+        run_mode_override = parse_run_mode_override(args.mode, resume_candidate)
+        exit_code = run_interactive_batch(run_mode_override=run_mode_override, continue_previous=args.yes)
+    except ValueError as exc:
+        print(f"[错误] {exc}", file=sys.stderr)
+        raise SystemExit(2)
     except KeyboardInterrupt:
         print("\n[中断] 交互式批量任务已手动取消。", file=sys.stderr)
         raise SystemExit(130)
