@@ -58,3 +58,23 @@
 .nav-card__subtitle {
     font-variant-numeric: tabular-nums;
 }
+
+.detail-link {
+    display: block;
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--panel-strong);
+    color: var(--blue);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.detail-link:hover {
+    border-color: var(--blue);
+}
+
+.stage-list {
+    display: grid;
+    gap: 10px;
+}

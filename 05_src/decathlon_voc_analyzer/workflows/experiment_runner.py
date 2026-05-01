@@ -25,6 +25,10 @@ ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(ROOT / "05_src"))
 
 from decathlon_voc_analyzer.app.core.config import get_settings  # noqa: E402
+from decathlon_voc_analyzer.runtime_progress import (  # noqa: E402
+    WorkflowProgressReporter,
+    use_workflow_progress,
+)
 from decathlon_voc_analyzer.schemas.analysis import (  # noqa: E402
     ExperimentConfig,
     ProductAnalysisRequest,
@@ -50,9 +54,37 @@ EXPERIMENT_CONDITIONS: list[tuple[str, ExperimentConfig]] = [
     ("control_vericite", ExperimentConfig(control_method="vericite")),
 ]
 
+EXPERIMENT_PROGRESS_PLAN = [
+    (
+        "analyze",
+        "生成分析",
+        [
+            ("extract", "抽取评论"),
+            ("questions", "规划和生成问题"),
+            ("retrieve", "检索证据"),
+            ("quality", "评估检索质量"),
+            ("report", "生成报告"),
+            ("attribution", "归因和修订"),
+            ("persist", "写入分析产物"),
+        ],
+    ),
+]
+
 
 def _now_iso() -> str:
     return datetime.now(timezone.utc).isoformat()
+
+
+def _progress_dashboard_path(output_dir: Path, category: str, product_id: str, condition: str) -> Path:
+    return output_dir / "_progress" / category / product_id / f"{condition}.html"
+
+
+def _progress_dashboard_url(output_dir: Path, dashboard_path: Path) -> str | None:
+    try:
+        relative_path = dashboard_path.resolve().relative_to(output_dir.resolve()).as_posix()
+    except ValueError:
+        return None
+    return f"/experiment_results/{relative_path}"
 
 
 def _read_log_entries(log_path: Path) -> list[dict]:
@@ -230,6 +262,19 @@ def run_experiment_matrix(
         print(f"\n[RUN] {run_id}")
         run_started_at = _now_iso()
         run_start_time = time.monotonic()
+        progress_dashboard_path = _progress_dashboard_path(
+            output_dir,
+            category,
+            product_id,
+            condition_name,
+        )
+        progress_dashboard_url = _progress_dashboard_url(output_dir, progress_dashboard_path)
+        progress = WorkflowProgressReporter(
+            EXPERIMENT_PROGRESS_PLAN,
+            dashboard_path=progress_dashboard_path,
+            dashboard_title=f"{category}/{product_id}/{condition_name} Experiment Progress",
+            terminal_mode="events",
+        )
         _write_summary(
             summary_path,
             categories=categories,
@@ -264,7 +309,10 @@ def run_experiment_matrix(
                 questions_per_aspect=2,
                 experiment_config=exp_config,
             )
-            response = service.analyze(request)
+            with progress:
+                with use_workflow_progress(progress):
+                    progress.note(f"实验运行已启动：{run_id}")
+                    response = service.analyze(request)
             result_summary = {
                 "run_id": run_id,
                 "category": category,
@@ -280,8 +328,10 @@ def run_experiment_matrix(
                     1 for c in response.report.claim_attributions if c.support_status == "supported"
                 ),
                 "artifact_path": response.artifact_path,
+                "progress_dashboard_url": progress_dashboard_url,
             }
         except Exception as exc:
+            progress.fail_workflow(detail=f"实验运行失败: {exc}")
             print(f"[ERROR] {run_id}: {exc}")
             result_summary = {
                 "run_id": run_id,
@@ -290,6 +340,7 @@ def run_experiment_matrix(
                 "condition": condition_name,
                 "status": "error",
                 "error": str(exc),
+                "progress_dashboard_url": progress_dashboard_url,
             }
 
         run_finished_at = _now_iso()

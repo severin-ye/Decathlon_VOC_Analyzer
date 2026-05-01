@@ -220,10 +220,14 @@ class ProductAnalysisService:
 
     def _resolve_extraction(self, request: ProductAnalysisRequest) -> ReviewExtractionResponse:
         if request.reuse_extraction_artifact:
-            return self.review_service.load_persisted_result(
+            progress = get_workflow_progress()
+            progress.activate_step("analyze", "extract", detail="复用已落盘评论抽取结果")
+            extraction = self.review_service.load_persisted_result(
                 product_id=request.product_id,
                 category_slug=request.category_slug,
             )
+            progress.complete_step("analyze", "extract", detail=f"复用 {len(extraction.aspects)} 个方面")
+            return extraction
         return self.review_service.extract(
             ReviewExtractionRequest(
                 product_id=request.product_id,
