@@ -19,8 +19,8 @@ import orjson
 ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(ROOT / "05_src"))
 
-from decathlon_voc_analyzer.llm import QwenChatGateway
-from decathlon_voc_analyzer.schemas.analysis import ProductAnalysisResponse
+from decathlon_voc_analyzer.llm import QwenChatGateway  # noqa: E402
+from decathlon_voc_analyzer.schemas.analysis import ProductAnalysisResponse  # noqa: E402
 
 
 def load_analysis_response(artifact_path: str) -> ProductAnalysisResponse | None:
@@ -258,3 +258,43 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+
+
+# ---------- Per-item evaluation checkpoint support ----------
+
+EVALUATION_CHECKPOINT_DIR = "evaluation_checkpoints"
+
+
+def _eval_item_checkpoint_path(output_dir: Path, run_id: str) -> Path:
+    ckpt_dir = output_dir / EVALUATION_CHECKPOINT_DIR
+    ckpt_dir.mkdir(parents=True, exist_ok=True)
+    from hashlib import sha1
+    token = sha1(run_id.encode()).hexdigest()[:16]
+    return ckpt_dir / f"{token}_{run_id.replace('/', '_')}.json"
+
+
+def _load_eval_checkpoint(output_dir: Path, run_id: str) -> dict | None:
+    path = _eval_item_checkpoint_path(output_dir, run_id)
+    if not path.exists():
+        return None
+    try:
+        return orjson.loads(path.read_bytes())
+    except Exception:
+        return None
+
+
+def _save_eval_checkpoint(output_dir: Path, run_id: str, result: dict) -> None:
+    path = _eval_item_checkpoint_path(output_dir, run_id)
+    path.write_bytes(orjson.dumps(result, option=orjson.OPT_INDENT_2))
+
+
+def evaluate_run_with_checkpoint(run: dict[str, Any], chat: QwenChatGateway, output_dir: Path, force: bool = False) -> dict[str, Any]:
+    run_id = run.get("run_id", "")
+    if not force:
+        cached = _load_eval_checkpoint(output_dir, run_id)
+        if cached is not None:
+            return cached
+
+    result = evaluate_run(run, chat)
+    _save_eval_checkpoint(output_dir, run_id, result)
+    return result

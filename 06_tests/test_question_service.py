@@ -340,3 +340,25 @@ def test_question_service_uses_persistent_cache_on_second_run(tmp_path) -> None:
     assert second_intents == first_intents
     assert second_questions == first_questions
     assert (tmp_path / "question_cache").exists()
+
+def test_question_service_no_qp_ablation_bypasses_persistent_cache(monkeypatch) -> None:
+    service = QuestionGenerationService()
+
+    def _fail_cache(*args, **kwargs):
+        raise AssertionError("no-QP ablation should not touch the question cache")
+
+    monkeypatch.setattr(service.cache_service, "load", _fail_cache)
+    monkeypatch.setattr(service.cache_service, "save", _fail_cache)
+
+    intents, questions, warnings, mode = service.generate_questions(
+        [_build_aspect()],
+        questions_per_aspect=1,
+        use_llm=False,
+        ablation_no_question_planning=True,
+    )
+
+    assert mode == "heuristic"
+    assert warnings == []
+    assert intents
+    assert questions[0].question_id == "a1_q_direct"
+    assert questions[0].expected_evidence_routes == ["text"]

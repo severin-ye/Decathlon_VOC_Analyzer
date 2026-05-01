@@ -1,5 +1,4 @@
 import hashlib
-import re
 
 import orjson
 
@@ -33,23 +32,26 @@ class QuestionGenerationService:
     ) -> tuple[list[QuestionIntent], list[RetrievalQuestion], list[str], str]:
         progress = get_workflow_progress()
         progress.start_count_step("analyze", "questions", total=len(aspects), detail=f"规划 {len(aspects)} 个方面的问题")
-        cache_signature = self._build_cache_signature(aspects=aspects, questions_per_aspect=questions_per_aspect, use_llm=use_llm)
-        cached_payload = self.cache_service.load(cache_signature)
-        if cached_payload is not None:
-            progress.complete_step("analyze", "questions", detail=f"复用缓存 {len(cached_payload.questions)} 个问题")
-            return (
-                cached_payload.question_intents,
-                cached_payload.questions,
-                cached_payload.question_warnings,
-                cached_payload.question_mode,
-            )
+
+        cache_signature = None
+        if not ablation_no_question_planning:
+            cache_signature = self._build_cache_signature(aspects=aspects, questions_per_aspect=questions_per_aspect, use_llm=use_llm)
+            cached_payload = self.cache_service.load(cache_signature)
+            if cached_payload is not None:
+                progress.complete_step("analyze", "questions", detail=f"复用缓存 {len(cached_payload.questions)} 个问题")
+                return (
+                    cached_payload.question_intents,
+                    cached_payload.questions,
+                    cached_payload.question_warnings,
+                    cached_payload.question_mode,
+                )
 
         intents = self.plan_question_intents(aspects, questions_per_aspect)
         questions: list[RetrievalQuestion] = []
         warnings: list[str] = []
 
         if ablation_no_question_planning:
-            mode = "ablation_no_qp"
+            mode = "heuristic"
             for aspect in aspects:
                 q_text = f"{aspect.aspect}: {aspect.opinion}"
                 questions.append(
@@ -66,16 +68,6 @@ class QuestionGenerationService:
                 )
                 progress.advance_step("analyze", "questions", detail=aspect.aspect)
             progress.complete_step("analyze", "questions")
-            self.cache_service.save(
-                cache_signature,
-                QuestionGenerationCachePayload(
-                    signature=cache_signature,
-                    question_mode=mode,
-                    question_warnings=warnings,
-                    question_intents=intents,
-                    questions=questions,
-                ),
-            )
             return intents, questions, warnings, mode
 
         llm_requested, policy_warning = resolve_llm_permission("question_generation", use_llm, self.settings)

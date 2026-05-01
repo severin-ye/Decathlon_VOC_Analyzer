@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>实验矩阵监控</title>
+    <link rel="stylesheet" href="experiment.css" />
+</head>
+<body>
+    <div class="page-shell">
+        <section id="status-banner" class="status-banner running">
+            <div class="eyebrow">Experiment Matrix Monitor</div>
+            <div id="status-headline" class="headline">--</div>
+            <div id="status-caption" class="caption">--</div>
+        </section>
+
+        <section class="hero">
+            <h1>消融实验与对照实验</h1>
+            <div class="hero-note">实时追踪 8 个实验条件在 15 个商品上的运行进度</div>
+            <div class="hero-meta">
+                <div class="meta-card">
+                    <div class="meta-label">已完成</div>
+                    <div id="meta-completed" class="meta-value">--</div>
+                    <div class="meta-sub">成功 / 总计</div>
+                </div>
+                <div class="meta-card">
+                    <div class="meta-label">成功率</div>
+                    <div id="meta-success-rate" class="meta-value">--</div>
+                    <div class="meta-sub">成功运行占比</div>
+                </div>
+                <div class="meta-card">
+                    <div class="meta-label">预计剩余</div>
+                    <div id="meta-eta" class="meta-value">--</div>
+                    <div class="meta-sub">基于平均单条耗时</div>
+                </div>
+                <div class="meta-card">
+                    <div class="meta-label">当前运行</div>
+                    <div id="meta-current" class="meta-value">--</div>
+                    <div class="meta-sub">品类 / 商品 / 条件</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-grid">
+            <section class="panel">
+                <h2>实验条件进度</h2>
+                <div id="condition-collection" class="collection"></div>
+            </section>
+            <aside class="panel">
+                <h2>最近运行</h2>
+                <div id="recent-runs" class="collection"></div>
+            </aside>
+        </section>
+    </div>
+    <script src="experiment.js"></script>
+</body>
+</html>

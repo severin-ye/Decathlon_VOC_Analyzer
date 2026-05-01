@@ -12,9 +12,10 @@ Usage:
 from __future__ import annotations
 
 import argparse
-import json
+from datetime import datetime, timezone
 import random
 import sys
+import time
 from pathlib import Path
 
 import orjson
@@ -23,12 +24,12 @@ import orjson
 ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(ROOT / "05_src"))
 
-from decathlon_voc_analyzer.app.core.config import get_settings
-from decathlon_voc_analyzer.schemas.analysis import (
+from decathlon_voc_analyzer.app.core.config import get_settings  # noqa: E402
+from decathlon_voc_analyzer.schemas.analysis import (  # noqa: E402
     ExperimentConfig,
     ProductAnalysisRequest,
 )
-from decathlon_voc_analyzer.stage4_generation.analysis_service import ProductAnalysisService
+from decathlon_voc_analyzer.stage4_generation.analysis_service import ProductAnalysisService  # noqa: E402
 
 
 def discover_products(category: str, dataset_root: Path) -> list[str]:
@@ -50,12 +51,98 @@ EXPERIMENT_CONDITIONS: list[tuple[str, ExperimentConfig]] = [
 ]
 
 
+def _now_iso() -> str:
+    return datetime.now(timezone.utc).isoformat()
+
+
+def _read_log_entries(log_path: Path) -> list[dict]:
+    if not log_path.exists():
+        return []
+    entries: list[dict] = []
+    with log_path.open("rb") as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                entry = orjson.loads(line)
+            except Exception:
+                continue
+            if isinstance(entry, dict):
+                entries.append(entry)
+    return entries
+
+
+def _latest_entries_by_run_id(entries: list[dict]) -> dict[str, dict]:
+    latest: dict[str, dict] = {}
+    for entry in entries:
+        run_id = entry.get("run_id")
+        if run_id:
+            latest[str(run_id)] = entry
+    return latest
+
+
+def _write_summary(
+    summary_path: Path,
+    *,
+    categories: list[str],
+    products_per_category: int,
+    max_reviews: int,
+    selected_products: dict[str, list[str]],
+    planned_run_ids: list[str],
+    skipped_run_ids: set[str],
+    log_entries: list[dict],
+    runner_state: str,
+    started_at: str,
+    current_run_id: str | None = None,
+    finished_at: str | None = None,
+) -> None:
+    latest = _latest_entries_by_run_id(log_entries)
+    planned_set = set(planned_run_ids)
+    planned_latest = {run_id: entry for run_id, entry in latest.items() if run_id in planned_set}
+    completed_runs = sum(1 for entry in planned_latest.values() if entry.get("status") == "success")
+    failed_runs = sum(1 for entry in planned_latest.values() if entry.get("status") == "error")
+    skipped_runs = len(skipped_run_ids)
+    remaining_runs = max(len(planned_run_ids) - completed_runs - failed_runs, 0)
+    condition_totals = {
+        condition_name: sum(1 for run_id in planned_run_ids if run_id.endswith(f"__{condition_name}"))
+        for condition_name, _ in EXPERIMENT_CONDITIONS
+    }
+    summary_path.write_bytes(
+        orjson.dumps(
+            {
+                "categories": categories,
+                "selected_products": selected_products,
+                "products_per_category": products_per_category,
+                "max_reviews": max_reviews,
+                "conditions": [name for name, _ in EXPERIMENT_CONDITIONS],
+                "condition_totals": condition_totals,
+                "planned_total_runs": len(planned_run_ids),
+                "total_runs": len(planned_run_ids),
+                "completed_runs": completed_runs,
+                "successful_runs": completed_runs,
+                "failed_runs": failed_runs,
+                "skipped_runs": skipped_runs,
+                "remaining_runs": remaining_runs,
+                "runner_state": runner_state,
+                "current_run_id": current_run_id,
+                "started_at": started_at,
+                "updated_at": _now_iso(),
+                "finished_at": finished_at,
+                "runs": [planned_latest[run_id] for run_id in planned_run_ids if run_id in planned_latest],
+            },
+            option=orjson.OPT_INDENT_2,
+        )
+    )
+
+
 def run_experiment_matrix(
     categories: list[str],
     products_per_category: int,
     max_reviews: int,
     output_dir: Path,
     seed: int = 42,
+    resume: bool = False,
 ) -> None:
     settings = get_settings()
     dataset_root = settings.dataset_root
@@ -77,76 +164,173 @@ def run_experiment_matrix(
         print(f"Category {category}: selected {len(selected)} / {len(all_products)} products")
 
     service = ProductAnalysisService()
-    results_log: list[dict] = []
-
-    for category, products in selected_products.items():
-        for product_id in products:
-            for condition_name, exp_config in EXPERIMENT_CONDITIONS:
-                run_id = f"{category}__{product_id}__{condition_name}"
-                print(f"\n[RUN] {run_id}")
-                try:
-                    request = ProductAnalysisRequest(
-                        product_id=product_id,
-                        category_slug=category,
-                        max_reviews=max_reviews,
-                        use_llm=True,
-                        persist_artifact=True,
-                        use_replay=False,
-                        reuse_extraction_artifact=False,
-                        reuse_analysis_checkpoint=False,
-                        top_k_per_route=2,
-                        questions_per_aspect=2,
-                        experiment_config=exp_config,
-                    )
-                    response = service.analyze(request)
-                    result_summary = {
-                        "run_id": run_id,
-                        "category": category,
-                        "product_id": product_id,
-                        "condition": condition_name,
-                        "status": "success",
-                        "analysis_mode": response.analysis_mode,
-                        "aspect_count": len(response.extraction.aspects),
-                        "question_count": len(response.questions),
-                        "retrieval_count": len(response.retrievals),
-                        "claim_count": len(response.report.claim_attributions),
-                        "supported_claims": sum(
-                            1 for c in response.report.claim_attributions if c.support_status == "supported"
-                        ),
-                        "artifact_path": response.artifact_path,
-                    }
-                except Exception as exc:
-                    print(f"[ERROR] {run_id}: {exc}")
-                    result_summary = {
-                        "run_id": run_id,
-                        "category": category,
-                        "product_id": product_id,
-                        "condition": condition_name,
-                        "status": "error",
-                        "error": str(exc),
-                    }
-                results_log.append(result_summary)
-                # Flush log after each run
-                log_path = output_dir / "experiment_log.jsonl"
-                with log_path.open("ab") as f:
-                    f.write(orjson.dumps(result_summary, option=orjson.OPT_APPEND_NEWLINE))
-
-    # Write summary
+    log_path = output_dir / "experiment_log.jsonl"
     summary_path = output_dir / "experiment_summary.json"
-    summary_path.write_bytes(
-        orjson.dumps(
-            {
-                "categories": categories,
-                "products_per_category": products_per_category,
-                "max_reviews": max_reviews,
-                "conditions": [name for name, _ in EXPERIMENT_CONDITIONS],
-                "total_runs": len(results_log),
-                "successful_runs": sum(1 for r in results_log if r["status"] == "success"),
-                "failed_runs": sum(1 for r in results_log if r["status"] == "error"),
-                "runs": results_log,
-            },
-            option=orjson.OPT_INDENT_2,
+    started_at = _now_iso()
+    planned_runs = [
+        (category, product_id, condition_name, exp_config)
+        for category, products in selected_products.items()
+        for product_id in products
+        for condition_name, exp_config in EXPERIMENT_CONDITIONS
+    ]
+    planned_run_ids = [
+        f"{category}__{product_id}__{condition_name}"
+        for category, product_id, condition_name, _ in planned_runs
+    ]
+
+    if not resume and log_path.exists():
+        log_path.write_bytes(b"")
+
+    existing_entries = _read_log_entries(log_path) if resume else []
+    latest_existing = _latest_entries_by_run_id(existing_entries)
+    completed_run_ids = {
+        run_id
+        for run_id, entry in latest_existing.items()
+        if entry.get("status") == "success" and run_id in set(planned_run_ids)
+    }
+    skipped_run_ids: set[str] = set()
+    log_entries = list(existing_entries)
+
+    if resume:
+        print(f"\n[RESUME] Found {len(completed_run_ids)} completed runs. Skipping successes only.")
+
+    _write_summary(
+        summary_path,
+        categories=categories,
+        products_per_category=products_per_category,
+        max_reviews=max_reviews,
+        selected_products=selected_products,
+        planned_run_ids=planned_run_ids,
+        skipped_run_ids=skipped_run_ids,
+        log_entries=log_entries,
+        runner_state="running",
+        started_at=started_at,
+    )
+
+    for category, product_id, condition_name, exp_config in planned_runs:
+        run_id = f"{category}__{product_id}__{condition_name}"
+        if resume and run_id in completed_run_ids:
+            print(f"\n[SKIP] {run_id} (already completed)")
+            skipped_run_ids.add(run_id)
+            _write_summary(
+                summary_path,
+                categories=categories,
+                products_per_category=products_per_category,
+                max_reviews=max_reviews,
+                selected_products=selected_products,
+                planned_run_ids=planned_run_ids,
+                skipped_run_ids=skipped_run_ids,
+                log_entries=log_entries,
+                runner_state="running",
+                started_at=started_at,
+                current_run_id=run_id,
+            )
+            continue
+
+        print(f"\n[RUN] {run_id}")
+        run_started_at = _now_iso()
+        run_start_time = time.monotonic()
+        _write_summary(
+            summary_path,
+            categories=categories,
+            products_per_category=products_per_category,
+            max_reviews=max_reviews,
+            selected_products=selected_products,
+            planned_run_ids=planned_run_ids,
+            skipped_run_ids=skipped_run_ids,
+            log_entries=log_entries,
+            runner_state="running",
+            started_at=started_at,
+            current_run_id=run_id,
         )
+        try:
+            reuse_extraction = True
+            reuse_checkpoint = (
+                exp_config.ablation_no_claim_attribution
+                and not exp_config.ablation_no_question_planning
+                and not exp_config.ablation_no_image_route
+                and not exp_config.ablation_no_reranking
+            )
+            request = ProductAnalysisRequest(
+                product_id=product_id,
+                category_slug=category,
+                max_reviews=max_reviews,
+                use_llm=True,
+                persist_artifact=True,
+                use_replay=False,
+                reuse_extraction_artifact=reuse_extraction,
+                reuse_analysis_checkpoint=reuse_checkpoint,
+                top_k_per_route=2,
+                questions_per_aspect=2,
+                experiment_config=exp_config,
+            )
+            response = service.analyze(request)
+            result_summary = {
+                "run_id": run_id,
+                "category": category,
+                "product_id": product_id,
+                "condition": condition_name,
+                "status": "success",
+                "analysis_mode": response.analysis_mode,
+                "aspect_count": len(response.extraction.aspects),
+                "question_count": len(response.questions),
+                "retrieval_count": len(response.retrievals),
+                "claim_count": len(response.report.claim_attributions),
+                "supported_claims": sum(
+                    1 for c in response.report.claim_attributions if c.support_status == "supported"
+                ),
+                "artifact_path": response.artifact_path,
+            }
+        except Exception as exc:
+            print(f"[ERROR] {run_id}: {exc}")
+            result_summary = {
+                "run_id": run_id,
+                "category": category,
+                "product_id": product_id,
+                "condition": condition_name,
+                "status": "error",
+                "error": str(exc),
+            }
+
+        run_finished_at = _now_iso()
+        result_summary.update(
+            {
+                "started_at": run_started_at,
+                "finished_at": run_finished_at,
+                "timestamp": run_finished_at,
+                "duration_seconds": round(time.monotonic() - run_start_time, 3),
+            }
+        )
+        log_entries.append(result_summary)
+        with log_path.open("ab") as f:
+            f.write(orjson.dumps(result_summary, option=orjson.OPT_APPEND_NEWLINE))
+        _write_summary(
+            summary_path,
+            categories=categories,
+            products_per_category=products_per_category,
+            max_reviews=max_reviews,
+            selected_products=selected_products,
+            planned_run_ids=planned_run_ids,
+            skipped_run_ids=skipped_run_ids,
+            log_entries=log_entries,
+            runner_state="running",
+            started_at=started_at,
+            current_run_id=run_id,
+        )
+
+    final_entries = _read_log_entries(log_path)
+    _write_summary(
+        summary_path,
+        categories=categories,
+        products_per_category=products_per_category,
+        max_reviews=max_reviews,
+        selected_products=selected_products,
+        planned_run_ids=planned_run_ids,
+        skipped_run_ids=skipped_run_ids,
+        log_entries=final_entries,
+        runner_state="completed",
+        started_at=started_at,
+        finished_at=_now_iso(),
     )
     print(f"\nDone. Summary written to {summary_path}")
 
@@ -158,6 +342,7 @@ def main() -> None:
     parser.add_argument("--max-reviews", type=int, default=25)
     parser.add_argument("--output-dir", type=str, default=str(ROOT / "experiment_results"))
     parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--resume", action="store_true", help="Skip already successful runs in existing log")
     args = parser.parse_args()
 
     run_experiment_matrix(
@@ -166,6 +351,7 @@ def main() -> None:
         max_reviews=args.max_reviews,
         output_dir=Path(args.output_dir),
         seed=args.seed,
+        resume=args.resume,
     )
 
 

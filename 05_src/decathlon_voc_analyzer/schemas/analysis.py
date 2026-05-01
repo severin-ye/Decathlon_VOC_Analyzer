@@ -2,7 +2,7 @@ from typing import Literal
 
 from pydantic import BaseModel, Field
 
-from decathlon_voc_analyzer.schemas.review import ReviewAspect, ReviewExtractionResponse
+from decathlon_voc_analyzer.schemas.review import ReviewExtractionResponse
 
 
 EvidenceRoute = Literal["text", "image"]
@@ -349,3 +349,75 @@ class ProductAnalysisResponse(BaseModel):
     artifact_bundle: AnalysisArtifactBundle | None = None
     artifact_path: str | None = None
     warnings: list[str] = Field(default_factory=list)
+
+
+# ---------- Checkpoint schemas for experiment resume ---------- #
+
+
+class ReportCheckpointSignature(BaseModel):
+    aggregates_digest: str
+    retrievals_digest: str
+    prompt_variant: str
+    prompt_digest: str
+    llm_model: str
+    use_llm: bool
+    control_method: str
+
+
+class ReportCheckpointPayload(BaseModel):
+    product_id: str
+    category_slug: str | None = None
+    stage: Literal["raw_llm", "refined", "normalized", "final"]
+    created_at: str
+    signature: ReportCheckpointSignature
+    raw_report: dict | None = None
+    refined_report: dict | None = None
+    normalized_report: dict | None = None
+
+
+class AttributionCheckpointSignature(BaseModel):
+    report_digest: str
+    aspects_digest: str
+    retrievals_digest: str
+    attribution_version: str
+
+
+class AttributionCheckpointPayload(BaseModel):
+    product_id: str
+    category_slug: str | None = None
+    created_at: str
+    signature: AttributionCheckpointSignature
+    evidence_nodes: list[dict] = Field(default_factory=list)
+    claim_attributions: list[dict] = Field(default_factory=list)
+
+
+class ExperimentRunManifest(BaseModel):
+    run_id: str
+    product_id: str
+    category_slug: str
+    condition_name: str
+    started_at: str | None = None
+    finished_at: str | None = None
+    status: Literal["pending", "running", "success", "error", "skipped"] = "pending"
+    stages: dict[str, str] = Field(default_factory=dict)
+    checkpoint_paths: dict[str, str] = Field(default_factory=dict)
+    error_message: str | None = None
+    artifact_path: str | None = None
+    duration_seconds: float | None = None
+
+
+class ControlBaselineStageCheckpointSignature(BaseModel):
+    control_method: str
+    stage: int
+    prompt_digest: str
+    extraction_digest: str
+    retrieval_digest: str
+    qwen_base_url: str | None
+
+
+class ControlBaselineStageCheckpointPayload(BaseModel):
+    control_method: str
+    stage: int
+    created_at: str
+    signature: ControlBaselineStageCheckpointSignature
+    stage_result: dict = Field(default_factory=dict)

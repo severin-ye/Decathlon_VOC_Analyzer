@@ -6,6 +6,7 @@ adapted to the VOC analysis task and data format.
 """
 from __future__ import annotations
 
+from datetime import datetime
 from pathlib import Path
 from typing import TYPE_CHECKING
 
@@ -13,8 +14,6 @@ import orjson
 
 from decathlon_voc_analyzer.schemas.analysis import (
     ClaimAttribution,
-    ClaimSource,
-    ClaimSupportStatus,
     EvidenceGapItem,
     InsightItem,
     ProductAnalysisReport,
@@ -23,7 +22,8 @@ from decathlon_voc_analyzer.schemas.analysis import (
     SupportingEvidence,
 )
 from decathlon_voc_analyzer.llm import QwenChatGateway
-from decathlon_voc_analyzer.prompts import get_prompt_template
+from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.messages import SystemMessage
 
 if TYPE_CHECKING:
     from decathlon_voc_analyzer.schemas.analysis import ProductAnalysisRequest
@@ -50,6 +50,13 @@ def run_control_experiment(
     raise ValueError(f"Unknown control method: {control}")
 
 
+def _make_system_prompt_template(system_prompt: str) -> ChatPromptTemplate:
+    return ChatPromptTemplate.from_messages([
+        SystemMessage(content=system_prompt),
+        ("human", "请按上述要求生成输出。"),
+    ])
+
+
 def _build_context_from_retrievals(retrievals: list[RetrievalRecord]) -> str:
     chunks: list[str] = []
     for rec in retrievals:
@@ -62,8 +69,8 @@ def _build_context_from_retrievals(retrievals: list[RetrievalRecord]) -> str:
 
 def _build_review_context(extraction: ReviewExtractionResponse) -> str:
     lines: list[str] = []
-    for rev in extraction.reviews:
-        lines.append(f"Rating: {rev.rating}\n{rev.content}")
+    for rev in extraction.preprocessed_reviews:
+        lines.append(f"Rating: {rev.rating}\n{rev.original_text}")
     return "\n\n---\n\n".join(lines)
 
 
@@ -74,11 +81,13 @@ def _run_lewis2020(
     extraction: ReviewExtractionResponse,
     questions: list,
     retrievals: list[RetrievalRecord],
+    retrieval_quality: list[RetrievalQualityMetrics] | None = None,
 ) -> tuple[ProductAnalysisReport, list[RetrievalRecord], list[RetrievalQualityMetrics]]:
     """
     Lewis et al. 2020 baseline: standard dense retrieval + seq2seq generation.
     No question planning, no multimodal image route, no claim attribution.
     """
+    rq: list[RetrievalQualityMetrics] = retrieval_quality or []
     context = _build_context_from_retrievals(retrievals)
     review_context = _build_review_context(extraction)
     prompt = (
@@ -90,11 +99,11 @@ def _run_lewis2020(
         f"=== Product Evidence ===\n{context}\n\n"
         f"=== Customer Reviews ===\n{review_context}"
     )
-    parsed = chat.invoke_json(prompt_template=None, variables={}, system_prompt=prompt)
+    parsed = chat.invoke_json(prompt_template=_make_system_prompt_template(prompt), variables={})
     report = _parsed_to_report(parsed, package.product_id, package.category_slug)
     # Strip attribution to match the "no attribution" baseline nature
     report = report.model_copy(update={"claim_attributions": []})
-    return report, retrievals, retrieval_quality
+    return report, retrievals, rq
 
 
 def _run_jarvis(
@@ -104,11 +113,13 @@ def _run_jarvis(
     extraction: ReviewExtractionResponse,
     questions: list,
     retrievals: list[RetrievalRecord],
+    retrieval_quality: list[RetrievalQualityMetrics] | None = None,
 ) -> tuple[ProductAnalysisReport, list[RetrievalRecord], list[RetrievalQualityMetrics]]:
     """
     JARVIS baseline: evidence graph + LLM adjudication.
     We adapt the heterogeneous evidence graph to product evidence nodes.
     """
+    rq: list[RetrievalQualityMetrics] = retrieval_quality or []
     # Build a simple evidence graph as structured text
     nodes: list[str] = []
     edges: list[str] = []
@@ -131,7 +142,7 @@ def _run_jarvis(
         f"=== Evidence Graph ===\n{graph_text}\n\n"
         f"=== Customer Reviews ===\n{review_context}"
     )
-    parsed = chat.invoke_json(prompt_template=None, variables={}, system_prompt=prompt)
+    parsed = chat.invoke_json(prompt_template=_make_system_prompt_template(prompt), variables={})
     report = _parsed_to_report(parsed, package.product_id, package.category_slug)
     # JARVIS-style claim-level attribution: map each claim to supporting evidence IDs
     attributions: list[ClaimAttribution] = []
@@ -148,7 +159,7 @@ def _run_jarvis(
             )
         )
     report = report.model_copy(update={"claim_attributions": attributions})
-    return report, retrievals, retrieval_quality
+    return report, retrievals, rq
 
 
 def _run_vericite(
@@ -158,6 +169,7 @@ def _run_vericite(
     extraction: ReviewExtractionResponse,
     questions: list,
     retrievals: list[RetrievalRecord],
+    retrieval_quality: list[RetrievalQualityMetrics] | None = None,
 ) -> tuple[ProductAnalysisReport, list[RetrievalRecord], list[RetrievalQualityMetrics]]:
     """
     VeriCite baseline: three-stage generation with NLI verification.
@@ -165,6 +177,7 @@ def _run_vericite(
     Stage 2: supporting evidence selection per passage.
     Stage 3: final refinement.
     """
+    rq: list[RetrievalQualityMetrics] = retrieval_quality or []
     context = _build_context_from_retrievals(retrievals)
     review_context = _build_review_context(extraction)
 
@@ -178,9 +191,9 @@ def _run_vericite(
         f"=== Evidence ===\n{context}\n\n"
         f"=== Reviews ===\n{review_context}"
     )
-    initial = chat.invoke_json(prompt_template=None, variables={}, system_prompt=stage1_prompt)
+    initial = chat.invoke_json(prompt_template=_make_system_prompt_template(stage1_prompt), variables={})
 
-    # Stage 2: evidence selection (simplified: ask LLM to re-evaluate and keep only supported claims)
+    # Stage 2: evidence selection and verification
     stage2_prompt = (
         "You are a verification assistant. Given the initial report below, remove any claims that "
         "are not directly supported by the evidence. Keep only well-supported claims.\n\n"
@@ -188,7 +201,7 @@ def _run_vericite(
         f"=== Evidence ===\n{context}\n\n"
         f"=== Initial Report ===\n{orjson.dumps(initial, option=orjson.OPT_INDENT_2).decode()}"
     )
-    verified = chat.invoke_json(prompt_template=None, variables={}, system_prompt=stage2_prompt)
+    verified = chat.invoke_json(prompt_template=_make_system_prompt_template(stage2_prompt), variables={})
 
     # Stage 3: refinement
     stage3_prompt = (
@@ -197,7 +210,7 @@ def _run_vericite(
         "Return strict JSON with the same schema.\n\n"
         f"=== Verified Report ===\n{orjson.dumps(verified, option=orjson.OPT_INDENT_2).decode()}"
     )
-    final = chat.invoke_json(prompt_template=None, variables={}, system_prompt=stage3_prompt)
+    final = chat.invoke_json(prompt_template=_make_system_prompt_template(stage3_prompt), variables={})
 
     report = _parsed_to_report(final, package.product_id, package.category_slug)
     # VeriCite-style attribution: all retained claims are marked supported
@@ -215,7 +228,7 @@ def _run_vericite(
             )
         )
     report = report.model_copy(update={"claim_attributions": attributions})
-    return report, retrievals, retrieval_quality
+    return report, retrievals, rq
 
 
 def _parsed_to_report(parsed: dict, product_id: str, category_slug: str | None) -> ProductAnalysisReport:
@@ -245,11 +258,24 @@ def _parsed_to_report(parsed: dict, product_id: str, category_slug: str | None) 
     weaknesses = _to_insights(parsed.get("weaknesses") or [])
     controversies = _to_insights(parsed.get("controversies") or [])
     gaps = _to_gaps(parsed.get("evidence_gaps") or [])
+    def _normalize_suggestion_type(val: str) -> str:
+        val = str(val).lower().strip()
+        if val in ("structural", "perception"):
+            return val
+        return "perception"
+
+    def _normalize_reason(val):
+        if isinstance(val, list):
+            return [str(r) for r in val]
+        if val:
+            return [str(val)]
+        return []
+
     suggestions = [
         ImprovementSuggestion(
             suggestion=str(i.get("suggestion", "")),
-            suggestion_type=str(i.get("suggestion_type", "perception")),
-            reason=i.get("reason") or [],
+            suggestion_type=_normalize_suggestion_type(i.get("suggestion_type", "perception")),
+            reason=_normalize_reason(i.get("reason")),
             confidence=float(i.get("confidence", 0.7)),
             supporting_evidence=SupportingEvidence(),
         )
@@ -271,5 +297,35 @@ def _parsed_to_report(parsed: dict, product_id: str, category_slug: str | None) 
     )
 
 
-# Import here to avoid circular import at module load time
-from decathlon_voc_analyzer.schemas.analysis import ImprovementSuggestion
+from decathlon_voc_analyzer.schemas.analysis import ImprovementSuggestion  # noqa: E402
+
+
+# ---------- Control baseline stage checkpoint support ----------
+
+def _control_stage_checkpoint_path(output_dir: Path | None, control: str, product_id: str, stage: int) -> Path | None:
+    if output_dir is None:
+        return None
+    checkpoint_dir = output_dir / "control_checkpoints" / control / product_id
+    checkpoint_dir.mkdir(parents=True, exist_ok=True)
+    return checkpoint_dir / f"stage_{stage}.json"
+
+
+def _save_control_stage_checkpoint(result: dict, path: Path) -> None:
+    checkpoint = {
+        "stage_result": result,
+        "saved_at": datetime(2026, 1, 1, 0, 0, 0).isoformat(),
+    }
+    import hashlib
+    result_digest = hashlib.sha1(orjson.dumps(result, option=orjson.OPT_SORT_KEYS)).hexdigest()
+    checkpoint["result_digest"] = result_digest
+    path.write_bytes(orjson.dumps(checkpoint, option=orjson.OPT_INDENT_2))
+
+
+def _load_control_stage_checkpoint(path: Path) -> dict | None:
+    if not path.exists():
+        return None
+    try:
+        data = orjson.loads(path.read_bytes())
+        return data.get("stage_result")
+    except Exception:
+        return None

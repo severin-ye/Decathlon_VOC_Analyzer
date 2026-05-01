@@ -3,6 +3,7 @@ from typing import Literal
 from pydantic import BaseModel, Field
 
 from decathlon_voc_analyzer.schemas.index import IndexedEvidence
+from decathlon_voc_analyzer.schemas.analysis import RetrievalQuestion, RetrievalRecord, RetrievalQualityMetrics
 
 
 QueryEmbeddingBackendKind = Literal["api", "clip", "hash"]
@@ -37,3 +38,36 @@ class RerankCacheSignature(BaseModel):
 class RerankCachePayload(BaseModel):
     signature: RerankCacheSignature
     reranked: list[IndexedEvidence] = Field(default_factory=list)
+
+
+# ---------- Per-question retrieval / quality / corrective checkpoints ---------- #
+
+
+class RetrievalStageCheckpointSignature(BaseModel):
+    question_id: str
+    question_digest: str
+    top_k_per_route: int
+    use_llm: bool
+    ablation_no_image: bool
+    ablation_no_reranking: bool
+    index_digest: str
+    embedding_backend: str
+    reranker_backend: str
+    prompt_variant: str
+
+
+class RetrievalStageCheckpointPayload(BaseModel):
+    product_id: str
+    category_slug: str | None = None
+    stage: Literal["initial", "quality", "corrective", "final"]
+    created_at: str
+    signature: RetrievalStageCheckpointSignature
+    question: RetrievalQuestion | None = None
+    initial_retrieval: RetrievalRecord | None = None
+    quality_metrics: RetrievalQualityMetrics | None = None
+    corrective_question: RetrievalQuestion | None = None
+    corrective_retrieval: RetrievalRecord | None = None
+    corrective_metric: RetrievalQualityMetrics | None = None
+    corrective_applied: bool = False
+    final_retrieval: RetrievalRecord | None = None
+    final_quality: RetrievalQualityMetrics | None = None

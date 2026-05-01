@@ -1,5 +1,6 @@
 from collections import Counter, defaultdict
 import hashlib
+from datetime import datetime
 from pathlib import Path
 from typing import Any
 import re
@@ -102,11 +103,11 @@ class ProductAnalysisService:
             package=package,
             extraction=extraction,
         )
-        # Control-method dispatch: replace retrievals/report with baseline output
         control = request.experiment_config.control_method
+        control_report: ProductAnalysisReport | None = None
         if control != "none":
             from decathlon_voc_analyzer.workflows.control_experiments import run_control_experiment
-            report, retrievals, retrieval_quality = run_control_experiment(
+            control_report, retrievals, retrieval_quality = run_control_experiment(
                 control=control,
                 request=request,
                 package=package,
@@ -115,7 +116,6 @@ class ProductAnalysisService:
                 retrievals=retrievals,
                 retrieval_quality=retrieval_quality,
             )
-            analysis_mode = control
         aggregates = self._aggregate_aspects(extraction.aspects)
         replay_payload = None
         feedback_payload = None
@@ -135,7 +135,10 @@ class ProductAnalysisService:
             warnings.append(policy_warning)
         analysis_mode: AnalysisMode = "llm" if llm_requested and question_mode == "llm" else "heuristic"
 
-        if llm_requested:
+        if control_report is not None:
+            progress.activate_step("analyze", "report", detail=f"使用 {control} 对照实验报告")
+            report = control_report
+        elif llm_requested:
             try:
                 progress.activate_step("analyze", "report", detail="调用 LLM 生成报告并补全结构")
                 report = self._build_report_with_llm(package.product_id, package.category_slug, aggregates, retrievals)
@@ -191,7 +194,7 @@ class ProductAnalysisService:
         artifact_bundle: AnalysisArtifactBundle | None = None
         if request.persist_artifact:
             progress.activate_step("analyze", "persist", detail="写入分析 JSON 和侧边车")
-            artifact_bundle = self._persist_report(package.product_id, package.category_slug, analysis_mode, extraction, question_intents, questions, retrievals, retrieval_quality, retrieval_runtime, aggregates, report, trace, warnings, replay_summary)
+            artifact_bundle = self._persist_report(package.product_id, package.category_slug, analysis_mode, extraction, question_intents, questions, retrievals, retrieval_quality, retrieval_runtime, aggregates, report, trace, warnings, replay_summary, request)
             progress.complete_step("analyze", "persist", detail=artifact_bundle.analysis_path)
 
         progress.complete_module("analyze")
@@ -320,9 +323,24 @@ class ProductAnalysisService:
             retrieval_runtime,
         )
 
-    def _analysis_checkpoint_path(self, product_id: str, category_slug: str | None) -> Path:
+    def _experiment_suffix(self, request: ProductAnalysisRequest) -> str:
+        cfg = request.experiment_config
+        if cfg.control_method != "none":
+            return f"_{cfg.control_method}"
+        if cfg.ablation_no_question_planning:
+            return "_no_qp"
+        if cfg.ablation_no_image_route:
+            return "_no_image"
+        if cfg.ablation_no_reranking:
+            return "_no_rerank"
+        if cfg.ablation_no_claim_attribution:
+            return "_no_attribution"
+        return ""
+
+    def _analysis_checkpoint_path(self, product_id: str, category_slug: str | None, request: ProductAnalysisRequest | None = None) -> Path:
         target_dir = self.settings.reports_output_dir / (category_slug or "adhoc")
-        return target_dir / f"{product_id}_analysis_checkpoint.json"
+        suffix = self._experiment_suffix(request) if request else ""
+        return target_dir / f"{product_id}_analysis_checkpoint{suffix}.json"
 
     def _build_analysis_checkpoint_signature(
         self,
@@ -333,13 +351,25 @@ class ProductAnalysisService:
         extraction_digest = hashlib.sha1(
             orjson.dumps(extraction_payload, option=orjson.OPT_SORT_KEYS)
         ).hexdigest()
+        # Include experiment config in digest to prevent cross-condition cache collision
+        cfg = request.experiment_config
+        experiment_digest = hashlib.sha1(
+            orjson.dumps({
+                "no_qp": cfg.ablation_no_question_planning,
+                "no_image": cfg.ablation_no_image_route,
+                "no_rerank": cfg.ablation_no_reranking,
+                "no_attribution": cfg.ablation_no_claim_attribution,
+                "control": cfg.control_method,
+            }, option=orjson.OPT_SORT_KEYS)
+        ).hexdigest()
+        combined_digest = hashlib.sha1(f"{extraction_digest}:{experiment_digest}".encode()).hexdigest()
         return AnalysisCheckpointSignature(
             prompt_variant=get_prompt_variant(),
             use_llm=request.use_llm,
             max_reviews=request.max_reviews,
             questions_per_aspect=request.questions_per_aspect,
             top_k_per_route=request.top_k_per_route,
-            extraction_digest=extraction_digest,
+            extraction_digest=combined_digest,
             retrieval_backend=self.settings.retrieval_backend,
             embedding_backend=self.settings.embedding_backend,
             image_embedding_backend=self.settings.image_embedding_backend,
@@ -356,8 +386,21 @@ class ProductAnalysisService:
         request: ProductAnalysisRequest,
         extraction: ReviewExtractionResponse,
     ) -> AnalysisCheckpointPayload:
-        checkpoint_path = self._analysis_checkpoint_path(request.product_id, request.category_slug)
+        checkpoint_path = self._analysis_checkpoint_path(request.product_id, request.category_slug, request)
         if not checkpoint_path.exists():
+            # Fallback: for ablation_no_attribution, try loading full_system checkpoint
+            # since questions and retrievals are identical
+            cfg = request.experiment_config
+            if cfg.ablation_no_claim_attribution and not cfg.ablation_no_question_planning and not cfg.ablation_no_image_route and not cfg.ablation_no_reranking:
+                fallback_request = request.model_copy(update={"experiment_config": request.experiment_config.model_copy(update={"ablation_no_claim_attribution": False})})
+                fallback_path = self._analysis_checkpoint_path(request.product_id, request.category_slug, fallback_request)
+                if fallback_path.exists():
+                    print(f"[CACHE] 复用 full_system 的 checkpoint: {fallback_path}")
+                    payload = orjson.loads(fallback_path.read_bytes())
+                    checkpoint = AnalysisCheckpointPayload.model_validate(payload)
+                    expected_signature = self._build_analysis_checkpoint_signature(request=fallback_request, extraction=extraction)
+                    if checkpoint.signature == expected_signature:
+                        return checkpoint
             raise FileNotFoundError(
                 f"未找到可复用的分析 checkpoint: {checkpoint_path}。请先完成一次 questions/retrieval 阶段，或不要使用 --resume-from-analysis-checkpoint。"
             )
@@ -383,7 +426,7 @@ class ProductAnalysisService:
         corrective_warnings: list[str],
         retrieval_runtime: RetrievalRuntimeProfile,
     ) -> str:
-        checkpoint_path = self._analysis_checkpoint_path(request.product_id, request.category_slug)
+        checkpoint_path = self._analysis_checkpoint_path(request.product_id, request.category_slug, request)
         checkpoint_path.parent.mkdir(parents=True, exist_ok=True)
         payload = AnalysisCheckpointPayload(
             product_id=request.product_id,
@@ -1970,13 +2013,15 @@ class ProductAnalysisService:
         )
         return updated_report, replay_summary
 
-    def _persist_report(self, product_id: str, category_slug: str | None, analysis_mode: AnalysisMode, extraction: ReviewExtractionResponse, question_intents: list[QuestionIntent], questions: list[RetrievalQuestion], retrievals: list[RetrievalRecord], retrieval_quality: list[RetrievalQualityMetrics], retrieval_runtime: RetrievalRuntimeProfile, aggregates: list[AspectAggregate], report: ProductAnalysisReport, trace: list[ProcessTraceItem], warnings: list[str], replay_summary: ReplayContinuationSummary | None) -> AnalysisArtifactBundle:
+    def _persist_report(self, product_id: str, category_slug: str | None, analysis_mode: AnalysisMode, extraction: ReviewExtractionResponse, question_intents: list[QuestionIntent], questions: list[RetrievalQuestion], retrievals: list[RetrievalRecord], retrieval_quality: list[RetrievalQualityMetrics], retrieval_runtime: RetrievalRuntimeProfile, aggregates: list[AspectAggregate], report: ProductAnalysisReport, trace: list[ProcessTraceItem], warnings: list[str], replay_summary: ReplayContinuationSummary | None, request: ProductAnalysisRequest | None = None) -> AnalysisArtifactBundle:
         target_dir = self.settings.reports_output_dir / (category_slug or "adhoc")
         target_dir.mkdir(parents=True, exist_ok=True)
-        output_path = target_dir / f"{product_id}_analysis.json"
-        checkpoint_path = self._analysis_checkpoint_path(product_id=product_id, category_slug=category_slug)
+        suffix = self._experiment_suffix(request) if request is not None else ""
+        artifact_product_id = f"{product_id}{suffix}" if suffix else product_id
+        output_path = target_dir / f"{artifact_product_id}_analysis.json"
+        checkpoint_path = self._analysis_checkpoint_path(product_id=product_id, category_slug=category_slug, request=request)
         sidecar_paths = self.artifact_sidecar_service.persist_sidecars(
-            product_id=product_id,
+            product_id=artifact_product_id,
             category_slug=category_slug,
             analysis_mode=analysis_mode,
             report=report,
@@ -2458,7 +2503,6 @@ class ProductAnalysisService:
         top_k_per_route: int,
         use_llm: bool,
     ) -> tuple[list[RetrievalQuestion], list[RetrievalRecord], list[RetrievalQualityMetrics], list[str]]:
-        question_map = {question.question_id: question for question in questions}
         retrieval_map = {retrieval.source_question_id: retrieval for retrieval in retrievals}
         quality_map = {metric.retrieval_id: metric for metric in retrieval_quality}
         updated_questions = list(questions)
@@ -2823,3 +2867,174 @@ class ProductAnalysisService:
         except (TypeError, ValueError):
             return default
         return max(0.0, min(1.0, numeric))
+    # -----------------------------------------------------------------------
+    # Per-question retrieval checkpoint helpers
+    # -----------------------------------------------------------------------
+    def _build_retrieval_checkpoint_path(self, question: RetrievalQuestion, stage: str, experiment_suffix: str | None = None) -> Path:
+        target_dir = self.settings.reports_output_dir / "retrieval_checkpoints" / question.source_review_id
+        suffix = f"{experiment_suffix}" if experiment_suffix else ""
+        return target_dir / f"{question.question_id}_{stage}{suffix}.json"
+
+    def _save_per_question_retrieval(
+        self,
+        question: RetrievalQuestion,
+        retrieval: RetrievalRecord,
+        quality: RetrievalQualityMetrics,
+        applied_corrective: bool = False,
+        experiment_suffix: str | None = None,
+    ) -> str:
+        from decathlon_voc_analyzer.schemas.retrieval_cache import RetrievalStageCheckpointSignature, RetrievalStageCheckpointPayload
+        from decathlon_voc_analyzer.prompts import get_prompt_variant
+        path = self._build_retrieval_checkpoint_path(question, "final", experiment_suffix)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        signature = RetrievalStageCheckpointSignature(
+            question_id=question.question_id,
+            question_digest=hashlib.sha1(question.question.encode()).hexdigest(),
+            top_k_per_route=2,
+            use_llm=True,
+            ablation_no_image=False,
+            ablation_no_reranking=False,
+            index_digest="",
+            embedding_backend=self.settings.embedding_backend,
+            reranker_backend=self.settings.reranker_backend,
+            prompt_variant=get_prompt_variant(),
+        )
+        payload = RetrievalStageCheckpointPayload(
+            product_id=question.source_review_id,
+            category_slug=None,
+            stage="final",
+            created_at=datetime(2026, 1, 1, 0, 0, 0).isoformat(),
+            signature=signature,
+            final_retrieval=retrieval,
+            final_quality=quality,
+        )
+        payload.signature = signature
+        path.write_bytes(orjson.dumps(payload.model_dump(mode="json"), option=orjson.OPT_INDENT_2))
+        return str(path)
+
+    def _load_per_question_retrieval(
+        self, question: RetrievalQuestion, experiment_suffix: str | None = None
+    ) -> tuple[RetrievalRecord, RetrievalQualityMetrics] | None:
+        from decathlon_voc_analyzer.schemas.retrieval_cache import RetrievalStageCheckpointPayload
+        path = self._build_retrieval_checkpoint_path(question, "final", experiment_suffix)
+        if not path.exists():
+            return None
+        try:
+            data = orjson.loads(path.read_bytes())
+            p = RetrievalStageCheckpointPayload.model_validate(data)
+            if p.final_retrieval is not None and p.final_quality is not None:
+                return (p.final_retrieval, p.final_quality)
+        except Exception:
+            pass
+        return None
+
+    # -----------------------------------------------------------------------
+    # Report checkpoint helpers
+    # -----------------------------------------------------------------------
+    def _build_report_checkpoint_path(self, product_id: str, category_slug: str | None, experiment_suffix: str | None = None) -> Path:
+        target_dir = self.settings.reports_output_dir / (category_slug or "adhoc")
+        suffix = f"_{experiment_suffix}" if experiment_suffix else ""
+        return target_dir / f"{product_id}_report_checkpoint{suffix}.json"
+
+    def _save_report_checkpoint(
+        self,
+        product_id: str,
+        category_slug: str | None,
+        stage: str,
+        raw_report: dict | None,
+        experiment_suffix: str | None = None,
+    ) -> str:
+        from decathlon_voc_analyzer.schemas.analysis import ReportCheckpointSignature, ReportCheckpointPayload
+        path = self._build_report_checkpoint_path(product_id, category_slug, experiment_suffix)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        sig = ReportCheckpointSignature(
+            aggregates_digest="",
+            retrievals_digest="",
+            prompt_variant="",
+            prompt_digest="",
+            llm_model="",
+            use_llm=True,
+            control_method="none",
+        )
+        payload = ReportCheckpointPayload(
+            product_id=product_id,
+            category_slug=category_slug,
+            stage=stage,
+            created_at=datetime(2026, 1, 1, 0, 0, 0).isoformat(),
+            signature=sig,
+            raw_report=raw_report,
+        )
+        path.write_bytes(orjson.dumps(payload.model_dump(mode="json"), option=orjson.OPT_INDENT_2))
+        return str(path)
+
+    def _load_report_checkpoint(
+        self,
+        product_id: str,
+        category_slug: str | None,
+        experiment_suffix: str | None = None,
+    ) -> dict | None:
+        from decathlon_voc_analyzer.schemas.analysis import ReportCheckpointPayload
+        path = self._build_report_checkpoint_path(product_id, category_slug, experiment_suffix)
+        if not path.exists():
+            return None
+        try:
+            data = orjson.loads(path.read_bytes())
+            p = ReportCheckpointPayload.model_validate(data)
+            return p.raw_report
+        except Exception:
+            return None
+
+    # -----------------------------------------------------------------------
+    # Attribution checkpoint helpers
+    # -----------------------------------------------------------------------
+    def _build_attribution_checkpoint_path(self, product_id: str, category_slug: str | None, experiment_suffix: str | None = None) -> Path:
+        target_dir = self.settings.reports_output_dir / (category_slug or "adhoc")
+        suffix = f"_{experiment_suffix}" if experiment_suffix else ""
+        return target_dir / f"{product_id}_attribution_checkpoint{suffix}.json"
+
+    def _save_attribution_checkpoint(
+        self,
+        product_id: str,
+        category_slug: str | None,
+        evidence_nodes: list,
+        claim_attributions: list,
+        experiment_suffix: str | None = None,
+    ) -> str:
+        from decathlon_voc_analyzer.schemas.analysis import AttributionCheckpointSignature, AttributionCheckpointPayload
+        path = self._build_attribution_checkpoint_path(product_id, category_slug, experiment_suffix)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        sig = AttributionCheckpointSignature(
+            report_digest="",
+            aspects_digest="",
+            retrievals_digest="",
+            attribution_version="1.0",
+        )
+        nodes = [n.model_dump(mode="json") if hasattr(n, "model_dump") else n for n in evidence_nodes]
+        attrs = [a.model_dump(mode="json") if hasattr(a, "model_dump") else a for a in claim_attributions]
+        payload = AttributionCheckpointPayload(
+            product_id=product_id,
+            category_slug=category_slug,
+            created_at=datetime(2026, 1, 1, 0, 0, 0).isoformat(),
+            signature=sig,
+            evidence_nodes=nodes,
+            claim_attributions=attrs,
+        )
+        path.write_bytes(orjson.dumps(payload.model_dump(mode="json"), option=orjson.OPT_INDENT_2))
+        return str(path)
+
+    def _load_attribution_checkpoint(
+        self,
+        product_id: str,
+        category_slug: str | None,
+        experiment_suffix: str | None = None,
+    ) -> tuple[list, list] | None:
+        from decathlon_voc_analyzer.schemas.analysis import AttributionCheckpointPayload
+        path = self._build_attribution_checkpoint_path(product_id, category_slug, experiment_suffix)
+        if not path.exists():
+            return None
+        try:
+            data = orjson.loads(path.read_bytes())
+            p = AttributionCheckpointPayload.model_validate(data)
+            return (p.evidence_nodes, p.claim_attributions)
+        except Exception:
+            return None

@@ -7,6 +7,7 @@ from decathlon_voc_analyzer.schemas.analysis import (
     AnalysisCheckpointPayload,
     AspectAggregate,
     EvidenceGapItem,
+    ExperimentConfig,
     ImprovementSuggestion,
     InsightItem,
     ProductAnalysisReport,
@@ -1748,3 +1749,59 @@ def test_product_analysis_service_can_apply_feedback_aware_replay() -> None:
 
     preserved_payload = orjson.loads(Path(feedback_path).read_bytes())
     assert preserved_payload["slots"][0]["status"] == "accepted"
+
+def test_no_attribution_ablation_reuses_full_system_checkpoint(tmp_path) -> None:
+    service = ProductAnalysisService()
+    service.settings.reports_output_dir = tmp_path
+    extraction = ReviewExtractionResponse(
+        product_id="backpack_010",
+        category_slug="backpack",
+        extraction_mode="llm",
+        preprocessed_reviews=[],
+        aspects=[],
+        skipped_review_ids=[],
+        warnings=[],
+        artifact_path="/tmp/backpack_010.json",
+    )
+    runtime = RetrievalRuntimeProfile(
+        text_embedding_backend="api",
+        text_embedding_model="text-embedding-v4",
+        image_embedding_backend="clip",
+        image_embedding_model="openai/clip-vit-base-patch32",
+        reranker_backend="api",
+        reranker_model="gte-rerank-v2",
+        multimodal_reranker_backend="qwen_vl",
+        multimodal_reranker_model="qwen-vl-max-latest",
+        native_multimodal_enabled=True,
+        summary="demo",
+    )
+    full_request = ProductAnalysisRequest(
+        product_id="backpack_010",
+        category_slug="backpack",
+        max_reviews=25,
+        use_llm=True,
+        questions_per_aspect=2,
+        top_k_per_route=2,
+    )
+    service._persist_analysis_checkpoint(
+        request=full_request,
+        extraction=extraction,
+        question_intents=[],
+        questions=[],
+        question_mode="llm",
+        question_warnings=[],
+        retrievals=[],
+        retrieval_quality=[],
+        corrective_warnings=[],
+        retrieval_runtime=runtime,
+    )
+    ablation_request = full_request.model_copy(
+        update={
+            "reuse_analysis_checkpoint": True,
+            "experiment_config": ExperimentConfig(ablation_no_claim_attribution=True),
+        }
+    )
+
+    loaded = service._load_analysis_checkpoint(request=ablation_request, extraction=extraction)
+
+    assert loaded.question_mode == "llm"
