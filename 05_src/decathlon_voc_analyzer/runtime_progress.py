@@ -380,7 +380,6 @@ class WorkflowProgressReporter:
                 "note": self._note,
                 "active_module_key": self._active_module_key,
                 "active_step_key": self._active_step_key,
-                "updated_at": self._iso_from_epoch(snapshot_time),
             },
             "dashboard": self._dashboard_payload(),
             "modules": [

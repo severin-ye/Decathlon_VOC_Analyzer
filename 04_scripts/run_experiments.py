@@ -138,10 +138,15 @@ def _status() -> None:
         try:
             summary = orjson.loads(summary_path.read_bytes())
             total = int(summary.get("planned_total_runs") or summary.get("total_runs") or 0)
-            completed = int(summary.get("completed_runs") or summary.get("successful_runs") or completed)
-            failed = int(summary.get("failed_runs") or failed)
+            if "completed_runs" in summary:
+                completed = int(summary["completed_runs"])
+            elif "successful_runs" in summary:
+                completed = int(summary["successful_runs"])
+            if "failed_runs" in summary:
+                failed = int(summary["failed_runs"])
             remaining = summary.get("remaining_runs")
-            runner_state = str(summary.get("runner_state") or runner_state)
+            summary_state = str(summary.get("runner_state") or runner_state)
+            runner_state = "stopped" if summary_state == "running" and not running else summary_state
         except Exception:
             pass
     if total == 0:
