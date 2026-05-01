@@ -16,7 +16,7 @@ from urllib.parse import unquote, urlsplit
 PORT = 8080
 ROOT = Path(__file__).resolve().parent
 PROJECT_ROOT = ROOT.parents[1]
-EXPERIMENT_RESULTS_DIR = PROJECT_ROOT / "experiment_results"
+EXPERIMENT_RESULTS_DIR = PROJECT_ROOT / "02_outputs" / "6_experiments" / "current"
 
 class ReusableTCPServer(socketserver.TCPServer):
     allow_reuse_address = True
@@ -28,7 +28,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 
     def translate_path(self, path):
         url_path = unquote(urlsplit(path).path)
-        # Serve experiment_results files from project root. Browser fetches add cache-busting query strings.
+        # Keep the browser route stable while serving the organized experiment output directory.
         if url_path.startswith('/experiment_results/'):
             relative = url_path[len('/experiment_results/'):]
             return str(EXPERIMENT_RESULTS_DIR / relative)

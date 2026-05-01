@@ -22,6 +22,8 @@ pip install -e .[dev]
 - **限制评论数：** `--R_5` 是 `--max-reviews 5` 的简写，在 argparse 解析前被内部转换
 - **导出 HTML + 清单：** 加 `--export-html --write-manifest`
 - **清理输出产物：** `.venv/bin/python 04_scripts/clear_generated_outputs.py --yes`
+- **实验矩阵输出：** 默认写入 `02_outputs/6_experiments/current/`，tmux 运行日志写入 `02_outputs/runtime_logs/experiment_run.log`
+- **实验监控脚本：** `04_scripts/experiment_ops/monitor_experiment.sh`
 
 ## 测试
 
@@ -48,6 +50,7 @@ pip install -e .[dev]
 ```
 
 - 配置位于 `pyproject.toml`：行宽 100，目标版本 `py311`。
+- `pyproject.toml` 保持在仓库根目录，作为 setuptools、pytest 和 Ruff 的标准发现入口。
 
 ## 架构
 

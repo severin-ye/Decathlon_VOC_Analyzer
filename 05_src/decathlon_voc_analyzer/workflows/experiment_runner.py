@@ -7,7 +7,7 @@ Usage:
         --categories backpack shoes sunglasses \
         --products-per-category 5 \
         --max-reviews 25 \
-        --output-dir ./experiment_results
+        --output-dir ./02_outputs/6_experiments/current
 """
 from __future__ import annotations
 
@@ -23,6 +23,7 @@ import orjson
 # Add project root to path
 ROOT = Path(__file__).resolve().parents[4]
 sys.path.insert(0, str(ROOT / "05_src"))
+DEFAULT_EXPERIMENT_OUTPUT_DIR = ROOT / "02_outputs" / "6_experiments" / "current"
 
 from decathlon_voc_analyzer.app.core.config import get_settings  # noqa: E402
 from decathlon_voc_analyzer.runtime_progress import (  # noqa: E402
@@ -55,6 +56,16 @@ EXPERIMENT_CONDITIONS: list[tuple[str, ExperimentConfig]] = [
 ]
 
 EXPERIMENT_PROGRESS_PLAN = [
+    (
+        "index",
+        "构建索引",
+        [
+            ("load_packages", "加载商品包"),
+            ("embed_text", "生成文本向量"),
+            ("embed_image", "生成图像向量"),
+            ("persist", "保存索引快照"),
+        ],
+    ),
     (
         "analyze",
         "生成分析",
@@ -313,6 +324,9 @@ def run_experiment_matrix(
                 with use_workflow_progress(progress):
                     progress.note(f"实验运行已启动：{run_id}")
                     response = service.analyze(request)
+                    index_module = next((module for module in progress.modules if module.key == "index"), None)
+                    if index_module is not None and index_module.status == "pending":
+                        progress.skip_module("index", detail="本 run 未触发索引构建")
             result_summary = {
                 "run_id": run_id,
                 "category": category,
@@ -391,7 +405,7 @@ def main() -> None:
     parser.add_argument("--categories", nargs="+", default=["backpack", "shoes", "sunglasses"])
     parser.add_argument("--products-per-category", type=int, default=5)
     parser.add_argument("--max-reviews", type=int, default=25)
-    parser.add_argument("--output-dir", type=str, default=str(ROOT / "experiment_results"))
+    parser.add_argument("--output-dir", type=str, default=str(DEFAULT_EXPERIMENT_OUTPUT_DIR))
     parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--resume", action="store_true", help="Skip already successful runs in existing log")
     args = parser.parse_args()

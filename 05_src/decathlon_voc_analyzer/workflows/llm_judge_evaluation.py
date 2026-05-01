@@ -4,8 +4,8 @@ LLM-as-Judge evaluation for experiment results.
 
 Usage:
     python -m decathlon_voc_analyzer.workflows.llm_judge_evaluation \
-        --experiment-dir ./experiment_results \
-        --output-dir ./evaluation_results
+        --experiment-dir ./02_outputs/6_experiments/current \
+        --output-dir ./02_outputs/8_evaluations/current
 """
 from __future__ import annotations
 

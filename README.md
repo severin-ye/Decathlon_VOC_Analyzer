@@ -32,9 +32,12 @@ Decathlon VOC Analyzer 是一个证据驱动的多模态商品 VOC 分析系统�
   5_feedback/                        # 人工反馈侧边车
   5_replay/                          # 回放侧边车
   6_html/                            # HTML 报告
+  6_experiments/                     # 实验矩阵输出、实验 dashboard
   7_manifests/                       # 运行 manifest
+  runtime_logs/                      # tmux/批处理运行日志
 03_configs/                          # 抽样 profile、运行策略等配置
 04_scripts/                          # 批处理、评估、导出和验证脚本
+  experiment_ops/                    # 实验运维脚本
 05_src/decathlon_voc_analyzer/
   app/                               # FastAPI、配置、运行策略
   evaluation/                        # manifest 评估服务

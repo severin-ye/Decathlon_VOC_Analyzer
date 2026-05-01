@@ -22,6 +22,7 @@ from __future__ import annotations
 
 import argparse
 import os
+import shlex
 import subprocess
 import sys
 import time
@@ -31,9 +32,11 @@ import orjson
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
 SRC_DIR = ROOT_DIR / "05_src"
-EXPERIMENT_RESULTS_DIR = ROOT_DIR / "experiment_results"
+EXPERIMENT_OUTPUT_DIR = ROOT_DIR / "02_outputs" / "6_experiments"
+EXPERIMENT_RESULTS_DIR = EXPERIMENT_OUTPUT_DIR / "current"
+RUNTIME_LOG_DIR = ROOT_DIR / "02_outputs" / "runtime_logs"
+RUN_LOG_FILE = RUNTIME_LOG_DIR / "experiment_run.log"
 UI_DIR = ROOT_DIR / "04_scripts" / "experiment_ui"
-LOG_FILE = ROOT_DIR / "experiment_run.log"
 PYTHON = str(ROOT_DIR / ".venv" / "bin" / "python")
 
 EXPERIMENT_CMD = [
@@ -60,12 +63,12 @@ def _run_in_tmux(resume: bool = False) -> None:
     subprocess.run(["tmux", "kill-session", "-t", "experiment"], capture_output=True)
     time.sleep(0.5)
     cmd = (
-        f"cd {ROOT_DIR} && "
-        f"{PYTHON} -m decathlon_voc_analyzer.workflows.experiment_runner "
+        f"cd {shlex.quote(str(ROOT_DIR))} && "
+        f"{shlex.quote(PYTHON)} -m decathlon_voc_analyzer.workflows.experiment_runner "
         f"--categories backpack shoes sunglasses "
         f"--products-per-category 5 --max-reviews 25 "
-        f"--output-dir {EXPERIMENT_RESULTS_DIR} --seed 42 "
-        f"{'--resume ' if resume else ''}2>&1 | tee experiment_run.log"
+        f"--output-dir {shlex.quote(str(EXPERIMENT_RESULTS_DIR))} --seed 42 "
+        f"{'--resume ' if resume else ''}2>&1 | tee {shlex.quote(str(RUN_LOG_FILE))}"
     )
     subprocess.run(
         ["tmux", "new-session", "-d", "-s", "experiment", cmd],
@@ -153,6 +156,7 @@ def _status() -> None:
     print(f"成功率: {(completed / (completed + failed) * 100):.1f}%" if (completed + failed) > 0 else "N/A")
     print(f"日志: {log_path}")
     print(f"摘要: {summary_path}")
+    print(f"运行输出: {RUN_LOG_FILE}")
     print("监控: http://localhost:8080/experiment.html")
 
 
@@ -187,6 +191,7 @@ def main() -> None:
 
     if args.command == "start":
         EXPERIMENT_RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+        RUNTIME_LOG_DIR.mkdir(parents=True, exist_ok=True)
         _run_in_tmux(resume=args.resume)
         if not args.no_ui:
             _start_ui()
