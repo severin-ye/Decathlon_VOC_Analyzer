@@ -1,4 +1,5 @@
 from pathlib import Path
+from types import SimpleNamespace
 
 import orjson
 import pytest
@@ -23,6 +24,7 @@ from decathlon_voc_analyzer.schemas.analysis import (
 )
 from decathlon_voc_analyzer.schemas.review import ReviewAspect, ReviewExtractionResponse
 from decathlon_voc_analyzer.stage4_generation.analysis_service import ProductAnalysisService
+from decathlon_voc_analyzer.workflows.control_experiments import _parsed_to_report
 
 
 def test_product_analysis_service_returns_report_and_retrievals() -> None:
@@ -48,6 +50,92 @@ def test_product_analysis_service_returns_report_and_retrievals() -> None:
     assert len(result.aggregates) >= 1
     assert len(result.report.supporting_aspects) >= 1
     assert result.report.supporting_reviews
+
+
+def test_control_experiment_parsed_report_sets_aggregate_confidence() -> None:
+    report = _parsed_to_report(
+        {
+            "answer": "demo",
+            "strengths": [{"label": "fit", "summary": "Fits well", "confidence": 0.8}],
+            "weaknesses": [{"label": "zipper", "summary": "Zipper concern", "confidence": 0.6}],
+            "suggestions": [{"suggestion": "Clarify zipper details", "confidence": 0.7}],
+        },
+        product_id="p1",
+        category_slug="backpack",
+    )
+
+    assert report.confidence == pytest.approx(0.7)
+
+
+def test_product_analysis_service_marks_control_analysis_mode(monkeypatch) -> None:
+    service = ProductAnalysisService()
+    extraction = ReviewExtractionResponse(
+        product_id="backpack_010",
+        category_slug="backpack",
+        extraction_mode="heuristic",
+        preprocessed_reviews=[],
+        aspects=[],
+        skipped_review_ids=[],
+        warnings=[],
+    )
+    runtime = RetrievalRuntimeProfile(
+        text_embedding_backend="hash",
+        text_embedding_model="hash",
+        image_embedding_backend="disabled",
+        image_embedding_model=None,
+        reranker_backend="heuristic",
+        reranker_model="heuristic",
+        multimodal_reranker_backend="disabled",
+        multimodal_reranker_model=None,
+        native_multimodal_enabled=False,
+        summary="test",
+    )
+    report = ProductAnalysisReport(
+        product_id="backpack_010",
+        category_slug="backpack",
+        answer="control report",
+        strengths=[
+            InsightItem(
+                label="fit",
+                summary="Fits well",
+                confidence=0.7,
+                supporting_evidence=SupportingEvidence(),
+            )
+        ],
+        supporting_product_evidence=SupportingEvidence(),
+        confidence=0.7,
+    )
+
+    monkeypatch.setattr(
+        service.dataset_service,
+        "load_product_package",
+        lambda **kwargs: SimpleNamespace(product_id="backpack_010", category_slug="backpack"),
+    )
+    monkeypatch.setattr(service, "_resolve_extraction", lambda request: extraction)
+    monkeypatch.setattr(
+        service,
+        "_resolve_question_retrieval_state",
+        lambda **kwargs: ([], [], [], "heuristic", [], [], [], runtime),
+    )
+
+    def fake_run_control_experiment(**kwargs):
+        return report, [], []
+
+    monkeypatch.setattr(
+        "decathlon_voc_analyzer.workflows.control_experiments.run_control_experiment",
+        fake_run_control_experiment,
+    )
+
+    result = service.analyze(
+        ProductAnalysisRequest(
+            product_id="backpack_010",
+            category_slug="backpack",
+            use_llm=False,
+            experiment_config=ExperimentConfig(control_method="jarvis"),
+        )
+    )
+
+    assert result.analysis_mode == "jarvis"
 
 
 def test_product_analysis_service_emits_evidence_nodes_and_claim_attributions() -> None:

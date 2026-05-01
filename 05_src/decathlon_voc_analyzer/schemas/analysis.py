@@ -6,7 +6,7 @@ from decathlon_voc_analyzer.schemas.review import ReviewExtractionResponse
 
 
 EvidenceRoute = Literal["text", "image"]
-AnalysisMode = Literal["heuristic", "llm"]
+AnalysisMode = Literal["heuristic", "llm", "lewis2020", "jarvis", "vericite"]
 QuestionIntentType = Literal["explicit_support", "visual_confirmation", "cross_modal_resolution", "spec_check", "visual_detail"]
 IssueOwner = Literal["product_issue", "content_presentation", "evidence_gap", "expectation_mismatch"]
 EvidenceLevel = Literal["review_only", "partial_product_support", "product_supported", "missing_product_evidence"]

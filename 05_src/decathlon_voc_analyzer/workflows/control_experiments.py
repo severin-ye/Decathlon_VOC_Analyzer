@@ -232,12 +232,19 @@ def _run_vericite(
 
 
 def _parsed_to_report(parsed: dict, product_id: str, category_slug: str | None) -> ProductAnalysisReport:
+    def _confidence(value: object, default: float = 0.7) -> float:
+        try:
+            numeric = float(value)
+        except (TypeError, ValueError):
+            return default
+        return max(0.0, min(1.0, numeric))
+
     def _to_insights(items: list[dict]) -> list[InsightItem]:
         return [
             InsightItem(
                 label=str(i.get("label", "")),
                 summary=str(i.get("summary", i.get("suggestion", ""))),
-                confidence=float(i.get("confidence", 0.7)),
+                confidence=_confidence(i.get("confidence")),
                 supporting_evidence=SupportingEvidence(),
             )
             for i in items
@@ -248,7 +255,7 @@ def _parsed_to_report(parsed: dict, product_id: str, category_slug: str | None) 
             EvidenceGapItem(
                 label=str(i.get("label", "")),
                 summary=str(i.get("summary", "")),
-                confidence=float(i.get("confidence", 0.7)),
+                confidence=_confidence(i.get("confidence")),
                 supporting_evidence=SupportingEvidence(),
             )
             for i in items
@@ -276,12 +283,18 @@ def _parsed_to_report(parsed: dict, product_id: str, category_slug: str | None) 
             suggestion=str(i.get("suggestion", "")),
             suggestion_type=_normalize_suggestion_type(i.get("suggestion_type", "perception")),
             reason=_normalize_reason(i.get("reason")),
-            confidence=float(i.get("confidence", 0.7)),
+            confidence=_confidence(i.get("confidence")),
             supporting_evidence=SupportingEvidence(),
         )
         for i in (parsed.get("suggestions") or [])
     ]
     applicable_scenes = parsed.get("applicable_scenes") or []
+    confidence_items = strengths + weaknesses + controversies + gaps + suggestions
+    confidence = (
+        sum(item.confidence for item in confidence_items) / len(confidence_items)
+        if confidence_items
+        else _confidence(parsed.get("confidence"))
+    )
 
     return ProductAnalysisReport(
         product_id=product_id,
@@ -294,6 +307,7 @@ def _parsed_to_report(parsed: dict, product_id: str, category_slug: str | None) 
         suggestions=suggestions,
         applicable_scenes=applicable_scenes if isinstance(applicable_scenes, list) else [],
         supporting_product_evidence=SupportingEvidence(),
+        confidence=confidence,
     )
 
 

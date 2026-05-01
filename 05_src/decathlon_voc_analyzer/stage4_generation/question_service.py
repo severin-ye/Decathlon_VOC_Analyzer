@@ -33,7 +33,7 @@ class QuestionGenerationService:
         progress = get_workflow_progress()
         progress.start_count_step("analyze", "questions", total=len(aspects), detail=f"规划 {len(aspects)} 个方面的问题")
 
-        cache_signature = None
+        cache_signature: QuestionGenerationCacheSignature | None = None
         if not ablation_no_question_planning:
             cache_signature = self._build_cache_signature(aspects=aspects, questions_per_aspect=questions_per_aspect, use_llm=use_llm)
             cached_payload = self.cache_service.load(cache_signature)
@@ -89,16 +89,17 @@ class QuestionGenerationService:
             progress.advance_step("analyze", "questions", detail=aspect.aspect)
 
         progress.complete_step("analyze", "questions")
-        self.cache_service.save(
-            cache_signature,
-            QuestionGenerationCachePayload(
-                signature=cache_signature,
-                question_mode=mode,
-                question_warnings=warnings,
-                question_intents=intents,
-                questions=questions,
-            ),
-        )
+        if cache_signature is not None:
+            self.cache_service.save(
+                cache_signature,
+                QuestionGenerationCachePayload(
+                    signature=cache_signature,
+                    question_mode=mode,
+                    question_warnings=warnings,
+                    question_intents=intents,
+                    questions=questions,
+                ),
+            )
         return intents, questions, warnings, mode
 
     def _build_cache_signature(

@@ -137,6 +137,7 @@ class ProductAnalysisService:
 
         if control_report is not None:
             progress.activate_step("analyze", "report", detail=f"使用 {control} 对照实验报告")
+            analysis_mode = control
             report = control_report
         elif llm_requested:
             try:
@@ -2417,7 +2418,7 @@ class ProductAnalysisService:
         return list(dict.fromkeys(label for label in labels if label))
 
     def _normalize_analysis_mode(self, value: object) -> AnalysisMode | None:
-        if value in {"heuristic", "llm"}:
+        if value in {"heuristic", "llm", "lewis2020", "jarvis", "vericite"}:
             return value
         return None
 
