@@ -596,6 +596,21 @@ def build_bibliography(reference_text: str) -> str:
     return "\n".join(items).strip()
 
 
+def build_cjk_font_lines(cjk_language: str) -> list[str]:
+    if cjk_language == "ko":
+        return [
+            r"\IfFontExistsTF{UnBatang}{\setCJKmainfont[AutoFakeBold=3,AutoFakeSlant=.2]{UnBatang}}{\IfFontExistsTF{Baekmuk Batang}{\setCJKmainfont[AutoFakeBold=3,AutoFakeSlant=.2]{Baekmuk Batang}}{\IfFontExistsTF{Noto Serif CJK KR}{\setCJKmainfont[AutoFakeBold=3,AutoFakeSlant=.2]{Noto Serif CJK KR}}{\IfFontExistsTF{Noto Serif CJK SC}{\setCJKmainfont[AutoFakeBold=3,AutoFakeSlant=.2]{Noto Serif CJK SC}}{\setCJKmainfont[AutoFakeBold=3,AutoFakeSlant=.2]{WenQuanYi Zen Hei}}}}}",
+            r"\IfFontExistsTF{UnDotum}{\setCJKsansfont[AutoFakeBold=3,AutoFakeSlant=.2]{UnDotum}}{\IfFontExistsTF{Baekmuk Dotum}{\setCJKsansfont[AutoFakeBold=3,AutoFakeSlant=.2]{Baekmuk Dotum}}{\IfFontExistsTF{Noto Sans CJK KR}{\setCJKsansfont[AutoFakeBold=3,AutoFakeSlant=.2]{Noto Sans CJK KR}}{\IfFontExistsTF{Noto Sans CJK SC}{\setCJKsansfont[AutoFakeBold=3,AutoFakeSlant=.2]{Noto Sans CJK SC}}{\setCJKsansfont[AutoFakeBold=3,AutoFakeSlant=.2]{WenQuanYi Zen Hei}}}}}",
+            r"\IfFontExistsTF{UnTaza}{\setCJKmonofont[AutoFakeBold=3]{UnTaza}}{\IfFontExistsTF{Noto Sans Mono CJK KR}{\setCJKmonofont[AutoFakeBold=3]{Noto Sans Mono CJK KR}}{\IfFontExistsTF{Noto Sans Mono CJK SC}{\setCJKmonofont[AutoFakeBold=3]{Noto Sans Mono CJK SC}}{\setCJKmonofont[AutoFakeBold=3]{WenQuanYi Zen Hei Mono}}}}",
+        ]
+
+    return [
+        r"\IfFontExistsTF{Noto Serif CJK SC}{\setCJKmainfont[AutoFakeBold=3,AutoFakeSlant=.2]{Noto Serif CJK SC}}{\IfFontExistsTF{Source Han Serif SC}{\setCJKmainfont[AutoFakeBold=3,AutoFakeSlant=.2]{Source Han Serif SC}}{\IfFontExistsTF{AR PL UMing CN}{\setCJKmainfont[AutoFakeBold=3,AutoFakeSlant=.2]{AR PL UMing CN}}{\setCJKmainfont[AutoFakeBold=3,AutoFakeSlant=.2]{WenQuanYi Zen Hei}}}}",
+        r"\IfFontExistsTF{Noto Sans CJK SC}{\setCJKsansfont[AutoFakeBold=3,AutoFakeSlant=.2]{Noto Sans CJK SC}}{\IfFontExistsTF{Source Han Sans SC}{\setCJKsansfont[AutoFakeBold=3,AutoFakeSlant=.2]{Source Han Sans SC}}{\IfFontExistsTF{Droid Sans Fallback}{\setCJKsansfont[AutoFakeBold=3,AutoFakeSlant=.2]{Droid Sans Fallback}}{\setCJKsansfont[AutoFakeBold=3,AutoFakeSlant=.2]{AR PL UMing CN}}}}",
+        r"\IfFontExistsTF{Noto Sans Mono CJK SC}{\setCJKmonofont[AutoFakeBold=3]{Noto Sans Mono CJK SC}}{\IfFontExistsTF{Droid Sans Fallback}{\setCJKmonofont[AutoFakeBold=3]{Droid Sans Fallback}}{\setCJKmonofont[AutoFakeBold=3]{AR PL UMing CN}}}",
+    ]
+
+
 def build_section_block(
     section: Section,
     resource_base: Path,
@@ -654,6 +669,7 @@ def build_document(
     resource_base: Path,
     bib_name: str | None = None,
     citation_key_map: dict[str, str] | None = None,
+    cjk_language: str = "auto",
 ) -> str:
     section_blocks: list[str] = []
     resolved_reference_text = reference_text.strip()
@@ -687,6 +703,11 @@ def build_document(
             ]
         )
 
+    nocite_command = ""
+    if bib_name and citation_key_map:
+        nocite_keys = ",".join(citation_key_map.values())
+        nocite_command = rf"\nocite{{{escape_latex(nocite_keys)}}}"
+
     parts = [
         r"\documentclass[11pt]{article}",
         "",
@@ -719,9 +740,7 @@ def build_document(
         r"\IfFontExistsTF{Noto Serif}{\setmainfont{Noto Serif}}{\IfFontExistsTF{DejaVu Serif}{\setmainfont{DejaVu Serif}}{\setmainfont{Latin Modern Roman}}}",
         r"\IfFontExistsTF{Noto Sans}{\setsansfont{Noto Sans}}{\IfFontExistsTF{DejaVu Sans}{\setsansfont{DejaVu Sans}}{\setsansfont{Latin Modern Sans}}}",
         r"\IfFontExistsTF{Noto Sans Mono}{\setmonofont{Noto Sans Mono}}{\IfFontExistsTF{DejaVu Sans Mono}{\setmonofont{DejaVu Sans Mono}}{\setmonofont{Latin Modern Mono}}}",
-        r"\IfFontExistsTF{Noto Serif CJK SC}{\setCJKmainfont[AutoFakeBold=3,AutoFakeSlant=.2]{Noto Serif CJK SC}}{\IfFontExistsTF{Source Han Serif SC}{\setCJKmainfont[AutoFakeBold=3,AutoFakeSlant=.2]{Source Han Serif SC}}{\IfFontExistsTF{AR PL UMing CN}{\setCJKmainfont[AutoFakeBold=3,AutoFakeSlant=.2]{AR PL UMing CN}}{\setCJKmainfont[AutoFakeBold=3,AutoFakeSlant=.2]{WenQuanYi Zen Hei}}}}",
-        r"\IfFontExistsTF{Noto Sans CJK SC}{\setCJKsansfont[AutoFakeBold=3,AutoFakeSlant=.2]{Noto Sans CJK SC}}{\IfFontExistsTF{Source Han Sans SC}{\setCJKsansfont[AutoFakeBold=3,AutoFakeSlant=.2]{Source Han Sans SC}}{\IfFontExistsTF{Droid Sans Fallback}{\setCJKsansfont[AutoFakeBold=3,AutoFakeSlant=.2]{Droid Sans Fallback}}{\setCJKsansfont[AutoFakeBold=3,AutoFakeSlant=.2]{AR PL UMing CN}}}}",
-        r"\IfFontExistsTF{Noto Sans Mono CJK SC}{\setCJKmonofont[AutoFakeBold=3]{Noto Sans Mono CJK SC}}{\IfFontExistsTF{Droid Sans Fallback}{\setCJKmonofont[AutoFakeBold=3]{Droid Sans Fallback}}{\setCJKmonofont[AutoFakeBold=3]{AR PL UMing CN}}}",
+        *build_cjk_font_lines(cjk_language),
         r"\setlength{\emergencystretch}{6em}",
         r"\sloppy",
         "",
@@ -736,6 +755,7 @@ def build_document(
         "",
         r"\begin{document}",
         r"\maketitle",
+        nocite_command,
         "",
         "\n\n".join(section_blocks),
         "",
@@ -777,6 +797,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--author", default=None, help="覆盖自动解析得到的作者")
     parser.add_argument("--affiliation", default=None, help="覆盖自动解析得到的机构")
     parser.add_argument("--email", default=None, help="覆盖自动解析得到的邮箱")
+    parser.add_argument(
+        "--cjk-language",
+        choices=("auto", "ko"),
+        default="auto",
+        help="CJK 字体优先级；韩文稿使用 ko。",
+    )
     return parser.parse_args()
 
 
@@ -863,6 +889,7 @@ def main() -> int:
         resource_base,
         bib_name=bib_path.stem if bib_path is not None else None,
         citation_key_map=citation_key_map,
+        cjk_language=args.cjk_language,
     )
     output_path.parent.mkdir(parents=True, exist_ok=True)
     if bib_path is not None:

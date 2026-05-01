@@ -6,6 +6,7 @@ import argparse
 import shutil
 import subprocess
 import sys
+from dataclasses import dataclass
 from pathlib import Path
 
 
@@ -16,11 +17,74 @@ INTERMEDIATE_PDF_NAME = "Decathlon_VOC_Analyzer_Nature_Template.pdf"
 MERGED_STAGE_DIR = "01_完整合并"
 LATEX_STAGE_DIR = "02_latex"
 PDF_STAGE_DIR = "03_pdf"
-ENGLISH_SECTION_DIR = "英文逐章稿"
+ENGLISH_SECTION_DIR = "逐章稿--英文"
 DEFAULT_FINAL_PDF_ZH = f"outputs/{FINAL_PDF_NAME}"
 DEFAULT_FINAL_PDF_EN = "outputs/Decathlon_VOC_Analyzer_EN.pdf"
 DEFAULT_INTERMEDIATE_DIR_ZH = "outputs/中间文件"
 DEFAULT_INTERMEDIATE_DIR_EN = "outputs/中间文件_en"
+
+
+@dataclass(frozen=True)
+class ManuscriptTarget:
+    key: str
+    label: str
+    section_dir_name: str
+    section_set: str
+    output_suffix: str
+    fallback_dir_names: tuple[str, ...] = ()
+    citation_map_name: str | None = None
+    cjk_language: str = "auto"
+
+
+MANUSCRIPT_TARGETS: dict[str, ManuscriptTarget] = {
+    "summary-zh": ManuscriptTarget(
+        key="summary-zh",
+        label="缩略稿--中文",
+        section_dir_name="缩略稿--中文",
+        section_set="summary",
+        output_suffix="_summary_zh",
+    ),
+    "summary-en": ManuscriptTarget(
+        key="summary-en",
+        label="缩略稿--英文",
+        section_dir_name="缩略稿--英文",
+        section_set="summary",
+        output_suffix="_summary_en",
+        fallback_dir_names=("逐章稿--英文",),
+    ),
+    "summary-ko": ManuscriptTarget(
+        key="summary-ko",
+        label="缩略稿--韩文",
+        section_dir_name="缩略稿--韩文",
+        section_set="summary",
+        output_suffix="_summary_ko",
+        cjk_language="ko",
+    ),
+    "full-zh": ManuscriptTarget(
+        key="full-zh",
+        label="逐章稿--中文",
+        section_dir_name="逐章稿--中文",
+        section_set="full",
+        output_suffix="_full_zh",
+    ),
+    "full-en": ManuscriptTarget(
+        key="full-en",
+        label="逐章稿--英文",
+        section_dir_name="逐章稿--英文",
+        section_set="full",
+        output_suffix="_full_en",
+    ),
+}
+
+MANUSCRIPT_ALIASES = {
+    target.label: key for key, target in MANUSCRIPT_TARGETS.items()
+} | {
+    "缩略稿中文": "summary-zh",
+    "缩略稿英文": "summary-en",
+    "缩略稿韩文": "summary-ko",
+    "逐章稿中文": "full-zh",
+    "逐章稿英文": "full-en",
+}
 
 
 def require_command(name: str) -> str:
@@ -107,6 +171,19 @@ def parse_args() -> argparse.Namespace:
         help="导出语言，支持 zh 或 en；默认 zh。",
     )
     parser.add_argument(
+        "--variant",
+        default=None,
+        help=(
+            "稿件版本：summary-zh、summary-en、summary-ko、full-zh、full-en；"
+            "也可传入目录名，如 缩略稿--中文。"
+        ),
+    )
+    parser.add_argument(
+        "--all",
+        action="store_true",
+        help="依次导出五个稿件版本：三种缩略稿与中英文逐章稿。",
+    )
+    parser.add_argument(
         "--en",
         action="store_true",
         help="快捷参数：导出英文版（等价于 --language en）。",
@@ -161,34 +238,70 @@ def normalize_legacy_outputs(
         relocate_file(paper_dir / name, destination)
 
 
-def main() -> int:
-    args = parse_args()
-    script_dir = Path(__file__).resolve().parent
-    paper_dir = script_dir.parent
-    python_executable = sys.executable
+def resolve_variant(value: str) -> ManuscriptTarget:
+    key = MANUSCRIPT_ALIASES.get(value, value)
+    target = MANUSCRIPT_TARGETS.get(key)
+    if target is None:
+        supported = "、".join(MANUSCRIPT_TARGETS)
+        raise ValueError(f"不支持的稿件版本: {value}；可用版本: {supported}")
+    return target
 
-    try:
-        language = normalize_language("en" if args.en else args.language)
-    except ValueError as exc:
-        print(str(exc), file=sys.stderr)
-        return 1
 
+def resolve_legacy_target(language: str) -> ManuscriptTarget:
     if language == "en":
-        section_dir = paper_dir / ENGLISH_SECTION_DIR
-        default_final_pdf = DEFAULT_FINAL_PDF_EN
-        default_intermediate_dir = DEFAULT_INTERMEDIATE_DIR_EN
-    else:
-        section_dir = paper_dir
-        default_final_pdf = DEFAULT_FINAL_PDF_ZH
-        default_intermediate_dir = DEFAULT_INTERMEDIATE_DIR_ZH
+        return ManuscriptTarget(
+            key="legacy-en",
+            label="英文逐章稿",
+            section_dir_name=ENGLISH_SECTION_DIR,
+            section_set="full",
+            output_suffix="",
+        )
+    return ManuscriptTarget(
+        key="legacy-zh",
+        label="中文逐章稿",
+        section_dir_name="逐章稿--中文",
+        section_set="full",
+        output_suffix="",
+    )
 
-    intermediate_dir = Path(args.intermediate_dir or default_intermediate_dir)
+
+def default_final_pdf_for_target(target: ManuscriptTarget, *, legacy: bool) -> str:
+    if legacy and target.key == "legacy-en":
+        return DEFAULT_FINAL_PDF_EN
+    if legacy and target.key == "legacy-zh":
+        return DEFAULT_FINAL_PDF_ZH
+    return f"outputs/Decathlon_VOC_Analyzer{target.output_suffix}.pdf"
+
+
+def default_intermediate_dir_for_target(target: ManuscriptTarget, *, legacy: bool) -> str:
+    if legacy and target.key == "legacy-en":
+        return DEFAULT_INTERMEDIATE_DIR_EN
+    if legacy and target.key == "legacy-zh":
+        return DEFAULT_INTERMEDIATE_DIR_ZH
+    return f"outputs/中间文件{target.output_suffix}"
+
+
+def export_target(
+    target: ManuscriptTarget,
+    *,
+    script_dir: Path,
+    paper_dir: Path,
+    final_pdf_arg: str | None,
+    intermediate_dir_arg: str | None,
+    legacy_defaults: bool = False,
+) -> None:
+    python_executable = sys.executable
+    section_dir = paper_dir / target.section_dir_name
+    default_final_pdf = default_final_pdf_for_target(target, legacy=legacy_defaults)
+    default_intermediate_dir = default_intermediate_dir_for_target(target, legacy=legacy_defaults)
+
+    intermediate_dir = Path(intermediate_dir_arg or default_intermediate_dir)
     if not intermediate_dir.is_absolute():
         intermediate_dir = (script_dir / intermediate_dir).resolve()
     else:
         intermediate_dir = intermediate_dir.resolve()
 
-    final_pdf = Path(args.final_pdf or default_final_pdf)
+    final_pdf = Path(final_pdf_arg or default_final_pdf)
     if not final_pdf.is_absolute():
         final_pdf = (script_dir / final_pdf).resolve()
     else:
@@ -208,39 +321,44 @@ def main() -> int:
     staged_pdf = pdf_dir / INTERMEDIATE_PDF_NAME
 
     if not section_dir.exists():
-        print(f"分章目录不存在: {section_dir}", file=sys.stderr)
-        return 1
+        raise FileNotFoundError(f"分章目录不存在: {section_dir}")
+
+    build_cmd = [
+        python_executable,
+        str(build_script),
+        "--section-dir",
+        str(section_dir),
+        "--section-set",
+        target.section_set,
+        "--output",
+        str(staged_complete_markdown),
+    ]
+    for fallback_dir_name in target.fallback_dir_names:
+        build_cmd.extend(["--fallback-dir", str(paper_dir / fallback_dir_name)])
 
     try:
-        run_command(
-            [
-                python_executable,
-                str(build_script),
-                "--section-dir",
-                str(section_dir),
-                "--output",
-                str(staged_complete_markdown),
-            ]
-        )
-        run_command(
-            [
-                python_executable,
-                str(latex_script),
-                "--input",
-                str(staged_complete_markdown),
-                "--resource-base",
-                str(paper_dir),
-                "--output",
-                str(intermediate_tex),
-            ]
-        )
+        run_command(build_cmd)
+        latex_cmd = [
+            python_executable,
+            str(latex_script),
+            "--input",
+            str(staged_complete_markdown),
+            "--resource-base",
+            str(paper_dir),
+            "--output",
+            str(intermediate_tex),
+            "--cjk-language",
+            target.cjk_language,
+        ]
+        if target.citation_map_name is not None:
+            latex_cmd.extend(["--citation-map", str(paper_dir / target.citation_map_name)])
+        run_command(latex_cmd)
         intermediate_pdf = compile_tex_to_pdf(intermediate_tex, latex_dir)
         shutil.copy2(intermediate_pdf, staged_pdf)
         shutil.copy2(staged_pdf, final_pdf)
         normalize_legacy_outputs(paper_dir, intermediate_dir, merged_dir, latex_dir, pdf_dir)
     except Exception as exc:  # noqa: BLE001
-        # XeLaTeX may still emit a (partial) PDF before failing (e.g., missing env Shaded).
-        # To avoid confusing stale outputs, if that PDF exists, sync it to the usual locations.
+        # XeLaTeX may still emit a partial PDF before failing; keep that artifact visible.
         try:
             partial_pdf = latex_dir / INTERMEDIATE_PDF_NAME
             if partial_pdf.exists():
@@ -252,10 +370,9 @@ def main() -> int:
                 )
         except Exception:  # noqa: BLE001
             pass
-        print(f"Pipeline 执行失败: {exc}", file=sys.stderr)
-        return 1
+        raise RuntimeError(f"{target.label} 导出失败: {exc}") from exc
 
-    print(f"导出语言: {language}")
+    print(f"稿件版本: {target.label}")
     print(f"分章目录: {section_dir}")
     print(f"最终 PDF 已生成: {final_pdf}")
     print(f"中间文件目录: {intermediate_dir}")
@@ -263,6 +380,51 @@ def main() -> int:
     print(f"LaTeX 文件: {intermediate_tex}")
     print(f"LaTeX 输出索引: {staged_out}")
     print(f"中间 PDF: {staged_pdf}")
+
+
+def main() -> int:
+    args = parse_args()
+    script_dir = Path(__file__).resolve().parent
+    paper_dir = script_dir.parent
+
+    if args.all and (args.final_pdf or args.intermediate_dir):
+        print("--all 会生成多个输出文件，不能同时指定 --final-pdf 或 --intermediate-dir。", file=sys.stderr)
+        return 1
+
+    try:
+        if args.all:
+            targets = list(MANUSCRIPT_TARGETS.values())
+            legacy_defaults = False
+        elif args.variant:
+            targets = [resolve_variant(args.variant)]
+            legacy_defaults = False
+        else:
+            language = normalize_language("en" if args.en else args.language)
+            targets = [resolve_legacy_target(language)]
+            legacy_defaults = True
+    except ValueError as exc:
+        print(str(exc), file=sys.stderr)
+        return 1
+
+    failures: list[str] = []
+    for target in targets:
+        try:
+            export_target(
+                target,
+                script_dir=script_dir,
+                paper_dir=paper_dir,
+                final_pdf_arg=args.final_pdf,
+                intermediate_dir_arg=args.intermediate_dir,
+                legacy_defaults=legacy_defaults,
+            )
+        except Exception as exc:  # noqa: BLE001
+            failures.append(str(exc))
+
+    if failures:
+        for failure in failures:
+            print(f"Pipeline 执行失败: {failure}", file=sys.stderr)
+        return 1
+
     return 0
 
 

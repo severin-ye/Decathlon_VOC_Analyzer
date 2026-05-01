@@ -1,0 +1,89 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand*\HyPL@Entry[1]{}
+\HyPL@Entry{0<</S/D>>}
+\@writefile{toc}{\contentsline {section}{\numberline {1}引言}{2}{section.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {2}背景与问题定义}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}商品 VOC 分析的证据需求}{2}{subsection.2.1}\protected@file@percent }
+\citation{lewis2020retrievalAugmentedGeneration}
+\citation{gao2023rarr}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.2}输入与输出}{3}{subsection.2.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}设计约束}{3}{subsection.2.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4}与通用 RAG 问答的差异}{3}{subsection.2.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3}相关工作}{3}{section.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}检索增强生成与证据约束}{3}{subsection.3.1}\protected@file@percent }
+\citation{radford2021clip}
+\citation{nvidia2024multimodalRagIntro,nvidia2024aiReadyKnowledgeSystems}
+\citation{faysse2024colpali}
+\citation{pontiki2014semevalAspect}
+\citation{qdrant2024pdfRetrievalAtScale,qdrant2024multiVectorCourse}
+\citation{liu2024structuredOutputBenchmark,geng2023grammarConstrainedDecoding}
+\citation{yao2023react}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}多模态检索与视觉证据}{4}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}评论分析与方面建模}{4}{subsection.3.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}两阶段检索、向量库与重排}{4}{subsection.3.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}结构化输出与工作流编排}{4}{subsection.3.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}本文定位}{4}{subsection.3.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}方法}{5}{section.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}总体框架}{5}{subsection.4.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Decathlon VOC Analyzer 的总体框架。系统以商品证据包和评论方面为中间表示，通过问题规划连接主观 VOC 信号与多模态商品证据，并在报告阶段进行 claim 级归因。}}{5}{figure.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}商品证据表示}{5}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}评论方面建模}{6}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}从方面到问题的规划机制}{6}{subsection.4.4}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces 评论方面到证据查询的规划机制。方面对象并不直接进入检索，而是先被分解为具有不同证据意图的问题，再分别触发文本路线、图像路线或图文联合路线。}}{6}{figure.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}多模态召回与重排}{7}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}证据约束报告与 claim 归因}{7}{subsection.4.6}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces 证据归因与评估闭环。报告主张被映射到评论、商品文本和商品图像证据；评估模块同时衡量检索质量和生成主张的证据支撑质量。}}{7}{figure.3}\protected@file@percent }
+\citation{manning2008introductionIr}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}可复现性与可解释性设计}{8}{subsection.4.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}实验设置}{8}{section.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}实验目的}{8}{subsection.5.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}实现环境}{8}{subsection.5.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}数据与验证单元}{8}{subsection.5.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}评价指标}{9}{subsection.5.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}工程验证协议}{9}{subsection.5.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {6}结果与分析}{9}{section.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}工作流完整性}{9}{subsection.6.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}结构化可审查性}{9}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}问题规划的作用}{9}{subsection.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}多模态证据的互补性}{10}{subsection.6.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}评估接口的可扩展性}{10}{subsection.6.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.6}当前结果边界}{10}{subsection.6.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}讨论}{10}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}为什么问题驱动检索适合商品 VOC}{10}{subsection.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Artifact-first 的工程价值}{10}{subsection.7.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.3}与一步式大模型总结的对比}{11}{subsection.7.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4}对后续研究的启示}{11}{subsection.7.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.5}论文写作层面的意义}{11}{subsection.7.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {8}结论}{11}{section.8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {9}局限性}{11}{section.9}\protected@file@percent }
+\gdef \LT@i {\LT@entry 
+    {1}{234.8775pt}\LT@entry 
+    {1}{234.8775pt}}
+\@writefile{toc}{\contentsline {section}{\numberline {10}致谢}{12}{section.10}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {11}附录}{12}{section.11}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.1}A. 关键目录与职责}{12}{subsection.11.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.2}B. API 入口}{12}{subsection.11.2}\protected@file@percent }
+\gdef \LT@ii {\LT@entry 
+    {3}{84.31639pt}\LT@entry 
+    {3}{138.78905pt}\LT@entry 
+    {3}{100.93832pt}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.3}C. 复现命令}{13}{subsection.11.3}\protected@file@percent }
+\bibstyle{unsrtnat}
+\bibdata{ref}
+\bibcite{lewis2020retrievalAugmentedGeneration}{{1}{2020}{{Lewis et~al.}}{{Lewis, Perez, Piktus, Petroni, Karpukhin, Goyal, K{"u}ttler, et~al.}}}
+\bibcite{gao2023rarr}{{2}{2023}{{Gao et~al.}}{{Gao, Dai, Pasupat, Chen, Chaganty, Fan, Zhao, Lao, Lee, Juan, and Guu}}}
+\bibcite{radford2021clip}{{3}{2021}{{Radford et~al.}}{{Radford, Kim, Hallacy, Ramesh, Goh, Agarwal, Sastry, Askell, Mishkin, Clark, Krueger, and Sutskever}}}
+\bibcite{nvidia2024multimodalRagIntro}{{4}{2024{}}{{NVIDIA Developer Blog}}{{}}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.4}D. 主要结构化产物}{14}{subsection.11.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {11.5}E. 当前论文稿适用边界}{14}{subsection.11.5}\protected@file@percent }
+\bibcite{nvidia2024aiReadyKnowledgeSystems}{{5}{2024{}}{{NVIDIA Developer Blog}}{{}}}
+\bibcite{faysse2024colpali}{{6}{2024}{{Faysse et~al.}}{{Faysse, Sibille, Wu, Omrani, Viaud, Hudelot, and Colombo}}}
+\bibcite{pontiki2014semevalAspect}{{7}{2014}{{Pontiki et~al.}}{{Pontiki, Galanis, Pavlopoulos, Papageorgiou, Androutsopoulos, and Manandhar}}}
+\bibcite{qdrant2024pdfRetrievalAtScale}{{8}{2024{}}{{Qdrant}}{{}}}
+\bibcite{qdrant2024multiVectorCourse}{{9}{2024{}}{{Qdrant}}{{}}}
+\bibcite{liu2024structuredOutputBenchmark}{{10}{2024}{{Liu et~al.}}{{Liu, Li, Wang, Xiong, Shi, Wang, Li, and Hang}}}
+\bibcite{geng2023grammarConstrainedDecoding}{{11}{2023}{{Geng et~al.}}{{Geng, Josifoski, Peyrard, and West}}}
+\bibcite{yao2023react}{{12}{2023}{{Yao et~al.}}{{Yao, Zhao, Yu, Du, Shafran, Narasimhan, and Cao}}}
+\bibcite{manning2008introductionIr}{{13}{2008}{{Manning et~al.}}{{Manning, Raghavan, and Sch{"u}tze}}}
+\gdef \@abspage@last{15}

@@ -1,0 +1,149 @@
+\documentclass[11pt]{article}
+
+% ===== 基本宏包：尽量保持简单 =====
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{chngcntr}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{calc}
+\usepackage{amsmath, amssymb}
+\setlength{\LTcapwidth}{\textwidth}
+\usepackage{xurl}
+\usepackage{hyperref}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{setspace}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% ===== 图表编号风格：全文连续编号，使用 Figure / Table =====
+\renewcommand{\figurename}{Figure}
+\renewcommand{\tablename}{Table}
+
+% ===== 字体与换行策略 =====
+\defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\IfFontExistsTF{Noto Serif}{\setmainfont{Noto Serif}}{\IfFontExistsTF{DejaVu Serif}{\setmainfont{DejaVu Serif}}{\setmainfont{Latin Modern Roman}}}
+\IfFontExistsTF{Noto Sans}{\setsansfont{Noto Sans}}{\IfFontExistsTF{DejaVu Sans}{\setsansfont{DejaVu Sans}}{\setsansfont{Latin Modern Sans}}}
+\IfFontExistsTF{Noto Sans Mono}{\setmonofont{Noto Sans Mono}}{\IfFontExistsTF{DejaVu Sans Mono}{\setmonofont{DejaVu Sans Mono}}{\setmonofont{Latin Modern Mono}}}
+\IfFontExistsTF{Noto Serif CJK SC}{\setCJKmainfont[AutoFakeBold=3,AutoFakeSlant=.2]{Noto Serif CJK SC}}{\IfFontExistsTF{Source Han Serif SC}{\setCJKmainfont[AutoFakeBold=3,AutoFakeSlant=.2]{Source Han Serif SC}}{\IfFontExistsTF{AR PL UMing CN}{\setCJKmainfont[AutoFakeBold=3,AutoFakeSlant=.2]{AR PL UMing CN}}{\setCJKmainfont[AutoFakeBold=3,AutoFakeSlant=.2]{WenQuanYi Zen Hei}}}}
+\IfFontExistsTF{Noto Sans CJK SC}{\setCJKsansfont[AutoFakeBold=3,AutoFakeSlant=.2]{Noto Sans CJK SC}}{\IfFontExistsTF{Source Han Sans SC}{\setCJKsansfont[AutoFakeBold=3,AutoFakeSlant=.2]{Source Han Sans SC}}{\IfFontExistsTF{Droid Sans Fallback}{\setCJKsansfont[AutoFakeBold=3,AutoFakeSlant=.2]{Droid Sans Fallback}}{\setCJKsansfont[AutoFakeBold=3,AutoFakeSlant=.2]{AR PL UMing CN}}}}
+\IfFontExistsTF{Noto Sans Mono CJK SC}{\setCJKmonofont[AutoFakeBold=3]{Noto Sans Mono CJK SC}}{\IfFontExistsTF{Droid Sans Fallback}{\setCJKmonofont[AutoFakeBold=3]{Droid Sans Fallback}}{\setCJKmonofont[AutoFakeBold=3]{AR PL UMing CN}}}
+\setlength{\emergencystretch}{6em}
+\sloppy
+
+% 可选：让行距略宽一些，便于审稿阅读
+\onehalfspacing
+
+\title{\textbf{Decathlon VOC Analyzer: An Evidence-Driven Multimodal VOC Analysis System for Aligning Product Images, Product Text, and User Reviews}}
+
+\author{{\small
+\begin{tabular}{@{}ccc@{}}
+\multicolumn{3}{c}{\parbox[t]{0.6600\textwidth}{\centering \textbf{Severin Ye}\textsuperscript{1} \\ \textit{School of Computer Science and Engineering} \\ \textit{Kyungpook National University} \\ Daegu, Republic of Korea \\ {\ttfamily\small 6severin9\allowbreak@gmail.\allowbreak{}com}}} \\
+\multicolumn{3}{c}{} \\[0.9em]
+\parbox[t]{0.3067\textwidth}{\centering \textbf{Dokeun Lee}\textsuperscript{2} \\ \textit{Department of Physics} \\ \textit{Kyungpook National University} \\ Daegu, Republic of Korea \\ {\ttfamily\small nsa08008\allowbreak@naver.\allowbreak{}com}} & \parbox[t]{0.3067\textwidth}{\centering \textbf{Wushuang Liu}\textsuperscript{2} \\ \textit{Department of Child Studies} \\ \textit{Kyungpook National University} \\ Daegu, Republic of Korea \\ {\ttfamily\small 824309203q\allowbreak@gmail.\allowbreak{}com}} & \parbox[t]{0.3067\textwidth}{\centering \textbf{Seowan Jung}\textsuperscript{2} \\ \textit{School of Computer Science and Engineering} \\ \textit{Kyungpook National University} \\ Daegu, Republic of Korea \\ {\ttfamily\small swan041014\allowbreak@gmail.\allowbreak{}com}} \\[0.9em]
+\multicolumn{3}{c}{\makebox[0.9200\textwidth][c]{\parbox[t]{0.3067\textwidth}{\centering \textbf{HyunJun Jung}\textsuperscript{2} \\ \textit{School of Computer Science and Engineering} \\ \textit{Kyungpook National University} \\ Daegu, Republic of Korea \\ {\ttfamily\small beanbeansummon\allowbreak@naver.\allowbreak{}com}}\hspace{2\tabcolsep}\parbox[t]{0.3067\textwidth}{\centering \textbf{Hye Jeon}\textsuperscript{2} \\ \textit{School of Computer Science and Engineering} \\ \textit{Kyungpook National University} \\ Daegu, Republic of Korea \\ {\ttfamily\small prajna0426\allowbreak@naver.\allowbreak{}com}}}} \\
+\end{tabular}
+}}
+
+\date{} % Nature 系列投稿一般不需要显示日期
+
+\begin{document}
+\maketitle
+\nocite{lewis2020retrievalAugmentedGeneration,gao2023rarr,radford2021clip,liu2024structuredOutputBenchmark,geng2023grammarConstrainedDecoding,yao2023react,nvidia2024multimodalRagIntro,nvidia2024aiReadyKnowledgeSystems,faysse2024colpali,pontiki2014semevalAspect,qdrant2024pdfRetrievalAtScale,qdrant2024multiVectorCourse,manning2008introductionIr}
+
+% =========================
+% Abstract
+% =========================
+\begin{abstract}
+E-commerce voice-of-customer (VOC) analysis needs to understand both the subjective experience expressed in reviews and the objective evidence available on product pages. This paper presents Decathlon VOC Analyzer, an evidence-driven multimodal VOC analysis system. The method standardizes product information into evidence packages, extracts aspect-level signals from reviews, plans each aspect as a question with an explicit retrieval route, performs two-stage multimodal recall and reranking, and finally generates structured reports with claim-level evidence attribution. The system preserves key intermediate representations to support reproducibility and error analysis. The contributions of this paper include: a ``review aspect modeling - question planning - multimodal retrieval - evidence-constrained generation'' framework; a reproducible system based on structured intermediate representations; and system stability validated by 166 automated tests. This paper is positioned as a systems-method paper and does not claim to have completed a large-scale manually annotated benchmark.
+
+\subsection{Keywords}
+
+multimodal VOC analysis; evidence-constrained generation; image-text retrieval; product review mining; claim attribution
+\end{abstract}
+
+% =========================
+% I. Introduction
+% =========================
+\section{I. Introduction}
+User review analysis is a foundational task in intelligent e-commerce operations. Traditional methods usually focus on sentiment classification, topic clustering, or aspect-based sentiment analysis. These methods can summarize users' positive or negative attitudes toward product attributes, but they less often answer whether those review opinions can be explained, supported, or contradicted by evidence from the product itself. For product operations and product improvement, it is not enough to know only that ``users complain about limited capacity.'' Analysts also need to know whether the product page explicitly describes the dimensions, whether the images show the spatial structure, and whether the issue reflects a product defect or a gap in user expectations.
+
+Large language models create new possibilities for product review summarization, but one-step summarization carries clear risks. If a system directly feeds product copy, image descriptions, and reviews into a model as a whole, the model may generate fluent conclusions that are difficult to audit. Users may struggle to determine which reviews, product texts, or images support a given recommendation, and they may also find it difficult to locate whether an error occurred during review understanding, retrieval, evidence interpretation, or final generation. Therefore, product VOC analysis should not be reduced to a black-box summarization task. It should instead be modeled as a traceable chain from review needs to product evidence and then to a structured report.
+
+The research question of this paper is: how can subjective experiences in user reviews be explicitly aligned with verifiable evidence in product copy and product images in an e-commerce product setting, so as to generate VOC insights that are auditable, reproducible, and evaluable? To address this question, this paper proposes Decathlon VOC Analyzer. The system constructs standardized evidence packages centered on products, extracts reviews into aspect-level objects, uses a question-planning layer to convert each aspect into a text, image, or joint image-text retrieval task, and finally generates structured reports through multimodal recall, reranking, evidence aggregation, and claim-level attribution.
+
+% =========================
+% II. Methods
+% =========================
+\section{II. Methods}
+This paper organizes product VOC analysis as an evidence-driven methods section. The core objective is not to directly generate a review summary, but to transform subjective feedback in reviews into a retrievable, verifiable, and attributable image-text evidence chain, and to perform question planning, evidence retrieval, experimental description, and figure presentation under a unified structure.
+
+\subsection{Overall Architecture}
+
+Decathlon VOC Analyzer formalizes product VOC analysis as an evidence-driven multi-stage process. The system first organizes the text, images, and reviews from a product page into a unified evidence space. It then extracts aspect-level user feedback from the review side. Next, question planning converts subjective feedback into executable evidence queries. Finally, the system performs multimodal retrieval, reranking, and evidence-constrained generation across product text and product images \citep{lewis2020retrievalAugmentedGeneration,gao2023rarr,radford2021clip,nvidia2024multimodalRagIntro,nvidia2024aiReadyKnowledgeSystems,faysse2024colpali}. Unlike one-step large-model summarization, this framework decomposes ``what users expressed,'' ``whether product evidence can support it,'' and ``how the final report is attributed'' into observable intermediate stages.
+
+The system contains four logical layers. The product evidence layer constructs structured representations of product text, images, and local visual regions. The VOC demand layer converts reviews into aspects, opinions, sentiment, and scenarios. The evidence alignment layer rewrites aspects into questions with explicit modality routes, then retrieves and reranks candidates in the product evidence space. The report attribution layer generates structured insights and maps report claims back to review evidence and product evidence.
+
+\subsection{Formula}
+
+To unify the ranking of a review aspect \(a\) and candidate evidence \(e\), this paper combines text relevance, image relevance, and cross-modal consistency into a single evidence score:
+
+\[
+S(a, e) = \lambda_t R_t(a, e) + \lambda_v R_v(a, e) + \lambda_c C(a, e)
+\]
+
+Here, \(R_t(a, e)\) denotes the relevance score of the text route, \(R_v(a, e)\) denotes the relevance score of the image route, and \(C(a, e)\) denotes the cross-modal consistency constraint between the review aspect and product evidence. \(\lambda_t\), \(\lambda_v\), and \(\lambda_c\) are tunable weights. This expression is not intended to replace the final generative analysis, but to provide a unified evidence selection criterion during retrieval and reranking.
+
+\subsection{Experimental Description}
+
+In the product evidence representation stage, the system represents product titles, descriptions, categories, specifications, images, and user reviews as evidence objects with stable identifiers. Text evidence retains source fields; image evidence retains both whole images and rule-based local regions; review evidence retains ratings, language hints, and original text snippets. This establishes unified object boundaries for subsequent retrieval, attribution, and evaluation.
+
+In the review modeling stage, the system converts natural-language feedback into aspect-level VOC units \citep{pontiki2014semevalAspect}. Each aspect unit contains the evaluated attribute, sentiment tendency, opinion description, original evidence snippet, usage scenario, and confidence. Aspect-level representations support both statistical aggregation and evidence-query generation around specific attributes. To prevent a limited review budget from being dominated by high-star short reviews, the system introduces star-aware sampling before review extraction and supports both a structured LLM path and a heuristic path, so as to distinguish model capability from process completeness.
+
+In the question planning stage, the system does not use raw reviews to retrieve product evidence directly. Instead, it converts each aspect into questions with explicit evidence intent. These questions cover three types of needs: text support, visual confirmation, and cross-modal explanation. Text support questions examine whether product copy or specifications support the review opinion. Visual confirmation questions examine whether product images present the relevant structure or appearance. Cross-modal explanation questions judge whether a given feedback item is closer to a real product issue, insufficient page presentation, or a gap in user expectations.
+
+In the retrieval and generation stage, the system adopts two-stage retrieval \citep{qdrant2024pdfRetrievalAtScale,qdrant2024multiVectorCourse}. The first stage uses vector representations to coarsely recall candidate evidence from product text and product images. The second stage uses a reranking model to refine the candidate set. The text route is mainly used to verify product names, categories, descriptions, specifications, and explicit promises. The image route is mainly used to verify structure, appearance, color, and local details. The final report generates strengths, weaknesses, points of disagreement, applicable scenarios, evidence gaps, and improvement suggestions based on aspect aggregation, and marks the support relationships between claims and reviews, product text, or product images through claim-level attribution.
+
+The system implementation uses structured objects to constrain the multi-stage process \citep{liu2024structuredOutputBenchmark,geng2023grammarConstrainedDecoding,yao2023react}. Model calls are handled through a compatible language-model gateway, and the retrieval layer supports both local indexes and vector database backends. To distinguish formal experiments from development validation, the system provides runtime policy control: when the full model pipeline is available, it uses real vector encoders, image encoders, and reranking models; when external capabilities are unavailable and the policy permits it, it falls back to heuristic paths to keep the process executable. This design avoids conflating insufficient model capability with failure of the process design.
+
+The current validation goal of this paper is to confirm whether the system can stably complete evidence-driven VOC analysis, rather than to report final performance on a frozen large-scale benchmark. The results show that the current implementation can sequentially complete product evidence standardization, review aspect modeling, question planning, multimodal recall, candidate reranking, aspect aggregation, report generation, and evidence attribution. A complete analysis includes not only the final natural-language report, but also objects such as review aspects, question intents, retrieval questions, recalled evidence, retrieval quality, runtime configuration, aspect aggregation, process traces, and report attribution, thereby supporting human audit and error localization.
+
+When question-level relevant evidence annotations are available, the system can compute Recall@1, Recall@3, Recall@5, MRR, NDCG@3, and NDCG@5 \citep{manning2008introductionIr}. For structured reports, the system measures whether claims are supported by reviews, product text, or product images, including claim support rate, claim grounded rate, citation precision, citation contradiction rate, and contribution ratios across different modality routes. The current implementation includes 166 automated tests, all of which pass, indicating that the main interfaces, structured intermediate representations, and workflow assertions remain consistent in the current implementation.
+
+\subsection{Figure 1}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.92\textwidth]{/home/severin/Codelib/Decathlon\_VOC\_Analyzer/论文\_md形式/图片/图1.png}
+\caption{Overall framework of Decathlon VOC Analyzer. The system uses product evidence packages and review aspects as intermediate representations, connects subjective VOC signals with multimodal product evidence through question planning, and performs claim-level attribution during report generation.}
+\end{figure}
+
+\subsection{Figure 2}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.92\textwidth]{/home/severin/Codelib/Decathlon\_VOC\_Analyzer/论文\_md形式/图片/图2.png}
+\caption{Planning mechanism from review aspects to evidence queries. Aspect objects do not enter retrieval directly; instead, they are first decomposed into questions with different evidence intents, which then trigger the text route, image route, or joint image-text route.}
+\end{figure}
+
+% =========================
+% III. Conclusion
+% =========================
+\section{III. Conclusion}
+This paper presents Decathlon VOC Analyzer, an evidence-driven multimodal VOC analysis system for aligning product image-text evidence with user reviews. The system standardizes raw product data into traceable evidence packages, extracts user reviews into aspect-level VOC objects, and then generates structured product analysis results through question planning, multimodal recall, reranking, report generation, and claim-level attribution.
+
+The central conclusion of this paper is that product VOC analysis should not be reduced to one-step review summarization. Instead, it should be organized as a multi-stage process of ``review aspect modeling - evidence question planning - product image-text retrieval - evidence-constrained generation.'' The current implementation has formed a runnable research prototype and remains consistent in structured intermediate representations, evidence attribution, replay mechanisms, and evaluation interfaces. Test results show that the current implementation passes 166 automated tests, indicating engineering-level stability in the main system chain and key modules.
+
+Future work will focus on adding manually annotated benchmarks across multiple categories, systematically comparing different retrieval and reranking strategies, introducing finer-grained visual grounding, and further closing the loop between human feedback and the replay mechanism.
+
+% =========================
+% References
+% =========================
+\bibliographystyle{unsrtnat}
+\bibliography{ref}
+
+\end{document}

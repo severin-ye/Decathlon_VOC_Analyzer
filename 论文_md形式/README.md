@@ -42,25 +42,49 @@
 使用与参考论文相同的一键链路：
 
 ```bash
-.venv/bin/python 论文_md形式/脚本/pipeline.py
+.venv/bin/python 论文_md形式/_脚本/pipeline.py
 ```
 
 默认会生成：
 
-- `论文_md形式/脚本/outputs/Decathlon_VOC_Analyzer.pdf`
-- `论文_md形式/脚本/outputs/中间文件/02_latex/Decathlon_VOC_Analyzer_Nature_Template.tex`
-- `论文_md形式/脚本/outputs/中间文件/03_pdf/Decathlon_VOC_Analyzer_Nature_Template.pdf`
+- `论文_md形式/_脚本/outputs/Decathlon_VOC_Analyzer.pdf`
+- `论文_md形式/_脚本/outputs/中间文件/02_latex/Decathlon_VOC_Analyzer_Nature_Template.tex`
+- `论文_md形式/_脚本/outputs/中间文件/03_pdf/Decathlon_VOC_Analyzer_Nature_Template.pdf`
+
+一次性导出五个稿件版本：
+
+```bash
+.venv/bin/python 论文_md形式/_脚本/pipeline.py --all
+```
+
+会生成：
+
+- `论文_md形式/_脚本/outputs/Decathlon_VOC_Analyzer_summary_zh.pdf`
+- `论文_md形式/_脚本/outputs/Decathlon_VOC_Analyzer_summary_en.pdf`
+- `论文_md形式/_脚本/outputs/Decathlon_VOC_Analyzer_summary_ko.pdf`
+- `论文_md形式/_脚本/outputs/Decathlon_VOC_Analyzer_full_zh.pdf`
+- `论文_md形式/_脚本/outputs/Decathlon_VOC_Analyzer_full_en.pdf`
+
+也可以只导出单个版本：
+
+```bash
+.venv/bin/python 论文_md形式/_脚本/pipeline.py --variant summary-zh
+.venv/bin/python 论文_md形式/_脚本/pipeline.py --variant summary-en
+.venv/bin/python 论文_md形式/_脚本/pipeline.py --variant summary-ko
+.venv/bin/python 论文_md形式/_脚本/pipeline.py --variant full-zh
+.venv/bin/python 论文_md形式/_脚本/pipeline.py --variant full-en
+```
 
 如果只想单独导出 LaTeX，可运行：
 
 ```bash
-.venv/bin/python 论文_md形式/脚本/export_markdown_to_latex.py --input 论文_md形式/脚本/outputs/中间文件/01_完整合并/Decathlon_VOC_Analyzer_Complete_Paper.md
+.venv/bin/python 论文_md形式/_脚本/export_markdown_to_latex.py --input 论文_md形式/_脚本/outputs/中间文件/01_完整合并/Decathlon_VOC_Analyzer_Complete_Paper.md
 ```
 
 如果只想将完整 Markdown 直接转成 PDF，可运行：
 
 ```bash
-.venv/bin/python 论文_md形式/脚本/export_complete_paper_pdf.py
+.venv/bin/python 论文_md形式/_脚本/export_complete_paper_pdf.py
 ```
 
 ## 说明
