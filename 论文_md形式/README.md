@@ -11,10 +11,13 @@
 - 00_abstract.md 到 10_acknowledgments.md：中文分章正文
 - appendix.md：补充的系统接口、产物与复现实验说明
 - 11_references.md：初版参考文献与工程引用
-- 脚本/build_complete_paper.py：合并分章 Markdown 的脚本
-- 脚本/export_markdown_to_latex.py：将完整 Markdown 转为 LaTeX
-- 脚本/export_complete_paper_pdf.py：将完整 Markdown 直接导出为 PDF
-- 脚本/pipeline.py：按参考论文同样的链路执行“分章合并 -> LaTeX -> PDF”
+- `_脚本/paper_pipeline/markdown_parser.py`：自动识别缩略稿、逐章稿和自定义 Markdown 分章结构的解析模块
+- `_脚本/paper_pipeline/merge.py`：调用解析模块合并分章 Markdown 的模块
+- `_脚本/paper_pipeline/latex.py`：将完整 Markdown 转为 LaTeX 的模块
+- `_脚本/paper_pipeline/pdf.py`：将完整 Markdown 直接导出为 PDF 的模块
+- `_脚本/paper_pipeline/filters.py`：PDF/LaTeX 导出前的 Markdown 过滤模块
+- `_脚本/paper_pipeline/pipeline.py`：按参考论文同样的链路执行“分章合并 -> LaTeX -> PDF”的主编排模块
+- `_脚本/*.py`：保留为命令行兼容入口，负责调用对应模块的 `main()`
 
 ## 当前定位
 
@@ -30,12 +33,12 @@
 运行：
 
 ```bash
-.venv/bin/python 论文_md形式/脚本/build_complete_paper.py
+.venv/bin/python 论文_md形式/_脚本/build_complete_paper.py
 ```
 
 默认输出：
 
-- `论文_md形式/脚本/outputs/中间文件/01_完整合并/Decathlon_VOC_Analyzer_Complete_Paper.md`
+- `论文_md形式/_脚本/outputs/中间文件/01_完整合并/Decathlon_VOC_Analyzer_Complete_Paper.md`
 
 ## 导出 PDF
 
