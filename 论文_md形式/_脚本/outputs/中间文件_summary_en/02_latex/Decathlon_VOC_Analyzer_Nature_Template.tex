@@ -82,6 +82,12 @@ Therefore, product VOC (Voice of Customer) analysis should not be treated as a b
 
 Figure 1 presents the overall framework of the proposed system. Starting from product evidence construction, the system preserves product text, images, local visual regions, and reviews as reusable evidence objects; it then forms VOC aspect objects through rated-review preservation, rating-aware sampling, and aspect extraction, converts them into retrieval questions with explicit route constraints, and finally generates a structured report with claim-level evidence attribution and evidence gaps.
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.92\textwidth]{/home/severin/Codelib/Decathlon\_VOC\_Analyzer/论文\_md形式/图片/图1.png}
+\caption{Overall framework of Decathlon VOC Analyzer. The system uses review aspects and product evidence packages as intermediate representations, connects subjective VOC signals with multimodal product evidence through question planning, and performs claim-level attribution during reporting.}
+\end{figure}
+
 % =========================
 % II. Proposed System
 % =========================
@@ -132,6 +138,12 @@ Text support questions are used to verify whether product descriptions and speci
 
 Figure 2 shows the question-planning process from a review aspect to evidence queries. For example, a review such as ``too small for travel documents'' is converted into an aspect object containing a size aspect, negative sentiment, a usage scenario, and an original evidence span. The system then generates separate questions to determine whether the product description or specifications explicitly mention size limits, whether the main storage compartment can be identified in the images, and whether text and images provide consistent evidence about storage capacity. The key point is not merely to generate multiple questions, but to ensure that each question carries an explicit evidence route and an expected support type, so that subsequent retrieval results can be aligned precisely with the final report claims.
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.92\textwidth]{/home/severin/Codelib/Decathlon\_VOC\_Analyzer/论文\_md形式/图片/图2.png}
+\caption{Aspect-to-question planning. Aspect objects are not directly used as retrieval queries; they are decomposed into intent-specific questions that trigger text, image, or cross-modal evidence routes.}
+\end{figure}
+
 \subsection{Evidence Scoring and Reranking}
 
 To compare the relevance between review aspects and candidate evidence consistently, the proposed system uses an evidence score that combines text relevance, image relevance, and cross-modal consistency. Let a review aspect be denoted by \(a\) and candidate evidence by \(e\). The evidence score is defined in Equation (1).
@@ -161,6 +173,12 @@ From the evaluation perspective, the proposed system examines retrieval quality 
 For structured reports, the proportion of claims supported by reviews, product text, and product images can be computed. In addition, metrics such as citation precision, contradiction rate, and modality contribution can be used to assess the sufficiency of the evidence behind report claims and the contribution of each modality. These metrics reflect not only whether the system retrieved relevant evidence, but also whether the final conclusions are adequately supported. The present evaluation focuses on the stable operation of an evidence-driven VOC analysis prototype and on the separability of individual modules for future ablation and comparison studies. Under this setting, later experiments can evaluate the impact of removing question planning, disabling the image route, removing reranking, or turning off claim attribution on evidence hit rate, attribution error rate, and report auditability.
 
 Figure 3 illustrates how retrieved review evidence, product text evidence, and product image evidence are connected to strength claims, weakness claims, improvement-suggestion claims, and evidence-gap claims in the structured report. Each connection can be labeled as supported, partial, unsupported, or contradicted, and human review results can be fed back into question planning and report refinement through the feedback/replay loop. For review opinions that cannot be sufficiently supported by product text or images, the system does not force a seemingly plausible conclusion but instead preserves an explicit evidence gap to represent insufficient support. The current implementation has passed 166 automated tests, indicating that the main interfaces and workflow assertions remain consistent and that the system has achieved sufficient engineering stability as a research prototype for subsequent controlled experiments.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.92\textwidth]{/home/severin/Codelib/Decathlon\_VOC\_Analyzer/论文\_md形式/图片/图3.png}
+\caption{Evidence attribution and evaluation loop. Report claims are mapped to review, product text, and product image evidence, while evaluation measures both retrieval quality and claim grounding quality.}
+\end{figure}
 
 % =========================
 % IV. Conclusion

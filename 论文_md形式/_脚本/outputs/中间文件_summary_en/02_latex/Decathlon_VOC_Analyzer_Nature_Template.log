@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Debian) (preloaded format=xelatex 2026.1.24)  6 MAY 2026 11:40
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Debian) (preloaded format=xelatex 2026.1.24)  6 MAY 2026 11:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -924,13 +924,25 @@ LaTeX Font Info:    Font shape `TU/DejaVuSerif(0)/b/n' will be
 (Font)              scaled to size 11.95729pt on input line 72.
  [1
 
-] [2] [3] [4]
+]
+File: /home/severin/Codelib/Decathlon_VOC_Analyzer/论文_md形式/图片/图1.png Graphic fi
+le (type bmp)
+</home/severin/Codelib/Decathlon_VOC_Analyzer/论文_md形式/图片/图1.png>
+ [2] [3] [4]
+File: /home/severin/Codelib/Decathlon_VOC_Analyzer/论文_md形式/图片/图2.png Graphic fi
+le (type bmp)
+</home/severin/Codelib/Decathlon_VOC_Analyzer/论文_md形式/图片/图2.png>
+
 [5] [6]
+File: /home/severin/Codelib/Decathlon_VOC_Analyzer/论文_md形式/图片/图3.png Graphic fi
+le (type bmp)
+</home/severin/Codelib/Decathlon_VOC_Analyzer/论文_md形式/图片/图3.png>
+ [7] [8]
 (/home/severin/Codelib/Decathlon_VOC_Analyzer/论文_md形式/_脚本/outputs/中间文件_summary_
 en/02_latex/Decathlon_VOC_Analyzer_Nature_Template.bbl
 LaTeX Font Info:    Font shape `TU/DejaVuSerif(0)/m/it' will be
 (Font)              scaled to size 9.09251pt on input line 13.
- [7]) [8]
+ [9]) [10]
 (/home/severin/Codelib/Decathlon_VOC_Analyzer/论文_md形式/_脚本/outputs/中间文件_summary_
 en/02_latex/Decathlon_VOC_Analyzer_Nature_Template.aux)
  ***********
@@ -942,14 +954,14 @@ has not changed.
 (rerunfilecheck)             Checksum: 74CE3F22C017BC711FB84C1DFF26DB10;1321.
  ) 
 Here is how much of TeX's memory you used:
- 15013 strings out of 476443
- 310363 string characters out of 5793962
- 1947627 words of memory out of 5000000
- 36698 multiletter control sequences out of 15000+600000
+ 15047 strings out of 476443
+ 312165 string characters out of 5793962
+ 1943627 words of memory out of 5000000
+ 36727 multiletter control sequences out of 15000+600000
  568410 words of font info for 127 fonts, out of 8000000 for 9000
  264 hyphenation exceptions out of 8191
  79i,19n,131p,1388b,654s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on /home/severin/Codelib/Decathlon_VOC_Analyzer/论文_md形式/_脚本/outp
-uts/中间文件_summary_en/02_latex/Decathlon_VOC_Analyzer_Nature_Template.pdf (8 page
-s).
+uts/中间文件_summary_en/02_latex/Decathlon_VOC_Analyzer_Nature_Template.pdf (10 pag
+es).
