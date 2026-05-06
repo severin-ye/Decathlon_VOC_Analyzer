@@ -1,9 +1,8 @@
-\documentclass[11pt]{article}
+\documentclass[11pt,twocolumn]{article}
 
 % ===== 基本宏包：尽量保持简单 =====
 \usepackage[margin=1in]{geometry}
 \usepackage{graphicx}
-\usepackage{float}
 \usepackage{chngcntr}
 \usepackage{booktabs}
 \usepackage{multirow}
@@ -32,11 +31,12 @@
 \IfFontExistsTF{Noto Serif CJK SC}{\setCJKmainfont[AutoFakeBold=3,AutoFakeSlant=.2]{Noto Serif CJK SC}}{\IfFontExistsTF{Source Han Serif SC}{\setCJKmainfont[AutoFakeBold=3,AutoFakeSlant=.2]{Source Han Serif SC}}{\IfFontExistsTF{AR PL UMing CN}{\setCJKmainfont[AutoFakeBold=3,AutoFakeSlant=.2]{AR PL UMing CN}}{\setCJKmainfont[AutoFakeBold=3,AutoFakeSlant=.2]{WenQuanYi Zen Hei}}}}
 \IfFontExistsTF{Noto Sans CJK SC}{\setCJKsansfont[AutoFakeBold=3,AutoFakeSlant=.2]{Noto Sans CJK SC}}{\IfFontExistsTF{Source Han Sans SC}{\setCJKsansfont[AutoFakeBold=3,AutoFakeSlant=.2]{Source Han Sans SC}}{\IfFontExistsTF{Droid Sans Fallback}{\setCJKsansfont[AutoFakeBold=3,AutoFakeSlant=.2]{Droid Sans Fallback}}{\setCJKsansfont[AutoFakeBold=3,AutoFakeSlant=.2]{AR PL UMing CN}}}}
 \IfFontExistsTF{Noto Sans Mono CJK SC}{\setCJKmonofont[AutoFakeBold=3]{Noto Sans Mono CJK SC}}{\IfFontExistsTF{Droid Sans Fallback}{\setCJKmonofont[AutoFakeBold=3]{Droid Sans Fallback}}{\setCJKmonofont[AutoFakeBold=3]{AR PL UMing CN}}}
+\setlength{\columnsep}{18pt}
 \setlength{\emergencystretch}{6em}
 \sloppy
 
 % 可选：让行距略宽一些，便于审稿阅读
-\onehalfspacing
+\setstretch{1.05}
 
 \title{\textbf{Decathlon VOC Analyzer: An Evidence-Driven Multimodal VOC Analysis System for Aligning Product Images, Product Text, and User Reviews}}
 
@@ -53,6 +53,7 @@
 
 \begin{document}
 \maketitle
+\nocite{lewis2020retrievalAugmentedGeneration,gao2023rarr,radford2021clip,liu2024structuredOutputBenchmark,geng2023grammarConstrainedDecoding,yao2023react,nvidia2024multimodalRagIntro,nvidia2024aiReadyKnowledgeSystems,faysse2024colpali,pontiki2014semevalAspect,qdrant2024pdfRetrievalAtScale,qdrant2024multiVectorCourse,manning2008introductionIr}
 
 % =========================
 % Abstract
@@ -153,11 +154,11 @@ Decathlon VOC Analyzer formulates product VOC analysis as an evidence-driven mul
 
 The framework contains four logical layers. The product evidence layer constructs structured representations of product text, images, and local visual regions. The VOC demand layer converts reviews into aspects, opinions, sentiments, and usage scenes. The evidence alignment layer rewrites aspects into route-aware questions and retrieves evidence from the product evidence space. The report attribution layer generates structured insights and maps report claims back to review and product evidence.
 
-\begin{figure}[H]
+\begin{figure*}[t]
 \centering
 \includegraphics[width=0.92\textwidth]{/home/severin/Codelib/Decathlon\_VOC\_Analyzer/论文\_md形式/图片/图1.png}
 \caption{Overall framework of Decathlon VOC Analyzer. The system uses review aspects and product evidence packages as intermediate representations, connects subjective VOC signals with multimodal product evidence through question planning, and performs claim-level attribution during reporting.}
-\end{figure}
+\end{figure*}
 
 \subsection{Product Evidence Representation}
 
@@ -177,11 +178,11 @@ The key design is the intermediate planning layer between aspects and retrieval.
 
 The questions cover text support, visual confirmation, and cross-modal resolution. Text-support questions ask whether product copy or specifications directly support a claim. Visual-confirmation questions ask whether product images show relevant structures or appearances. Cross-modal questions ask whether text and images together explain a review as a real product issue, insufficient presentation, or expectation mismatch.
 
-\begin{figure}[H]
+\begin{figure*}[t]
 \centering
 \includegraphics[width=0.92\textwidth]{/home/severin/Codelib/Decathlon\_VOC\_Analyzer/论文\_md形式/图片/图2.png}
 \caption{Aspect-to-question planning. Aspect objects are not directly used as retrieval queries; they are decomposed into intent-specific questions that trigger text, image, or cross-modal evidence routes.}
-\end{figure}
+\end{figure*}
 
 \subsection{Multimodal Recall and Reranking}
 
@@ -195,11 +196,11 @@ The generation stage does not pass retrieved evidence to the model as ordinary c
 
 To make the report auditable, the system performs claim-level attribution. Major claims are mapped to review evidence, product text evidence, product image evidence, or their combinations, and are labeled as supported, partially supported, unsupported, or contradicted. If a review claim cannot be verified by current product evidence, the system prefers to expose an evidence gap instead of presenting the claim as confirmed.
 
-\begin{figure}[H]
+\begin{figure*}[t]
 \centering
 \includegraphics[width=0.92\textwidth]{/home/severin/Codelib/Decathlon\_VOC\_Analyzer/论文\_md形式/图片/图3.png}
 \caption{Evidence attribution and evaluation loop. Report claims are mapped to review, product text, and product image evidence, while evaluation measures both retrieval quality and claim grounding quality.}
-\end{figure}
+\end{figure*}
 
 \subsection{Reproducibility and Explainability}
 
@@ -345,7 +346,10 @@ This draft is prepared from the current design documents, implementation artifac
 \section{Appendix}
 \subsection{A. Key Directories}
 
-\begin{longtable}[]{@{}
+\begin{table}[t]
+\centering
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}@{}}
 \toprule\noalign{}
@@ -355,9 +359,6 @@ Directory
 Responsibility
 \end{minipage} \\
 \midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
 \texttt{01\_data/} & Raw product data and Chinese audit data \\
 \texttt{02\_outputs/} & Normalized packages, aspects, indexes, reports, feedback, replay, HTML, and manifests \\
 \texttt{03\_configs/} & Review sampling profiles and runtime policy configuration \\
@@ -366,7 +367,10 @@ Responsibility
 \texttt{06\_tests/} & API, service, script, and workflow tests \\
 \texttt{0\_docs/03\_论文子模块文档/} & Thesis module documents based on current source code \\
 \texttt{论文\_md形式/} & Paper chapters, references, and export scripts \\
-\end{longtable}
+\bottomrule\noalign{}
+\end{tabular}
+}
+\end{table}
 
 \subsection{B. API Endpoints}
 
@@ -424,7 +428,10 @@ English PDF export:
 
 \subsection{D. Structured Artifacts}
 
-\begin{longtable}[]{@{}
+\begin{table}[t]
+\centering
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
@@ -437,9 +444,6 @@ Default location
 Purpose
 \end{minipage} \\
 \midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
 Normalized product package & \texttt{02\_outputs/1\_normalized/} & Input to indexing and analysis \\
 Review aspect result & \texttt{02\_outputs/2\_aspects/} & Input to question planning and aggregation \\
 Indexes and retrieval cache & \texttt{02\_outputs/3\_indexes/} & Retrieval and reranking reuse \\
@@ -448,7 +452,10 @@ Feedback sidecar & \texttt{02\_outputs/5\_feedback/} & Human feedback entry poin
 Replay sidecar & \texttt{02\_outputs/5\_replay/} & Replay in later runs \\
 HTML report & \texttt{02\_outputs/6\_html/} & Human review interface \\
 Run manifest & \texttt{02\_outputs/7\_manifests/} & Evaluation and reproducibility entry point \\
-\end{longtable}
+\bottomrule\noalign{}
+\end{tabular}
+}
+\end{table}
 
 \subsection{E. Scope}
 

@@ -38,6 +38,34 @@ Alec Radford, Jong~Wook Kim, Chris Hallacy, Aditya Ramesh, Gabriel Goh,
   Learning}, pages 8748--8763. PMLR, 2021.
 \newblock URL \url{https://proceedings.mlr.press/v139/radford21a.html}.
 
+\bibitem[Liu et~al.(2024)Liu, Li, Wang, Xiong, Shi, Wang, Li, and
+  Hang]{liu2024structuredOutputBenchmark}
+Yu~Liu, Duantengchuan Li, Kaili Wang, Zhuoran Xiong, Fobo Shi, Jian Wang, Bing
+  Li, and Bo~Hang.
+\newblock Are {LLMs} good at structured outputs? a benchmark for evaluating
+  structured output capabilities in {LLMs}.
+\newblock \emph{Information Processing \& Management}, 61\penalty0
+  (5):\penalty0 103809, 2024.
+\newblock \doi{10.1016/j.ipm.2024.103809}.
+\newblock URL \url{https://doi.org/10.1016/j.ipm.2024.103809}.
+
+\bibitem[Geng et~al.(2023)Geng, Josifoski, Peyrard, and
+  West]{geng2023grammarConstrainedDecoding}
+Saibo Geng, Martin Josifoski, Maxime Peyrard, and Robert West.
+\newblock Grammar-constrained decoding for structured {NLP} tasks without
+  finetuning.
+\newblock In \emph{Proceedings of the 2023 Conference on Empirical Methods in
+  Natural Language Processing}, pages 10932--10952, 2023.
+\newblock \doi{10.18653/v1/2023.emnlp-main.674}.
+\newblock URL \url{https://doi.org/10.18653/v1/2023.emnlp-main.674}.
+
+\bibitem[Yao et~al.(2023)Yao, Zhao, Yu, Du, Shafran, Narasimhan, and
+  Cao]{yao2023react}
+Shunyu Yao, Jeffrey Zhao, Dian Yu, Nan Du, Izhak Shafran, Karthik Narasimhan,
+  and Yuan Cao.
+\newblock {ReAct}: Synergizing reasoning and acting in language models, 2023.
+\newblock URL \url{https://arxiv.org/abs/2210.03629}.
+
 \bibitem[{NVIDIA Developer
   Blog}(2024{\natexlab{a}})]{nvidia2024multimodalRagIntro}
 {NVIDIA Developer Blog}.
@@ -84,34 +112,6 @@ Maria Pontiki, Dimitris Galanis, John Pavlopoulos, Harris Papageorgiou, Ion
 \newblock Multi-vector search and multi-stage retrieval course,
   2024{\natexlab{b}}.
 \newblock URL \url{https://qdrant.tech/blog/multi-vector-search-course/}.
-
-\bibitem[Liu et~al.(2024)Liu, Li, Wang, Xiong, Shi, Wang, Li, and
-  Hang]{liu2024structuredOutputBenchmark}
-Yu~Liu, Duantengchuan Li, Kaili Wang, Zhuoran Xiong, Fobo Shi, Jian Wang, Bing
-  Li, and Bo~Hang.
-\newblock Are {LLMs} good at structured outputs? a benchmark for evaluating
-  structured output capabilities in {LLMs}.
-\newblock \emph{Information Processing \& Management}, 61\penalty0
-  (5):\penalty0 103809, 2024.
-\newblock \doi{10.1016/j.ipm.2024.103809}.
-\newblock URL \url{https://doi.org/10.1016/j.ipm.2024.103809}.
-
-\bibitem[Geng et~al.(2023)Geng, Josifoski, Peyrard, and
-  West]{geng2023grammarConstrainedDecoding}
-Saibo Geng, Martin Josifoski, Maxime Peyrard, and Robert West.
-\newblock Grammar-constrained decoding for structured {NLP} tasks without
-  finetuning.
-\newblock In \emph{Proceedings of the 2023 Conference on Empirical Methods in
-  Natural Language Processing}, pages 10932--10952, 2023.
-\newblock \doi{10.18653/v1/2023.emnlp-main.674}.
-\newblock URL \url{https://doi.org/10.18653/v1/2023.emnlp-main.674}.
-
-\bibitem[Yao et~al.(2023)Yao, Zhao, Yu, Du, Shafran, Narasimhan, and
-  Cao]{yao2023react}
-Shunyu Yao, Jeffrey Zhao, Dian Yu, Nan Du, Izhak Shafran, Karthik Narasimhan,
-  and Yuan Cao.
-\newblock {ReAct}: Synergizing reasoning and acting in language models, 2023.
-\newblock URL \url{https://arxiv.org/abs/2210.03629}.
 
 \bibitem[Manning et~al.(2008)Manning, Raghavan, and
   Sch{"u}tze]{manning2008introductionIr}

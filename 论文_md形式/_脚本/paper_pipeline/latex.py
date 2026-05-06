@@ -31,6 +31,7 @@ SUP_PLACEHOLDER_RE = re.compile(r"CURAVIEWSUPSTART(.*?)CURAVIEWSUPEND")
 HEADING_NUMBER_PREFIX_RE = re.compile(r"^\s*\d+(?:\.\d+)*[.)]?\s+")
 SUBHEADING_NUMBER_PREFIX_RE = re.compile(r"^(#{2,6})\s+\d+(?:\.\d+)*[.)]?\s+(.*)$")
 NUMERIC_CITATION_RE = re.compile(r"\[(\d+(?:\s*,\s*\d+)*)\]")
+LONGTABLE_BEGIN_RE = re.compile(r"^\\begin\{longtable\}\[\]\{", re.MULTILINE)
 
 ABSTRACT_HEADINGS = {"摘要", "abstract"}
 INTRODUCTION_HEADINGS = {"引言", "introduction"}
@@ -463,23 +464,88 @@ def resolve_figure_path(raw_path: str, resource_base: Path) -> str:
 
 
 def build_inline_figure_latex(caption: str, path: str) -> str:
-    lines = [r"\begin{figure}[H]", r"\centering"]
+    lines = [r"\begin{figure*}[t]", r"\centering"]
     lines.append(rf"\includegraphics[width=0.92\textwidth]{{{escape_latex(path)}}}")
     if caption:
         lines.append(rf"\caption{{{escape_latex(caption)}}}")
-    lines.append(r"\end{figure}")
+    lines.append(r"\end{figure*}")
     return "\n".join(lines)
 
 
 def build_inline_figure_latex_with_label(caption: str, path: str, label: str | None) -> str:
-    lines = [r"\begin{figure}[H]", r"\centering"]
+    lines = [r"\begin{figure*}[t]", r"\centering"]
     lines.append(rf"\includegraphics[width=0.92\textwidth]{{{escape_latex(path)}}}")
     if caption:
         lines.append(rf"\caption{{{escape_latex(caption)}}}")
     if label:
         lines.append(rf"\label{{{escape_latex(label)}}}")
-    lines.append(r"\end{figure}")
+    lines.append(r"\end{figure*}")
     return "\n".join(lines)
+
+
+def _reorder_longtable_body(body: str) -> str:
+    if r"\endhead" not in body or r"\endlastfoot" not in body:
+        return body.strip()
+
+    before_head, rest = body.split(r"\endhead", 1)
+    footer, after_footer = rest.split(r"\endlastfoot", 1)
+    reordered = "\n".join(
+        part.strip("\n")
+        for part in (before_head, after_footer, footer)
+        if part.strip()
+    )
+    return reordered.strip()
+
+
+def convert_longtables_for_twocolumn(latex_text: str) -> str:
+    lines = latex_text.splitlines()
+    output: list[str] = []
+    index = 0
+
+    while index < len(lines):
+        line = lines[index]
+        if not LONGTABLE_BEGIN_RE.match(line.strip()):
+            output.append(line)
+            index += 1
+            continue
+
+        begin_lines: list[str] = []
+        while index < len(lines) and r"\toprule" not in lines[index]:
+            begin_lines.append(lines[index])
+            index += 1
+
+        begin_text = "\n".join(begin_lines).strip()
+        prefix = r"\begin{longtable}[]{"
+        if not begin_text.startswith(prefix):
+            output.extend(begin_lines)
+            continue
+
+        column_spec = begin_text[len(prefix) :].strip()
+        if column_spec.endswith("}"):
+            column_spec = column_spec[:-1]
+
+        body_lines: list[str] = []
+        while index < len(lines) and lines[index].strip() != r"\end{longtable}":
+            body_lines.append(lines[index])
+            index += 1
+        if index < len(lines):
+            index += 1
+
+        body = _reorder_longtable_body("\n".join(body_lines))
+        output.extend(
+            [
+                r"\begin{table}[t]",
+                r"\centering",
+                r"\resizebox{\columnwidth}{!}{%",
+                rf"\begin{{tabular}}{{{column_spec}}}",
+                body,
+                r"\end{tabular}",
+                r"}",
+                r"\end{table}",
+            ]
+        )
+
+    return "\n".join(output)
 
 
 def inline_figures(markdown_text: str, resource_base: Path) -> str:
@@ -559,6 +625,7 @@ def convert_body(markdown_text: str, resource_base: Path, citation_key_map: dict
     latex = run_pandoc(cleaned)
     latex = strip_pandoc_heading_anchors(latex)
     latex = restore_superscripts(latex)
+    latex = convert_longtables_for_twocolumn(latex)
     return latex
 
 
@@ -709,12 +776,11 @@ def build_document(
         nocite_command = rf"\nocite{{{escape_latex(nocite_keys)}}}"
 
     parts = [
-        r"\documentclass[11pt]{article}",
+        r"\documentclass[11pt,twocolumn]{article}",
         "",
         "% ===== 基本宏包：尽量保持简单 =====",
         r"\usepackage[margin=1in]{geometry}",
         r"\usepackage{graphicx}",
-        r"\usepackage{float}",
         r"\usepackage{chngcntr}",
         r"\usepackage{booktabs}",
         r"\usepackage{multirow}",
@@ -741,11 +807,12 @@ def build_document(
         r"\IfFontExistsTF{Noto Sans}{\setsansfont{Noto Sans}}{\IfFontExistsTF{DejaVu Sans}{\setsansfont{DejaVu Sans}}{\setsansfont{Latin Modern Sans}}}",
         r"\IfFontExistsTF{Noto Sans Mono}{\setmonofont{Noto Sans Mono}}{\IfFontExistsTF{DejaVu Sans Mono}{\setmonofont{DejaVu Sans Mono}}{\setmonofont{Latin Modern Mono}}}",
         *build_cjk_font_lines(cjk_language),
+        r"\setlength{\columnsep}{18pt}",
         r"\setlength{\emergencystretch}{6em}",
         r"\sloppy",
         "",
         "% 可选：让行距略宽一些，便于审稿阅读",
-        r"\onehalfspacing",
+        r"\setstretch{1.05}",
         "",
         rf"\title{{\textbf{{{escape_latex(title_line)}}}}}",
         "",
