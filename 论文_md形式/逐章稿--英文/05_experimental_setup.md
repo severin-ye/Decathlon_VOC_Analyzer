@@ -2,9 +2,9 @@
 
 ## 5.1 Experimental Goal
 
-The experiments validate whether the proposed system can perform evidence-driven VOC analysis reliably. They do not constitute a frozen large-scale benchmark. We evaluate whether the system can generate complete structured reports from raw product data, whether intermediate objects support audit and error localization, whether full model paths and degraded paths are distinguishable, and whether the evaluation interface can support future human-labeled data.
+The experiments validate whether the proposed system can perform evidence-driven VOC analysis reliably. We evaluate whether the system can generate complete structured reports from raw product data, whether intermediate objects support audit and error localization, whether full model paths and degraded paths are distinguishable, and whether the evaluation interface can record retrieval quality and report attribution quality.
 
-This setup matches the system-methodology nature of the paper. The current examples are not treated as a public standard dataset. Instead, the paper establishes a reproducible protocol that can later be expanded with more products, human evidence labels, and retrieval strategy comparisons.
+This setup matches the system-methodology nature of the paper. The paper establishes a reproducible protocol in which the same input product, run configuration, intermediate artifacts, and evaluation summaries can be saved, inspected, and replayed.
 
 ## 5.2 Implementation Environment
 
@@ -12,11 +12,28 @@ The system is implemented in the Python ecosystem with both Web API and batch wo
 
 Runtime policies distinguish formal evaluation from development validation. When full model dependencies are available, the system uses real embeddings, image encoders, and rerankers. When external capabilities are unavailable and degradation is allowed, the system can fall back to heuristic paths to keep the workflow executable.
 
+The system exposes both interactive API and offline script entry points. The API layer provides endpoints for dataset overview, product normalization, index overview, index construction, review aspect extraction, and single-product analysis. Batch scripts execute the full workflow, offline validation, multimodal run checks, HTML export, manifest writing, and experiment matrices. Because these entry points share the same schemas and service layer, researchers can inspect individual stages through the API during development and reproduce the same workflow in batch mode during experiments.
+
+Table 3 summarizes implementation details directly related to reproducible experiments.
+
+| Item | Current implementation |
+| --- | --- |
+| Language | Python 3.11 or above |
+| Workflow entry points | Web API and `run_workflow.py` batch script |
+| Workflow orchestration | LangGraph state graph |
+| Data object constraints | Pydantic schemas |
+| Retrieval backends | Local JSON index and Qdrant backend |
+| Text and image representations | Text embeddings, CLIP or compatible vision-language embeddings, heuristic fallback paths |
+| Reranking paths | Text reranker, multimodal reranker, or heuristic ranking |
+| Cached objects | Query embeddings, rerank results, and analysis checkpoints |
+| Main artifacts | Normalized evidence package, aspect objects, retrieval records, structured reports, feedback/replay sidecars, HTML, and manifests |
+| Engineering validation | Tests for normalization, review modeling, retrieval, report generation, manifest evaluation, and workflow entry points |
+
 ## 5.3 Data and Validation Units
 
 The data consists of product-page crawl results, including product text, product images, and customer reviews. The system first converts raw inputs into product evidence packages, then executes single-product analysis. The validation unit is therefore a single product run rather than an aggregate cross-product metric. Each run produces structured records for aspects, questions, retrievals, reports, and evaluation.
 
-For strict quantitative comparison, future work should construct human labels for question-level relevant evidence, claim-level support status, visual evidence visibility, and suggestion quality. The current setup already provides the object boundaries and evaluation entry points for such annotation.
+The current validation unit does not support cross-product performance claims. Its role is to confirm that the system can produce complete, auditable, and replayable analysis samples at single-product granularity.
 
 ## 5.4 Metrics
 

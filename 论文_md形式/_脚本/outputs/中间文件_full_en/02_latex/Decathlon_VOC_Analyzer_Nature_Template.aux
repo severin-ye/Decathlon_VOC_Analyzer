@@ -16,38 +16,35 @@
 \citation{manning2008introductionIr}
 \HyPL@Entry{0<</S/D>>}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{2}{section.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {2}Background and Problem Definition}{2}{section.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Evidence Needs in Product VOC Analysis}{2}{subsection.2.1}\protected@file@percent }
 \citation{lewis2020retrievalAugmentedGeneration}
 \citation{gao2023rarr}
 \citation{radford2021clip}
 \citation{nvidia2024multimodalRagIntro,nvidia2024aiReadyKnowledgeSystems}
 \citation{faysse2024colpali}
-\citation{pontiki2014semevalAspect}
-\citation{qdrant2024pdfRetrievalAtScale,qdrant2024multiVectorCourse}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Background and Problem Definition}{3}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.1}Evidence Needs in Product VOC Analysis}{3}{subsection.2.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2}Input and Output}{3}{subsection.2.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Design Constraints}{3}{subsection.2.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.4}Difference from Generic RAG QA}{3}{subsection.2.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {3}Related Work}{3}{section.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Retrieval-Augmented Generation and Evidence Constraints}{3}{subsection.3.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Multimodal Retrieval and Visual Evidence}{3}{subsection.3.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Review Analysis and Aspect Modeling}{3}{subsection.3.3}\protected@file@percent }
+\citation{pontiki2014semevalAspect}
+\citation{qdrant2024pdfRetrievalAtScale,qdrant2024multiVectorCourse}
 \citation{liu2024structuredOutputBenchmark,geng2023grammarConstrainedDecoding}
 \citation{yao2023react}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Review Analysis and Aspect Modeling}{4}{subsection.3.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Multi-Stage Retrieval and Reranking}{4}{subsection.3.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Structured Output and Workflow Orchestration}{4}{subsection.3.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Positioning}{4}{subsection.3.6}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {4}Methodology}{4}{section.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Overall Framework}{4}{subsection.4.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Product Evidence Representation}{4}{subsection.4.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Review Aspect Modeling}{4}{subsection.4.3}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Overall framework of Decathlon VOC Analyzer. The system uses review aspects and product evidence packages as intermediate representations, connects subjective VOC signals with multimodal product evidence through question planning, and performs claim-level attribution during reporting.}}{5}{figure.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Aspect-to-Question Planning}{5}{subsection.4.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Multimodal Recall and Reranking}{5}{subsection.4.5}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Aspect-to-question planning. Aspect objects are not directly used as retrieval queries; they are decomposed into intent-specific questions that trigger text, image, or cross-modal evidence routes.}}{6}{figure.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Product Evidence Representation}{5}{subsection.4.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Review Aspect Modeling}{5}{subsection.4.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Aspect-to-Question Planning}{6}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Multimodal Recall and Reranking}{6}{subsection.4.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Evidence-Constrained Reporting and Claim Attribution}{6}{subsection.4.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Reproducibility and Explainability}{6}{subsection.4.7}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Evidence attribution and evaluation loop. Report claims are mapped to review, product text, and product image evidence, while evaluation measures both retrieval quality and claim grounding quality.}}{7}{figure.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.7}Reproducibility and Explainability}{7}{subsection.4.7}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {5}Experimental Setup}{7}{section.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Experimental Goal}{7}{subsection.5.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Implementation Environment}{7}{subsection.5.2}\protected@file@percent }
@@ -57,30 +54,24 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Engineering Validation Protocol}{8}{subsection.5.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {6}Results and Analysis}{8}{section.6}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Workflow Completeness}{8}{subsection.6.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Structured Auditability}{8}{subsection.6.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Role of Question Planning}{8}{subsection.6.3}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Structured Auditability}{9}{subsection.6.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Role of Question Planning}{9}{subsection.6.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Complementarity of Multimodal Evidence}{9}{subsection.6.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Extensibility of Evaluation}{9}{subsection.6.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.6}Boundary of Current Results}{9}{subsection.6.6}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion}{9}{section.7}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Why Question-Driven Retrieval Fits Product VOC}{9}{subsection.7.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Value of Artifact-First Engineering}{9}{subsection.7.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion}{10}{section.7}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.1}Why Question-Driven Retrieval Fits Product VOC}{10}{subsection.7.1}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.2}Value of Artifact-First Engineering}{10}{subsection.7.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {7.3}Comparison with One-Step LLM Summarization}{10}{subsection.7.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.4}Implications for Future Work}{10}{subsection.7.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {7.5}Paper-Level Significance}{10}{subsection.7.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.4}Methodological Implications}{10}{subsection.7.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {7.5}Scope of Applicability}{10}{subsection.7.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{10}{section.8}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {9}Limitations}{10}{section.9}\protected@file@percent }
 \bibstyle{unsrtnat}
 \bibdata{ref}
-\@writefile{toc}{\contentsline {section}{\numberline {10}Acknowledgments}{11}{section.10}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {11}Appendix}{11}{section.11}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {11.1}A. Key Directories}{11}{subsection.11.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {11.2}B. API Endpoints}{11}{subsection.11.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {11.3}C. Reproduction Commands}{11}{subsection.11.3}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {11.4}D. Structured Artifacts}{11}{subsection.11.4}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {11.5}E. Scope}{11}{subsection.11.5}\protected@file@percent }
 \bibcite{lewis2020retrievalAugmentedGeneration}{{1}{2020}{{Lewis et~al.}}{{Lewis, Perez, Piktus, Petroni, Karpukhin, Goyal, K{"u}ttler, et~al.}}}
 \bibcite{gao2023rarr}{{2}{2023}{{Gao et~al.}}{{Gao, Dai, Pasupat, Chen, Chaganty, Fan, Zhao, Lao, Lee, Juan, and Guu}}}
+\@writefile{toc}{\contentsline {section}{\numberline {9}Limitations}{11}{section.9}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {10}Acknowledgments}{11}{section.10}\protected@file@percent }
 \bibcite{radford2021clip}{{3}{2021}{{Radford et~al.}}{{Radford, Kim, Hallacy, Ramesh, Goh, Agarwal, Sastry, Askell, Mishkin, Clark, Krueger, and Sutskever}}}
 \bibcite{liu2024structuredOutputBenchmark}{{4}{2024}{{Liu et~al.}}{{Liu, Li, Wang, Xiong, Shi, Wang, Li, and Hang}}}
 \bibcite{geng2023grammarConstrainedDecoding}{{5}{2023}{{Geng et~al.}}{{Geng, Josifoski, Peyrard, and West}}}

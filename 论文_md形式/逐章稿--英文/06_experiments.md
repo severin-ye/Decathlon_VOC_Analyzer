@@ -16,7 +16,7 @@ This structure directly supports error localization. If a suggestion lacks suppo
 
 Question planning is the key structure connecting reviews and product evidence. Raw reviews often contain emotion, context, and implicit assumptions; direct retrieval can scatter evidence candidates. Aspect-level questions convert these expressions into clearer evidence needs, such as whether product copy explicitly supports an experience, whether images show the relevant structure, or whether cross-modal evidence explains a negative review.
 
-Because every retrieval keeps its source aspect, source question, and expected evidence routes, the system can be analyzed at query level. Human labels can also be attached directly to questions, text blocks, images, or regions, making question-driven retrieval a natural unit for future evaluation.
+Because every retrieval keeps its source aspect, source question, and expected evidence routes, the system can be analyzed at query level. Questions, text blocks, images, regions, and report claims share stable identifiers, so analysts can inspect whether a question is supported by evidence from the expected route.
 
 ## 6.4 Complementarity of Multimodal Evidence
 
@@ -26,10 +26,10 @@ This design also prevents image evidence from being textified too early. For app
 
 ## 6.5 Extensibility of Evaluation
 
-The evaluator already supports both retrieval quality and report-grounding quality. With human relevance labels, it can compute Recall@K, MRR, and NDCG. Without labels, it still reports claim support rate, citation precision, contradiction rate, and modality contribution. This allows the system to move naturally from system validation to formal benchmark evaluation.
+The evaluator supports both retrieval quality and report-grounding quality. On the retrieval side, it records questions, candidate evidence, ranking scores, and route coverage. On the report side, it records claim support status, cited evidence, contradiction risk, and modality contribution. System validation therefore checks not only whether final text is generated, but also whether conclusions retain traceable evidence.
 
-The evaluation interface shares identifiers with intermediate objects. Annotators can label questions, text blocks, images, regions, or report claims without redefining the data structure. This lowers the cost of expanding to multi-category evaluation.
+The evaluation interface shares identifiers with intermediate objects. Questions, text blocks, images, regions, and report claims can enter review, replay, and error analysis without being re-encoded.
 
 ## 6.6 Boundary of Current Results
 
-The current results establish workflow completeness, artifact auditability, and a stable test baseline. They should not be interpreted as final performance claims. The paper does not yet report statistically significant comparisons over a frozen multi-category dataset, nor systematic ablations over retrieval strategies, rerankers, or visual region policies.
+The current results establish workflow completeness, artifact auditability, and a stable test baseline. This section does not provide cross-product performance rankings. It limits the conclusion to system-method validation: whether the system can reliably generate traceable artifacts and connect review aspects, retrieval questions, product evidence, and report claims in one analysis chain.

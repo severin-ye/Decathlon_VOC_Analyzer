@@ -6,7 +6,7 @@ Retrieval-augmented generation separates external evidence retrieval from parame
 
 ## 3.2 Multimodal Retrieval and Visual Evidence
 
-CLIP demonstrates that images and text can be embedded into a shared semantic space for cross-modal retrieval [3]. Engineering discussions of multimodal RAG also emphasize that real-world knowledge systems contain text, images, tables, and structured fields, requiring representation, retrieval, and fusion across modalities [7,8]. Visual document retrieval methods such as ColPali further argue for preserving original visual evidence and using finer-grained visual matching [9]. Our system does not implement ColPali-style late interaction, but it preserves product images as first-class evidence and creates default image regions for future region-level retrieval.
+CLIP demonstrates that images and text can be embedded into a shared semantic space for cross-modal retrieval [3]. Engineering discussions of multimodal RAG also emphasize that real-world knowledge systems contain text, images, tables, and structured fields, requiring representation, retrieval, and fusion across modalities [7,8]. Visual document retrieval methods such as ColPali further argue for preserving original visual evidence and using finer-grained visual matching [9]. Our system does not implement ColPali-style late interaction, but it preserves product images as first-class evidence and creates default image regions as a lightweight interface for local visual evidence.
 
 ## 3.3 Review Analysis and Aspect Modeling
 

@@ -10,7 +10,7 @@ This is suitable for e-commerce because product pages are naturally multimodal a
 
 The system is artifact-first. Normalized evidence packages, aspect extraction results, question caches, retrieval caches, reports, feedback, replay files, HTML exports, and manifests have fixed structures and output locations. Researchers can inspect any stage instead of only reading the final report.
 
-This also lowers future experiment cost. Standardized product packages can be reused across question generation experiments; aspect and question artifacts can be reused across reranker comparisons; HTML and manifests can support human review.
+This also lowers review cost. Standardized product packages, aspect objects, retrieval questions, HTML reports, and manifests can be reused to inspect the same product run stage by stage without rerunning the complete model chain.
 
 ## 7.3 Comparison with One-Step LLM Summarization
 
@@ -18,10 +18,10 @@ One-step LLM summarization is simple, but it cannot reliably answer where a conc
 
 For a research-oriented system, this tradeoff is necessary. Product VOC reports must support evidence inspection if they are to be used in operational or product decisions.
 
-## 7.4 Implications for Future Work
+## 7.4 Methodological Implications
 
-The current implementation suggests that better evidence organization and query planning may be more important than simply using larger generators. Future work can add semantic detection or segmentation for image regions, build multi-category labeled benchmarks, compare retrieval strategies, and integrate feedback/replay with human review interfaces.
+The implementation suggests that better evidence organization and query planning may be more important than simply using larger generators. Review aspects, evidence-seeking questions, text routes, image routes, and claim attribution form auditable operation units, allowing the system to organize product VOC analysis without relying on one black-box summary call.
 
-## 7.5 Paper-Level Significance
+## 7.5 Scope of Applicability
 
-The current paper version provides the main body of a system-methodology paper. It defines the problem, architecture, implementation, evaluation interface, and limitations. Larger quantitative experiments can be added without rewriting the methodological core.
+The method is suitable for product analysis scenarios where evidence provenance matters, especially when product pages contain text, images, and reviews. For scenarios that only require quick high-level summaries, the multi-stage system may be heavier than necessary. For highly localized visual quality issues, the current whole-image and rule-based region evidence still requires finer-grained visual models.
