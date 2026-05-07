@@ -35,3 +35,9 @@ School of Computer Science and Engineering
 Kyungpook National University
 Daegu, Republic of Korea
 prajna0426@naver.com
+
+김재수 *†
+경북대학교 컴퓨터학부
+Kyungpook National University
+Daegu, Republic of Korea
+†교신저자

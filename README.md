@@ -1,284 +1,475 @@
 # Decathlon VOC Analyzer
 
-Decathlon VOC Analyzer 是一个证据驱动的多模态商品 VOC 分析系统。系统以用户评论为需求入口，将评论抽取为方面级 VOC 信号，再围绕每个方面生成证据查询，从商品文案、商品图片和图片局部区域中召回可核验证据，最后生成带证据归因、证据缺口和改进建议的商品分析报告。
+Official repository for the paper:
 
-当前项目已经形成端到端闭环：数据标准化、评论抽样与方面抽取、多模态索引、两阶段召回、文本/图像重排、报告生成、claim 级证据归因、回放侧边车、HTML 导出和 manifest 评估。
+**"Decathlon VOC Analyzer: An Evidence-Driven Multimodal VOC Analysis System for Aligning Product Images, Product Text, and User Reviews"**
 
-## 核心能力
+Status: research prototype and paper artifact. The current codebase provides an executable end-to-end system, structured intermediate artifacts, evaluation manifests, HTML reports, and experiment scripts for system-method validation.
 
-- 扫描 `01_data/01_raw_products/products/` 下的商品数据集，并输出数据质量概览。
-- 将 `product.json`、`reviews.json` 和 `images/` 标准化为 `ProductEvidencePackage`。
-- 对评论进行低信息过滤、星级抽样、方面级结构化抽取和去重。
-- 将商品文案、商品整图和默认局部区域构建为可检索证据索引。
-- 支持本地 JSON 索引和 Qdrant 索引后端。
-- 支持文本 embedding、CLIP 图像 embedding、文本 reranker 和 Qwen-VL 多模态 reranker。
-- 将评论方面规划为可执行的文本、图像或图文联合检索问题。
-- 基于召回证据生成 strengths、weaknesses、controversies、evidence gaps 和 suggestions。
-- 对报告主张构建 claim attribution，追踪到评论、商品文本和商品图片证据。
-- 通过 feedback/replay sidecar 支持后续分析回放。
-- 通过 manifest 评估 Recall@K、MRR、NDCG、claim support rate、citation precision 等指标。
+[Paper draft](论文_md形式/) · [Method docs](0_docs/03_论文子模块文档/README.md) · [Experiment guide](0_docs/04_实验运行指南.md) · [API entrypoint](05_src/decathlon_voc_analyzer/app/api/main.py) · [Citation](#citation)
 
-## 架构概览
+## Overview
+
+Decathlon VOC Analyzer is an evidence-driven multimodal voice-of-customer system for product analysis. Given product descriptions, product images, and user reviews, it extracts aspect-level VOC signals, turns them into evidence-seeking questions, retrieves product text and image evidence, and generates a structured report with claim-level attribution.
+
+The system is designed as a reproducible research artifact: reviews, aspects, questions, retrieval records, reports, evidence attributions, feedback sidecars, replay sidecars, HTML exports, and run manifests are represented as structured objects that can be inspected after each run.
+
+## Key Features
+
+- Rating-aware review sampling with `problem_first`, `balanced`, and `praise_first` profiles.
+- Aspect-level review modeling with LLM and non-LLM fallback paths.
+- Question-guided retrieval over product text, product images, and default image regions.
+- Local JSON index and Qdrant vector-store backends.
+- Text embeddings, CLIP image embeddings, text reranking, and Qwen-VL multimodal reranking.
+- Evidence-constrained report generation with strengths, weaknesses, controversies, evidence gaps, and suggestions.
+- Claim-level attribution to review, product text, image, and image-region evidence.
+- Feedback and replay sidecars for later audit or correction.
+- Manifest evaluation for retrieval quality, claim support, groundedness, citation precision, and modality contribution.
+
+## System Pipeline
 
 ```text
-01_data/
-  01_raw_products/products/          # 原始商品、评论和图片
-  02_audit_zh_products/products/     # 人工审核用中文导出数据
-02_outputs/
-  1_normalized/                      # 标准化商品证据包
-  2_aspects/                         # 评论方面抽取结果
-  3_indexes/                         # 本地索引、Qdrant store、检索缓存
-  4_reports/                         # 分析报告 JSON
-  5_feedback/                        # 人工反馈侧边车
-  5_replay/                          # 回放侧边车
-  6_html/                            # HTML 报告
-  6_experiments/                     # 实验矩阵输出、实验 dashboard
-  7_manifests/                       # 运行 manifest
-  runtime_logs/                      # tmux/批处理运行日志
-03_configs/                          # 抽样 profile、运行策略等配置
-04_scripts/                          # 批处理、评估、导出和验证脚本
-  experiment_ops/                    # 实验运维脚本
-05_src/decathlon_voc_analyzer/
-  app/                               # FastAPI、配置、运行策略
-  evaluation/                        # manifest 评估服务
-  llm/                               # Qwen/OpenAI 兼容调用网关
-  prompts/                           # 业务提示词
-  schemas/                           # 全链路 Pydantic schema
-  stage1_dataset/                    # 数据集扫描与商品证据标准化
-  stage2_review_modeling/            # 评论抽样、清洗、方面抽取
-  stage3_retrieval/                  # embedding、索引、召回、重排、缓存
-  stage4_generation/                 # 问题规划、报告生成、归因、回放
-  workflows/                         # LangGraph 单产品工作流
-06_tests/                            # 测试目录
-0_docs/                              # 设计文档、技术文档、论文子模块文档
-论文_md形式/                         # 论文草稿与导出脚本
+Raw product folder
+  product.json + reviews.json + images/
+        |
+        v
+Stage 1. Product evidence standardization
+  ProductEvidencePackage with stable text, image, region, and review IDs
+        |
+        v
+Stage 2. VOC demand modeling
+  review filtering -> rating-aware sampling -> aspect extraction -> deduplication
+        |
+        v
+Stage 3. Question-guided multimodal retrieval
+  aspect questions -> text/image/mixed routes -> recall -> reranking -> cached evidence
+        |
+        v
+Stage 4. Evidence-constrained reporting
+  structured VOC report -> claim attribution -> replay sidecar -> HTML and manifest
 ```
 
-## 模块说明
+## Installation
 
-`stage1_dataset` 负责把商品原始目录转化为结构化证据包。系统会为文本块、图片、图片区域和评论生成稳定 ID，并保留来源、语言、宽高、区域框等字段。
-
-`stage2_review_modeling` 负责评论侧 VOC 建模。它支持 `problem_first`、`balanced`、`praise_first` 三类抽样 profile，并可在 LLM 抽取和启发式抽取之间切换。
-
-`stage3_retrieval` 负责商品侧证据索引与召回。它将文本证据和图像证据分 route 建模，先通过 embedding 粗召回，再通过 reranker 精排，并把 query embedding 与 rerank 结果写入签名化缓存。
-
-`stage4_generation` 负责把评论方面转成检索问题，聚合方面统计和召回证据，生成结构化 VOC 报告，并对报告主张做证据归因和回放修正。
-
-`workflows` 使用 LangGraph 将 `overview -> normalize -> index -> analyze` 编排为单产品端到端工作流。
-
-`evaluation` 读取运行 manifest 和分析产物，计算检索指标、claim attribution 指标和回放相关统计。
-
-## 安装
+The project is a Python package under `05_src/` and requires Python 3.11 or above.
 
 ```bash
+git clone https://github.com/severin-ye/Decathlon_VOC_Analyzer.git
+cd Decathlon_VOC_Analyzer
+
 python -m venv .venv
 source .venv/bin/activate
 pip install -e .[dev]
 ```
 
-如果需要 OpenVINO 相关依赖：
+Optional dependencies:
 
 ```bash
+# Local OpenVINO inference support
 pip install -e .[openvino]
-```
 
-如果需要 GPU 相关可选依赖：
-
-```bash
+# GPU-oriented local model support
 pip install -e .[gpu]
 ```
 
-## 启动 API
+Tested project assumptions:
 
-```bash
-uvicorn decathlon_voc_analyzer.app.api.main:app --reload
+- OS: Linux or WSL2-like Unix environment
+- Python: `>=3.11`
+- Package layout: `package-dir = {"": "05_src"}`
+- Main workflow: FastAPI service and `04_scripts/run_workflow.py`
+- Main orchestration: LangGraph single-product workflow
+- Main schema layer: Pydantic models
+
+## Repository Structure
+
+```text
+.
+├── 01_data/
+│   ├── 01_raw_products/products/        # Raw product folders
+│   └── 02_audit_zh_products/products/   # Chinese audit/export dataset
+├── 02_outputs/
+│   ├── 1_normalized/                    # Normalized evidence packages
+│   ├── 2_aspects/                       # Review aspect artifacts
+│   ├── 3_indexes/                       # Local indexes, Qdrant stores, caches
+│   ├── 4_reports/                       # Structured analysis reports
+│   ├── 5_feedback/                      # Feedback sidecars
+│   ├── 5_replay/                        # Replay sidecars
+│   ├── 6_html/                          # HTML reports and live progress pages
+│   ├── 6_experiments/                   # Experiment matrix outputs
+│   ├── 7_manifests/                     # Run manifests
+│   └── runtime_logs/                    # Batch and monitor logs
+├── 03_configs/
+│   ├── review_sampling_profiles.json    # Rating-aware sampling profiles
+│   └── runtime_execution_policy.json    # Full-power/degradation policy
+├── 04_scripts/                          # CLI, validation, export, and ops scripts
+├── 05_src/decathlon_voc_analyzer/
+│   ├── app/                             # FastAPI routes and runtime settings
+│   ├── evaluation/                      # Manifest evaluation service
+│   ├── llm/                             # OpenAI-compatible LLM gateway
+│   ├── prompts/                         # Prompt registry and variants
+│   ├── schemas/                         # Product, review, retrieval, report schemas
+│   ├── stage1_dataset/                  # Dataset scan and evidence normalization
+│   ├── stage2_review_modeling/          # Sampling, filtering, aspect extraction
+│   ├── stage3_retrieval/                # Embedding, index, retrieval, reranking
+│   ├── stage4_generation/               # Question planning, reporting, attribution
+│   └── workflows/                       # Batch and LangGraph workflows
+├── 06_tests/                            # Unit and integration tests
+├── 0_docs/                              # Design, module, and experiment docs
+└── 论文_md形式/                         # Paper drafts and export scripts
 ```
 
-常用接口：
+## Data Format
 
-- `/health`
-- `/api/v1/dataset/overview`
-- `/api/v1/dataset/normalize`
-- `/api/v1/index/overview`
-- `/api/v1/index/build`
-- `/api/v1/reviews/extract`
-- `/api/v1/analysis/product`
+Each product is expected to live under a category folder:
 
-`/api/v1/reviews/extract` 支持两种输入方式：传入 `product_id` 和可选 `category_slug`，或直接传入临时 `reviews` 数组。
+```text
+01_data/01_raw_products/products/
+└── backpack/
+    └── backpack_010/
+        ├── product.json
+        ├── reviews.json
+        └── images/
+            └── <variant-id>/
+                ├── img1.png
+                ├── img2.png
+                └── ...
+```
 
-`/api/v1/analysis/product` 会串联评论抽取、问题生成、图文召回、重排、方面聚合、报告生成和证据归因。
+Minimal `product.json`:
 
-## 批处理运行
+```json
+{
+  "product_id": "backpack_010",
+  "product_name": "Backpacking organizer travel wallet S",
+  "model_description": "Product description and specifications.",
+  "category": "Hiking > Bags > Bag accessories",
+  "variants": [
+    {
+      "color": "8512010",
+      "image_paths": [
+        "images/8512010/img1.png",
+        "images/8512010/img2.png"
+      ]
+    }
+  ]
+}
+```
 
-执行默认单产品工作流：
+Minimal `reviews.json`:
+
+```json
+{
+  "product_id": "backpack_010",
+  "reviews": [
+    {
+      "user_id": "user_001",
+      "rating": 4,
+      "content": "Convenient and good value."
+    }
+  ]
+}
+```
+
+The workflow normalizes these files into a `ProductEvidencePackage`, assigning stable IDs to product text blocks, images, generated image regions, and reviews. Later stages preserve these IDs so report claims can be traced back to concrete evidence.
+
+## Quick Start
+
+Run a small offline demo without external LLM calls:
+
+```bash
+.venv/bin/python 04_scripts/run_workflow.py \
+  --category backpack \
+  --product-id backpack_010 \
+  --R_5 \
+  --no-llm \
+  --retrieval-backend local \
+  --output-format json \
+  --export-html \
+  --write-manifest
+```
+
+Expected outputs:
+
+```text
+02_outputs/
+├── 1_normalized/backpack/backpack_010.json
+├── 2_aspects/backpack/backpack_010_review_aspects.json
+├── 3_indexes/
+├── 4_reports/backpack/backpack_010_analysis.json
+├── 5_replay/backpack/backpack_010_replay_sidecar.json
+├── 6_html/backpack/backpack_010.html
+└── 7_manifests/backpack/backpack_010_run_manifest.json
+```
+
+Use this command first to verify that the repository, paths, schemas, and workflow are wired correctly. Full model runs require valid model backends and API keys.
+
+## Running the Full Pipeline
+
+Default single-product workflow:
 
 ```bash
 .venv/bin/python 04_scripts/run_workflow.py
 ```
 
-指定商品：
+Specify category and product:
 
 ```bash
-.venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010
+.venv/bin/python 04_scripts/run_workflow.py \
+  --category backpack \
+  --product-id backpack_010
 ```
 
-分析中文审核数据集：
+Run the Chinese audit dataset:
 
 ```bash
 .venv/bin/python 04_scripts/run_workflow.py --cn
 ```
 
-离线验证流程，不调用外部 LLM：
+Limit the review pool:
 
 ```bash
-.venv/bin/python 04_scripts/run_workflow.py --cn --no-llm
+.venv/bin/python 04_scripts/run_workflow.py \
+  --category backpack \
+  --product-id backpack_010 \
+  --max-reviews 25
 ```
 
-只分析前 N 条评论可使用 `--max-reviews` 或简写参数：
+Resume from existing artifacts:
 
 ```bash
-.venv/bin/python 04_scripts/run_workflow.py --cn --R_5
-```
-
-输出 JSON 摘要：
-
-```bash
-.venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010 --R_5 --no-llm --output-format json
-```
-
-同时导出 HTML 和 manifest：
-
-```bash
-.venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010 --R_5 --no-llm --output-format json --export-html --write-manifest
-```
-
-默认会额外生成：
-
-- `02_outputs/6_html/<category>/<product_id>.html`
-- `02_outputs/7_manifests/<category>/<product_id>_run_manifest.json`
-
-## 检索后端
-
-API 默认使用本地持久化索引，批处理入口默认可切换到 Qdrant。常用参数：
-
-```bash
-.venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010 --retrieval-backend local
+.venv/bin/python 04_scripts/run_workflow.py \
+  --category backpack \
+  --product-id backpack_010 \
+  --resume-from-aspects
 ```
 
 ```bash
-.venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010 --retrieval-backend qdrant
+.venv/bin/python 04_scripts/run_workflow.py \
+  --category backpack \
+  --product-id backpack_010 \
+  --resume-from-analysis-checkpoint
 ```
 
-批处理运行可以通过 `--qdrant-scope shared` 或 `--qdrant-path <dir>` 控制 Qdrant store 的复用方式。
+## API Service
 
-## 模型与运行策略
+Start the FastAPI service:
 
-默认配置位于 `05_src/decathlon_voc_analyzer/app/core/config.py`，运行时读取根目录 `.env`。
+```bash
+uvicorn decathlon_voc_analyzer.app.api.main:app --reload
+```
 
-主要模型配置：
+Main endpoints:
 
-- `qwen_plus_model=qwen-plus`
-- `qwen_embedding_model=text-embedding-v4`
-- `qwen_reranker_model=gte-rerank-v2`
-- `qwen_vl_reranker_model=qwen-vl-max-latest`
-- `clip_vl_embedding_model=openai/clip-vit-base-patch32`
-- `local_embedding_model_name=Qwen/Qwen3-Embedding-0.6B`
-- `local_reranker_model_name=Qwen/Qwen3-Reranker-0.6B`
-- `local_multimodal_reranker_model_name=Qwen/Qwen3-VL-2B-Instruct`
+- `GET /health`
+- `GET /api/v1/dataset/overview`
+- `POST /api/v1/dataset/normalize`
+- `GET /api/v1/index/overview`
+- `POST /api/v1/index/build`
+- `POST /api/v1/reviews/extract`
+- `POST /api/v1/analysis/product`
 
-主要后端配置：
+`/api/v1/reviews/extract` accepts either a stored product ID with optional category, or a temporary review list. `/api/v1/analysis/product` executes review extraction, question planning, retrieval, reranking, aggregation, report generation, and evidence attribution.
 
-- `embedding_backend=api` 或 `embedding_backend=local_qwen3`
-- `image_embedding_backend=clip`
-- `retrieval_backend=local` 或 `retrieval_backend=qdrant`
-- `reranker_backend=api` 或 `reranker_backend=local_qwen3`
-- `multimodal_reranker_backend=qwen_vl` 或 `multimodal_reranker_backend=local_qwen3_vl`
+## Configuration
 
-如果外部模型不可用，系统在允许降级时会回退到 hash embedding 或 heuristic reranker。严格运行策略由 `03_configs/runtime_execution_policy.json` 控制：
+Runtime settings are defined in `05_src/decathlon_voc_analyzer/app/core/config.py` and can be overridden through `.env`.
 
-- `allow_degradation=true`：允许模型失败后降级，适合开发验证。
-- `allow_degradation=false`：禁止静默降级，适合正式实验。
-- `full_power=true`：要求完整模型链路，且请求不能关闭 LLM。
+Common model settings:
 
-API Key 兼容两组变量名：
+```text
+qwen_plus_model=qwen-plus
+qwen_embedding_model=text-embedding-v4
+qwen_reranker_model=gte-rerank-v2
+qwen_vl_reranker_model=qwen-vl-max-latest
+clip_vl_embedding_model=openai/clip-vit-base-patch32
+local_embedding_model_name=Qwen/Qwen3-Embedding-0.6B
+local_reranker_model_name=Qwen/Qwen3-Reranker-0.6B
+local_multimodal_reranker_model_name=Qwen/Qwen3-VL-2B-Instruct
+```
 
-- `qwen-plus_api` 或 `QWEN_PLUS_API_KEY`
-- `DeepSeek-V3_api` 或 `DEEPSEEK_V3_API_KEY`
-- `openai-gpt5_api` 或 `OPENAI_GPT5_API_KEY`
+Common backend switches:
 
-## 评论抽样
+```text
+embedding_backend=api              # api | local_qwen3
+image_embedding_backend=clip       # clip | local_qwen3_vl
+retrieval_backend=local            # local | qdrant
+reranker_backend=api               # api | local_qwen3
+multimodal_reranker_backend=qwen_vl # qwen_vl | local_qwen3_vl
+```
 
-评论抽样配置位于 `03_configs/review_sampling_profiles.json`。当前内置 profile：
+Supported API key names:
 
-- `problem_first`：优先低星问题评论。
-- `balanced`：尽量均衡覆盖 1 至 5 星评论。
-- `praise_first`：优先高星优势评论。
+```text
+qwen-plus_api or QWEN_PLUS_API_KEY
+DeepSeek-V3_api or DEEPSEEK_V3_API_KEY
+openai-gpt5_api or OPENAI_GPT5_API_KEY
+```
 
-默认 profile 为 `problem_first`，默认星级配额为：
+Runtime strictness is controlled by `03_configs/runtime_execution_policy.json`:
 
-- 5 星：10%
-- 4 星：15%
-- 3 星：20%
-- 2 星：25%
-- 1 星：30%
+```json
+{
+  "allow_degradation": false,
+  "full_power": false
+}
+```
 
-当 `max_reviews` 被设置时，系统会按配额构建抽样池；如果低星评论不足，会按 `fallback_order` 逐级补位。抽样结果会写入 `sampling_plan`，并在 JSON 输出中提升为 `review_sampling` 摘要。
+- `allow_degradation=true` allows fallback paths after model failures, useful for development validation.
+- `allow_degradation=false` avoids silent fallback, useful for formal experiments.
+- `full_power=true` requires the full model path and disallows LLM-disabled runs.
 
-## 评估
+`get_settings()` is cached. If tests or scripts modify environment variables in-process, clear the settings cache before re-reading configuration.
 
-如果运行时写入 manifest，可使用：
+## Model Backends and Checkpoints
+
+This repository does not include pretrained model weights. It can use remote API models and local Hugging Face-compatible models depending on the configured backend.
+
+| Component | Default | Alternatives |
+| --- | --- | --- |
+| LLM report generation | `qwen-plus` | OpenAI-compatible gateway settings |
+| Text embedding | `text-embedding-v4` | `Qwen/Qwen3-Embedding-0.6B` |
+| Image embedding | `openai/clip-vit-base-patch32` | local Qwen3-VL path |
+| Text reranking | `gte-rerank-v2` | `Qwen/Qwen3-Reranker-0.6B` |
+| Multimodal reranking | `qwen-vl-max-latest` | `Qwen/Qwen3-VL-2B-Instruct` |
+
+For local Qwen models, use:
+
+```bash
+.venv/bin/python 04_scripts/download_local_qwen_models.py
+```
+
+## Reproducing Paper Artifacts
+
+The current paper positions the project as a system-methodology artifact. The reproducibility target is therefore a complete, inspectable single-product run and an experiment matrix, not a frozen cross-product leaderboard.
+
+| Paper artifact | Command | Main output |
+| --- | --- | --- |
+| Single-product workflow example | `.venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010 --export-html --write-manifest` | `02_outputs/4_reports/`, `02_outputs/6_html/`, `02_outputs/7_manifests/` |
+| Offline workflow validation | `.venv/bin/python 04_scripts/run_workflow.py --category backpack --product-id backpack_010 --R_5 --no-llm --output-format json --export-html --write-manifest` | Runnable analysis artifact without external LLM calls |
+| Manifest metrics | `.venv/bin/python 04_scripts/evaluate_manifests.py 02_outputs/7_manifests` | Retrieval and claim-attribution summary |
+| Multimodal runtime check | `.venv/bin/python 04_scripts/validate_multimodal_runtime.py --category backpack --product-id backpack_010` | Runtime validation log and artifacts |
+| Experiment matrix | `.venv/bin/python -m decathlon_voc_analyzer.workflows.experiment_runner --categories backpack shoes sunglasses --products-per-category 5 --max-reviews 25 --output-dir ./02_outputs/6_experiments/current` | `experiment_log.jsonl`, `experiment_summary.json` |
+| LLM-as-Judge evaluation | `.venv/bin/python -m decathlon_voc_analyzer.workflows.llm_judge_evaluation --experiment-dir ./02_outputs/6_experiments/current --output-dir ./02_outputs/8_evaluations/current` | `evaluation_log.jsonl`, `evaluation_summary.json` |
+
+Experiment conditions implemented in the matrix:
+
+- `full_system`: full system baseline.
+- `ablation_no_qp`: without question planning.
+- `ablation_no_image`: without image route.
+- `ablation_no_rerank`: without reranking.
+- `ablation_no_attribution`: without claim attribution.
+- `control_lewis2020`: standard RAG-style baseline.
+- `control_jarvis`: evidence-graph and LLM-judge baseline.
+- `control_vericite`: three-stage citation verification baseline.
+
+For long runs, resume with:
+
+```bash
+.venv/bin/python -m decathlon_voc_analyzer.workflows.experiment_runner \
+  --categories backpack shoes sunglasses \
+  --products-per-category 5 \
+  --max-reviews 25 \
+  --output-dir ./02_outputs/6_experiments/current \
+  --resume
+```
+
+## Evaluation
+
+When a run manifest is available, evaluate manifests with:
 
 ```bash
 .venv/bin/python 04_scripts/evaluate_manifests.py 02_outputs/7_manifests
 ```
 
-当 manifest 或 analysis artifact 中存在 `retrieval_relevance` gold labels 时，评估服务会计算：
+If `retrieval_relevance` labels are present, the evaluation service reports:
 
-- `Recall@1/3/5`
+- `Recall@1`, `Recall@3`, `Recall@5`
 - `MRR`
-- `NDCG@3/5`
+- `NDCG@3`, `NDCG@5`
 
-即使没有 gold labels，评估服务也会统计：
+Without gold labels, it still reports audit-oriented workflow statistics:
 
-- informative review 数量
-- aspect 数量和平均置信度
-- question 数量和平均置信度
-- retrieval evidence 数量
-- evidence coverage、score drift、conflict risk
-- claim support rate、claim grounded rate、citation precision
-- text、image、mixed route contribution
+- informative review count
+- aspect count and average aspect confidence
+- question count and average question confidence
+- retrieved evidence count
+- evidence coverage, score drift, and conflict risk
+- claim support rate, claim grounded rate, and citation precision
+- text, image, and mixed-route contribution
 
-## 常用脚本
+## Tests
 
-导出单产品中文审核数据：
-
-```bash
-.venv/bin/python 04_scripts/export_single_product_chinese_dataset.py --category backpack --product-id backpack_010
-```
-
-真实多模态运行态回归：
+Run the automated validation suite:
 
 ```bash
-.venv/bin/python 04_scripts/validate_multimodal_runtime.py --category backpack --product-id backpack_010
+.venv/bin/pytest
 ```
 
-导出已有分析报告为 HTML：
+Run linting:
 
 ```bash
-.venv/bin/python 04_scripts/export_html_report.py --category backpack --product-id backpack_010
+.venv/bin/ruff check .
 ```
 
-清理生成产物：
+The tests cover dataset normalization, review modeling, prompt registry, retrieval backends, embedding and reranking services, question generation, report generation, HTML export, manifest evaluation, runtime policy checks, workflow entry points, experiment checkpoints, and paper export utilities.
 
-```bash
-.venv/bin/python 04_scripts/clear_generated_outputs.py
+## Useful Scripts
+
+| Task | Command |
+| --- | --- |
+| Export one product into Chinese audit format | `.venv/bin/python 04_scripts/export_single_product_chinese_dataset.py --category backpack --product-id backpack_010` |
+| Export an existing report to HTML | `.venv/bin/python 04_scripts/export_html_report.py --category backpack --product-id backpack_010` |
+| Validate multimodal runtime path | `.venv/bin/python 04_scripts/validate_multimodal_runtime.py --category backpack --product-id backpack_010` |
+| Clear generated outputs | `.venv/bin/python 04_scripts/clear_generated_outputs.py` |
+| Start experiment launcher | `.venv/bin/python 04_scripts/run_experiments.py start` |
+| View experiment status | `.venv/bin/python 04_scripts/run_experiments.py status` |
+
+## Limitations
+
+- Current results are system-validation results, not a frozen multi-category benchmark with human-labeled ground truth.
+- The repository supports retrieval-strategy ablations, but published claims should distinguish implemented capability from completed ranked comparisons.
+- Image evidence currently uses whole images and rule-based default regions; it is not a semantic segmentation or visual grounding system.
+- LLM outputs remain prompt- and model-dependent even with schemas, attribution, and fallback paths.
+- Feedback and replay sidecars are implemented as audit interfaces, but their quality impact is not yet quantified as a separate human study.
+- Product images and reviews may be subject to original website terms and should be handled accordingly when redistributing data.
+
+## Documentation
+
+- `0_docs/03_论文子模块文档/README.md`: module-by-module paper writing notes aligned with the current source tree.
+- `0_docs/04_实验运行指南.md`: experiment matrix, LLM-as-Judge evaluation, resume behavior, and monitoring UI.
+- `0_docs/01_设计文档/`: design notes and earlier planning material.
+- `0_docs/02_技术文档/`: technical notes for local inference, tutorials, and runtime behavior.
+- `论文_md形式/`: paper drafts, title pages, references, and export scripts.
+
+## Citation
+
+If you use this repository or build on its system design, please cite:
+
+```bibtex
+@misc{ye2026decathlonvoc,
+  title = {Decathlon VOC Analyzer: An Evidence-Driven Multimodal VOC Analysis System for Aligning Product Images, Product Text, and User Reviews},
+  author = {Ye, Severin and Lee, Dokeun and Liu, Wushuang and Jung, Seowan and Jung, HyunJun and Jeon, Hye and Kim, Jaesoo},
+  year = {2026},
+  note = {Research prototype and paper artifact}
+}
 ```
 
-## 文档入口
+Update the venue, DOI, and publication type once the paper is accepted or released as a preprint.
 
-- `0_docs/01_设计文档/`：早期设计、路线和参考资料。
-- `0_docs/02_技术文档/`：教程、推理、本地模型和技术说明。
-- `0_docs/03_论文子模块文档/`：基于当前源码整理的论文写作模块文档。
-- `论文_md形式/`：论文草稿、参考文献和导出脚本。
+## License and Data Use
 
-论文子模块文档是当前最适合继续写论文的方法章节和系统章节的入口。
+No standalone license file is currently included in this repository. Add a repository-level `LICENSE` file before public release.
+
+Recommended release policy:
+
+- Code: release under a clear open-source license such as MIT, Apache-2.0, or BSD-3-Clause.
+- Product images and user reviews: do not redistribute unless the original platform terms permit it.
+- Dataset annotations and generated artifacts: specify a separate license if they are released.
+- Model weights: follow the license of each upstream model or API provider.
+
+This repository is intended for research use. Users are responsible for complying with the terms of the original product pages, images, reviews, APIs, and model providers.
+
+## Contact
+
+For questions about the paper artifact, contact Severin Ye at `6severin9@gmail.com`.

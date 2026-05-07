@@ -1,8 +1,9 @@
-\documentclass[11pt,twocolumn]{article}
+\documentclass[11pt]{article}
 
 % ===== 基本宏包：尽量保持简单 =====
 \usepackage[margin=1in]{geometry}
 \usepackage{graphicx}
+\usepackage{float}
 \usepackage{chngcntr}
 \usepackage{booktabs}
 \usepackage{multirow}
@@ -42,10 +43,14 @@
 
 \author{{\small
 \begin{tabular}{@{}ccc@{}}
-\multicolumn{3}{c}{\parbox[t]{0.6600\textwidth}{\centering \textbf{Severin Ye}\textsuperscript{1} \\ \textit{School of Computer Science and Engineering} \\ \textit{Kyungpook National University} \\ Daegu, Republic of Korea \\ {\ttfamily\small 6severin9\allowbreak@gmail.\allowbreak{}com}}} \\
-\multicolumn{3}{c}{} \\[0.9em]
-\parbox[t]{0.3067\textwidth}{\centering \textbf{Dokeun Lee}\textsuperscript{2} \\ \textit{Department of Physics} \\ \textit{Kyungpook National University} \\ Daegu, Republic of Korea \\ {\ttfamily\small nsa08008\allowbreak@naver.\allowbreak{}com}} & \parbox[t]{0.3067\textwidth}{\centering \textbf{Wushuang Liu}\textsuperscript{2} \\ \textit{Department of Child Studies} \\ \textit{Kyungpook National University} \\ Daegu, Republic of Korea \\ {\ttfamily\small 824309203q\allowbreak@gmail.\allowbreak{}com}} & \parbox[t]{0.3067\textwidth}{\centering \textbf{Seowan Jung}\textsuperscript{2} \\ \textit{School of Computer Science and Engineering} \\ \textit{Kyungpook National University} \\ Daegu, Republic of Korea \\ {\ttfamily\small swan041014\allowbreak@gmail.\allowbreak{}com}} \\[0.9em]
-\multicolumn{3}{c}{\makebox[0.9200\textwidth][c]{\parbox[t]{0.3067\textwidth}{\centering \textbf{HyunJun Jung}\textsuperscript{2} \\ \textit{School of Computer Science and Engineering} \\ \textit{Kyungpook National University} \\ Daegu, Republic of Korea \\ {\ttfamily\small beanbeansummon\allowbreak@naver.\allowbreak{}com}}\hspace{2\tabcolsep}\parbox[t]{0.3067\textwidth}{\centering \textbf{Hye Jeon}\textsuperscript{2} \\ \textit{School of Computer Science and Engineering} \\ \textit{Kyungpook National University} \\ Daegu, Republic of Korea \\ {\ttfamily\small prajna0426\allowbreak@naver.\allowbreak{}com}}}} \\
+\parbox[t]{0.3067\textwidth}{\centering \textbf{Severin Ye}\textsuperscript{1}} & \parbox[t]{0.3067\textwidth}{\centering \textbf{Dokeun Lee}\textsuperscript{2}} & \parbox[t]{0.3067\textwidth}{\centering \textbf{Wushuang Liu}\textsuperscript{3}} \\[0.9em]
+\parbox[t]{0.3067\textwidth}{\centering \textbf{Seowan Jung}\textsuperscript{1}} & \parbox[t]{0.3067\textwidth}{\centering \textbf{HyunJun Jung}\textsuperscript{1}} & \parbox[t]{0.3067\textwidth}{\centering \textbf{Hye Jeon}\textsuperscript{1}} \\[0.9em]
+\parbox[t]{0.3067\textwidth}{} & \parbox[t]{0.3067\textwidth}{\centering \textbf{Jaesoo Kim}\textsuperscript{1*†}} & \parbox[t]{0.3067\textwidth}{} \\
+\multicolumn{3}{c}{} \\[0.45em]
+\multicolumn{3}{c}{\parbox{0.9200\textwidth}{\centering\small\textsuperscript{1}\textit{School of Computer Science and Engineering, Kyungpook National University}}} \\
+\multicolumn{3}{c}{\parbox{0.9200\textwidth}{\centering\small\textsuperscript{2}\textit{Department of Physics, Kyungpook National University}}} \\
+\multicolumn{3}{c}{\parbox{0.9200\textwidth}{\centering\small\textsuperscript{3}\textit{Department of Child Studies, Kyungpook National University}}} \\
+\multicolumn{3}{c}{\small \textsuperscript{†}  Corresponding Author} \\
 \end{tabular}
 }}
 
@@ -82,11 +87,11 @@
 
 图 1 给出了本文系统的整体框架。系统从商品证据构建出发，将商品文本、图像、局部视觉区域和评论保留为可复用的证据对象；随后通过带评分评论保留、星级感知采样与方面抽取形成 VOC 方面对象，再将其转化为带有明确路径约束的检索问题，并最终生成带有 claim 级证据归因与 evidence gap 的结构化报告。
 
-\begin{figure*}[t]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.92\textwidth]{/home/severin/Codelib/Decathlon\_VOC\_Analyzer/论文\_md形式/图片/图1.png}
 \caption{Decathlon VOC Analyzer 的总体框架。系统以商品证据包和评论方面为中间表示，通过问题规划连接主观 VOC 信号与多模态商品证据，并在报告阶段进行 claim 级归因。}
-\end{figure*}
+\end{figure}
 
 % =========================
 % Ⅱ. 提出系统
@@ -106,10 +111,7 @@
 
 表 1 从处理对象、证据接入方式与结果表示三个方面概括了本文系统的结构特征。
 
-\begin{table}[t]
-\centering
-\resizebox{\columnwidth}{!}{%
-\begin{tabular}{@{}
+\begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
@@ -122,14 +124,14 @@
 本文系统
 \end{minipage} \\
 \midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
 输出目标 & 情感标签、主题或整段总结 & 带证据归因的结构化 VOC 报告 \\
 商品证据接入 & 通常弱或缺失 & 文本、图像、局部视觉区域联合接入 \\
 评论处理 & 常按总体统计或直接汇总 & 保留评分并优先建模问题评论 \\
 可追踪性 & 难以定位错误来源 & 中间产物、claim attribution、replay 可追踪 \\
-\bottomrule\noalign{}
-\end{tabular}
-}
-\end{table}
+\end{longtable}
 
 系统整体流程已在图 1 中给出，下面按四个阶段对关键设计展开说明。商品证据层将商品文本、图像、局部视觉区域和评论保留为可复用的证据对象，并为文本块、图像、图像区域和评论分配稳定标识符，以支持后续索引、缓存和归因。VOC 方面建模层首先保留带评分的原始评论，再在有限计算预算下执行星级感知采样。当前默认 profile 为 problem\_first，对 1 星至 5 星评论分别赋予 30\%、25\%、20\%、15\% 和 10\% 的目标配额；当低星样本不足时，再按 fallback 顺序补位。与此同时，系统会过滤空评论、过短评论以及 ok、good 等低信息短评，以提升评论样本的诊断价值。基于问题的多模态检索层将评论方面转化为检索意图与路径都明确的问题。最后，报告层将最终的 claim 反向链接到评论证据、商品文本证据和商品图像证据。
 
@@ -141,11 +143,11 @@
 
 图 2 展示了从评论方面到证据查询的问题规划过程。比如，``对于 travel documents 来说太小了''这样的评论，会被转换成一个包含尺寸方面、负面情感、使用场景和原文证据片段的方面对象。随后，系统分别生成问题，用于判断商品描述或规格中是否明确写出了尺寸限制、图像中是否能看到主要收纳空间，以及文本与图像是否对收纳容量提供了一致的依据。这里的关键不只是生成多个问题，而是让每个问题都带有明确的证据路由与期望支持类型，从而把后续检索结果和最终报告 claim 精确对应起来。
 
-\begin{figure*}[t]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.92\textwidth]{/home/severin/Codelib/Decathlon\_VOC\_Analyzer/论文\_md形式/图片/图2.png}
 \caption{评论方面到证据查询的规划机制。方面对象并不直接进入检索，而是先被分解为具有不同证据意图的问题，再分别触发文本路线、图像路线或图文联合路线。}
-\end{figure*}
+\end{figure}
 
 \subsection{证据评分与重排序}
 
@@ -175,11 +177,11 @@ S(a,e) = \lambda_t R_t(a,e) + \lambda_v R_v(a,e) + \lambda_c C(a,e) \tag{1}
 
 图 3 展示了召回到的评论证据、商品文本证据和商品图像证据如何与结构化报告中的优势 claim、弱点 claim、改进建议 claim 和证据空白 claim 相连接。每一条连接都可以被标记为 supported、partial、unsupported 或 contradicted 等状态，而人工审查结果又可以通过 feedback/replay 循环反馈到问题规划与报告精炼过程中。对于无法被商品文本或图像充分支持的评论观点，系统不会强行生成``看似合理''的结论，而是保留 evidence gap 以显式表达证据不足。当前实现已通过 166 项自动化测试，这说明主要接口与工作流断言保持了一致性，也说明该系统已经具备作为研究原型开展后续对照实验的工程稳定性。
 
-\begin{figure*}[t]
+\begin{figure}[H]
 \centering
 \includegraphics[width=0.92\textwidth]{/home/severin/Codelib/Decathlon\_VOC\_Analyzer/论文\_md形式/图片/图3.png}
 \caption{证据归因与评估闭环。报告主张被映射到评论、商品文本和商品图像证据；评估模块同时衡量检索质量和生成主张的证据支撑质量。}
-\end{figure*}
+\end{figure}
 
 % =========================
 % Ⅳ. 结论

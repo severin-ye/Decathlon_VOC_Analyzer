@@ -1,8 +1,9 @@
-\documentclass[11pt,twocolumn]{article}
+\documentclass[11pt]{article}
 
 % ===== 基本宏包：尽量保持简单 =====
 \usepackage[margin=1in]{geometry}
 \usepackage{graphicx}
+\usepackage{float}
 \usepackage{chngcntr}
 \usepackage{booktabs}
 \usepackage{multirow}
@@ -42,10 +43,14 @@
 
 \author{{\small
 \begin{tabular}{@{}ccc@{}}
-\multicolumn{3}{c}{\parbox[t]{0.6600\textwidth}{\centering \textbf{Severin Ye}\textsuperscript{1} \\ \textit{School of Computer Science and Engineering} \\ \textit{Kyungpook National University} \\ Daegu, Republic of Korea \\ {\ttfamily\small 6severin9\allowbreak@gmail.\allowbreak{}com}}} \\
-\multicolumn{3}{c}{} \\[0.9em]
-\parbox[t]{0.3067\textwidth}{\centering \textbf{Dokeun Lee}\textsuperscript{2} \\ \textit{Department of Physics} \\ \textit{Kyungpook National University} \\ Daegu, Republic of Korea \\ {\ttfamily\small nsa08008\allowbreak@naver.\allowbreak{}com}} & \parbox[t]{0.3067\textwidth}{\centering \textbf{Wushuang Liu}\textsuperscript{2} \\ \textit{Department of Child Studies} \\ \textit{Kyungpook National University} \\ Daegu, Republic of Korea \\ {\ttfamily\small 824309203q\allowbreak@gmail.\allowbreak{}com}} & \parbox[t]{0.3067\textwidth}{\centering \textbf{Seowan Jung}\textsuperscript{2} \\ \textit{School of Computer Science and Engineering} \\ \textit{Kyungpook National University} \\ Daegu, Republic of Korea \\ {\ttfamily\small swan041014\allowbreak@gmail.\allowbreak{}com}} \\[0.9em]
-\multicolumn{3}{c}{\makebox[0.9200\textwidth][c]{\parbox[t]{0.3067\textwidth}{\centering \textbf{HyunJun Jung}\textsuperscript{2} \\ \textit{School of Computer Science and Engineering} \\ \textit{Kyungpook National University} \\ Daegu, Republic of Korea \\ {\ttfamily\small beanbeansummon\allowbreak@naver.\allowbreak{}com}}\hspace{2\tabcolsep}\parbox[t]{0.3067\textwidth}{\centering \textbf{Hye Jeon}\textsuperscript{2} \\ \textit{School of Computer Science and Engineering} \\ \textit{Kyungpook National University} \\ Daegu, Republic of Korea \\ {\ttfamily\small prajna0426\allowbreak@naver.\allowbreak{}com}}}} \\
+\parbox[t]{0.3067\textwidth}{\centering \textbf{Severin Ye}\textsuperscript{1}} & \parbox[t]{0.3067\textwidth}{\centering \textbf{Dokeun Lee}\textsuperscript{2}} & \parbox[t]{0.3067\textwidth}{\centering \textbf{Wushuang Liu}\textsuperscript{3}} \\[0.9em]
+\parbox[t]{0.3067\textwidth}{\centering \textbf{Seowan Jung}\textsuperscript{1}} & \parbox[t]{0.3067\textwidth}{\centering \textbf{HyunJun Jung}\textsuperscript{1}} & \parbox[t]{0.3067\textwidth}{\centering \textbf{Hye Jeon}\textsuperscript{1}} \\[0.9em]
+\parbox[t]{0.3067\textwidth}{} & \parbox[t]{0.3067\textwidth}{\centering \textbf{Jaesoo Kim}\textsuperscript{1*†}} & \parbox[t]{0.3067\textwidth}{} \\
+\multicolumn{3}{c}{} \\[0.45em]
+\multicolumn{3}{c}{\parbox{0.9200\textwidth}{\centering\small\textsuperscript{1}\textit{School of Computer Science and Engineering, Kyungpook National University}}} \\
+\multicolumn{3}{c}{\parbox{0.9200\textwidth}{\centering\small\textsuperscript{2}\textit{Department of Physics, Kyungpook National University}}} \\
+\multicolumn{3}{c}{\parbox{0.9200\textwidth}{\centering\small\textsuperscript{3}\textit{Department of Child Studies, Kyungpook National University}}} \\
+\multicolumn{3}{c}{\small \textsuperscript{†}  Corresponding Author} \\
 \end{tabular}
 }}
 
@@ -182,12 +187,15 @@ LLM 在结构化输出任务中可能出现字段缺失、类型错误和格式�
 
 本文将该框架抽象为四个逻辑层。第一层是商品证据层，负责构建商品文本、图片和局部视觉区域的结构化表示。第二层是 VOC 需求层，负责将评论转化为方面、观点、情感和场景。第三层是证据对齐层，负责把方面改写为具有明确模态路线的问题，并在商品证据空间中检索和重排候选。第四层是报告归因层，负责生成结构化洞察，并将报告主张映射回评论证据与商品证据。
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.92\textwidth]{/home/severin/Codelib/Decathlon\_VOC\_Analyzer/论文\_md形式/图片/图1.png}
+\caption{Decathlon VOC Analyzer 的总体框架。系统以商品证据包和评论方面为中间表示，通过问题规划连接主观 VOC 信号与多模态商品证据，并在报告阶段进行 claim 级归因。}
+\end{figure}
+
 表 1 从输出目标、证据接入方式、评论处理方式和可追踪性四个维度概括本文系统与传统评论摘要或方面级情感分析方法的差异。该对比强调，本文方法并不把方面抽取视为最终结果，而是把方面对象作为证据检索、报告生成和 claim 归因的中间入口。
 
-\begin{table}[t]
-\centering
-\resizebox{\columnwidth}{!}{%
-\begin{tabular}{@{}
+\begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
@@ -200,21 +208,18 @@ LLM 在结构化输出任务中可能出现字段缺失、类型错误和格式�
 本文系统
 \end{minipage} \\
 \midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
 输出目标 & 情感标签、主题或整段总结 & 带证据归因的结构化 VOC 报告 \\
 商品证据接入 & 通常较弱或缺失 & 文本、图像、局部视觉区域联合接入 \\
 评论处理 & 常按总体统计或直接汇总 & 保留评分并优先建模问题评论 \\
 可追踪性 & 难以定位错误来源 & 中间产物、claim attribution、feedback/replay 可追踪 \\
-\bottomrule\noalign{}
-\end{tabular}
-}
-\end{table}
+\end{longtable}
 
 表 2 给出系统主流程的算法化描述。该流程强调每个阶段都产生可落盘的结构化对象，使后续评估、回放和错误定位可以在同一对象体系内完成。
 
-\begin{table}[t]
-\centering
-\resizebox{\columnwidth}{!}{%
-\begin{tabular}{@{}
+\begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
@@ -230,6 +235,9 @@ LLM 在结构化输出任务中可能出现字段缺失、类型错误和格式�
 输出
 \end{minipage} \\
 \midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
 1 & 原始商品目录 & 标准化商品文本、图片、图片区域和评论 & 商品证据包 \\
 2 & 评论记录 & 低信息过滤、星级感知抽样、方面抽取和去重 & 评论方面对象 \\
 3 & 评论方面对象 & 生成文本支持、视觉确认和跨模态解释问题 & route-aware 检索问题 \\
@@ -237,10 +245,7 @@ LLM 在结构化输出任务中可能出现字段缺失、类型错误和格式�
 5 & 候选证据池 & 按 route、语言、相关性和重排结果筛选 & 排序后的证据束 \\
 6 & 方面对象与证据束 & 聚合方面统计并生成结构化报告 & strengths、weaknesses、controversies、gaps、suggestions \\
 7 & 结构化报告与证据对象 & 执行 claim 级归因与 evidence gap 标注 & 可追踪分析报告与运行产物 \\
-\bottomrule\noalign{}
-\end{tabular}
-}
-\end{table}
+\end{longtable}
 
 \subsection{商品证据表示}
 
@@ -264,6 +269,12 @@ LLM 在结构化输出任务中可能出现字段缺失、类型错误和格式�
 
 这些问题覆盖三类证据需求：文本支持、视觉确认和跨模态解释。文本支持问题关注商品文案或规格是否直接支持评论观点；视觉确认问题关注商品图片是否呈现相关结构或外观；跨模态解释问题则尝试判断某一反馈更接近真实产品问题、页面呈现不足还是用户预期偏差。通过这种方式，评论中的主观体验被转化为可以由商品证据回答的检索任务。
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.92\textwidth]{/home/severin/Codelib/Decathlon\_VOC\_Analyzer/论文\_md形式/图片/图2.png}
+\caption{评论方面到证据查询的规划机制。方面对象并不直接进入检索，而是先被分解为具有不同证据意图的问题，再分别触发文本路线、图像路线或图文联合路线。}
+\end{figure}
+
 \subsection{多模态召回与重排}
 
 证据对齐层采用两阶段检索。第一阶段使用向量表示进行粗召回，以较低成本从商品文本和商品图像中获得候选证据。第二阶段使用重排模型对候选集合进行精排，以提高最终证据的相关性。文本证据和图像证据在召回阶段被分路线管理，但在重排和报告阶段被统一到同一商品证据空间中。
@@ -285,6 +296,12 @@ S(a,e) = \lambda_t R_t(a,e) + \lambda_v R_v(a,e) + \lambda_c C(a,e)
 报告生成阶段不把召回结果作为普通上下文直接交给模型总结，而是先对方面信号和检索证据进行聚合。聚合对象记录每个方面的出现频次、情感分布、代表评论、证据片段和检索覆盖情况。随后系统生成结构化报告，报告字段包括优势、缺点、争议点、适用场景、证据缺口和改进建议。
 
 为了降低生成式报告的不可审查性，本文进一步引入 claim 级归因。报告中的主要主张会被映射到评论证据、商品文本证据、商品图像证据或二者的组合，并标记为支持、部分支持、未支持或冲突。若某一评论观点在当前商品证据中无法得到充分验证，系统倾向于输出证据缺口，而不是把该观点包装成确定结论。
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.92\textwidth]{/home/severin/Codelib/Decathlon\_VOC\_Analyzer/论文\_md形式/图片/图3.png}
+\caption{证据归因与评估闭环。报告主张被映射到评论、商品文本和商品图像证据；评估模块同时衡量检索质量和生成主张的证据支撑质量。}
+\end{figure}
 
 \subsection{可复现性与可解释性设计}
 
@@ -316,10 +333,7 @@ S(a,e) = \lambda_t R_t(a,e) + \lambda_v R_v(a,e) + \lambda_c C(a,e)
 
 表 3 汇总当前实现中与复现实验直接相关的配置项和产物。
 
-\begin{table}[t]
-\centering
-\resizebox{\columnwidth}{!}{%
-\begin{tabular}{@{}
+\begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}@{}}
 \toprule\noalign{}
@@ -329,6 +343,9 @@ S(a,e) = \lambda_t R_t(a,e) + \lambda_v R_v(a,e) + \lambda_c C(a,e)
 当前实现
 \end{minipage} \\
 \midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
 开发语言 & Python 3.11 及以上 \\
 工作流入口 & Web API 与 \texttt{run\_workflow.py} 批处理脚本 \\
 流程编排 & LangGraph 状态图 \\
@@ -339,10 +356,7 @@ S(a,e) = \lambda_t R_t(a,e) + \lambda_v R_v(a,e) + \lambda_c C(a,e)
 缓存对象 & query embedding、rerank 结果、分析 checkpoint \\
 主要运行产物 & 标准化证据包、方面对象、检索记录、结构化报告、feedback/replay sidecar、HTML、manifest \\
 工程验证 & 数据标准化、评论建模、检索、报告生成、manifest 评估和工作流入口测试 \\
-\bottomrule\noalign{}
-\end{tabular}
-}
-\end{table}
+\end{longtable}
 
 \subsection{数据与验证单元}
 

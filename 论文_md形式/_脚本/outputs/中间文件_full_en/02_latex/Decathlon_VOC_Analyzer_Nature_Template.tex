@@ -1,8 +1,9 @@
-\documentclass[11pt,twocolumn]{article}
+\documentclass[11pt]{article}
 
 % ===== 基本宏包：尽量保持简单 =====
 \usepackage[margin=1in]{geometry}
 \usepackage{graphicx}
+\usepackage{float}
 \usepackage{chngcntr}
 \usepackage{booktabs}
 \usepackage{multirow}
@@ -42,10 +43,14 @@
 
 \author{{\small
 \begin{tabular}{@{}ccc@{}}
-\multicolumn{3}{c}{\parbox[t]{0.6600\textwidth}{\centering \textbf{Severin Ye}\textsuperscript{1} \\ \textit{School of Computer Science and Engineering} \\ \textit{Kyungpook National University} \\ Daegu, Republic of Korea \\ {\ttfamily\small 6severin9\allowbreak@gmail.\allowbreak{}com}}} \\
-\multicolumn{3}{c}{} \\[0.9em]
-\parbox[t]{0.3067\textwidth}{\centering \textbf{Dokeun Lee}\textsuperscript{2} \\ \textit{Department of Physics} \\ \textit{Kyungpook National University} \\ Daegu, Republic of Korea \\ {\ttfamily\small nsa08008\allowbreak@naver.\allowbreak{}com}} & \parbox[t]{0.3067\textwidth}{\centering \textbf{Wushuang Liu}\textsuperscript{2} \\ \textit{Department of Child Studies} \\ \textit{Kyungpook National University} \\ Daegu, Republic of Korea \\ {\ttfamily\small 824309203q\allowbreak@gmail.\allowbreak{}com}} & \parbox[t]{0.3067\textwidth}{\centering \textbf{Seowan Jung}\textsuperscript{2} \\ \textit{School of Computer Science and Engineering} \\ \textit{Kyungpook National University} \\ Daegu, Republic of Korea \\ {\ttfamily\small swan041014\allowbreak@gmail.\allowbreak{}com}} \\[0.9em]
-\multicolumn{3}{c}{\makebox[0.9200\textwidth][c]{\parbox[t]{0.3067\textwidth}{\centering \textbf{HyunJun Jung}\textsuperscript{2} \\ \textit{School of Computer Science and Engineering} \\ \textit{Kyungpook National University} \\ Daegu, Republic of Korea \\ {\ttfamily\small beanbeansummon\allowbreak@naver.\allowbreak{}com}}\hspace{2\tabcolsep}\parbox[t]{0.3067\textwidth}{\centering \textbf{Hye Jeon}\textsuperscript{2} \\ \textit{School of Computer Science and Engineering} \\ \textit{Kyungpook National University} \\ Daegu, Republic of Korea \\ {\ttfamily\small prajna0426\allowbreak@naver.\allowbreak{}com}}}} \\
+\parbox[t]{0.3067\textwidth}{\centering \textbf{Severin Ye}\textsuperscript{1}} & \parbox[t]{0.3067\textwidth}{\centering \textbf{Dokeun Lee}\textsuperscript{2}} & \parbox[t]{0.3067\textwidth}{\centering \textbf{Wushuang Liu}\textsuperscript{3}} \\[0.9em]
+\parbox[t]{0.3067\textwidth}{\centering \textbf{Seowan Jung}\textsuperscript{1}} & \parbox[t]{0.3067\textwidth}{\centering \textbf{HyunJun Jung}\textsuperscript{1}} & \parbox[t]{0.3067\textwidth}{\centering \textbf{Hye Jeon}\textsuperscript{1}} \\[0.9em]
+\parbox[t]{0.3067\textwidth}{} & \parbox[t]{0.3067\textwidth}{\centering \textbf{Jaesoo Kim}\textsuperscript{1*†}} & \parbox[t]{0.3067\textwidth}{} \\
+\multicolumn{3}{c}{} \\[0.45em]
+\multicolumn{3}{c}{\parbox{0.9200\textwidth}{\centering\small\textsuperscript{1}\textit{School of Computer Science and Engineering, Kyungpook National University}}} \\
+\multicolumn{3}{c}{\parbox{0.9200\textwidth}{\centering\small\textsuperscript{2}\textit{Department of Physics, Kyungpook National University}}} \\
+\multicolumn{3}{c}{\parbox{0.9200\textwidth}{\centering\small\textsuperscript{3}\textit{Department of Child Studies, Kyungpook National University}}} \\
+\multicolumn{3}{c}{\small \textsuperscript{†}  Corresponding Author} \\
 \end{tabular}
 }}
 
@@ -156,12 +161,15 @@ Decathlon VOC Analyzer formulates product VOC analysis as an evidence-driven mul
 
 The framework contains four logical layers. The product evidence layer constructs structured representations of product text, images, and local visual regions. The VOC demand layer converts reviews into aspects, opinions, sentiments, and usage scenes. The evidence alignment layer rewrites aspects into route-aware questions and retrieves evidence from the product evidence space. The report attribution layer generates structured insights and maps report claims back to review and product evidence.
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.92\textwidth]{/home/severin/Codelib/Decathlon\_VOC\_Analyzer/论文\_md形式/图片/图1.png}
+\caption{Overall framework of Decathlon VOC Analyzer. The system uses review aspects and product evidence packages as intermediate representations, connects subjective VOC signals with multimodal product evidence through question planning, and performs claim-level attribution during reporting.}
+\end{figure}
+
 Table 1 summarizes the differences between the proposed system and traditional review summarization or aspect-based sentiment analysis in terms of output objective, evidence access, review handling, and traceability. The comparison emphasizes that this work does not treat aspect extraction as the final output. Instead, aspect objects serve as the intermediate entry point for evidence retrieval, report generation, and claim attribution.
 
-\begin{table}[t]
-\centering
-\resizebox{\columnwidth}{!}{%
-\begin{tabular}{@{}
+\begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3333}}@{}}
@@ -174,21 +182,18 @@ Traditional review summarization / ABSA
 Proposed system
 \end{minipage} \\
 \midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
 Output objective & Sentiment labels, topics, or free-form summaries & Structured VOC reports with evidence attribution \\
 Product evidence access & Usually weak or absent & Joint access to text, images, and local visual regions \\
 Review handling & Often aggregate statistics or direct summarization & Ratings are preserved and problem reviews are prioritized \\
 Traceability & Error sources are difficult to locate & Intermediate artifacts, claim attribution, and feedback/replay are traceable \\
-\bottomrule\noalign{}
-\end{tabular}
-}
-\end{table}
+\end{longtable}
 
 Table 2 gives an algorithmic description of the main workflow. The key point is that each stage emits persistent structured objects, so evaluation, replay, and error localization operate over the same object system.
 
-\begin{table}[t]
-\centering
-\resizebox{\columnwidth}{!}{%
-\begin{tabular}{@{}
+\begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2500}}
@@ -204,6 +209,9 @@ Operation
 Output
 \end{minipage} \\
 \midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
 1 & Raw product directory & Normalize product text, images, image regions, and reviews & Product evidence package \\
 2 & Review records & Filter low-information reviews, perform rating-aware sampling, extract and deduplicate aspects & Review aspect objects \\
 3 & Review aspect objects & Generate text-support, visual-confirmation, and cross-modal explanation questions & Route-aware retrieval questions \\
@@ -211,10 +219,7 @@ Output
 5 & Candidate evidence pool & Select evidence by route, language, relevance, and reranking result & Ranked evidence bundle \\
 6 & Aspect objects and evidence bundles & Aggregate aspect statistics and generate a structured report & Strengths, weaknesses, controversies, gaps, and suggestions \\
 7 & Structured report and evidence objects & Perform claim-level attribution and evidence-gap labeling & Attributed report and run artifacts \\
-\bottomrule\noalign{}
-\end{tabular}
-}
-\end{table}
+\end{longtable}
 
 \subsection{Product Evidence Representation}
 
@@ -238,6 +243,12 @@ The key design is the intermediate planning layer between aspects and retrieval.
 
 The questions cover text support, visual confirmation, and cross-modal resolution. Text-support questions ask whether product copy or specifications directly support a claim. Visual-confirmation questions ask whether product images show relevant structures or appearances. Cross-modal questions ask whether text and images together explain a review as a real product issue, insufficient presentation, or expectation mismatch.
 
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.92\textwidth]{/home/severin/Codelib/Decathlon\_VOC\_Analyzer/论文\_md形式/图片/图2.png}
+\caption{Aspect-to-question planning. Aspect objects are not directly used as retrieval queries; they are decomposed into intent-specific questions that trigger text, image, or cross-modal evidence routes.}
+\end{figure}
+
 \subsection{Multimodal Recall and Reranking}
 
 The evidence alignment layer uses two-stage retrieval. The first stage performs vector-based coarse recall over product text and product images. The second stage reranks the candidate set with higher-cost models. Text and image evidence are managed as separate routes during retrieval, but they are unified in the product evidence space during attribution.
@@ -257,6 +268,12 @@ Here, \(R_t(a,e)\) denotes relevance on the text route, \(R_v(a,e)\) denotes rel
 The generation stage does not pass retrieved evidence to the model as ordinary context. It first aggregates aspect signals and retrieval coverage, then generates structured reports containing strengths, weaknesses, controversies, applicable scenes, evidence gaps, and suggestions.
 
 To make the report auditable, the system performs claim-level attribution. Major claims are mapped to review evidence, product text evidence, product image evidence, or their combinations, and are labeled as supported, partially supported, unsupported, or contradicted. If a review claim cannot be verified by current product evidence, the system prefers to expose an evidence gap instead of presenting the claim as confirmed.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.92\textwidth]{/home/severin/Codelib/Decathlon\_VOC\_Analyzer/论文\_md形式/图片/图3.png}
+\caption{Evidence attribution and evaluation loop. Report claims are mapped to review, product text, and product image evidence, while evaluation measures both retrieval quality and claim grounding quality.}
+\end{figure}
 
 \subsection{Reproducibility and Explainability}
 
@@ -288,10 +305,7 @@ The system exposes both interactive API and offline script entry points. The API
 
 Table 3 summarizes implementation details directly related to reproducible experiments.
 
-\begin{table}[t]
-\centering
-\resizebox{\columnwidth}{!}{%
-\begin{tabular}{@{}
+\begin{longtable}[]{@{}
   >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 2\tabcolsep) * \real{0.5000}}@{}}
 \toprule\noalign{}
@@ -301,6 +315,9 @@ Item
 Current implementation
 \end{minipage} \\
 \midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
 Language & Python 3.11 or above \\
 Workflow entry points & Web API and \texttt{run\_workflow.py} batch script \\
 Workflow orchestration & LangGraph state graph \\
@@ -311,10 +328,7 @@ Reranking paths & Text reranker, multimodal reranker, or heuristic ranking \\
 Cached objects & Query embeddings, rerank results, and analysis checkpoints \\
 Main artifacts & Normalized evidence package, aspect objects, retrieval records, structured reports, feedback/replay sidecars, HTML, and manifests \\
 Engineering validation & Tests for normalization, review modeling, retrieval, report generation, manifest evaluation, and workflow entry points \\
-\bottomrule\noalign{}
-\end{tabular}
-}
-\end{table}
+\end{longtable}
 
 \subsection{Data and Validation Units}
 

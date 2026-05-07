@@ -6,6 +6,8 @@ Decathlon VOC Analyzer formulates product VOC analysis as an evidence-driven mul
 
 The framework contains four logical layers. The product evidence layer constructs structured representations of product text, images, and local visual regions. The VOC demand layer converts reviews into aspects, opinions, sentiments, and usage scenes. The evidence alignment layer rewrites aspects into route-aware questions and retrieves evidence from the product evidence space. The report attribution layer generates structured insights and maps report claims back to review and product evidence.
 
+![Figure 1. Overall framework of Decathlon VOC Analyzer. The system uses review aspects and product evidence packages as intermediate representations, connects subjective VOC signals with multimodal product evidence through question planning, and performs claim-level attribution during reporting.](图片/图1.png)
+
 Table 1 summarizes the differences between the proposed system and traditional review summarization or aspect-based sentiment analysis in terms of output objective, evidence access, review handling, and traceability. The comparison emphasizes that this work does not treat aspect extraction as the final output. Instead, aspect objects serve as the intermediate entry point for evidence retrieval, report generation, and claim attribution.
 
 | Dimension | Traditional review summarization / ABSA | Proposed system |
@@ -49,6 +51,8 @@ The key design is the intermediate planning layer between aspects and retrieval.
 
 The questions cover text support, visual confirmation, and cross-modal resolution. Text-support questions ask whether product copy or specifications directly support a claim. Visual-confirmation questions ask whether product images show relevant structures or appearances. Cross-modal questions ask whether text and images together explain a review as a real product issue, insufficient presentation, or expectation mismatch.
 
+![Figure 2. Aspect-to-question planning. Aspect objects are not directly used as retrieval queries; they are decomposed into intent-specific questions that trigger text, image, or cross-modal evidence routes.](图片/图2.png)
+
 ## 4.5 Multimodal Recall and Reranking
 
 The evidence alignment layer uses two-stage retrieval. The first stage performs vector-based coarse recall over product text and product images. The second stage reranks the candidate set with higher-cost models. Text and image evidence are managed as separate routes during retrieval, but they are unified in the product evidence space during attribution.
@@ -68,6 +72,8 @@ Here, $R_t(a,e)$ denotes relevance on the text route, $R_v(a,e)$ denotes relevan
 The generation stage does not pass retrieved evidence to the model as ordinary context. It first aggregates aspect signals and retrieval coverage, then generates structured reports containing strengths, weaknesses, controversies, applicable scenes, evidence gaps, and suggestions.
 
 To make the report auditable, the system performs claim-level attribution. Major claims are mapped to review evidence, product text evidence, product image evidence, or their combinations, and are labeled as supported, partially supported, unsupported, or contradicted. If a review claim cannot be verified by current product evidence, the system prefers to expose an evidence gap instead of presenting the claim as confirmed.
+
+![Figure 3. Evidence attribution and evaluation loop. Report claims are mapped to review, product text, and product image evidence, while evaluation measures both retrieval quality and claim grounding quality.](图片/图3.png)
 
 ## 4.7 Reproducibility and Explainability
 

@@ -352,64 +352,62 @@ def build_author_tabular_latex(author_blocks: list[AuthorBlock], max_cols: int =
     if not blocks:
         return "First Author"
 
-    if len(blocks) == 1:
-        cols = 1
-    else:
-        remaining = max(1, len(blocks) - 1)
-        cols = min(max_cols, remaining)
-        # 让作者排版更均衡：避免出现 (max_cols + 1) 导致最后一行只剩 1 个作者。
-        # 例如 5 位剩余作者：4+1 -> 3+2（符合当前论文标题页需求）
-        if cols > 1 and remaining % cols == 1:
-            cols -= 1
-
-    # 第一行保留给第一作者，其他作者从第二行开始排，满足当前论文署名布局需求。
+    cols = 3 if len(blocks) > 1 else 1
     total_width = 0.92
-    first_row_width = min(0.66, total_width)
     col_width = total_width / cols
-    first_row_width_latex = f"{first_row_width:.4f}\\textwidth"
     col_width_latex = f"{col_width:.4f}\\textwidth"
-    total_width_latex = f"{total_width:.4f}\\textwidth"
 
     rows: list[str] = []
+    affiliation_numbers: dict[str, int] = {}
+    author_markers: dict[int, str] = {}
+    ordered_affiliations: list[str] = []
+    notes: list[str] = []
 
-    if len(blocks) == 1:
-        first_cell = build_author_block_latex(blocks[0], name_superscript="1")
-        rows.append(rf"\multicolumn{{1}}{{c}}{{\parbox[t]{{{first_row_width_latex}}}{{\centering {first_cell}}}}} \\")
-    else:
-        first_cell = build_author_block_latex(blocks[0], name_superscript="1")
-        rows.append(rf"\multicolumn{{{cols}}}{{c}}{{\parbox[t]{{{first_row_width_latex}}}{{\centering {first_cell}}}}} \\")
-        rows.append(rf"\multicolumn{{{cols}}}{{c}}{{}} \\[0.9em]")
+    for block_index, block in enumerate(blocks):
+        lines = [line.strip() for line in block.lines[1:] if line.strip()]
+        note_lines = [line for line in lines if line.startswith("†")]
+        notes.extend(note_lines)
+        affiliation_lines = [
+            line
+            for line in lines
+            if not line.startswith("†")
+            and "@" not in line
+            and line != "Daegu, Republic of Korea"
+        ]
+        affiliation = ", ".join(affiliation_lines)
+        if affiliation:
+            if affiliation not in affiliation_numbers:
+                affiliation_numbers[affiliation] = len(affiliation_numbers) + 1
+                ordered_affiliations.append(affiliation)
+            marker = str(affiliation_numbers[affiliation])
+        else:
+            marker = ""
 
-    remaining_blocks = blocks[1:] if len(blocks) > 1 else []
-    for start in range(0, len(remaining_blocks), cols):
-        chunk = remaining_blocks[start : start + cols]
-        has_more = (start + cols) < len(remaining_blocks)
+        author_name = block.lines[0].strip()
+        if "*" in author_name or "†" in author_name:
+            marker = f"{marker}*†"
+        author_markers[block_index] = marker
 
-        # 第三行两位作者：严格“轴对称”（以页面中线为对称轴）。
-        # 做法：把两位作者组成一个等宽的二列块，并把这个二列块整体水平居中。
-        # 两列之间的水平间距用 \hspace{2\tabcolsep}，确保与第二行相邻列间距一致。
-        if cols == 3 and len(chunk) == 2:
-            left = build_author_block_latex(chunk[0], name_superscript="2")
-            right = build_author_block_latex(chunk[1], name_superscript="2")
-            left_box = rf"\parbox[t]{{{col_width_latex}}}{{\centering {left}}}"
-            right_box = rf"\parbox[t]{{{col_width_latex}}}{{\centering {right}}}"
-            pair = rf"{left_box}\hspace{{2\tabcolsep}}{right_box}"
-            row = rf"\multicolumn{{3}}{{c}}{{\makebox[{total_width_latex}][c]{{{pair}}}}}"
-            row += r" \\[0.9em]" if has_more else r" \\"
-            rows.append(row)
-            continue
-
-        # 通用布局：每行最多 cols 个作者；当 cols==3 且只有 1 人时放中间。
+    for start in range(0, len(blocks), cols):
+        chunk = blocks[start : start + cols]
+        has_more = (start + cols) < len(blocks)
         empty_cell = rf"\parbox[t]{{{col_width_latex}}}{{}}"
         cells: list[str] = [empty_cell for _ in range(cols)]
 
         if cols == 3 and len(chunk) == 1:
             positions = [1]
+        elif cols == 3 and len(chunk) == 2:
+            positions = [0, 2]
         else:
             positions = list(range(len(chunk)))
 
-        for pos, block in zip(positions, chunk, strict=False):
-            cell_body = build_author_block_latex(block, name_superscript="2")
+        for offset, (pos, block) in enumerate(zip(positions, chunk, strict=False)):
+            block_index = start + offset
+            raw_name = block.lines[0].strip().replace("*", "").replace("†", "").strip()
+            name = escape_latex(raw_name)
+            marker = author_markers.get(block_index, "")
+            superscript = rf"\textsuperscript{{{escape_latex(marker)}}}" if marker else ""
+            cell_body = rf"\textbf{{{name}}}{superscript}"
             cells[pos] = rf"\parbox[t]{{{col_width_latex}}}{{\centering {cell_body}}}"
 
         row = " & ".join(cells)
@@ -420,12 +418,23 @@ def build_author_tabular_latex(author_blocks: list[AuthorBlock], max_cols: int =
         rows.append(row)
 
     col_spec = "@{}" + "c" * cols + "@{}"
-    # 用 \small 让四列在页面上更协调，避免拥挤
+    note_text = "; ".join(dict.fromkeys(notes))
+    meta_lines: list[str] = []
+    for affiliation in ordered_affiliations:
+        number = affiliation_numbers[affiliation]
+        meta_lines.append(
+            rf"\multicolumn{{{cols}}}{{c}}{{\parbox{{{total_width:.4f}\textwidth}}{{\centering\small\textsuperscript{{{number}}}\textit{{{escape_latex(affiliation)}}}}}}} \\"
+        )
+    if note_text:
+        meta_lines.append(rf"\multicolumn{{{cols}}}{{c}}{{\small \textsuperscript{{†}} {escape_latex(note_text.lstrip('†'))}}} \\")
+
     return "\n".join(
         [
             r"{\small",
             rf"\begin{{tabular}}{{{col_spec}}}",
             *rows,
+            r"\multicolumn{" + str(cols) + r"}{c}{} \\[0.45em]",
+            *meta_lines,
             r"\end{tabular}",
             r"}",
         ]
@@ -464,22 +473,22 @@ def resolve_figure_path(raw_path: str, resource_base: Path) -> str:
 
 
 def build_inline_figure_latex(caption: str, path: str) -> str:
-    lines = [r"\begin{figure*}[t]", r"\centering"]
+    lines = [r"\begin{figure}[H]", r"\centering"]
     lines.append(rf"\includegraphics[width=0.92\textwidth]{{{escape_latex(path)}}}")
     if caption:
         lines.append(rf"\caption{{{escape_latex(caption)}}}")
-    lines.append(r"\end{figure*}")
+    lines.append(r"\end{figure}")
     return "\n".join(lines)
 
 
 def build_inline_figure_latex_with_label(caption: str, path: str, label: str | None) -> str:
-    lines = [r"\begin{figure*}[t]", r"\centering"]
+    lines = [r"\begin{figure}[H]", r"\centering"]
     lines.append(rf"\includegraphics[width=0.92\textwidth]{{{escape_latex(path)}}}")
     if caption:
         lines.append(rf"\caption{{{escape_latex(caption)}}}")
     if label:
         lines.append(rf"\label{{{escape_latex(label)}}}")
-    lines.append(r"\end{figure*}")
+    lines.append(r"\end{figure}")
     return "\n".join(lines)
 
 
@@ -625,7 +634,6 @@ def convert_body(markdown_text: str, resource_base: Path, citation_key_map: dict
     latex = run_pandoc(cleaned)
     latex = strip_pandoc_heading_anchors(latex)
     latex = restore_superscripts(latex)
-    latex = convert_longtables_for_twocolumn(latex)
     return latex
 
 
@@ -776,11 +784,12 @@ def build_document(
         nocite_command = rf"\nocite{{{escape_latex(nocite_keys)}}}"
 
     parts = [
-        r"\documentclass[11pt,twocolumn]{article}",
+        r"\documentclass[11pt]{article}",
         "",
         "% ===== 基本宏包：尽量保持简单 =====",
         r"\usepackage[margin=1in]{geometry}",
         r"\usepackage{graphicx}",
+        r"\usepackage{float}",
         r"\usepackage{chngcntr}",
         r"\usepackage{booktabs}",
         r"\usepackage{multirow}",
