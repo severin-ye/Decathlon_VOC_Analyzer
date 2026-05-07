@@ -1,9 +1,8 @@
 # Decathlon VOC Analyzer
 
-![Status](https://img.shields.io/badge/status-research%20artifact-blue)
 ![Python](https://img.shields.io/badge/python-%3E%3D3.11-3776AB?logo=python&logoColor=white)
-![Framework](https://img.shields.io/badge/API-FastAPI-009688?logo=fastapi&logoColor=white)
-![Workflow](https://img.shields.io/badge/workflow-LangGraph-1C3C3C)
+![FastAPI](https://img.shields.io/badge/FastAPI-API-009688?logo=fastapi&logoColor=white)
+![LangGraph](https://img.shields.io/badge/LangGraph-workflow-1C3C3C)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 Official repository for the paper:
