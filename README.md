@@ -1,5 +1,13 @@
 # Decathlon VOC Analyzer
 
+![Status](https://img.shields.io/badge/status-research%20artifact-blue)
+![Python](https://img.shields.io/badge/python-%3E%3D3.11-3776AB?logo=python&logoColor=white)
+![Framework](https://img.shields.io/badge/API-FastAPI-009688?logo=fastapi&logoColor=white)
+![Workflow](https://img.shields.io/badge/workflow-LangGraph-1C3C3C)
+![Tests](https://img.shields.io/badge/tests-pytest-0A9EDC?logo=pytest&logoColor=white)
+![Lint](https://img.shields.io/badge/lint-ruff-D7FF64?logo=ruff&logoColor=black)
+![License](https://img.shields.io/badge/license-not%20specified-lightgrey)
+
 Official repository for the paper:
 
 **"Decathlon VOC Analyzer: An Evidence-Driven Multimodal VOC Analysis System for Aligning Product Images, Product Text, and User Reviews"**
