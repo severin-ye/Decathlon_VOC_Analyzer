@@ -4,9 +4,7 @@
 ![Python](https://img.shields.io/badge/python-%3E%3D3.11-3776AB?logo=python&logoColor=white)
 ![Framework](https://img.shields.io/badge/API-FastAPI-009688?logo=fastapi&logoColor=white)
 ![Workflow](https://img.shields.io/badge/workflow-LangGraph-1C3C3C)
-![Tests](https://img.shields.io/badge/tests-pytest-0A9EDC?logo=pytest&logoColor=white)
-![Lint](https://img.shields.io/badge/lint-ruff-D7FF64?logo=ruff&logoColor=black)
-![License](https://img.shields.io/badge/license-not%20specified-lightgrey)
+![License](https://img.shields.io/badge/license-MIT-green)
 
 Official repository for the paper:
 
@@ -467,11 +465,8 @@ Update the venue, DOI, and publication type once the paper is accepted or releas
 
 ## License and Data Use
 
-No standalone license file is currently included in this repository. Add a repository-level `LICENSE` file before public release.
+The code in this repository is released under the MIT License. See `LICENSE` for details.
 
-Recommended release policy:
-
-- Code: release under a clear open-source license such as MIT, Apache-2.0, or BSD-3-Clause.
 - Product images and user reviews: do not redistribute unless the original platform terms permit it.
 - Dataset annotations and generated artifacts: specify a separate license if they are released.
 - Model weights: follow the license of each upstream model or API provider.
