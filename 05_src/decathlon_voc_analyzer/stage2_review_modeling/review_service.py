@@ -147,12 +147,12 @@ class ReviewExtractionService:
         extraction_mode: ExtractionMode = "llm" if llm_requested else "heuristic"
 
         progress = get_workflow_progress()
-        progress.start_count_step("analyze", "extract", total=len(preprocessed_reviews), detail=f"处理 {len(preprocessed_reviews)} 条评论")
+        progress.start_count_step("analyze", "extract", total=len(preprocessed_reviews), detail=f"Processing {len(preprocessed_reviews)} reviews")
 
         for idx, review in enumerate(preprocessed_reviews):
             if not review.is_informative and not request.include_non_informative:
                 skipped_review_ids.append(review.review_id)
-                progress.advance_step("analyze", "extract", detail=f"{review.review_id} (已跳过)")
+                progress.advance_step("analyze", "extract", detail=f"{review.review_id} (skipped)")
                 continue
 
             extracted_aspects: list[ReviewAspect]
@@ -168,7 +168,7 @@ class ReviewExtractionService:
 
             if not extracted_aspects:
                 skipped_review_ids.append(review.review_id)
-                progress.advance_step("analyze", "extract", detail=f"{review.review_id} (无方面提取)")
+                progress.advance_step("analyze", "extract", detail=f"{review.review_id} (no aspects extracted)")
                 continue
             aspects.extend(extracted_aspects)
             progress.advance_step("analyze", "extract", detail=review.review_id)
@@ -187,7 +187,7 @@ class ReviewExtractionService:
                 warnings=warnings,
             )
 
-        progress.complete_step("analyze", "extract", detail=f"提取了 {len(aspects)} 个方面")
+        progress.complete_step("analyze", "extract", detail=f"Extracted {len(aspects)} aspects")
 
         return ReviewExtractionResponse(
             product_id=product_id,
@@ -205,11 +205,11 @@ class ReviewExtractionService:
         artifact_path = self._artifact_path(product_id=product_id, category_slug=category_slug)
         if not artifact_path.exists():
             raise FileNotFoundError(
-                f"未找到可复用的评论抽取产物: {artifact_path}。请先完成一次抽取，或不要使用 --resume-from-aspects。"
+                f"Reusable review extraction artifact not found: {artifact_path}. Please run extraction first, or do not use --resume-from-aspects."
             )
         payload = orjson.loads(artifact_path.read_bytes())
         if not isinstance(payload, dict):
-            raise ValueError(f"评论抽取产物格式无效: {artifact_path}")
+            raise ValueError(f"Invalid review extraction artifact format: {artifact_path}")
         payload["artifact_path"] = str(artifact_path)
         return ReviewExtractionResponse.model_validate(payload)
 

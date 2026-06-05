@@ -99,9 +99,9 @@ class DatasetService:
             max_products=request.max_products,
         )
 
-        progress.start_count_step("normalize", "select", total=1, detail=f"选中 {len(product_directories)} 个目标商品")
+        progress.start_count_step("normalize", "select", total=1, detail=f"Selected {len(product_directories)} target products")
         progress.complete_step("normalize", "select")
-        progress.start_count_step("normalize", "normalize_products", total=len(product_directories), detail="逐个标准化商品包")
+        progress.start_count_step("normalize", "normalize_products", total=len(product_directories), detail="Normalizing product packages")
 
         for directory in product_directories:
             stats.scanned_products += 1
@@ -126,7 +126,7 @@ class DatasetService:
         progress.complete_step("normalize", "normalize_products")
         report_path: str | None = None
         if request.persist_artifacts:
-            progress.start_count_step("normalize", "persist", total=1, detail="写入标准化报告和商品文件")
+            progress.start_count_step("normalize", "persist", total=1, detail="Writing normalization report and product files")
             report_path = str(self._persist_report(stats, warnings))
             progress.complete_step("normalize", "persist", detail=report_path)
 

@@ -31,14 +31,14 @@ class QuestionGenerationService:
         ablation_no_question_planning: bool = False,
     ) -> tuple[list[QuestionIntent], list[RetrievalQuestion], list[str], str]:
         progress = get_workflow_progress()
-        progress.start_count_step("analyze", "questions", total=len(aspects), detail=f"规划 {len(aspects)} 个方面的问题")
+        progress.start_count_step("analyze", "questions", total=len(aspects), detail=f"Planning questions for {len(aspects)} aspects")
 
         cache_signature: QuestionGenerationCacheSignature | None = None
         if not ablation_no_question_planning:
             cache_signature = self._build_cache_signature(aspects=aspects, questions_per_aspect=questions_per_aspect, use_llm=use_llm)
             cached_payload = self.cache_service.load(cache_signature)
             if cached_payload is not None:
-                progress.complete_step("analyze", "questions", detail=f"复用缓存 {len(cached_payload.questions)} 个问题")
+                progress.complete_step("analyze", "questions", detail=f"Reused cached {len(cached_payload.questions)} questions")
                 return (
                     cached_payload.question_intents,
                     cached_payload.questions,

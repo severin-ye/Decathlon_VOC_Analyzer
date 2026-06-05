@@ -857,23 +857,23 @@ class WorkflowProgressReporter:
 
     def _workflow_headline(self, workflow_status: str) -> str:
         if workflow_status == "completed":
-            return "已完成所有流程"
+            return "All stages completed"
         if workflow_status == "failed":
-            return "工作流错误"
-        return "工作流运行中"
+            return "Workflow error"
+        return "Workflow running"
 
     def _workflow_caption(self, workflow_status: str, completed_at_epoch: float | None) -> str:
         started_at = self._format_timestamp_clock(self.started_at_epoch)
         if workflow_status == "completed":
             finished_at = self._format_timestamp_clock(completed_at_epoch)
             if started_at is not None and finished_at is not None:
-                return f"本页面会停留在最终完成状态。开始于 {started_at}，完成于 {finished_at}。"
-            return "本页面会停留在最终完成状态。"
+                return f"This page stays at final state. Started at {started_at}, completed at {finished_at}."
+            return "This page stays at final state."
         if workflow_status == "failed":
-            return "工作流已进入错误状态。请查看对应模块的错误详情。"
+            return "Workflow entered error state. Check the error details of the corresponding module."
         if started_at is not None:
-            return f"页面会持续更新直到完成。当前这次运行开始于 {started_at}。"
-        return "页面会持续更新直到完成。"
+            return f"Page will update until completion. This run started at {started_at}."
+        return "Page will update until completion."
 
     def _module_fraction(self, module: ProgressModuleState) -> float:
         if module.status in {"done", "skipped"}:

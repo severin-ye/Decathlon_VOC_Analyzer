@@ -95,7 +95,7 @@ class ProductAnalysisService:
             category_slug=request.category_slug,
             use_llm=request.use_llm,
         )
-        progress.activate_module("analyze", detail=f"生成 {request.product_id} 的分析报告")
+        progress.activate_module("analyze", detail=f"Generating analysis report for {request.product_id}")
         extraction = self._resolve_extraction(request)
 
         question_intents, questions, question_warnings, question_mode, retrievals, retrieval_quality, corrective_warnings, retrieval_runtime = self._resolve_question_retrieval_state(
@@ -136,19 +136,19 @@ class ProductAnalysisService:
         analysis_mode: AnalysisMode = "llm" if llm_requested and question_mode == "llm" else "heuristic"
 
         if control_report is not None:
-            progress.activate_step("analyze", "report", detail=f"使用 {control} 对照实验报告")
+            progress.activate_step("analyze", "report", detail=f"Using {control} control experiment report")
             analysis_mode = control
             report = control_report
         elif llm_requested:
             try:
-                progress.activate_step("analyze", "report", detail="调用 LLM 生成报告并补全结构")
+                progress.activate_step("analyze", "report", detail="Calling LLM to generate report and complete structure")
                 report = self._build_report_with_llm(package.product_id, package.category_slug, aggregates, retrievals)
             except Exception as exc:
                 analysis_mode = "heuristic"
                 warnings.append(handle_llm_failure("report_generation", exc, self.settings))
                 report = self._build_report_heuristic(package.product_id, package.category_slug, aggregates, retrievals)
         else:
-            progress.activate_step("analyze", "report", detail="使用启发式生成报告并补全结构")
+            progress.activate_step("analyze", "report", detail="Using heuristic to generate report and complete structure")
             report = self._build_report_heuristic(package.product_id, package.category_slug, aggregates, retrievals)
 
         report = self.report_refinement_service.refine(report)
@@ -182,11 +182,11 @@ class ProductAnalysisService:
             warnings.append(replay_warning)
 
         if request.experiment_config.ablation_no_claim_attribution:
-            progress.activate_step("analyze", "attribution", detail="跳过 claim 归因（消融实验）")
+            progress.activate_step("analyze", "attribution", detail="Skipping claim attribution (ablation)")
             report = report.model_copy(update={"claim_attributions": []})
             progress.complete_step("analyze", "attribution")
         else:
-            progress.activate_step("analyze", "attribution", detail="构建证据节点与 claim 归因")
+            progress.activate_step("analyze", "attribution", detail="Building evidence nodes and claim attribution")
             report = self._attach_claim_attribution(report, extraction.aspects, retrievals)
             progress.complete_step("analyze", "attribution")
 
@@ -194,7 +194,7 @@ class ProductAnalysisService:
 
         artifact_bundle: AnalysisArtifactBundle | None = None
         if request.persist_artifact:
-            progress.activate_step("analyze", "persist", detail="写入分析 JSON 和侧边车")
+            progress.activate_step("analyze", "persist", detail="Writing analysis JSON and sidecars")
             artifact_bundle = self._persist_report(package.product_id, package.category_slug, analysis_mode, extraction, question_intents, questions, retrievals, retrieval_quality, retrieval_runtime, aggregates, report, trace, warnings, replay_summary, request)
             progress.complete_step("analyze", "persist", detail=artifact_bundle.analysis_path)
 
@@ -221,12 +221,12 @@ class ProductAnalysisService:
     def _resolve_extraction(self, request: ProductAnalysisRequest) -> ReviewExtractionResponse:
         if request.reuse_extraction_artifact:
             progress = get_workflow_progress()
-            progress.activate_step("analyze", "extract", detail="复用已落盘评论抽取结果")
+            progress.activate_step("analyze", "extract", detail="Reusing persisted review extraction results")
             extraction = self.review_service.load_persisted_result(
                 product_id=request.product_id,
                 category_slug=request.category_slug,
             )
-            progress.complete_step("analyze", "extract", detail=f"复用 {len(extraction.aspects)} 个方面")
+            progress.complete_step("analyze", "extract", detail=f"Reused {len(extraction.aspects)} aspects")
             return extraction
         return self.review_service.extract(
             ReviewExtractionRequest(
@@ -258,12 +258,12 @@ class ProductAnalysisService:
         if request.reuse_analysis_checkpoint:
             checkpoint = self._load_analysis_checkpoint(request=request, extraction=extraction)
         if checkpoint is not None:
-            progress.activate_step("analyze", "questions", detail="复用已落盘问题规划结果")
-            progress.complete_step("analyze", "questions", detail=f"复用 {len(checkpoint.questions)} 个问题")
-            progress.activate_step("analyze", "retrieve", detail="复用已落盘检索结果")
-            progress.complete_step("analyze", "retrieve", detail=f"复用 {len(checkpoint.retrievals)} 组检索")
-            progress.activate_step("analyze", "quality", detail="复用已落盘检索质量评估")
-            progress.complete_step("analyze", "quality", detail=f"复用 {len(checkpoint.retrieval_quality)} 条质量记录")
+            progress.activate_step("analyze", "questions", detail="Reusing persisted question planning results")
+            progress.complete_step("analyze", "questions", detail=f"Reused {len(checkpoint.questions)} questions")
+            progress.activate_step("analyze", "retrieve", detail="Reusing persisted retrieval results")
+            progress.complete_step("analyze", "retrieve", detail=f"Reused {len(checkpoint.retrievals)} retrievals")
+            progress.activate_step("analyze", "quality", detail="Reusing persisted retrieval quality assessment")
+            progress.complete_step("analyze", "quality", detail=f"Reused {len(checkpoint.retrieval_quality)} quality records")
             return (
                 checkpoint.question_intents,
                 checkpoint.questions,
@@ -275,7 +275,7 @@ class ProductAnalysisService:
                 checkpoint.retrieval_runtime,
             )
 
-        progress.activate_step("analyze", "questions", detail="规划并生成检索问题")
+        progress.activate_step("analyze", "questions", detail="Planning and generating retrieval questions")
         question_intents, questions, question_warnings, question_mode = self.question_service.generate_questions(
             aspects=extraction.aspects,
             questions_per_aspect=request.questions_per_aspect,
@@ -292,7 +292,7 @@ class ProductAnalysisService:
             ablation_no_image_route=request.experiment_config.ablation_no_image_route,
             ablation_no_reranking=request.experiment_config.ablation_no_reranking,
         )
-        progress.activate_step("analyze", "quality", detail="评估检索质量并准备纠偏")
+        progress.activate_step("analyze", "quality", detail="Evaluating retrieval quality and preparing correction")
         retrieval_quality = self._assess_retrieval_quality(retrievals)
         progress.complete_step("analyze", "quality")
         questions, retrievals, retrieval_quality, corrective_warnings = self._apply_corrective_retrievals(

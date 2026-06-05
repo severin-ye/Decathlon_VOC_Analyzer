@@ -58,25 +58,25 @@ EXPERIMENT_CONDITIONS: list[tuple[str, ExperimentConfig]] = [
 EXPERIMENT_PROGRESS_PLAN = [
     (
         "index",
-        "构建索引",
+        "Build Index",
         [
-            ("load_packages", "加载商品包"),
-            ("embed_text", "生成文本向量"),
-            ("embed_image", "生成图像向量"),
-            ("persist", "保存索引快照"),
+            ("load_packages", "Load Product Packages"),
+            ("embed_text", "Generate Text Embeddings"),
+            ("embed_image", "Generate Image Embeddings"),
+            ("persist", "Save Index Snapshot"),
         ],
     ),
     (
         "analyze",
-        "生成分析",
+        "Generate Analysis",
         [
-            ("extract", "抽取评论"),
-            ("questions", "规划和生成问题"),
-            ("retrieve", "检索证据"),
-            ("quality", "评估检索质量"),
-            ("report", "生成报告"),
-            ("attribution", "归因和修订"),
-            ("persist", "写入分析产物"),
+            ("extract", "Extract Reviews"),
+            ("questions", "Plan & Generate Questions"),
+            ("retrieve", "Retrieve Evidence"),
+            ("quality", "Evaluate Retrieval Quality"),
+            ("report", "Generate Report"),
+            ("attribution", "Attribution & Revision"),
+            ("persist", "Persist Analysis Artifacts"),
         ],
     ),
 ]
@@ -322,11 +322,11 @@ def run_experiment_matrix(
             )
             with progress:
                 with use_workflow_progress(progress):
-                    progress.note(f"实验运行已启动：{run_id}")
+                    progress.note(f"Experiment run started: {run_id}")
                     response = service.analyze(request)
                     index_module = next((module for module in progress.modules if module.key == "index"), None)
                     if index_module is not None and index_module.status == "pending":
-                        progress.skip_module("index", detail="本 run 未触发索引构建")
+                        progress.skip_module("index", detail="This run did not trigger index building")
             result_summary = {
                 "run_id": run_id,
                 "category": category,
@@ -345,7 +345,7 @@ def run_experiment_matrix(
                 "progress_dashboard_url": progress_dashboard_url,
             }
         except Exception as exc:
-            progress.fail_workflow(detail=f"实验运行失败: {exc}")
+            progress.fail_workflow(detail=f"Experiment run failed: {exc}")
             print(f"[ERROR] {run_id}: {exc}")
             result_summary = {
                 "run_id": run_id,

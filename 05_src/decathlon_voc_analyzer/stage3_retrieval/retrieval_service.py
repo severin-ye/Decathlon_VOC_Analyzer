@@ -34,7 +34,7 @@ class RetrievalService:
             "analyze",
             "retrieve",
             total=total_questions * self._PROGRESS_UNITS_PER_QUESTION,
-            detail=f"准备检索 {total_questions} 个问题",
+            detail=f"Preparing to retrieve {total_questions} questions",
         )
         records: list[RetrievalRecord] = []
         for index, question in enumerate(questions, start=1):
@@ -89,7 +89,7 @@ class RetrievalService:
             r for r in question.expected_evidence_routes
             if not (ablation_no_image_route and r == "image")
         ] or (["text"] if ablation_no_image_route else question.expected_evidence_routes)
-        update("正在执行 search（若索引缺失会按需建索引）")
+        update("Executing search (index will be built on demand if missing)")
         indexed_hits = self.index_service.search(
             product_id=package.product_id,
             category_slug=package.category_slug,
@@ -103,14 +103,14 @@ class RetrievalService:
             expected_routes=effective_routes,
             top_k_per_route=top_k_per_route,
         )
-        advance(f"search 完成，召回候选 {len(indexed_hits)} 条")
+        advance(f"Search complete, {len(indexed_hits)} candidates recalled")
         embedding_scores = {
             hit.evidence_id: self._extract_score(hit)
             for hit in indexed_hits
         }
         if ablation_no_reranking:
             reranked_hits = indexed_hits
-            advance("已跳过 rerank，使用 embedding 排序")
+            advance("Skipped rerank, using embedding sort")
         else:
             reranked_hits = self.reranker_service.rerank(
                 query=query,
@@ -119,7 +119,7 @@ class RetrievalService:
                 progress_callback=advance,
                 progress_status_callback=update,
             )
-        update("正在汇总最终证据")
+        update("Aggregating final evidence")
         selected_hits = self._select_hits_with_route_coverage(
             reranked_hits=reranked_hits,
             expected_routes=effective_routes,
@@ -129,7 +129,7 @@ class RetrievalService:
             self._to_retrieved_evidence(hit, embedding_scores.get(hit.evidence_id, 0.0))
             for hit in selected_hits
         ]
-        advance(f"汇总完成，证据 {len(retrieved)} 条")
+        advance(f"Aggregation complete, {len(retrieved)} evidence items")
 
         return RetrievalRecord(
             retrieval_id=self._make_retrieval_id(question.source_review_id, question.source_aspect, query),

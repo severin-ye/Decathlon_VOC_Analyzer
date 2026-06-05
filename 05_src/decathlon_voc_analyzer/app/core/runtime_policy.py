@@ -21,7 +21,7 @@ class RuntimePolicyError(RuntimeError):
 
     def render(self) -> str:
         return (
-            "[错误] 运行策略阻止了自动降级\n"
+            "[Error] Runtime policy blocked automatic degradation\n"
             f"       component = {self.component}\n"
             f"       problem = {self.problem}\n"
             f"       action = {self.action}"
@@ -38,8 +38,8 @@ def _load_runtime_execution_policy(path_str: str) -> RuntimeExecutionPolicy:
     if not isinstance(payload, dict):
         raise RuntimePolicyError(
             component="runtime_policy",
-            problem=f"运行策略配置文件不是 JSON object: {path}",
-            action=f"将 {path} 修正为 JSON 对象，例如 {{\"allow_degradation\": true, \"full_power\": false}}。",
+            problem=f"Runtime policy config file is not a JSON object: {path}",
+            action=f"Fix {path} to be a JSON object, e.g. {{\"allow_degradation\": true, \"full_power\": false}}.",
         )
     return RuntimeExecutionPolicy.model_validate(payload)
 
@@ -55,8 +55,8 @@ def should_forbid_degradation(policy: RuntimeExecutionPolicy) -> bool:
 
 def _relax_guidance(settings: Settings) -> str:
     return (
-        f"如需允许降级，请修改 {settings.runtime_execution_policy_path}，"
-        "将 full_power 设为 false 或将 allow_degradation 设为 true。"
+        f"To allow degradation, modify {settings.runtime_execution_policy_path}, "
+        "set full_power to false or set allow_degradation to true."
     )
 
 
@@ -65,8 +65,8 @@ def require_full_power_request(component: str, use_llm: bool, settings: Settings
     if policy.full_power and not use_llm:
         raise RuntimePolicyError(
             component=component,
-            problem="full_power=true，但当前请求关闭了 LLM 链路。",
-            action="移除 --no-llm 或将请求中的 use_llm 改为 true。",
+            problem="full_power=true, but current request disabled LLM chain.",
+            action="Remove --no-llm or set use_llm to true in request.",
         )
     return policy
 
@@ -78,26 +78,26 @@ def resolve_llm_permission(component: str, use_llm: bool, settings: Settings) ->
     if settings.qwen_plus_api_key:
         return True, None
 
-    problem = "请求了 LLM 路径，但缺少 QWEN_PLUS_API_KEY / qwen-plus_api，无法调用 qwen-plus。"
+    problem = "LLM path requested but QWEN_PLUS_API_KEY / qwen-plus_api is missing, cannot call qwen-plus."
     action = (
-        "在工作区根目录 .env 或当前环境变量中配置 QWEN_PLUS_API_KEY / qwen-plus_api 后重试。"
+        "Configure QWEN_PLUS_API_KEY / qwen-plus_api in workspace root .env or current environment variables and retry."
         f" {_relax_guidance(settings)}"
     )
     if should_forbid_degradation(policy):
         raise RuntimePolicyError(component=component, problem=problem, action=action)
-    return False, f"{component}: {problem} 已降级为 heuristic。"
+    return False, f"{component}: {problem} degraded to heuristic."
 
 
 def handle_llm_failure(component: str, exc: Exception, settings: Settings) -> str:
     policy = get_runtime_execution_policy(settings)
-    problem = f"LLM 调用失败，当前策略不允许静默回退。原始错误: {exc}"
+    problem = f"LLM call failed, silent degradation not allowed by current policy. Original error: {exc}"
     action = (
-        "检查 API Key、网络连通性、模型服务状态或配额后重试。"
+        "Check API Key, network connectivity, model service status or quota and retry."
         f" {_relax_guidance(settings)}"
     )
     if should_forbid_degradation(policy):
         raise RuntimePolicyError(component=component, problem=problem, action=action) from exc
-    return f"{component}: LLM 调用失败，已降级为 heuristic ({exc})"
+    return f"{component}: LLM call failed, degraded to heuristic ({exc})"
 
 
 def validate_full_power_prerequisites(*, use_llm: bool, retrieval_backend: str, settings: Settings) -> RuntimeExecutionPolicy:
@@ -107,23 +107,23 @@ def validate_full_power_prerequisites(*, use_llm: bool, retrieval_backend: str, 
 
     issues: list[str] = []
     if retrieval_backend != "qdrant":
-        issues.append("retrieval_backend 不是 qdrant")
+        issues.append("retrieval_backend is not qdrant")
     if settings.embedding_backend != "local_qwen3":
-        issues.append(f"embedding_backend={settings.embedding_backend}，严格模式期望 local_qwen3")
+        issues.append(f"embedding_backend={settings.embedding_backend}, strict mode expects local_qwen3")
     if settings.reranker_backend != "local_qwen3":
-        issues.append(f"reranker_backend={settings.reranker_backend}，严格模式期望 local_qwen3")
+        issues.append(f"reranker_backend={settings.reranker_backend}, strict mode expects local_qwen3")
     if settings.multimodal_reranker_backend != "local_qwen3_vl":
         issues.append(
-            f"multimodal_reranker_backend={settings.multimodal_reranker_backend}，严格模式期望 local_qwen3_vl"
+            f"multimodal_reranker_backend={settings.multimodal_reranker_backend}, strict mode expects local_qwen3_vl"
         )
 
     if issues:
         raise RuntimePolicyError(
             component="workflow_preflight",
-            problem="满血版前置条件不满足: " + "; ".join(issues),
+            problem="Full power prerequisites not met: " + "; ".join(issues),
             action=(
-                "补齐上述依赖后重新运行。"
-                f" 当前策略文件: {settings.runtime_execution_policy_path}。"
+                "Fix the above dependencies and retry."
+                f" Current policy file: {settings.runtime_execution_policy_path}."
             ),
         )
     return policy
