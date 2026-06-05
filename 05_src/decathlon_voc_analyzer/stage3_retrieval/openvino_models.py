@@ -65,7 +65,7 @@ class OpenVINOEmbeddingModel:
             pytorch_model = AutoModel.from_pretrained(
                 model_path,
                 trust_remote_code=True,
-                torch_dtype=torch.float32,
+                dtype=torch.float32,
             )
             pytorch_model.eval()
             
@@ -201,7 +201,7 @@ class OpenVINORerankerModel:
             pytorch_model = AutoModel.from_pretrained(
                 model_path,
                 trust_remote_code=True,
-                torch_dtype=torch.float32,
+                dtype=torch.float32,
             )
             pytorch_model.eval()
             

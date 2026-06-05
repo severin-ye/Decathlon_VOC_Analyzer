@@ -71,7 +71,7 @@ class LocalEmbeddingModel:
         self.model = AutoModel.from_pretrained(
             self.model_name,
             trust_remote_code=True,
-            torch_dtype=torch.float32,
+            dtype=torch.float32,
         )
         self.model.to(self.device)
         self.model.eval()
@@ -139,7 +139,7 @@ class LocalRerankerModel:
         self.model = AutoModelForCausalLM.from_pretrained(
             self.model_name,
             trust_remote_code=True,
-            torch_dtype=torch.float32,
+            dtype=torch.float32,
         )
         self.model.to(self.device)
         self.model.eval()
@@ -234,7 +234,7 @@ class LocalMultimodalRerankerModel:
         self.processor = AutoProcessor.from_pretrained(self.model_name, trust_remote_code=True)
         self.model = Qwen3VLForConditionalGeneration.from_pretrained(
             self.model_name,
-            torch_dtype=torch.float32,
+            dtype=torch.float32,
             trust_remote_code=True,
         )
         self.model.to(self.device)
