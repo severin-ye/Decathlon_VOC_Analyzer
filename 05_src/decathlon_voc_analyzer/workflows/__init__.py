@@ -1,3 +1,0 @@
-from decathlon_voc_analyzer.workflows.single_product_workflow import build_single_product_workflow
-
-__all__ = ["build_single_product_workflow"]
