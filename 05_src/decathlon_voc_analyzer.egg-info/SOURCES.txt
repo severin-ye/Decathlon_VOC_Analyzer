@@ -1,4 +1,3 @@
-LICENSE
 README.md
 pyproject.toml
 05_src/decathlon_voc_analyzer/__init__.py
@@ -57,7 +56,4 @@ pyproject.toml
 05_src/decathlon_voc_analyzer/stage4_generation/question_service.py
 05_src/decathlon_voc_analyzer/stage4_generation/report_refinement_service.py
 05_src/decathlon_voc_analyzer/workflows/__init__.py
-05_src/decathlon_voc_analyzer/workflows/control_experiments.py
-05_src/decathlon_voc_analyzer/workflows/experiment_runner.py
-05_src/decathlon_voc_analyzer/workflows/llm_judge_evaluation.py
 05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py

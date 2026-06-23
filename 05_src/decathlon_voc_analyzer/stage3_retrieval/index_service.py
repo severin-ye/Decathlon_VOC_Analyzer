@@ -30,7 +30,7 @@ class IndexService:
         snapshots: list[ProductIndexSnapshot] = []
         stats = IndexBuildStats()
 
-        progress.start_count_step("index", "load_packages", total=len(products), detail=f"Preparing to load {len(products)} product packages")
+        progress.start_count_step("index", "load_packages", total=len(products), detail=f"准备加载 {len(products)} 个商品包")
 
         for directory in products:
             package = self.dataset_service.load_product_package(
@@ -59,7 +59,7 @@ class IndexService:
             stats.indexed_image_regions += image_region_count
 
         progress.complete_step("index", "load_packages")
-        progress.start_count_step("index", "persist", total=1, detail="Saving index snapshot")
+        progress.start_count_step("index", "persist", total=1, detail="保存索引快照")
         index_path = self.backend.save_snapshots(snapshots) if request.persist_artifact else None
         progress.complete_step("index", "persist", detail=index_path or "no index artifact")
         progress.complete_module("index")
@@ -95,8 +95,8 @@ class IndexService:
             if snapshot.product_id == product_id and (category_slug is None or snapshot.category_slug == category_slug):
                 return snapshot
 
-        progress.activate_module("index", detail=f"Building index for {product_id} on demand")
-        progress.start_count_step("index", "load_packages", total=1, detail=f"Loading {product_id} product package")
+        progress.activate_module("index", detail=f"按需为 {product_id} 构建索引")
+        progress.start_count_step("index", "load_packages", total=1, detail=f"加载 {product_id} 商品包")
         package = self.dataset_service.load_product_package(
             product_id=product_id,
             category_slug=category_slug,
@@ -112,10 +112,10 @@ class IndexService:
             evidence=self._build_evidence_for_package(package),
         )
         snapshots.append(snapshot)
-        progress.start_count_step("index", "persist", total=1, detail="Saving index snapshot")
+        progress.start_count_step("index", "persist", total=1, detail="保存索引快照")
         self.backend.save_snapshots(snapshots)
         progress.complete_step("index", "persist", detail=self.backend.index_location())
-        progress.complete_module("index", detail=f"On-demand index complete: {product_id}")
+        progress.complete_module("index", detail=f"按需索引完成: {product_id}")
         return snapshot
 
     def search(
@@ -139,7 +139,7 @@ class IndexService:
     def _build_evidence_for_package(self, package) -> list[IndexedEvidence]:
         progress = get_workflow_progress()
         evidence: list[IndexedEvidence] = []
-        progress.start_count_step("index", "embed_text", total=len(package.text_blocks), detail=f"{package.product_id} text embeddings")
+        progress.start_count_step("index", "embed_text", total=len(package.text_blocks), detail=f"{package.product_id} 文本向量")
         for text_block in package.text_blocks:
             text_content = text_block.content_normalized or text_block.content_original or text_block.content
             evidence.append(
@@ -162,7 +162,7 @@ class IndexService:
         progress.complete_step("index", "embed_text")
 
         total_image_units = len(package.images) + sum(len(image.regions) for image in package.images)
-        progress.start_count_step("index", "embed_image", total=total_image_units, detail=f"{package.product_id} image/region embeddings")
+        progress.start_count_step("index", "embed_image", total=total_image_units, detail=f"{package.product_id} 图像/局部向量")
         for image in package.images:
             proxy_text = " ".join(
                 part for part in [package.product_name, package.category_text, package.model_description, image.variant, image.image_path] if part

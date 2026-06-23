@@ -189,7 +189,7 @@ class OpenVINOOptimizedEmbeddingModel:
             self.model = AutoModel.from_pretrained(
                 model_path,
                 trust_remote_code=True,
-                dtype=torch.float32,
+                torch_dtype=torch.float32,
             )
             
             torch_device = _torch_device_for(self.actual_device)
@@ -303,7 +303,7 @@ class OpenVINOOptimizedRerankerModel:
             self.model = AutoModelForCausalLM.from_pretrained(
                 model_path,
                 trust_remote_code=True,
-                dtype=torch.float32,
+                torch_dtype=torch.float32,
             )
             torch_device = _torch_device_for(self.actual_device)
             self.model.to(torch_device)

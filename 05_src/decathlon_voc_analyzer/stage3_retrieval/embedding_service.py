@@ -34,7 +34,7 @@ class EmbeddingService:
         self.cache_service = RetrievalCacheService()
 
     def embed_text(self, text: str) -> list[float]:
-        # Try local inference first
+        # 优先尝试本地推理
         if self.settings.embedding_backend == "local_qwen3":
             try:
                 return self._local_qwen3_embedding(text)
@@ -42,10 +42,10 @@ class EmbeddingService:
                 self._raise_if_degradation_forbidden(
                     component="text_embedding",
                     exc=exc,
-                    action="Check local Qwen3-Embedding model loading or inference and retry.",
+                    action="检查本地 Qwen3-Embedding 模型加载或推理后重试。",
                 )
                 return self._hashed_embedding(text)
-        # Try API inference next
+        # 其次尝试 API 推理
         if self.settings.embedding_backend == "api" and self.settings.qwen_plus_api_key:
             try:
                 return self._api_embedding(text)
@@ -53,7 +53,7 @@ class EmbeddingService:
                 self._raise_if_degradation_forbidden(
                     component="text_embedding",
                     exc=exc,
-                    action="Check qwen embedding service status, account quota or network and retry.",
+                    action="检查 qwen embedding 服务状态、账户配额或网络后重试。",
                 )
                 return self._hashed_embedding(text)
         return self._hashed_embedding(text)
@@ -74,7 +74,7 @@ class EmbeddingService:
                 self._raise_if_degradation_forbidden(
                     component="image_embedding",
                     exc=exc,
-                    action="Check CLIP model loading, HF access or image file readability and retry.",
+                    action="检查 CLIP 模型加载、HF 访问或图像文件可读性后重试。",
                 )
                 return self.embed_image_proxy_text(text_hint or image_path.name)
         return self.embed_image_proxy_text(text_hint or image_path.name)
@@ -97,7 +97,7 @@ class EmbeddingService:
                 self._raise_if_degradation_forbidden(
                     component="query_embedding",
                     exc=exc,
-                    action="Check CLIP text encoding chain required for image retrieval and retry.",
+                    action="检查图像检索所需的 CLIP 文本编码链路后重试。",
                 )
                 return self._embed_text_query(text=text, route=route, allow_cache=False)
         return self._embed_text_query(text=text, route=route, allow_cache=not force_refresh)
@@ -168,7 +168,7 @@ class EmbeddingService:
             if cached is not None:
                 return cached
 
-        # Try local inference first
+        # 优先尝试本地推理
         if self.settings.embedding_backend == "local_qwen3":
             try:
                 vector = self._local_qwen3_embedding(text)
@@ -176,10 +176,10 @@ class EmbeddingService:
                 self._raise_if_degradation_forbidden(
                     component="query_embedding",
                     exc=exc,
-                    action="Check local Qwen3-Embedding model loading or inference and retry.",
+                    action="检查本地 Qwen3-Embedding 模型加载或推理后重试。",
                 )
                 return self._hashed_embedding(text)
-        # Try API inference next
+        # 其次尝试 API 推理
         elif self.settings.embedding_backend == "api" and self.settings.qwen_plus_api_key:
             try:
                 vector = self._api_embedding(text)
@@ -187,7 +187,7 @@ class EmbeddingService:
                 self._raise_if_degradation_forbidden(
                     component="query_embedding",
                     exc=exc,
-                    action="Check qwen embedding service status, account quota or network and retry.",
+                    action="检查 qwen embedding 服务状态、账户配额或网络后重试。",
                 )
                 return self._hashed_embedding(text)
         else:
@@ -253,7 +253,7 @@ class EmbeddingService:
             return
         raise RuntimePolicyError(
             component=component,
-            problem=f"Embedding chain call failed, silent degradation not allowed by current policy. Original error: {exc}",
+            problem=f"向量链路调用失败，当前策略不允许静默回退。原始错误: {exc}",
             action=action,
         ) from exc
 

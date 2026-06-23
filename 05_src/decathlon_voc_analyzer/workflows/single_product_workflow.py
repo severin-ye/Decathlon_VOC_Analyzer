@@ -37,22 +37,22 @@ def build_single_product_workflow():
 
     def overview_node(state: SingleProductWorkflowState) -> dict[str, DatasetOverview]:
         progress = get_workflow_progress()
-        progress.activate_module("overview", detail="Counting categories, products and reviews")
-        progress.activate_step("overview", "scan", detail="Scanning dataset directory")
+        progress.activate_module("overview", detail="统计类目、商品与评论总量")
+        progress.activate_step("overview", "scan", detail="扫描数据集目录")
         result = dataset_service.build_overview()
         progress.complete_step("overview", "scan")
-        progress.activate_step("overview", "summarize", detail="Summarizing overview")
+        progress.activate_step("overview", "summarize", detail="汇总概览信息")
         progress.complete_step("overview", "summarize")
         progress.complete_module("overview")
         return {"overview": result}
 
     def normalize_node(state: SingleProductWorkflowState) -> dict[str, DatasetNormalizationResult | None]:
         progress = get_workflow_progress()
-        progress.activate_module("normalize", detail=f"Normalizing product package for {state['product_id']}")
+        progress.activate_module("normalize", detail=f"标准化 {state['product_id']} 所在商品包")
         if state.get("skip_normalize"):
-            progress.skip_module("normalize", detail="Normalization stage skipped")
+            progress.skip_module("normalize", detail="已跳过标准化阶段")
             return {"normalization": None}
-        progress.activate_step("normalize", "select", detail="Selecting target product directory")
+        progress.activate_step("normalize", "select", detail="选择目标商品目录")
         result = dataset_service.normalize_dataset(
             DatasetNormalizeRequest(
                 categories=[state["category"]],
@@ -67,11 +67,11 @@ def build_single_product_workflow():
 
     def index_node(state: SingleProductWorkflowState) -> dict[str, IndexBuildResponse | None]:
         progress = get_workflow_progress()
-        progress.activate_module("index", detail=f"Building evidence index for {state['product_id']}")
+        progress.activate_module("index", detail=f"为 {state['product_id']} 构建证据索引")
         if state.get("skip_index"):
-            progress.skip_module("index", detail="Index stage skipped")
+            progress.skip_module("index", detail="已跳过索引阶段")
             return {"index_result": None}
-        progress.activate_step("index", "load_packages", detail="Loading product packages and organizing evidence")
+        progress.activate_step("index", "load_packages", detail="加载商品包并整理证据")
         result = index_service.build_index(
             IndexBuildRequest(
                 categories=[state["category"]],
@@ -86,8 +86,8 @@ def build_single_product_workflow():
 
     def analyze_node(state: SingleProductWorkflowState) -> dict[str, ProductAnalysisResponse]:
         progress = get_workflow_progress()
-        progress.activate_module("analyze", detail=f"Generating analysis report for {state['product_id']}")
-        progress.activate_step("analyze", "extract", detail="Extracting reviews and aspects")
+        progress.activate_module("analyze", detail=f"生成 {state['product_id']} 的分析报告")
+        progress.activate_step("analyze", "extract", detail="抽取评论与方面")
         result = analysis_service.analyze(
             ProductAnalysisRequest(
                 product_id=state["product_id"],

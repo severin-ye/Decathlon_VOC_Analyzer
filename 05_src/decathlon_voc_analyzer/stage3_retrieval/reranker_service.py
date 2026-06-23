@@ -36,35 +36,35 @@ class RerankerService:
     ) -> list[IndexedEvidence]:
         if not candidates:
             if progress_status_callback is not None:
-                progress_status_callback("No rerankable candidates for current question")
+                progress_status_callback("当前问题没有可重排候选")
             if progress_callback is not None:
-                progress_callback("Text rerank complete: no candidates")
-                progress_callback("Image rerank complete: no candidates")
+                progress_callback("文本重排完成: 无候选")
+                progress_callback("图像重排完成: 无候选")
             return []
         text_candidates = [candidate for candidate in candidates if candidate.route == "text"]
         image_candidates = [candidate for candidate in candidates if candidate.route == "image"]
 
         reranked: list[IndexedEvidence] = []
         if progress_status_callback is not None:
-            progress_status_callback("Checking text candidates")
+            progress_status_callback("正在检查文本候选")
         if text_candidates:
             if progress_status_callback is not None:
-                progress_status_callback(f"Reranking text ({len(text_candidates)} candidates)")
+                progress_status_callback(f"正在进行文本重排（{len(text_candidates)} 条候选）")
             reranked.extend(self._rerank_text_candidates(query, text_candidates, use_llm))
             if progress_callback is not None:
-                progress_callback(f"Text rerank complete: {len(text_candidates)} candidates")
+                progress_callback(f"文本重排完成: {len(text_candidates)} 条候选")
         elif progress_callback is not None:
-            progress_callback("Text rerank complete: no candidates")
+            progress_callback("文本重排完成: 无候选")
         if progress_status_callback is not None:
-            progress_status_callback("Checking image candidates")
+            progress_status_callback("正在检查图像候选")
         if image_candidates:
             if progress_status_callback is not None:
-                progress_status_callback(f"Reranking image ({len(image_candidates)} candidates)")
+                progress_status_callback(f"正在进行图像重排（{len(image_candidates)} 条候选）")
             reranked.extend(self._rerank_image_candidates(query, image_candidates, use_llm))
             if progress_callback is not None:
-                progress_callback(f"Image rerank complete: {len(image_candidates)} candidates")
+                progress_callback(f"图像重排完成: {len(image_candidates)} 条候选")
         elif progress_callback is not None:
-            progress_callback("Image rerank complete: no candidates")
+            progress_callback("图像重排完成: 无候选")
         return sorted(reranked, key=lambda item: item.score or 0.0, reverse=True)
 
     def _rerank_text_candidates(self, query: str, candidates: list[IndexedEvidence], use_llm: bool) -> list[IndexedEvidence]:
@@ -83,7 +83,7 @@ class RerankerService:
                 self._raise_if_degradation_forbidden(
                     component="text_rerank",
                     exc=exc,
-                    action="Check local Qwen3-Reranker model loading or inference and retry.",
+                    action="检查本地 Qwen3-Reranker 模型加载或推理后重试。",
                 )
                 return self._rerank_with_cache(
                     query=query,
@@ -108,7 +108,7 @@ class RerankerService:
                 self._raise_if_degradation_forbidden(
                     component="text_rerank",
                     exc=exc,
-                    action="Check text reranker service status, account quota or network and retry.",
+                    action="检查文本 reranker 服务状态、账户配额或网络后重试。",
                 )
                 return self._rerank_with_cache(
                     query=query,
@@ -128,7 +128,7 @@ class RerankerService:
         )
 
     def _rerank_image_candidates(self, query: str, candidates: list[IndexedEvidence], use_llm: bool) -> list[IndexedEvidence]:
-        # Try local multimodal inference first
+        # 优先尝试本地多模态推理
         if use_llm and self.settings.multimodal_reranker_backend == "local_qwen3_vl":
             try:
                 return self._rerank_with_cache(
@@ -143,9 +143,9 @@ class RerankerService:
                 self._raise_if_degradation_forbidden(
                     component="image_rerank",
                     exc=exc,
-                    action="Check local Qwen3-VL-2B model loading or inference and retry.",
+                    action="检查本地 Qwen3-VL-2B 模型加载或推理后重试。",
                 )
-        # Try API VL inference next
+        # 其次尝试 API VL 推理
         if use_llm and self.settings.multimodal_reranker_backend in {"api", "qwen_vl"} and self.settings.qwen_plus_api_key:
             try:
                 return self._rerank_with_cache(
@@ -160,9 +160,9 @@ class RerankerService:
                 self._raise_if_degradation_forbidden(
                     component="image_rerank",
                     exc=exc,
-                    action="Check multimodal reranker service status, account quota or network and retry.",
+                    action="检查多模态 reranker 服务状态、账户配额或网络后重试。",
                 )
-        # Third option: try text API inference
+        # 第三选项：尝试文本 API 推理
         if use_llm and self.settings.reranker_backend == "api" and self.settings.qwen_plus_api_key:
             try:
                 return self._rerank_with_cache(
@@ -177,7 +177,7 @@ class RerankerService:
                 self._raise_if_degradation_forbidden(
                     component="image_rerank",
                     exc=exc,
-                    action="Check text reranker service status, account quota or network and retry.",
+                    action="检查文本 reranker 服务状态、账户配额或网络后重试。",
                 )
                 return self._rerank_with_cache(
                     query=query,
@@ -225,7 +225,7 @@ class RerankerService:
             return
         raise RuntimePolicyError(
             component=component,
-            problem=f"Reranker chain call failed, silent degradation not allowed by current policy. Original error: {exc}",
+            problem=f"重排链路调用失败，当前策略不允许静默回退。原始错误: {exc}",
             action=action,
         ) from exc
 
