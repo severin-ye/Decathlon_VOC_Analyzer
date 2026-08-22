@@ -1,0 +1,2183 @@
+{
+  "nodes": [
+    {
+      "id": "file:06_tests/test_index_service.py",
+      "type": "file",
+      "name": "test_index_service.py",
+      "summary": "Python模块: 定义 4 个函数",
+      "tags": [
+        "testing"
+      ],
+      "filePath": "06_tests/test_index_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_index_service.py:test_index_service_builds_local_index",
+      "type": "function",
+      "name": "test_index_service_builds_local_index",
+      "summary": "构建函数: test_index_service_builds_local_index",
+      "tags": [
+        "factory"
+      ],
+      "filePath": "06_tests/test_index_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_index_service.py:test_index_service_builds_region_level_image_evidence",
+      "type": "function",
+      "name": "test_index_service_builds_region_level_image_evidence",
+      "summary": "构建函数: test_index_service_builds_region_level_image_evidence",
+      "tags": [
+        "factory"
+      ],
+      "filePath": "06_tests/test_index_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_index_service.py:test_index_service_search_returns_hits",
+      "type": "function",
+      "name": "test_index_service_search_returns_hits",
+      "summary": "搜索/发现函数: test_index_service_search_returns_hits",
+      "tags": [
+        "search"
+      ],
+      "filePath": "06_tests/test_index_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_index_service.py:test_index_service_preserves_original_language_metadata",
+      "type": "function",
+      "name": "test_index_service_preserves_original_language_metadata",
+      "summary": "函数: test_index_service_preserves_original_language_metadata",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_index_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:06_tests/test_launch_interactive_workflow.py",
+      "type": "file",
+      "name": "test_launch_interactive_workflow.py",
+      "summary": "Python模块: 定义 18 个函数",
+      "tags": [
+        "workflow",
+        "testing"
+      ],
+      "filePath": "06_tests/test_launch_interactive_workflow.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_launch_interactive_workflow.py:test_parse_index_selection_supports_ranges_and_commas",
+      "type": "function",
+      "name": "test_parse_index_selection_supports_ranges_and_commas",
+      "summary": "函数: test_parse_index_selection_supports_ranges_and_commas",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_launch_interactive_workflow.py:test_parse_index_selection_rejects_out_of_range",
+      "type": "function",
+      "name": "test_parse_index_selection_rejects_out_of_range",
+      "summary": "函数: test_parse_index_selection_rejects_out_of_range",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_launch_interactive_workflow.py:test_prompt_categories_supports_multi_select",
+      "type": "function",
+      "name": "test_prompt_categories_supports_multi_select",
+      "summary": "展示/渲染函数: test_prompt_categories_supports_multi_select",
+      "tags": [
+        "ui",
+        "display"
+      ],
+      "filePath": "06_tests/test_launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_launch_interactive_workflow.py:test_write_batch_dashboard_creates_three_level_pages",
+      "type": "function",
+      "name": "test_write_batch_dashboard_creates_three_level_pages",
+      "summary": "构建函数: test_write_batch_dashboard_creates_three_level_pages",
+      "tags": [
+        "factory"
+      ],
+      "filePath": "06_tests/test_launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_launch_interactive_workflow.py:test_build_vscode_simple_browser_uri_targets_internal_browser",
+      "type": "function",
+      "name": "test_build_vscode_simple_browser_uri_targets_internal_browser",
+      "summary": "构建函数: test_build_vscode_simple_browser_uri_targets_internal_browser",
+      "tags": [
+        "factory"
+      ],
+      "filePath": "06_tests/test_launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_launch_interactive_workflow.py:test_prompt_run_mode_returns_resume_checkpoint_choice",
+      "type": "function",
+      "name": "test_prompt_run_mode_returns_resume_checkpoint_choice",
+      "summary": "验证函数: test_prompt_run_mode_returns_resume_checkpoint_choice",
+      "tags": [
+        "validation"
+      ],
+      "filePath": "06_tests/test_launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_launch_interactive_workflow.py:test_prompt_run_mode_defaults_to_resume_when_enter_is_pressed",
+      "type": "function",
+      "name": "test_prompt_run_mode_defaults_to_resume_when_enter_is_pressed",
+      "summary": "展示/渲染函数: test_prompt_run_mode_defaults_to_resume_when_enter_is_pressed",
+      "tags": [
+        "ui",
+        "display"
+      ],
+      "filePath": "06_tests/test_launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_launch_interactive_workflow.py:test_run_mode_args_include_resume_flags",
+      "type": "function",
+      "name": "test_run_mode_args_include_resume_flags",
+      "summary": "执行函数: test_run_mode_args_include_resume_flags",
+      "tags": [
+        "execution"
+      ],
+      "filePath": "06_tests/test_launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_launch_interactive_workflow.py:test_available_run_mode_options_hide_missing_analysis_checkpoint",
+      "type": "function",
+      "name": "test_available_run_mode_options_hide_missing_analysis_checkpoint",
+      "summary": "验证函数: test_available_run_mode_options_hide_missing_analysis_checkpoint",
+      "tags": [
+        "validation"
+      ],
+      "filePath": "06_tests/test_launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_launch_interactive_workflow.py:test_available_run_mode_options_prioritize_resume_modes",
+      "type": "function",
+      "name": "test_available_run_mode_options_prioritize_resume_modes",
+      "summary": "执行函数: test_available_run_mode_options_prioritize_resume_modes",
+      "tags": [
+        "execution"
+      ],
+      "filePath": "06_tests/test_launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_launch_interactive_workflow.py:test_unavailable_resume_mode_messages_report_missing_checkpoint",
+      "type": "function",
+      "name": "test_unavailable_resume_mode_messages_report_missing_checkpoint",
+      "summary": "验证函数: test_unavailable_resume_mode_messages_report_missing_checkpoint",
+      "tags": [
+        "validation"
+      ],
+      "filePath": "06_tests/test_launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_launch_interactive_workflow.py:test_find_latest_resumable_batch_prefers_recent_session_state",
+      "type": "function",
+      "name": "test_find_latest_resumable_batch_prefers_recent_session_state",
+      "summary": "搜索/发现函数: test_find_latest_resumable_batch_prefers_recent_session_state",
+      "tags": [
+        "search"
+      ],
+      "filePath": "06_tests/test_launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_launch_interactive_workflow.py:test_prompt_continue_previous_batch_accepts_yes",
+      "type": "function",
+      "name": "test_prompt_continue_previous_batch_accepts_yes",
+      "summary": "展示/渲染函数: test_prompt_continue_previous_batch_accepts_yes",
+      "tags": [
+        "ui",
+        "display"
+      ],
+      "filePath": "06_tests/test_launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_launch_interactive_workflow.py:test_prompt_for_qdrant_conflict_resolution_accepts_takeover_choice",
+      "type": "function",
+      "name": "test_prompt_for_qdrant_conflict_resolution_accepts_takeover_choice",
+      "summary": "展示/渲染函数: test_prompt_for_qdrant_conflict_resolution_accepts_takeover_choice",
+      "tags": [
+        "ui",
+        "display"
+      ],
+      "filePath": "06_tests/test_launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_launch_interactive_workflow.py:test_run_product_workflow_stops_when_user_cancels",
+      "type": "function",
+      "name": "test_run_product_workflow_stops_when_user_cancels",
+      "summary": "执行函数: test_run_product_workflow_stops_when_user_cancels",
+      "tags": [
+        "execution"
+      ],
+      "filePath": "06_tests/test_launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_launch_interactive_workflow.py:test_run_product_workflow_passes_resume_aspects_flags",
+      "type": "function",
+      "name": "test_run_product_workflow_passes_resume_aspects_flags",
+      "summary": "执行函数: test_run_product_workflow_passes_resume_aspects_flags",
+      "tags": [
+        "execution"
+      ],
+      "filePath": "06_tests/test_launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_launch_interactive_workflow.py:test_restore_batch_state_supports_multi_category_payload",
+      "type": "function",
+      "name": "test_restore_batch_state_supports_multi_category_payload",
+      "summary": "获取/加载函数: test_restore_batch_state_supports_multi_category_payload",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "06_tests/test_launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:06_tests/test_manifest_evaluation_service.py",
+      "type": "file",
+      "name": "test_manifest_evaluation_service.py",
+      "summary": "Python模块: 定义 3 个函数",
+      "tags": [
+        "testing"
+      ],
+      "filePath": "06_tests/test_manifest_evaluation_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_manifest_evaluation_service.py:test_manifest_evaluation_service_aggregates_run_metrics",
+      "type": "function",
+      "name": "test_manifest_evaluation_service_aggregates_run_metrics",
+      "summary": "执行函数: test_manifest_evaluation_service_aggregates_run_metrics",
+      "tags": [
+        "execution"
+      ],
+      "filePath": "06_tests/test_manifest_evaluation_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_manifest_evaluation_service.py:test_manifest_evaluation_service_marks_missing_sidecars",
+      "type": "function",
+      "name": "test_manifest_evaluation_service_marks_missing_sidecars",
+      "summary": "函数: test_manifest_evaluation_service_marks_missing_sidecars",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_manifest_evaluation_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:06_tests/test_paper_arxiv_submission.py",
+      "type": "file",
+      "name": "test_paper_arxiv_submission.py",
+      "summary": "% ===== 基本宏包：尽量保持简单 =====",
+      "tags": [
+        "testing"
+      ],
+      "filePath": "06_tests/test_paper_arxiv_submission.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_paper_arxiv_submission.py:test_build_arxiv_submission_package_rewrites_paths_and_generates_metadata",
+      "type": "function",
+      "name": "test_build_arxiv_submission_package_rewrites_paths_and_generates_metadata",
+      "summary": "构建函数: test_build_arxiv_submission_package_rewrites_paths_and_generates_metadata",
+      "tags": [
+        "factory"
+      ],
+      "filePath": "06_tests/test_paper_arxiv_submission.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:06_tests/test_paper_latex_export.py",
+      "type": "file",
+      "name": "test_paper_latex_export.py",
+      "summary": "Python模块: 定义 1 个函数",
+      "tags": [
+        "testing"
+      ],
+      "filePath": "06_tests/test_paper_latex_export.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_paper_latex_export.py:test_build_document_uses_twocolumn_and_avoids_longtable_for_tables",
+      "type": "function",
+      "name": "test_build_document_uses_twocolumn_and_avoids_longtable_for_tables",
+      "summary": "构建函数: test_build_document_uses_twocolumn_and_avoids_longtable_for_tables",
+      "tags": [
+        "factory"
+      ],
+      "filePath": "06_tests/test_paper_latex_export.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:06_tests/test_prompt_registry.py",
+      "type": "file",
+      "name": "test_prompt_registry.py",
+      "summary": "Python模块: 定义 3 个函数",
+      "tags": [
+        "testing"
+      ],
+      "filePath": "06_tests/test_prompt_registry.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_prompt_registry.py:test_prompt_registry_contains_main_review_prompt",
+      "type": "function",
+      "name": "test_prompt_registry_contains_main_review_prompt",
+      "summary": "展示/渲染函数: test_prompt_registry_contains_main_review_prompt",
+      "tags": [
+        "ui",
+        "display"
+      ],
+      "filePath": "06_tests/test_prompt_registry.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_prompt_registry.py:test_prompt_registry_contains_cn_review_prompt",
+      "type": "function",
+      "name": "test_prompt_registry_contains_cn_review_prompt",
+      "summary": "展示/渲染函数: test_prompt_registry_contains_cn_review_prompt",
+      "tags": [
+        "ui",
+        "display"
+      ],
+      "filePath": "06_tests/test_prompt_registry.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_prompt_registry.py:test_prompt_builders_embed_payload",
+      "type": "function",
+      "name": "test_prompt_builders_embed_payload",
+      "summary": "构建函数: test_prompt_builders_embed_payload",
+      "tags": [
+        "factory"
+      ],
+      "filePath": "06_tests/test_prompt_registry.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:06_tests/test_question_service.py",
+      "type": "file",
+      "name": "test_question_service.py",
+      "summary": "Python模块: 定义 28 个函数",
+      "tags": [
+        "testing"
+      ],
+      "filePath": "06_tests/test_question_service.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_question_service.py:test_question_prompt_template_formats_payload",
+      "type": "function",
+      "name": "test_question_prompt_template_formats_payload",
+      "summary": "获取/加载函数: test_question_prompt_template_formats_payload",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "06_tests/test_question_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_question_service.py:test_question_service_uses_gateway_payload",
+      "type": "function",
+      "name": "test_question_service_uses_gateway_payload",
+      "summary": "获取/加载函数: test_question_service_uses_gateway_payload",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "06_tests/test_question_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_question_service.py:fake_invoke_json",
+      "type": "function",
+      "name": "fake_invoke_json",
+      "summary": "函数: fake_invoke_json",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_question_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_question_service.py:test_question_service_normalizes_prompt_variant_alias_for_heuristic",
+      "type": "function",
+      "name": "test_question_service_normalizes_prompt_variant_alias_for_heuristic",
+      "summary": "展示/渲染函数: test_question_service_normalizes_prompt_variant_alias_for_heuristic",
+      "tags": [
+        "ui",
+        "display"
+      ],
+      "filePath": "06_tests/test_question_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_question_service.py:test_question_service_rewrites_unrealistic_durability_question",
+      "type": "function",
+      "name": "test_question_service_rewrites_unrealistic_durability_question",
+      "summary": "输出/保存函数: test_question_service_rewrites_unrealistic_durability_question",
+      "tags": [
+        "output",
+        "io"
+      ],
+      "filePath": "06_tests/test_question_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_question_service.py:fake_invoke_json",
+      "type": "function",
+      "name": "fake_invoke_json",
+      "summary": "函数: fake_invoke_json",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_question_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_question_service.py:test_question_service_rewrites_unrealistic_optical_question",
+      "type": "function",
+      "name": "test_question_service_rewrites_unrealistic_optical_question",
+      "summary": "输出/保存函数: test_question_service_rewrites_unrealistic_optical_question",
+      "tags": [
+        "output",
+        "io"
+      ],
+      "filePath": "06_tests/test_question_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_question_service.py:fake_invoke_json",
+      "type": "function",
+      "name": "fake_invoke_json",
+      "summary": "函数: fake_invoke_json",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_question_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_question_service.py:test_question_service_rewrites_overly_technical_optical_question",
+      "type": "function",
+      "name": "test_question_service_rewrites_overly_technical_optical_question",
+      "summary": "输出/保存函数: test_question_service_rewrites_overly_technical_optical_question",
+      "tags": [
+        "output",
+        "io"
+      ],
+      "filePath": "06_tests/test_question_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_question_service.py:fake_invoke_json",
+      "type": "function",
+      "name": "fake_invoke_json",
+      "summary": "函数: fake_invoke_json",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_question_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_question_service.py:test_question_service_deduplicates_normalized_questions",
+      "type": "function",
+      "name": "test_question_service_deduplicates_normalized_questions",
+      "summary": "函数: test_question_service_deduplicates_normalized_questions",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_question_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_question_service.py:fake_invoke_json",
+      "type": "function",
+      "name": "fake_invoke_json",
+      "summary": "函数: fake_invoke_json",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_question_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_question_service.py:test_question_service_rewrites_unrealistic_comfort_question",
+      "type": "function",
+      "name": "test_question_service_rewrites_unrealistic_comfort_question",
+      "summary": "输出/保存函数: test_question_service_rewrites_unrealistic_comfort_question",
+      "tags": [
+        "output",
+        "io"
+      ],
+      "filePath": "06_tests/test_question_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_question_service.py:fake_invoke_json",
+      "type": "function",
+      "name": "fake_invoke_json",
+      "summary": "函数: fake_invoke_json",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_question_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_question_service.py:test_question_service_rewrites_memory_foam_style_comfort_question",
+      "type": "function",
+      "name": "test_question_service_rewrites_memory_foam_style_comfort_question",
+      "summary": "输出/保存函数: test_question_service_rewrites_memory_foam_style_comfort_question",
+      "tags": [
+        "output",
+        "io"
+      ],
+      "filePath": "06_tests/test_question_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_question_service.py:fake_invoke_json",
+      "type": "function",
+      "name": "fake_invoke_json",
+      "summary": "函数: fake_invoke_json",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_question_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_question_service.py:test_question_service_raises_when_policy_forbids_llm_fallback",
+      "type": "function",
+      "name": "test_question_service_raises_when_policy_forbids_llm_fallback",
+      "summary": "函数: test_question_service_raises_when_policy_forbids_llm_fallback",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_question_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_question_service.py:fake_invoke_json",
+      "type": "function",
+      "name": "fake_invoke_json",
+      "summary": "函数: fake_invoke_json",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_question_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_question_service.py:test_question_service_rewrites_convex_geometry_optical_question",
+      "type": "function",
+      "name": "test_question_service_rewrites_convex_geometry_optical_question",
+      "summary": "输出/保存函数: test_question_service_rewrites_convex_geometry_optical_question",
+      "tags": [
+        "output",
+        "io"
+      ],
+      "filePath": "06_tests/test_question_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_question_service.py:fake_invoke_json",
+      "type": "function",
+      "name": "fake_invoke_json",
+      "summary": "函数: fake_invoke_json",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_question_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_question_service.py:test_question_service_rewrites_seam_style_rubber_insert_question",
+      "type": "function",
+      "name": "test_question_service_rewrites_seam_style_rubber_insert_question",
+      "summary": "输出/保存函数: test_question_service_rewrites_seam_style_rubber_insert_question",
+      "tags": [
+        "output",
+        "io"
+      ],
+      "filePath": "06_tests/test_question_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_question_service.py:fake_invoke_json",
+      "type": "function",
+      "name": "fake_invoke_json",
+      "summary": "函数: fake_invoke_json",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_question_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_question_service.py:test_question_service_plans_question_intents_with_constraints",
+      "type": "function",
+      "name": "test_question_service_plans_question_intents_with_constraints",
+      "summary": "函数: test_question_service_plans_question_intents_with_constraints",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_question_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_question_service.py:test_question_service_uses_persistent_cache_on_second_run",
+      "type": "function",
+      "name": "test_question_service_uses_persistent_cache_on_second_run",
+      "summary": "执行函数: test_question_service_uses_persistent_cache_on_second_run",
+      "tags": [
+        "execution"
+      ],
+      "filePath": "06_tests/test_question_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_question_service.py:test_question_service_no_qp_ablation_bypasses_persistent_cache",
+      "type": "function",
+      "name": "test_question_service_no_qp_ablation_bypasses_persistent_cache",
+      "summary": "输出/保存函数: test_question_service_no_qp_ablation_bypasses_persistent_cache",
+      "tags": [
+        "output",
+        "io"
+      ],
+      "filePath": "06_tests/test_question_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:06_tests/test_retrieval_service.py",
+      "type": "file",
+      "name": "test_retrieval_service.py",
+      "summary": "Python模块: 定义 1 个类, 10 个函数",
+      "tags": [
+        "pipeline-stage3",
+        "retrieval",
+        "testing"
+      ],
+      "filePath": "06_tests/test_retrieval_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "class:06_tests/test_retrieval_service.py:FakeProgress",
+      "type": "class",
+      "name": "FakeProgress",
+      "summary": "FakeProgress类",
+      "tags": [
+        "monitoring"
+      ],
+      "filePath": "06_tests/test_retrieval_service.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_retrieval_service.py:test_retrieval_service_preserves_route_coverage_for_multiroute_questions",
+      "type": "function",
+      "name": "test_retrieval_service_preserves_route_coverage_for_multiroute_questions",
+      "summary": "函数: test_retrieval_service_preserves_route_coverage_for_multiroute_questions",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_retrieval_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_retrieval_service.py:test_retrieval_service_preserves_region_metadata",
+      "type": "function",
+      "name": "test_retrieval_service_preserves_region_metadata",
+      "summary": "函数: test_retrieval_service_preserves_region_metadata",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_retrieval_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_retrieval_service.py:test_retrieval_service_balances_languages_within_same_route",
+      "type": "function",
+      "name": "test_retrieval_service_balances_languages_within_same_route",
+      "summary": "函数: test_retrieval_service_balances_languages_within_same_route",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_retrieval_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_retrieval_service.py:test_retrieval_service_updates_current_activity_before_advancing",
+      "type": "function",
+      "name": "test_retrieval_service_updates_current_activity_before_advancing",
+      "summary": "函数: test_retrieval_service_updates_current_activity_before_advancing",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_retrieval_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_retrieval_service.py:start_count_step",
+      "type": "function",
+      "name": "start_count_step",
+      "summary": "执行函数: start_count_step",
+      "tags": [
+        "execution"
+      ],
+      "filePath": "06_tests/test_retrieval_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_retrieval_service.py:update_step",
+      "type": "function",
+      "name": "update_step",
+      "summary": "函数: update_step",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_retrieval_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_retrieval_service.py:advance_step",
+      "type": "function",
+      "name": "advance_step",
+      "summary": "函数: advance_step",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_retrieval_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_retrieval_service.py:complete_step",
+      "type": "function",
+      "name": "complete_step",
+      "summary": "函数: complete_step",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_retrieval_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_retrieval_service.py:fake_rerank",
+      "type": "function",
+      "name": "fake_rerank",
+      "summary": "函数: fake_rerank",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_retrieval_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:06_tests/test_review_api.py",
+      "type": "file",
+      "name": "test_review_api.py",
+      "summary": "Python模块: 定义 3 个函数",
+      "tags": [
+        "testing"
+      ],
+      "filePath": "06_tests/test_review_api.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_review_api.py:test_reviews_extract_from_inline_reviews",
+      "type": "function",
+      "name": "test_reviews_extract_from_inline_reviews",
+      "summary": "数据处理函数: test_reviews_extract_from_inline_reviews",
+      "tags": [
+        "processing"
+      ],
+      "filePath": "06_tests/test_review_api.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_review_api.py:test_reviews_extract_returns_sampling_plan",
+      "type": "function",
+      "name": "test_reviews_extract_returns_sampling_plan",
+      "summary": "数据处理函数: test_reviews_extract_returns_sampling_plan",
+      "tags": [
+        "processing"
+      ],
+      "filePath": "06_tests/test_review_api.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_review_api.py:test_reviews_extract_from_dataset_product",
+      "type": "function",
+      "name": "test_reviews_extract_from_dataset_product",
+      "summary": "数据处理函数: test_reviews_extract_from_dataset_product",
+      "tags": [
+        "processing"
+      ],
+      "filePath": "06_tests/test_review_api.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:06_tests/test_review_service.py",
+      "type": "file",
+      "name": "test_review_service.py",
+      "summary": "Python模块: 定义 11 个函数",
+      "tags": [
+        "testing"
+      ],
+      "filePath": "06_tests/test_review_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_review_service.py:test_review_service_marks_low_signal_reviews_as_skipped",
+      "type": "function",
+      "name": "test_review_service_marks_low_signal_reviews_as_skipped",
+      "summary": "函数: test_review_service_marks_low_signal_reviews_as_skipped",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_review_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_review_service.py:test_review_service_can_extract_from_dataset_package",
+      "type": "function",
+      "name": "test_review_service_can_extract_from_dataset_package",
+      "summary": "数据处理函数: test_review_service_can_extract_from_dataset_package",
+      "tags": [
+        "processing"
+      ],
+      "filePath": "06_tests/test_review_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_review_service.py:test_review_service_applies_default_rating_sampling_plan",
+      "type": "function",
+      "name": "test_review_service_applies_default_rating_sampling_plan",
+      "summary": "函数: test_review_service_applies_default_rating_sampling_plan",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_review_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_review_service.py:test_review_service_redistributes_shortfall_to_next_lower_priority_bucket",
+      "type": "function",
+      "name": "test_review_service_redistributes_shortfall_to_next_lower_priority_bucket",
+      "summary": "函数: test_review_service_redistributes_shortfall_to_next_lower_priority_bucket",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_review_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_review_service.py:test_review_service_cascades_shortfall_across_multiple_priority_buckets",
+      "type": "function",
+      "name": "test_review_service_cascades_shortfall_across_multiple_priority_buckets",
+      "summary": "函数: test_review_service_cascades_shortfall_across_multiple_priority_buckets",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_review_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_review_service.py:test_review_service_uses_active_profile_from_config_file",
+      "type": "function",
+      "name": "test_review_service_uses_active_profile_from_config_file",
+      "summary": "配置/初始化函数: test_review_service_uses_active_profile_from_config_file",
+      "tags": [
+        "configuration",
+        "cli"
+      ],
+      "filePath": "06_tests/test_review_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_review_service.py:test_review_service_samples_from_full_review_pool_before_rating_balancing",
+      "type": "function",
+      "name": "test_review_service_samples_from_full_review_pool_before_rating_balancing",
+      "summary": "函数: test_review_service_samples_from_full_review_pool_before_rating_balancing",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_review_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_review_service.py:test_review_service_preserves_original_multilingual_reviews",
+      "type": "function",
+      "name": "test_review_service_preserves_original_multilingual_reviews",
+      "summary": "函数: test_review_service_preserves_original_multilingual_reviews",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_review_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_review_service.py:test_review_service_normalizes_mixed_overall_experience_from_contrastive_review",
+      "type": "function",
+      "name": "test_review_service_normalizes_mixed_overall_experience_from_contrastive_review",
+      "summary": "函数: test_review_service_normalizes_mixed_overall_experience_from_contrastive_review",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_review_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_review_service.py:test_review_service_keeps_mixed_overall_experience_but_upgrades_opinion_text",
+      "type": "function",
+      "name": "test_review_service_keeps_mixed_overall_experience_but_upgrades_opinion_text",
+      "summary": "函数: test_review_service_keeps_mixed_overall_experience_but_upgrades_opinion_text",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_review_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:06_tests/test_run_workflow_script.py",
+      "type": "file",
+      "name": "test_run_workflow_script.py",
+      "summary": "Python模块: 定义 11 个函数",
+      "tags": [
+        "workflow",
+        "testing"
+      ],
+      "filePath": "06_tests/test_run_workflow_script.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_run_workflow_script.py:test_preprocess_review_flag_alias",
+      "type": "function",
+      "name": "test_preprocess_review_flag_alias",
+      "summary": "数据处理函数: test_preprocess_review_flag_alias",
+      "tags": [
+        "processing"
+      ],
+      "filePath": "06_tests/test_run_workflow_script.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_run_workflow_script.py:test_parse_args_accepts_resume_from_aspects",
+      "type": "function",
+      "name": "test_parse_args_accepts_resume_from_aspects",
+      "summary": "配置/初始化函数: test_parse_args_accepts_resume_from_aspects",
+      "tags": [
+        "configuration",
+        "cli"
+      ],
+      "filePath": "06_tests/test_run_workflow_script.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_run_workflow_script.py:test_parse_args_accepts_resume_from_analysis_checkpoint",
+      "type": "function",
+      "name": "test_parse_args_accepts_resume_from_analysis_checkpoint",
+      "summary": "配置/初始化函数: test_parse_args_accepts_resume_from_analysis_checkpoint",
+      "tags": [
+        "configuration",
+        "cli"
+      ],
+      "filePath": "06_tests/test_run_workflow_script.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_run_workflow_script.py:test_build_cli_config_for_cn_namespace",
+      "type": "function",
+      "name": "test_build_cli_config_for_cn_namespace",
+      "summary": "配置/初始化函数: test_build_cli_config_for_cn_namespace",
+      "tags": [
+        "configuration",
+        "cli"
+      ],
+      "filePath": "06_tests/test_run_workflow_script.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_run_workflow_script.py:test_build_cli_config_can_use_shared_qdrant_path",
+      "type": "function",
+      "name": "test_build_cli_config_can_use_shared_qdrant_path",
+      "summary": "配置/初始化函数: test_build_cli_config_can_use_shared_qdrant_path",
+      "tags": [
+        "configuration",
+        "cli"
+      ],
+      "filePath": "06_tests/test_run_workflow_script.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_run_workflow_script.py:test_build_cli_config_normalizes_prompt_variant_alias",
+      "type": "function",
+      "name": "test_build_cli_config_normalizes_prompt_variant_alias",
+      "summary": "配置/初始化函数: test_build_cli_config_normalizes_prompt_variant_alias",
+      "tags": [
+        "configuration",
+        "cli"
+      ],
+      "filePath": "06_tests/test_run_workflow_script.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_run_workflow_script.py:test_thread_scope_label_uses_normalized_prompt_variant",
+      "type": "function",
+      "name": "test_thread_scope_label_uses_normalized_prompt_variant",
+      "summary": "获取/加载函数: test_thread_scope_label_uses_normalized_prompt_variant",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "06_tests/test_run_workflow_script.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_run_workflow_script.py:test_configure_environment_defaults_batch_runs_to_qdrant",
+      "type": "function",
+      "name": "test_configure_environment_defaults_batch_runs_to_qdrant",
+      "summary": "配置/初始化函数: test_configure_environment_defaults_batch_runs_to_qdrant",
+      "tags": [
+        "configuration",
+        "cli"
+      ],
+      "filePath": "06_tests/test_run_workflow_script.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_run_workflow_script.py:test_render_text_summary_quiet_mode",
+      "type": "function",
+      "name": "test_render_text_summary_quiet_mode",
+      "summary": "展示/渲染函数: test_render_text_summary_quiet_mode",
+      "tags": [
+        "ui",
+        "display"
+      ],
+      "filePath": "06_tests/test_run_workflow_script.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_run_workflow_script.py:test_render_json_summary_contains_batch_fields",
+      "type": "function",
+      "name": "test_render_json_summary_contains_batch_fields",
+      "summary": "展示/渲染函数: test_render_json_summary_contains_batch_fields",
+      "tags": [
+        "ui",
+        "display"
+      ],
+      "filePath": "06_tests/test_run_workflow_script.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:06_tests/test_runtime_policy.py",
+      "type": "file",
+      "name": "test_runtime_policy.py",
+      "summary": "Python模块: 定义 4 个函数",
+      "tags": [
+        "testing"
+      ],
+      "filePath": "06_tests/test_runtime_policy.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_runtime_policy.py:test_runtime_policy_loads_config_file",
+      "type": "function",
+      "name": "test_runtime_policy_loads_config_file",
+      "summary": "配置/初始化函数: test_runtime_policy_loads_config_file",
+      "tags": [
+        "configuration",
+        "cli"
+      ],
+      "filePath": "06_tests/test_runtime_policy.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_runtime_policy.py:test_runtime_policy_warns_when_degradation_is_allowed",
+      "type": "function",
+      "name": "test_runtime_policy_warns_when_degradation_is_allowed",
+      "summary": "执行函数: test_runtime_policy_warns_when_degradation_is_allowed",
+      "tags": [
+        "execution"
+      ],
+      "filePath": "06_tests/test_runtime_policy.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_runtime_policy.py:test_runtime_policy_blocks_full_power_when_api_backends_are_configured",
+      "type": "function",
+      "name": "test_runtime_policy_blocks_full_power_when_api_backends_are_configured",
+      "summary": "配置/初始化函数: test_runtime_policy_blocks_full_power_when_api_backends_are_configured",
+      "tags": [
+        "configuration",
+        "cli"
+      ],
+      "filePath": "06_tests/test_runtime_policy.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_runtime_policy.py:test_runtime_policy_allows_local_qwen3_backends_without_key",
+      "type": "function",
+      "name": "test_runtime_policy_allows_local_qwen3_backends_without_key",
+      "summary": "执行函数: test_runtime_policy_allows_local_qwen3_backends_without_key",
+      "tags": [
+        "execution"
+      ],
+      "filePath": "06_tests/test_runtime_policy.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:06_tests/test_runtime_progress.py",
+      "type": "file",
+      "name": "test_runtime_progress.py",
+      "summary": "Python模块: 定义 8 个函数",
+      "tags": [
+        "testing",
+        "dashboard"
+      ],
+      "filePath": "06_tests/test_runtime_progress.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_runtime_progress.py:test_progress_reporter_shows_eta_for_overall_and_active_step",
+      "type": "function",
+      "name": "test_progress_reporter_shows_eta_for_overall_and_active_step",
+      "summary": "展示/渲染函数: test_progress_reporter_shows_eta_for_overall_and_active_step",
+      "tags": [
+        "ui",
+        "display"
+      ],
+      "filePath": "06_tests/test_runtime_progress.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_runtime_progress.py:test_progress_reporter_writes_live_dashboard_html",
+      "type": "function",
+      "name": "test_progress_reporter_writes_live_dashboard_html",
+      "summary": "输出/保存函数: test_progress_reporter_writes_live_dashboard_html",
+      "tags": [
+        "output",
+        "io"
+      ],
+      "filePath": "06_tests/test_runtime_progress.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_runtime_progress.py:test_progress_reporter_writes_external_dashboard_assets",
+      "type": "function",
+      "name": "test_progress_reporter_writes_external_dashboard_assets",
+      "summary": "输出/保存函数: test_progress_reporter_writes_external_dashboard_assets",
+      "tags": [
+        "output",
+        "io"
+      ],
+      "filePath": "06_tests/test_runtime_progress.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_runtime_progress.py:test_progress_reporter_dashboard_shows_completed_banner",
+      "type": "function",
+      "name": "test_progress_reporter_dashboard_shows_completed_banner",
+      "summary": "展示/渲染函数: test_progress_reporter_dashboard_shows_completed_banner",
+      "tags": [
+        "ui",
+        "display"
+      ],
+      "filePath": "06_tests/test_runtime_progress.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_runtime_progress.py:test_progress_reporter_dashboard_shows_failed_banner",
+      "type": "function",
+      "name": "test_progress_reporter_dashboard_shows_failed_banner",
+      "summary": "展示/渲染函数: test_progress_reporter_dashboard_shows_failed_banner",
+      "tags": [
+        "ui",
+        "display"
+      ],
+      "filePath": "06_tests/test_runtime_progress.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_runtime_progress.py:test_progress_reporter_persists_stage_timestamps",
+      "type": "function",
+      "name": "test_progress_reporter_persists_stage_timestamps",
+      "summary": "输出/保存函数: test_progress_reporter_persists_stage_timestamps",
+      "tags": [
+        "output",
+        "io"
+      ],
+      "filePath": "06_tests/test_runtime_progress.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_runtime_progress.py:test_progress_reporter_update_step_changes_detail_without_advancing_count",
+      "type": "function",
+      "name": "test_progress_reporter_update_step_changes_detail_without_advancing_count",
+      "summary": "函数: test_progress_reporter_update_step_changes_detail_without_advancing_count",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_runtime_progress.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_runtime_progress.py:test_progress_reporter_restores_elapsed_from_persisted_timestamps",
+      "type": "function",
+      "name": "test_progress_reporter_restores_elapsed_from_persisted_timestamps",
+      "summary": "输出/保存函数: test_progress_reporter_restores_elapsed_from_persisted_timestamps",
+      "tags": [
+        "output",
+        "io"
+      ],
+      "filePath": "06_tests/test_runtime_progress.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:06_tests/test_validate_multimodal_runtime_script.py",
+      "type": "file",
+      "name": "test_validate_multimodal_runtime_script.py",
+      "summary": "Python模块: 定义 1 个类, 5 个函数",
+      "tags": [
+        "testing"
+      ],
+      "filePath": "06_tests/test_validate_multimodal_runtime_script.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "class:06_tests/test_validate_multimodal_runtime_script.py:RunWorkflowStub",
+      "type": "class",
+      "name": "RunWorkflowStub",
+      "summary": "RunWorkflowStub类",
+      "tags": [
+        "workflow",
+        "langgraph"
+      ],
+      "filePath": "06_tests/test_validate_multimodal_runtime_script.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_validate_multimodal_runtime_script.py:test_prepare_workflow_args_preserves_manifest_and_html_flags",
+      "type": "function",
+      "name": "test_prepare_workflow_args_preserves_manifest_and_html_flags",
+      "summary": "函数: test_prepare_workflow_args_preserves_manifest_and_html_flags",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_validate_multimodal_runtime_script.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_validate_multimodal_runtime_script.py:test_materialize_summary_writes_manifest_after_workflow",
+      "type": "function",
+      "name": "test_materialize_summary_writes_manifest_after_workflow",
+      "summary": "输出/保存函数: test_materialize_summary_writes_manifest_after_workflow",
+      "tags": [
+        "output",
+        "io"
+      ],
+      "filePath": "06_tests/test_validate_multimodal_runtime_script.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_validate_multimodal_runtime_script.py:execute_workflow",
+      "type": "function",
+      "name": "execute_workflow",
+      "summary": "执行函数: execute_workflow",
+      "tags": [
+        "execution"
+      ],
+      "filePath": "06_tests/test_validate_multimodal_runtime_script.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_validate_multimodal_runtime_script.py:maybe_write_manifest",
+      "type": "function",
+      "name": "maybe_write_manifest",
+      "summary": "输出/保存函数: maybe_write_manifest",
+      "tags": [
+        "output",
+        "io"
+      ],
+      "filePath": "06_tests/test_validate_multimodal_runtime_script.py",
+      "complexity": "moderate",
+      "language": "python"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:06_tests/test_index_service.py",
+      "target": "function:06_tests/test_index_service.py:test_index_service_builds_local_index",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_index_service.py",
+      "target": "function:06_tests/test_index_service.py:test_index_service_builds_region_level_image_evidence",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_index_service.py",
+      "target": "function:06_tests/test_index_service.py:test_index_service_search_returns_hits",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_index_service.py",
+      "target": "function:06_tests/test_index_service.py:test_index_service_preserves_original_language_metadata",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_index_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/index.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_index_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_launch_interactive_workflow.py",
+      "target": "function:06_tests/test_launch_interactive_workflow.py:test_parse_index_selection_supports_ranges_and_commas",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_launch_interactive_workflow.py",
+      "target": "function:06_tests/test_launch_interactive_workflow.py:test_parse_index_selection_rejects_out_of_range",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_launch_interactive_workflow.py",
+      "target": "function:06_tests/test_launch_interactive_workflow.py:test_prompt_categories_supports_multi_select",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_launch_interactive_workflow.py",
+      "target": "function:06_tests/test_launch_interactive_workflow.py:test_write_batch_dashboard_creates_three_level_pages",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_launch_interactive_workflow.py",
+      "target": "function:06_tests/test_launch_interactive_workflow.py:test_build_vscode_simple_browser_uri_targets_internal_browser",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_launch_interactive_workflow.py",
+      "target": "function:06_tests/test_launch_interactive_workflow.py:test_prompt_run_mode_returns_resume_checkpoint_choice",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_launch_interactive_workflow.py",
+      "target": "function:06_tests/test_launch_interactive_workflow.py:test_prompt_run_mode_defaults_to_resume_when_enter_is_pressed",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_launch_interactive_workflow.py",
+      "target": "function:06_tests/test_launch_interactive_workflow.py:test_run_mode_args_include_resume_flags",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_launch_interactive_workflow.py",
+      "target": "function:06_tests/test_launch_interactive_workflow.py:test_available_run_mode_options_hide_missing_analysis_checkpoint",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_launch_interactive_workflow.py",
+      "target": "function:06_tests/test_launch_interactive_workflow.py:test_available_run_mode_options_prioritize_resume_modes",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_launch_interactive_workflow.py",
+      "target": "function:06_tests/test_launch_interactive_workflow.py:test_unavailable_resume_mode_messages_report_missing_checkpoint",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_launch_interactive_workflow.py",
+      "target": "function:06_tests/test_launch_interactive_workflow.py:test_find_latest_resumable_batch_prefers_recent_session_state",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_launch_interactive_workflow.py",
+      "target": "function:06_tests/test_launch_interactive_workflow.py:test_prompt_continue_previous_batch_accepts_yes",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_launch_interactive_workflow.py",
+      "target": "function:06_tests/test_launch_interactive_workflow.py:test_prompt_for_qdrant_conflict_resolution_accepts_takeover_choice",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_launch_interactive_workflow.py",
+      "target": "function:06_tests/test_launch_interactive_workflow.py:test_run_product_workflow_stops_when_user_cancels",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_launch_interactive_workflow.py",
+      "target": "function:06_tests/test_launch_interactive_workflow.py:test_run_product_workflow_passes_resume_aspects_flags",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_launch_interactive_workflow.py",
+      "target": "function:06_tests/test_launch_interactive_workflow.py:test_restore_batch_state_supports_multi_category_payload",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_manifest_evaluation_service.py",
+      "target": "function:06_tests/test_manifest_evaluation_service.py:test_manifest_evaluation_service_aggregates_run_metrics",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_manifest_evaluation_service.py",
+      "target": "function:06_tests/test_manifest_evaluation_service.py:test_manifest_evaluation_service_marks_missing_sidecars",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_manifest_evaluation_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/evaluation.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_paper_arxiv_submission.py",
+      "target": "function:06_tests/test_paper_arxiv_submission.py:test_build_arxiv_submission_package_rewrites_paths_and_generates_metadata",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_paper_latex_export.py",
+      "target": "function:06_tests/test_paper_latex_export.py:test_build_document_uses_twocolumn_and_avoids_longtable_for_tables",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_prompt_registry.py",
+      "target": "function:06_tests/test_prompt_registry.py:test_prompt_registry_contains_main_review_prompt",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_prompt_registry.py",
+      "target": "function:06_tests/test_prompt_registry.py:test_prompt_registry_contains_cn_review_prompt",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_prompt_registry.py",
+      "target": "function:06_tests/test_prompt_registry.py:test_prompt_builders_embed_payload",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_prompt_registry.py",
+      "target": "file:05_src/decathlon_voc_analyzer/prompts.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_question_service.py",
+      "target": "function:06_tests/test_question_service.py:test_question_prompt_template_formats_payload",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_question_service.py",
+      "target": "function:06_tests/test_question_service.py:test_question_service_uses_gateway_payload",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_question_service.py",
+      "target": "function:06_tests/test_question_service.py:fake_invoke_json",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_question_service.py",
+      "target": "function:06_tests/test_question_service.py:test_question_service_normalizes_prompt_variant_alias_for_heuristic",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_question_service.py",
+      "target": "function:06_tests/test_question_service.py:test_question_service_rewrites_unrealistic_durability_question",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_question_service.py",
+      "target": "function:06_tests/test_question_service.py:fake_invoke_json",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_question_service.py",
+      "target": "function:06_tests/test_question_service.py:test_question_service_rewrites_unrealistic_optical_question",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_question_service.py",
+      "target": "function:06_tests/test_question_service.py:fake_invoke_json",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_question_service.py",
+      "target": "function:06_tests/test_question_service.py:test_question_service_rewrites_overly_technical_optical_question",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_question_service.py",
+      "target": "function:06_tests/test_question_service.py:fake_invoke_json",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_question_service.py",
+      "target": "function:06_tests/test_question_service.py:test_question_service_deduplicates_normalized_questions",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_question_service.py",
+      "target": "function:06_tests/test_question_service.py:fake_invoke_json",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_question_service.py",
+      "target": "function:06_tests/test_question_service.py:test_question_service_rewrites_unrealistic_comfort_question",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_question_service.py",
+      "target": "function:06_tests/test_question_service.py:fake_invoke_json",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_question_service.py",
+      "target": "function:06_tests/test_question_service.py:test_question_service_rewrites_memory_foam_style_comfort_question",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_question_service.py",
+      "target": "function:06_tests/test_question_service.py:fake_invoke_json",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_question_service.py",
+      "target": "function:06_tests/test_question_service.py:test_question_service_raises_when_policy_forbids_llm_fallback",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_question_service.py",
+      "target": "function:06_tests/test_question_service.py:fake_invoke_json",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_question_service.py",
+      "target": "function:06_tests/test_question_service.py:test_question_service_rewrites_convex_geometry_optical_question",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_question_service.py",
+      "target": "function:06_tests/test_question_service.py:fake_invoke_json",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_question_service.py",
+      "target": "function:06_tests/test_question_service.py:test_question_service_rewrites_seam_style_rubber_insert_question",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_question_service.py",
+      "target": "function:06_tests/test_question_service.py:fake_invoke_json",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_question_service.py",
+      "target": "function:06_tests/test_question_service.py:test_question_service_plans_question_intents_with_constraints",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_question_service.py",
+      "target": "function:06_tests/test_question_service.py:test_question_service_uses_persistent_cache_on_second_run",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_question_service.py",
+      "target": "function:06_tests/test_question_service.py:test_question_service_no_qp_ablation_bypasses_persistent_cache",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_question_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/prompts.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_question_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_question_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/review.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_question_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage4_generation/question_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_retrieval_service.py",
+      "target": "class:06_tests/test_retrieval_service.py:FakeProgress",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_retrieval_service.py",
+      "target": "function:06_tests/test_retrieval_service.py:test_retrieval_service_preserves_route_coverage_for_multiroute_questions",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_retrieval_service.py",
+      "target": "function:06_tests/test_retrieval_service.py:test_retrieval_service_preserves_region_metadata",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_retrieval_service.py",
+      "target": "function:06_tests/test_retrieval_service.py:test_retrieval_service_balances_languages_within_same_route",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_retrieval_service.py",
+      "target": "function:06_tests/test_retrieval_service.py:test_retrieval_service_updates_current_activity_before_advancing",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_retrieval_service.py",
+      "target": "function:06_tests/test_retrieval_service.py:start_count_step",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_retrieval_service.py",
+      "target": "function:06_tests/test_retrieval_service.py:update_step",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_retrieval_service.py",
+      "target": "function:06_tests/test_retrieval_service.py:advance_step",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_retrieval_service.py",
+      "target": "function:06_tests/test_retrieval_service.py:complete_step",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_retrieval_service.py",
+      "target": "function:06_tests/test_retrieval_service.py:fake_rerank",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_retrieval_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_retrieval_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/dataset.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_retrieval_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/index.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_retrieval_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_retrieval_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_service/__init__.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_review_api.py",
+      "target": "function:06_tests/test_review_api.py:test_reviews_extract_from_inline_reviews",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_review_api.py",
+      "target": "function:06_tests/test_review_api.py:test_reviews_extract_returns_sampling_plan",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_review_api.py",
+      "target": "function:06_tests/test_review_api.py:test_reviews_extract_from_dataset_product",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_review_api.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/api/main.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_review_service.py",
+      "target": "function:06_tests/test_review_service.py:test_review_service_marks_low_signal_reviews_as_skipped",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_review_service.py",
+      "target": "function:06_tests/test_review_service.py:test_review_service_can_extract_from_dataset_package",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_review_service.py",
+      "target": "function:06_tests/test_review_service.py:test_review_service_applies_default_rating_sampling_plan",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_review_service.py",
+      "target": "function:06_tests/test_review_service.py:test_review_service_redistributes_shortfall_to_next_lower_priority_bucket",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_review_service.py",
+      "target": "function:06_tests/test_review_service.py:test_review_service_cascades_shortfall_across_multiple_priority_buckets",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_review_service.py",
+      "target": "function:06_tests/test_review_service.py:test_review_service_uses_active_profile_from_config_file",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_review_service.py",
+      "target": "function:06_tests/test_review_service.py:test_review_service_samples_from_full_review_pool_before_rating_balancing",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_review_service.py",
+      "target": "function:06_tests/test_review_service.py:test_review_service_preserves_original_multilingual_reviews",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_review_service.py",
+      "target": "function:06_tests/test_review_service.py:test_review_service_normalizes_mixed_overall_experience_from_contrastive_review",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_review_service.py",
+      "target": "function:06_tests/test_review_service.py:test_review_service_keeps_mixed_overall_experience_but_upgrades_opinion_text",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_review_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/review.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_review_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_run_workflow_script.py",
+      "target": "function:06_tests/test_run_workflow_script.py:test_preprocess_review_flag_alias",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_run_workflow_script.py",
+      "target": "function:06_tests/test_run_workflow_script.py:test_parse_args_accepts_resume_from_aspects",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_run_workflow_script.py",
+      "target": "function:06_tests/test_run_workflow_script.py:test_parse_args_accepts_resume_from_analysis_checkpoint",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_run_workflow_script.py",
+      "target": "function:06_tests/test_run_workflow_script.py:test_build_cli_config_for_cn_namespace",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_run_workflow_script.py",
+      "target": "function:06_tests/test_run_workflow_script.py:test_build_cli_config_can_use_shared_qdrant_path",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_run_workflow_script.py",
+      "target": "function:06_tests/test_run_workflow_script.py:test_build_cli_config_normalizes_prompt_variant_alias",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_run_workflow_script.py",
+      "target": "function:06_tests/test_run_workflow_script.py:test_thread_scope_label_uses_normalized_prompt_variant",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_run_workflow_script.py",
+      "target": "function:06_tests/test_run_workflow_script.py:test_configure_environment_defaults_batch_runs_to_qdrant",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_run_workflow_script.py",
+      "target": "function:06_tests/test_run_workflow_script.py:test_render_text_summary_quiet_mode",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_run_workflow_script.py",
+      "target": "function:06_tests/test_run_workflow_script.py:test_render_json_summary_contains_batch_fields",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_runtime_policy.py",
+      "target": "function:06_tests/test_runtime_policy.py:test_runtime_policy_loads_config_file",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_runtime_policy.py",
+      "target": "function:06_tests/test_runtime_policy.py:test_runtime_policy_warns_when_degradation_is_allowed",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_runtime_policy.py",
+      "target": "function:06_tests/test_runtime_policy.py:test_runtime_policy_blocks_full_power_when_api_backends_are_configured",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_runtime_policy.py",
+      "target": "function:06_tests/test_runtime_policy.py:test_runtime_policy_allows_local_qwen3_backends_without_key",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_runtime_policy.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/core/config.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_runtime_policy.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_runtime_progress.py",
+      "target": "function:06_tests/test_runtime_progress.py:test_progress_reporter_shows_eta_for_overall_and_active_step",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_runtime_progress.py",
+      "target": "function:06_tests/test_runtime_progress.py:test_progress_reporter_writes_live_dashboard_html",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_runtime_progress.py",
+      "target": "function:06_tests/test_runtime_progress.py:test_progress_reporter_writes_external_dashboard_assets",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_runtime_progress.py",
+      "target": "function:06_tests/test_runtime_progress.py:test_progress_reporter_dashboard_shows_completed_banner",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_runtime_progress.py",
+      "target": "function:06_tests/test_runtime_progress.py:test_progress_reporter_dashboard_shows_failed_banner",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_runtime_progress.py",
+      "target": "function:06_tests/test_runtime_progress.py:test_progress_reporter_persists_stage_timestamps",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_runtime_progress.py",
+      "target": "function:06_tests/test_runtime_progress.py:test_progress_reporter_update_step_changes_detail_without_advancing_count",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_runtime_progress.py",
+      "target": "function:06_tests/test_runtime_progress.py:test_progress_reporter_restores_elapsed_from_persisted_timestamps",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_runtime_progress.py",
+      "target": "file:05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_validate_multimodal_runtime_script.py",
+      "target": "class:06_tests/test_validate_multimodal_runtime_script.py:RunWorkflowStub",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_validate_multimodal_runtime_script.py",
+      "target": "function:06_tests/test_validate_multimodal_runtime_script.py:test_prepare_workflow_args_preserves_manifest_and_html_flags",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_validate_multimodal_runtime_script.py",
+      "target": "function:06_tests/test_validate_multimodal_runtime_script.py:test_materialize_summary_writes_manifest_after_workflow",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_validate_multimodal_runtime_script.py",
+      "target": "function:06_tests/test_validate_multimodal_runtime_script.py:execute_workflow",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_validate_multimodal_runtime_script.py",
+      "target": "function:06_tests/test_validate_multimodal_runtime_script.py:maybe_write_manifest",
+      "type": "contains",
+      "weight": 1.0
+    }
+  ]
+}

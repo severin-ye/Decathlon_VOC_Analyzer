@@ -1,0 +1,41 @@
+{
+  "nodes": [
+    {
+      "id": "file:0_docs/01_设计文档/00-导览/术语表.md",
+      "type": "document",
+      "name": "术语表.md",
+      "summary": "术语表",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/01_设计文档/00-导览/术语表.md",
+      "complexity": "simple",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/01_设计文档/00-导览/阅读路径.md",
+      "type": "document",
+      "name": "阅读路径.md",
+      "summary": "阅读路径",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/01_设计文档/00-导览/阅读路径.md",
+      "complexity": "simple",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/01_设计文档/00-导览/项目定位.md",
+      "type": "document",
+      "name": "项目定位.md",
+      "summary": "项目定位",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/01_设计文档/00-导览/项目定位.md",
+      "complexity": "simple",
+      "language": "markdown"
+    }
+  ],
+  "edges": []
+}

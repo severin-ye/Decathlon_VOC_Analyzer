@@ -1,0 +1,47 @@
+{
+  "nodes": [
+    {
+      "id": "file:04_scripts/launcher_ui/category.html",
+      "type": "file",
+      "name": "category.html",
+      "summary": "HTML页面: __TITLE__",
+      "tags": [
+        "script",
+        "launcher",
+        "ui"
+      ],
+      "filePath": "04_scripts/launcher_ui/category.html",
+      "complexity": "simple",
+      "language": "html"
+    },
+    {
+      "id": "file:04_scripts/launcher_ui/launcher.css",
+      "type": "file",
+      "name": "launcher.css",
+      "summary": "CSS样式表: launcher.css",
+      "tags": [
+        "script",
+        "launcher",
+        "ui"
+      ],
+      "filePath": "04_scripts/launcher_ui/launcher.css",
+      "complexity": "complex",
+      "language": "css"
+    },
+    {
+      "id": "file:04_scripts/launcher_ui/overview.html",
+      "type": "file",
+      "name": "overview.html",
+      "summary": "HTML页面: __TITLE__",
+      "tags": [
+        "script",
+        "launcher",
+        "ui"
+      ],
+      "filePath": "04_scripts/launcher_ui/overview.html",
+      "complexity": "simple",
+      "language": "html"
+    }
+  ],
+  "edges": []
+}

@@ -1,0 +1,65 @@
+{
+  "nodes": [
+    {
+      "id": "file:0_docs/01_设计文档/07-实施路线/LangChain+Qwen落地.md",
+      "type": "document",
+      "name": "LangChain+Qwen落地.md",
+      "summary": "LangChain + Qwen 落地",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/01_设计文档/07-实施路线/LangChain+Qwen落地.md",
+      "complexity": "simple",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/01_设计文档/07-实施路线/MVP与迭代计划.md",
+      "type": "document",
+      "name": "MVP与迭代计划.md",
+      "summary": "MVP与迭代计划",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/01_设计文档/07-实施路线/MVP与迭代计划.md",
+      "complexity": "simple",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/01_设计文档/07-实施路线/项目推进状态.md",
+      "type": "document",
+      "name": "项目推进状态.md",
+      "summary": "项目推进状态",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/01_设计文档/07-实施路线/项目推进状态.md",
+      "complexity": "complex",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/01_设计文档/07-实施路线/高价值改进-论文.md",
+      "type": "document",
+      "name": "高价值改进-论文.md",
+      "summary": "一、最重要的修改结论",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/01_设计文档/07-实施路线/高价值改进-论文.md",
+      "complexity": "complex",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/01_设计文档/07-实施路线/高价值改进点调研与落地建议-核对稿.md",
+      "type": "document",
+      "name": "高价值改进点调研与落地建议-核对稿.md",
+      "summary": "高价值改进点调研与落地建议（核对稿）",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/01_设计文档/07-实施路线/高价值改进点调研与落地建议-核对稿.md",
+      "complexity": "complex",
+      "language": "markdown"
+    }
+  ],
+  "edges": []
+}

@@ -1,0 +1,89 @@
+{
+  "nodes": [
+    {
+      "id": "file:0_docs/05_教授汇报材料/01_系统整体解释.md",
+      "type": "document",
+      "name": "01_系统整体解释.md",
+      "summary": "Decathlon VOC Analyzer — 系统整体解释",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/05_教授汇报材料/01_系统整体解释.md",
+      "complexity": "moderate",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/05_教授汇报材料/02_与已有分析器对比.md",
+      "type": "document",
+      "name": "02_与已有分析器对比.md",
+      "summary": "与已有分析器的区别 / 기존 분석기와의 차이",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/05_教授汇报材料/02_与已有分析器对比.md",
+      "complexity": "moderate",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/05_教授汇报材料/03_功能测试结果.md",
+      "type": "document",
+      "name": "03_功能测试结果.md",
+      "summary": "功能测试结果 / 기능 테스트 결과",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/05_教授汇报材料/03_功能测试结果.md",
+      "complexity": "moderate",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/05_教授汇报材料/04_运行截图指南.md",
+      "type": "document",
+      "name": "04_运行截图指南.md",
+      "summary": "程序运行截图指南 / 프로그램 실행 스크린샷 가이드",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/05_教授汇报材料/04_运行截图指南.md",
+      "complexity": "moderate",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/05_教授汇报材料/05_提交清单.md",
+      "type": "document",
+      "name": "05_提交清单.md",
+      "summary": "教授汇报材料提交清单 / 교수님 보고 자료 제출 목록",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/05_教授汇报材料/05_提交清单.md",
+      "complexity": "moderate",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/05_教授汇报材料/实验结果表格.md",
+      "type": "document",
+      "name": "实验结果表格.md",
+      "summary": "实验结果摘要 / 실험 결과 요약",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/05_教授汇报材料/实验结果表格.md",
+      "complexity": "moderate",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/05_教授汇报材料/方法选择依据.md",
+      "type": "document",
+      "name": "方法选择依据.md",
+      "summary": "方法选择依据说明 / 방법 선택 근거 설명",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/05_教授汇报材料/方法选择依据.md",
+      "complexity": "moderate",
+      "language": "markdown"
+    }
+  ],
+  "edges": []
+}

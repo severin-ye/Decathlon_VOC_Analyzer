@@ -1,0 +1,53 @@
+{
+  "nodes": [
+    {
+      "id": "file:0_docs/01_设计文档/01-总体架构/多模态RAG方案对比.md",
+      "type": "document",
+      "name": "多模态RAG方案对比.md",
+      "summary": "多模态RAG方案对比",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/01_设计文档/01-总体架构/多模态RAG方案对比.md",
+      "complexity": "moderate",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/01_设计文档/01-总体架构/技术选型.md",
+      "type": "document",
+      "name": "技术选型.md",
+      "summary": "技术选型",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/01_设计文档/01-总体架构/技术选型.md",
+      "complexity": "moderate",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/01_设计文档/01-总体架构/系统总览.md",
+      "type": "document",
+      "name": "系统总览.md",
+      "summary": "系统总览",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/01_设计文档/01-总体架构/系统总览.md",
+      "complexity": "moderate",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/01_设计文档/01-总体架构/设计原则.md",
+      "type": "document",
+      "name": "设计原则.md",
+      "summary": "设计原则",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/01_设计文档/01-总体架构/设计原则.md",
+      "complexity": "simple",
+      "language": "markdown"
+    }
+  ],
+  "edges": []
+}

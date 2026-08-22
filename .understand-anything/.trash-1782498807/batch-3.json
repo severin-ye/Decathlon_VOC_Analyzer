@@ -1,0 +1,77 @@
+{
+  "nodes": [
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/prompts/CN/1_商品信息翻译系统提示词.md",
+      "type": "document",
+      "name": "1_商品信息翻译系统提示词.md",
+      "summary": "你是单产品审核数据集的中文翻译器。",
+      "tags": [
+        "prompts"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/prompts/CN/1_商品信息翻译系统提示词.md",
+      "complexity": "simple",
+      "language": "markdown"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/prompts/CN/2_评论翻译系统提示词.md",
+      "type": "document",
+      "name": "2_评论翻译系统提示词.md",
+      "summary": "你是单产品评论审核数据集的中文翻译器。",
+      "tags": [
+        "prompts"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/prompts/CN/2_评论翻译系统提示词.md",
+      "complexity": "simple",
+      "language": "markdown"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/prompts/CN/3_评论清洗系统提示词.md",
+      "type": "document",
+      "name": "3_评论清洗系统提示词.md",
+      "summary": "你是中文审核数据集的文本清洗器。",
+      "tags": [
+        "prompts"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/prompts/CN/3_评论清洗系统提示词.md",
+      "complexity": "simple",
+      "language": "markdown"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/prompts/CN/4_评论结构化抽取系统提示词.md",
+      "type": "document",
+      "name": "4_评论结构化抽取系统提示词.md",
+      "summary": "你是商品 VOC 流程中的评论结构化抽取器。",
+      "tags": [
+        "prompts"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/prompts/CN/4_评论结构化抽取系统提示词.md",
+      "complexity": "simple",
+      "language": "markdown"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/prompts/CN/5_核验问题生成系统提示词.md",
+      "type": "document",
+      "name": "5_核验问题生成系统提示词.md",
+      "summary": "你是问题驱动召回链路中的问题生成器。",
+      "tags": [
+        "prompts"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/prompts/CN/5_核验问题生成系统提示词.md",
+      "complexity": "simple",
+      "language": "markdown"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/prompts/CN/6_VOC报告生成系统提示词.md",
+      "type": "document",
+      "name": "6_VOC报告生成系统提示词.md",
+      "summary": "你是证据约束的商品 VOC 报告生成器。",
+      "tags": [
+        "prompts"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/prompts/CN/6_VOC报告生成系统提示词.md",
+      "complexity": "simple",
+      "language": "markdown"
+    }
+  ],
+  "edges": []
+}

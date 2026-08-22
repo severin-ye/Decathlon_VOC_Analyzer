@@ -1,0 +1,139 @@
+[
+  {
+    "id": "layer:project-documentation",
+    "name": "项目文档",
+    "description": "设计文档、技术文档、论文草稿、实验指南等全部Markdown文档，构成项目的知识底座和学术产出",
+    "nodeIds": [
+      "document:0_docs/01_设计文档/00-导览/术语表.md",
+      "document:0_docs/01_设计文档/00-导览/项目定位.md",
+      "document:0_docs/01_设计文档/00-导览/阅读路径.md",
+      "document:0_docs/01_设计文档/01-总体架构/多模态RAG方案对比.md",
+      "document:0_docs/01_设计文档/01-总体架构/技术选型.md",
+      "document:README.md",
+      "document:0_docs/04_实验运行指南.md",
+      "document:0_docs/03_论文子模块文档/README.md",
+      "document:论文_md形式/论文正文.md"
+    ]
+  },
+  {
+    "id": "layer:cli-entrypoints",
+    "name": "CLI入口与实验脚本",
+    "description": "命令行入口脚本、批量实验运行器、交互式启动器、本地推理测试等，提供系统运行的所有可执行入口",
+    "nodeIds": [
+      "file:04_scripts/run_workflow.py",
+      "file:04_scripts/run_experiments.py",
+      "file:04_scripts/launch_interactive_workflow.py",
+      "file:04_scripts/evaluate_manifests.py",
+      "file:04_scripts/export_html_report.py",
+      "file:04_scripts/clear_generated_outputs.py",
+      "file:04_scripts/bench_image_rerank.py",
+      "file:04_scripts/download_local_qwen_models.py",
+      "file:04_scripts/validate_multimodal_runtime.py",
+      "file:04_scripts/export_single_product_chinese_dataset.py",
+      "file:04_scripts/local_inference/demo_local_inference.py",
+      "file:04_scripts/local_inference/test_intel_gpu_npu.py",
+      "file:04_scripts/local_inference/test_openvino_integrated.py",
+      "file:04_scripts/local_inference/test_openvino_vs_pytorch.py",
+      "file:04_scripts/local_inference/fix_rerank.py"
+    ]
+  },
+  {
+    "id": "layer:fastapi-service",
+    "name": "FastAPI服务层",
+    "description": "REST API入口、路由定义、健康检查、运行时策略和配置管理，构成系统的Web服务层",
+    "nodeIds": [
+      "file:05_src/decathlon_voc_analyzer/app/__init__.py",
+      "file:05_src/decathlon_voc_analyzer/app/api/__init__.py",
+      "file:05_src/decathlon_voc_analyzer/app/api/main.py",
+      "file:05_src/decathlon_voc_analyzer/app/api/routes/__init__.py",
+      "file:05_src/decathlon_voc_analyzer/app/api/routes/analysis.py",
+      "file:05_src/decathlon_voc_analyzer/app/api/routes/dataset.py",
+      "file:05_src/decathlon_voc_analyzer/app/api/routes/index.py",
+      "file:05_src/decathlon_voc_analyzer/app/api/routes/reviews.py",
+      "file:05_src/decathlon_voc_analyzer/app/core/__init__.py",
+      "file:05_src/decathlon_voc_analyzer/app/core/config.py",
+      "file:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py"
+    ]
+  },
+  {
+    "id": "layer:data-schemas",
+    "name": "数据模型/Schema层",
+    "description": "Pydantic数据模型、检索记录、分析报告、实验配置、检查点等结构化Schema定义，是整个系统的数据基础",
+    "nodeIds": [
+      "file:05_src/decathlon_voc_analyzer/schemas/__init__.py",
+      "file:05_src/decathlon_voc_analyzer/schemas/analysis.py"
+    ]
+  },
+  {
+    "id": "layer:pipeline-stages",
+    "name": "流水线阶段",
+    "description": "四阶段流水线核心：Stage1数据标准化、Stage2评论建模、Stage3多模态检索、Stage4报告生成，以及中间LLM网关和提示词注册表",
+    "nodeIds": [
+      "file:05_src/decathlon_voc_analyzer/stage1_dataset/__init__.py",
+      "file:05_src/decathlon_voc_analyzer/stage1_dataset/chinese_dataset_service.py",
+      "file:05_src/decathlon_voc_analyzer/stage2_review_modeling/__init__.py",
+      "file:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_service.py",
+      "file:05_src/decathlon_voc_analyzer/stage3_retrieval/__init__.py",
+      "file:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_service.py",
+      "file:05_src/decathlon_voc_analyzer/stage4_generation/__init__.py",
+      "file:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "file:05_src/decathlon_voc_analyzer/stage4_generation/question_service.py",
+      "file:05_src/decathlon_voc_analyzer/llm/__init__.py",
+      "file:05_src/decathlon_voc_analyzer/llm/gateway.py",
+      "file:05_src/decathlon_voc_analyzer/prompts/__init__.py",
+      "file:05_src/decathlon_voc_analyzer/prompts/registry.py"
+    ]
+  },
+  {
+    "id": "layer:workflow-orchestration",
+    "name": "工作流编排",
+    "description": "LangGraph工作流定义、控制实验编排和LLM-Judge评估流程",
+    "nodeIds": [
+      "file:05_src/decathlon_voc_analyzer/workflows/__init__.py",
+      "file:05_src/decathlon_voc_analyzer/workflows/control_experiments.py",
+      "file:05_src/decathlon_voc_analyzer/workflows/llm_judge_evaluation.py"
+    ]
+  },
+  {
+    "id": "layer:evaluation",
+    "name": "评估与度量",
+    "description": "实验清单评估服务，计算检索质量、证据支持度、引用精度和模态贡献度等指标",
+    "nodeIds": [
+      "file:05_src/decathlon_voc_analyzer/evaluation/__init__.py",
+      "file:05_src/decathlon_voc_analyzer/evaluation/manifest_evaluation_service.py"
+    ]
+  },
+  {
+    "id": "layer:runtime-dashboard",
+    "name": "运行时监控与UI",
+    "description": "Web仪表板、运行时进度报告、实验UI和启动器前端，提供系统运行状态的可视化",
+    "nodeIds": [
+      "file:05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "file:05_src/decathlon_voc_analyzer/runtime_progress_ui/dashboard.js",
+      "file:04_scripts/experiment_ui/experiment.js",
+      "file:04_scripts/experiment_ui/serve_ui.py",
+      "file:04_scripts/launcher_ui/category.js",
+      "file:04_scripts/launcher_ui/common.js",
+      "file:04_scripts/launcher_ui/overview.js"
+    ]
+  },
+  {
+    "id": "layer:testing",
+    "name": "测试套件",
+    "description": "Pytest测试套件，覆盖流水线各阶段、评估服务和提示词注册表",
+    "nodeIds": [
+      "file:06_tests/conftest.py",
+      "file:06_tests/test_experiment_checkpoints.py",
+      "file:06_tests/test_manifest_evaluation_service.py",
+      "file:06_tests/test_prompt_registry.py",
+      "file:06_tests/test_question_service.py",
+      "file:06_tests/test_retrieval_service.py"
+    ]
+  },
+  {
+    "id": "layer:configuration-and-data",
+    "name": "配置与数据",
+    "description": "实验配置文件(YAML/JSON)、运行时配置、数据文件和输出产物",
+    "nodeIds": []
+  }
+]

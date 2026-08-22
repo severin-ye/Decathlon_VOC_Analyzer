@@ -1,0 +1,305 @@
+{
+  "nodes": [
+    {
+      "id": "file:01_data/01_raw_products/products/backpack/backpack_068/product.json",
+      "type": "config",
+      "name": "product.json",
+      "summary": "JSON配置文件: product.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/backpack/backpack_068/product.json",
+      "complexity": "simple",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/backpack/backpack_068/reviews.json",
+      "type": "config",
+      "name": "reviews.json",
+      "summary": "JSON配置文件: reviews.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/backpack/backpack_068/reviews.json",
+      "complexity": "complex",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/backpack/backpack_069/product.json",
+      "type": "config",
+      "name": "product.json",
+      "summary": "JSON配置文件: product.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/backpack/backpack_069/product.json",
+      "complexity": "simple",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/backpack/backpack_069/reviews.json",
+      "type": "config",
+      "name": "reviews.json",
+      "summary": "JSON配置文件: reviews.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/backpack/backpack_069/reviews.json",
+      "complexity": "complex",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/backpack/backpack_070/product.json",
+      "type": "config",
+      "name": "product.json",
+      "summary": "JSON配置文件: product.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/backpack/backpack_070/product.json",
+      "complexity": "simple",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/backpack/backpack_070/reviews.json",
+      "type": "config",
+      "name": "reviews.json",
+      "summary": "JSON配置文件: reviews.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/backpack/backpack_070/reviews.json",
+      "complexity": "complex",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/backpack/backpack_071/product.json",
+      "type": "config",
+      "name": "product.json",
+      "summary": "JSON配置文件: product.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/backpack/backpack_071/product.json",
+      "complexity": "simple",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/backpack/backpack_071/reviews.json",
+      "type": "config",
+      "name": "reviews.json",
+      "summary": "JSON配置文件: reviews.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/backpack/backpack_071/reviews.json",
+      "complexity": "moderate",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/backpack/backpack_072/product.json",
+      "type": "config",
+      "name": "product.json",
+      "summary": "JSON配置文件: product.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/backpack/backpack_072/product.json",
+      "complexity": "simple",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/backpack/backpack_072/reviews.json",
+      "type": "config",
+      "name": "reviews.json",
+      "summary": "JSON配置文件: reviews.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/backpack/backpack_072/reviews.json",
+      "complexity": "complex",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/backpack/backpack_073/product.json",
+      "type": "config",
+      "name": "product.json",
+      "summary": "JSON配置文件: product.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/backpack/backpack_073/product.json",
+      "complexity": "simple",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/backpack/backpack_073/reviews.json",
+      "type": "config",
+      "name": "reviews.json",
+      "summary": "JSON配置文件: reviews.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/backpack/backpack_073/reviews.json",
+      "complexity": "complex",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/backpack/backpack_074/product.json",
+      "type": "config",
+      "name": "product.json",
+      "summary": "JSON配置文件: product.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/backpack/backpack_074/product.json",
+      "complexity": "simple",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/backpack/backpack_074/reviews.json",
+      "type": "config",
+      "name": "reviews.json",
+      "summary": "JSON配置文件: reviews.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/backpack/backpack_074/reviews.json",
+      "complexity": "complex",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/backpack/backpack_075/product.json",
+      "type": "config",
+      "name": "product.json",
+      "summary": "JSON配置文件: product.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/backpack/backpack_075/product.json",
+      "complexity": "simple",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/backpack/backpack_075/reviews.json",
+      "type": "config",
+      "name": "reviews.json",
+      "summary": "JSON配置文件: reviews.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/backpack/backpack_075/reviews.json",
+      "complexity": "complex",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/backpack/backpack_076/product.json",
+      "type": "config",
+      "name": "product.json",
+      "summary": "JSON配置文件: product.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/backpack/backpack_076/product.json",
+      "complexity": "simple",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/backpack/backpack_076/reviews.json",
+      "type": "config",
+      "name": "reviews.json",
+      "summary": "JSON配置文件: reviews.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/backpack/backpack_076/reviews.json",
+      "complexity": "complex",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/backpack/backpack_077/product.json",
+      "type": "config",
+      "name": "product.json",
+      "summary": "JSON配置文件: product.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/backpack/backpack_077/product.json",
+      "complexity": "simple",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/backpack/backpack_077/reviews.json",
+      "type": "config",
+      "name": "reviews.json",
+      "summary": "JSON配置文件: reviews.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/backpack/backpack_077/reviews.json",
+      "complexity": "complex",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/backpack/backpack_078/product.json",
+      "type": "config",
+      "name": "product.json",
+      "summary": "JSON配置文件: product.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/backpack/backpack_078/product.json",
+      "complexity": "simple",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/backpack/backpack_078/reviews.json",
+      "type": "config",
+      "name": "reviews.json",
+      "summary": "JSON配置文件: reviews.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/backpack/backpack_078/reviews.json",
+      "complexity": "complex",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/backpack/backpack_079/product.json",
+      "type": "config",
+      "name": "product.json",
+      "summary": "JSON配置文件: product.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/backpack/backpack_079/product.json",
+      "complexity": "simple",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/backpack/backpack_079/reviews.json",
+      "type": "config",
+      "name": "reviews.json",
+      "summary": "JSON配置文件: reviews.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/backpack/backpack_079/reviews.json",
+      "complexity": "complex",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/backpack/backpack_080/product.json",
+      "type": "config",
+      "name": "product.json",
+      "summary": "JSON配置文件: product.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/backpack/backpack_080/product.json",
+      "complexity": "simple",
+      "language": "json"
+    }
+  ],
+  "edges": []
+}

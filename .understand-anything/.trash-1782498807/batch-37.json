@@ -1,0 +1,1340 @@
+{
+  "nodes": [
+    {
+      "id": "file:04_scripts/run_experiments.py",
+      "type": "file",
+      "name": "run_experiments.py",
+      "summary": "实验矩阵一键启动器。 用法: # 启动实验（后台 tmux）+ 监控 UI python 04_scripts/run_experiments.py start # 只启动监控 UI python 0",
+      "tags": [
+        "script"
+      ],
+      "filePath": "04_scripts/run_experiments.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/run_experiments.py:main",
+      "type": "function",
+      "name": "main",
+      "summary": "程序入口: main",
+      "tags": [
+        "entry-point"
+      ],
+      "filePath": "04_scripts/run_experiments.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:04_scripts/run_workflow.py",
+      "type": "file",
+      "name": "run_workflow.py",
+      "summary": "Python模块: 定义 2 个类, 19 个函数",
+      "tags": [
+        "workflow",
+        "script"
+      ],
+      "filePath": "04_scripts/run_workflow.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "class:04_scripts/run_workflow.py:WorkflowCliConfig",
+      "type": "class",
+      "name": "WorkflowCliConfig",
+      "summary": "WorkflowCliConfig类",
+      "tags": [
+        "configuration"
+      ],
+      "filePath": "04_scripts/run_workflow.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:04_scripts/run_workflow.py:WorkflowExecutionSummary",
+      "type": "class",
+      "name": "WorkflowExecutionSummary",
+      "summary": "WorkflowExecutionSummary类",
+      "tags": [
+        "workflow",
+        "langgraph"
+      ],
+      "filePath": "04_scripts/run_workflow.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/run_workflow.py:parse_args",
+      "type": "function",
+      "name": "parse_args",
+      "summary": "配置/初始化函数: parse_args",
+      "tags": [
+        "configuration",
+        "cli"
+      ],
+      "filePath": "04_scripts/run_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/run_workflow.py:build_cli_config",
+      "type": "function",
+      "name": "build_cli_config",
+      "summary": "配置/初始化函数: build_cli_config",
+      "tags": [
+        "configuration",
+        "cli"
+      ],
+      "filePath": "04_scripts/run_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/run_workflow.py:configure_environment",
+      "type": "function",
+      "name": "configure_environment",
+      "summary": "配置/初始化函数: configure_environment",
+      "tags": [
+        "configuration",
+        "cli"
+      ],
+      "filePath": "04_scripts/run_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/run_workflow.py:execute_workflow",
+      "type": "function",
+      "name": "execute_workflow",
+      "summary": "执行函数: execute_workflow",
+      "tags": [
+        "execution"
+      ],
+      "filePath": "04_scripts/run_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/run_workflow.py:maybe_write_manifest",
+      "type": "function",
+      "name": "maybe_write_manifest",
+      "summary": "输出/保存函数: maybe_write_manifest",
+      "tags": [
+        "output",
+        "io"
+      ],
+      "filePath": "04_scripts/run_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/run_workflow.py:main",
+      "type": "function",
+      "name": "main",
+      "summary": "程序入口: main",
+      "tags": [
+        "entry-point"
+      ],
+      "filePath": "04_scripts/run_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:04_scripts/validate_multimodal_runtime.py",
+      "type": "file",
+      "name": "validate_multimodal_runtime.py",
+      "summary": "Python模块: 定义 6 个函数",
+      "tags": [
+        "script"
+      ],
+      "filePath": "04_scripts/validate_multimodal_runtime.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/validate_multimodal_runtime.py:parse_args",
+      "type": "function",
+      "name": "parse_args",
+      "summary": "配置/初始化函数: parse_args",
+      "tags": [
+        "configuration",
+        "cli"
+      ],
+      "filePath": "04_scripts/validate_multimodal_runtime.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/validate_multimodal_runtime.py:main",
+      "type": "function",
+      "name": "main",
+      "summary": "程序入口: main",
+      "tags": [
+        "entry-point"
+      ],
+      "filePath": "04_scripts/validate_multimodal_runtime.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer.egg-info/PKG-INFO",
+      "type": "file",
+      "name": "PKG-INFO",
+      "summary": "项目文件: PKG-INFO",
+      "tags": [
+        "untagged"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer.egg-info/PKG-INFO",
+      "complexity": "complex",
+      "language": "unknown"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "summary": "Python模块: __init__.py",
+      "tags": [
+        "untagged"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/__init__.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/app/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "summary": "项目文件: __init__.py",
+      "tags": [
+        "api-service"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/app/__init__.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/app/api/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "summary": "Python模块: __init__.py",
+      "tags": [
+        "api-service"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/app/api/__init__.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/app/api/main.py",
+      "type": "file",
+      "name": "main.py",
+      "summary": "Python模块: 定义 1 个函数",
+      "tags": [
+        "api-service"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/app/api/main.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/app/api/main.py:healthcheck",
+      "type": "endpoint",
+      "name": "healthcheck",
+      "summary": "API端点 GET healthcheck",
+      "tags": [
+        "api",
+        "endpoint"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/app/api/main.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/app/api/routes/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "summary": "Python模块: __init__.py",
+      "tags": [
+        "api-service"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/app/api/routes/__init__.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/app/api/routes/analysis.py",
+      "type": "file",
+      "name": "analysis.py",
+      "summary": "Python模块: 定义 1 个函数",
+      "tags": [
+        "api-service"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/app/api/routes/analysis.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/app/api/routes/analysis.py:analyze_product",
+      "type": "endpoint",
+      "name": "analyze_product",
+      "summary": "API端点 POST analyze_product",
+      "tags": [
+        "api",
+        "endpoint"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/app/api/routes/analysis.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/app/api/routes/dataset.py",
+      "type": "file",
+      "name": "dataset.py",
+      "summary": "Python模块: 定义 2 个函数",
+      "tags": [
+        "pipeline-stage1",
+        "api-service",
+        "data"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/app/api/routes/dataset.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/app/api/routes/dataset.py:get_dataset_overview",
+      "type": "endpoint",
+      "name": "get_dataset_overview",
+      "summary": "API端点 GET get_dataset_overview",
+      "tags": [
+        "api",
+        "endpoint"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/app/api/routes/dataset.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/app/api/routes/dataset.py:normalize_dataset",
+      "type": "endpoint",
+      "name": "normalize_dataset",
+      "summary": "API端点 GET normalize_dataset",
+      "tags": [
+        "api",
+        "endpoint"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/app/api/routes/dataset.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/app/api/routes/index.py",
+      "type": "file",
+      "name": "index.py",
+      "summary": "Python模块: 定义 2 个函数",
+      "tags": [
+        "api-service"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/app/api/routes/index.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/app/api/routes/index.py:get_index_overview",
+      "type": "endpoint",
+      "name": "get_index_overview",
+      "summary": "API端点 GET get_index_overview",
+      "tags": [
+        "api",
+        "endpoint"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/app/api/routes/index.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/app/api/routes/index.py:build_index",
+      "type": "endpoint",
+      "name": "build_index",
+      "summary": "API端点 GET build_index",
+      "tags": [
+        "api",
+        "endpoint"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/app/api/routes/index.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/app/api/routes/reviews.py",
+      "type": "file",
+      "name": "reviews.py",
+      "summary": "Python模块: 定义 1 个函数",
+      "tags": [
+        "api-service"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/app/api/routes/reviews.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/app/api/routes/reviews.py:extract_review_aspects",
+      "type": "endpoint",
+      "name": "extract_review_aspects",
+      "summary": "API端点 POST extract_review_aspects",
+      "tags": [
+        "api",
+        "endpoint"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/app/api/routes/reviews.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/app/core/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "summary": "Python模块: __init__.py",
+      "tags": [
+        "api-service"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/app/core/__init__.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/app/core/config.py",
+      "type": "file",
+      "name": "config.py",
+      "summary": "Python模块: 定义 1 个类, 1 个函数",
+      "tags": [
+        "api-service"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/app/core/config.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/app/core/config.py:Settings",
+      "type": "class",
+      "name": "Settings",
+      "summary": "Settings类，继承自 BaseSettings",
+      "tags": [
+        "configuration",
+        "settings"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/app/core/config.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/app/core/config.py:get_settings",
+      "type": "function",
+      "name": "get_settings",
+      "summary": "获取/加载函数: get_settings",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/app/core/config.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py",
+      "type": "file",
+      "name": "runtime_policy.py",
+      "summary": "Python模块: 定义 2 个类, 10 个函数",
+      "tags": [
+        "api-service"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/app/core/runtime_policy.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py:RuntimeExecutionPolicy",
+      "type": "schema",
+      "name": "RuntimeExecutionPolicy",
+      "summary": "RuntimeExecutionPolicy类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/app/core/runtime_policy.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py:RuntimePolicyError",
+      "type": "class",
+      "name": "RuntimePolicyError",
+      "summary": "RuntimePolicyError类，继承自 RuntimeError",
+      "tags": [
+        "error",
+        "exception"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/app/core/runtime_policy.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py:render",
+      "type": "function",
+      "name": "render",
+      "summary": "展示/渲染函数: render",
+      "tags": [
+        "ui",
+        "display"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/app/core/runtime_policy.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py:get_runtime_execution_policy",
+      "type": "function",
+      "name": "get_runtime_execution_policy",
+      "summary": "获取/加载函数: get_runtime_execution_policy",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/app/core/runtime_policy.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py:should_forbid_degradation",
+      "type": "function",
+      "name": "should_forbid_degradation",
+      "summary": "函数: should_forbid_degradation",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/app/core/runtime_policy.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py:require_full_power_request",
+      "type": "function",
+      "name": "require_full_power_request",
+      "summary": "函数: require_full_power_request",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/app/core/runtime_policy.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py:resolve_llm_permission",
+      "type": "function",
+      "name": "resolve_llm_permission",
+      "summary": "获取/加载函数: resolve_llm_permission",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/app/core/runtime_policy.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py:handle_llm_failure",
+      "type": "function",
+      "name": "handle_llm_failure",
+      "summary": "函数: handle_llm_failure",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/app/core/runtime_policy.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py:validate_full_power_prerequisites",
+      "type": "function",
+      "name": "validate_full_power_prerequisites",
+      "summary": "验证函数: validate_full_power_prerequisites",
+      "tags": [
+        "validation"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/app/core/runtime_policy.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/evaluation/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "summary": "Python模块: __init__.py",
+      "tags": [
+        "evaluation"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/evaluation/__init__.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/evaluation/manifest_evaluation_service.py",
+      "type": "file",
+      "name": "manifest_evaluation_service.py",
+      "summary": "Python模块: 定义 3 个类, 18 个函数",
+      "tags": [
+        "evaluation"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/evaluation/manifest_evaluation_service.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/evaluation/manifest_evaluation_service.py:EvaluationInputBundle",
+      "type": "class",
+      "name": "EvaluationInputBundle",
+      "summary": "EvaluationInputBundle类",
+      "tags": [
+        "data-model",
+        "record"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/evaluation/manifest_evaluation_service.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/evaluation/manifest_evaluation_service.py:ManifestEvaluationService",
+      "type": "class",
+      "name": "ManifestEvaluationService",
+      "summary": "ManifestEvaluationService类",
+      "tags": [
+        "service"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/evaluation/manifest_evaluation_service.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/evaluation/manifest_evaluation_service.py:discover_manifest_paths",
+      "type": "function",
+      "name": "discover_manifest_paths",
+      "summary": "搜索/发现函数: discover_manifest_paths",
+      "tags": [
+        "search"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/evaluation/manifest_evaluation_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/evaluation/manifest_evaluation_service.py:load_bundle",
+      "type": "function",
+      "name": "load_bundle",
+      "summary": "获取/加载函数: load_bundle",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/evaluation/manifest_evaluation_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/evaluation/manifest_evaluation_service.py:evaluate_bundle",
+      "type": "function",
+      "name": "evaluate_bundle",
+      "summary": "函数: evaluate_bundle",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/evaluation/manifest_evaluation_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/evaluation/manifest_evaluation_service.py:build_report",
+      "type": "function",
+      "name": "build_report",
+      "summary": "构建函数: build_report",
+      "tags": [
+        "factory"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/evaluation/manifest_evaluation_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/llm/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "summary": "Python模块: __init__.py",
+      "tags": [
+        "llm"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/llm/__init__.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/llm/gateway.py",
+      "type": "file",
+      "name": "gateway.py",
+      "summary": "Python模块: 定义 1 个类, 8 个函数",
+      "tags": [
+        "llm"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/llm/gateway.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/llm/gateway.py:QwenChatGateway",
+      "type": "class",
+      "name": "QwenChatGateway",
+      "summary": "QwenChatGateway类",
+      "tags": [
+        "llm",
+        "client"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/llm/gateway.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/llm/gateway.py:invoke_json",
+      "type": "function",
+      "name": "invoke_json",
+      "summary": "函数: invoke_json",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/llm/gateway.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/prompts/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "summary": "Python模块: __init__.py",
+      "tags": [
+        "prompts"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/prompts/__init__.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/prompts/registry.py",
+      "type": "file",
+      "name": "registry.py",
+      "summary": "Python模块: 定义 12 个函数",
+      "tags": [
+        "prompts"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/prompts/registry.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/prompts/registry.py:get_prompt_variant",
+      "type": "function",
+      "name": "get_prompt_variant",
+      "summary": "获取/加载函数: get_prompt_variant",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/prompts/registry.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/prompts/registry.py:normalize_prompt_variant",
+      "type": "function",
+      "name": "normalize_prompt_variant",
+      "summary": "展示/渲染函数: normalize_prompt_variant",
+      "tags": [
+        "ui",
+        "display"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/prompts/registry.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/prompts/registry.py:get_prompt",
+      "type": "function",
+      "name": "get_prompt",
+      "summary": "获取/加载函数: get_prompt",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/prompts/registry.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/prompts/registry.py:get_prompt_template",
+      "type": "function",
+      "name": "get_prompt_template",
+      "summary": "获取/加载函数: get_prompt_template",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/prompts/registry.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/prompts/registry.py:build_review_extraction_user_prompt",
+      "type": "function",
+      "name": "build_review_extraction_user_prompt",
+      "summary": "构建函数: build_review_extraction_user_prompt",
+      "tags": [
+        "factory"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/prompts/registry.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/prompts/registry.py:build_question_generation_user_prompt",
+      "type": "function",
+      "name": "build_question_generation_user_prompt",
+      "summary": "构建函数: build_question_generation_user_prompt",
+      "tags": [
+        "factory"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/prompts/registry.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/prompts/registry.py:build_report_generation_user_prompt",
+      "type": "function",
+      "name": "build_report_generation_user_prompt",
+      "summary": "构建函数: build_report_generation_user_prompt",
+      "tags": [
+        "factory"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/prompts/registry.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/prompts/registry.py:build_product_translation_user_prompt",
+      "type": "function",
+      "name": "build_product_translation_user_prompt",
+      "summary": "构建函数: build_product_translation_user_prompt",
+      "tags": [
+        "factory"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/prompts/registry.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/prompts/registry.py:build_review_translation_user_prompt",
+      "type": "function",
+      "name": "build_review_translation_user_prompt",
+      "summary": "构建函数: build_review_translation_user_prompt",
+      "tags": [
+        "factory"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/prompts/registry.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/prompts/registry.py:build_review_cleanup_user_prompt",
+      "type": "function",
+      "name": "build_review_cleanup_user_prompt",
+      "summary": "构建函数: build_review_cleanup_user_prompt",
+      "tags": [
+        "factory"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/prompts/registry.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/runtime_progress_ui/dashboard.css",
+      "type": "file",
+      "name": "dashboard.css",
+      "summary": "CSS样式表: dashboard.css",
+      "tags": [
+        "dashboard",
+        "ui"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/runtime_progress_ui/dashboard.css",
+      "complexity": "moderate",
+      "language": "css"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/runtime_progress_ui/dashboard.html",
+      "type": "file",
+      "name": "dashboard.html",
+      "summary": "HTML页面: __TITLE__",
+      "tags": [
+        "dashboard",
+        "ui"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/runtime_progress_ui/dashboard.html",
+      "complexity": "moderate",
+      "language": "html"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/runtime_progress_ui/dashboard.js",
+      "type": "file",
+      "name": "dashboard.js",
+      "summary": "JavaScript模块: 定义 2 个函数, 12 个变量",
+      "tags": [
+        "dashboard",
+        "ui"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/runtime_progress_ui/dashboard.js",
+      "complexity": "moderate",
+      "language": "javascript"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:04_scripts/run_experiments.py",
+      "target": "function:04_scripts/run_experiments.py:main",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/run_workflow.py",
+      "target": "class:04_scripts/run_workflow.py:WorkflowCliConfig",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/run_workflow.py",
+      "target": "class:04_scripts/run_workflow.py:WorkflowExecutionSummary",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/run_workflow.py",
+      "target": "function:04_scripts/run_workflow.py:parse_args",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/run_workflow.py",
+      "target": "function:04_scripts/run_workflow.py:build_cli_config",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/run_workflow.py",
+      "target": "function:04_scripts/run_workflow.py:configure_environment",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/run_workflow.py",
+      "target": "function:04_scripts/run_workflow.py:execute_workflow",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/run_workflow.py",
+      "target": "function:04_scripts/run_workflow.py:maybe_write_manifest",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/run_workflow.py",
+      "target": "function:04_scripts/run_workflow.py:main",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/run_workflow.py",
+      "target": "file:05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:04_scripts/run_workflow.py",
+      "target": "file:05_src/decathlon_voc_analyzer/prompts.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:04_scripts/run_workflow.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/core/config.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:04_scripts/run_workflow.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:04_scripts/run_workflow.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage4_generation/html_export_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:04_scripts/run_workflow.py",
+      "target": "file:05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:04_scripts/run_workflow.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:04_scripts/run_workflow.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/core/runtime_policy/__init__.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:04_scripts/validate_multimodal_runtime.py",
+      "target": "function:04_scripts/validate_multimodal_runtime.py:parse_args",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/validate_multimodal_runtime.py",
+      "target": "function:04_scripts/validate_multimodal_runtime.py:main",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/validate_multimodal_runtime.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/app/api/main.py",
+      "target": "function:05_src/decathlon_voc_analyzer/app/api/main.py:healthcheck",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/app/api/main.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/api/routes/analysis.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/app/api/main.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/api/routes/dataset.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/app/api/main.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/api/routes/index.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/app/api/main.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/api/routes/reviews.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/app/api/main.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/core/config.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/app/api/routes/analysis.py",
+      "target": "function:05_src/decathlon_voc_analyzer/app/api/routes/analysis.py:analyze_product",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/app/api/routes/analysis.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/app/api/routes/analysis.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/app/api/routes/dataset.py",
+      "target": "function:05_src/decathlon_voc_analyzer/app/api/routes/dataset.py:get_dataset_overview",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/app/api/routes/dataset.py",
+      "target": "function:05_src/decathlon_voc_analyzer/app/api/routes/dataset.py:normalize_dataset",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/app/api/routes/dataset.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/dataset.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/app/api/routes/dataset.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage1_dataset/dataset_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/app/api/routes/index.py",
+      "target": "function:05_src/decathlon_voc_analyzer/app/api/routes/index.py:get_index_overview",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/app/api/routes/index.py",
+      "target": "function:05_src/decathlon_voc_analyzer/app/api/routes/index.py:build_index",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/app/api/routes/index.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/index.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/app/api/routes/index.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/app/api/routes/reviews.py",
+      "target": "function:05_src/decathlon_voc_analyzer/app/api/routes/reviews.py:extract_review_aspects",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/app/api/routes/reviews.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/review.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/app/api/routes/reviews.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/app/core/config.py",
+      "target": "class:05_src/decathlon_voc_analyzer/app/core/config.py:Settings",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/app/core/config.py",
+      "target": "function:05_src/decathlon_voc_analyzer/app/core/config.py:get_settings",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py",
+      "target": "class:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py:RuntimeExecutionPolicy",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py",
+      "target": "class:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py:RuntimePolicyError",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py",
+      "target": "function:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py:render",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py",
+      "target": "function:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py:get_runtime_execution_policy",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py",
+      "target": "function:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py:should_forbid_degradation",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py",
+      "target": "function:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py:require_full_power_request",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py",
+      "target": "function:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py:resolve_llm_permission",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py",
+      "target": "function:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py:handle_llm_failure",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py",
+      "target": "function:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py:validate_full_power_prerequisites",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/core/config.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/evaluation/__init__.py",
+      "target": "file:05_src/decathlon_voc_analyzer/evaluation/manifest_evaluation_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/evaluation/manifest_evaluation_service.py",
+      "target": "class:05_src/decathlon_voc_analyzer/evaluation/manifest_evaluation_service.py:EvaluationInputBundle",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/evaluation/manifest_evaluation_service.py",
+      "target": "class:05_src/decathlon_voc_analyzer/evaluation/manifest_evaluation_service.py:ManifestEvaluationService",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/evaluation/manifest_evaluation_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/evaluation/manifest_evaluation_service.py:discover_manifest_paths",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/evaluation/manifest_evaluation_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/evaluation/manifest_evaluation_service.py:load_bundle",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/evaluation/manifest_evaluation_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/evaluation/manifest_evaluation_service.py:evaluate_bundle",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/evaluation/manifest_evaluation_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/evaluation/manifest_evaluation_service.py:build_report",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/llm/__init__.py",
+      "target": "file:05_src/decathlon_voc_analyzer/llm/gateway.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/llm/gateway.py",
+      "target": "class:05_src/decathlon_voc_analyzer/llm/gateway.py:QwenChatGateway",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/llm/gateway.py",
+      "target": "function:05_src/decathlon_voc_analyzer/llm/gateway.py:invoke_json",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/llm/gateway.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/core/config.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/prompts/__init__.py",
+      "target": "file:05_src/decathlon_voc_analyzer/prompts/registry.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/prompts/registry.py",
+      "target": "function:05_src/decathlon_voc_analyzer/prompts/registry.py:get_prompt_variant",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/prompts/registry.py",
+      "target": "function:05_src/decathlon_voc_analyzer/prompts/registry.py:normalize_prompt_variant",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/prompts/registry.py",
+      "target": "function:05_src/decathlon_voc_analyzer/prompts/registry.py:get_prompt",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/prompts/registry.py",
+      "target": "function:05_src/decathlon_voc_analyzer/prompts/registry.py:get_prompt_template",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/prompts/registry.py",
+      "target": "function:05_src/decathlon_voc_analyzer/prompts/registry.py:build_review_extraction_user_prompt",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/prompts/registry.py",
+      "target": "function:05_src/decathlon_voc_analyzer/prompts/registry.py:build_question_generation_user_prompt",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/prompts/registry.py",
+      "target": "function:05_src/decathlon_voc_analyzer/prompts/registry.py:build_report_generation_user_prompt",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/prompts/registry.py",
+      "target": "function:05_src/decathlon_voc_analyzer/prompts/registry.py:build_product_translation_user_prompt",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/prompts/registry.py",
+      "target": "function:05_src/decathlon_voc_analyzer/prompts/registry.py:build_review_translation_user_prompt",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/prompts/registry.py",
+      "target": "function:05_src/decathlon_voc_analyzer/prompts/registry.py:build_review_cleanup_user_prompt",
+      "type": "contains",
+      "weight": 1.0
+    }
+  ]
+}

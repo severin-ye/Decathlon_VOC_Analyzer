@@ -1,0 +1,305 @@
+{
+  "nodes": [
+    {
+      "id": "file:01_data/01_raw_products/products/sunglasses/sunglasses_007/product.json",
+      "type": "config",
+      "name": "product.json",
+      "summary": "JSON配置文件: product.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/sunglasses/sunglasses_007/product.json",
+      "complexity": "simple",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/sunglasses/sunglasses_007/reviews.json",
+      "type": "config",
+      "name": "reviews.json",
+      "summary": "JSON配置文件: reviews.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/sunglasses/sunglasses_007/reviews.json",
+      "complexity": "complex",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/sunglasses/sunglasses_008/product.json",
+      "type": "config",
+      "name": "product.json",
+      "summary": "JSON配置文件: product.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/sunglasses/sunglasses_008/product.json",
+      "complexity": "simple",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/sunglasses/sunglasses_008/reviews.json",
+      "type": "config",
+      "name": "reviews.json",
+      "summary": "JSON配置文件: reviews.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/sunglasses/sunglasses_008/reviews.json",
+      "complexity": "complex",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/sunglasses/sunglasses_009/product.json",
+      "type": "config",
+      "name": "product.json",
+      "summary": "JSON配置文件: product.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/sunglasses/sunglasses_009/product.json",
+      "complexity": "simple",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/sunglasses/sunglasses_009/reviews.json",
+      "type": "config",
+      "name": "reviews.json",
+      "summary": "JSON配置文件: reviews.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/sunglasses/sunglasses_009/reviews.json",
+      "complexity": "moderate",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/sunglasses/sunglasses_010/product.json",
+      "type": "config",
+      "name": "product.json",
+      "summary": "JSON配置文件: product.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/sunglasses/sunglasses_010/product.json",
+      "complexity": "simple",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/sunglasses/sunglasses_010/reviews.json",
+      "type": "config",
+      "name": "reviews.json",
+      "summary": "JSON配置文件: reviews.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/sunglasses/sunglasses_010/reviews.json",
+      "complexity": "complex",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/sunglasses/sunglasses_011/product.json",
+      "type": "config",
+      "name": "product.json",
+      "summary": "JSON配置文件: product.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/sunglasses/sunglasses_011/product.json",
+      "complexity": "moderate",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/sunglasses/sunglasses_011/reviews.json",
+      "type": "config",
+      "name": "reviews.json",
+      "summary": "JSON配置文件: reviews.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/sunglasses/sunglasses_011/reviews.json",
+      "complexity": "complex",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/sunglasses/sunglasses_012/product.json",
+      "type": "config",
+      "name": "product.json",
+      "summary": "JSON配置文件: product.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/sunglasses/sunglasses_012/product.json",
+      "complexity": "simple",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/sunglasses/sunglasses_012/reviews.json",
+      "type": "config",
+      "name": "reviews.json",
+      "summary": "JSON配置文件: reviews.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/sunglasses/sunglasses_012/reviews.json",
+      "complexity": "complex",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/sunglasses/sunglasses_013/product.json",
+      "type": "config",
+      "name": "product.json",
+      "summary": "JSON配置文件: product.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/sunglasses/sunglasses_013/product.json",
+      "complexity": "simple",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/sunglasses/sunglasses_013/reviews.json",
+      "type": "config",
+      "name": "reviews.json",
+      "summary": "JSON配置文件: reviews.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/sunglasses/sunglasses_013/reviews.json",
+      "complexity": "simple",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/sunglasses/sunglasses_014/product.json",
+      "type": "config",
+      "name": "product.json",
+      "summary": "JSON配置文件: product.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/sunglasses/sunglasses_014/product.json",
+      "complexity": "simple",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/sunglasses/sunglasses_014/reviews.json",
+      "type": "config",
+      "name": "reviews.json",
+      "summary": "JSON配置文件: reviews.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/sunglasses/sunglasses_014/reviews.json",
+      "complexity": "complex",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/sunglasses/sunglasses_015/product.json",
+      "type": "config",
+      "name": "product.json",
+      "summary": "JSON配置文件: product.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/sunglasses/sunglasses_015/product.json",
+      "complexity": "moderate",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/sunglasses/sunglasses_015/reviews.json",
+      "type": "config",
+      "name": "reviews.json",
+      "summary": "JSON配置文件: reviews.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/sunglasses/sunglasses_015/reviews.json",
+      "complexity": "moderate",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/sunglasses/sunglasses_016/product.json",
+      "type": "config",
+      "name": "product.json",
+      "summary": "JSON配置文件: product.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/sunglasses/sunglasses_016/product.json",
+      "complexity": "simple",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/sunglasses/sunglasses_016/reviews.json",
+      "type": "config",
+      "name": "reviews.json",
+      "summary": "JSON配置文件: reviews.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/sunglasses/sunglasses_016/reviews.json",
+      "complexity": "complex",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/sunglasses/sunglasses_017/product.json",
+      "type": "config",
+      "name": "product.json",
+      "summary": "JSON配置文件: product.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/sunglasses/sunglasses_017/product.json",
+      "complexity": "simple",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/sunglasses/sunglasses_017/reviews.json",
+      "type": "config",
+      "name": "reviews.json",
+      "summary": "JSON配置文件: reviews.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/sunglasses/sunglasses_017/reviews.json",
+      "complexity": "complex",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/sunglasses/sunglasses_018/product.json",
+      "type": "config",
+      "name": "product.json",
+      "summary": "JSON配置文件: product.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/sunglasses/sunglasses_018/product.json",
+      "complexity": "simple",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/sunglasses/sunglasses_018/reviews.json",
+      "type": "config",
+      "name": "reviews.json",
+      "summary": "JSON配置文件: reviews.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/sunglasses/sunglasses_018/reviews.json",
+      "complexity": "complex",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/sunglasses/sunglasses_019/product.json",
+      "type": "config",
+      "name": "product.json",
+      "summary": "JSON配置文件: product.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/sunglasses/sunglasses_019/product.json",
+      "complexity": "moderate",
+      "language": "json"
+    }
+  ],
+  "edges": []
+}

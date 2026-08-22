@@ -1,0 +1,42 @@
+{
+  "nodes": [
+    {
+      "id": "file:0_docs/02_技术文档/教程/推理/IMPLEMENTATION_SUMMARY.md",
+      "type": "document",
+      "name": "IMPLEMENTATION_SUMMARY.md",
+      "summary": "Qwen3 本地小参数模型集成方案 - 实施总结",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/02_技术文档/教程/推理/IMPLEMENTATION_SUMMARY.md",
+      "complexity": "complex",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/02_技术文档/教程/推理/OPENVINO_INTEGRATION.md",
+      "type": "document",
+      "name": "OPENVINO_INTEGRATION.md",
+      "summary": "OpenVINO 集成方案总结",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/02_技术文档/教程/推理/OPENVINO_INTEGRATION.md",
+      "complexity": "moderate",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/02_技术文档/教程/推理/QUICKSTART_LOCAL_INFERENCE.md",
+      "type": "document",
+      "name": "QUICKSTART_LOCAL_INFERENCE.md",
+      "summary": "本地 Qwen3 推理 - 快速开始指南",
+      "tags": [
+        "documentation",
+        "ui"
+      ],
+      "filePath": "0_docs/02_技术文档/教程/推理/QUICKSTART_LOCAL_INFERENCE.md",
+      "complexity": "moderate",
+      "language": "markdown"
+    }
+  ],
+  "edges": []
+}

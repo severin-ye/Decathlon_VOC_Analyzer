@@ -1,0 +1,41 @@
+{
+  "nodes": [
+    {
+      "id": "file:AGENTS.md",
+      "type": "document",
+      "name": "AGENTS.md",
+      "summary": "Decathlon VOC Analyzer Agent Guide",
+      "tags": [
+        "untagged"
+      ],
+      "filePath": "AGENTS.md",
+      "complexity": "simple",
+      "language": "markdown"
+    },
+    {
+      "id": "file:README.md",
+      "type": "document",
+      "name": "README.md",
+      "summary": "Decathlon VOC Analyzer",
+      "tags": [
+        "untagged"
+      ],
+      "filePath": "README.md",
+      "complexity": "complex",
+      "language": "markdown"
+    },
+    {
+      "id": "file:pyproject.toml",
+      "type": "config",
+      "name": "pyproject.toml",
+      "summary": "TOML配置文件: pyproject.toml",
+      "tags": [
+        "untagged"
+      ],
+      "filePath": "pyproject.toml",
+      "complexity": "moderate",
+      "language": "toml"
+    }
+  ],
+  "edges": []
+}

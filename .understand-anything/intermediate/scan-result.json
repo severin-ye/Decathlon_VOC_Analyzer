@@ -1,0 +1,3691 @@
+{
+  "scriptCompleted": true,
+  "files": [
+    {
+      "path": ".github/instructions/runtime-debugging.instructions.md",
+      "language": "markdown",
+      "sizeLines": 13,
+      "fileCategory": "docs"
+    },
+    {
+      "path": ".understand-anything/.understandignore",
+      "language": "unknown",
+      "sizeLines": 45,
+      "fileCategory": "code"
+    },
+    {
+      "path": ".understand-anything/config.json",
+      "language": "json",
+      "sizeLines": 3,
+      "fileCategory": "config"
+    },
+    {
+      "path": "0_docs/01_设计文档/00-导览/术语表.md",
+      "language": "markdown",
+      "sizeLines": 25,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/01_设计文档/00-导览/项目定位.md",
+      "language": "markdown",
+      "sizeLines": 39,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/01_设计文档/00-导览/阅读路径.md",
+      "language": "markdown",
+      "sizeLines": 35,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/01_设计文档/01-总体架构/多模态RAG方案对比.md",
+      "language": "markdown",
+      "sizeLines": 83,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/01_设计文档/01-总体架构/技术选型.md",
+      "language": "markdown",
+      "sizeLines": 59,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/01_设计文档/01-总体架构/设计原则.md",
+      "language": "markdown",
+      "sizeLines": 32,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/01_设计文档/01-总体架构/系统总览.md",
+      "language": "markdown",
+      "sizeLines": 53,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/01_设计文档/02-数据层/标识与对象关系.md",
+      "language": "markdown",
+      "sizeLines": 35,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/01_设计文档/02-数据层/评论证据模型.md",
+      "language": "markdown",
+      "sizeLines": 59,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/01_设计文档/02-数据层/商品证据模型.md",
+      "language": "markdown",
+      "sizeLines": 42,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/01_设计文档/03-召回层/多模态召回总览.md",
+      "language": "markdown",
+      "sizeLines": 57,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/01_设计文档/03-召回层/商品图像召回.md",
+      "language": "markdown",
+      "sizeLines": 44,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/01_设计文档/03-召回层/商品文案召回.md",
+      "language": "markdown",
+      "sizeLines": 30,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/01_设计文档/03-召回层/双路召回与精排.md",
+      "language": "markdown",
+      "sizeLines": 94,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/01_设计文档/03-召回层/原始模态召回演进.md",
+      "language": "markdown",
+      "sizeLines": 73,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/01_设计文档/04-评论建模层/商品印象与客户印象.md",
+      "language": "markdown",
+      "sizeLines": 48,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/01_设计文档/04-评论建模层/Aspect级评论建模.md",
+      "language": "markdown",
+      "sizeLines": 48,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/01_设计文档/05-生成与建议层/改进建议生成.md",
+      "language": "markdown",
+      "sizeLines": 43,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/01_设计文档/05-生成与建议层/综合意见生成.md",
+      "language": "markdown",
+      "sizeLines": 44,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/01_设计文档/06-可解释性与评估/评估与误差分析.md",
+      "language": "markdown",
+      "sizeLines": 53,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/01_设计文档/06-可解释性与评估/全链路可解释性设计.md",
+      "language": "markdown",
+      "sizeLines": 63,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/01_设计文档/07-实施路线/高价值改进-论文.md",
+      "language": "markdown",
+      "sizeLines": 1108,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/01_设计文档/07-实施路线/高价值改进点调研与落地建议-核对稿.md",
+      "language": "markdown",
+      "sizeLines": 450,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/01_设计文档/07-实施路线/项目推进状态.md",
+      "language": "markdown",
+      "sizeLines": 392,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/01_设计文档/07-实施路线/LangChain+Qwen落地.md",
+      "language": "markdown",
+      "sizeLines": 33,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/01_设计文档/07-实施路线/MVP与迭代计划.md",
+      "language": "markdown",
+      "sizeLines": 43,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/01_设计文档/08-参考资料/论文与开源项目.md",
+      "language": "markdown",
+      "sizeLines": 41,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/01_设计文档/08-参考资料/引用/01-多模态RAG基础与综述.md",
+      "language": "markdown",
+      "sizeLines": 97,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/01_设计文档/08-参考资料/引用/02-原始模态召回与视觉检索.md",
+      "language": "markdown",
+      "sizeLines": 191,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/01_设计文档/08-参考资料/引用/03-LangChain与Qwen.md",
+      "language": "markdown",
+      "sizeLines": 124,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/01_设计文档/08-参考资料/引用/04-向量库与评估.md",
+      "language": "markdown",
+      "sizeLines": 52,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/01_设计文档/08-参考资料/引用/05-文档解析与结构化召回.md",
+      "language": "markdown",
+      "sizeLines": 118,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/01_设计文档/08-参考资料/引用/06-候选但未采用路线.md",
+      "language": "markdown",
+      "sizeLines": 67,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/01_设计文档/08-参考资料/引用/README.md",
+      "language": "markdown",
+      "sizeLines": 39,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/01_设计文档/08-参考资料/原始对话主题映射.md",
+      "language": "markdown",
+      "sizeLines": 36,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/01_设计文档/09-审查/覆盖检查.md",
+      "language": "markdown",
+      "sizeLines": 70,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/01_设计文档/README.md",
+      "language": "markdown",
+      "sizeLines": 42,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/02_技术文档/多语言召回/多语言召回.md",
+      "language": "markdown",
+      "sizeLines": 1047,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/02_技术文档/教程/单产品分析结果字段逐项说明.md",
+      "language": "markdown",
+      "sizeLines": 1075,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/02_技术文档/教程/推理/IMPLEMENTATION_SUMMARY.md",
+      "language": "markdown",
+      "sizeLines": 458,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/02_技术文档/教程/推理/MS_Swift_Qwen_推理示例.ipynb",
+      "language": "ipynb",
+      "sizeLines": 496,
+      "fileCategory": "code"
+    },
+    {
+      "path": "0_docs/02_技术文档/教程/推理/OPENVINO_INTEGRATION.md",
+      "language": "markdown",
+      "sizeLines": 162,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/02_技术文档/教程/推理/QUICKSTART_LOCAL_INFERENCE.md",
+      "language": "markdown",
+      "sizeLines": 296,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/02_技术文档/教程/微调/Qwen3高效微调.ipynb",
+      "language": "ipynb",
+      "sizeLines": 15407,
+      "fileCategory": "code"
+    },
+    {
+      "path": "0_docs/02_技术文档/教程/项目开发、论文与成果综述.md",
+      "language": "markdown",
+      "sizeLines": 397,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/02_技术文档/教程/VOC分析系统关键设计问题答复.md",
+      "language": "markdown",
+      "sizeLines": 653,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/02_技术文档/langchain 文档/设计思路.md",
+      "language": "markdown",
+      "sizeLines": 742,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/02_技术文档/langchain 文档/实现顺序.md",
+      "language": "markdown",
+      "sizeLines": 291,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/02_技术文档/langchain 文档/langchain 1.0教程.md",
+      "language": "markdown",
+      "sizeLines": 1549,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/03_论文子模块文档/01_数据集与商品证据标准化.md",
+      "language": "markdown",
+      "sizeLines": 47,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/03_论文子模块文档/02_评论建模与抽样.md",
+      "language": "markdown",
+      "sizeLines": 43,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/03_论文子模块文档/03_多模态索引与召回.md",
+      "language": "markdown",
+      "sizeLines": 48,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/03_论文子模块文档/04_重排缓存与本地推理.md",
+      "language": "markdown",
+      "sizeLines": 48,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/03_论文子模块文档/05_问题规划与证据查询生成.md",
+      "language": "markdown",
+      "sizeLines": 45,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/03_论文子模块文档/06_报告生成证据归因与回放.md",
+      "language": "markdown",
+      "sizeLines": 49,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/03_论文子模块文档/07_工作流编排与批处理.md",
+      "language": "markdown",
+      "sizeLines": 39,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/03_论文子模块文档/08_API配置LLM与提示词层.md",
+      "language": "markdown",
+      "sizeLines": 45,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/03_论文子模块文档/09_Schema与可解释性数据结构.md",
+      "language": "markdown",
+      "sizeLines": 45,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/03_论文子模块文档/10_评估模块与实验指标.md",
+      "language": "markdown",
+      "sizeLines": 47,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/03_论文子模块文档/README.md",
+      "language": "markdown",
+      "sizeLines": 20,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/04_实验运行指南.md",
+      "language": "markdown",
+      "sizeLines": 140,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/05_教授汇报材料/01_系统整体解释.md",
+      "language": "markdown",
+      "sizeLines": 245,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/05_教授汇报材料/02_与已有分析器对比.md",
+      "language": "markdown",
+      "sizeLines": 207,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/05_教授汇报材料/03_功能测试结果.md",
+      "language": "markdown",
+      "sizeLines": 286,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/05_教授汇报材料/04_运行截图指南.md",
+      "language": "markdown",
+      "sizeLines": 158,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/05_教授汇报材料/05_提交清单.md",
+      "language": "markdown",
+      "sizeLines": 124,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/05_教授汇报材料/方法选择依据.md",
+      "language": "markdown",
+      "sizeLines": 269,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/05_教授汇报材料/韩文/01_System_Overview.md",
+      "language": "markdown",
+      "sizeLines": 187,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/05_教授汇报材料/韩文/02_Comparison_with_Existing_Analyzers.md",
+      "language": "markdown",
+      "sizeLines": 138,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/05_教授汇报材料/韩文/03_Functional_Test_Results.md",
+      "language": "markdown",
+      "sizeLines": 209,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/05_教授汇报材料/韩文/04_Screenshot_Guide.md",
+      "language": "markdown",
+      "sizeLines": 150,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/05_教授汇报材料/韩文/05_Submission_Checklist.md",
+      "language": "markdown",
+      "sizeLines": 115,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/05_教授汇报材料/韩文/Experimental_Results.md",
+      "language": "markdown",
+      "sizeLines": 106,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/05_教授汇报材料/韩文/Method_Rationale.md",
+      "language": "markdown",
+      "sizeLines": 250,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/05_教授汇报材料/实验结果表格.md",
+      "language": "markdown",
+      "sizeLines": 113,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/05_教授汇报材料/中文/01_系统整体解释.md",
+      "language": "markdown",
+      "sizeLines": 187,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/05_教授汇报材料/中文/02_与已有分析器对比.md",
+      "language": "markdown",
+      "sizeLines": 138,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/05_教授汇报材料/中文/03_功能测试结果.md",
+      "language": "markdown",
+      "sizeLines": 209,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/05_教授汇报材料/中文/04_运行截图指南.md",
+      "language": "markdown",
+      "sizeLines": 146,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/05_教授汇报材料/中文/05_提交清单.md",
+      "language": "markdown",
+      "sizeLines": 115,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/05_教授汇报材料/中文/方法选择依据.md",
+      "language": "markdown",
+      "sizeLines": 255,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/05_教授汇报材料/中文/实验结果表格.md",
+      "language": "markdown",
+      "sizeLines": 106,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/05_模块树状结构总览.md",
+      "language": "markdown",
+      "sizeLines": 498,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/06_自我梳理.md",
+      "language": "markdown",
+      "sizeLines": 169,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "0_docs/99_归档/browser_links/command",
+      "language": "unknown",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_001/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_002/product.json",
+      "language": "json",
+      "sizeLines": 61,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_002/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_003/product.json",
+      "language": "json",
+      "sizeLines": 95,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_003/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_004/product.json",
+      "language": "json",
+      "sizeLines": 40,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_004/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_005/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_005/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_006/product.json",
+      "language": "json",
+      "sizeLines": 70,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_006/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_007/product.json",
+      "language": "json",
+      "sizeLines": 46,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_007/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_008/product.json",
+      "language": "json",
+      "sizeLines": 51,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_008/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_009/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_009/reviews.json",
+      "language": "json",
+      "sizeLines": 219,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_010/product.json",
+      "language": "json",
+      "sizeLines": 17,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_010/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_011/product.json",
+      "language": "json",
+      "sizeLines": 29,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_011/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_012/product.json",
+      "language": "json",
+      "sizeLines": 28,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_012/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_013/product.json",
+      "language": "json",
+      "sizeLines": 40,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_013/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_014/product.json",
+      "language": "json",
+      "sizeLines": 16,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_014/reviews.json",
+      "language": "json",
+      "sizeLines": 59,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_015/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_015/reviews.json",
+      "language": "json",
+      "sizeLines": 939,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_016/product.json",
+      "language": "json",
+      "sizeLines": 40,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_016/reviews.json",
+      "language": "json",
+      "sizeLines": 859,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_017/product.json",
+      "language": "json",
+      "sizeLines": 49,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_017/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_018/product.json",
+      "language": "json",
+      "sizeLines": 39,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_018/reviews.json",
+      "language": "json",
+      "sizeLines": 164,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_019/product.json",
+      "language": "json",
+      "sizeLines": 29,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_019/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_020/product.json",
+      "language": "json",
+      "sizeLines": 40,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_020/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_021/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_021/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_022/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_022/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_023/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_023/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_024/product.json",
+      "language": "json",
+      "sizeLines": 29,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_024/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_025/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_025/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_026/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_026/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_027/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_027/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_028/product.json",
+      "language": "json",
+      "sizeLines": 16,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_028/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_029/product.json",
+      "language": "json",
+      "sizeLines": 51,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_029/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_030/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_030/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_031/product.json",
+      "language": "json",
+      "sizeLines": 48,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_031/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_032/product.json",
+      "language": "json",
+      "sizeLines": 29,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_032/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_033/product.json",
+      "language": "json",
+      "sizeLines": 29,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_033/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_034/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_034/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_035/product.json",
+      "language": "json",
+      "sizeLines": 17,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_035/reviews.json",
+      "language": "json",
+      "sizeLines": 239,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_036/product.json",
+      "language": "json",
+      "sizeLines": 16,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_036/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_037/product.json",
+      "language": "json",
+      "sizeLines": 29,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_037/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_038/product.json",
+      "language": "json",
+      "sizeLines": 29,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_038/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_039/product.json",
+      "language": "json",
+      "sizeLines": 29,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_039/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_040/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_040/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_041/product.json",
+      "language": "json",
+      "sizeLines": 40,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_041/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_042/product.json",
+      "language": "json",
+      "sizeLines": 40,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_042/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_043/product.json",
+      "language": "json",
+      "sizeLines": 29,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_043/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_044/product.json",
+      "language": "json",
+      "sizeLines": 15,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_044/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_045/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_045/reviews.json",
+      "language": "json",
+      "sizeLines": 364,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_046/product.json",
+      "language": "json",
+      "sizeLines": 17,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_046/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_047/product.json",
+      "language": "json",
+      "sizeLines": 29,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_047/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_048/product.json",
+      "language": "json",
+      "sizeLines": 29,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_048/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_049/product.json",
+      "language": "json",
+      "sizeLines": 46,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_049/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_050/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_050/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_051/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_051/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_052/product.json",
+      "language": "json",
+      "sizeLines": 51,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_052/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_053/product.json",
+      "language": "json",
+      "sizeLines": 16,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_053/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_054/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_054/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_055/product.json",
+      "language": "json",
+      "sizeLines": 51,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_055/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_056/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_056/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_057/product.json",
+      "language": "json",
+      "sizeLines": 19,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_057/reviews.json",
+      "language": "json",
+      "sizeLines": 3,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_058/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_058/reviews.json",
+      "language": "json",
+      "sizeLines": 89,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_059/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_059/reviews.json",
+      "language": "json",
+      "sizeLines": 14,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_060/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_060/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_061/product.json",
+      "language": "json",
+      "sizeLines": 17,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_061/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_062/product.json",
+      "language": "json",
+      "sizeLines": 29,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_062/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_063/product.json",
+      "language": "json",
+      "sizeLines": 29,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_063/reviews.json",
+      "language": "json",
+      "sizeLines": 229,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_064/product.json",
+      "language": "json",
+      "sizeLines": 16,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_064/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_065/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_065/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_066/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_066/reviews.json",
+      "language": "json",
+      "sizeLines": 734,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_067/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_067/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_068/product.json",
+      "language": "json",
+      "sizeLines": 17,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_068/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_069/product.json",
+      "language": "json",
+      "sizeLines": 29,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_069/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_070/product.json",
+      "language": "json",
+      "sizeLines": 17,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_070/reviews.json",
+      "language": "json",
+      "sizeLines": 374,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_071/product.json",
+      "language": "json",
+      "sizeLines": 28,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_071/reviews.json",
+      "language": "json",
+      "sizeLines": 94,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_072/product.json",
+      "language": "json",
+      "sizeLines": 15,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_072/reviews.json",
+      "language": "json",
+      "sizeLines": 439,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_073/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_073/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_074/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_074/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_075/product.json",
+      "language": "json",
+      "sizeLines": 29,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_075/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_076/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_076/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_077/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_077/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_078/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_078/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_079/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_079/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_080/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_080/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_081/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_081/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_082/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_082/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_083/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_083/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_084/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_084/reviews.json",
+      "language": "json",
+      "sizeLines": 574,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_085/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_085/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_086/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_086/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_087/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_087/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_088/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_088/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_089/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_089/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_090/product.json",
+      "language": "json",
+      "sizeLines": 16,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_090/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_091/product.json",
+      "language": "json",
+      "sizeLines": 29,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_091/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_092/product.json",
+      "language": "json",
+      "sizeLines": 15,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_092/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_093/product.json",
+      "language": "json",
+      "sizeLines": 13,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_093/reviews.json",
+      "language": "json",
+      "sizeLines": 3,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_094/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/backpack/backpack_094/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_001/product.json",
+      "language": "json",
+      "sizeLines": 50,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_001/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_002/product.json",
+      "language": "json",
+      "sizeLines": 29,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_002/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_003/product.json",
+      "language": "json",
+      "sizeLines": 62,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_003/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_004/product.json",
+      "language": "json",
+      "sizeLines": 40,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_004/reviews.json",
+      "language": "json",
+      "sizeLines": 329,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_005/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_005/reviews.json",
+      "language": "json",
+      "sizeLines": 714,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_006/product.json",
+      "language": "json",
+      "sizeLines": 29,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_006/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_007/product.json",
+      "language": "json",
+      "sizeLines": 50,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_007/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_008/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_008/reviews.json",
+      "language": "json",
+      "sizeLines": 59,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_009/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_009/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_010/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_010/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_011/product.json",
+      "language": "json",
+      "sizeLines": 40,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_011/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_012/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_012/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_013/product.json",
+      "language": "json",
+      "sizeLines": 40,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_013/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_014/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_014/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_015/product.json",
+      "language": "json",
+      "sizeLines": 62,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_015/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_016/product.json",
+      "language": "json",
+      "sizeLines": 40,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_016/reviews.json",
+      "language": "json",
+      "sizeLines": 779,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_017/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_017/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_018/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_018/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_019/product.json",
+      "language": "json",
+      "sizeLines": 51,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_019/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_020/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_020/reviews.json",
+      "language": "json",
+      "sizeLines": 689,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_021/product.json",
+      "language": "json",
+      "sizeLines": 38,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_021/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_022/product.json",
+      "language": "json",
+      "sizeLines": 39,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_022/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_023/product.json",
+      "language": "json",
+      "sizeLines": 40,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_023/reviews.json",
+      "language": "json",
+      "sizeLines": 759,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_024/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_024/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_025/product.json",
+      "language": "json",
+      "sizeLines": 17,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_025/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_026/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_026/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_027/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_027/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_028/product.json",
+      "language": "json",
+      "sizeLines": 40,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_028/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_029/product.json",
+      "language": "json",
+      "sizeLines": 40,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_029/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_030/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_030/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_031/product.json",
+      "language": "json",
+      "sizeLines": 29,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_031/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_032/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_032/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_033/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_033/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_034/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_034/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_035/product.json",
+      "language": "json",
+      "sizeLines": 40,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_035/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_036/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_036/reviews.json",
+      "language": "json",
+      "sizeLines": 439,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_037/product.json",
+      "language": "json",
+      "sizeLines": 29,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_037/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_038/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_038/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_039/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_039/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_040/product.json",
+      "language": "json",
+      "sizeLines": 29,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_040/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_041/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_041/reviews.json",
+      "language": "json",
+      "sizeLines": 914,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_042/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/shoes/shoes_042/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_001/product.json",
+      "language": "json",
+      "sizeLines": 84,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_001/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_002/product.json",
+      "language": "json",
+      "sizeLines": 84,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_002/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_003/product.json",
+      "language": "json",
+      "sizeLines": 29,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_003/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_004/product.json",
+      "language": "json",
+      "sizeLines": 51,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_004/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_005/product.json",
+      "language": "json",
+      "sizeLines": 73,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_005/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_006/product.json",
+      "language": "json",
+      "sizeLines": 73,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_006/reviews.json",
+      "language": "json",
+      "sizeLines": 284,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_007/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_007/reviews.json",
+      "language": "json",
+      "sizeLines": 499,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_008/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_008/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_009/product.json",
+      "language": "json",
+      "sizeLines": 40,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_009/reviews.json",
+      "language": "json",
+      "sizeLines": 74,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_010/product.json",
+      "language": "json",
+      "sizeLines": 29,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_010/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_011/product.json",
+      "language": "json",
+      "sizeLines": 51,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_011/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_012/product.json",
+      "language": "json",
+      "sizeLines": 39,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_012/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_013/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_013/reviews.json",
+      "language": "json",
+      "sizeLines": 29,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_014/product.json",
+      "language": "json",
+      "sizeLines": 27,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_014/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_015/product.json",
+      "language": "json",
+      "sizeLines": 73,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_015/reviews.json",
+      "language": "json",
+      "sizeLines": 194,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_016/product.json",
+      "language": "json",
+      "sizeLines": 29,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_016/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_017/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_017/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_018/product.json",
+      "language": "json",
+      "sizeLines": 30,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_018/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_019/product.json",
+      "language": "json",
+      "sizeLines": 73,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_019/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_020/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_020/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_021/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_021/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_022/product.json",
+      "language": "json",
+      "sizeLines": 29,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_022/reviews.json",
+      "language": "json",
+      "sizeLines": 9,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_023/product.json",
+      "language": "json",
+      "sizeLines": 40,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_023/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_024/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_024/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_025/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_025/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_026/product.json",
+      "language": "json",
+      "sizeLines": 29,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_026/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_027/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_027/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_028/product.json",
+      "language": "json",
+      "sizeLines": 40,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_028/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_029/product.json",
+      "language": "json",
+      "sizeLines": 29,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_029/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_030/product.json",
+      "language": "json",
+      "sizeLines": 28,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_030/reviews.json",
+      "language": "json",
+      "sizeLines": 959,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_031/product.json",
+      "language": "json",
+      "sizeLines": 29,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_031/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_032/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_032/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_033/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_033/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_034/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_034/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_035/product.json",
+      "language": "json",
+      "sizeLines": 29,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_035/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_036/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_036/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_037/product.json",
+      "language": "json",
+      "sizeLines": 51,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_037/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_038/product.json",
+      "language": "json",
+      "sizeLines": 51,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_038/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_039/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_039/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_040/product.json",
+      "language": "json",
+      "sizeLines": 51,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_040/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_041/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_041/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_042/product.json",
+      "language": "json",
+      "sizeLines": 29,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_042/reviews.json",
+      "language": "json",
+      "sizeLines": 9,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_043/product.json",
+      "language": "json",
+      "sizeLines": 51,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_043/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_044/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_044/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_045/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_045/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_046/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_046/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_047/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_047/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_048/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_048/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_049/product.json",
+      "language": "json",
+      "sizeLines": 40,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_049/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_050/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_050/reviews.json",
+      "language": "json",
+      "sizeLines": 14,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_051/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_051/reviews.json",
+      "language": "json",
+      "sizeLines": 39,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_052/product.json",
+      "language": "json",
+      "sizeLines": 29,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_052/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_053/product.json",
+      "language": "json",
+      "sizeLines": 29,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_053/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_054/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_054/reviews.json",
+      "language": "json",
+      "sizeLines": 439,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_055/product.json",
+      "language": "json",
+      "sizeLines": 18,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_055/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_056/product.json",
+      "language": "json",
+      "sizeLines": 15,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/01_raw_products/products/sunglasses/sunglasses_056/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/02_audit_zh_products/products/backpack/backpack_010/product.json",
+      "language": "json",
+      "sizeLines": 17,
+      "fileCategory": "config"
+    },
+    {
+      "path": "01_data/02_audit_zh_products/products/backpack/backpack_010/reviews.json",
+      "language": "json",
+      "sizeLines": 1004,
+      "fileCategory": "config"
+    },
+    {
+      "path": "02_outputs/6_experiments/README.md",
+      "language": "markdown",
+      "sizeLines": 8,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "02_outputs/README.md",
+      "language": "markdown",
+      "sizeLines": 185,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "02_outputs/runtime_logs/README.md",
+      "language": "markdown",
+      "sizeLines": 9,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "03_configs/review_sampling_profiles.json",
+      "language": "json",
+      "sizeLines": 38,
+      "fileCategory": "config"
+    },
+    {
+      "path": "03_configs/runtime_execution_policy.json",
+      "language": "json",
+      "sizeLines": 4,
+      "fileCategory": "config"
+    },
+    {
+      "path": "04_scripts/bench_image_rerank.py",
+      "language": "python",
+      "sizeLines": 45,
+      "fileCategory": "code"
+    },
+    {
+      "path": "04_scripts/clear_generated_outputs.py",
+      "language": "python",
+      "sizeLines": 261,
+      "fileCategory": "code"
+    },
+    {
+      "path": "04_scripts/download_local_qwen_models.py",
+      "language": "python",
+      "sizeLines": 45,
+      "fileCategory": "code"
+    },
+    {
+      "path": "04_scripts/evaluate_manifests.py",
+      "language": "python",
+      "sizeLines": 58,
+      "fileCategory": "code"
+    },
+    {
+      "path": "04_scripts/experiment_ops/monitor_experiment.sh",
+      "language": "shell",
+      "sizeLines": 59,
+      "fileCategory": "script"
+    },
+    {
+      "path": "04_scripts/experiment_ui/experiment.css",
+      "language": "css",
+      "sizeLines": 80,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "04_scripts/experiment_ui/experiment.html",
+      "language": "html",
+      "sizeLines": 58,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "04_scripts/experiment_ui/experiment.js",
+      "language": "javascript",
+      "sizeLines": 456,
+      "fileCategory": "code"
+    },
+    {
+      "path": "04_scripts/experiment_ui/launcher.css",
+      "language": "css",
+      "sizeLines": 350,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "04_scripts/experiment_ui/serve_ui.py",
+      "language": "python",
+      "sizeLines": 46,
+      "fileCategory": "code"
+    },
+    {
+      "path": "04_scripts/export_html_report.py",
+      "language": "python",
+      "sizeLines": 46,
+      "fileCategory": "code"
+    },
+    {
+      "path": "04_scripts/export_single_product_chinese_dataset.py",
+      "language": "python",
+      "sizeLines": 37,
+      "fileCategory": "code"
+    },
+    {
+      "path": "04_scripts/launch_interactive_workflow.py",
+      "language": "python",
+      "sizeLines": 926,
+      "fileCategory": "code"
+    },
+    {
+      "path": "04_scripts/launcher_ui/category.html",
+      "language": "html",
+      "sizeLines": 43,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "04_scripts/launcher_ui/category.js",
+      "language": "javascript",
+      "sizeLines": 68,
+      "fileCategory": "code"
+    },
+    {
+      "path": "04_scripts/launcher_ui/common.js",
+      "language": "javascript",
+      "sizeLines": 171,
+      "fileCategory": "code"
+    },
+    {
+      "path": "04_scripts/launcher_ui/launcher.css",
+      "language": "css",
+      "sizeLines": 350,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "04_scripts/launcher_ui/overview.html",
+      "language": "html",
+      "sizeLines": 39,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "04_scripts/launcher_ui/overview.js",
+      "language": "javascript",
+      "sizeLines": 77,
+      "fileCategory": "code"
+    },
+    {
+      "path": "04_scripts/local_inference/demo_local_inference.py",
+      "language": "python",
+      "sizeLines": 138,
+      "fileCategory": "code"
+    },
+    {
+      "path": "04_scripts/local_inference/fix_rerank.py",
+      "language": "python",
+      "sizeLines": 88,
+      "fileCategory": "code"
+    },
+    {
+      "path": "04_scripts/local_inference/test_intel_gpu_npu.py",
+      "language": "python",
+      "sizeLines": 214,
+      "fileCategory": "code"
+    },
+    {
+      "path": "04_scripts/local_inference/test_openvino_integrated.py",
+      "language": "python",
+      "sizeLines": 113,
+      "fileCategory": "code"
+    },
+    {
+      "path": "04_scripts/local_inference/test_openvino_vs_pytorch.py",
+      "language": "python",
+      "sizeLines": 357,
+      "fileCategory": "code"
+    },
+    {
+      "path": "04_scripts/run_experiments.py",
+      "language": "python",
+      "sizeLines": 218,
+      "fileCategory": "code"
+    },
+    {
+      "path": "04_scripts/run_workflow.py",
+      "language": "python",
+      "sizeLines": 468,
+      "fileCategory": "code"
+    },
+    {
+      "path": "04_scripts/validate_multimodal_runtime.py",
+      "language": "python",
+      "sizeLines": 110,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer.egg-info/dependency_links.txt",
+      "language": "txt",
+      "sizeLines": 1,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer.egg-info/PKG-INFO",
+      "language": "unknown",
+      "sizeLines": 318,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer.egg-info/requires.txt",
+      "language": "txt",
+      "sizeLines": 32,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer.egg-info/SOURCES.txt",
+      "language": "txt",
+      "sizeLines": 58,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer.egg-info/top_level.txt",
+      "language": "txt",
+      "sizeLines": 1,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/__init__.py",
+      "language": "python",
+      "sizeLines": 2,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/app/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/app/api/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/app/api/main.py",
+      "language": "python",
+      "sizeLines": 29,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/app/api/routes/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/app/api/routes/analysis.py",
+      "language": "python",
+      "sizeLines": 15,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/app/api/routes/dataset.py",
+      "language": "python",
+      "sizeLines": 21,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/app/api/routes/index.py",
+      "language": "python",
+      "sizeLines": 17,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/app/api/routes/reviews.py",
+      "language": "python",
+      "sizeLines": 15,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/app/core/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/app/core/config.py",
+      "language": "python",
+      "sizeLines": 87,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/app/core/runtime_policy.py",
+      "language": "python",
+      "sizeLines": 128,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/evaluation/__init__.py",
+      "language": "python",
+      "sizeLines": 2,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/evaluation/manifest_evaluation_service.py",
+      "language": "python",
+      "sizeLines": 625,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/llm/__init__.py",
+      "language": "python",
+      "sizeLines": 2,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/llm/gateway.py",
+      "language": "python",
+      "sizeLines": 123,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/prompts/__init__.py",
+      "language": "python",
+      "sizeLines": 24,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/prompts/CN/1_商品信息翻译系统提示词.md",
+      "language": "markdown",
+      "sizeLines": 6,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/prompts/CN/2_评论翻译系统提示词.md",
+      "language": "markdown",
+      "sizeLines": 7,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/prompts/CN/3_评论清洗系统提示词.md",
+      "language": "markdown",
+      "sizeLines": 8,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/prompts/CN/4_评论结构化抽取系统提示词.md",
+      "language": "markdown",
+      "sizeLines": 20,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/prompts/CN/5_核验问题生成系统提示词.md",
+      "language": "markdown",
+      "sizeLines": 17,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/prompts/CN/6_VOC报告生成系统提示词.md",
+      "language": "markdown",
+      "sizeLines": 25,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/prompts/main/1_商品信息翻译系统提示词.md",
+      "language": "markdown",
+      "sizeLines": 6,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/prompts/main/2_评论翻译系统提示词.md",
+      "language": "markdown",
+      "sizeLines": 7,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/prompts/main/3_评论清洗系统提示词.md",
+      "language": "markdown",
+      "sizeLines": 8,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/prompts/main/4_评论结构化抽取系统提示词.md",
+      "language": "markdown",
+      "sizeLines": 20,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/prompts/main/5_核验问题生成系统提示词.md",
+      "language": "markdown",
+      "sizeLines": 20,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/prompts/main/6_VOC报告生成系统提示词.md",
+      "language": "markdown",
+      "sizeLines": 29,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/prompts/registry.py",
+      "language": "python",
+      "sizeLines": 133,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/runtime_progress_ui/dashboard.css",
+      "language": "css",
+      "sizeLines": 157,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/runtime_progress_ui/dashboard.html",
+      "language": "html",
+      "sizeLines": 51,
+      "fileCategory": "markup"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/runtime_progress_ui/dashboard.js",
+      "language": "javascript",
+      "sizeLines": 65,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "language": "python",
+      "sizeLines": 987,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/schemas/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "language": "python",
+      "sizeLines": 423,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/schemas/dataset.py",
+      "language": "python",
+      "sizeLines": 106,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/schemas/index.py",
+      "language": "python",
+      "sizeLines": 68,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/schemas/question_cache.py",
+      "language": "python",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/schemas/retrieval_cache.py",
+      "language": "python",
+      "sizeLines": 73,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/schemas/review.py",
+      "language": "python",
+      "sizeLines": 79,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/stage1_dataset/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/stage1_dataset/chinese_dataset_service.py",
+      "language": "python",
+      "sizeLines": 160,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/stage1_dataset/dataset_service.py",
+      "language": "python",
+      "sizeLines": 472,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/stage2_review_modeling/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/stage2_review_modeling/deduplication_service.py",
+      "language": "python",
+      "sizeLines": 21,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/stage2_review_modeling/review_sampling_service.py",
+      "language": "python",
+      "sizeLines": 225,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/stage2_review_modeling/review_service.py",
+      "language": "python",
+      "sizeLines": 447,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/stage3_retrieval/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py",
+      "language": "python",
+      "sizeLines": 316,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "language": "python",
+      "sizeLines": 302,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/stage3_retrieval/index_service.py",
+      "language": "python",
+      "sizeLines": 229,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py",
+      "language": "python",
+      "sizeLines": 357,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_integrated.py",
+      "language": "python",
+      "sizeLines": 356,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_models.py",
+      "language": "python",
+      "sizeLines": 310,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/stage3_retrieval/reranker_service.py",
+      "language": "python",
+      "sizeLines": 466,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py",
+      "language": "python",
+      "sizeLines": 94,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_service.py",
+      "language": "python",
+      "sizeLines": 280,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/stage4_generation/__init__.py",
+      "language": "python",
+      "sizeLines": 0,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "language": "python",
+      "sizeLines": 3045,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/stage4_generation/artifact_sidecar_service.py",
+      "language": "python",
+      "sizeLines": 168,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/stage4_generation/html_export_service.py",
+      "language": "python",
+      "sizeLines": 420,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/stage4_generation/question_cache_service.py",
+      "language": "python",
+      "sizeLines": 41,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/stage4_generation/question_service.py",
+      "language": "python",
+      "sizeLines": 549,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/stage4_generation/report_refinement_service.py",
+      "language": "python",
+      "sizeLines": 312,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/workflows/__init__.py",
+      "language": "python",
+      "sizeLines": 2,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/workflows/control_experiments.py",
+      "language": "python",
+      "sizeLines": 345,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/workflows/experiment_runner.py",
+      "language": "python",
+      "sizeLines": 424,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/workflows/llm_judge_evaluation.py",
+      "language": "python",
+      "sizeLines": 300,
+      "fileCategory": "code"
+    },
+    {
+      "path": "05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py",
+      "language": "python",
+      "sizeLines": 123,
+      "fileCategory": "code"
+    },
+    {
+      "path": "06_tests/conftest.py",
+      "language": "python",
+      "sizeLines": 65,
+      "fileCategory": "code"
+    },
+    {
+      "path": "06_tests/test_analysis_api.py",
+      "language": "python",
+      "sizeLines": 40,
+      "fileCategory": "code"
+    },
+    {
+      "path": "06_tests/test_analysis_service.py",
+      "language": "python",
+      "sizeLines": 1895,
+      "fileCategory": "code"
+    },
+    {
+      "path": "06_tests/test_clear_generated_outputs_script.py",
+      "language": "python",
+      "sizeLines": 100,
+      "fileCategory": "code"
+    },
+    {
+      "path": "06_tests/test_dataset_api.py",
+      "language": "python",
+      "sizeLines": 34,
+      "fileCategory": "code"
+    },
+    {
+      "path": "06_tests/test_dataset_service.py",
+      "language": "python",
+      "sizeLines": 66,
+      "fileCategory": "code"
+    },
+    {
+      "path": "06_tests/test_embedding_and_reranker.py",
+      "language": "python",
+      "sizeLines": 623,
+      "fileCategory": "code"
+    },
+    {
+      "path": "06_tests/test_experiment_checkpoints.py",
+      "language": "python",
+      "sizeLines": 179,
+      "fileCategory": "code"
+    },
+    {
+      "path": "06_tests/test_experiment_runner.py",
+      "language": "python",
+      "sizeLines": 36,
+      "fileCategory": "code"
+    },
+    {
+      "path": "06_tests/test_experiment_ui_server.py",
+      "language": "python",
+      "sizeLines": 23,
+      "fileCategory": "code"
+    },
+    {
+      "path": "06_tests/test_html_export_service.py",
+      "language": "python",
+      "sizeLines": 196,
+      "fileCategory": "code"
+    },
+    {
+      "path": "06_tests/test_index_api.py",
+      "language": "python",
+      "sizeLines": 28,
+      "fileCategory": "code"
+    },
+    {
+      "path": "06_tests/test_index_backends.py",
+      "language": "python",
+      "sizeLines": 137,
+      "fileCategory": "code"
+    },
+    {
+      "path": "06_tests/test_index_service.py",
+      "language": "python",
+      "sizeLines": 62,
+      "fileCategory": "code"
+    },
+    {
+      "path": "06_tests/test_launch_interactive_workflow.py",
+      "language": "python",
+      "sizeLines": 353,
+      "fileCategory": "code"
+    },
+    {
+      "path": "06_tests/test_manifest_evaluation_service.py",
+      "language": "python",
+      "sizeLines": 267,
+      "fileCategory": "code"
+    },
+    {
+      "path": "06_tests/test_paper_arxiv_submission.py",
+      "language": "python",
+      "sizeLines": 146,
+      "fileCategory": "code"
+    },
+    {
+      "path": "06_tests/test_paper_latex_export.py",
+      "language": "python",
+      "sizeLines": 37,
+      "fileCategory": "code"
+    },
+    {
+      "path": "06_tests/test_prompt_registry.py",
+      "language": "python",
+      "sizeLines": 29,
+      "fileCategory": "code"
+    },
+    {
+      "path": "06_tests/test_question_service.py",
+      "language": "python",
+      "sizeLines": 364,
+      "fileCategory": "code"
+    },
+    {
+      "path": "06_tests/test_retrieval_service.py",
+      "language": "python",
+      "sizeLines": 272,
+      "fileCategory": "code"
+    },
+    {
+      "path": "06_tests/test_review_api.py",
+      "language": "python",
+      "sizeLines": 84,
+      "fileCategory": "code"
+    },
+    {
+      "path": "06_tests/test_review_service.py",
+      "language": "python",
+      "sizeLines": 268,
+      "fileCategory": "code"
+    },
+    {
+      "path": "06_tests/test_run_workflow_script.py",
+      "language": "python",
+      "sizeLines": 279,
+      "fileCategory": "code"
+    },
+    {
+      "path": "06_tests/test_runtime_policy.py",
+      "language": "python",
+      "sizeLines": 100,
+      "fileCategory": "code"
+    },
+    {
+      "path": "06_tests/test_runtime_progress.py",
+      "language": "python",
+      "sizeLines": 216,
+      "fileCategory": "code"
+    },
+    {
+      "path": "06_tests/test_validate_multimodal_runtime_script.py",
+      "language": "python",
+      "sizeLines": 77,
+      "fileCategory": "code"
+    },
+    {
+      "path": "AGENTS.md",
+      "language": "markdown",
+      "sizeLines": 44,
+      "fileCategory": "docs"
+    },
+    {
+      "path": "pyproject.toml",
+      "language": "toml",
+      "sizeLines": 61,
+      "fileCategory": "config"
+    },
+    {
+      "path": "README.md",
+      "language": "markdown",
+      "sizeLines": 477,
+      "fileCategory": "docs"
+    }
+  ],
+  "totalFiles": 610,
+  "filteredByIgnore": 0,
+  "estimatedComplexity": "very-large",
+  "stats": {
+    "filesScanned": 610,
+    "byCategory": {
+      "docs": 104,
+      "code": 108,
+      "config": 389,
+      "script": 1,
+      "markup": 8
+    },
+    "byLanguage": {
+      "markdown": 100,
+      "unknown": 3,
+      "json": 388,
+      "ipynb": 2,
+      "python": 98,
+      "shell": 1,
+      "css": 4,
+      "html": 4,
+      "javascript": 5,
+      "txt": 4,
+      "toml": 1
+    }
+  }
+}

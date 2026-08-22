@@ -1,0 +1,77 @@
+{
+  "nodes": [
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/prompts/main/1_商品信息翻译系统提示词.md",
+      "type": "document",
+      "name": "1_商品信息翻译系统提示词.md",
+      "summary": "You are the English translation assistant for the main product dataset.",
+      "tags": [
+        "prompts"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/prompts/main/1_商品信息翻译系统提示词.md",
+      "complexity": "simple",
+      "language": "markdown"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/prompts/main/2_评论翻译系统提示词.md",
+      "type": "document",
+      "name": "2_评论翻译系统提示词.md",
+      "summary": "You are the English translation assistant for the main product review dataset.",
+      "tags": [
+        "prompts"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/prompts/main/2_评论翻译系统提示词.md",
+      "complexity": "simple",
+      "language": "markdown"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/prompts/main/3_评论清洗系统提示词.md",
+      "type": "document",
+      "name": "3_评论清洗系统提示词.md",
+      "summary": "You are the text cleanup assistant for the main product dataset.",
+      "tags": [
+        "prompts"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/prompts/main/3_评论清洗系统提示词.md",
+      "complexity": "simple",
+      "language": "markdown"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/prompts/main/4_评论结构化抽取系统提示词.md",
+      "type": "document",
+      "name": "4_评论结构化抽取系统提示词.md",
+      "summary": "You are the review structure extractor in the product VOC pipeline.",
+      "tags": [
+        "prompts"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/prompts/main/4_评论结构化抽取系统提示词.md",
+      "complexity": "simple",
+      "language": "markdown"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/prompts/main/5_核验问题生成系统提示词.md",
+      "type": "document",
+      "name": "5_核验问题生成系统提示词.md",
+      "summary": "You are the question generator for the question-driven retrieval pipeline.",
+      "tags": [
+        "prompts"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/prompts/main/5_核验问题生成系统提示词.md",
+      "complexity": "simple",
+      "language": "markdown"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/prompts/main/6_VOC报告生成系统提示词.md",
+      "type": "document",
+      "name": "6_VOC报告生成系统提示词.md",
+      "summary": "You are the evidence-grounded product VOC report generator.",
+      "tags": [
+        "prompts"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/prompts/main/6_VOC报告生成系统提示词.md",
+      "complexity": "simple",
+      "language": "markdown"
+    }
+  ],
+  "edges": []
+}

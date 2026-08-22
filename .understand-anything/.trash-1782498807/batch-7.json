@@ -1,0 +1,41 @@
+{
+  "nodes": [
+    {
+      "id": "file:0_docs/01_设计文档/02-数据层/商品证据模型.md",
+      "type": "document",
+      "name": "商品证据模型.md",
+      "summary": "商品证据模型",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/01_设计文档/02-数据层/商品证据模型.md",
+      "complexity": "simple",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/01_设计文档/02-数据层/标识与对象关系.md",
+      "type": "document",
+      "name": "标识与对象关系.md",
+      "summary": "标识与对象关系",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/01_设计文档/02-数据层/标识与对象关系.md",
+      "complexity": "simple",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/01_设计文档/02-数据层/评论证据模型.md",
+      "type": "document",
+      "name": "评论证据模型.md",
+      "summary": "评论证据模型",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/01_设计文档/02-数据层/评论证据模型.md",
+      "complexity": "moderate",
+      "language": "markdown"
+    }
+  ],
+  "edges": []
+}

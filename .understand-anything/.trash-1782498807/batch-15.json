@@ -1,0 +1,41 @@
+{
+  "nodes": [
+    {
+      "id": "file:0_docs/04_实验运行指南.md",
+      "type": "document",
+      "name": "04_实验运行指南.md",
+      "summary": "消融实验与对照实验运行指南",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/04_实验运行指南.md",
+      "complexity": "moderate",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/05_模块树状结构总览.md",
+      "type": "document",
+      "name": "05_模块树状结构总览.md",
+      "summary": "Decathlon VOC Analyzer 模块树状结构总览",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/05_模块树状结构总览.md",
+      "complexity": "complex",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/06_自我梳理.md",
+      "type": "document",
+      "name": "06_自我梳理.md",
+      "summary": "自我梳理：如何讲清楚 Decathlon VOC Analyzer",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/06_自我梳理.md",
+      "complexity": "moderate",
+      "language": "markdown"
+    }
+  ],
+  "edges": []
+}

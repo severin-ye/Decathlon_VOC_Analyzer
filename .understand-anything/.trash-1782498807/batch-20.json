@@ -1,0 +1,305 @@
+{
+  "nodes": [
+    {
+      "id": "file:.github/instructions/runtime-debugging.instructions.md",
+      "type": "document",
+      "name": "runtime-debugging.instructions.md",
+      "summary": "Runtime Debugging",
+      "tags": [
+        "untagged"
+      ],
+      "filePath": ".github/instructions/runtime-debugging.instructions.md",
+      "complexity": "simple",
+      "language": "markdown"
+    },
+    {
+      "id": "file:.understand-anything/.understandignore",
+      "type": "file",
+      "name": ".understandignore",
+      "summary": "项目文件: .understandignore",
+      "tags": [
+        "untagged"
+      ],
+      "filePath": ".understand-anything/.understandignore",
+      "complexity": "simple",
+      "language": "unknown"
+    },
+    {
+      "id": "file:.understand-anything/config.json",
+      "type": "config",
+      "name": "config.json",
+      "summary": "JSON配置文件: config.json",
+      "tags": [
+        "untagged"
+      ],
+      "filePath": ".understand-anything/config.json",
+      "complexity": "simple",
+      "language": "json"
+    },
+    {
+      "id": "file:0_docs/01_设计文档/04-评论建模层/商品印象与客户印象.md",
+      "type": "document",
+      "name": "商品印象与客户印象.md",
+      "summary": "商品印象与客户印象",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/01_设计文档/04-评论建模层/商品印象与客户印象.md",
+      "complexity": "simple",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/01_设计文档/04-评论建模层/Aspect级评论建模.md",
+      "type": "document",
+      "name": "Aspect级评论建模.md",
+      "summary": "Aspect级评论建模",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/01_设计文档/04-评论建模层/Aspect级评论建模.md",
+      "complexity": "simple",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/01_设计文档/05-生成与建议层/改进建议生成.md",
+      "type": "document",
+      "name": "改进建议生成.md",
+      "summary": "改进建议生成",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/01_设计文档/05-生成与建议层/改进建议生成.md",
+      "complexity": "simple",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/01_设计文档/05-生成与建议层/综合意见生成.md",
+      "type": "document",
+      "name": "综合意见生成.md",
+      "summary": "综合意见生成",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/01_设计文档/05-生成与建议层/综合意见生成.md",
+      "complexity": "simple",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/01_设计文档/06-可解释性与评估/评估与误差分析.md",
+      "type": "document",
+      "name": "评估与误差分析.md",
+      "summary": "评估与误差分析",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/01_设计文档/06-可解释性与评估/评估与误差分析.md",
+      "complexity": "moderate",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/01_设计文档/06-可解释性与评估/全链路可解释性设计.md",
+      "type": "document",
+      "name": "全链路可解释性设计.md",
+      "summary": "全链路可解释性设计",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/01_设计文档/06-可解释性与评估/全链路可解释性设计.md",
+      "complexity": "moderate",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/01_设计文档/08-参考资料/论文与开源项目.md",
+      "type": "document",
+      "name": "论文与开源项目.md",
+      "summary": "论文与开源项目",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/01_设计文档/08-参考资料/论文与开源项目.md",
+      "complexity": "simple",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/01_设计文档/08-参考资料/原始对话主题映射.md",
+      "type": "document",
+      "name": "原始对话主题映射.md",
+      "summary": "原始对话主题映射",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/01_设计文档/08-参考资料/原始对话主题映射.md",
+      "complexity": "simple",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/01_设计文档/09-审查/覆盖检查.md",
+      "type": "document",
+      "name": "覆盖检查.md",
+      "summary": "覆盖检查",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/01_设计文档/09-审查/覆盖检查.md",
+      "complexity": "moderate",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/01_设计文档/README.md",
+      "type": "document",
+      "name": "README.md",
+      "summary": "设计文档总览",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/01_设计文档/README.md",
+      "complexity": "simple",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/02_技术文档/多语言召回/多语言召回.md",
+      "type": "document",
+      "name": "多语言召回.md",
+      "summary": "基于语言感知与证据保留的多语言 RAG 方法论",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/02_技术文档/多语言召回/多语言召回.md",
+      "complexity": "complex",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/02_技术文档/教程/推理/MS_Swift_Qwen_推理示例.ipynb",
+      "type": "file",
+      "name": "MS_Swift_Qwen_推理示例.ipynb",
+      "summary": "项目文件: MS_Swift_Qwen_推理示例.ipynb",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/02_技术文档/教程/推理/MS_Swift_Qwen_推理示例.ipynb",
+      "complexity": "complex",
+      "language": "ipynb"
+    },
+    {
+      "id": "file:0_docs/02_技术文档/教程/微调/Qwen3高效微调.ipynb",
+      "type": "file",
+      "name": "Qwen3高效微调.ipynb",
+      "summary": "项目文件: Qwen3高效微调.ipynb",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/02_技术文档/教程/微调/Qwen3高效微调.ipynb",
+      "complexity": "complex",
+      "language": "ipynb"
+    },
+    {
+      "id": "file:0_docs/99_归档/browser_links/command",
+      "type": "file",
+      "name": "command",
+      "summary": "项目文件: command",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/99_归档/browser_links/command",
+      "complexity": "simple",
+      "language": "unknown"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/backpack/backpack_001/reviews.json",
+      "type": "config",
+      "name": "reviews.json",
+      "summary": "JSON配置文件: reviews.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/backpack/backpack_001/reviews.json",
+      "complexity": "complex",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/backpack/backpack_002/product.json",
+      "type": "config",
+      "name": "product.json",
+      "summary": "JSON配置文件: product.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/backpack/backpack_002/product.json",
+      "complexity": "moderate",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/backpack/backpack_002/reviews.json",
+      "type": "config",
+      "name": "reviews.json",
+      "summary": "JSON配置文件: reviews.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/backpack/backpack_002/reviews.json",
+      "complexity": "complex",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/backpack/backpack_003/product.json",
+      "type": "config",
+      "name": "product.json",
+      "summary": "JSON配置文件: product.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/backpack/backpack_003/product.json",
+      "complexity": "moderate",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/backpack/backpack_003/reviews.json",
+      "type": "config",
+      "name": "reviews.json",
+      "summary": "JSON配置文件: reviews.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/backpack/backpack_003/reviews.json",
+      "complexity": "complex",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/backpack/backpack_004/product.json",
+      "type": "config",
+      "name": "product.json",
+      "summary": "JSON配置文件: product.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/backpack/backpack_004/product.json",
+      "complexity": "simple",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/backpack/backpack_004/reviews.json",
+      "type": "config",
+      "name": "reviews.json",
+      "summary": "JSON配置文件: reviews.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/backpack/backpack_004/reviews.json",
+      "complexity": "complex",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/01_raw_products/products/backpack/backpack_005/product.json",
+      "type": "config",
+      "name": "product.json",
+      "summary": "JSON配置文件: product.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/01_raw_products/products/backpack/backpack_005/product.json",
+      "complexity": "simple",
+      "language": "json"
+    }
+  ],
+  "edges": []
+}

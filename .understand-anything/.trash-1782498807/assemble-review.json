@@ -1,0 +1,26 @@
+{
+  "issues": [
+    "30 dangling edge references from import paths that don't match actual file node IDs (e.g., file:05_src/decathlon_voc_analyzer/llm.py → actual: file:05_src/decathlon_voc_analyzer/llm/__init__.py). These were auto-dropped by merge script.",
+    "389 config nodes are likely inflated due to data/output JSON/YAML/CSV files being classified as 'config' — these are mostly data artifacts, not true configuration files.",
+    "Low edge diversity — only 2 edge types (imports, contains). Missing calls, depends_on, tested_by, configures, documents edges between files.",
+    "Most documentation nodes lack 'documents' edges to code files they reference.",
+    "Cross-stage pipeline dependencies are only captured via imports; data-flow edges (depends_on, configures) are missing."
+  ],
+  "stats": {
+    "totalNodes": 1156,
+    "totalEdges": 723,
+    "nodeTypes": {
+      "file": 117,
+      "document": 104,
+      "config": 389,
+      "class": 62,
+      "function": 400,
+      "endpoint": 7,
+      "schema": 77
+    },
+    "edgeTypes": {
+      "imports": 177,
+      "contains": 546
+    }
+  }
+}

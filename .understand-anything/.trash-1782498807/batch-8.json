@@ -1,0 +1,65 @@
+{
+  "nodes": [
+    {
+      "id": "file:0_docs/01_设计文档/03-召回层/原始模态召回演进.md",
+      "type": "document",
+      "name": "原始模态召回演进.md",
+      "summary": "原始模态召回演进",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/01_设计文档/03-召回层/原始模态召回演进.md",
+      "complexity": "moderate",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/01_设计文档/03-召回层/双路召回与精排.md",
+      "type": "document",
+      "name": "双路召回与精排.md",
+      "summary": "双路召回与精排",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/01_设计文档/03-召回层/双路召回与精排.md",
+      "complexity": "moderate",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/01_设计文档/03-召回层/商品图像召回.md",
+      "type": "document",
+      "name": "商品图像召回.md",
+      "summary": "商品图像召回",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/01_设计文档/03-召回层/商品图像召回.md",
+      "complexity": "simple",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/01_设计文档/03-召回层/商品文案召回.md",
+      "type": "document",
+      "name": "商品文案召回.md",
+      "summary": "商品文案召回",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/01_设计文档/03-召回层/商品文案召回.md",
+      "complexity": "simple",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/01_设计文档/03-召回层/多模态召回总览.md",
+      "type": "document",
+      "name": "多模态召回总览.md",
+      "summary": "多模态召回总览",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/01_设计文档/03-召回层/多模态召回总览.md",
+      "complexity": "moderate",
+      "language": "markdown"
+    }
+  ],
+  "edges": []
+}

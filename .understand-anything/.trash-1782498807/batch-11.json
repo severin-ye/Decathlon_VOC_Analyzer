@@ -1,0 +1,41 @@
+{
+  "nodes": [
+    {
+      "id": "file:0_docs/02_技术文档/langchain 文档/langchain 1.0教程.md",
+      "type": "document",
+      "name": "langchain 1.0教程.md",
+      "summary": "Part 1.最新版LangChain 1.0快速入门介绍",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/02_技术文档/langchain 文档/langchain 1.0教程.md",
+      "complexity": "complex",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/02_技术文档/langchain 文档/实现顺序.md",
+      "type": "document",
+      "name": "实现顺序.md",
+      "summary": "🧱 **第一部分：项目初始化**",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/02_技术文档/langchain 文档/实现顺序.md",
+      "complexity": "moderate",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/02_技术文档/langchain 文档/设计思路.md",
+      "type": "document",
+      "name": "设计思路.md",
+      "summary": "🧱 一、系统架构（JSON 数据库版本）",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/02_技术文档/langchain 文档/设计思路.md",
+      "complexity": "complex",
+      "language": "markdown"
+    }
+  ],
+  "edges": []
+}

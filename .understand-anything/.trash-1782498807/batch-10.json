@@ -1,0 +1,89 @@
+{
+  "nodes": [
+    {
+      "id": "file:0_docs/01_设计文档/08-参考资料/引用/01-多模态RAG基础与综述.md",
+      "type": "document",
+      "name": "01-多模态RAG基础与综述.md",
+      "summary": "多模态RAG基础与综述",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/01_设计文档/08-参考资料/引用/01-多模态RAG基础与综述.md",
+      "complexity": "moderate",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/01_设计文档/08-参考资料/引用/02-原始模态召回与视觉检索.md",
+      "type": "document",
+      "name": "02-原始模态召回与视觉检索.md",
+      "summary": "原始模态召回与视觉检索",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/01_设计文档/08-参考资料/引用/02-原始模态召回与视觉检索.md",
+      "complexity": "moderate",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/01_设计文档/08-参考资料/引用/03-LangChain与Qwen.md",
+      "type": "document",
+      "name": "03-LangChain与Qwen.md",
+      "summary": "LangChain与Qwen",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/01_设计文档/08-参考资料/引用/03-LangChain与Qwen.md",
+      "complexity": "moderate",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/01_设计文档/08-参考资料/引用/04-向量库与评估.md",
+      "type": "document",
+      "name": "04-向量库与评估.md",
+      "summary": "向量库与评估",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/01_设计文档/08-参考资料/引用/04-向量库与评估.md",
+      "complexity": "moderate",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/01_设计文档/08-参考资料/引用/05-文档解析与结构化召回.md",
+      "type": "document",
+      "name": "05-文档解析与结构化召回.md",
+      "summary": "文档解析与结构化召回",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/01_设计文档/08-参考资料/引用/05-文档解析与结构化召回.md",
+      "complexity": "moderate",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/01_设计文档/08-参考资料/引用/06-候选但未采用路线.md",
+      "type": "document",
+      "name": "06-候选但未采用路线.md",
+      "summary": "候选但未采用路线",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/01_设计文档/08-参考资料/引用/06-候选但未采用路线.md",
+      "complexity": "moderate",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/01_设计文档/08-参考资料/引用/README.md",
+      "type": "document",
+      "name": "README.md",
+      "summary": "引用目录总览",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/01_设计文档/08-参考资料/引用/README.md",
+      "complexity": "simple",
+      "language": "markdown"
+    }
+  ],
+  "edges": []
+}

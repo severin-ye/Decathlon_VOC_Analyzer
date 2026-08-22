@@ -1,0 +1,3908 @@
+{
+  "nodes": [
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/stage4_generation/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "summary": "项目文件: __init__.py",
+      "tags": [
+        "pipeline-stage4"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage4_generation/__init__.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "type": "file",
+      "name": "analysis_service.py",
+      "summary": "Python模块: 定义 4 个类, 126 个函数",
+      "tags": [
+        "pipeline-stage4"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py:LLMInsightItem",
+      "type": "schema",
+      "name": "LLMInsightItem",
+      "summary": "LLMInsightItem类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py:LLMSuggestionItem",
+      "type": "schema",
+      "name": "LLMSuggestionItem",
+      "summary": "LLMSuggestionItem类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py:LLMReportPayload",
+      "type": "schema",
+      "name": "LLMReportPayload",
+      "summary": "LLMReportPayload类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py:ProductAnalysisService",
+      "type": "class",
+      "name": "ProductAnalysisService",
+      "summary": "ProductAnalysisService类",
+      "tags": [
+        "service"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py:analyze",
+      "type": "function",
+      "name": "analyze",
+      "summary": "函数: analyze",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py:rank",
+      "type": "function",
+      "name": "rank",
+      "summary": "函数: rank",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py:metric_key",
+      "type": "function",
+      "name": "metric_key",
+      "summary": "函数: metric_key",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/stage4_generation/artifact_sidecar_service.py",
+      "type": "file",
+      "name": "artifact_sidecar_service.py",
+      "summary": "Python模块: 定义 1 个类, 9 个函数",
+      "tags": [
+        "pipeline-stage4"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage4_generation/artifact_sidecar_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/stage4_generation/artifact_sidecar_service.py:ArtifactSidecarService",
+      "type": "class",
+      "name": "ArtifactSidecarService",
+      "summary": "ArtifactSidecarService类",
+      "tags": [
+        "service"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage4_generation/artifact_sidecar_service.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage4_generation/artifact_sidecar_service.py:load_feedback_payload",
+      "type": "function",
+      "name": "load_feedback_payload",
+      "summary": "获取/加载函数: load_feedback_payload",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage4_generation/artifact_sidecar_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage4_generation/artifact_sidecar_service.py:load_replay_payload",
+      "type": "function",
+      "name": "load_replay_payload",
+      "summary": "获取/加载函数: load_replay_payload",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage4_generation/artifact_sidecar_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage4_generation/artifact_sidecar_service.py:persist_sidecars",
+      "type": "function",
+      "name": "persist_sidecars",
+      "summary": "输出/保存函数: persist_sidecars",
+      "tags": [
+        "output",
+        "io"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage4_generation/artifact_sidecar_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/stage4_generation/html_export_service.py",
+      "type": "file",
+      "name": "html_export_service.py",
+      "summary": "Python模块: 定义 1 个类, 20 个函数",
+      "tags": [
+        "pipeline-stage4"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage4_generation/html_export_service.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/stage4_generation/html_export_service.py:HtmlExportService",
+      "type": "class",
+      "name": "HtmlExportService",
+      "summary": "HtmlExportService类",
+      "tags": [
+        "service"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage4_generation/html_export_service.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage4_generation/html_export_service.py:render",
+      "type": "function",
+      "name": "render",
+      "summary": "展示/渲染函数: render",
+      "tags": [
+        "ui",
+        "display"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage4_generation/html_export_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage4_generation/html_export_service.py:build",
+      "type": "function",
+      "name": "build",
+      "summary": "构建函数: build",
+      "tags": [
+        "factory"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage4_generation/html_export_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/stage4_generation/question_cache_service.py",
+      "type": "file",
+      "name": "question_cache_service.py",
+      "summary": "Python模块: 定义 1 个类, 6 个函数",
+      "tags": [
+        "pipeline-stage4"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage4_generation/question_cache_service.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/stage4_generation/question_cache_service.py:QuestionGenerationCacheService",
+      "type": "class",
+      "name": "QuestionGenerationCacheService",
+      "summary": "QuestionGenerationCacheService类",
+      "tags": [
+        "service"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage4_generation/question_cache_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage4_generation/question_cache_service.py:load",
+      "type": "function",
+      "name": "load",
+      "summary": "获取/加载函数: load",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage4_generation/question_cache_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage4_generation/question_cache_service.py:save",
+      "type": "function",
+      "name": "save",
+      "summary": "输出/保存函数: save",
+      "tags": [
+        "output",
+        "io"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage4_generation/question_cache_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage4_generation/question_cache_service.py:signature_token",
+      "type": "function",
+      "name": "signature_token",
+      "summary": "函数: signature_token",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage4_generation/question_cache_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/stage4_generation/question_service.py",
+      "type": "file",
+      "name": "question_service.py",
+      "summary": "Python模块: 定义 1 个类, 20 个函数",
+      "tags": [
+        "pipeline-stage4"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage4_generation/question_service.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/stage4_generation/question_service.py:QuestionGenerationService",
+      "type": "class",
+      "name": "QuestionGenerationService",
+      "summary": "QuestionGenerationService类",
+      "tags": [
+        "service"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage4_generation/question_service.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage4_generation/question_service.py:generate_questions",
+      "type": "function",
+      "name": "generate_questions",
+      "summary": "函数: generate_questions",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage4_generation/question_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage4_generation/question_service.py:plan_question_intents",
+      "type": "function",
+      "name": "plan_question_intents",
+      "summary": "函数: plan_question_intents",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage4_generation/question_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/stage4_generation/report_refinement_service.py",
+      "type": "file",
+      "name": "report_refinement_service.py",
+      "summary": "Python模块: 定义 1 个类, 13 个函数",
+      "tags": [
+        "pipeline-stage4"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage4_generation/report_refinement_service.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/stage4_generation/report_refinement_service.py:ReportRefinementService",
+      "type": "class",
+      "name": "ReportRefinementService",
+      "summary": "ReportRefinementService类",
+      "tags": [
+        "service"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage4_generation/report_refinement_service.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage4_generation/report_refinement_service.py:refine",
+      "type": "function",
+      "name": "refine",
+      "summary": "函数: refine",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage4_generation/report_refinement_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/workflows/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "summary": "Python模块: __init__.py",
+      "tags": [
+        "workflow"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/workflows/__init__.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/workflows/control_experiments.py",
+      "type": "file",
+      "name": "control_experiments.py",
+      "summary": "Control experiment baseline implementations. Each baseline faithfully reproduces the methodology fro",
+      "tags": [
+        "workflow"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/workflows/control_experiments.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/workflows/control_experiments.py:run_control_experiment",
+      "type": "function",
+      "name": "run_control_experiment",
+      "summary": "执行函数: run_control_experiment",
+      "tags": [
+        "execution"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/workflows/control_experiments.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/workflows/experiment_runner.py",
+      "type": "file",
+      "name": "experiment_runner.py",
+      "summary": "Experiment matrix runner for ablation and control experiments. Usage: python -m decathlon_voc_analyz",
+      "tags": [
+        "workflow"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/workflows/experiment_runner.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/workflows/experiment_runner.py:discover_products",
+      "type": "function",
+      "name": "discover_products",
+      "summary": "搜索/发现函数: discover_products",
+      "tags": [
+        "search"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/workflows/experiment_runner.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/workflows/experiment_runner.py:run_experiment_matrix",
+      "type": "function",
+      "name": "run_experiment_matrix",
+      "summary": "执行函数: run_experiment_matrix",
+      "tags": [
+        "execution"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/workflows/experiment_runner.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/workflows/experiment_runner.py:main",
+      "type": "function",
+      "name": "main",
+      "summary": "程序入口: main",
+      "tags": [
+        "entry-point"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/workflows/experiment_runner.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/workflows/llm_judge_evaluation.py",
+      "type": "file",
+      "name": "llm_judge_evaluation.py",
+      "summary": "LLM-as-Judge evaluation for experiment results. Usage: python -m decathlon_voc_analyzer.workflows.ll",
+      "tags": [
+        "workflow"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/workflows/llm_judge_evaluation.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/workflows/llm_judge_evaluation.py:load_analysis_response",
+      "type": "function",
+      "name": "load_analysis_response",
+      "summary": "获取/加载函数: load_analysis_response",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/workflows/llm_judge_evaluation.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/workflows/llm_judge_evaluation.py:judge_retrieval_quality",
+      "type": "function",
+      "name": "judge_retrieval_quality",
+      "summary": "函数: judge_retrieval_quality",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/workflows/llm_judge_evaluation.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/workflows/llm_judge_evaluation.py:judge_report_quality",
+      "type": "function",
+      "name": "judge_report_quality",
+      "summary": "函数: judge_report_quality",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/workflows/llm_judge_evaluation.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/workflows/llm_judge_evaluation.py:judge_attribution_quality",
+      "type": "function",
+      "name": "judge_attribution_quality",
+      "summary": "函数: judge_attribution_quality",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/workflows/llm_judge_evaluation.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/workflows/llm_judge_evaluation.py:evaluate_run",
+      "type": "function",
+      "name": "evaluate_run",
+      "summary": "执行函数: evaluate_run",
+      "tags": [
+        "execution"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/workflows/llm_judge_evaluation.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/workflows/llm_judge_evaluation.py:aggregate_by_condition",
+      "type": "function",
+      "name": "aggregate_by_condition",
+      "summary": "函数: aggregate_by_condition",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/workflows/llm_judge_evaluation.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/workflows/llm_judge_evaluation.py:main",
+      "type": "function",
+      "name": "main",
+      "summary": "程序入口: main",
+      "tags": [
+        "entry-point"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/workflows/llm_judge_evaluation.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/workflows/llm_judge_evaluation.py:evaluate_run_with_checkpoint",
+      "type": "function",
+      "name": "evaluate_run_with_checkpoint",
+      "summary": "验证函数: evaluate_run_with_checkpoint",
+      "tags": [
+        "validation"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/workflows/llm_judge_evaluation.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py",
+      "type": "file",
+      "name": "single_product_workflow.py",
+      "summary": "Python模块: 定义 1 个类, 6 个函数",
+      "tags": [
+        "workflow"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py:SingleProductWorkflowState",
+      "type": "class",
+      "name": "SingleProductWorkflowState",
+      "summary": "SingleProductWorkflowState类，继承自 TypedDict",
+      "tags": [
+        "workflow",
+        "langgraph"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py:build_single_product_workflow",
+      "type": "function",
+      "name": "build_single_product_workflow",
+      "summary": "构建函数: build_single_product_workflow",
+      "tags": [
+        "factory"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py:overview_node",
+      "type": "function",
+      "name": "overview_node",
+      "summary": "函数: overview_node",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py:normalize_node",
+      "type": "function",
+      "name": "normalize_node",
+      "summary": "函数: normalize_node",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py:index_node",
+      "type": "function",
+      "name": "index_node",
+      "summary": "函数: index_node",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py:analyze_node",
+      "type": "function",
+      "name": "analyze_node",
+      "summary": "函数: analyze_node",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py:get_single_product_workflow",
+      "type": "function",
+      "name": "get_single_product_workflow",
+      "summary": "获取/加载函数: get_single_product_workflow",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:06_tests/conftest.py",
+      "type": "file",
+      "name": "conftest.py",
+      "summary": "Python模块: 定义 1 个函数",
+      "tags": [
+        "testing"
+      ],
+      "filePath": "06_tests/conftest.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/conftest.py:isolate_runtime_backends",
+      "type": "function",
+      "name": "isolate_runtime_backends",
+      "summary": "执行函数: isolate_runtime_backends",
+      "tags": [
+        "execution"
+      ],
+      "filePath": "06_tests/conftest.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:06_tests/test_analysis_api.py",
+      "type": "file",
+      "name": "test_analysis_api.py",
+      "summary": "Python模块: 定义 1 个函数",
+      "tags": [
+        "testing"
+      ],
+      "filePath": "06_tests/test_analysis_api.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_api.py:test_product_analysis_endpoint_runs_end_to_end",
+      "type": "function",
+      "name": "test_product_analysis_endpoint_runs_end_to_end",
+      "summary": "执行函数: test_product_analysis_endpoint_runs_end_to_end",
+      "tags": [
+        "execution"
+      ],
+      "filePath": "06_tests/test_analysis_api.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:06_tests/test_analysis_service.py",
+      "type": "file",
+      "name": "test_analysis_service.py",
+      "summary": "Python模块: 定义 48 个函数",
+      "tags": [
+        "testing"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_product_analysis_service_returns_report_and_retrievals",
+      "type": "function",
+      "name": "test_product_analysis_service_returns_report_and_retrievals",
+      "summary": "函数: test_product_analysis_service_returns_report_and_retrievals",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_control_experiment_parsed_report_sets_aggregate_confidence",
+      "type": "function",
+      "name": "test_control_experiment_parsed_report_sets_aggregate_confidence",
+      "summary": "函数: test_control_experiment_parsed_report_sets_aggregate_confidence",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_product_analysis_service_marks_control_analysis_mode",
+      "type": "function",
+      "name": "test_product_analysis_service_marks_control_analysis_mode",
+      "summary": "函数: test_product_analysis_service_marks_control_analysis_mode",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:fake_run_control_experiment",
+      "type": "function",
+      "name": "fake_run_control_experiment",
+      "summary": "执行函数: fake_run_control_experiment",
+      "tags": [
+        "execution"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_product_analysis_service_emits_evidence_nodes_and_claim_attributions",
+      "type": "function",
+      "name": "test_product_analysis_service_emits_evidence_nodes_and_claim_attributions",
+      "summary": "函数: test_product_analysis_service_emits_evidence_nodes_and_claim_attributions",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_product_analysis_service_can_reuse_persisted_extraction_artifact",
+      "type": "function",
+      "name": "test_product_analysis_service_can_reuse_persisted_extraction_artifact",
+      "summary": "数据处理函数: test_product_analysis_service_can_reuse_persisted_extraction_artifact",
+      "tags": [
+        "processing"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_analysis_checkpoint_roundtrip_requires_exact_signature",
+      "type": "function",
+      "name": "test_analysis_checkpoint_roundtrip_requires_exact_signature",
+      "summary": "验证函数: test_analysis_checkpoint_roundtrip_requires_exact_signature",
+      "tags": [
+        "validation"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_analysis_checkpoint_rejects_mismatched_request_signature",
+      "type": "function",
+      "name": "test_analysis_checkpoint_rejects_mismatched_request_signature",
+      "summary": "验证函数: test_analysis_checkpoint_rejects_mismatched_request_signature",
+      "tags": [
+        "validation"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_resolve_question_retrieval_state_reuses_checkpoint_without_recomputing",
+      "type": "function",
+      "name": "test_resolve_question_retrieval_state_reuses_checkpoint_without_recomputing",
+      "summary": "获取/加载函数: test_resolve_question_retrieval_state_reuses_checkpoint_without_recomputing",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_product_analysis_service_applies_claim_revisions_to_report_items",
+      "type": "function",
+      "name": "test_product_analysis_service_applies_claim_revisions_to_report_items",
+      "summary": "函数: test_product_analysis_service_applies_claim_revisions_to_report_items",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_product_analysis_service_accepts_strong_visual_support_below_previous_threshold",
+      "type": "function",
+      "name": "test_product_analysis_service_accepts_strong_visual_support_below_previous_threshold",
+      "summary": "函数: test_product_analysis_service_accepts_strong_visual_support_below_previous_threshold",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_product_analysis_service_hydrates_report_support_before_claim_attribution",
+      "type": "function",
+      "name": "test_product_analysis_service_hydrates_report_support_before_claim_attribution",
+      "summary": "函数: test_product_analysis_service_hydrates_report_support_before_claim_attribution",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_product_analysis_service_builds_improvement_suggestions",
+      "type": "function",
+      "name": "test_product_analysis_service_builds_improvement_suggestions",
+      "summary": "构建函数: test_product_analysis_service_builds_improvement_suggestions",
+      "tags": [
+        "factory"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_product_analysis_service_derives_impression_models",
+      "type": "function",
+      "name": "test_product_analysis_service_derives_impression_models",
+      "summary": "函数: test_product_analysis_service_derives_impression_models",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_product_analysis_service_keeps_all_aggregates_in_impressions_and_supporting_aspects",
+      "type": "function",
+      "name": "test_product_analysis_service_keeps_all_aggregates_in_impressions_and_supporting_aspects",
+      "summary": "函数: test_product_analysis_service_keeps_all_aggregates_in_impressions_and_supporting_aspects",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_product_analysis_service_normalizes_prompt_variant_alias",
+      "type": "function",
+      "name": "test_product_analysis_service_normalizes_prompt_variant_alias",
+      "summary": "展示/渲染函数: test_product_analysis_service_normalizes_prompt_variant_alias",
+      "tags": [
+        "ui",
+        "display"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_product_analysis_service_generates_questions_before_retrieval",
+      "type": "function",
+      "name": "test_product_analysis_service_generates_questions_before_retrieval",
+      "summary": "函数: test_product_analysis_service_generates_questions_before_retrieval",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_product_analysis_service_emits_trace_and_owner_metadata",
+      "type": "function",
+      "name": "test_product_analysis_service_emits_trace_and_owner_metadata",
+      "summary": "函数: test_product_analysis_service_emits_trace_and_owner_metadata",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_product_analysis_service_hydrates_llm_insights_by_review_reference",
+      "type": "function",
+      "name": "test_product_analysis_service_hydrates_llm_insights_by_review_reference",
+      "summary": "函数: test_product_analysis_service_hydrates_llm_insights_by_review_reference",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_product_analysis_service_hydrates_cross_section_controversy_evidence",
+      "type": "function",
+      "name": "test_product_analysis_service_hydrates_cross_section_controversy_evidence",
+      "summary": "函数: test_product_analysis_service_hydrates_cross_section_controversy_evidence",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_product_analysis_service_hydrates_suggestions_by_text_similarity",
+      "type": "function",
+      "name": "test_product_analysis_service_hydrates_suggestions_by_text_similarity",
+      "summary": "函数: test_product_analysis_service_hydrates_suggestions_by_text_similarity",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_product_analysis_service_hydrates_suggestions_from_related_insights",
+      "type": "function",
+      "name": "test_product_analysis_service_hydrates_suggestions_from_related_insights",
+      "summary": "函数: test_product_analysis_service_hydrates_suggestions_from_related_insights",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_product_analysis_service_hydrates_report_suggestions_from_hydrated_insights",
+      "type": "function",
+      "name": "test_product_analysis_service_hydrates_report_suggestions_from_hydrated_insights",
+      "summary": "函数: test_product_analysis_service_hydrates_report_suggestions_from_hydrated_insights",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_product_analysis_service_prefers_reason_alignment_for_suggestion_hydration",
+      "type": "function",
+      "name": "test_product_analysis_service_prefers_reason_alignment_for_suggestion_hydration",
+      "summary": "函数: test_product_analysis_service_prefers_reason_alignment_for_suggestion_hydration",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_product_analysis_service_rebind_suggestions_downgrades_unsupported_claims",
+      "type": "function",
+      "name": "test_product_analysis_service_rebind_suggestions_downgrades_unsupported_claims",
+      "summary": "函数: test_product_analysis_service_rebind_suggestions_downgrades_unsupported_claims",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_product_analysis_service_tracks_mixed_ratio_in_aggregates",
+      "type": "function",
+      "name": "test_product_analysis_service_tracks_mixed_ratio_in_aggregates",
+      "summary": "函数: test_product_analysis_service_tracks_mixed_ratio_in_aggregates",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_product_analysis_service_uses_conservative_answer_coverage_for_unanswered_hits",
+      "type": "function",
+      "name": "test_product_analysis_service_uses_conservative_answer_coverage_for_unanswered_hits",
+      "summary": "函数: test_product_analysis_service_uses_conservative_answer_coverage_for_unanswered_hits",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_product_analysis_service_extracts_answer_value_for_supported_tint_question",
+      "type": "function",
+      "name": "test_product_analysis_service_extracts_answer_value_for_supported_tint_question",
+      "summary": "数据处理函数: test_product_analysis_service_extracts_answer_value_for_supported_tint_question",
+      "tags": [
+        "processing"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_product_analysis_service_marks_retrieval_quality_as_low_precision_for_unanswered_hits",
+      "type": "function",
+      "name": "test_product_analysis_service_marks_retrieval_quality_as_low_precision_for_unanswered_hits",
+      "summary": "函数: test_product_analysis_service_marks_retrieval_quality_as_low_precision_for_unanswered_hits",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_product_analysis_service_marks_missing_expected_route_as_modality_miss",
+      "type": "function",
+      "name": "test_product_analysis_service_marks_missing_expected_route_as_modality_miss",
+      "summary": "函数: test_product_analysis_service_marks_missing_expected_route_as_modality_miss",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_product_analysis_service_retries_corrective_retrieval_when_candidate_is_better",
+      "type": "function",
+      "name": "test_product_analysis_service_retries_corrective_retrieval_when_candidate_is_better",
+      "summary": "函数: test_product_analysis_service_retries_corrective_retrieval_when_candidate_is_better",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:fake_retry",
+      "type": "function",
+      "name": "fake_retry",
+      "summary": "函数: fake_retry",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_product_analysis_service_marks_trace_with_valid_evidence_counts",
+      "type": "function",
+      "name": "test_product_analysis_service_marks_trace_with_valid_evidence_counts",
+      "summary": "函数: test_product_analysis_service_marks_trace_with_valid_evidence_counts",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_report_refinement_service_calibrates_unsupported_summaries_and_filters_relation_controversy",
+      "type": "function",
+      "name": "test_report_refinement_service_calibrates_unsupported_summaries_and_filters_relation_controversy",
+      "summary": "函数: test_report_refinement_service_calibrates_unsupported_summaries_and_filters_relation_controversy",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_report_refinement_service_rewrites_price_and_duration_suggestions",
+      "type": "function",
+      "name": "test_report_refinement_service_rewrites_price_and_duration_suggestions",
+      "summary": "输出/保存函数: test_report_refinement_service_rewrites_price_and_duration_suggestions",
+      "tags": [
+        "output",
+        "io"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_report_refinement_service_sanitizes_optical_external_validation_reason",
+      "type": "function",
+      "name": "test_report_refinement_service_sanitizes_optical_external_validation_reason",
+      "summary": "函数: test_report_refinement_service_sanitizes_optical_external_validation_reason",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_report_refinement_service_sanitizes_tint_over_specificity",
+      "type": "function",
+      "name": "test_report_refinement_service_sanitizes_tint_over_specificity",
+      "summary": "函数: test_report_refinement_service_sanitizes_tint_over_specificity",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_product_analysis_service_normalizes_issues_gaps_and_suggestion_bindings",
+      "type": "function",
+      "name": "test_product_analysis_service_normalizes_issues_gaps_and_suggestion_bindings",
+      "summary": "函数: test_product_analysis_service_normalizes_issues_gaps_and_suggestion_bindings",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_product_analysis_service_builds_grammatically_correct_answer_with_partial_support",
+      "type": "function",
+      "name": "test_product_analysis_service_builds_grammatically_correct_answer_with_partial_support",
+      "summary": "构建函数: test_product_analysis_service_builds_grammatically_correct_answer_with_partial_support",
+      "tags": [
+        "factory"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_product_analysis_service_attaches_replay_note_without_polluting_reason",
+      "type": "function",
+      "name": "test_product_analysis_service_attaches_replay_note_without_polluting_reason",
+      "summary": "函数: test_product_analysis_service_attaches_replay_note_without_polluting_reason",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_product_analysis_service_uses_canonical_issue_keys_for_replay_continuity",
+      "type": "function",
+      "name": "test_product_analysis_service_uses_canonical_issue_keys_for_replay_continuity",
+      "summary": "函数: test_product_analysis_service_uses_canonical_issue_keys_for_replay_continuity",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_product_analysis_service_trace_uses_full_replay_summary_and_all_suggestions",
+      "type": "function",
+      "name": "test_product_analysis_service_trace_uses_full_replay_summary_and_all_suggestions",
+      "summary": "函数: test_product_analysis_service_trace_uses_full_replay_summary_and_all_suggestions",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_product_analysis_service_returns_artifact_bundle_when_persisted",
+      "type": "function",
+      "name": "test_product_analysis_service_returns_artifact_bundle_when_persisted",
+      "summary": "输出/保存函数: test_product_analysis_service_returns_artifact_bundle_when_persisted",
+      "tags": [
+        "output",
+        "io"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_product_analysis_service_can_apply_replay_continuity",
+      "type": "function",
+      "name": "test_product_analysis_service_can_apply_replay_continuity",
+      "summary": "函数: test_product_analysis_service_can_apply_replay_continuity",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_product_analysis_service_can_apply_feedback_aware_replay",
+      "type": "function",
+      "name": "test_product_analysis_service_can_apply_feedback_aware_replay",
+      "summary": "函数: test_product_analysis_service_can_apply_feedback_aware_replay",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_analysis_service.py:test_no_attribution_ablation_reuses_full_system_checkpoint",
+      "type": "function",
+      "name": "test_no_attribution_ablation_reuses_full_system_checkpoint",
+      "summary": "验证函数: test_no_attribution_ablation_reuses_full_system_checkpoint",
+      "tags": [
+        "validation"
+      ],
+      "filePath": "06_tests/test_analysis_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:06_tests/test_clear_generated_outputs_script.py",
+      "type": "file",
+      "name": "test_clear_generated_outputs_script.py",
+      "summary": "Python模块: 定义 6 个函数",
+      "tags": [
+        "testing",
+        "output"
+      ],
+      "filePath": "06_tests/test_clear_generated_outputs_script.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_clear_generated_outputs_script.py:test_collect_cleanup_targets_excludes_readme",
+      "type": "function",
+      "name": "test_collect_cleanup_targets_excludes_readme",
+      "summary": "获取/加载函数: test_collect_cleanup_targets_excludes_readme",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "06_tests/test_clear_generated_outputs_script.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_clear_generated_outputs_script.py:test_remove_targets_deletes_files_and_directories",
+      "type": "function",
+      "name": "test_remove_targets_deletes_files_and_directories",
+      "summary": "函数: test_remove_targets_deletes_files_and_directories",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_clear_generated_outputs_script.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_clear_generated_outputs_script.py:test_recreate_output_skeleton_creates_expected_directories",
+      "type": "function",
+      "name": "test_recreate_output_skeleton_creates_expected_directories",
+      "summary": "构建函数: test_recreate_output_skeleton_creates_expected_directories",
+      "tags": [
+        "factory"
+      ],
+      "filePath": "06_tests/test_clear_generated_outputs_script.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_clear_generated_outputs_script.py:test_prompt_for_output_conflict_resolution_accepts_kill_choice",
+      "type": "function",
+      "name": "test_prompt_for_output_conflict_resolution_accepts_kill_choice",
+      "summary": "展示/渲染函数: test_prompt_for_output_conflict_resolution_accepts_kill_choice",
+      "tags": [
+        "ui",
+        "display"
+      ],
+      "filePath": "06_tests/test_clear_generated_outputs_script.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_clear_generated_outputs_script.py:test_main_blocks_noninteractive_cleanup_when_outputs_are_in_use",
+      "type": "function",
+      "name": "test_main_blocks_noninteractive_cleanup_when_outputs_are_in_use",
+      "summary": "函数: test_main_blocks_noninteractive_cleanup_when_outputs_are_in_use",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_clear_generated_outputs_script.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:06_tests/test_dataset_api.py",
+      "type": "file",
+      "name": "test_dataset_api.py",
+      "summary": "Python模块: 定义 3 个函数",
+      "tags": [
+        "pipeline-stage1",
+        "testing",
+        "data"
+      ],
+      "filePath": "06_tests/test_dataset_api.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_dataset_api.py:test_healthcheck",
+      "type": "function",
+      "name": "test_healthcheck",
+      "summary": "验证函数: test_healthcheck",
+      "tags": [
+        "validation"
+      ],
+      "filePath": "06_tests/test_dataset_api.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_dataset_api.py:test_dataset_overview_endpoint",
+      "type": "function",
+      "name": "test_dataset_overview_endpoint",
+      "summary": "函数: test_dataset_overview_endpoint",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_dataset_api.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_dataset_api.py:test_dataset_normalize_endpoint",
+      "type": "function",
+      "name": "test_dataset_normalize_endpoint",
+      "summary": "函数: test_dataset_normalize_endpoint",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_dataset_api.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:06_tests/test_dataset_service.py",
+      "type": "file",
+      "name": "test_dataset_service.py",
+      "summary": "Python模块: 定义 5 个函数",
+      "tags": [
+        "pipeline-stage1",
+        "testing",
+        "data"
+      ],
+      "filePath": "06_tests/test_dataset_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_dataset_service.py:test_dataset_overview_has_categories",
+      "type": "function",
+      "name": "test_dataset_overview_has_categories",
+      "summary": "函数: test_dataset_overview_has_categories",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_dataset_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_dataset_service.py:test_normalize_single_product_without_persisting",
+      "type": "function",
+      "name": "test_normalize_single_product_without_persisting",
+      "summary": "输出/保存函数: test_normalize_single_product_without_persisting",
+      "tags": [
+        "output",
+        "io"
+      ],
+      "filePath": "06_tests/test_dataset_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_dataset_service.py:test_dataset_service_preserves_original_multilingual_product_fields",
+      "type": "function",
+      "name": "test_dataset_service_preserves_original_multilingual_product_fields",
+      "summary": "函数: test_dataset_service_preserves_original_multilingual_product_fields",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_dataset_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_dataset_service.py:test_dataset_service_reuses_persisted_normalized_package",
+      "type": "function",
+      "name": "test_dataset_service_reuses_persisted_normalized_package",
+      "summary": "输出/保存函数: test_dataset_service_reuses_persisted_normalized_package",
+      "tags": [
+        "output",
+        "io"
+      ],
+      "filePath": "06_tests/test_dataset_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:06_tests/test_embedding_and_reranker.py",
+      "type": "file",
+      "name": "test_embedding_and_reranker.py",
+      "summary": "Python模块: 定义 8 个类, 43 个函数",
+      "tags": [
+        "testing"
+      ],
+      "filePath": "06_tests/test_embedding_and_reranker.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "class:06_tests/test_embedding_and_reranker.py:DummyResponse",
+      "type": "class",
+      "name": "DummyResponse",
+      "summary": "DummyResponse类",
+      "tags": [
+        "api",
+        "data-model"
+      ],
+      "filePath": "06_tests/test_embedding_and_reranker.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:06_tests/test_embedding_and_reranker.py:FakeBatch",
+      "type": "class",
+      "name": "FakeBatch",
+      "summary": "FakeBatch类，继承自 dict",
+      "tags": [
+        "class"
+      ],
+      "filePath": "06_tests/test_embedding_and_reranker.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "class:06_tests/test_embedding_and_reranker.py:FakeTokenizer",
+      "type": "class",
+      "name": "FakeTokenizer",
+      "summary": "FakeTokenizer类",
+      "tags": [
+        "class"
+      ],
+      "filePath": "06_tests/test_embedding_and_reranker.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "class:06_tests/test_embedding_and_reranker.py:FakeOutputs",
+      "type": "class",
+      "name": "FakeOutputs",
+      "summary": "FakeOutputs类",
+      "tags": [
+        "class"
+      ],
+      "filePath": "06_tests/test_embedding_and_reranker.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:06_tests/test_embedding_and_reranker.py:FakeModel",
+      "type": "class",
+      "name": "FakeModel",
+      "summary": "FakeModel类",
+      "tags": [
+        "data-model"
+      ],
+      "filePath": "06_tests/test_embedding_and_reranker.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:06_tests/test_embedding_and_reranker.py:DummyCompletions",
+      "type": "class",
+      "name": "DummyCompletions",
+      "summary": "DummyCompletions类",
+      "tags": [
+        "class"
+      ],
+      "filePath": "06_tests/test_embedding_and_reranker.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:06_tests/test_embedding_and_reranker.py:DummyChat",
+      "type": "class",
+      "name": "DummyChat",
+      "summary": "DummyChat类",
+      "tags": [
+        "class"
+      ],
+      "filePath": "06_tests/test_embedding_and_reranker.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "class:06_tests/test_embedding_and_reranker.py:DummyClient",
+      "type": "class",
+      "name": "DummyClient",
+      "summary": "DummyClient类",
+      "tags": [
+        "llm",
+        "client"
+      ],
+      "filePath": "06_tests/test_embedding_and_reranker.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_embedding_and_reranker.py:test_embedding_service_returns_non_empty_vector",
+      "type": "function",
+      "name": "test_embedding_service_returns_non_empty_vector",
+      "summary": "函数: test_embedding_service_returns_non_empty_vector",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_embedding_and_reranker.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_embedding_and_reranker.py:test_reranker_service_returns_sorted_candidates",
+      "type": "function",
+      "name": "test_reranker_service_returns_sorted_candidates",
+      "summary": "函数: test_reranker_service_returns_sorted_candidates",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_embedding_and_reranker.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_embedding_and_reranker.py:test_reranker_service_emits_in_progress_and_done_messages",
+      "type": "function",
+      "name": "test_reranker_service_emits_in_progress_and_done_messages",
+      "summary": "函数: test_reranker_service_emits_in_progress_and_done_messages",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_embedding_and_reranker.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_embedding_and_reranker.py:test_reranker_service_uses_dedicated_api",
+      "type": "function",
+      "name": "test_reranker_service_uses_dedicated_api",
+      "summary": "函数: test_reranker_service_uses_dedicated_api",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_embedding_and_reranker.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_embedding_and_reranker.py:read",
+      "type": "function",
+      "name": "read",
+      "summary": "获取/加载函数: read",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "06_tests/test_embedding_and_reranker.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_embedding_and_reranker.py:fake_urlopen",
+      "type": "function",
+      "name": "fake_urlopen",
+      "summary": "函数: fake_urlopen",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_embedding_and_reranker.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_embedding_and_reranker.py:test_local_reranker_uses_causal_lm_logits",
+      "type": "function",
+      "name": "test_local_reranker_uses_causal_lm_logits",
+      "summary": "函数: test_local_reranker_uses_causal_lm_logits",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_embedding_and_reranker.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_embedding_and_reranker.py:to",
+      "type": "function",
+      "name": "to",
+      "summary": "函数: to",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_embedding_and_reranker.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_embedding_and_reranker.py:test_rerank_cache_signature_accepts_local_backends",
+      "type": "function",
+      "name": "test_rerank_cache_signature_accepts_local_backends",
+      "summary": "函数: test_rerank_cache_signature_accepts_local_backends",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_embedding_and_reranker.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_embedding_and_reranker.py:test_embedding_service_uses_clip_for_image_route",
+      "type": "function",
+      "name": "test_embedding_service_uses_clip_for_image_route",
+      "summary": "函数: test_embedding_service_uses_clip_for_image_route",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_embedding_and_reranker.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_embedding_and_reranker.py:test_embedding_service_caches_text_query_embeddings_and_invalidates_on_model_change",
+      "type": "function",
+      "name": "test_embedding_service_caches_text_query_embeddings_and_invalidates_on_model_change",
+      "summary": "验证函数: test_embedding_service_caches_text_query_embeddings_and_invalidates_on_model_change",
+      "tags": [
+        "validation"
+      ],
+      "filePath": "06_tests/test_embedding_and_reranker.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_embedding_and_reranker.py:fake_api_embedding",
+      "type": "function",
+      "name": "fake_api_embedding",
+      "summary": "函数: fake_api_embedding",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_embedding_and_reranker.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_embedding_and_reranker.py:test_embedding_service_does_not_cache_failed_api_query_fallback",
+      "type": "function",
+      "name": "test_embedding_service_does_not_cache_failed_api_query_fallback",
+      "summary": "函数: test_embedding_service_does_not_cache_failed_api_query_fallback",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_embedding_and_reranker.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_embedding_and_reranker.py:fake_api_embedding",
+      "type": "function",
+      "name": "fake_api_embedding",
+      "summary": "函数: fake_api_embedding",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_embedding_and_reranker.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_embedding_and_reranker.py:fake_hashed_embedding",
+      "type": "function",
+      "name": "fake_hashed_embedding",
+      "summary": "函数: fake_hashed_embedding",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_embedding_and_reranker.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_embedding_and_reranker.py:test_embedding_service_caches_clip_query_embeddings_and_invalidates_on_model_change",
+      "type": "function",
+      "name": "test_embedding_service_caches_clip_query_embeddings_and_invalidates_on_model_change",
+      "summary": "验证函数: test_embedding_service_caches_clip_query_embeddings_and_invalidates_on_model_change",
+      "tags": [
+        "validation"
+      ],
+      "filePath": "06_tests/test_embedding_and_reranker.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_embedding_and_reranker.py:fake_clip_embedding",
+      "type": "function",
+      "name": "fake_clip_embedding",
+      "summary": "函数: fake_clip_embedding",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_embedding_and_reranker.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_embedding_and_reranker.py:test_embedding_service_reuses_persisted_query_embedding_across_instances",
+      "type": "function",
+      "name": "test_embedding_service_reuses_persisted_query_embedding_across_instances",
+      "summary": "输出/保存函数: test_embedding_service_reuses_persisted_query_embedding_across_instances",
+      "tags": [
+        "output",
+        "io"
+      ],
+      "filePath": "06_tests/test_embedding_and_reranker.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_embedding_and_reranker.py:test_embedding_service_rejects_persisted_query_embedding_when_signature_changes",
+      "type": "function",
+      "name": "test_embedding_service_rejects_persisted_query_embedding_when_signature_changes",
+      "summary": "输出/保存函数: test_embedding_service_rejects_persisted_query_embedding_when_signature_changes",
+      "tags": [
+        "output",
+        "io"
+      ],
+      "filePath": "06_tests/test_embedding_and_reranker.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_embedding_and_reranker.py:test_reranker_service_reuses_persisted_heuristic_rerank_across_instances",
+      "type": "function",
+      "name": "test_reranker_service_reuses_persisted_heuristic_rerank_across_instances",
+      "summary": "输出/保存函数: test_reranker_service_reuses_persisted_heuristic_rerank_across_instances",
+      "tags": [
+        "output",
+        "io"
+      ],
+      "filePath": "06_tests/test_embedding_and_reranker.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_embedding_and_reranker.py:test_reranker_service_invalidates_cache_when_candidate_signature_changes",
+      "type": "function",
+      "name": "test_reranker_service_invalidates_cache_when_candidate_signature_changes",
+      "summary": "验证函数: test_reranker_service_invalidates_cache_when_candidate_signature_changes",
+      "tags": [
+        "validation"
+      ],
+      "filePath": "06_tests/test_embedding_and_reranker.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_embedding_and_reranker.py:test_reranker_service_uses_multimodal_backend_for_image_candidates",
+      "type": "function",
+      "name": "test_reranker_service_uses_multimodal_backend_for_image_candidates",
+      "summary": "函数: test_reranker_service_uses_multimodal_backend_for_image_candidates",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_embedding_and_reranker.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_embedding_and_reranker.py:fake_multimodal_rerank",
+      "type": "function",
+      "name": "fake_multimodal_rerank",
+      "summary": "函数: fake_multimodal_rerank",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_embedding_and_reranker.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_embedding_and_reranker.py:test_reranker_service_multimodal_call_uses_timeout_and_no_retry",
+      "type": "function",
+      "name": "test_reranker_service_multimodal_call_uses_timeout_and_no_retry",
+      "summary": "函数: test_reranker_service_multimodal_call_uses_timeout_and_no_retry",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_embedding_and_reranker.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_embedding_and_reranker.py:create",
+      "type": "function",
+      "name": "create",
+      "summary": "构建函数: create",
+      "tags": [
+        "factory"
+      ],
+      "filePath": "06_tests/test_embedding_and_reranker.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_embedding_and_reranker.py:with_options",
+      "type": "function",
+      "name": "with_options",
+      "summary": "函数: with_options",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_embedding_and_reranker.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_embedding_and_reranker.py:test_embedding_service_raises_when_strict_policy_forbids_api_fallback",
+      "type": "function",
+      "name": "test_embedding_service_raises_when_strict_policy_forbids_api_fallback",
+      "summary": "函数: test_embedding_service_raises_when_strict_policy_forbids_api_fallback",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_embedding_and_reranker.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_embedding_and_reranker.py:test_reranker_service_raises_when_strict_policy_forbids_api_fallback",
+      "type": "function",
+      "name": "test_reranker_service_raises_when_strict_policy_forbids_api_fallback",
+      "summary": "函数: test_reranker_service_raises_when_strict_policy_forbids_api_fallback",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_embedding_and_reranker.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:06_tests/test_experiment_checkpoints.py",
+      "type": "file",
+      "name": "test_experiment_checkpoints.py",
+      "summary": "Python模块: 定义 5 个类, 12 个函数",
+      "tags": [
+        "testing"
+      ],
+      "filePath": "06_tests/test_experiment_checkpoints.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "class:06_tests/test_experiment_checkpoints.py:TestRetrievalStageCheckpoint",
+      "type": "class",
+      "name": "TestRetrievalStageCheckpoint",
+      "summary": "TestRetrievalStageCheckpoint类",
+      "tags": [
+        "data-model",
+        "checkpoint"
+      ],
+      "filePath": "06_tests/test_experiment_checkpoints.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:06_tests/test_experiment_checkpoints.py:TestReportCheckpoint",
+      "type": "class",
+      "name": "TestReportCheckpoint",
+      "summary": "TestReportCheckpoint类",
+      "tags": [
+        "data-model",
+        "checkpoint"
+      ],
+      "filePath": "06_tests/test_experiment_checkpoints.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:06_tests/test_experiment_checkpoints.py:TestAttributionCheckpoint",
+      "type": "class",
+      "name": "TestAttributionCheckpoint",
+      "summary": "TestAttributionCheckpoint类",
+      "tags": [
+        "data-model",
+        "checkpoint"
+      ],
+      "filePath": "06_tests/test_experiment_checkpoints.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:06_tests/test_experiment_checkpoints.py:TestExperimentRunManifest",
+      "type": "class",
+      "name": "TestExperimentRunManifest",
+      "summary": "TestExperimentRunManifest类",
+      "tags": [
+        "class"
+      ],
+      "filePath": "06_tests/test_experiment_checkpoints.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:06_tests/test_experiment_checkpoints.py:TestAnalysisServiceCheckpointHelpers",
+      "type": "class",
+      "name": "TestAnalysisServiceCheckpointHelpers",
+      "summary": "TestAnalysisServiceCheckpointHelpers类",
+      "tags": [
+        "service"
+      ],
+      "filePath": "06_tests/test_experiment_checkpoints.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_experiment_checkpoints.py:test_schema_valid",
+      "type": "function",
+      "name": "test_schema_valid",
+      "summary": "函数: test_schema_valid",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_experiment_checkpoints.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_experiment_checkpoints.py:test_schema_valid",
+      "type": "function",
+      "name": "test_schema_valid",
+      "summary": "函数: test_schema_valid",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_experiment_checkpoints.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_experiment_checkpoints.py:test_schema_valid",
+      "type": "function",
+      "name": "test_schema_valid",
+      "summary": "函数: test_schema_valid",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_experiment_checkpoints.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_experiment_checkpoints.py:test_schema_valid",
+      "type": "function",
+      "name": "test_schema_valid",
+      "summary": "函数: test_schema_valid",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_experiment_checkpoints.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_experiment_checkpoints.py:test_per_question_checkpoint_path",
+      "type": "function",
+      "name": "test_per_question_checkpoint_path",
+      "summary": "验证函数: test_per_question_checkpoint_path",
+      "tags": [
+        "validation"
+      ],
+      "filePath": "06_tests/test_experiment_checkpoints.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_experiment_checkpoints.py:test_report_checkpoint_path",
+      "type": "function",
+      "name": "test_report_checkpoint_path",
+      "summary": "验证函数: test_report_checkpoint_path",
+      "tags": [
+        "validation"
+      ],
+      "filePath": "06_tests/test_experiment_checkpoints.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_experiment_checkpoints.py:test_attribution_checkpoint_path",
+      "type": "function",
+      "name": "test_attribution_checkpoint_path",
+      "summary": "验证函数: test_attribution_checkpoint_path",
+      "tags": [
+        "validation"
+      ],
+      "filePath": "06_tests/test_experiment_checkpoints.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_experiment_checkpoints.py:test_save_and_load_report_checkpoint",
+      "type": "function",
+      "name": "test_save_and_load_report_checkpoint",
+      "summary": "获取/加载函数: test_save_and_load_report_checkpoint",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "06_tests/test_experiment_checkpoints.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_experiment_checkpoints.py:test_save_and_load_attribution_checkpoint",
+      "type": "function",
+      "name": "test_save_and_load_attribution_checkpoint",
+      "summary": "获取/加载函数: test_save_and_load_attribution_checkpoint",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "06_tests/test_experiment_checkpoints.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_experiment_checkpoints.py:test_report_checkpoint_missing_returns_none",
+      "type": "function",
+      "name": "test_report_checkpoint_missing_returns_none",
+      "summary": "验证函数: test_report_checkpoint_missing_returns_none",
+      "tags": [
+        "validation"
+      ],
+      "filePath": "06_tests/test_experiment_checkpoints.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_experiment_checkpoints.py:test_attribution_checkpoint_missing_returns_none",
+      "type": "function",
+      "name": "test_attribution_checkpoint_missing_returns_none",
+      "summary": "验证函数: test_attribution_checkpoint_missing_returns_none",
+      "tags": [
+        "validation"
+      ],
+      "filePath": "06_tests/test_experiment_checkpoints.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:06_tests/test_experiment_runner.py",
+      "type": "file",
+      "name": "test_experiment_runner.py",
+      "summary": "Python模块: 定义 1 个函数",
+      "tags": [
+        "testing"
+      ],
+      "filePath": "06_tests/test_experiment_runner.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_experiment_runner.py:test_write_summary_counts_skipped_completed_runs_once",
+      "type": "function",
+      "name": "test_write_summary_counts_skipped_completed_runs_once",
+      "summary": "执行函数: test_write_summary_counts_skipped_completed_runs_once",
+      "tags": [
+        "execution"
+      ],
+      "filePath": "06_tests/test_experiment_runner.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:06_tests/test_experiment_ui_server.py",
+      "type": "file",
+      "name": "test_experiment_ui_server.py",
+      "summary": "Python模块: 定义 2 个函数",
+      "tags": [
+        "testing",
+        "ui"
+      ],
+      "filePath": "06_tests/test_experiment_ui_server.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_experiment_ui_server.py:test_experiment_results_route_ignores_cache_busting_query",
+      "type": "function",
+      "name": "test_experiment_results_route_ignores_cache_busting_query",
+      "summary": "函数: test_experiment_results_route_ignores_cache_busting_query",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_experiment_ui_server.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:06_tests/test_html_export_service.py",
+      "type": "file",
+      "name": "test_html_export_service.py",
+      "summary": "Python模块: 定义 5 个函数",
+      "tags": [
+        "testing"
+      ],
+      "filePath": "06_tests/test_html_export_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_html_export_service.py:test_html_export_service_uses_english_lang_for_main_variant",
+      "type": "function",
+      "name": "test_html_export_service_uses_english_lang_for_main_variant",
+      "summary": "输出/保存函数: test_html_export_service_uses_english_lang_for_main_variant",
+      "tags": [
+        "output",
+        "io"
+      ],
+      "filePath": "06_tests/test_html_export_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_html_export_service.py:test_html_export_service_uses_chinese_lang_for_cn_variant",
+      "type": "function",
+      "name": "test_html_export_service_uses_chinese_lang_for_cn_variant",
+      "summary": "输出/保存函数: test_html_export_service_uses_chinese_lang_for_cn_variant",
+      "tags": [
+        "output",
+        "io"
+      ],
+      "filePath": "06_tests/test_html_export_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_html_export_service.py:test_html_export_service_renders_evidence_gap_and_region_level_support",
+      "type": "function",
+      "name": "test_html_export_service_renders_evidence_gap_and_region_level_support",
+      "summary": "展示/渲染函数: test_html_export_service_renders_evidence_gap_and_region_level_support",
+      "tags": [
+        "ui",
+        "display"
+      ],
+      "filePath": "06_tests/test_html_export_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_html_export_service.py:test_html_export_service_renders_insight_support_refs",
+      "type": "function",
+      "name": "test_html_export_service_renders_insight_support_refs",
+      "summary": "展示/渲染函数: test_html_export_service_renders_insight_support_refs",
+      "tags": [
+        "ui",
+        "display"
+      ],
+      "filePath": "06_tests/test_html_export_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_html_export_service.py:test_html_export_service_renders_retrieval_evaluator_fields",
+      "type": "function",
+      "name": "test_html_export_service_renders_retrieval_evaluator_fields",
+      "summary": "展示/渲染函数: test_html_export_service_renders_retrieval_evaluator_fields",
+      "tags": [
+        "ui",
+        "display"
+      ],
+      "filePath": "06_tests/test_html_export_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:06_tests/test_index_api.py",
+      "type": "file",
+      "name": "test_index_api.py",
+      "summary": "Python模块: 定义 2 个函数",
+      "tags": [
+        "testing"
+      ],
+      "filePath": "06_tests/test_index_api.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_index_api.py:test_index_build_endpoint",
+      "type": "function",
+      "name": "test_index_build_endpoint",
+      "summary": "构建函数: test_index_build_endpoint",
+      "tags": [
+        "factory"
+      ],
+      "filePath": "06_tests/test_index_api.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_index_api.py:test_index_overview_endpoint",
+      "type": "function",
+      "name": "test_index_overview_endpoint",
+      "summary": "函数: test_index_overview_endpoint",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_index_api.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:06_tests/test_index_backends.py",
+      "type": "file",
+      "name": "test_index_backends.py",
+      "summary": "Python模块: 定义 9 个函数",
+      "tags": [
+        "testing"
+      ],
+      "filePath": "06_tests/test_index_backends.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_index_backends.py:test_create_index_backend_defaults_to_local",
+      "type": "function",
+      "name": "test_create_index_backend_defaults_to_local",
+      "summary": "构建函数: test_create_index_backend_defaults_to_local",
+      "tags": [
+        "factory"
+      ],
+      "filePath": "06_tests/test_index_backends.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_index_backends.py:test_create_index_backend_can_switch_to_qdrant",
+      "type": "function",
+      "name": "test_create_index_backend_can_switch_to_qdrant",
+      "summary": "构建函数: test_create_index_backend_can_switch_to_qdrant",
+      "tags": [
+        "factory"
+      ],
+      "filePath": "06_tests/test_index_backends.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_index_backends.py:test_local_backend_has_searchable_location",
+      "type": "function",
+      "name": "test_local_backend_has_searchable_location",
+      "summary": "搜索/发现函数: test_local_backend_has_searchable_location",
+      "tags": [
+        "search"
+      ],
+      "filePath": "06_tests/test_index_backends.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_index_backends.py:test_local_backend_invalidates_stale_query_cache_before_search",
+      "type": "function",
+      "name": "test_local_backend_invalidates_stale_query_cache_before_search",
+      "summary": "验证函数: test_local_backend_invalidates_stale_query_cache_before_search",
+      "tags": [
+        "validation"
+      ],
+      "filePath": "06_tests/test_index_backends.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_index_backends.py:test_local_backend_raises_when_refreshed_query_dimension_still_mismatches",
+      "type": "function",
+      "name": "test_local_backend_raises_when_refreshed_query_dimension_still_mismatches",
+      "summary": "函数: test_local_backend_raises_when_refreshed_query_dimension_still_mismatches",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_index_backends.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:06_tests/test_index_backends.py:test_vector_size_for_route_uses_local_qwen3_dimension",
+      "type": "function",
+      "name": "test_vector_size_for_route_uses_local_qwen3_dimension",
+      "summary": "函数: test_vector_size_for_route_uses_local_qwen3_dimension",
+      "tags": [
+        "function"
+      ],
+      "filePath": "06_tests/test_index_backends.py",
+      "complexity": "moderate",
+      "language": "python"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "target": "class:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py:LLMInsightItem",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "target": "class:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py:LLMSuggestionItem",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "target": "class:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py:LLMReportPayload",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "target": "class:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py:ProductAnalysisService",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py:analyze",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py:rank",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py:metric_key",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/core/config.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/llm.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/review.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/prompts.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage1_dataset/dataset_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage4_generation/artifact_sidecar_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage4_generation/question_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage4_generation/report_refinement_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/workflows/control_experiments.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/retrieval_cache.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/prompts/__init__.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/retrieval_cache/__init__.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/analysis/__init__.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/artifact_sidecar_service.py",
+      "target": "class:05_src/decathlon_voc_analyzer/stage4_generation/artifact_sidecar_service.py:ArtifactSidecarService",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/artifact_sidecar_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage4_generation/artifact_sidecar_service.py:load_feedback_payload",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/artifact_sidecar_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage4_generation/artifact_sidecar_service.py:load_replay_payload",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/artifact_sidecar_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage4_generation/artifact_sidecar_service.py:persist_sidecars",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/artifact_sidecar_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/core/config.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/html_export_service.py",
+      "target": "class:05_src/decathlon_voc_analyzer/stage4_generation/html_export_service.py:HtmlExportService",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/html_export_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage4_generation/html_export_service.py:render",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/html_export_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage4_generation/html_export_service.py:build",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/html_export_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/prompts.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/question_cache_service.py",
+      "target": "class:05_src/decathlon_voc_analyzer/stage4_generation/question_cache_service.py:QuestionGenerationCacheService",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/question_cache_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage4_generation/question_cache_service.py:load",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/question_cache_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage4_generation/question_cache_service.py:save",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/question_cache_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage4_generation/question_cache_service.py:signature_token",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/question_cache_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/core/config.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/question_cache_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/question_cache.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/question_service.py",
+      "target": "class:05_src/decathlon_voc_analyzer/stage4_generation/question_service.py:QuestionGenerationService",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/question_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage4_generation/question_service.py:generate_questions",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/question_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage4_generation/question_service.py:plan_question_intents",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/question_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/core/config.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/question_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/question_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/llm.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/question_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/question_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/question_cache.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/question_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/review.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/question_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/prompts.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/question_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/prompts/registry.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/question_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/question_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage4_generation/question_cache_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/report_refinement_service.py",
+      "target": "class:05_src/decathlon_voc_analyzer/stage4_generation/report_refinement_service.py:ReportRefinementService",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/report_refinement_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage4_generation/report_refinement_service.py:refine",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/report_refinement_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/prompts.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage4_generation/report_refinement_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/workflows/__init__.py",
+      "target": "file:05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/workflows/control_experiments.py",
+      "target": "function:05_src/decathlon_voc_analyzer/workflows/control_experiments.py:run_control_experiment",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/workflows/control_experiments.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/workflows/control_experiments.py",
+      "target": "file:05_src/decathlon_voc_analyzer/llm.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/workflows/control_experiments.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/analysis/__init__.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/workflows/control_experiments.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/dataset.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/workflows/control_experiments.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/review.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/workflows/experiment_runner.py",
+      "target": "function:05_src/decathlon_voc_analyzer/workflows/experiment_runner.py:discover_products",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/workflows/experiment_runner.py",
+      "target": "function:05_src/decathlon_voc_analyzer/workflows/experiment_runner.py:run_experiment_matrix",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/workflows/experiment_runner.py",
+      "target": "function:05_src/decathlon_voc_analyzer/workflows/experiment_runner.py:main",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/workflows/experiment_runner.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/core/config.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/workflows/experiment_runner.py",
+      "target": "file:05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/workflows/experiment_runner.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/workflows/experiment_runner.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/workflows/llm_judge_evaluation.py",
+      "target": "function:05_src/decathlon_voc_analyzer/workflows/llm_judge_evaluation.py:load_analysis_response",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/workflows/llm_judge_evaluation.py",
+      "target": "function:05_src/decathlon_voc_analyzer/workflows/llm_judge_evaluation.py:judge_retrieval_quality",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/workflows/llm_judge_evaluation.py",
+      "target": "function:05_src/decathlon_voc_analyzer/workflows/llm_judge_evaluation.py:judge_report_quality",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/workflows/llm_judge_evaluation.py",
+      "target": "function:05_src/decathlon_voc_analyzer/workflows/llm_judge_evaluation.py:judge_attribution_quality",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/workflows/llm_judge_evaluation.py",
+      "target": "function:05_src/decathlon_voc_analyzer/workflows/llm_judge_evaluation.py:evaluate_run",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/workflows/llm_judge_evaluation.py",
+      "target": "function:05_src/decathlon_voc_analyzer/workflows/llm_judge_evaluation.py:aggregate_by_condition",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/workflows/llm_judge_evaluation.py",
+      "target": "function:05_src/decathlon_voc_analyzer/workflows/llm_judge_evaluation.py:main",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/workflows/llm_judge_evaluation.py",
+      "target": "function:05_src/decathlon_voc_analyzer/workflows/llm_judge_evaluation.py:evaluate_run_with_checkpoint",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/workflows/llm_judge_evaluation.py",
+      "target": "file:05_src/decathlon_voc_analyzer/llm.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/workflows/llm_judge_evaluation.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py",
+      "target": "class:05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py:SingleProductWorkflowState",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py",
+      "target": "function:05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py:build_single_product_workflow",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py",
+      "target": "function:05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py:overview_node",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py",
+      "target": "function:05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py:normalize_node",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py",
+      "target": "function:05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py:index_node",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py",
+      "target": "function:05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py:analyze_node",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py",
+      "target": "function:05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py:get_single_product_workflow",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/dataset.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/index.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py",
+      "target": "file:05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage1_dataset/dataset_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/workflows/single_product_workflow.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/conftest.py",
+      "target": "function:06_tests/conftest.py:isolate_runtime_backends",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/conftest.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/api/routes.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/conftest.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/api/routes/__init__.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/conftest.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/core/config.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/conftest.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/conftest.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/conftest.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/conftest.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_analysis_api.py",
+      "target": "function:06_tests/test_analysis_api.py:test_product_analysis_endpoint_runs_end_to_end",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_api.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/api/main.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_product_analysis_service_returns_report_and_retrievals",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_control_experiment_parsed_report_sets_aggregate_confidence",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_product_analysis_service_marks_control_analysis_mode",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:fake_run_control_experiment",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_product_analysis_service_emits_evidence_nodes_and_claim_attributions",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_product_analysis_service_can_reuse_persisted_extraction_artifact",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_analysis_checkpoint_roundtrip_requires_exact_signature",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_analysis_checkpoint_rejects_mismatched_request_signature",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_resolve_question_retrieval_state_reuses_checkpoint_without_recomputing",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_product_analysis_service_applies_claim_revisions_to_report_items",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_product_analysis_service_accepts_strong_visual_support_below_previous_threshold",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_product_analysis_service_hydrates_report_support_before_claim_attribution",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_product_analysis_service_builds_improvement_suggestions",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_product_analysis_service_derives_impression_models",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_product_analysis_service_keeps_all_aggregates_in_impressions_and_supporting_aspects",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_product_analysis_service_normalizes_prompt_variant_alias",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_product_analysis_service_generates_questions_before_retrieval",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_product_analysis_service_emits_trace_and_owner_metadata",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_product_analysis_service_hydrates_llm_insights_by_review_reference",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_product_analysis_service_hydrates_cross_section_controversy_evidence",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_product_analysis_service_hydrates_suggestions_by_text_similarity",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_product_analysis_service_hydrates_suggestions_from_related_insights",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_product_analysis_service_hydrates_report_suggestions_from_hydrated_insights",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_product_analysis_service_prefers_reason_alignment_for_suggestion_hydration",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_product_analysis_service_rebind_suggestions_downgrades_unsupported_claims",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_product_analysis_service_tracks_mixed_ratio_in_aggregates",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_product_analysis_service_uses_conservative_answer_coverage_for_unanswered_hits",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_product_analysis_service_extracts_answer_value_for_supported_tint_question",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_product_analysis_service_marks_retrieval_quality_as_low_precision_for_unanswered_hits",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_product_analysis_service_marks_missing_expected_route_as_modality_miss",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_product_analysis_service_retries_corrective_retrieval_when_candidate_is_better",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:fake_retry",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_product_analysis_service_marks_trace_with_valid_evidence_counts",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_report_refinement_service_calibrates_unsupported_summaries_and_filters_relation_controversy",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_report_refinement_service_rewrites_price_and_duration_suggestions",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_report_refinement_service_sanitizes_optical_external_validation_reason",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_report_refinement_service_sanitizes_tint_over_specificity",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_product_analysis_service_normalizes_issues_gaps_and_suggestion_bindings",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_product_analysis_service_builds_grammatically_correct_answer_with_partial_support",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_product_analysis_service_attaches_replay_note_without_polluting_reason",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_product_analysis_service_uses_canonical_issue_keys_for_replay_continuity",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_product_analysis_service_trace_uses_full_replay_summary_and_all_suggestions",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_product_analysis_service_returns_artifact_bundle_when_persisted",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_product_analysis_service_can_apply_replay_continuity",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_product_analysis_service_can_apply_feedback_aware_replay",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "function:06_tests/test_analysis_service.py:test_no_attribution_ablation_reuses_full_system_checkpoint",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/review.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_analysis_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/workflows/control_experiments.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_clear_generated_outputs_script.py",
+      "target": "function:06_tests/test_clear_generated_outputs_script.py:test_collect_cleanup_targets_excludes_readme",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_clear_generated_outputs_script.py",
+      "target": "function:06_tests/test_clear_generated_outputs_script.py:test_remove_targets_deletes_files_and_directories",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_clear_generated_outputs_script.py",
+      "target": "function:06_tests/test_clear_generated_outputs_script.py:test_recreate_output_skeleton_creates_expected_directories",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_clear_generated_outputs_script.py",
+      "target": "function:06_tests/test_clear_generated_outputs_script.py:test_prompt_for_output_conflict_resolution_accepts_kill_choice",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_clear_generated_outputs_script.py",
+      "target": "function:06_tests/test_clear_generated_outputs_script.py:test_main_blocks_noninteractive_cleanup_when_outputs_are_in_use",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_dataset_api.py",
+      "target": "function:06_tests/test_dataset_api.py:test_healthcheck",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_dataset_api.py",
+      "target": "function:06_tests/test_dataset_api.py:test_dataset_overview_endpoint",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_dataset_api.py",
+      "target": "function:06_tests/test_dataset_api.py:test_dataset_normalize_endpoint",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_dataset_api.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/api/main.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_dataset_service.py",
+      "target": "function:06_tests/test_dataset_service.py:test_dataset_overview_has_categories",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_dataset_service.py",
+      "target": "function:06_tests/test_dataset_service.py:test_normalize_single_product_without_persisting",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_dataset_service.py",
+      "target": "function:06_tests/test_dataset_service.py:test_dataset_service_preserves_original_multilingual_product_fields",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_dataset_service.py",
+      "target": "function:06_tests/test_dataset_service.py:test_dataset_service_reuses_persisted_normalized_package",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_dataset_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/dataset.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_dataset_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage1_dataset/dataset_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "class:06_tests/test_embedding_and_reranker.py:DummyResponse",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "class:06_tests/test_embedding_and_reranker.py:FakeBatch",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "class:06_tests/test_embedding_and_reranker.py:FakeTokenizer",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "class:06_tests/test_embedding_and_reranker.py:FakeOutputs",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "class:06_tests/test_embedding_and_reranker.py:FakeModel",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "class:06_tests/test_embedding_and_reranker.py:DummyCompletions",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "class:06_tests/test_embedding_and_reranker.py:DummyChat",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "class:06_tests/test_embedding_and_reranker.py:DummyClient",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "function:06_tests/test_embedding_and_reranker.py:test_embedding_service_returns_non_empty_vector",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "function:06_tests/test_embedding_and_reranker.py:test_reranker_service_returns_sorted_candidates",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "function:06_tests/test_embedding_and_reranker.py:test_reranker_service_emits_in_progress_and_done_messages",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "function:06_tests/test_embedding_and_reranker.py:test_reranker_service_uses_dedicated_api",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "function:06_tests/test_embedding_and_reranker.py:read",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "function:06_tests/test_embedding_and_reranker.py:fake_urlopen",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "function:06_tests/test_embedding_and_reranker.py:test_local_reranker_uses_causal_lm_logits",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "function:06_tests/test_embedding_and_reranker.py:to",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "function:06_tests/test_embedding_and_reranker.py:test_rerank_cache_signature_accepts_local_backends",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "function:06_tests/test_embedding_and_reranker.py:test_embedding_service_uses_clip_for_image_route",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "function:06_tests/test_embedding_and_reranker.py:test_embedding_service_caches_text_query_embeddings_and_invalidates_on_model_change",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "function:06_tests/test_embedding_and_reranker.py:fake_api_embedding",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "function:06_tests/test_embedding_and_reranker.py:test_embedding_service_does_not_cache_failed_api_query_fallback",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "function:06_tests/test_embedding_and_reranker.py:fake_api_embedding",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "function:06_tests/test_embedding_and_reranker.py:fake_hashed_embedding",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "function:06_tests/test_embedding_and_reranker.py:test_embedding_service_caches_clip_query_embeddings_and_invalidates_on_model_change",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "function:06_tests/test_embedding_and_reranker.py:fake_clip_embedding",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "function:06_tests/test_embedding_and_reranker.py:test_embedding_service_reuses_persisted_query_embedding_across_instances",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "function:06_tests/test_embedding_and_reranker.py:test_embedding_service_rejects_persisted_query_embedding_when_signature_changes",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "function:06_tests/test_embedding_and_reranker.py:test_reranker_service_reuses_persisted_heuristic_rerank_across_instances",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "function:06_tests/test_embedding_and_reranker.py:test_reranker_service_invalidates_cache_when_candidate_signature_changes",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "function:06_tests/test_embedding_and_reranker.py:test_reranker_service_uses_multimodal_backend_for_image_candidates",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "function:06_tests/test_embedding_and_reranker.py:fake_multimodal_rerank",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "function:06_tests/test_embedding_and_reranker.py:test_reranker_service_multimodal_call_uses_timeout_and_no_retry",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "function:06_tests/test_embedding_and_reranker.py:create",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "function:06_tests/test_embedding_and_reranker.py:with_options",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "function:06_tests/test_embedding_and_reranker.py:test_embedding_service_raises_when_strict_policy_forbids_api_fallback",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "function:06_tests/test_embedding_and_reranker.py:test_reranker_service_raises_when_strict_policy_forbids_api_fallback",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/core/config.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/retrieval_cache.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/index.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/reranker_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_embedding_and_reranker.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_experiment_checkpoints.py",
+      "target": "class:06_tests/test_experiment_checkpoints.py:TestRetrievalStageCheckpoint",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_experiment_checkpoints.py",
+      "target": "class:06_tests/test_experiment_checkpoints.py:TestReportCheckpoint",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_experiment_checkpoints.py",
+      "target": "class:06_tests/test_experiment_checkpoints.py:TestAttributionCheckpoint",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_experiment_checkpoints.py",
+      "target": "class:06_tests/test_experiment_checkpoints.py:TestExperimentRunManifest",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_experiment_checkpoints.py",
+      "target": "class:06_tests/test_experiment_checkpoints.py:TestAnalysisServiceCheckpointHelpers",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_experiment_checkpoints.py",
+      "target": "function:06_tests/test_experiment_checkpoints.py:test_schema_valid",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_experiment_checkpoints.py",
+      "target": "function:06_tests/test_experiment_checkpoints.py:test_schema_valid",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_experiment_checkpoints.py",
+      "target": "function:06_tests/test_experiment_checkpoints.py:test_schema_valid",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_experiment_checkpoints.py",
+      "target": "function:06_tests/test_experiment_checkpoints.py:test_schema_valid",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_experiment_checkpoints.py",
+      "target": "function:06_tests/test_experiment_checkpoints.py:test_per_question_checkpoint_path",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_experiment_checkpoints.py",
+      "target": "function:06_tests/test_experiment_checkpoints.py:test_report_checkpoint_path",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_experiment_checkpoints.py",
+      "target": "function:06_tests/test_experiment_checkpoints.py:test_attribution_checkpoint_path",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_experiment_checkpoints.py",
+      "target": "function:06_tests/test_experiment_checkpoints.py:test_save_and_load_report_checkpoint",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_experiment_checkpoints.py",
+      "target": "function:06_tests/test_experiment_checkpoints.py:test_save_and_load_attribution_checkpoint",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_experiment_checkpoints.py",
+      "target": "function:06_tests/test_experiment_checkpoints.py:test_report_checkpoint_missing_returns_none",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_experiment_checkpoints.py",
+      "target": "function:06_tests/test_experiment_checkpoints.py:test_attribution_checkpoint_missing_returns_none",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_experiment_checkpoints.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_experiment_checkpoints.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/review.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_experiment_checkpoints.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/retrieval_cache.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_experiment_checkpoints.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/analysis/__init__.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_experiment_checkpoints.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_experiment_runner.py",
+      "target": "function:06_tests/test_experiment_runner.py:test_write_summary_counts_skipped_completed_runs_once",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_experiment_runner.py",
+      "target": "file:05_src/decathlon_voc_analyzer/workflows/experiment_runner.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_experiment_ui_server.py",
+      "target": "function:06_tests/test_experiment_ui_server.py:test_experiment_results_route_ignores_cache_busting_query",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_html_export_service.py",
+      "target": "function:06_tests/test_html_export_service.py:test_html_export_service_uses_english_lang_for_main_variant",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_html_export_service.py",
+      "target": "function:06_tests/test_html_export_service.py:test_html_export_service_uses_chinese_lang_for_cn_variant",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_html_export_service.py",
+      "target": "function:06_tests/test_html_export_service.py:test_html_export_service_renders_evidence_gap_and_region_level_support",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_html_export_service.py",
+      "target": "function:06_tests/test_html_export_service.py:test_html_export_service_renders_insight_support_refs",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_html_export_service.py",
+      "target": "function:06_tests/test_html_export_service.py:test_html_export_service_renders_retrieval_evaluator_fields",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_html_export_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage4_generation/html_export_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_index_api.py",
+      "target": "function:06_tests/test_index_api.py:test_index_build_endpoint",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_index_api.py",
+      "target": "function:06_tests/test_index_api.py:test_index_overview_endpoint",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_index_api.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/api/main.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_index_backends.py",
+      "target": "function:06_tests/test_index_backends.py:test_create_index_backend_defaults_to_local",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_index_backends.py",
+      "target": "function:06_tests/test_index_backends.py:test_create_index_backend_can_switch_to_qdrant",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_index_backends.py",
+      "target": "function:06_tests/test_index_backends.py:test_local_backend_has_searchable_location",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_index_backends.py",
+      "target": "function:06_tests/test_index_backends.py:test_local_backend_invalidates_stale_query_cache_before_search",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_index_backends.py",
+      "target": "function:06_tests/test_index_backends.py:test_local_backend_raises_when_refreshed_query_dimension_still_mismatches",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_index_backends.py",
+      "target": "function:06_tests/test_index_backends.py:test_vector_size_for_route_uses_local_qwen3_dimension",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:06_tests/test_index_backends.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_index_backends.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/index.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_index_backends.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/core/config.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_index_backends.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:06_tests/test_index_backends.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "type": "imports",
+      "weight": 0.7
+    }
+  ]
+}

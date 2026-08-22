@@ -1,0 +1,137 @@
+{
+  "nodes": [
+    {
+      "id": "file:0_docs/03_论文子模块文档/01_数据集与商品证据标准化.md",
+      "type": "document",
+      "name": "01_数据集与商品证据标准化.md",
+      "summary": "数据集与商品证据标准化模块",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/03_论文子模块文档/01_数据集与商品证据标准化.md",
+      "complexity": "simple",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/03_论文子模块文档/02_评论建模与抽样.md",
+      "type": "document",
+      "name": "02_评论建模与抽样.md",
+      "summary": "评论建模与抽样模块",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/03_论文子模块文档/02_评论建模与抽样.md",
+      "complexity": "simple",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/03_论文子模块文档/03_多模态索引与召回.md",
+      "type": "document",
+      "name": "03_多模态索引与召回.md",
+      "summary": "多模态索引与召回模块",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/03_论文子模块文档/03_多模态索引与召回.md",
+      "complexity": "simple",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/03_论文子模块文档/04_重排缓存与本地推理.md",
+      "type": "document",
+      "name": "04_重排缓存与本地推理.md",
+      "summary": "重排缓存与本地推理模块",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/03_论文子模块文档/04_重排缓存与本地推理.md",
+      "complexity": "simple",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/03_论文子模块文档/05_问题规划与证据查询生成.md",
+      "type": "document",
+      "name": "05_问题规划与证据查询生成.md",
+      "summary": "问题规划与证据查询生成模块",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/03_论文子模块文档/05_问题规划与证据查询生成.md",
+      "complexity": "simple",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/03_论文子模块文档/06_报告生成证据归因与回放.md",
+      "type": "document",
+      "name": "06_报告生成证据归因与回放.md",
+      "summary": "报告生成证据归因与回放模块",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/03_论文子模块文档/06_报告生成证据归因与回放.md",
+      "complexity": "simple",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/03_论文子模块文档/07_工作流编排与批处理.md",
+      "type": "document",
+      "name": "07_工作流编排与批处理.md",
+      "summary": "工作流编排与批处理模块",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/03_论文子模块文档/07_工作流编排与批处理.md",
+      "complexity": "simple",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/03_论文子模块文档/08_API配置LLM与提示词层.md",
+      "type": "document",
+      "name": "08_API配置LLM与提示词层.md",
+      "summary": "API、配置、LLM 与提示词层",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/03_论文子模块文档/08_API配置LLM与提示词层.md",
+      "complexity": "simple",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/03_论文子模块文档/09_Schema与可解释性数据结构.md",
+      "type": "document",
+      "name": "09_Schema与可解释性数据结构.md",
+      "summary": "Schema 与可解释性数据结构模块",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/03_论文子模块文档/09_Schema与可解释性数据结构.md",
+      "complexity": "simple",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/03_论文子模块文档/10_评估模块与实验指标.md",
+      "type": "document",
+      "name": "10_评估模块与实验指标.md",
+      "summary": "评估模块与实验指标",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/03_论文子模块文档/10_评估模块与实验指标.md",
+      "complexity": "simple",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/03_论文子模块文档/README.md",
+      "type": "document",
+      "name": "README.md",
+      "summary": "论文子模块文档总览",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/03_论文子模块文档/README.md",
+      "complexity": "simple",
+      "language": "markdown"
+    }
+  ],
+  "edges": []
+}

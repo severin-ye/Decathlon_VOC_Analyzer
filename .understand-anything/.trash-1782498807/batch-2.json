@@ -1,0 +1,53 @@
+{
+  "nodes": [
+    {
+      "id": "file:05_src/decathlon_voc_analyzer.egg-info/SOURCES.txt",
+      "type": "document",
+      "name": "SOURCES.txt",
+      "summary": "README.md",
+      "tags": [
+        "untagged"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer.egg-info/SOURCES.txt",
+      "complexity": "moderate",
+      "language": "txt"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer.egg-info/dependency_links.txt",
+      "type": "document",
+      "name": "dependency_links.txt",
+      "summary": "文档: dependency_links.txt",
+      "tags": [
+        "untagged"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer.egg-info/dependency_links.txt",
+      "complexity": "simple",
+      "language": "txt"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer.egg-info/requires.txt",
+      "type": "document",
+      "name": "requires.txt",
+      "summary": "fastapi<1.0.0,>=0.115.0",
+      "tags": [
+        "ui"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer.egg-info/requires.txt",
+      "complexity": "simple",
+      "language": "txt"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer.egg-info/top_level.txt",
+      "type": "document",
+      "name": "top_level.txt",
+      "summary": "decathlon_voc_analyzer",
+      "tags": [
+        "untagged"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer.egg-info/top_level.txt",
+      "complexity": "simple",
+      "language": "txt"
+    }
+  ],
+  "edges": []
+}

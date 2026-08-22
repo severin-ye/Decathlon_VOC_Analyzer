@@ -1,0 +1,41 @@
+{
+  "nodes": [
+    {
+      "id": "file:0_docs/02_技术文档/教程/VOC分析系统关键设计问题答复.md",
+      "type": "document",
+      "name": "VOC分析系统关键设计问题答复.md",
+      "summary": "VOC分析系统关键设计问题答复",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/02_技术文档/教程/VOC分析系统关键设计问题答复.md",
+      "complexity": "complex",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/02_技术文档/教程/单产品分析结果字段逐项说明.md",
+      "type": "document",
+      "name": "单产品分析结果字段逐项说明.md",
+      "summary": "单产品分析结果字段逐项说明",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/02_技术文档/教程/单产品分析结果字段逐项说明.md",
+      "complexity": "complex",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/02_技术文档/教程/项目开发、论文与成果综述.md",
+      "type": "document",
+      "name": "项目开发、论文与成果综述.md",
+      "summary": "项目开发、论文与成果综述",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/02_技术文档/教程/项目开发、论文与成果综述.md",
+      "complexity": "complex",
+      "language": "markdown"
+    }
+  ],
+  "edges": []
+}

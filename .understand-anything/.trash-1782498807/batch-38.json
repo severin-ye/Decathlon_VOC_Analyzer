@@ -1,0 +1,4235 @@
+{
+  "nodes": [
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "type": "file",
+      "name": "runtime_progress.py",
+      "summary": "Python模块: 定义 4 个类, 80 个函数",
+      "tags": [
+        "dashboard"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/runtime_progress.py:ProgressStepState",
+      "type": "class",
+      "name": "ProgressStepState",
+      "summary": "ProgressStepState类",
+      "tags": [
+        "workflow",
+        "langgraph"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/runtime_progress.py:ProgressModuleState",
+      "type": "class",
+      "name": "ProgressModuleState",
+      "summary": "ProgressModuleState类",
+      "tags": [
+        "workflow",
+        "langgraph"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/runtime_progress.py:NoopWorkflowProgressReporter",
+      "type": "class",
+      "name": "NoopWorkflowProgressReporter",
+      "summary": "NoopWorkflowProgressReporter类",
+      "tags": [
+        "workflow",
+        "langgraph"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/runtime_progress.py:WorkflowProgressReporter",
+      "type": "class",
+      "name": "WorkflowProgressReporter",
+      "summary": "WorkflowProgressReporter类",
+      "tags": [
+        "workflow",
+        "langgraph"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:activate_module",
+      "type": "function",
+      "name": "activate_module",
+      "summary": "函数: activate_module",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:complete_module",
+      "type": "function",
+      "name": "complete_module",
+      "summary": "函数: complete_module",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:skip_module",
+      "type": "function",
+      "name": "skip_module",
+      "summary": "函数: skip_module",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:activate_step",
+      "type": "function",
+      "name": "activate_step",
+      "summary": "函数: activate_step",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:start_count_step",
+      "type": "function",
+      "name": "start_count_step",
+      "summary": "执行函数: start_count_step",
+      "tags": [
+        "execution"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:advance_step",
+      "type": "function",
+      "name": "advance_step",
+      "summary": "函数: advance_step",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:update_step",
+      "type": "function",
+      "name": "update_step",
+      "summary": "函数: update_step",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:complete_step",
+      "type": "function",
+      "name": "complete_step",
+      "summary": "函数: complete_step",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:note",
+      "type": "function",
+      "name": "note",
+      "summary": "函数: note",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:refresh",
+      "type": "function",
+      "name": "refresh",
+      "summary": "函数: refresh",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:activate_module",
+      "type": "function",
+      "name": "activate_module",
+      "summary": "函数: activate_module",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:complete_module",
+      "type": "function",
+      "name": "complete_module",
+      "summary": "函数: complete_module",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:fail_workflow",
+      "type": "function",
+      "name": "fail_workflow",
+      "summary": "函数: fail_workflow",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:skip_module",
+      "type": "function",
+      "name": "skip_module",
+      "summary": "函数: skip_module",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:activate_step",
+      "type": "function",
+      "name": "activate_step",
+      "summary": "函数: activate_step",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:advance_step",
+      "type": "function",
+      "name": "advance_step",
+      "summary": "函数: advance_step",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:update_step",
+      "type": "function",
+      "name": "update_step",
+      "summary": "函数: update_step",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:complete_step",
+      "type": "function",
+      "name": "complete_step",
+      "summary": "函数: complete_step",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:note",
+      "type": "function",
+      "name": "note",
+      "summary": "函数: note",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:start_count_step",
+      "type": "function",
+      "name": "start_count_step",
+      "summary": "执行函数: start_count_step",
+      "tags": [
+        "execution"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:render",
+      "type": "function",
+      "name": "render",
+      "summary": "展示/渲染函数: render",
+      "tags": [
+        "ui",
+        "display"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:refresh",
+      "type": "function",
+      "name": "refresh",
+      "summary": "函数: refresh",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:get_workflow_progress",
+      "type": "function",
+      "name": "get_workflow_progress",
+      "summary": "获取/加载函数: get_workflow_progress",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:use_workflow_progress",
+      "type": "function",
+      "name": "use_workflow_progress",
+      "summary": "函数: use_workflow_progress",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/schemas/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "summary": "Python模块: __init__.py",
+      "tags": [
+        "data-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/__init__.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "type": "file",
+      "name": "analysis.py",
+      "summary": "Python模块: 定义 33 个类, 0 个函数",
+      "tags": [
+        "data-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:RetrievalQuestion",
+      "type": "schema",
+      "name": "RetrievalQuestion",
+      "summary": "RetrievalQuestion类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:QuestionIntent",
+      "type": "schema",
+      "name": "QuestionIntent",
+      "summary": "QuestionIntent类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:RetrievedEvidence",
+      "type": "schema",
+      "name": "RetrievedEvidence",
+      "summary": "RetrievedEvidence类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:RetrievalRecord",
+      "type": "schema",
+      "name": "RetrievalRecord",
+      "summary": "RetrievalRecord类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:RetrievalQualityMetrics",
+      "type": "schema",
+      "name": "RetrievalQualityMetrics",
+      "summary": "RetrievalQualityMetrics类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:RetrievalRuntimeProfile",
+      "type": "schema",
+      "name": "RetrievalRuntimeProfile",
+      "summary": "RetrievalRuntimeProfile类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:AnalysisCheckpointSignature",
+      "type": "schema",
+      "name": "AnalysisCheckpointSignature",
+      "summary": "AnalysisCheckpointSignature类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:AnalysisCheckpointPayload",
+      "type": "schema",
+      "name": "AnalysisCheckpointPayload",
+      "summary": "AnalysisCheckpointPayload类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:AnalysisArtifactBundle",
+      "type": "schema",
+      "name": "AnalysisArtifactBundle",
+      "summary": "AnalysisArtifactBundle类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:ReplayContinuationSummary",
+      "type": "schema",
+      "name": "ReplayContinuationSummary",
+      "summary": "ReplayContinuationSummary类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:AspectAggregate",
+      "type": "schema",
+      "name": "AspectAggregate",
+      "summary": "AspectAggregate类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:ProductImpressionItem",
+      "type": "schema",
+      "name": "ProductImpressionItem",
+      "summary": "ProductImpressionItem类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:CustomerImpressionItem",
+      "type": "schema",
+      "name": "CustomerImpressionItem",
+      "summary": "CustomerImpressionItem类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:AspectRelationItem",
+      "type": "schema",
+      "name": "AspectRelationItem",
+      "summary": "AspectRelationItem类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:SupportingEvidence",
+      "type": "schema",
+      "name": "SupportingEvidence",
+      "summary": "SupportingEvidence类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:EvidenceNode",
+      "type": "schema",
+      "name": "EvidenceNode",
+      "summary": "EvidenceNode类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:ConfidenceBreakdown",
+      "type": "schema",
+      "name": "ConfidenceBreakdown",
+      "summary": "ConfidenceBreakdown类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:ClaimAttribution",
+      "type": "schema",
+      "name": "ClaimAttribution",
+      "summary": "ClaimAttribution类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:EvidenceGapItem",
+      "type": "schema",
+      "name": "EvidenceGapItem",
+      "summary": "EvidenceGapItem类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:ProcessTraceItem",
+      "type": "schema",
+      "name": "ProcessTraceItem",
+      "summary": "ProcessTraceItem类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:InsightItem",
+      "type": "schema",
+      "name": "InsightItem",
+      "summary": "InsightItem类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:ImprovementSuggestion",
+      "type": "schema",
+      "name": "ImprovementSuggestion",
+      "summary": "ImprovementSuggestion类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:ProductAnalysisReport",
+      "type": "schema",
+      "name": "ProductAnalysisReport",
+      "summary": "ProductAnalysisReport类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:ExperimentConfig",
+      "type": "schema",
+      "name": "ExperimentConfig",
+      "summary": "ExperimentConfig类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:ProductAnalysisRequest",
+      "type": "schema",
+      "name": "ProductAnalysisRequest",
+      "summary": "ProductAnalysisRequest类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:ProductAnalysisResponse",
+      "type": "schema",
+      "name": "ProductAnalysisResponse",
+      "summary": "ProductAnalysisResponse类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:ReportCheckpointSignature",
+      "type": "schema",
+      "name": "ReportCheckpointSignature",
+      "summary": "ReportCheckpointSignature类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:ReportCheckpointPayload",
+      "type": "schema",
+      "name": "ReportCheckpointPayload",
+      "summary": "ReportCheckpointPayload类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:AttributionCheckpointSignature",
+      "type": "schema",
+      "name": "AttributionCheckpointSignature",
+      "summary": "AttributionCheckpointSignature类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:AttributionCheckpointPayload",
+      "type": "schema",
+      "name": "AttributionCheckpointPayload",
+      "summary": "AttributionCheckpointPayload类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:ExperimentRunManifest",
+      "type": "schema",
+      "name": "ExperimentRunManifest",
+      "summary": "ExperimentRunManifest类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:ControlBaselineStageCheckpointSignature",
+      "type": "schema",
+      "name": "ControlBaselineStageCheckpointSignature",
+      "summary": "ControlBaselineStageCheckpointSignature类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:ControlBaselineStageCheckpointPayload",
+      "type": "schema",
+      "name": "ControlBaselineStageCheckpointPayload",
+      "summary": "ControlBaselineStageCheckpointPayload类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/schemas/dataset.py",
+      "type": "file",
+      "name": "dataset.py",
+      "summary": "Python模块: 定义 11 个类, 0 个函数",
+      "tags": [
+        "pipeline-stage1",
+        "data-model",
+        "data"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/dataset.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/dataset.py:ImageRegion",
+      "type": "schema",
+      "name": "ImageRegion",
+      "summary": "ImageRegion类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/dataset.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/dataset.py:ImageEvidence",
+      "type": "schema",
+      "name": "ImageEvidence",
+      "summary": "ImageEvidence类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/dataset.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/dataset.py:TextEvidence",
+      "type": "schema",
+      "name": "TextEvidence",
+      "summary": "TextEvidence类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/dataset.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/dataset.py:ReviewRecord",
+      "type": "schema",
+      "name": "ReviewRecord",
+      "summary": "ReviewRecord类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/dataset.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/dataset.py:ProductEvidencePackage",
+      "type": "schema",
+      "name": "ProductEvidencePackage",
+      "summary": "ProductEvidencePackage类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/dataset.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/dataset.py:CategoryOverview",
+      "type": "schema",
+      "name": "CategoryOverview",
+      "summary": "CategoryOverview类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/dataset.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/dataset.py:DatasetOverview",
+      "type": "schema",
+      "name": "DatasetOverview",
+      "summary": "DatasetOverview类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/dataset.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/dataset.py:DatasetNormalizeRequest",
+      "type": "schema",
+      "name": "DatasetNormalizeRequest",
+      "summary": "DatasetNormalizeRequest类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/dataset.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/dataset.py:NormalizationStats",
+      "type": "schema",
+      "name": "NormalizationStats",
+      "summary": "NormalizationStats类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/dataset.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/dataset.py:DatasetNormalizationResult",
+      "type": "schema",
+      "name": "DatasetNormalizationResult",
+      "summary": "DatasetNormalizationResult类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/dataset.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/dataset.py:ProductDirectory",
+      "type": "schema",
+      "name": "ProductDirectory",
+      "summary": "ProductDirectory类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/dataset.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/schemas/index.py",
+      "type": "file",
+      "name": "index.py",
+      "summary": "Python模块: 定义 6 个类, 0 个函数",
+      "tags": [
+        "data-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/index.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/index.py:IndexedEvidence",
+      "type": "schema",
+      "name": "IndexedEvidence",
+      "summary": "IndexedEvidence类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/index.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/index.py:ProductIndexSnapshot",
+      "type": "schema",
+      "name": "ProductIndexSnapshot",
+      "summary": "ProductIndexSnapshot类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/index.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/index.py:IndexBuildRequest",
+      "type": "schema",
+      "name": "IndexBuildRequest",
+      "summary": "IndexBuildRequest类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/index.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/index.py:IndexBuildStats",
+      "type": "schema",
+      "name": "IndexBuildStats",
+      "summary": "IndexBuildStats类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/index.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/index.py:IndexBuildResponse",
+      "type": "schema",
+      "name": "IndexBuildResponse",
+      "summary": "IndexBuildResponse类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/index.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/index.py:IndexOverview",
+      "type": "schema",
+      "name": "IndexOverview",
+      "summary": "IndexOverview类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/index.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/schemas/question_cache.py",
+      "type": "file",
+      "name": "question_cache.py",
+      "summary": "Python模块: 定义 2 个类, 0 个函数",
+      "tags": [
+        "data-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/question_cache.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/question_cache.py:QuestionGenerationCacheSignature",
+      "type": "schema",
+      "name": "QuestionGenerationCacheSignature",
+      "summary": "QuestionGenerationCacheSignature类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/question_cache.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/question_cache.py:QuestionGenerationCachePayload",
+      "type": "schema",
+      "name": "QuestionGenerationCachePayload",
+      "summary": "QuestionGenerationCachePayload类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/question_cache.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/schemas/retrieval_cache.py",
+      "type": "file",
+      "name": "retrieval_cache.py",
+      "summary": "Python模块: 定义 6 个类, 0 个函数",
+      "tags": [
+        "pipeline-stage3",
+        "data-model",
+        "retrieval"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/retrieval_cache.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/retrieval_cache.py:QueryEmbeddingCacheSignature",
+      "type": "schema",
+      "name": "QueryEmbeddingCacheSignature",
+      "summary": "QueryEmbeddingCacheSignature类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/retrieval_cache.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/retrieval_cache.py:QueryEmbeddingCachePayload",
+      "type": "schema",
+      "name": "QueryEmbeddingCachePayload",
+      "summary": "QueryEmbeddingCachePayload类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/retrieval_cache.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/retrieval_cache.py:RerankCacheSignature",
+      "type": "schema",
+      "name": "RerankCacheSignature",
+      "summary": "RerankCacheSignature类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/retrieval_cache.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/retrieval_cache.py:RerankCachePayload",
+      "type": "schema",
+      "name": "RerankCachePayload",
+      "summary": "RerankCachePayload类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/retrieval_cache.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/retrieval_cache.py:RetrievalStageCheckpointSignature",
+      "type": "schema",
+      "name": "RetrievalStageCheckpointSignature",
+      "summary": "RetrievalStageCheckpointSignature类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/retrieval_cache.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/retrieval_cache.py:RetrievalStageCheckpointPayload",
+      "type": "schema",
+      "name": "RetrievalStageCheckpointPayload",
+      "summary": "RetrievalStageCheckpointPayload类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/retrieval_cache.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/schemas/review.py",
+      "type": "file",
+      "name": "review.py",
+      "summary": "Python模块: 定义 7 个类, 0 个函数",
+      "tags": [
+        "data-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/review.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/review.py:ReviewInput",
+      "type": "schema",
+      "name": "ReviewInput",
+      "summary": "ReviewInput类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/review.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/review.py:PreprocessedReview",
+      "type": "schema",
+      "name": "PreprocessedReview",
+      "summary": "PreprocessedReview类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/review.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/review.py:ReviewAspect",
+      "type": "schema",
+      "name": "ReviewAspect",
+      "summary": "ReviewAspect类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/review.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/review.py:ReviewExtractionRequest",
+      "type": "schema",
+      "name": "ReviewExtractionRequest",
+      "summary": "ReviewExtractionRequest类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/review.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/review.py:ReviewRatingAllocation",
+      "type": "schema",
+      "name": "ReviewRatingAllocation",
+      "summary": "ReviewRatingAllocation类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/review.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/review.py:ReviewSamplingPlan",
+      "type": "schema",
+      "name": "ReviewSamplingPlan",
+      "summary": "ReviewSamplingPlan类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/review.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/schemas/review.py:ReviewExtractionResponse",
+      "type": "schema",
+      "name": "ReviewExtractionResponse",
+      "summary": "ReviewExtractionResponse类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/schemas/review.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/stage1_dataset/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "summary": "项目文件: __init__.py",
+      "tags": [
+        "pipeline-stage1",
+        "data"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage1_dataset/__init__.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/stage1_dataset/chinese_dataset_service.py",
+      "type": "file",
+      "name": "chinese_dataset_service.py",
+      "summary": "Python模块: 定义 5 个类, 5 个函数",
+      "tags": [
+        "pipeline-stage1",
+        "data"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage1_dataset/chinese_dataset_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/stage1_dataset/chinese_dataset_service.py:ProductTranslationPayload",
+      "type": "schema",
+      "name": "ProductTranslationPayload",
+      "summary": "ProductTranslationPayload类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage1_dataset/chinese_dataset_service.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/stage1_dataset/chinese_dataset_service.py:ReviewTranslationItem",
+      "type": "schema",
+      "name": "ReviewTranslationItem",
+      "summary": "ReviewTranslationItem类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage1_dataset/chinese_dataset_service.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/stage1_dataset/chinese_dataset_service.py:ReviewTranslationPayload",
+      "type": "schema",
+      "name": "ReviewTranslationPayload",
+      "summary": "ReviewTranslationPayload类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage1_dataset/chinese_dataset_service.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/stage1_dataset/chinese_dataset_service.py:CleanupPayload",
+      "type": "schema",
+      "name": "CleanupPayload",
+      "summary": "CleanupPayload类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage1_dataset/chinese_dataset_service.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/stage1_dataset/chinese_dataset_service.py:ChineseDatasetService",
+      "type": "class",
+      "name": "ChineseDatasetService",
+      "summary": "ChineseDatasetService类",
+      "tags": [
+        "service"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage1_dataset/chinese_dataset_service.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage1_dataset/chinese_dataset_service.py:export_single_product_dataset",
+      "type": "function",
+      "name": "export_single_product_dataset",
+      "summary": "输出/保存函数: export_single_product_dataset",
+      "tags": [
+        "output",
+        "io"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage1_dataset/chinese_dataset_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/stage1_dataset/dataset_service.py",
+      "type": "file",
+      "name": "dataset_service.py",
+      "summary": "Python模块: 定义 1 个类, 25 个函数",
+      "tags": [
+        "pipeline-stage1",
+        "data"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage1_dataset/dataset_service.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/stage1_dataset/dataset_service.py:DatasetService",
+      "type": "class",
+      "name": "DatasetService",
+      "summary": "DatasetService类",
+      "tags": [
+        "service"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage1_dataset/dataset_service.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage1_dataset/dataset_service.py:build_overview",
+      "type": "function",
+      "name": "build_overview",
+      "summary": "构建函数: build_overview",
+      "tags": [
+        "factory"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage1_dataset/dataset_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage1_dataset/dataset_service.py:normalize_dataset",
+      "type": "function",
+      "name": "normalize_dataset",
+      "summary": "函数: normalize_dataset",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage1_dataset/dataset_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage1_dataset/dataset_service.py:load_product_package",
+      "type": "function",
+      "name": "load_product_package",
+      "summary": "获取/加载函数: load_product_package",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage1_dataset/dataset_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/stage2_review_modeling/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "summary": "项目文件: __init__.py",
+      "tags": [
+        "pipeline-stage2"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage2_review_modeling/__init__.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/stage2_review_modeling/deduplication_service.py",
+      "type": "file",
+      "name": "deduplication_service.py",
+      "summary": "Python模块: 定义 1 个类, 2 个函数",
+      "tags": [
+        "pipeline-stage2"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage2_review_modeling/deduplication_service.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/stage2_review_modeling/deduplication_service.py:ReviewDeduplicationService",
+      "type": "class",
+      "name": "ReviewDeduplicationService",
+      "summary": "ReviewDeduplicationService类",
+      "tags": [
+        "service"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage2_review_modeling/deduplication_service.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage2_review_modeling/deduplication_service.py:deduplicate",
+      "type": "function",
+      "name": "deduplicate",
+      "summary": "函数: deduplicate",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage2_review_modeling/deduplication_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_sampling_service.py",
+      "type": "file",
+      "name": "review_sampling_service.py",
+      "summary": "Python模块: 定义 3 个类, 9 个函数",
+      "tags": [
+        "pipeline-stage2"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage2_review_modeling/review_sampling_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_sampling_service.py:ReviewSamplingProfile",
+      "type": "schema",
+      "name": "ReviewSamplingProfile",
+      "summary": "ReviewSamplingProfile类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage2_review_modeling/review_sampling_service.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_sampling_service.py:ReviewSamplingConfig",
+      "type": "schema",
+      "name": "ReviewSamplingConfig",
+      "summary": "ReviewSamplingConfig类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage2_review_modeling/review_sampling_service.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_sampling_service.py:ReviewSamplingService",
+      "type": "class",
+      "name": "ReviewSamplingService",
+      "summary": "ReviewSamplingService类",
+      "tags": [
+        "service"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage2_review_modeling/review_sampling_service.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_sampling_service.py:select_reviews",
+      "type": "function",
+      "name": "select_reviews",
+      "summary": "函数: select_reviews",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage2_review_modeling/review_sampling_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_service.py",
+      "type": "file",
+      "name": "review_service.py",
+      "summary": "Python模块: 定义 3 个类, 17 个函数",
+      "tags": [
+        "pipeline-stage2"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage2_review_modeling/review_service.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_service.py:ReviewAspectCandidate",
+      "type": "schema",
+      "name": "ReviewAspectCandidate",
+      "summary": "ReviewAspectCandidate类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage2_review_modeling/review_service.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_service.py:ReviewExtractionPayload",
+      "type": "schema",
+      "name": "ReviewExtractionPayload",
+      "summary": "ReviewExtractionPayload类，继承自 BaseModel",
+      "tags": [
+        "schema",
+        "pydantic-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage2_review_modeling/review_service.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_service.py:ReviewExtractionService",
+      "type": "class",
+      "name": "ReviewExtractionService",
+      "summary": "ReviewExtractionService类",
+      "tags": [
+        "service"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage2_review_modeling/review_service.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_service.py:extract",
+      "type": "function",
+      "name": "extract",
+      "summary": "数据处理函数: extract",
+      "tags": [
+        "processing"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage2_review_modeling/review_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_service.py:load_persisted_result",
+      "type": "function",
+      "name": "load_persisted_result",
+      "summary": "获取/加载函数: load_persisted_result",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage2_review_modeling/review_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/__init__.py",
+      "type": "file",
+      "name": "__init__.py",
+      "summary": "项目文件: __init__.py",
+      "tags": [
+        "pipeline-stage3",
+        "retrieval"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/__init__.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py",
+      "type": "file",
+      "name": "embedding_service.py",
+      "summary": "Python模块: 定义 1 个类, 23 个函数",
+      "tags": [
+        "pipeline-stage3",
+        "retrieval"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py:EmbeddingService",
+      "type": "class",
+      "name": "EmbeddingService",
+      "summary": "EmbeddingService类",
+      "tags": [
+        "service"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py:embed_text",
+      "type": "function",
+      "name": "embed_text",
+      "summary": "函数: embed_text",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py:embed_image_proxy_text",
+      "type": "function",
+      "name": "embed_image_proxy_text",
+      "summary": "函数: embed_image_proxy_text",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py:embed_image",
+      "type": "function",
+      "name": "embed_image",
+      "summary": "函数: embed_image",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py:embed_query_for_route",
+      "type": "function",
+      "name": "embed_query_for_route",
+      "summary": "函数: embed_query_for_route",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py:similarity",
+      "type": "function",
+      "name": "similarity",
+      "summary": "函数: similarity",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py:vector_size",
+      "type": "function",
+      "name": "vector_size",
+      "summary": "函数: vector_size",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py:vector_size_for_route",
+      "type": "function",
+      "name": "vector_size_for_route",
+      "summary": "函数: vector_size_for_route",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py:invalidate_query_embedding",
+      "type": "function",
+      "name": "invalidate_query_embedding",
+      "summary": "验证函数: invalidate_query_embedding",
+      "tags": [
+        "validation"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "type": "file",
+      "name": "index_backends.py",
+      "summary": "Python模块: 定义 3 个类, 28 个函数",
+      "tags": [
+        "pipeline-stage3",
+        "retrieval"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:IndexBackend",
+      "type": "class",
+      "name": "IndexBackend",
+      "summary": "IndexBackend类，继承自 ABC",
+      "tags": [
+        "class"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:LocalIndexBackend",
+      "type": "class",
+      "name": "LocalIndexBackend",
+      "summary": "LocalIndexBackend类，继承自 IndexBackend",
+      "tags": [
+        "class"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:QdrantIndexBackend",
+      "type": "class",
+      "name": "QdrantIndexBackend",
+      "summary": "QdrantIndexBackend类，继承自 IndexBackend",
+      "tags": [
+        "class"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:save_snapshots",
+      "type": "function",
+      "name": "save_snapshots",
+      "summary": "输出/保存函数: save_snapshots",
+      "tags": [
+        "output",
+        "io"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:load_snapshots",
+      "type": "function",
+      "name": "load_snapshots",
+      "summary": "获取/加载函数: load_snapshots",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:search",
+      "type": "function",
+      "name": "search",
+      "summary": "搜索/发现函数: search",
+      "tags": [
+        "search"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:index_exists",
+      "type": "function",
+      "name": "index_exists",
+      "summary": "函数: index_exists",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:index_location",
+      "type": "function",
+      "name": "index_location",
+      "summary": "函数: index_location",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:close",
+      "type": "function",
+      "name": "close",
+      "summary": "函数: close",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:save_snapshots",
+      "type": "function",
+      "name": "save_snapshots",
+      "summary": "输出/保存函数: save_snapshots",
+      "tags": [
+        "output",
+        "io"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:load_snapshots",
+      "type": "function",
+      "name": "load_snapshots",
+      "summary": "获取/加载函数: load_snapshots",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:search",
+      "type": "function",
+      "name": "search",
+      "summary": "搜索/发现函数: search",
+      "tags": [
+        "search"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:index_exists",
+      "type": "function",
+      "name": "index_exists",
+      "summary": "函数: index_exists",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:index_location",
+      "type": "function",
+      "name": "index_location",
+      "summary": "函数: index_location",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:save_snapshots",
+      "type": "function",
+      "name": "save_snapshots",
+      "summary": "输出/保存函数: save_snapshots",
+      "tags": [
+        "output",
+        "io"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:load_snapshots",
+      "type": "function",
+      "name": "load_snapshots",
+      "summary": "获取/加载函数: load_snapshots",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:search",
+      "type": "function",
+      "name": "search",
+      "summary": "搜索/发现函数: search",
+      "tags": [
+        "search"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:index_exists",
+      "type": "function",
+      "name": "index_exists",
+      "summary": "函数: index_exists",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:index_location",
+      "type": "function",
+      "name": "index_location",
+      "summary": "函数: index_location",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:close",
+      "type": "function",
+      "name": "close",
+      "summary": "函数: close",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:create_index_backend",
+      "type": "function",
+      "name": "create_index_backend",
+      "summary": "构建函数: create_index_backend",
+      "tags": [
+        "factory"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:dispose_index_backend",
+      "type": "function",
+      "name": "dispose_index_backend",
+      "summary": "函数: dispose_index_backend",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_service.py",
+      "type": "file",
+      "name": "index_service.py",
+      "summary": "Python模块: 定义 1 个类, 6 个函数",
+      "tags": [
+        "pipeline-stage3",
+        "retrieval"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/index_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/stage3_retrieval/index_service.py:IndexService",
+      "type": "class",
+      "name": "IndexService",
+      "summary": "IndexService类",
+      "tags": [
+        "service"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/index_service.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_service.py:build_index",
+      "type": "function",
+      "name": "build_index",
+      "summary": "构建函数: build_index",
+      "tags": [
+        "factory"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/index_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_service.py:get_overview",
+      "type": "function",
+      "name": "get_overview",
+      "summary": "获取/加载函数: get_overview",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/index_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_service.py:get_or_create_product_snapshot",
+      "type": "function",
+      "name": "get_or_create_product_snapshot",
+      "summary": "构建函数: get_or_create_product_snapshot",
+      "tags": [
+        "factory"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/index_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_service.py:search",
+      "type": "function",
+      "name": "search",
+      "summary": "搜索/发现函数: search",
+      "tags": [
+        "search"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/index_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py",
+      "type": "file",
+      "name": "local_model_utils.py",
+      "summary": "支持 Qwen3 系列小参数模型的加载和推理： - Qwen3-Embedding-0.6B：文本嵌入 - Qwen3-Reranker-0.6B：文本重排 - Qwen3-VL-2B：多模态（图像+",
+      "tags": [
+        "pipeline-stage3",
+        "retrieval"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py:LocalEmbeddingModel",
+      "type": "class",
+      "name": "LocalEmbeddingModel",
+      "summary": "LocalEmbeddingModel类",
+      "tags": [
+        "data-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py:LocalRerankerModel",
+      "type": "class",
+      "name": "LocalRerankerModel",
+      "summary": "LocalRerankerModel类",
+      "tags": [
+        "data-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py:LocalMultimodalRerankerModel",
+      "type": "class",
+      "name": "LocalMultimodalRerankerModel",
+      "summary": "LocalMultimodalRerankerModel类",
+      "tags": [
+        "data-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py:resolve_device",
+      "type": "function",
+      "name": "resolve_device",
+      "summary": "获取/加载函数: resolve_device",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py:load",
+      "type": "function",
+      "name": "load",
+      "summary": "获取/加载函数: load",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py:embed",
+      "type": "function",
+      "name": "embed",
+      "summary": "函数: embed",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py:embed_single",
+      "type": "function",
+      "name": "embed_single",
+      "summary": "函数: embed_single",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py:load",
+      "type": "function",
+      "name": "load",
+      "summary": "获取/加载函数: load",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py:rerank",
+      "type": "function",
+      "name": "rerank",
+      "summary": "函数: rerank",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py:load",
+      "type": "function",
+      "name": "load",
+      "summary": "获取/加载函数: load",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py:rerank",
+      "type": "function",
+      "name": "rerank",
+      "summary": "函数: rerank",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py:get_embedding_model",
+      "type": "function",
+      "name": "get_embedding_model",
+      "summary": "获取/加载函数: get_embedding_model",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py:get_reranker_model",
+      "type": "function",
+      "name": "get_reranker_model",
+      "summary": "获取/加载函数: get_reranker_model",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py:get_multimodal_reranker_model",
+      "type": "function",
+      "name": "get_multimodal_reranker_model",
+      "summary": "获取/加载函数: get_multimodal_reranker_model",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_integrated.py",
+      "type": "file",
+      "name": "openvino_integrated.py",
+      "summary": "import logging import os from typing import List import numpy as np import torch from huggingface_hu",
+      "tags": [
+        "pipeline-stage3",
+        "retrieval"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_integrated.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_integrated.py:OpenVINOOptimizedEmbeddingModel",
+      "type": "class",
+      "name": "OpenVINOOptimizedEmbeddingModel",
+      "summary": "OpenVINOOptimizedEmbeddingModel类",
+      "tags": [
+        "data-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_integrated.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_integrated.py:OpenVINOOptimizedRerankerModel",
+      "type": "class",
+      "name": "OpenVINOOptimizedRerankerModel",
+      "summary": "OpenVINOOptimizedRerankerModel类",
+      "tags": [
+        "data-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_integrated.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_integrated.py:get_openvino_device",
+      "type": "function",
+      "name": "get_openvino_device",
+      "summary": "获取/加载函数: get_openvino_device",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_integrated.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_integrated.py:load",
+      "type": "function",
+      "name": "load",
+      "summary": "获取/加载函数: load",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_integrated.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_integrated.py:embed",
+      "type": "function",
+      "name": "embed",
+      "summary": "函数: embed",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_integrated.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_integrated.py:embed_single",
+      "type": "function",
+      "name": "embed_single",
+      "summary": "函数: embed_single",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_integrated.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_integrated.py:load",
+      "type": "function",
+      "name": "load",
+      "summary": "获取/加载函数: load",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_integrated.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_integrated.py:rerank",
+      "type": "function",
+      "name": "rerank",
+      "summary": "函数: rerank",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_integrated.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_models.py",
+      "type": "file",
+      "name": "openvino_models.py",
+      "summary": "import json import logging from pathlib import Path from typing import List import numpy as np impor",
+      "tags": [
+        "pipeline-stage3",
+        "retrieval"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_models.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_models.py:OpenVINOEmbeddingModel",
+      "type": "class",
+      "name": "OpenVINOEmbeddingModel",
+      "summary": "OpenVINOEmbeddingModel类",
+      "tags": [
+        "data-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_models.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_models.py:OpenVINORerankerModel",
+      "type": "class",
+      "name": "OpenVINORerankerModel",
+      "summary": "OpenVINORerankerModel类",
+      "tags": [
+        "data-model"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_models.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_models.py:load",
+      "type": "function",
+      "name": "load",
+      "summary": "获取/加载函数: load",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_models.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_models.py:embed",
+      "type": "function",
+      "name": "embed",
+      "summary": "函数: embed",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_models.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_models.py:embed_single",
+      "type": "function",
+      "name": "embed_single",
+      "summary": "函数: embed_single",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_models.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_models.py:load",
+      "type": "function",
+      "name": "load",
+      "summary": "获取/加载函数: load",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_models.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_models.py:rerank",
+      "type": "function",
+      "name": "rerank",
+      "summary": "函数: rerank",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_models.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_models.py:get_openvino_device",
+      "type": "function",
+      "name": "get_openvino_device",
+      "summary": "获取/加载函数: get_openvino_device",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_models.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/reranker_service.py",
+      "type": "file",
+      "name": "reranker_service.py",
+      "summary": "Python模块: 定义 1 个类, 16 个函数",
+      "tags": [
+        "pipeline-stage3",
+        "retrieval"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/reranker_service.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/stage3_retrieval/reranker_service.py:RerankerService",
+      "type": "class",
+      "name": "RerankerService",
+      "summary": "RerankerService类",
+      "tags": [
+        "service"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/reranker_service.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/reranker_service.py:rerank",
+      "type": "function",
+      "name": "rerank",
+      "summary": "函数: rerank",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/reranker_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py",
+      "type": "file",
+      "name": "retrieval_cache_service.py",
+      "summary": "Python模块: 定义 1 个类, 12 个函数",
+      "tags": [
+        "pipeline-stage3",
+        "retrieval"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py:RetrievalCacheService",
+      "type": "class",
+      "name": "RetrievalCacheService",
+      "summary": "RetrievalCacheService类",
+      "tags": [
+        "service"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py:load_query_embedding",
+      "type": "function",
+      "name": "load_query_embedding",
+      "summary": "获取/加载函数: load_query_embedding",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py:save_query_embedding",
+      "type": "function",
+      "name": "save_query_embedding",
+      "summary": "输出/保存函数: save_query_embedding",
+      "tags": [
+        "output",
+        "io"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py:delete_query_embedding",
+      "type": "function",
+      "name": "delete_query_embedding",
+      "summary": "函数: delete_query_embedding",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py:load_rerank",
+      "type": "function",
+      "name": "load_rerank",
+      "summary": "获取/加载函数: load_rerank",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py:save_rerank",
+      "type": "function",
+      "name": "save_rerank",
+      "summary": "输出/保存函数: save_rerank",
+      "tags": [
+        "output",
+        "io"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py:build_candidate_digest",
+      "type": "function",
+      "name": "build_candidate_digest",
+      "summary": "构建函数: build_candidate_digest",
+      "tags": [
+        "factory"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py:signature_token",
+      "type": "function",
+      "name": "signature_token",
+      "summary": "函数: signature_token",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py:root_dir",
+      "type": "function",
+      "name": "root_dir",
+      "summary": "函数: root_dir",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_service.py",
+      "type": "file",
+      "name": "retrieval_service.py",
+      "summary": "Python模块: 定义 1 个类, 12 个函数",
+      "tags": [
+        "pipeline-stage3",
+        "retrieval"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "class:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_service.py:RetrievalService",
+      "type": "class",
+      "name": "RetrievalService",
+      "summary": "RetrievalService类",
+      "tags": [
+        "service"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_service.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_service.py:retrieve_for_package",
+      "type": "function",
+      "name": "retrieve_for_package",
+      "summary": "函数: retrieve_for_package",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_service.py:update",
+      "type": "function",
+      "name": "update",
+      "summary": "函数: update",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_service.py:advance",
+      "type": "function",
+      "name": "advance",
+      "summary": "函数: advance",
+      "tags": [
+        "function"
+      ],
+      "filePath": "05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_service.py",
+      "complexity": "moderate",
+      "language": "python"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "target": "class:05_src/decathlon_voc_analyzer/runtime_progress.py:ProgressStepState",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "target": "class:05_src/decathlon_voc_analyzer/runtime_progress.py:ProgressModuleState",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "target": "class:05_src/decathlon_voc_analyzer/runtime_progress.py:NoopWorkflowProgressReporter",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "target": "class:05_src/decathlon_voc_analyzer/runtime_progress.py:WorkflowProgressReporter",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "target": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:activate_module",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "target": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:complete_module",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "target": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:skip_module",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "target": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:activate_step",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "target": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:start_count_step",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "target": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:advance_step",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "target": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:update_step",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "target": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:complete_step",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "target": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:note",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "target": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:refresh",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "target": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:activate_module",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "target": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:complete_module",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "target": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:fail_workflow",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "target": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:skip_module",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "target": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:activate_step",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "target": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:advance_step",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "target": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:update_step",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "target": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:complete_step",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "target": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:note",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "target": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:start_count_step",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "target": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:render",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "target": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:refresh",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "target": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:get_workflow_progress",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "target": "function:05_src/decathlon_voc_analyzer/runtime_progress.py:use_workflow_progress",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:RetrievalQuestion",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:QuestionIntent",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:RetrievedEvidence",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:RetrievalRecord",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:RetrievalQualityMetrics",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:RetrievalRuntimeProfile",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:AnalysisCheckpointSignature",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:AnalysisCheckpointPayload",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:AnalysisArtifactBundle",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:ReplayContinuationSummary",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:AspectAggregate",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:ProductImpressionItem",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:CustomerImpressionItem",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:AspectRelationItem",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:SupportingEvidence",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:EvidenceNode",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:ConfidenceBreakdown",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:ClaimAttribution",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:EvidenceGapItem",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:ProcessTraceItem",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:InsightItem",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:ImprovementSuggestion",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:ProductAnalysisReport",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:ExperimentConfig",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:ProductAnalysisRequest",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:ProductAnalysisResponse",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:ReportCheckpointSignature",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:ReportCheckpointPayload",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:AttributionCheckpointSignature",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:AttributionCheckpointPayload",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:ExperimentRunManifest",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:ControlBaselineStageCheckpointSignature",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/analysis.py:ControlBaselineStageCheckpointPayload",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/review.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/dataset.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/dataset.py:ImageRegion",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/dataset.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/dataset.py:ImageEvidence",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/dataset.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/dataset.py:TextEvidence",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/dataset.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/dataset.py:ReviewRecord",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/dataset.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/dataset.py:ProductEvidencePackage",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/dataset.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/dataset.py:CategoryOverview",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/dataset.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/dataset.py:DatasetOverview",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/dataset.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/dataset.py:DatasetNormalizeRequest",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/dataset.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/dataset.py:NormalizationStats",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/dataset.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/dataset.py:DatasetNormalizationResult",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/dataset.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/dataset.py:ProductDirectory",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/index.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/index.py:IndexedEvidence",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/index.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/index.py:ProductIndexSnapshot",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/index.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/index.py:IndexBuildRequest",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/index.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/index.py:IndexBuildStats",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/index.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/index.py:IndexBuildResponse",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/index.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/index.py:IndexOverview",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/question_cache.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/question_cache.py:QuestionGenerationCacheSignature",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/question_cache.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/question_cache.py:QuestionGenerationCachePayload",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/question_cache.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/retrieval_cache.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/retrieval_cache.py:QueryEmbeddingCacheSignature",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/retrieval_cache.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/retrieval_cache.py:QueryEmbeddingCachePayload",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/retrieval_cache.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/retrieval_cache.py:RerankCacheSignature",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/retrieval_cache.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/retrieval_cache.py:RerankCachePayload",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/retrieval_cache.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/retrieval_cache.py:RetrievalStageCheckpointSignature",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/retrieval_cache.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/retrieval_cache.py:RetrievalStageCheckpointPayload",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/retrieval_cache.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/index.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/retrieval_cache.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/review.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/review.py:ReviewInput",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/review.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/review.py:PreprocessedReview",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/review.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/review.py:ReviewAspect",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/review.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/review.py:ReviewExtractionRequest",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/review.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/review.py:ReviewRatingAllocation",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/review.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/review.py:ReviewSamplingPlan",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/schemas/review.py",
+      "target": "class:05_src/decathlon_voc_analyzer/schemas/review.py:ReviewExtractionResponse",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage1_dataset/chinese_dataset_service.py",
+      "target": "class:05_src/decathlon_voc_analyzer/stage1_dataset/chinese_dataset_service.py:ProductTranslationPayload",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage1_dataset/chinese_dataset_service.py",
+      "target": "class:05_src/decathlon_voc_analyzer/stage1_dataset/chinese_dataset_service.py:ReviewTranslationItem",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage1_dataset/chinese_dataset_service.py",
+      "target": "class:05_src/decathlon_voc_analyzer/stage1_dataset/chinese_dataset_service.py:ReviewTranslationPayload",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage1_dataset/chinese_dataset_service.py",
+      "target": "class:05_src/decathlon_voc_analyzer/stage1_dataset/chinese_dataset_service.py:CleanupPayload",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage1_dataset/chinese_dataset_service.py",
+      "target": "class:05_src/decathlon_voc_analyzer/stage1_dataset/chinese_dataset_service.py:ChineseDatasetService",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage1_dataset/chinese_dataset_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage1_dataset/chinese_dataset_service.py:export_single_product_dataset",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage1_dataset/chinese_dataset_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/core/config.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage1_dataset/chinese_dataset_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/llm.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage1_dataset/chinese_dataset_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/prompts.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage1_dataset/dataset_service.py",
+      "target": "class:05_src/decathlon_voc_analyzer/stage1_dataset/dataset_service.py:DatasetService",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage1_dataset/dataset_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage1_dataset/dataset_service.py:build_overview",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage1_dataset/dataset_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage1_dataset/dataset_service.py:normalize_dataset",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage1_dataset/dataset_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage1_dataset/dataset_service.py:load_product_package",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage1_dataset/dataset_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/core/config.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage1_dataset/dataset_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage1_dataset/dataset_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/dataset.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage2_review_modeling/deduplication_service.py",
+      "target": "class:05_src/decathlon_voc_analyzer/stage2_review_modeling/deduplication_service.py:ReviewDeduplicationService",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage2_review_modeling/deduplication_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage2_review_modeling/deduplication_service.py:deduplicate",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage2_review_modeling/deduplication_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/review.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_sampling_service.py",
+      "target": "class:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_sampling_service.py:ReviewSamplingProfile",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_sampling_service.py",
+      "target": "class:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_sampling_service.py:ReviewSamplingConfig",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_sampling_service.py",
+      "target": "class:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_sampling_service.py:ReviewSamplingService",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_sampling_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_sampling_service.py:select_reviews",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_sampling_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/core/config.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_sampling_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/review.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_service.py",
+      "target": "class:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_service.py:ReviewAspectCandidate",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_service.py",
+      "target": "class:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_service.py:ReviewExtractionPayload",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_service.py",
+      "target": "class:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_service.py:ReviewExtractionService",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_service.py:extract",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_service.py:load_persisted_result",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/core/config.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/llm.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/review.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/prompts.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage1_dataset/dataset_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage2_review_modeling/deduplication_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_sampling_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py",
+      "target": "class:05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py:EmbeddingService",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py:embed_text",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py:embed_image_proxy_text",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py:embed_image",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py:embed_query_for_route",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py:similarity",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py:vector_size",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py:vector_size_for_route",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py:invalidate_query_embedding",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/core/config.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/retrieval_cache.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "target": "class:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:IndexBackend",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "target": "class:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:LocalIndexBackend",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "target": "class:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:QdrantIndexBackend",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:save_snapshots",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:load_snapshots",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:search",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:index_exists",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:index_location",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:close",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:save_snapshots",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:load_snapshots",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:search",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:index_exists",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:index_location",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:save_snapshots",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:load_snapshots",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:search",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:index_exists",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:index_location",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:close",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:create_index_backend",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py:dispose_index_backend",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/core/config.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/index.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_service.py",
+      "target": "class:05_src/decathlon_voc_analyzer/stage3_retrieval/index_service.py:IndexService",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_service.py:build_index",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_service.py:get_overview",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_service.py:get_or_create_product_snapshot",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/index_service.py:search",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/core/config.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/index.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage1_dataset/dataset_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_backends.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py",
+      "target": "class:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py:LocalEmbeddingModel",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py",
+      "target": "class:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py:LocalRerankerModel",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py",
+      "target": "class:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py:LocalMultimodalRerankerModel",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py:resolve_device",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py:load",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py:embed",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py:embed_single",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py:load",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py:rerank",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py:load",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py:rerank",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py:get_embedding_model",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py:get_reranker_model",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py:get_multimodal_reranker_model",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_integrated.py",
+      "target": "class:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_integrated.py:OpenVINOOptimizedEmbeddingModel",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_integrated.py",
+      "target": "class:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_integrated.py:OpenVINOOptimizedRerankerModel",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_integrated.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_integrated.py:get_openvino_device",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_integrated.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_integrated.py:load",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_integrated.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_integrated.py:embed",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_integrated.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_integrated.py:embed_single",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_integrated.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_integrated.py:load",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_integrated.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_integrated.py:rerank",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_models.py",
+      "target": "class:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_models.py:OpenVINOEmbeddingModel",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_models.py",
+      "target": "class:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_models.py:OpenVINORerankerModel",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_models.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_models.py:load",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_models.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_models.py:embed",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_models.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_models.py:embed_single",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_models.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_models.py:load",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_models.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_models.py:rerank",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_models.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_models.py:get_openvino_device",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_models.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_models.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils/__init__.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/reranker_service.py",
+      "target": "class:05_src/decathlon_voc_analyzer/stage3_retrieval/reranker_service.py:RerankerService",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/reranker_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/reranker_service.py:rerank",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/reranker_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/core/config.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/reranker_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/core/runtime_policy.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/reranker_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/index.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/reranker_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/retrieval_cache.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/reranker_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/reranker_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py",
+      "target": "class:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py:RetrievalCacheService",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py:load_query_embedding",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py:save_query_embedding",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py:delete_query_embedding",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py:load_rerank",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py:save_rerank",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py:build_candidate_digest",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py:signature_token",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py:root_dir",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/core/config.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/index.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_cache_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/retrieval_cache.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_service.py",
+      "target": "class:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_service.py:RetrievalService",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_service.py:retrieve_for_package",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_service.py:update",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_service.py",
+      "target": "function:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_service.py:advance",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/dataset.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/runtime_progress.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/index_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_service.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/reranker_service.py",
+      "type": "imports",
+      "weight": 0.7
+    }
+  ]
+}

@@ -1,0 +1,91 @@
+{
+  "nodes": [
+    {
+      "id": "file:0_docs/05_教授汇报材料/韩文/01_System_Overview.md",
+      "type": "document",
+      "name": "01_System_Overview.md",
+      "summary": "Decathlon VOC Analyzer — 시스템 전체 설명",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/05_教授汇报材料/韩文/01_System_Overview.md",
+      "complexity": "moderate",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/05_教授汇报材料/韩文/02_Comparison_with_Existing_Analyzers.md",
+      "type": "document",
+      "name": "02_Comparison_with_Existing_Analyzers.md",
+      "summary": "기존 분석기와의 차이",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/05_教授汇报材料/韩文/02_Comparison_with_Existing_Analyzers.md",
+      "complexity": "moderate",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/05_教授汇报材料/韩文/03_Functional_Test_Results.md",
+      "type": "document",
+      "name": "03_Functional_Test_Results.md",
+      "summary": "기능 테스트 결과",
+      "tags": [
+        "testing",
+        "documentation"
+      ],
+      "filePath": "0_docs/05_教授汇报材料/韩文/03_Functional_Test_Results.md",
+      "complexity": "moderate",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/05_教授汇报材料/韩文/04_Screenshot_Guide.md",
+      "type": "document",
+      "name": "04_Screenshot_Guide.md",
+      "summary": "프로그램 실행 스크린샷 가이드",
+      "tags": [
+        "documentation",
+        "ui"
+      ],
+      "filePath": "0_docs/05_教授汇报材料/韩文/04_Screenshot_Guide.md",
+      "complexity": "moderate",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/05_教授汇报材料/韩文/05_Submission_Checklist.md",
+      "type": "document",
+      "name": "05_Submission_Checklist.md",
+      "summary": "교수님 보고 자료 제출 목록",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/05_教授汇报材料/韩文/05_Submission_Checklist.md",
+      "complexity": "moderate",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/05_教授汇报材料/韩文/Experimental_Results.md",
+      "type": "document",
+      "name": "Experimental_Results.md",
+      "summary": "실험 결과 요약",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/05_教授汇报材料/韩文/Experimental_Results.md",
+      "complexity": "moderate",
+      "language": "markdown"
+    },
+    {
+      "id": "file:0_docs/05_教授汇报材料/韩文/Method_Rationale.md",
+      "type": "document",
+      "name": "Method_Rationale.md",
+      "summary": "방법 선택 근거 설명",
+      "tags": [
+        "documentation"
+      ],
+      "filePath": "0_docs/05_教授汇报材料/韩文/Method_Rationale.md",
+      "complexity": "moderate",
+      "language": "markdown"
+    }
+  ],
+  "edges": []
+}

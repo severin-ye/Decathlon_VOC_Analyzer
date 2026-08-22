@@ -1,0 +1,45 @@
+{
+  "nodes": [
+    {
+      "id": "file:04_scripts/experiment_ui/experiment.css",
+      "type": "file",
+      "name": "experiment.css",
+      "summary": "CSS样式表: experiment.css",
+      "tags": [
+        "script",
+        "ui"
+      ],
+      "filePath": "04_scripts/experiment_ui/experiment.css",
+      "complexity": "moderate",
+      "language": "css"
+    },
+    {
+      "id": "file:04_scripts/experiment_ui/experiment.html",
+      "type": "file",
+      "name": "experiment.html",
+      "summary": "HTML页面: 实验矩阵监控",
+      "tags": [
+        "script",
+        "ui"
+      ],
+      "filePath": "04_scripts/experiment_ui/experiment.html",
+      "complexity": "moderate",
+      "language": "html"
+    },
+    {
+      "id": "file:04_scripts/experiment_ui/launcher.css",
+      "type": "file",
+      "name": "launcher.css",
+      "summary": "CSS样式表: launcher.css",
+      "tags": [
+        "script",
+        "launcher",
+        "ui"
+      ],
+      "filePath": "04_scripts/experiment_ui/launcher.css",
+      "complexity": "complex",
+      "language": "css"
+    }
+  ],
+  "edges": []
+}

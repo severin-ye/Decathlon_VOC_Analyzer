@@ -1,0 +1,94 @@
+[
+  {
+    "order": 1,
+    "title": "项目概述与README",
+    "description": "从README开始理解项目定位：证据驱动的多模态VOC分析系统，四个流水线阶段如何将商品描述、图片和用户评论转化为结构化分析报告。",
+    "nodeIds": [
+      "document:README.md",
+      "document:0_docs/01_设计文档/00-导览/项目定位.md",
+      "document:0_docs/01_设计文档/00-导览/术语表.md"
+    ]
+  },
+  {
+    "order": 2,
+    "title": "系统架构与技术选型",
+    "description": "了解整体架构设计：多模态RAG方案对比、LangChain/LangGraph技术选型理由，以及四阶段流水线的宏观设计。",
+    "nodeIds": [
+      "document:0_docs/01_设计文档/01-总体架构/多模态RAG方案对比.md",
+      "document:0_docs/01_设计文档/01-总体架构/技术选型.md",
+      "document:0_docs/01_设计文档/00-导览/阅读路径.md"
+    ]
+  },
+  {
+    "order": 3,
+    "title": "CLI入口与运行方式",
+    "description": "掌握如何运行系统：run_workflow.py是主CLI入口，launch_interactive_workflow.py提供交互式启动，run_experiments.py用于批量实验。",
+    "nodeIds": [
+      "file:04_scripts/run_workflow.py",
+      "file:04_scripts/launch_interactive_workflow.py",
+      "file:04_scripts/run_experiments.py",
+      "file:04_scripts/evaluate_manifests.py"
+    ]
+  },
+  {
+    "order": 4,
+    "title": "数据模型层",
+    "description": "理解系统的数据基础：Pydantic Schema定义了检索记录、分析报告、证据归因、检查点等所有结构化数据类型。",
+    "nodeIds": [
+      "file:05_src/decathlon_voc_analyzer/schemas/analysis.py",
+      "file:05_src/decathlon_voc_analyzer/schemas/__init__.py"
+    ]
+  },
+  {
+    "order": 5,
+    "title": "流水线阶段1-2：数据标准化与评论建模",
+    "description": "Stage1将原始商品数据标准化为ProductEvidencePackage；Stage2对评论进行采样、方面提取和去重，生成VOC需求模型。",
+    "nodeIds": [
+      "file:05_src/decathlon_voc_analyzer/stage1_dataset/__init__.py",
+      "file:05_src/decathlon_voc_analyzer/stage1_dataset/chinese_dataset_service.py",
+      "file:05_src/decathlon_voc_analyzer/stage2_review_modeling/__init__.py",
+      "file:05_src/decathlon_voc_analyzer/stage2_review_modeling/review_service.py"
+    ]
+  },
+  {
+    "order": 6,
+    "title": "流水线阶段3：多模态检索",
+    "description": "Stage3将方面问题转化为证据查询，执行文本检索、CLIP图像检索和Qwen-VL多模态重排序，缓存检索证据。",
+    "nodeIds": [
+      "file:05_src/decathlon_voc_analyzer/stage3_retrieval/__init__.py",
+      "file:05_src/decathlon_voc_analyzer/stage3_retrieval/retrieval_service.py"
+    ]
+  },
+  {
+    "order": 7,
+    "title": "流水线阶段4：证据约束的报告生成",
+    "description": "Stage4基于检索证据生成结构化VOC报告，包含优势、劣势、争议点、证据缺口和改进建议，每项结论可追溯到具体证据。",
+    "nodeIds": [
+      "file:05_src/decathlon_voc_analyzer/stage4_generation/__init__.py",
+      "file:05_src/decathlon_voc_analyzer/stage4_generation/analysis_service.py",
+      "file:05_src/decathlon_voc_analyzer/stage4_generation/question_service.py"
+    ]
+  },
+  {
+    "order": 8,
+    "title": "工作流编排与评估",
+    "description": "LangGraph工作流将各阶段串联；评估服务计算检索质量、证据支持度和引用精度等指标，验证系统有效性。",
+    "nodeIds": [
+      "file:05_src/decathlon_voc_analyzer/workflows/__init__.py",
+      "file:05_src/decathlon_voc_analyzer/workflows/control_experiments.py",
+      "file:05_src/decathlon_voc_analyzer/evaluation/__init__.py",
+      "file:05_src/decathlon_voc_analyzer/evaluation/manifest_evaluation_service.py"
+    ]
+  },
+  {
+    "order": 9,
+    "title": "测试与验证",
+    "description": "验证系统正确性：测试套件覆盖流水线各阶段、提示词注册表和评估服务，确保端到端可复现性。",
+    "nodeIds": [
+      "file:06_tests/conftest.py",
+      "file:06_tests/test_manifest_evaluation_service.py",
+      "file:06_tests/test_prompt_registry.py",
+      "file:06_tests/test_retrieval_service.py"
+    ]
+  }
+]

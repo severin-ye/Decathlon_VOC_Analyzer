@@ -1,0 +1,1733 @@
+{
+  "nodes": [
+    {
+      "id": "file:01_data/02_audit_zh_products/products/backpack/backpack_010/product.json",
+      "type": "config",
+      "name": "product.json",
+      "summary": "JSON配置文件: product.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/02_audit_zh_products/products/backpack/backpack_010/product.json",
+      "complexity": "simple",
+      "language": "json"
+    },
+    {
+      "id": "file:01_data/02_audit_zh_products/products/backpack/backpack_010/reviews.json",
+      "type": "config",
+      "name": "reviews.json",
+      "summary": "JSON配置文件: reviews.json",
+      "tags": [
+        "data"
+      ],
+      "filePath": "01_data/02_audit_zh_products/products/backpack/backpack_010/reviews.json",
+      "complexity": "complex",
+      "language": "json"
+    },
+    {
+      "id": "file:02_outputs/6_experiments/README.md",
+      "type": "document",
+      "name": "README.md",
+      "summary": "6_experiments",
+      "tags": [
+        "output"
+      ],
+      "filePath": "02_outputs/6_experiments/README.md",
+      "complexity": "simple",
+      "language": "markdown"
+    },
+    {
+      "id": "file:02_outputs/README.md",
+      "type": "document",
+      "name": "README.md",
+      "summary": "02_outputs 目录说明",
+      "tags": [
+        "output"
+      ],
+      "filePath": "02_outputs/README.md",
+      "complexity": "moderate",
+      "language": "markdown"
+    },
+    {
+      "id": "file:02_outputs/runtime_logs/README.md",
+      "type": "document",
+      "name": "README.md",
+      "summary": "runtime_logs",
+      "tags": [
+        "output"
+      ],
+      "filePath": "02_outputs/runtime_logs/README.md",
+      "complexity": "simple",
+      "language": "markdown"
+    },
+    {
+      "id": "file:03_configs/review_sampling_profiles.json",
+      "type": "config",
+      "name": "review_sampling_profiles.json",
+      "summary": "JSON配置文件: review_sampling_profiles.json",
+      "tags": [
+        "configuration"
+      ],
+      "filePath": "03_configs/review_sampling_profiles.json",
+      "complexity": "simple",
+      "language": "json"
+    },
+    {
+      "id": "file:03_configs/runtime_execution_policy.json",
+      "type": "config",
+      "name": "runtime_execution_policy.json",
+      "summary": "JSON配置文件: runtime_execution_policy.json",
+      "tags": [
+        "configuration"
+      ],
+      "filePath": "03_configs/runtime_execution_policy.json",
+      "complexity": "simple",
+      "language": "json"
+    },
+    {
+      "id": "file:04_scripts/bench_image_rerank.py",
+      "type": "file",
+      "name": "bench_image_rerank.py",
+      "summary": "Python模块: bench_image_rerank.py",
+      "tags": [
+        "script"
+      ],
+      "filePath": "04_scripts/bench_image_rerank.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "file:04_scripts/clear_generated_outputs.py",
+      "type": "file",
+      "name": "clear_generated_outputs.py",
+      "summary": "Python模块: 定义 2 个类, 13 个函数",
+      "tags": [
+        "script",
+        "output"
+      ],
+      "filePath": "04_scripts/clear_generated_outputs.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "class:04_scripts/clear_generated_outputs.py:OccupyingProcess",
+      "type": "class",
+      "name": "OccupyingProcess",
+      "summary": "OccupyingProcess类",
+      "tags": [
+        "class"
+      ],
+      "filePath": "04_scripts/clear_generated_outputs.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/clear_generated_outputs.py:parse_args",
+      "type": "function",
+      "name": "parse_args",
+      "summary": "配置/初始化函数: parse_args",
+      "tags": [
+        "configuration",
+        "cli"
+      ],
+      "filePath": "04_scripts/clear_generated_outputs.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/clear_generated_outputs.py:collect_cleanup_targets",
+      "type": "function",
+      "name": "collect_cleanup_targets",
+      "summary": "搜索/发现函数: collect_cleanup_targets",
+      "tags": [
+        "search"
+      ],
+      "filePath": "04_scripts/clear_generated_outputs.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/clear_generated_outputs.py:recreate_output_skeleton",
+      "type": "function",
+      "name": "recreate_output_skeleton",
+      "summary": "构建函数: recreate_output_skeleton",
+      "tags": [
+        "factory"
+      ],
+      "filePath": "04_scripts/clear_generated_outputs.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/clear_generated_outputs.py:remove_targets",
+      "type": "function",
+      "name": "remove_targets",
+      "summary": "函数: remove_targets",
+      "tags": [
+        "function"
+      ],
+      "filePath": "04_scripts/clear_generated_outputs.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/clear_generated_outputs.py:confirm_cleanup",
+      "type": "function",
+      "name": "confirm_cleanup",
+      "summary": "函数: confirm_cleanup",
+      "tags": [
+        "function"
+      ],
+      "filePath": "04_scripts/clear_generated_outputs.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/clear_generated_outputs.py:main",
+      "type": "function",
+      "name": "main",
+      "summary": "程序入口: main",
+      "tags": [
+        "entry-point"
+      ],
+      "filePath": "04_scripts/clear_generated_outputs.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:04_scripts/download_local_qwen_models.py",
+      "type": "file",
+      "name": "download_local_qwen_models.py",
+      "summary": "Python模块: 定义 2 个函数",
+      "tags": [
+        "script"
+      ],
+      "filePath": "04_scripts/download_local_qwen_models.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/download_local_qwen_models.py:read_token_from_env_file",
+      "type": "function",
+      "name": "read_token_from_env_file",
+      "summary": "获取/加载函数: read_token_from_env_file",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "04_scripts/download_local_qwen_models.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/download_local_qwen_models.py:main",
+      "type": "function",
+      "name": "main",
+      "summary": "程序入口: main",
+      "tags": [
+        "entry-point"
+      ],
+      "filePath": "04_scripts/download_local_qwen_models.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:04_scripts/evaluate_manifests.py",
+      "type": "file",
+      "name": "evaluate_manifests.py",
+      "summary": "Python模块: 定义 3 个函数",
+      "tags": [
+        "script"
+      ],
+      "filePath": "04_scripts/evaluate_manifests.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/evaluate_manifests.py:parse_args",
+      "type": "function",
+      "name": "parse_args",
+      "summary": "配置/初始化函数: parse_args",
+      "tags": [
+        "configuration",
+        "cli"
+      ],
+      "filePath": "04_scripts/evaluate_manifests.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/evaluate_manifests.py:main",
+      "type": "function",
+      "name": "main",
+      "summary": "程序入口: main",
+      "tags": [
+        "entry-point"
+      ],
+      "filePath": "04_scripts/evaluate_manifests.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:04_scripts/experiment_ops/monitor_experiment.sh",
+      "type": "file",
+      "name": "monitor_experiment.sh",
+      "summary": "Shell脚本: monitor_experiment.sh",
+      "tags": [
+        "script"
+      ],
+      "filePath": "04_scripts/experiment_ops/monitor_experiment.sh",
+      "complexity": "moderate",
+      "language": "shell"
+    },
+    {
+      "id": "file:04_scripts/experiment_ui/experiment.js",
+      "type": "file",
+      "name": "experiment.js",
+      "summary": "JavaScript模块: 定义 23 个函数, 76 个变量",
+      "tags": [
+        "script",
+        "ui"
+      ],
+      "filePath": "04_scripts/experiment_ui/experiment.js",
+      "complexity": "complex",
+      "language": "javascript"
+    },
+    {
+      "id": "file:04_scripts/experiment_ui/serve_ui.py",
+      "type": "file",
+      "name": "serve_ui.py",
+      "summary": "Start a lightweight HTTP server for the experiment UI. Usage: python serve_ui.py Then open http://lo",
+      "tags": [
+        "script",
+        "ui"
+      ],
+      "filePath": "04_scripts/experiment_ui/serve_ui.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:04_scripts/experiment_ui/serve_ui.py:ReusableTCPServer",
+      "type": "class",
+      "name": "ReusableTCPServer",
+      "summary": "ReusableTCPServer类，继承自 socketserver.TCPServer",
+      "tags": [
+        "class"
+      ],
+      "filePath": "04_scripts/experiment_ui/serve_ui.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:04_scripts/experiment_ui/serve_ui.py:Handler",
+      "type": "class",
+      "name": "Handler",
+      "summary": "Handler类，继承自 http.server.SimpleHTTPRequestHandler",
+      "tags": [
+        "class"
+      ],
+      "filePath": "04_scripts/experiment_ui/serve_ui.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/experiment_ui/serve_ui.py:translate_path",
+      "type": "function",
+      "name": "translate_path",
+      "summary": "函数: translate_path",
+      "tags": [
+        "function"
+      ],
+      "filePath": "04_scripts/experiment_ui/serve_ui.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/experiment_ui/serve_ui.py:end_headers",
+      "type": "function",
+      "name": "end_headers",
+      "summary": "函数: end_headers",
+      "tags": [
+        "function"
+      ],
+      "filePath": "04_scripts/experiment_ui/serve_ui.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:04_scripts/export_html_report.py",
+      "type": "file",
+      "name": "export_html_report.py",
+      "summary": "Python模块: 定义 2 个函数",
+      "tags": [
+        "script"
+      ],
+      "filePath": "04_scripts/export_html_report.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/export_html_report.py:parse_args",
+      "type": "function",
+      "name": "parse_args",
+      "summary": "配置/初始化函数: parse_args",
+      "tags": [
+        "configuration",
+        "cli"
+      ],
+      "filePath": "04_scripts/export_html_report.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/export_html_report.py:main",
+      "type": "function",
+      "name": "main",
+      "summary": "程序入口: main",
+      "tags": [
+        "entry-point"
+      ],
+      "filePath": "04_scripts/export_html_report.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:04_scripts/export_single_product_chinese_dataset.py",
+      "type": "file",
+      "name": "export_single_product_chinese_dataset.py",
+      "summary": "Python模块: 定义 1 个函数",
+      "tags": [
+        "pipeline-stage1",
+        "script",
+        "data"
+      ],
+      "filePath": "04_scripts/export_single_product_chinese_dataset.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/export_single_product_chinese_dataset.py:main",
+      "type": "function",
+      "name": "main",
+      "summary": "程序入口: main",
+      "tags": [
+        "entry-point"
+      ],
+      "filePath": "04_scripts/export_single_product_chinese_dataset.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:04_scripts/launch_interactive_workflow.py",
+      "type": "file",
+      "name": "launch_interactive_workflow.py",
+      "summary": "Python模块: 定义 7 个类, 53 个函数",
+      "tags": [
+        "workflow",
+        "script"
+      ],
+      "filePath": "04_scripts/launch_interactive_workflow.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "class:04_scripts/launch_interactive_workflow.py:BatchProductState",
+      "type": "class",
+      "name": "BatchProductState",
+      "summary": "BatchProductState类",
+      "tags": [
+        "workflow",
+        "langgraph"
+      ],
+      "filePath": "04_scripts/launch_interactive_workflow.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:04_scripts/launch_interactive_workflow.py:CategoryRunState",
+      "type": "class",
+      "name": "CategoryRunState",
+      "summary": "CategoryRunState类",
+      "tags": [
+        "workflow",
+        "langgraph"
+      ],
+      "filePath": "04_scripts/launch_interactive_workflow.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:04_scripts/launch_interactive_workflow.py:LauncherRunState",
+      "type": "class",
+      "name": "LauncherRunState",
+      "summary": "LauncherRunState类",
+      "tags": [
+        "workflow",
+        "langgraph"
+      ],
+      "filePath": "04_scripts/launch_interactive_workflow.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:04_scripts/launch_interactive_workflow.py:OccupyingProcess",
+      "type": "class",
+      "name": "OccupyingProcess",
+      "summary": "OccupyingProcess类",
+      "tags": [
+        "class"
+      ],
+      "filePath": "04_scripts/launch_interactive_workflow.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:04_scripts/launch_interactive_workflow.py:ResumeCandidate",
+      "type": "class",
+      "name": "ResumeCandidate",
+      "summary": "ResumeCandidate类",
+      "tags": [
+        "class"
+      ],
+      "filePath": "04_scripts/launch_interactive_workflow.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "class:04_scripts/launch_interactive_workflow.py:ResumeModeOption",
+      "type": "class",
+      "name": "ResumeModeOption",
+      "summary": "ResumeModeOption类",
+      "tags": [
+        "class"
+      ],
+      "filePath": "04_scripts/launch_interactive_workflow.py",
+      "complexity": "simple",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/launch_interactive_workflow.py:discover_categories",
+      "type": "function",
+      "name": "discover_categories",
+      "summary": "搜索/发现函数: discover_categories",
+      "tags": [
+        "search"
+      ],
+      "filePath": "04_scripts/launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/launch_interactive_workflow.py:discover_products",
+      "type": "function",
+      "name": "discover_products",
+      "summary": "搜索/发现函数: discover_products",
+      "tags": [
+        "search"
+      ],
+      "filePath": "04_scripts/launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/launch_interactive_workflow.py:parse_index_selection",
+      "type": "function",
+      "name": "parse_index_selection",
+      "summary": "函数: parse_index_selection",
+      "tags": [
+        "function"
+      ],
+      "filePath": "04_scripts/launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/launch_interactive_workflow.py:build_overview_dashboard_path",
+      "type": "function",
+      "name": "build_overview_dashboard_path",
+      "summary": "构建函数: build_overview_dashboard_path",
+      "tags": [
+        "factory"
+      ],
+      "filePath": "04_scripts/launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/launch_interactive_workflow.py:build_overview_entry_relative_url",
+      "type": "function",
+      "name": "build_overview_entry_relative_url",
+      "summary": "构建函数: build_overview_entry_relative_url",
+      "tags": [
+        "factory"
+      ],
+      "filePath": "04_scripts/launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/launch_interactive_workflow.py:build_batch_dashboard_path",
+      "type": "function",
+      "name": "build_batch_dashboard_path",
+      "summary": "构建函数: build_batch_dashboard_path",
+      "tags": [
+        "factory"
+      ],
+      "filePath": "04_scripts/launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/launch_interactive_workflow.py:build_product_detail_path",
+      "type": "function",
+      "name": "build_product_detail_path",
+      "summary": "构建函数: build_product_detail_path",
+      "tags": [
+        "factory"
+      ],
+      "filePath": "04_scripts/launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/launch_interactive_workflow.py:build_launcher_relative_url",
+      "type": "function",
+      "name": "build_launcher_relative_url",
+      "summary": "构建函数: build_launcher_relative_url",
+      "tags": [
+        "factory"
+      ],
+      "filePath": "04_scripts/launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/launch_interactive_workflow.py:build_product_dashboard_relative_path",
+      "type": "function",
+      "name": "build_product_dashboard_relative_path",
+      "summary": "构建函数: build_product_dashboard_relative_path",
+      "tags": [
+        "factory"
+      ],
+      "filePath": "04_scripts/launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/launch_interactive_workflow.py:build_product_dashboard_state_relative_path",
+      "type": "function",
+      "name": "build_product_dashboard_state_relative_path",
+      "summary": "构建函数: build_product_dashboard_state_relative_path",
+      "tags": [
+        "factory"
+      ],
+      "filePath": "04_scripts/launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/launch_interactive_workflow.py:ensure_http_server",
+      "type": "function",
+      "name": "ensure_http_server",
+      "summary": "验证函数: ensure_http_server",
+      "tags": [
+        "validation"
+      ],
+      "filePath": "04_scripts/launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/launch_interactive_workflow.py:ensure_launcher_assets",
+      "type": "function",
+      "name": "ensure_launcher_assets",
+      "summary": "验证函数: ensure_launcher_assets",
+      "tags": [
+        "validation"
+      ],
+      "filePath": "04_scripts/launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/launch_interactive_workflow.py:write_batch_dashboard",
+      "type": "function",
+      "name": "write_batch_dashboard",
+      "summary": "输出/保存函数: write_batch_dashboard",
+      "tags": [
+        "output",
+        "io"
+      ],
+      "filePath": "04_scripts/launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/launch_interactive_workflow.py:build_batch_dashboard_payload",
+      "type": "function",
+      "name": "build_batch_dashboard_payload",
+      "summary": "构建函数: build_batch_dashboard_payload",
+      "tags": [
+        "factory"
+      ],
+      "filePath": "04_scripts/launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/launch_interactive_workflow.py:run_interactive_batch",
+      "type": "function",
+      "name": "run_interactive_batch",
+      "summary": "执行函数: run_interactive_batch",
+      "tags": [
+        "execution"
+      ],
+      "filePath": "04_scripts/launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/launch_interactive_workflow.py:restore_batch_state",
+      "type": "function",
+      "name": "restore_batch_state",
+      "summary": "状态恢复函数: restore_batch_state",
+      "tags": [
+        "state",
+        "recovery"
+      ],
+      "filePath": "04_scripts/launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/launch_interactive_workflow.py:find_latest_resumable_batch",
+      "type": "function",
+      "name": "find_latest_resumable_batch",
+      "summary": "搜索/发现函数: find_latest_resumable_batch",
+      "tags": [
+        "search"
+      ],
+      "filePath": "04_scripts/launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/launch_interactive_workflow.py:prompt_continue_previous_batch",
+      "type": "function",
+      "name": "prompt_continue_previous_batch",
+      "summary": "展示/渲染函数: prompt_continue_previous_batch",
+      "tags": [
+        "ui",
+        "display"
+      ],
+      "filePath": "04_scripts/launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/launch_interactive_workflow.py:run_product_workflow",
+      "type": "function",
+      "name": "run_product_workflow",
+      "summary": "执行函数: run_product_workflow",
+      "tags": [
+        "execution"
+      ],
+      "filePath": "04_scripts/launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/launch_interactive_workflow.py:prompt_categories",
+      "type": "function",
+      "name": "prompt_categories",
+      "summary": "展示/渲染函数: prompt_categories",
+      "tags": [
+        "ui",
+        "display"
+      ],
+      "filePath": "04_scripts/launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/launch_interactive_workflow.py:prompt_products",
+      "type": "function",
+      "name": "prompt_products",
+      "summary": "展示/渲染函数: prompt_products",
+      "tags": [
+        "ui",
+        "display"
+      ],
+      "filePath": "04_scripts/launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/launch_interactive_workflow.py:prompt_review_limit",
+      "type": "function",
+      "name": "prompt_review_limit",
+      "summary": "展示/渲染函数: prompt_review_limit",
+      "tags": [
+        "ui",
+        "display"
+      ],
+      "filePath": "04_scripts/launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/launch_interactive_workflow.py:prompt_run_mode",
+      "type": "function",
+      "name": "prompt_run_mode",
+      "summary": "展示/渲染函数: prompt_run_mode",
+      "tags": [
+        "ui",
+        "display"
+      ],
+      "filePath": "04_scripts/launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/launch_interactive_workflow.py:parse_run_mode_override",
+      "type": "function",
+      "name": "parse_run_mode_override",
+      "summary": "执行函数: parse_run_mode_override",
+      "tags": [
+        "execution"
+      ],
+      "filePath": "04_scripts/launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/launch_interactive_workflow.py:available_run_mode_options",
+      "type": "function",
+      "name": "available_run_mode_options",
+      "summary": "执行函数: available_run_mode_options",
+      "tags": [
+        "execution"
+      ],
+      "filePath": "04_scripts/launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/launch_interactive_workflow.py:unavailable_resume_mode_messages",
+      "type": "function",
+      "name": "unavailable_resume_mode_messages",
+      "summary": "状态恢复函数: unavailable_resume_mode_messages",
+      "tags": [
+        "state",
+        "recovery"
+      ],
+      "filePath": "04_scripts/launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/launch_interactive_workflow.py:main",
+      "type": "function",
+      "name": "main",
+      "summary": "程序入口: main",
+      "tags": [
+        "entry-point"
+      ],
+      "filePath": "04_scripts/launch_interactive_workflow.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:04_scripts/launcher_ui/category.js",
+      "type": "file",
+      "name": "category.js",
+      "summary": "JavaScript模块: 定义 2 个函数, 16 个变量",
+      "tags": [
+        "script",
+        "launcher",
+        "ui"
+      ],
+      "filePath": "04_scripts/launcher_ui/category.js",
+      "complexity": "moderate",
+      "language": "javascript"
+    },
+    {
+      "id": "file:04_scripts/launcher_ui/common.js",
+      "type": "file",
+      "name": "common.js",
+      "summary": "JavaScript模块: 定义 13 个函数, 26 个变量",
+      "tags": [
+        "script",
+        "launcher",
+        "ui"
+      ],
+      "filePath": "04_scripts/launcher_ui/common.js",
+      "complexity": "moderate",
+      "language": "javascript"
+    },
+    {
+      "id": "file:04_scripts/launcher_ui/overview.js",
+      "type": "file",
+      "name": "overview.js",
+      "summary": "JavaScript模块: 定义 2 个函数, 18 个变量",
+      "tags": [
+        "script",
+        "launcher",
+        "ui"
+      ],
+      "filePath": "04_scripts/launcher_ui/overview.js",
+      "complexity": "moderate",
+      "language": "javascript"
+    },
+    {
+      "id": "file:04_scripts/local_inference/demo_local_inference.py",
+      "type": "file",
+      "name": "demo_local_inference.py",
+      "summary": "本地推理集成演示脚本 演示 Qwen3 小参数模型的集成： - Qwen3-Embedding-0.6B: 文本嵌入 - Qwen3-Reranker-0.6B: 文本重排 - Qwen3-VL-2B",
+      "tags": [
+        "script"
+      ],
+      "filePath": "04_scripts/local_inference/demo_local_inference.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/local_inference/demo_local_inference.py:demonstrate_local_models",
+      "type": "function",
+      "name": "demonstrate_local_models",
+      "summary": "函数: demonstrate_local_models",
+      "tags": [
+        "function"
+      ],
+      "filePath": "04_scripts/local_inference/demo_local_inference.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:04_scripts/local_inference/fix_rerank.py",
+      "type": "file",
+      "name": "fix_rerank.py",
+      "summary": "scores = [] with torch.no_grad(): for idx, candidate in enumerate(candidates): pair = f\"{query} {can",
+      "tags": [
+        "script"
+      ],
+      "filePath": "04_scripts/local_inference/fix_rerank.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:04_scripts/local_inference/test_intel_gpu_npu.py",
+      "type": "file",
+      "name": "test_intel_gpu_npu.py",
+      "summary": "import sys import os from pathlib import Path import torch import time import psutil from datetime i",
+      "tags": [
+        "testing",
+        "script"
+      ],
+      "filePath": "04_scripts/local_inference/test_intel_gpu_npu.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/local_inference/test_intel_gpu_npu.py:print_section",
+      "type": "function",
+      "name": "print_section",
+      "summary": "函数: print_section",
+      "tags": [
+        "function"
+      ],
+      "filePath": "04_scripts/local_inference/test_intel_gpu_npu.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/local_inference/test_intel_gpu_npu.py:check_hardware",
+      "type": "function",
+      "name": "check_hardware",
+      "summary": "验证函数: check_hardware",
+      "tags": [
+        "validation"
+      ],
+      "filePath": "04_scripts/local_inference/test_intel_gpu_npu.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/local_inference/test_intel_gpu_npu.py:get_system_memory",
+      "type": "function",
+      "name": "get_system_memory",
+      "summary": "获取/加载函数: get_system_memory",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "04_scripts/local_inference/test_intel_gpu_npu.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/local_inference/test_intel_gpu_npu.py:monitor_resources",
+      "type": "function",
+      "name": "monitor_resources",
+      "summary": "函数: monitor_resources",
+      "tags": [
+        "function"
+      ],
+      "filePath": "04_scripts/local_inference/test_intel_gpu_npu.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/local_inference/test_intel_gpu_npu.py:test_embedding_model",
+      "type": "function",
+      "name": "test_embedding_model",
+      "summary": "函数: test_embedding_model",
+      "tags": [
+        "function"
+      ],
+      "filePath": "04_scripts/local_inference/test_intel_gpu_npu.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/local_inference/test_intel_gpu_npu.py:test_reranker_model",
+      "type": "function",
+      "name": "test_reranker_model",
+      "summary": "函数: test_reranker_model",
+      "tags": [
+        "function"
+      ],
+      "filePath": "04_scripts/local_inference/test_intel_gpu_npu.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/local_inference/test_intel_gpu_npu.py:main",
+      "type": "function",
+      "name": "main",
+      "summary": "程序入口: main",
+      "tags": [
+        "entry-point"
+      ],
+      "filePath": "04_scripts/local_inference/test_intel_gpu_npu.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:04_scripts/local_inference/test_openvino_integrated.py",
+      "type": "file",
+      "name": "test_openvino_integrated.py",
+      "summary": "import sys from pathlib import Path import time import psutil import logging # 配置日志 logging.basicCon",
+      "tags": [
+        "testing",
+        "script"
+      ],
+      "filePath": "04_scripts/local_inference/test_openvino_integrated.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/local_inference/test_openvino_integrated.py:print_section",
+      "type": "function",
+      "name": "print_section",
+      "summary": "函数: print_section",
+      "tags": [
+        "function"
+      ],
+      "filePath": "04_scripts/local_inference/test_openvino_integrated.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/local_inference/test_openvino_integrated.py:get_resources",
+      "type": "function",
+      "name": "get_resources",
+      "summary": "获取/加载函数: get_resources",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "04_scripts/local_inference/test_openvino_integrated.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/local_inference/test_openvino_integrated.py:test_openvino_integrated",
+      "type": "function",
+      "name": "test_openvino_integrated",
+      "summary": "函数: test_openvino_integrated",
+      "tags": [
+        "function"
+      ],
+      "filePath": "04_scripts/local_inference/test_openvino_integrated.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "file:04_scripts/local_inference/test_openvino_vs_pytorch.py",
+      "type": "file",
+      "name": "test_openvino_vs_pytorch.py",
+      "summary": "import sys import os from pathlib import Path import time import psutil from datetime import datetim",
+      "tags": [
+        "testing",
+        "script"
+      ],
+      "filePath": "04_scripts/local_inference/test_openvino_vs_pytorch.py",
+      "complexity": "complex",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/local_inference/test_openvino_vs_pytorch.py:print_section",
+      "type": "function",
+      "name": "print_section",
+      "summary": "函数: print_section",
+      "tags": [
+        "function"
+      ],
+      "filePath": "04_scripts/local_inference/test_openvino_vs_pytorch.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/local_inference/test_openvino_vs_pytorch.py:check_openvino",
+      "type": "function",
+      "name": "check_openvino",
+      "summary": "验证函数: check_openvino",
+      "tags": [
+        "validation"
+      ],
+      "filePath": "04_scripts/local_inference/test_openvino_vs_pytorch.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/local_inference/test_openvino_vs_pytorch.py:get_system_resources",
+      "type": "function",
+      "name": "get_system_resources",
+      "summary": "获取/加载函数: get_system_resources",
+      "tags": [
+        "resolver"
+      ],
+      "filePath": "04_scripts/local_inference/test_openvino_vs_pytorch.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/local_inference/test_openvino_vs_pytorch.py:test_pytorch_embedding",
+      "type": "function",
+      "name": "test_pytorch_embedding",
+      "summary": "函数: test_pytorch_embedding",
+      "tags": [
+        "function"
+      ],
+      "filePath": "04_scripts/local_inference/test_openvino_vs_pytorch.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/local_inference/test_openvino_vs_pytorch.py:test_openvino_embedding",
+      "type": "function",
+      "name": "test_openvino_embedding",
+      "summary": "函数: test_openvino_embedding",
+      "tags": [
+        "function"
+      ],
+      "filePath": "04_scripts/local_inference/test_openvino_vs_pytorch.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/local_inference/test_openvino_vs_pytorch.py:test_pytorch_reranker",
+      "type": "function",
+      "name": "test_pytorch_reranker",
+      "summary": "函数: test_pytorch_reranker",
+      "tags": [
+        "function"
+      ],
+      "filePath": "04_scripts/local_inference/test_openvino_vs_pytorch.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/local_inference/test_openvino_vs_pytorch.py:test_openvino_reranker",
+      "type": "function",
+      "name": "test_openvino_reranker",
+      "summary": "函数: test_openvino_reranker",
+      "tags": [
+        "function"
+      ],
+      "filePath": "04_scripts/local_inference/test_openvino_vs_pytorch.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/local_inference/test_openvino_vs_pytorch.py:print_comparison",
+      "type": "function",
+      "name": "print_comparison",
+      "summary": "函数: print_comparison",
+      "tags": [
+        "function"
+      ],
+      "filePath": "04_scripts/local_inference/test_openvino_vs_pytorch.py",
+      "complexity": "moderate",
+      "language": "python"
+    },
+    {
+      "id": "function:04_scripts/local_inference/test_openvino_vs_pytorch.py:main",
+      "type": "function",
+      "name": "main",
+      "summary": "程序入口: main",
+      "tags": [
+        "entry-point"
+      ],
+      "filePath": "04_scripts/local_inference/test_openvino_vs_pytorch.py",
+      "complexity": "moderate",
+      "language": "python"
+    }
+  ],
+  "edges": [
+    {
+      "source": "file:04_scripts/bench_image_rerank.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/core/config.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:04_scripts/bench_image_rerank.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/reranker_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:04_scripts/bench_image_rerank.py",
+      "target": "file:05_src/decathlon_voc_analyzer/schemas/index.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:04_scripts/clear_generated_outputs.py",
+      "target": "class:04_scripts/clear_generated_outputs.py:OccupyingProcess",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/clear_generated_outputs.py",
+      "target": "function:04_scripts/clear_generated_outputs.py:parse_args",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/clear_generated_outputs.py",
+      "target": "function:04_scripts/clear_generated_outputs.py:collect_cleanup_targets",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/clear_generated_outputs.py",
+      "target": "function:04_scripts/clear_generated_outputs.py:recreate_output_skeleton",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/clear_generated_outputs.py",
+      "target": "function:04_scripts/clear_generated_outputs.py:remove_targets",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/clear_generated_outputs.py",
+      "target": "function:04_scripts/clear_generated_outputs.py:confirm_cleanup",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/clear_generated_outputs.py",
+      "target": "function:04_scripts/clear_generated_outputs.py:main",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/download_local_qwen_models.py",
+      "target": "function:04_scripts/download_local_qwen_models.py:read_token_from_env_file",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/download_local_qwen_models.py",
+      "target": "function:04_scripts/download_local_qwen_models.py:main",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/evaluate_manifests.py",
+      "target": "function:04_scripts/evaluate_manifests.py:parse_args",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/evaluate_manifests.py",
+      "target": "function:04_scripts/evaluate_manifests.py:main",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/evaluate_manifests.py",
+      "target": "file:05_src/decathlon_voc_analyzer/evaluation.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:04_scripts/experiment_ui/serve_ui.py",
+      "target": "class:04_scripts/experiment_ui/serve_ui.py:ReusableTCPServer",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/experiment_ui/serve_ui.py",
+      "target": "class:04_scripts/experiment_ui/serve_ui.py:Handler",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/experiment_ui/serve_ui.py",
+      "target": "function:04_scripts/experiment_ui/serve_ui.py:translate_path",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/experiment_ui/serve_ui.py",
+      "target": "function:04_scripts/experiment_ui/serve_ui.py:end_headers",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/export_html_report.py",
+      "target": "function:04_scripts/export_html_report.py:parse_args",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/export_html_report.py",
+      "target": "function:04_scripts/export_html_report.py:main",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/export_html_report.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/core/config.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:04_scripts/export_html_report.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage4_generation/html_export_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:04_scripts/export_single_product_chinese_dataset.py",
+      "target": "function:04_scripts/export_single_product_chinese_dataset.py:main",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/export_single_product_chinese_dataset.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage1_dataset/chinese_dataset_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:04_scripts/launch_interactive_workflow.py",
+      "target": "class:04_scripts/launch_interactive_workflow.py:BatchProductState",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/launch_interactive_workflow.py",
+      "target": "class:04_scripts/launch_interactive_workflow.py:CategoryRunState",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/launch_interactive_workflow.py",
+      "target": "class:04_scripts/launch_interactive_workflow.py:LauncherRunState",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/launch_interactive_workflow.py",
+      "target": "class:04_scripts/launch_interactive_workflow.py:OccupyingProcess",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/launch_interactive_workflow.py",
+      "target": "class:04_scripts/launch_interactive_workflow.py:ResumeCandidate",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/launch_interactive_workflow.py",
+      "target": "class:04_scripts/launch_interactive_workflow.py:ResumeModeOption",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/launch_interactive_workflow.py",
+      "target": "function:04_scripts/launch_interactive_workflow.py:discover_categories",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/launch_interactive_workflow.py",
+      "target": "function:04_scripts/launch_interactive_workflow.py:discover_products",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/launch_interactive_workflow.py",
+      "target": "function:04_scripts/launch_interactive_workflow.py:parse_index_selection",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/launch_interactive_workflow.py",
+      "target": "function:04_scripts/launch_interactive_workflow.py:build_overview_dashboard_path",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/launch_interactive_workflow.py",
+      "target": "function:04_scripts/launch_interactive_workflow.py:build_overview_entry_relative_url",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/launch_interactive_workflow.py",
+      "target": "function:04_scripts/launch_interactive_workflow.py:build_batch_dashboard_path",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/launch_interactive_workflow.py",
+      "target": "function:04_scripts/launch_interactive_workflow.py:build_product_detail_path",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/launch_interactive_workflow.py",
+      "target": "function:04_scripts/launch_interactive_workflow.py:build_launcher_relative_url",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/launch_interactive_workflow.py",
+      "target": "function:04_scripts/launch_interactive_workflow.py:build_product_dashboard_relative_path",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/launch_interactive_workflow.py",
+      "target": "function:04_scripts/launch_interactive_workflow.py:build_product_dashboard_state_relative_path",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/launch_interactive_workflow.py",
+      "target": "function:04_scripts/launch_interactive_workflow.py:ensure_http_server",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/launch_interactive_workflow.py",
+      "target": "function:04_scripts/launch_interactive_workflow.py:ensure_launcher_assets",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/launch_interactive_workflow.py",
+      "target": "function:04_scripts/launch_interactive_workflow.py:write_batch_dashboard",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/launch_interactive_workflow.py",
+      "target": "function:04_scripts/launch_interactive_workflow.py:build_batch_dashboard_payload",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/launch_interactive_workflow.py",
+      "target": "function:04_scripts/launch_interactive_workflow.py:run_interactive_batch",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/launch_interactive_workflow.py",
+      "target": "function:04_scripts/launch_interactive_workflow.py:restore_batch_state",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/launch_interactive_workflow.py",
+      "target": "function:04_scripts/launch_interactive_workflow.py:find_latest_resumable_batch",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/launch_interactive_workflow.py",
+      "target": "function:04_scripts/launch_interactive_workflow.py:prompt_continue_previous_batch",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/launch_interactive_workflow.py",
+      "target": "function:04_scripts/launch_interactive_workflow.py:run_product_workflow",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/launch_interactive_workflow.py",
+      "target": "function:04_scripts/launch_interactive_workflow.py:prompt_categories",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/launch_interactive_workflow.py",
+      "target": "function:04_scripts/launch_interactive_workflow.py:prompt_products",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/launch_interactive_workflow.py",
+      "target": "function:04_scripts/launch_interactive_workflow.py:prompt_review_limit",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/launch_interactive_workflow.py",
+      "target": "function:04_scripts/launch_interactive_workflow.py:prompt_run_mode",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/launch_interactive_workflow.py",
+      "target": "function:04_scripts/launch_interactive_workflow.py:parse_run_mode_override",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/launch_interactive_workflow.py",
+      "target": "function:04_scripts/launch_interactive_workflow.py:available_run_mode_options",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/launch_interactive_workflow.py",
+      "target": "function:04_scripts/launch_interactive_workflow.py:unavailable_resume_mode_messages",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/launch_interactive_workflow.py",
+      "target": "function:04_scripts/launch_interactive_workflow.py:main",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/local_inference/demo_local_inference.py",
+      "target": "function:04_scripts/local_inference/demo_local_inference.py:demonstrate_local_models",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/local_inference/demo_local_inference.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/core/config.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:04_scripts/local_inference/demo_local_inference.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:04_scripts/local_inference/demo_local_inference.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/reranker_service.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:04_scripts/local_inference/demo_local_inference.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:04_scripts/local_inference/demo_local_inference.py",
+      "target": "file:05_src/decathlon_voc_analyzer/app/core/config/__init__.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:04_scripts/local_inference/demo_local_inference.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/embedding_service/__init__.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:04_scripts/local_inference/demo_local_inference.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/reranker_service/__init__.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:04_scripts/local_inference/test_intel_gpu_npu.py",
+      "target": "function:04_scripts/local_inference/test_intel_gpu_npu.py:print_section",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/local_inference/test_intel_gpu_npu.py",
+      "target": "function:04_scripts/local_inference/test_intel_gpu_npu.py:check_hardware",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/local_inference/test_intel_gpu_npu.py",
+      "target": "function:04_scripts/local_inference/test_intel_gpu_npu.py:get_system_memory",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/local_inference/test_intel_gpu_npu.py",
+      "target": "function:04_scripts/local_inference/test_intel_gpu_npu.py:monitor_resources",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/local_inference/test_intel_gpu_npu.py",
+      "target": "function:04_scripts/local_inference/test_intel_gpu_npu.py:test_embedding_model",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/local_inference/test_intel_gpu_npu.py",
+      "target": "function:04_scripts/local_inference/test_intel_gpu_npu.py:test_reranker_model",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/local_inference/test_intel_gpu_npu.py",
+      "target": "function:04_scripts/local_inference/test_intel_gpu_npu.py:main",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/local_inference/test_intel_gpu_npu.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:04_scripts/local_inference/test_openvino_integrated.py",
+      "target": "function:04_scripts/local_inference/test_openvino_integrated.py:print_section",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/local_inference/test_openvino_integrated.py",
+      "target": "function:04_scripts/local_inference/test_openvino_integrated.py:get_resources",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/local_inference/test_openvino_integrated.py",
+      "target": "function:04_scripts/local_inference/test_openvino_integrated.py:test_openvino_integrated",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/local_inference/test_openvino_integrated.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_integrated.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:04_scripts/local_inference/test_openvino_vs_pytorch.py",
+      "target": "function:04_scripts/local_inference/test_openvino_vs_pytorch.py:print_section",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/local_inference/test_openvino_vs_pytorch.py",
+      "target": "function:04_scripts/local_inference/test_openvino_vs_pytorch.py:check_openvino",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/local_inference/test_openvino_vs_pytorch.py",
+      "target": "function:04_scripts/local_inference/test_openvino_vs_pytorch.py:get_system_resources",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/local_inference/test_openvino_vs_pytorch.py",
+      "target": "function:04_scripts/local_inference/test_openvino_vs_pytorch.py:test_pytorch_embedding",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/local_inference/test_openvino_vs_pytorch.py",
+      "target": "function:04_scripts/local_inference/test_openvino_vs_pytorch.py:test_openvino_embedding",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/local_inference/test_openvino_vs_pytorch.py",
+      "target": "function:04_scripts/local_inference/test_openvino_vs_pytorch.py:test_pytorch_reranker",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/local_inference/test_openvino_vs_pytorch.py",
+      "target": "function:04_scripts/local_inference/test_openvino_vs_pytorch.py:test_openvino_reranker",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/local_inference/test_openvino_vs_pytorch.py",
+      "target": "function:04_scripts/local_inference/test_openvino_vs_pytorch.py:print_comparison",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/local_inference/test_openvino_vs_pytorch.py",
+      "target": "function:04_scripts/local_inference/test_openvino_vs_pytorch.py:main",
+      "type": "contains",
+      "weight": 1.0
+    },
+    {
+      "source": "file:04_scripts/local_inference/test_openvino_vs_pytorch.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:04_scripts/local_inference/test_openvino_vs_pytorch.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_models.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:04_scripts/local_inference/test_openvino_vs_pytorch.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/local_model_utils/__init__.py",
+      "type": "imports",
+      "weight": 0.7
+    },
+    {
+      "source": "file:04_scripts/local_inference/test_openvino_vs_pytorch.py",
+      "target": "file:05_src/decathlon_voc_analyzer/stage3_retrieval/openvino_models/__init__.py",
+      "type": "imports",
+      "weight": 0.7
+    }
+  ]
+}
